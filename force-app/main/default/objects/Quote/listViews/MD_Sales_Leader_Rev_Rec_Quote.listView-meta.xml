@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MD_Sales_Leader_Rev_Rec_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>MD/Sales Leader &amp; Rev Rec</label>
+    <queue>MD_Sales_Leader_Rev_Rec</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Temperature_Change_Note__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter any additional notes regarding the temperature change.</inlineHelpText>
+    <label>Temperature Change Note</label>
+    <length>100</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

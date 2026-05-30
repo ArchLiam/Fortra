@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Services_Products</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
+    <columns>PRODUCT2.DESCRIPTION</columns>
+    <columns>PRODUCT2.FAMILY</columns>
+    <columns>pse__IsServicesProduct__c</columns>
+    <columns>c2g__CODAExternalId__c</columns>
+    <columns>External_ID__c</columns>
+    <columns>PRODUCT2.EXTERNAL_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>License_Type__c</field>
+        <operation>equals</operation>
+        <value>Services</value>
+    </filters>
+    <filters>
+        <field>pse__IsServicesProduct__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Services Products</label>
+</ListView>

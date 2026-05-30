@@ -1,0 +1,18 @@
+=== ProductRelationshipType across orgs ===
+  fulltemp: 3 records
+    0yoa5000000gTs1AAE  'Bundle to Product Classification Component Relationship'  parent_role=None  child_role=None
+    0yoa5000000gTtdAAE  'Bundle to Bundle Component Relationship'  parent_role=None  child_role=None
+    0yoaZ0000000SxBQAU  'Product Request Relationship'  parent_role=None  child_role=None
+  MergeBuild: 3 records
+    0yoa5000000gTs1AAE  'Bundle to Product Classification Component Relationship'  parent_role=None  child_role=None
+    0yoa5000000gTtdAAE  'Bundle to Bundle Component Relationship'  parent_role=None  child_role=None
+    0yoaZ0000000SxBQAU  'Product Request Relationship'  parent_role=None  child_role=None
+
+fulltemp PRC: 1417, MB PRC: 0
+Common: 0; fulltemp-only (load): 1417; MB-only: 0
+
+MB maps: P2=8807, PC=121, PSM=9, PRT=3, PCG=421
+
+Payload: 1417 / 1417; Unresolved: 0
+
+Wrote 1417 rows to /tmp/prc_payload.csv

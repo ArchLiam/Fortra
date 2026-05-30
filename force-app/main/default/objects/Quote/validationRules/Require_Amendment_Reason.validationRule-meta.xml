@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Amendment_Reason</fullName>
+    <active>true</active>
+    <description>Requires Amendment Reason to be populated when Quote Type is Amendment.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Quote_Type__c, &apos;Amendment&apos;),
+    ISBLANK(TEXT(Amendment_Reason__c))
+)</errorConditionFormula>
+    <errorDisplayField>Amendment_Reason__c</errorDisplayField>
+    <errorMessage>Amendment Reason is required for all amendment quotes.</errorMessage>
+</ValidationRule>

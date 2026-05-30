@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salesintelio__SalesIntel_Machine_Verified__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <inlineHelpText>If an enrichment was attempted but the record is marked as Machine verified in the SalesIntel database then the box will be checked TRUE.</inlineHelpText>
+    <label>SalesIntel Machine Verified(Deprecated)</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

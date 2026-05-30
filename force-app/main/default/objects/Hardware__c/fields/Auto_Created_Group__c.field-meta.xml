@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Created_Group__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates that the quote line group was automatically created when this hardware record was created. Used for automation logic and tracking.</description>
+    <label>Auto Created Group</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

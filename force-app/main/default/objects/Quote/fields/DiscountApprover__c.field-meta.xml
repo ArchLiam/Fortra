@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DiscountApprover__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>User who approved the discount exception</description>
+    <inlineHelpText>User who approved the discount exception</inlineHelpText>
+    <label>Discount Approver</label>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Quotes (Discount Approver)</relationshipLabel>
+    <relationshipName>Quotes_Discount_Approver</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,60 @@
+UAT PRTM: 12, fulltemp: 14, MergeBuild: 11
+
+=== PRTM by composite key (Recipe, PCT, DT.DevName, FileName, IsInternal) ===
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'AssetDiscovery', 'Asset_Action_Source_Entries_Decision_Table_V2', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'AttributeDiscount', 'Attribute_Based_Adjustment_Decision_Table', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'BundleDiscount', 'Bundle_Based_Adjustment_Decision_Table', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'ListPrice', 'Contract_Pricing_Entries_Decision_Table', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'ListPrice', 'Price_Book_Entry_Decision_Table_v2', None, True)
+  UAT=✓ ft=✓ MB=·  ('NGPDefaultRecipe', 'PriceAdjustmentMatrix', 'CalculatedVolumeDiscountPriceAdjusmentTier', None, False)
+  UAT=· ft=✓ MB=·  ('NGPDefaultRecipe', 'PriceAdjustmentMatrix', None, None, False)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'PriceRevision', 'Index_Rate_Decision_Table', None, True)
+  UAT=· ft=✓ MB=·  ('NGPDefaultRecipe', 'PriceRevision', None, None, False)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'RuleFetch', 'Derived_Pricing_Entries_Decision_Table', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'VolumeDiscount', 'Contract_Pricing_Volume_Tiers', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'VolumeDiscount', 'Price_Adjustment_Tier_Decision_Table', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'VolumeTierDiscount', 'Contract_Pricing_Adjustment_Tiers', None, True)
+  UAT=✓ ft=✓ MB=✓  ('NGPDefaultRecipe', 'VolumeTierDiscount', 'Tiered_Adjustment_Tier_Decision_Table', None, True)
+
+=== Missing in MB (vs UAT) ===
+  UAT Id=12IWC000000eXQH2A2  LookupTableId=0lDWC0000000GeI2AU  key=('NGPDefaultRecipe', 'PriceAdjustmentMatrix', 'CalculatedVolumeDiscountPriceAdjusmentTier', None, False)
+
+=== Extra in MB (vs UAT) ===
+
+=== DT Id stability — UAT vs MB ===
+  MISMATCH: Index_Rate_Decision_Table  UAT=0lDWC0000000AaT2AU  MB=0lDaZ00000001XBUAY
+  MISMATCH: StandardTax  UAT=0lDWC0000000EFt2AM  MB=0lDaZ00000002GLUAY
+  MISMATCH: CalculatedVolumeDiscountPriceAdjusmentTier  UAT=0lDWC0000000GeI2AU  MB=0lDct0000000F8kEAE
+  MISMATCH: Cyber_Partner_Discount_Matrix  UAT=0lDWC0000000GeJ2AU  MB=0lDct0000000F8lEAE
+  MISMATCH: Fortra_Regional_Pricing  UAT=0lDWC0000000GeK2AU  MB=0lDct0000000F8mEAE
+  MISMATCH: PriceModeVolumeDiscountPriceAdjusmentTier  UAT=0lDWC0000000GeL2AU  MB=0lDct0000000F8oEAE
+  MISMATCH: Regional_Pricing  UAT=0lDWC0000000GeM2AU  MB=0lDct0000000F8pEAE
+  MISMATCH: Tech_Partner_Discount_Matrix  UAT=0lDWC0000000GeN2AU  MB=0lDct0000000F8qEAE
+  MISMATCH: Attribute_Tier_Pricing_Matrix  UAT=0lDWC0000000Gft2AE  MB=0lDct0000000F8jEAE
+  MISMATCH: MaintenanceType  UAT=0lDWC0000000Kpx2AE  MB=0lDct0000000F8nEAE
+  MISMATCH: Fulfillment_Step_Jeopardy_Rule_Decision_Table  UAT=0lDWC0000000KrZ2AU  MB=0lDct0000000F8sEAE
+  MISMATCH: FulfillmentFalloutRules  UAT=0lDWC0000000KtB2AU  MB=0lDct0000000F8rEAE
+  Result: 10/22 DT names with identical IDs across UAT/MB; mismatches: 12
+
+=== DTP Id stability — UAT vs MB ===
+ERR FortraUAT: 
+SELECT Id, ApiName, DecisionTableId FROM DecisionTableParameter
+           ^
+ERROR at Row:1:Column:12
+No such column 'ApiName' on entity 'DecisionTableParameter'. If you are attempting to use a custo
+ERR MergeBuild: 
+SELECT Id, ApiName, DecisionTableId FROM DecisionTableParameter
+           ^
+ERROR at Row:1:Column:12
+No such column 'ApiName' on entity 'DecisionTableParameter'. If you are attempting to use a custo
+  Identical: 0/0
+  Mismatched ID: 0
+  Missing in MB: 0
+
+=== DTP Id stability — fulltemp vs MB ===
+ERR fulltemp: 
+SELECT Id, ApiName, DecisionTableId FROM DecisionTableParameter
+           ^
+ERROR at Row:1:Column:12
+No such column 'ApiName' on entity 'DecisionTableParameter'. If you are attempting to use a custo
+  Identical: 0/0; mismatched: 0; MB missing: 0

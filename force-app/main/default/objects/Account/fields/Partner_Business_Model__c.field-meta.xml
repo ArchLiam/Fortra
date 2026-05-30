@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Business_Model__c</fullName>
+    <label>Partner Business Model</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Referral</fullName>
+                <default>false</default>
+                <label>Referral</label>
+            </value>
+            <value>
+                <fullName>VAR</fullName>
+                <default>false</default>
+                <label>VAR</label>
+            </value>
+            <value>
+                <fullName>Distributor</fullName>
+                <default>false</default>
+                <label>Distributor</label>
+            </value>
+            <value>
+                <fullName>MSP</fullName>
+                <default>false</default>
+                <label>MSP</label>
+            </value>
+            <value>
+                <fullName>MSSP</fullName>
+                <default>false</default>
+                <label>MSSP</label>
+            </value>
+            <value>
+                <fullName>Systems Integrator</fullName>
+                <default>false</default>
+                <label>Systems Integrator</label>
+            </value>
+            <value>
+                <fullName>Technology Alliance</fullName>
+                <default>false</default>
+                <label>Technology Alliance</label>
+            </value>
+            <value>
+                <fullName>OEM</fullName>
+                <default>false</default>
+                <label>OEM</label>
+            </value>
+            <value>
+                <fullName>Purchasing Agent</fullName>
+                <default>false</default>
+                <label>Purchasing Agent</label>
+            </value>
+            <value>
+                <fullName>Indirect Reseller</fullName>
+                <default>false</default>
+                <label>Indirect Reseller</label>
+            </value>
+            <value>
+                <fullName>Alliance</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Alliance</label>
+            </value>
+            <value>
+                <fullName>Technology</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Technology</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

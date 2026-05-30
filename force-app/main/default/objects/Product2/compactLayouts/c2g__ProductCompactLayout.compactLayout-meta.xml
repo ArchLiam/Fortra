@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>c2g__ProductCompactLayout</fullName>
+    <fields>Name</fields>
+    <fields>ProductCode</fields>
+    <fields>IsActive</fields>
+    <fields>c2g__CODAPurchaseAnalysisAccount__c</fields>
+    <fields>c2g__CODASalesRevenueAccount__c</fields>
+    <fields>c2g__CODASalesTaxStatus__c</fields>
+    <fields>Family</fields>
+    <label>Product Compact Layout (Accounting)</label>
+</CompactLayout>

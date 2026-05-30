@@ -1,0 +1,222 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.134.6.
+Compiled successfully.
+Executed successfully.
+
+66.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: // Preflight: 379 rows; PC distinct=110, AD distinct=17, AC distinct=11 (+ 7 rows with null AC, intentional)
+Execute Anonymous: Set<Id> pcIds = new Set<Id>{
+Execute Anonymous:     '11BaZ000008qwmwUAA',
+Execute Anonymous:     '11BaZ000008qwn0UAA',
+Execute Anonymous:     '11BaZ000008qwn5UAA',
+Execute Anonymous:     '11Bct0000051QpGEAU',
+Execute Anonymous:     '11Bct0000051QpHEAU',
+Execute Anonymous:     '11Bct0000051QpIEAU',
+Execute Anonymous:     '11Bct0000051QpJEAU',
+Execute Anonymous:     '11Bct0000051QpKEAU',
+Execute Anonymous:     '11Bct0000051QpLEAU',
+Execute Anonymous:     '11Bct0000051QpMEAU',
+Execute Anonymous:     '11Bct0000051QpNEAU',
+Execute Anonymous:     '11Bct0000051QpOEAU',
+Execute Anonymous:     '11Bct0000051QpPEAU',
+Execute Anonymous:     '11Bct0000051QpQEAU',
+Execute Anonymous:     '11Bct0000051QpREAU',
+Execute Anonymous:     '11Bct0000051QpSEAU',
+Execute Anonymous:     '11Bct0000051QpTEAU',
+Execute Anonymous:     '11Bct0000051QpUEAU',
+Execute Anonymous:     '11Bct0000051QpVEAU',
+Execute Anonymous:     '11Bct0000051QpWEAU',
+Execute Anonymous:     '11Bct0000051QpXEAU',
+Execute Anonymous:     '11Bct0000051QpYEAU',
+Execute Anonymous:     '11Bct0000051QpZEAU',
+Execute Anonymous:     '11Bct0000051QpaEAE',
+Execute Anonymous:     '11Bct0000051QpbEAE',
+Execute Anonymous:     '11Bct0000051QpcEAE',
+Execute Anonymous:     '11Bct0000051QpdEAE',
+Execute Anonymous:     '11Bct0000051QpeEAE',
+Execute Anonymous:     '11Bct0000051QpfEAE',
+Execute Anonymous:     '11Bct0000051QpgEAE',
+Execute Anonymous:     '11Bct0000051QphEAE',
+Execute Anonymous:     '11Bct0000051QpiEAE',
+Execute Anonymous:     '11Bct0000051QpjEAE',
+Execute Anonymous:     '11Bct0000051QpkEAE',
+Execute Anonymous:     '11Bct0000051QplEAE',
+Execute Anonymous:     '11Bct0000051QpmEAE',
+Execute Anonymous:     '11Bct0000051QpnEAE',
+Execute Anonymous:     '11Bct0000051QpoEAE',
+Execute Anonymous:     '11Bct0000051QppEAE',
+Execute Anonymous:     '11Bct0000051QpqEAE',
+Execute Anonymous:     '11Bct0000051QprEAE',
+Execute Anonymous:     '11Bct0000051QpsEAE',
+Execute Anonymous:     '11Bct0000051QptEAE',
+Execute Anonymous:     '11Bct0000051QpuEAE',
+Execute Anonymous:     '11Bct0000051QpvEAE',
+Execute Anonymous:     '11Bct0000051QpwEAE',
+Execute Anonymous:     '11Bct0000051QpxEAE',
+Execute Anonymous:     '11Bct0000051QpyEAE',
+Execute Anonymous:     '11Bct0000051QpzEAE',
+Execute Anonymous:     '11Bct0000051Qq0EAE',
+Execute Anonymous:     '11Bct0000051Qq1EAE',
+Execute Anonymous:     '11Bct0000051Qq2EAE',
+Execute Anonymous:     '11Bct0000051Qq3EAE',
+Execute Anonymous:     '11Bct0000051Qq4EAE',
+Execute Anonymous:     '11Bct0000051Qq5EAE',
+Execute Anonymous:     '11Bct0000051Qq6EAE',
+Execute Anonymous:     '11Bct0000051Qq7EAE',
+Execute Anonymous:     '11Bct0000051Qq8EAE',
+Execute Anonymous:     '11Bct0000051Qq9EAE',
+Execute Anonymous:     '11Bct0000051QqAEAU',
+Execute Anonymous:     '11Bct0000051QqBEAU',
+Execute Anonymous:     '11Bct0000051QqCEAU',
+Execute Anonymous:     '11Bct0000051QqDEAU',
+Execute Anonymous:     '11Bct0000051QqEEAU',
+Execute Anonymous:     '11Bct0000051QqFEAU',
+Execute Anonymous:     '11Bct0000051QqGEAU',
+Execute Anonymous:     '11Bct0000051QqHEAU',
+Execute Anonymous:     '11Bct0000051QqIEAU',
+Execute Anonymous:     '11Bct0000051QqJEAU',
+Execute Anonymous:     '11Bct0000051QqKEAU',
+Execute Anonymous:     '11Bct0000051QqLEAU',
+Execute Anonymous:     '11Bct0000051QqMEAU',
+Execute Anonymous:     '11Bct0000051QqNEAU',
+Execute Anonymous:     '11Bct0000051QqOEAU',
+Execute Anonymous:     '11Bct0000051QqPEAU',
+Execute Anonymous:     '11Bct0000051QqQEAU',
+Execute Anonymous:     '11Bct0000051QqREAU',
+Execute Anonymous:     '11Bct0000051QqSEAU',
+Execute Anonymous:     '11Bct0000051QqTEAU',
+Execute Anonymous:     '11Bct0000051QqUEAU',
+Execute Anonymous:     '11Bct0000051QqVEAU',
+Execute Anonymous:     '11Bct0000051QqWEAU',
+Execute Anonymous:     '11Bct0000051QqXEAU',
+Execute Anonymous:     '11Bct0000051QqYEAU',
+Execute Anonymous:     '11Bct0000051QqZEAU',
+Execute Anonymous:     '11Bct0000051QqaEAE',
+Execute Anonymous:     '11Bct0000051QqbEAE',
+Execute Anonymous:     '11Bct0000051QqcEAE',
+Execute Anonymous:     '11Bct0000051QqdEAE',
+Execute Anonymous:     '11Bct0000051QqeEAE',
+Execute Anonymous:     '11Bct0000051QqfEAE',
+Execute Anonymous:     '11Bct0000051QqgEAE',
+Execute Anonymous:     '11Bct0000051QqhEAE',
+Execute Anonymous:     '11Bct0000051QqiEAE',
+Execute Anonymous:     '11Bct0000051QqjEAE',
+Execute Anonymous:     '11Bct0000051QqkEAE',
+Execute Anonymous:     '11Bct0000051QqlEAE',
+Execute Anonymous:     '11Bct0000051QqmEAE',
+Execute Anonymous:     '11Bct0000051QqnEAE',
+Execute Anonymous:     '11Bct0000051QqoEAE',
+Execute Anonymous:     '11Bct0000051QqpEAE',
+Execute Anonymous:     '11Bct0000051QqqEAE',
+Execute Anonymous:     '11Bct0000051QqrEAE',
+Execute Anonymous:     '11Bct0000051QqsEAE',
+Execute Anonymous:     '11Bct0000051QqtEAE',
+Execute Anonymous:     '11Bct0000051QquEAE',
+Execute Anonymous:     '11Bct0000051QqvEAE',
+Execute Anonymous:     '11Bct0000051QqwEAE',
+Execute Anonymous:     '11Bct0000051QqxEAE',
+Execute Anonymous:     '11Bct0000051QqyEAE'
+Execute Anonymous: };
+Execute Anonymous: 
+Execute Anonymous: Set<Id> adIds = new Set<Id>{
+Execute Anonymous:     '0tjct00000003h7AAA',
+Execute Anonymous:     '0tjct00000003ltAAA',
+Execute Anonymous:     '0tjct00000003luAAA',
+Execute Anonymous:     '0tjct00000003lvAAA',
+Execute Anonymous:     '0tjct00000003lwAAA',
+Execute Anonymous:     '0tjct00000003lxAAA',
+Execute Anonymous:     '0tjct00000003lyAAA',
+Execute Anonymous:     '0tjct00000003lzAAA',
+Execute Anonymous:     '0tjct00000003m0AAA',
+Execute Anonymous:     '0tjct00000003m1AAA',
+Execute Anonymous:     '0tjct00000003m2AAA',
+Execute Anonymous:     '0tjct00000003m3AAA',
+Execute Anonymous:     '0tjct00000003m4AAA',
+Execute Anonymous:     '0tjct00000003m5AAA',
+Execute Anonymous:     '0tjct00000003m6AAA',
+Execute Anonymous:     '0tjct00000003m7AAA',
+Execute Anonymous:     '0tjct00000003m8AAA'
+Execute Anonymous: };
+Execute Anonymous: 
+Execute Anonymous: Set<Id> acIds = new Set<Id>{
+Execute Anonymous:     '0v3ct00000002D7AAI',
+Execute Anonymous:     '0v3ct00000002D8AAI',
+Execute Anonymous:     '0v3ct00000002D9AAI',
+Execute Anonymous:     '0v3ct00000002DAAAY',
+Execute Anonymous:     '0v3ct00000002DBAAY',
+Execute Anonymous:     '0v3ct00000002DCAAY',
+Execute Anonymous:     '0v3ct00000002DDAAY',
+Execute Anonymous:     '0v3ct00000002DEAAY',
+Execute Anonymous:     '0v3ct00000002DFAAY',
+Execute Anonymous:     '0v3ct00000002DGAAY',
+Execute Anonymous:     '0v3ct00000002DHAAY'
+Execute Anonymous: };
+Execute Anonymous: 
+Execute Anonymous: Integer pcFound = [SELECT COUNT() FROM ProductClassification WHERE Id IN :pcIds];
+Execute Anonymous: Integer adFound = [SELECT COUNT() FROM AttributeDefinition WHERE Id IN :adIds];
+Execute Anonymous: Integer acFound = [SELECT COUNT() FROM AttributeCategory WHERE Id IN :acIds];
+Execute Anonymous: 
+Execute Anonymous: System.debug('=== FK Pre-flight Check ===');
+Execute Anonymous: System.debug('Target org: ' + UserInfo.getOrganizationName() + ' (' + UserInfo.getOrganizationId() + ')');
+Execute Anonymous: System.debug('User: ' + UserInfo.getUserName());
+Execute Anonymous: System.debug('ProductClassification: ' + pcFound + ' / ' + pcIds.size() +
+Execute Anonymous:              (pcFound == pcIds.size() ? ' OK' : ' MISSING ' + (pcIds.size() - pcFound)));
+Execute Anonymous: System.debug('AttributeDefinition:   ' + adFound + ' / ' + adIds.size() +
+Execute Anonymous:              (adFound == adIds.size() ? ' OK' : ' MISSING ' + (adIds.size() - adFound)));
+Execute Anonymous: System.debug('AttributeCategory:     ' + acFound + ' / ' + acIds.size() +
+Execute Anonymous:              (acFound == acIds.size() ? ' OK' : ' MISSING ' + (acIds.size() - acFound)));
+Execute Anonymous: 
+Execute Anonymous: if (pcFound != pcIds.size()) {
+Execute Anonymous:     Set<Id> foundPC = new Set<Id>();
+Execute Anonymous:     for (ProductClassification pc : [SELECT Id FROM ProductClassification WHERE Id IN :pcIds]) {
+Execute Anonymous:         foundPC.add(pc.Id);
+Execute Anonymous:     }
+Execute Anonymous:     pcIds.removeAll(foundPC);
+Execute Anonymous:     System.debug('Missing ProductClassifications: ' + pcIds);
+Execute Anonymous: }
+Execute Anonymous: if (adFound != adIds.size()) {
+Execute Anonymous:     Set<Id> foundAD = new Set<Id>();
+Execute Anonymous:     for (AttributeDefinition ad : [SELECT Id FROM AttributeDefinition WHERE Id IN :adIds]) {
+Execute Anonymous:         foundAD.add(ad.Id);
+Execute Anonymous:     }
+Execute Anonymous:     adIds.removeAll(foundAD);
+Execute Anonymous:     System.debug('Missing AttributeDefinitions: ' + adIds);
+Execute Anonymous: }
+Execute Anonymous: if (acFound != acIds.size()) {
+Execute Anonymous:     Set<Id> foundAC = new Set<Id>();
+Execute Anonymous:     for (AttributeCategory ac : [SELECT Id FROM AttributeCategory WHERE Id IN :acIds]) {
+Execute Anonymous:         foundAC.add(ac.Id);
+Execute Anonymous:     }
+Execute Anonymous:     acIds.removeAll(foundAC);
+Execute Anonymous:     System.debug('Missing AttributeCategories: ' + acIds);
+Execute Anonymous: }
+Execute Anonymous: 
+10:48:29.54 (54524790)|USER_INFO|[EXTERNAL]|005aZ00000WzoqH|liam.jeong.c@fortra.com.mergebuild|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+10:48:29.54 (54561956)|EXECUTION_STARTED
+10:48:29.54 (54589638)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+10:48:29.54 (102024777)|USER_DEBUG|[153]|DEBUG|=== FK Pre-flight Check ===
+10:48:29.54 (102673273)|USER_DEBUG|[154]|DEBUG|Target org: Fortra (00Dct000004lXJBEA2)
+10:48:29.54 (102749661)|USER_DEBUG|[155]|DEBUG|User: liam.jeong.c@fortra.com.mergebuild
+10:48:29.54 (102924321)|USER_DEBUG|[156]|DEBUG|ProductClassification: 110 / 110 OK
+10:48:29.54 (102978044)|USER_DEBUG|[158]|DEBUG|AttributeDefinition:   17 / 17 OK
+10:48:29.54 (103030999)|USER_DEBUG|[160]|DEBUG|AttributeCategory:     11 / 11 OK
+10:48:29.103 (103202703)|CUMULATIVE_LIMIT_USAGE
+10:48:29.103 (103202703)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 3 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+10:48:29.103 (103202703)|CUMULATIVE_LIMIT_USAGE_END
+
+10:48:29.54 (103347021)|CODE_UNIT_FINISHED|execute_anonymous_apex
+10:48:29.54 (103372625)|EXECUTION_FINISHED
+

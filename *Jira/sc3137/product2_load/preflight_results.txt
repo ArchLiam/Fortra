@@ -1,0 +1,28 @@
+=== PRE-FLIGHT VALIDATION (FILTERED PAYLOAD) ===
+Date: 2026-05-21
+Payload: product2_load_payload.csv (312 rows, filtered from original 3639)
+
+Discovery: original gap inventory was stale. 3,327 of 3,639 originally-targeted
+records were already inserted into MergeBuild via a prior Gearset job (confirmed:
+matching ProductCode + matching reverse-Id GearsetExternalId__c). The 312
+truly-missing records are exactly those that had Practice__c FK gap — they
+deferred until we migrated pse__Practice__c first.
+
+Filtered payload row count: 312
+ExternalId collisions:    0 / 312 (expect 0)
+ProductCode collisions:   0 / 312 (expect 0)
+
+FK targets:
+  ProductClassification: 14 / 14 verified in MB
+  BillingPolicy:          1 /  1
+  TaxPolicy:              1 /  1
+  pse__Practice__c:      19 / 19 (just migrated)
+  RecordType:             1 /  1
+
+Practice__c populated in payload: 312 / 312 (100%) — all rows need a Practice FK
+BasedOnId populated in payload:   243 / 312 (78%)
+
+MB Product2 pre-insert count: 8541
+Expected post-insert (100% success): 8853
+
+GATE: PASS

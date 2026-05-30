@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GM_EVP_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>GM/EVP</label>
+    <queue>GM_EVP</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

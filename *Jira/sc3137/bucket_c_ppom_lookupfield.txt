@@ -1,0 +1,32 @@
+
+=== UAT ===
+  Total PPOMs: 26
+  LookupField prefixes: {'0lD': 26}
+  Distinct LookupField values: 11
+    0lDWC0000000AaT2AU -> DecisionTable: Index_Rate_Decision_Table
+    0lDa50000007BErEAM -> DecisionTable: Price_Book_Entry_Decision_Table_v2
+    0lDa50000007BEsEAM -> DecisionTable: Price_Adjustment_Tier_Decision_Table
+    0lDa50000007BEtEAM -> DecisionTable: Tiered_Adjustment_Tier_Decision_Table
+    0lDa50000007BEuEAM -> DecisionTable: Attribute_Based_Adjustment_Decision_Table
+    0lDa50000007BEvEAM -> DecisionTable: Contract_Pricing_Volume_Tiers
+    0lDa50000007BGTEA2 -> DecisionTable: Bundle_Based_Adjustment_Decision_Table
+    0lDa50000007BGUEA2 -> DecisionTable: Contract_Pricing_Entries_Decision_Table
+    0lDa50000007BI5EAM -> DecisionTable: Derived_Pricing_Entries_Decision_Table
+    0lDa50000007BJhEAM -> DecisionTable: Asset_Action_Source_Entries_Decision_Table_V2
+    0lDa50000007BLJEA2 -> DecisionTable: Contract_Pricing_Adjustment_Tiers
+
+=== fulltemp ===
+  Total PPOMs: 26
+  LookupField prefixes: {'0lD': 26}
+  Distinct LookupField values: 11
+    0lDa50000007BErEAM -> DecisionTable: Price_Book_Entry_Decision_Table_v2
+    0lDa50000007BEsEAM -> DecisionTable: Price_Adjustment_Tier_Decision_Table
+    0lDa50000007BEtEAM -> DecisionTable: Tiered_Adjustment_Tier_Decision_Table
+    0lDa50000007BEuEAM -> DecisionTable: Attribute_Based_Adjustment_Decision_Table
+    0lDa50000007BEvEAM -> DecisionTable: Contract_Pricing_Volume_Tiers
+    0lDa50000007BGTEA2 -> DecisionTable: Bundle_Based_Adjustment_Decision_Table
+    0lDa50000007BGUEA2 -> DecisionTable: Contract_Pricing_Entries_Decision_Table
+    0lDa50000007BI5EAM -> DecisionTable: Derived_Pricing_Entries_Decision_Table
+    0lDa50000007BJhEAM -> DecisionTable: Asset_Action_Source_Entries_Decision_Table_V2
+    0lDa50000007BLJEA2 -> DecisionTable: Contract_Pricing_Adjustment_Tiers
+    0lDaZ00000001XBUAY -> DecisionTable: Index_Rate_Decision_Table

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Export_Documentation_Required__c</fullName>
+    <description>Indicates what type of export control documentation (if any) is required for controlled products.</description>
+    <label>Export Documentation Required</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None Required</fullName>
+                <default>true</default>
+                <label>None Required</label>
+            </value>
+            <value>
+                <fullName>Export License</fullName>
+                <default>false</default>
+                <label>Export License</label>
+            </value>
+            <value>
+                <fullName>License Exception TSU</fullName>
+                <default>false</default>
+                <label>License Exception TSU</label>
+            </value>
+            <value>
+                <fullName>End User Statement</fullName>
+                <default>false</default>
+                <label>End User Statement</label>
+            </value>
+            <value>
+                <fullName>Import Certificate</fullName>
+                <default>false</default>
+                <label>Import Certificate</label>
+            </value>
+            <value>
+                <fullName>Other Documentation</fullName>
+                <default>false</default>
+                <label>Other Documentation</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

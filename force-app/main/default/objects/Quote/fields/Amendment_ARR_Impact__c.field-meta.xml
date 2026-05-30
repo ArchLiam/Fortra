@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amendment_ARR_Impact__c</fullName>
+    <description>The impact of this amendment on the contract&apos;s Annual Recurring Revenue. Positive values indicate upsells, negative values indicate downsells or cancellations.</description>
+    <inlineHelpText>Enter the ARR change resulting from this amendment. Use positive for increases, negative for decreases.</inlineHelpText>
+    <label>Amendment ARR Impact</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <type>Currency</type>
+</CustomField>

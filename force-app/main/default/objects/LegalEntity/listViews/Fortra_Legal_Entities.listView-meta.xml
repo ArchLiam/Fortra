@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fortra_Legal_Entities</fullName>
+    <columns>Name</columns>
+    <columns>CompanyName</columns>
+    <columns>Id</columns>
+    <columns>Status</columns>
+    <columns>CurrencyIsoCode</columns>
+    <columns>Workday_Reference_ID__c</columns>
+    <columns>LastModifiedDate</columns>
+    <columns>LastModifiedBy</columns>
+    <filterScope>Everything</filterScope>
+    <label>Fortra Legal Entities</label>
+</ListView>

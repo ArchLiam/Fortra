@@ -1,0 +1,11 @@
+/* Hide the SendDocuSignEnvelopeAction IP Action inline button */
+/* Element name becomes part of the rendered component's data attribute */
+[data-omni-element-name="SendDocuSignEnvelopeAction"] {
+	display: none !important;
+}
+
+/* Fallback selectors in case the data attribute differs */
+.omniscript-element-SendDocuSignEnvelopeAction,
+[data-name="SendDocuSignEnvelopeAction"] {
+	display: none !important;
+}

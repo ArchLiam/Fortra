@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deal_Desk_Approver_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Deal Desk Approver</label>
+    <queue>Deal_Desk_Approver</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

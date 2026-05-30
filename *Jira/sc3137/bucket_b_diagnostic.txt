@@ -1,0 +1,29 @@
+=== Row counts ===
+Object                              UAT   fulltemp   MergeBuild
+ContextDefinition                     2          2            2  (UAT-MB gap: 0)
+ContextDefinitionVersion              2          2            2  (UAT-MB gap: 0)
+ContextNode                          54         53           53  (UAT-MB gap: 1)
+ContextAttribute                    918        866          908  (UAT-MB gap: 10)
+ContextMapping                       17         16           17  (UAT-MB gap: 0)
+ContextNodeMapping                  142        134          140  (UAT-MB gap: 2)
+ContextAttributeMapping            2229       2118         2043  (UAT-MB gap: 186)
+ContextTag                          915       1781         1034  (UAT-MB gap: -119)
+ContextUseCaseMapping                 6          6            6  (UAT-MB gap: 0)
+ContextParamMap                    1248          0           77  (UAT-MB gap: 1171)
+
+=== DML behavior in MergeBuild (createable, updateable, deletable, queryable) ===
+  ContextDefinition            (True, True, True, True)
+  ContextDefinitionVersion     (True, True, True, True)
+  ContextNode                  (True, True, True, True)
+  ContextAttribute             (True, True, True, True)
+  ContextMapping               (True, True, True, True)
+  ContextNodeMapping           (True, True, True, True)
+  ContextAttributeMapping      (True, True, True, True)
+  ContextTag                   (True, True, True, True)
+  ContextUseCaseMapping        (True, True, True, True)
+  ContextParamMap              (False, False, False, True)
+
+=== Sample CDV state ===
+  MergeBuild CDVs:
+    11pct000000qcxFAAQ  ProductDiscoveryContextExt  v3  Active=True
+    11pct000000qcyrAAA  SalesTransactionContextExt  v3  Active=True

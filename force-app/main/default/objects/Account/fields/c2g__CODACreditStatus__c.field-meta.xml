@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>c2g__CODACreditStatus__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The current credit status. The picklist is user-definable</description>
+    <label>Credit Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Credit Allowed</fullName>
+                <default>true</default>
+                <label>Credit Allowed</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Cash with Order</fullName>
+                <default>false</default>
+                <label>Cash with Order</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

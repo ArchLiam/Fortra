@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Displaced_ARR__c</fullName>
+    <label>Quote Displaced ARR</label>
+    <summarizedField>QuoteLineItem.Displaced_ARR_Input__c</summarizedField>
+    <summaryFilterItems>
+        <field>QuoteLineItem.Displaced_ARR_Input__c</field>
+        <operation>notEqual</operation>
+        <value></value>
+    </summaryFilterItems>
+    <summaryForeignKey>QuoteLineItem.QuoteId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

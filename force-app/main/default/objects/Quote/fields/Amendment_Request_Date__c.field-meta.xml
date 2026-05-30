@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amendment_Request_Date__c</fullName>
+    <description>Date when the amendment was requested by the customer or internal team.</description>
+    <inlineHelpText>Enter the date when this amendment was originally requested.</inlineHelpText>
+    <label>Amendment Request Date</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Date</type>
+</CustomField>

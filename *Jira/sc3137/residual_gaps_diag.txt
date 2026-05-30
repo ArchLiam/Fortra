@@ -1,0 +1,103 @@
+Object                                UAT   fulltemp       MB  Gap
+  ProductRelatedComponent            1417       1417        0  1417
+  ProductComponentGroup               421        421        2  419
+  ProductClassificationAttr           379        379      283  96
+  AttributeDefinition                  17         17       17  0
+  AttributeCategory                    11         11       11  0
+  AttributePicklist                    15         15       15  0
+  AttributePicklistValue             2108       2108     2108  0
+  ProductCategoryProduct             2200       2200     1639  561
+  ProductSellingModel                   9          9        9  0
+  ProductSellingModelOption          8794       8794     4779  4015
+
+=== DML behavior in MergeBuild ===
+  ProductRelatedComponent        createable=True updateable=True deletable=True
+  ProductComponentGroup          createable=True updateable=True deletable=True
+  ProductClassificationAttr      createable=True updateable=True deletable=True
+  AttributeDefinition            createable=True updateable=True deletable=True
+  AttributeCategory              createable=True updateable=True deletable=True
+  AttributePicklist              createable=True updateable=True deletable=True
+  AttributePicklistValue         createable=True updateable=True deletable=True
+  ProductCategoryProduct         createable=True updateable=True deletable=True
+  ProductSellingModel            createable=True updateable=True deletable=True
+  ProductSellingModelOption      createable=True updateable=True deletable=True
+
+=== Sample rows from fulltemp (top 3 each) ===
+
+  --- ProductRelatedComponent (fulltemp) ---
+    Id=0dSWJ0000001i2D2AQ
+    ChildProductId=01tWJ00000FP7k2YAD
+    ChildProductClassificationId=None
+    ParentProductId=01tWJ00000FP7kLYAT
+    Quantity=1
+    ParentSellingModelId=None
+    ChildSellingModelId=None
+
+    Id=0dSWJ0000001i2E2AQ
+    ChildProductId=01tWJ00000FP7k3YAD
+    ChildProductClassificationId=None
+    ParentProductId=01tWJ00000FP7kLYAT
+    Quantity=1
+    ParentSellingModelId=None
+    ChildSellingModelId=None
+
+    Id=0dSWJ0000001i2F2AQ
+    ChildProductId=01tWJ00000FP7k4YAD
+    ChildProductClassificationId=None
+    ParentProductId=01tWJ00000FP7kLYAT
+    Quantity=1
+    ParentSellingModelId=None
+    ChildSellingModelId=None
+
+
+  --- ProductComponentGroup (fulltemp) ---
+    Id=0y7WJ0000001JlNYAU
+    Name=DCS Essentials Bundle - Core Components
+    CurrencyIsoCode=USD
+    ParentProductId=01tWJ00000FP7kLYAT
+    ParentGroupId=None
+    MinBundleComponents=None
+    MaxBundleComponents=None
+
+    Id=0y7WJ0000001JlOYAU
+    Name=DCS Essentials Bundle - Add Ons
+    CurrencyIsoCode=USD
+    ParentProductId=01tWJ00000FP7kLYAT
+    ParentGroupId=None
+    MinBundleComponents=None
+    MaxBundleComponents=None
+
+    Id=0y7WJ0000001JlPYAU
+    Name=Additional Services
+    CurrencyIsoCode=USD
+    ParentProductId=01tWJ00000FP7kLYAT
+    ParentGroupId=None
+    MinBundleComponents=None
+    MaxBundleComponents=None
+
+
+  --- ProductClassificationAttr (fulltemp) ---
+    Id=11CWJ00000BEltZ2AT
+    Name=PS Service Type
+    CurrencyIsoCode=USD
+    ProductClassificationId=11BWJ000003uBX82AM
+    AttributeDefinitionId=0tjWJ0000001KEZYA2
+    AttributeCategoryId=0v3WJ0000000u8hYAA
+    Description=None
+
+    Id=11CWJ00000BElta2AD
+    Name=Feature Options
+    CurrencyIsoCode=USD
+    ProductClassificationId=11BWJ000003uBX82AM
+    AttributeDefinitionId=0tjWJ0000001KERYA2
+    AttributeCategoryId=0v3WJ0000000u8hYAA
+    Description=None
+
+    Id=11CWJ00000BEltb2AD
+    Name=Unit Type
+    CurrencyIsoCode=USD
+    ProductClassificationId=11BWJ000003uBX82AM
+    AttributeDefinitionId=0tjWJ0000001KEcYAM
+    AttributeCategoryId=0v3WJ0000000u8hYAA
+    Description=Unit Type
+

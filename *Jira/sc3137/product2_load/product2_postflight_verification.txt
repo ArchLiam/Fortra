@@ -1,0 +1,17 @@
+=== POST-FLIGHT VERIFICATION ===
+Date: 2026-05-21
+Job ID: 750ct00000URcRJAA1
+
+Records inserted (matched by GearsetExternalId__c): 312 / 312
+MB total Product2 post-insert: 8853
+UAT total Product2 (reference): 8807
+
+Spot check (first 5 by ExtId):
+  FileCatalyst Direct Services  | code=GOA-FIL-NRST-FICA  | basedOn=PS_FEAT  | practice=GoAnywhere  | active=True  | extId=1AYAJ1DD00000CWt10
+  GoAnywhere Advanced Workflows and Reporting  | code=GOA-GAM-RSS-GAAWRS  | basedOn=STYPE_ONLY  | practice=GoAnywhere  | active=True  | extId=1AYAM1DD00000CWt10
+  GoAnywhere Expert Services  | code=GOA-GAM-RSP-GAES  | basedOn=PS_STYPE_ONLY  | practice=GoAnywhere  | active=True  | extId=1AYAN1DD00000CWt10
+  Review Services - Data Classification - Boldon James  | code=DP-DC-NRST-RSDCBJS  | basedOn=None  | practice=Data Protection  | active=True  | extId=1AYAY1DD00000CWt10
+  Review Services - Data Classification - TItus  | code=DP-DC-NRST-RSDCTS  | basedOn=None  | practice=Data Protection  | active=True  | extId=1AYBY1DD00000CWt10
+
+Remaining gap to UAT: -46 records
+Gap closed (within tolerance).

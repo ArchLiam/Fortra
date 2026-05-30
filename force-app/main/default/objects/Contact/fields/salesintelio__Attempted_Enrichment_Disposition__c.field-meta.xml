@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salesintelio__Attempted_Enrichment_Disposition__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Users can determine which records are up to date and what happened on that record. In cases where SalesIntel has attempted to enrich the record, but no new data was found - the users will be confident that enrichment has run. (Matched / Unmatched / Invalid)</inlineHelpText>
+    <label>Attempted Enrichment Disposition</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Matched</fullName>
+                <default>false</default>
+                <label>Matched</label>
+            </value>
+            <value>
+                <fullName>Unmatched</fullName>
+                <default>false</default>
+                <label>Unmatched</label>
+            </value>
+            <value>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+                <label>Invalid</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

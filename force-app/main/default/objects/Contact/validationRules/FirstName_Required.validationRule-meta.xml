@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FirstName_Required</fullName>
+    <active>true</active>
+    <description>Workday requires First Name on Contacts for Order submission. The standard Name composite on the Lightning page only enforces Last Name, so this rule ensures First Name is also populated.</description>
+    <errorConditionFormula>AND(
+    NOT($Permission.Bypass_Validation_Rules),
+    ISBLANK(FirstName)
+)</errorConditionFormula>
+    <errorDisplayField>FirstName</errorDisplayField>
+    <errorMessage>First Name is required.</errorMessage>
+</ValidationRule>

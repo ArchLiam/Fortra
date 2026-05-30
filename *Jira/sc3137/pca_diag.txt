@@ -1,0 +1,49 @@
+PCA createable fields:
+  OwnerId                             (reference      ) [REQ] -> ['Group', 'User']
+  Name                                (string         ) [REQ]
+  CurrencyIsoCode                     (picklist       )
+  ProductClassificationId             (reference      ) [REQ] -> ['ProductClassification']
+  AttributeDefinitionId               (reference      ) [REQ] -> ['AttributeDefinition']
+  AttributeCategoryId                 (reference      ) -> ['AttributeCategory']
+  Description                         (textarea       )
+  ValueDescription                    (textarea       )
+  HelpText                            (textarea       )
+  IsHidden                            (boolean        ) [REQ]
+  IsReadOnly                          (boolean        ) [REQ]
+  IsRequired                          (boolean        ) [REQ]
+  Status                              (picklist       ) [REQ]
+  Sequence                            (int            )
+  AttributeNameOverride               (string         )
+  DefaultValue                        (string         )
+  DisplayType                         (picklist       )
+  IsPriceImpacting                    (boolean        ) [REQ]
+  MinimumValue                        (string         )
+  MaximumValue                        (string         )
+  MinimumCharacterCount               (int            )
+  MaximumCharacterCount               (int            )
+  StepValue                           (string         )
+  OverriddenInheritedAttributeId      (reference      ) -> ['ProductClassificationAttr']
+  GearsetExternalId__c                (string         )
+  ExternalId__c                       (string         )
+
+fulltemp PCA: 379
+MergeBuild PCA: 283
+
+Common: 0
+fulltemp-only (candidates to load): 379
+MB-only: 283
+
+First 10 fulltemp-only PCA keys:
+  ('DTYPE_ONLY', 'Deployment_Option1', 'Deployment & Infrastructure Attributes', 'Deployment Option')
+  ('DTYPE_STYPE', 'Deployment_Option1', 'Deployment & Infrastructure Attributes', 'Deployment Option')
+  ('DTYPE_STYPE', 'Server_Type1', 'Deployment & Infrastructure Attributes', 'Server Type')
+  ('FEAT_ATYPE', 'Feature_Options1', 'Service & Commercial Attributes', 'Feature Options')
+  ('FEAT_ATYPE', 'Type_of_Agents1', 'Agent & Capacity Attributes', 'Agent Type')
+  ('FEAT_ATYPE_UTYPE', 'Feature_Options1', 'Service & Commercial Attributes', 'Feature Options')
+  ('FEAT_ATYPE_UTYPE', 'Type_of_Agents1', 'Agent & Capacity Attributes', 'Agent Type')
+  ('FEAT_ATYPE_UTYPE', 'Unit_Type1', 'Quantity & Consumption Attributes', 'Unit Type')
+  ('FEAT_DTYPE', 'Deployment_Option1', 'Deployment & Infrastructure Attributes', 'Deployment Option')
+  ('FEAT_DTYPE', 'Feature_Options1', 'Service & Commercial Attributes', 'Feature Options')
+  ... and 369 more
+
+Saved 379 keys to /tmp/pca_only_ft_keys.json

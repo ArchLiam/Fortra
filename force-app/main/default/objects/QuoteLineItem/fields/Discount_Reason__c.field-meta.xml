@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discount_Reason__c</fullName>
+    <description>Picklist to indicate why a discount was given.</description>
+    <label>Discount Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Competitive Pricing</fullName>
+                <default>false</default>
+                <label>Competitive Pricing</label>
+            </value>
+            <value>
+                <fullName>Volume Discount</fullName>
+                <default>false</default>
+                <label>Volume Discount</label>
+            </value>
+            <value>
+                <fullName>Strategic Account</fullName>
+                <default>false</default>
+                <label>Strategic Account</label>
+            </value>
+            <value>
+                <fullName>Renewal Incentive</fullName>
+                <default>false</default>
+                <label>Renewal Incentive</label>
+            </value>
+            <value>
+                <fullName>Multi-Year Agreement</fullName>
+                <default>false</default>
+                <label>Multi-Year Agreement</label>
+            </value>
+            <value>
+                <fullName>Partner Discount</fullName>
+                <default>false</default>
+                <label>Partner Discount</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

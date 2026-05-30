@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Export_Control__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Override export control and allow this quote to activate even if requirements are not met.</description>
+    <label>Disable Export Control</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

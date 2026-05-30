@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Within_Renewal_Window__c</fullName>
+    <description>Indicates if this quote is within 120 days of the original contract end date. When true, Sales users are restricted from creating downsell or cancellation amendments.</description>
+    <formula>AND(
+    NOT(ISBLANK(Renewal_Contract__c)),
+    Days_Until_Renewal__c &lt;= 120,
+    Days_Until_Renewal__c &gt;= 0
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Checked if this contract is within 120 days of renewal. Sales users have restrictions during this window.</inlineHelpText>
+    <label>Within Renewal Window</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

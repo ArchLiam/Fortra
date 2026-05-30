@@ -1,0 +1,45 @@
+Object                                       fulltemp   MergeBuild  Gap
+  AttributeBasedAdjRule                         25171            0  25171
+  ProductFulfillmentDecompRule                   3326            0   3326
+  ProductConfigurationFlow                          1            0      1
+  ProductConfigurationRuleShare                     0            0      0
+  PricingRecipe                                     1            1      0
+  ExpressionSetDefinition                           5            4      1
+  ExpressionSetVersion                              2            7     -5
+  ExpressionSetDefinitionContextDefinition          4            4      0
+  RuleLibrary                                       1            2     -1
+  RuleLibraryDefinition                             2            2      0
+  RuleLibraryDefVersion                             3            2      1
+  RuleLibraryVersion                                1            2     -1
+
+=== DML behavior in MergeBuild ===
+  AttributeBasedAdjRule                    createable=1     updateable=1     deletable=1    
+  ProductFulfillmentDecompRule             createable=1     updateable=1     deletable=1    
+  ProductConfigurationFlow                 createable=1     updateable=1     deletable=1    
+  ProductConfigurationRuleShare            createable=1     updateable=1     deletable=1    
+  PricingRecipe                            createable=1     updateable=1     deletable=1    
+  ExpressionSetDefinition                  createable=1     updateable=1     deletable=1    
+  ExpressionSetVersion                     createable=1     updateable=1     deletable=1    
+  ExpressionSetDefinitionContextDefinition createable=1     updateable=1     deletable=1    
+  RuleLibrary                              createable=1     updateable=1     deletable=1    
+  RuleLibraryDefinition                    createable=1     updateable=1     deletable=1    
+  RuleLibraryDefVersion                    createable=1     updateable=1     deletable=1    
+  RuleLibraryVersion                       createable=1     updateable=1     deletable=1    
+
+=== AttributeBasedAdjRule FK fields (in MergeBuild) ===
+  OwnerId                                  -> ['Group', 'User']
+
+=== ProductFulfillmentDecompRule FK fields (in MergeBuild) ===
+  OwnerId                                  -> ['Group', 'User']
+  SourceProductId                          -> ['Product2']
+  DestinationProductId                     -> ['Product2']
+  ExecuteOnRuleId                          -> ['Ruleset']
+  SourceProductClassificationId            -> ['ProductClassification']
+
+=== Sample ABA from fulltemp (first row, all FK Id prefixes) ===
+  Id=12HWJ000002Cor82AC
+    OwnerId: 005aZ00000WzoqHQAR  (prefix=005)
+  Id=12HWJ000002Cor92AC
+    OwnerId: 005aZ00000WzoqHQAR  (prefix=005)
+  Id=12HWJ000002CorA2AS
+    OwnerId: 005aZ00000WzoqHQAR  (prefix=005)

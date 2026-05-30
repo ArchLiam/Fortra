@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TechSol_COps_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>TechSol COps</label>
+    <queue>TechSol_COps</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

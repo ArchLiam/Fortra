@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Partner_Price_Overridden__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates if the partner pricing has been manually overridden.</description>
+    <inlineHelpText>Check if the partner price was manually adjusted.</inlineHelpText>
+    <label>Is Partner Price Overridden</label>
+    <trackHistory>true</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

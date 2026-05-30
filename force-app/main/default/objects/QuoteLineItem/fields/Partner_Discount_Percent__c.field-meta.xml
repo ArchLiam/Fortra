@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Discount_Percent__c</fullName>
+    <description>The total margin or discount percentage applied by partner pricing. For Guaranteed Margin, this is the sum of all partner margins.</description>
+    <inlineHelpText>Total partner margin/discount percentage applied to this line.</inlineHelpText>
+    <label>Partner Discount Percent</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <type>Percent</type>
+</CustomField>

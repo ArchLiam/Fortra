@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Quote_Document_URL</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Generate Quote Document(URL)</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <url>/lightning/cmp/omnistudio__vlocityLWCOmniWrapper?c__target=c:quoteGenerateDocEnglish&amp;c__layout=lightning&amp;c__ContextId={!Quote.Id}</url>
+</WebLink>

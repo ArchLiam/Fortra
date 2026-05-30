@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>X00020</label>
+    <protected>false</protected>
+    <values>
+        <field>Active__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>Error_Message__c</field>
+        <value xsi:type="xsd:string">Required Field: Contact Workday MobilePhone Usage Type is required to be populated to save the Order&apos;s Status as &apos;Order Complete&apos;. Action: Populate the field with the accurate value.</value>
+    </values>
+    <values>
+        <field>Field_API_Name__c</field>
+        <value xsi:type="xsd:string">Workday_MobilePhone_Usage_Type__c</value>
+    </values>
+    <values>
+        <field>Field_Label__c</field>
+        <value xsi:type="xsd:string">Workday MobilePhone Usage Type</value>
+    </values>
+    <values>
+        <field>Link_Message__c</field>
+        <value xsi:type="xsd:string">Link to Contact page.</value>
+    </values>
+    <values>
+        <field>Object_API_Name__c</field>
+        <value xsi:type="xsd:string">Contact</value>
+    </values>
+    <values>
+        <field>Object_Label__c</field>
+        <value xsi:type="xsd:string">Contact</value>
+    </values>
+    <values>
+        <field>Relationship_Field_API_Name__c</field>
+        <value xsi:type="xsd:string">BillToContactId</value>
+    </values>
+</CustomMetadata>

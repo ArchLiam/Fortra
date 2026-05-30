@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contains_Offensive_Security__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Still required --subject to compliance solution definition.</description>
+    <label>Contains Offensive Security</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

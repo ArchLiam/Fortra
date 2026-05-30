@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Pricing_Warning__c</fullName>
+    <description>Warning message displayed when selected partners are missing the required pricing model configuration. For example, if the Quote uses &quot;Guaranteed Margin&quot; but a partner only has a &quot;Discount&quot; model configured.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Warning: One or more partners may not be participating in the pricing calculation.</inlineHelpText>
+    <label>Partner Pricing Warning</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

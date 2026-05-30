@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>c2g__CODAPaymentMethod__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The payment method</description>
+    <label>Payment Method</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cash</fullName>
+                <default>false</default>
+                <label>Cash</label>
+            </value>
+            <value>
+                <fullName>Check</fullName>
+                <default>false</default>
+                <label>Check</label>
+            </value>
+            <value>
+                <fullName>Electronic</fullName>
+                <default>false</default>
+                <label>Electronic</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - ACH</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - ACH</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - BPAY</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - BPAY</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - BANK_TRANSFER</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - BANK_TRANSFER</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - FAST</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - FAST</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - FASTER_PAYMENTS</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - FASTER_PAYMENTS</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - FEDWIRE</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - FEDWIRE</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - FPS</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - FPS</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - GIRO</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - GIRO</label>
+            </value>
+            <value>
+                <fullName>Asperato - Domestic - RTGS</fullName>
+                <default>false</default>
+                <label>Asperato - Domestic - RTGS</label>
+            </value>
+            <value>
+                <fullName>Asperato - International</fullName>
+                <default>false</default>
+                <label>Asperato - International</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

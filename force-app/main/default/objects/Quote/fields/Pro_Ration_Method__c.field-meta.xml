@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pro_Ration_Method__c</fullName>
+    <description>Method used to calculate pro-rated charges for this amendment. Determines how partial period charges are calculated.</description>
+    <inlineHelpText>Select how pro-rated charges should be calculated for this amendment.</inlineHelpText>
+    <label>Pro-Ration Method</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Daily</fullName>
+                <default>false</default>
+                <label>Daily</label>
+            </value>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>true</default>
+                <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>Full Period</fullName>
+                <default>false</default>
+                <label>Full Period</label>
+            </value>
+            <value>
+                <fullName>No Pro-ration</fullName>
+                <default>false</default>
+                <label>No Pro-ration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Hierarchy_Management</fullName>
+    <columns>PRODUCT2.NAME</columns>
+    <columns>Primary_Catalog_Name__c</columns>
+    <columns>Primary_Category_Name__c</columns>
+    <columns>Parent_Category_Name__c</columns>
+    <columns>Product_Selling_Model_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>Product Hierarchy Management</label>
+</ListView>

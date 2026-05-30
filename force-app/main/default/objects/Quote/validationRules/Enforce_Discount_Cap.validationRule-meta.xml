@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Enforce_Discount_Cap</fullName>
+    <active>true</active>
+    <description>Enforces 30% discount cap on quotes unless approved</description>
+    <errorConditionFormula>AND(
+    TotalDiscount__c &gt; 0.30,
+    TEXT(DiscountApprovalStatus__c) != &apos;Approved&apos;,
+    TEXT(Status) = &apos;Presented&apos;
+)</errorConditionFormula>
+    <errorMessage>Discount exceeds 30% cap. Approval required from Deal Desk or CFO.</errorMessage>
+</ValidationRule>

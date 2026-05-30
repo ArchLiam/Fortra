@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manually_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Allows us to filter out renewal quotes in reports that were created and not sent through the system</description>
+    <label>Manually Sent</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

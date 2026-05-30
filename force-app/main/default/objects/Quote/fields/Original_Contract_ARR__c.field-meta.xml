@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Original_Contract_ARR__c</fullName>
+    <description>Annual Recurring Revenue from the original contract being amended. Pulled from the linked Renewal Contract.</description>
+    <formula>Renewal_Contract__r.Expected_Ren_Amount__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The current ARR of the contract being amended.</inlineHelpText>
+    <label>Original Contract ARR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

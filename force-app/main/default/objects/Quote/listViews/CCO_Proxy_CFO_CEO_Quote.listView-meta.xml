@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CCO_Proxy_CFO_CEO_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>CCO/Proxy &amp; CFO/CEO</label>
+    <queue>CCO_Proxy_CFO_CEO</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

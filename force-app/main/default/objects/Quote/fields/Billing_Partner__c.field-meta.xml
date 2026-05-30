@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Partner__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The billing partner for this quote. Used to determine partner pricing.</description>
+    <inlineHelpText>Select the billing partner for this quote.</inlineHelpText>
+    <label>Billing Partner</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Quotes (Billing Partner)</relationshipLabel>
+    <relationshipName>Quotes_Billing_Partner</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Feature_Codes__c</fullName>
+    <description>Semicolon-separated list of hardware feature codes that MUST be present for this product to be eligible. Used in hardware-first workflow to filter products based on hardware feature codes. Leave blank if no specific feature codes required. Example: &quot;FC001;FC002;FC003&quot;</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Semicolon-separated feature codes required for eligibility (e.g., &quot;FC001;FC002&quot;). Product is eligible only if hardware has ALL listed feature codes.</inlineHelpText>
+    <label>Required Feature Codes</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Server_Location_Type__c</fullName>
+    <label>Server Location Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>3rd Party On-Prem Hosted</fullName>
+                <default>false</default>
+                <label>3rd Party On-Prem Hosted</label>
+            </value>
+            <value>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+                <label>Cloud</label>
+            </value>
+            <value>
+                <fullName>HelpSystems Hosted</fullName>
+                <default>false</default>
+                <label>HelpSystems Hosted</label>
+            </value>
+            <value>
+                <fullName>HS On-Prem</fullName>
+                <default>false</default>
+                <label>HS On-Prem</label>
+            </value>
+            <value>
+                <fullName>On-Prem</fullName>
+                <default>false</default>
+                <label>On-Prem</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

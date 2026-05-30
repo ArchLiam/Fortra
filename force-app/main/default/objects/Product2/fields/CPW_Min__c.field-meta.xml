@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CPW_Min__c</fullName>
+    <description>Minimum Commercial Processing Workload (CPW) rating required for this product to be eligible. Used in hardware-first workflow to filter products based on hardware CPW rating. Leave blank if no CPW minimum requirement.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Minimum CPW rating required for product eligibility. Products are filtered based on hardware CPW rating in the hardware-first workflow.</inlineHelpText>
+    <label>CPW Minimum</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

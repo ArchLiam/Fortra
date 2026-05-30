@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRO_Proxy_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>CRO/Proxy</label>
+    <queue>CRO_Proxy</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

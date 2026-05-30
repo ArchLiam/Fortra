@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Clustered__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether this hardware is part of a cluster configuration.</description>
+    <label>Is Clustered</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

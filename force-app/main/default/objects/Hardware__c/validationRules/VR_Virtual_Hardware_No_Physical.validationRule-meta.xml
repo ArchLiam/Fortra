@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_Virtual_Hardware_No_Physical</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+  Is_Virtual__c = TRUE,
+  OR(
+    NOT(ISBLANK(Serial_Number__c)),
+    NOT(ISBLANK(MAC_Address__c))
+  )
+)</errorConditionFormula>
+    <errorMessage>Virtual hardware cannot have Serial Number or MAC Address</errorMessage>
+</ValidationRule>

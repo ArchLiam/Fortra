@@ -1,0 +1,39 @@
+Loading UAT...
+  UAT CAMs (keyed): 2229
+Loading MB...
+  MB CAMs (keyed): 2043
+
+UAT-only CAMs: 207
+  Fortra-custom (non-__std): 140
+  __std platform-drift: 67
+
+--- Of 140 Fortra-custom UAT-only CAMs ---
+  Load-ready (parent CNM + CA exist in MB): 134
+  Blocked: parent CNM missing in MB:        6
+  Blocked: parent CA missing in MB:         0
+
+  Blocked CAM examples (no CNM in MB):
+    CAM key: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c', 'AllowRegionalPricing__c', 'AllowRegionalPricing__c')
+      needs CNM: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c')
+    CAM key: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c', 'CustomProductName', 'CustomProductName')
+      needs CNM: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c')
+    CAM key: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c', 'Custom_Product_Name__c', 'Custom_Product_Name__c')
+      needs CNM: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c')
+    CAM key: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c', 'Fortra_Product_Type__c', 'Fortra_Product_Type__c')
+      needs CNM: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c')
+    CAM key: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c', 'Has_Attribute_Adjustment__c', 'Has_Attribute_Adjustment__c')
+      needs CNM: ('SalesTransactionContextExt', 'ProductDiscoveryContextMapping', 'SalesTransactionItem', 'TestCategoryProduct__c')
+
+  Sample load-ready CAMs (first 5):
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'AWSMarketplaceAgreementId2__c', 'AWSMarketplaceAgreementId2__c')
+      MB CNM=11bct000003HGxtAAG  MB CA=11nct00000EiV5EAAV  Input=AWSMarketplaceAgreementId2__c
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'AWSMarketplaceOfferId2__c', 'AWSMarketplaceOfferId2__c')
+      MB CNM=11bct000003HGxtAAG  MB CA=11nct00000EiV5FAAV  Input=AWSMarketplaceOfferId2__c
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Billing_Place__c', 'Billing_Place__c')
+      MB CNM=11bct000003HGxtAAG  MB CA=11nct00000EiV51AAF  Input=Billing_Place__c
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'CrossSaleType2__c', 'CrossSaleType2__c')
+      MB CNM=11bct000003HGxtAAG  MB CA=11nct00000EiV5BAAV  Input=CrossSaleType2__c
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Deal_Type__c', 'Deal_Type__c')
+      MB CNM=11bct000003HGxtAAG  MB CA=11nct00000EiV5AAAV  Input=Deal_Type__c
+
+Load-ready CAMs saved to /tmp/bucket_b_load_ready_cams.json

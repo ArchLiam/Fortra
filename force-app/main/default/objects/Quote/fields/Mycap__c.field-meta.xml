@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mycap__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Move to Quote with a breakdown to annual costs + specific t&amp;cs for annually paid deals. Also used for commission purposes. Don&apos;t need this on Quote Line.</description>
+    <label>Mycap</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

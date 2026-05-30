@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Workday_Mobile_Phone_Country</fullName>
+    <active>true</active>
+    <description>Workday requires a country code for all phone numbers. This validation rule ensures that a country code is entered whenever a phone number is provided.</description>
+    <errorConditionFormula>AND(
+NOT($Permission.Bypass_Validation_Rules),				NOT($Permission.Exclude_from_Workday_Phone_Validation), 
+    NOT(ISBLANK(MobilePhone)),
+    ISBLANK(TEXT( Workday_MobilePhone_Country_ISO_Code__c))
+)</errorConditionFormula>
+    <errorDisplayField>Workday_MobilePhone_Country_ISO_Code__c</errorDisplayField>
+    <errorMessage>Please select a country for the Mobile Phone number before saving.</errorMessage>
+</ValidationRule>

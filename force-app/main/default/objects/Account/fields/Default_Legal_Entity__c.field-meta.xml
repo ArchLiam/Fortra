@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Legal_Entity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Stores the default Legal Entity for auto-selection on new Opportunities. Used by the Fortra_Opportunity_Legal_Entity_AutoSelect flow to drive Legal Entity-driven currency assignment.</description>
+    <inlineHelpText>The default Legal Entity that will be automatically assigned to new Opportunities for this Account. This determines the default currency for transactions.</inlineHelpText>
+    <label>Default Legal Entity</label>
+    <referenceTo>LegalEntity</referenceTo>
+    <relationshipLabel>Accounts</relationshipLabel>
+    <relationshipName>Accounts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Portal__c</fullName>
+    <description>Defaults to Fortra (i.e. direct payment). Allows users to indicate transactions that will be billed via a 3rd party portal vs. email delivery.</description>
+    <label>Payment Portal</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fortra (default)</fullName>
+                <default>true</default>
+                <label>Fortra (default)</label>
+            </value>
+            <value>
+                <fullName>AWS Marketplace</fullName>
+                <default>false</default>
+                <label>AWS Marketplace</label>
+            </value>
+            <value>
+                <fullName>Ariba</fullName>
+                <default>false</default>
+                <label>Ariba</label>
+            </value>
+            <value>
+                <fullName>Coupa</fullName>
+                <default>false</default>
+                <label>Coupa</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,18 @@
+PFDRs: 3326; distinct fulltemp Product Ids needed: 6595
+Querying fulltemp Product2 in chunks...
+  fulltemp Ids resolved: 4595 / 6595; unresolved: 2000
+
+Distinct ProductCodes to look up in MB: 4595
+  MB Product2 by ProductCode resolved: 4595 / 4595; unresolved: 0
+
+Final fulltemp→MB Product2 Id map: 4595 entries
+
+PFDR updates ready: 2326 / 3326
+PFDRs with unresolved refs: 2000
+  ('13Uct000000V9dJEAS', 'ES-SEG-RSS-IGSSUB to ES-SEG-RSS-IGSSUB-TECH', 'src', '01tWC00000DCwVkYAL', None)
+  ('13Uct000000V9dJEAS', 'ES-SEG-RSS-IGSSUB to ES-SEG-RSS-IGSSUB-TECH', 'dst', '01tWC00000FBYSLYA5', None)
+  ('13Uct000000V9dKEAS', 'ES-SEG-RNM-IGSRNM to ES-SEG-RNM-IGSRNM-TECH', 'src', '01tWC00000DCwVlYAL', None)
+  ('13Uct000000V9dKEAS', 'ES-SEG-RNM-IGSRNM to ES-SEG-RNM-IGSRNM-TECH', 'dst', '01tWC00000FBYSMYA5', None)
+  ('13Uct000000V9dLEAS', 'ES-SEG-NRPS-IGSREG to ES-SEG-NRPS-IGSREG-TECH', 'src', '01tWC00000DCwVmYAL', None)
+
+Updates saved to /tmp/pfdr_updates.json

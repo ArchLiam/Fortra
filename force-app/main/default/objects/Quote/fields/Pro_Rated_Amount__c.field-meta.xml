@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pro_Rated_Amount__c</fullName>
+    <description>The calculated pro-rated charge or credit for this amendment based on the effective date and remaining contract term.</description>
+    <inlineHelpText>The pro-rated amount to be charged or credited for this amendment.</inlineHelpText>
+    <label>Pro-Rated Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <type>Currency</type>
+</CustomField>

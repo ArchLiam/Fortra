@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Displaced_ARR__c</fullName>
+    <description>Calculates displaced ARR when existing products are replaced with this new product. If existing products will be replaced with this new product, it indicates the value of the displaced ARR.</description>
+    <formula>IF(Swap__c = TRUE, Displaced_ARR_Input__c, 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Displaced ARR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

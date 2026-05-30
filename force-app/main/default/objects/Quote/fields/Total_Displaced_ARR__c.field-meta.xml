@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Displaced_ARR__c</fullName>
+    <description>Roll-up summary of Displaced Annual Recurring Revenue from all Quote Line Items. Represents the total ARR being replaced, upgraded, or converted by this Quote. Used in the calculation: New Deal ALE - Displaced ARR = Incremental ALE (Commissionable Amount).</description>
+    <label>Total Displaced ARR</label>
+    <summarizedField>QuoteLineItem.Displaced_ARR__c</summarizedField>
+    <summaryForeignKey>QuoteLineItem.QuoteId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

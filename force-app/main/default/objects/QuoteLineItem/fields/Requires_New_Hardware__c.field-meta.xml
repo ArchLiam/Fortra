@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requires_New_Hardware__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Flag indicating this quote line requires new hardware to be created by the Order team</description>
+    <label>Requires New Hardware</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

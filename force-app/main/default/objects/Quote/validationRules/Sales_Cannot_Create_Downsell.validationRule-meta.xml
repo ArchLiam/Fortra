@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Cannot_Create_Downsell</fullName>
+    <active>true</active>
+    <description>Prevents Sales users from creating downsell or cancellation amendments. Only Customer Operations can process these amendment types.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Quote_Type__c, &apos;Amendment&apos;),
+    OR(
+        ISPICKVAL(Amendment_Reason__c, &apos;Downsell&apos;),
+        ISPICKVAL(Amendment_Reason__c, &apos;Full Cancellation&apos;)
+    ),
+    NOT(CONTAINS($UserRole.Name, &apos;Customer Ops&apos;)),
+    NOT(CONTAINS($UserRole.Name, &apos;Operations&apos;))
+)</errorConditionFormula>
+    <errorDisplayField>Amendment_Reason__c</errorDisplayField>
+    <errorMessage>Downsell and Cancellation amendments can only be created by Customer Operations. Please contact Customer Operations for assistance.</errorMessage>
+</ValidationRule>

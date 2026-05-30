@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardware_Pricing_Source__c</fullName>
+    <description>Identifies the source of the hardware pricing adjustment</description>
+    <inlineHelpText>Shows which hardware pricing factor was the primary source</inlineHelpText>
+    <label>Hardware Pricing Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>User Override</fullName>
+                <default>false</default>
+                <label>User Override</label>
+            </value>
+            <value>
+                <fullName>Hardware Default</fullName>
+                <default>false</default>
+                <label>Hardware Default</label>
+            </value>
+            <value>
+                <fullName>System Default</fullName>
+                <default>false</default>
+                <label>System Default</label>
+            </value>
+            <value>
+                <fullName>Combined</fullName>
+                <default>true</default>
+                <label>Combined</label>
+            </value>
+            <value>
+                <fullName>SystemType</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SystemType</label>
+            </value>
+            <value>
+                <fullName>UserTier</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>UserTier</label>
+            </value>
+            <value>
+                <fullName>pGroup</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>pGroup</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Recurring_Service__c</fullName>
+    <description>Returns true for recurring services revenue categories</description>
+    <formula>Rev_Category__c = &apos;RC_45004&apos;</formula>
+    <inlineHelpText>Returns true for recurring services revenue categories</inlineHelpText>
+    <label>Is Recurring Service</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

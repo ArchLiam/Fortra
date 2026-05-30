@@ -1,0 +1,50 @@
+  UAT          CalculationMatrix                20
+  UAT          CalculationMatrixVersion         0
+  UAT          CalculationMatrixColumn          0
+  UAT          CalculationMatrixRow             0
+  UAT          DecisionTable                    22
+  UAT          DecisionTableParameter           179
+  UAT          DecisionTableDatasetLink         22
+  UAT          DecisionMatrixDefinition         0
+  UAT          PricingRecipe                    1
+  UAT          PricingRecipeTableMapping        12
+  UAT          PricingProcedureOutputMap        26
+  fulltemp     CalculationMatrix                19
+  fulltemp     CalculationMatrixVersion         0
+  fulltemp     CalculationMatrixColumn          0
+  fulltemp     CalculationMatrixRow             0
+  fulltemp     DecisionTable                    19
+  fulltemp     DecisionTableParameter           163
+  fulltemp     DecisionTableDatasetLink         19
+  fulltemp     DecisionMatrixDefinition         0
+  fulltemp     PricingRecipe                    1
+  fulltemp     PricingRecipeTableMapping        14
+  fulltemp     PricingProcedureOutputMap        26
+  MergeBuild   CalculationMatrix                22
+  MergeBuild   CalculationMatrixVersion         0
+  MergeBuild   CalculationMatrixColumn          0
+  MergeBuild   CalculationMatrixRow             0
+  MergeBuild   DecisionTable                    22
+  MergeBuild   DecisionTableParameter           182
+  MergeBuild   DecisionTableDatasetLink         22
+  MergeBuild   DecisionMatrixDefinition         0
+  MergeBuild   PricingRecipe                    1
+  MergeBuild   PricingRecipeTableMapping        11
+  MergeBuild   PricingProcedureOutputMap        0
+
+
+=== SUMMARY ===
+
+| Object | UAT | fulltemp | MergeBuild |
+|---|---:|---:|---:|
+| CalculationMatrix | 20 | 19 | 22 |
+| CalculationMatrixVersion | 0 | 0 | 0 |
+| CalculationMatrixColumn | 0 | 0 | 0 |
+| CalculationMatrixRow | 0 | 0 | 0 |
+| DecisionTable | 22 | 19 | 22 |
+| DecisionTableParameter | 179 | 163 | 182 |
+| DecisionTableDatasetLink | 22 | 19 | 22 |
+| DecisionMatrixDefinition | 0 | 0 | 0 |
+| PricingRecipe | 1 | 1 | 1 |
+| PricingRecipeTableMapping | 12 | 14 | 11 |
+| PricingProcedureOutputMap | 26 | 26 | 0 |

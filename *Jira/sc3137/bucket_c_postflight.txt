@@ -1,0 +1,41 @@
+MergeBuild PRTM count: 12 (target 12, was 11)
+MergeBuild PPOM count: 26 (target 26, was 0)
+
+MB PPOM (OutputType, PricingComponentType) distribution:
+  ('CustomOutput', 'RuleFetch'): 4
+  ('CustomOutput', 'AssetDiscovery'): 3
+  ('TierType', 'VolumeTierDiscount'): 2
+  ('LowerBound', 'VolumeTierDiscount'): 2
+  ('UpperBound', 'VolumeTierDiscount'): 2
+  ('TierValue', 'VolumeTierDiscount'): 2
+  ('TierType', 'VolumeDiscount'): 2
+  ('TierValue', 'VolumeDiscount'): 2
+  ('UnitPrice', 'ListPrice'): 2
+  ('AdjustmentType', 'AttributeDiscount'): 1
+  ('AdjustmentValue', 'AttributeDiscount'): 1
+  ('AdjustmentType', 'BundleDiscount'): 1
+  ('AdjustmentValue', 'BundleDiscount'): 1
+  ('CustomOutput', 'PriceRevision'): 1
+
+fulltemp PPOM expected distribution:
+  ✓ ('TierType', 'VolumeTierDiscount'): MB=2 expected=2
+  ✓ ('LowerBound', 'VolumeTierDiscount'): MB=2 expected=2
+  ✓ ('UpperBound', 'VolumeTierDiscount'): MB=2 expected=2
+  ✓ ('TierValue', 'VolumeTierDiscount'): MB=2 expected=2
+  ✓ ('TierType', 'VolumeDiscount'): MB=2 expected=2
+  ✓ ('TierValue', 'VolumeDiscount'): MB=2 expected=2
+  ✓ ('AdjustmentType', 'AttributeDiscount'): MB=1 expected=1
+  ✓ ('AdjustmentValue', 'AttributeDiscount'): MB=1 expected=1
+  ✓ ('UnitPrice', 'ListPrice'): MB=2 expected=2
+  ✓ ('AdjustmentType', 'BundleDiscount'): MB=1 expected=1
+  ✓ ('AdjustmentValue', 'BundleDiscount'): MB=1 expected=1
+  ✓ ('CustomOutput', 'AssetDiscovery'): MB=3 expected=3
+  ✓ ('CustomOutput', 'PriceRevision'): MB=1 expected=1
+  ✓ ('CustomOutput', 'RuleFetch'): MB=4 expected=4
+
+Distribution match: 14/14 categories
+
+Spot check (3 MB PPOMs with full relationship read-back):
+  17rct000000KCJZAA4 | OutputType=TierType | PCT=VolumeTierDiscount | OutputFieldName=TierType | PRTM.Recipe=NGPDefaultRecipe | PRTM.PCT=VolumeTierDiscount
+  17rct000000KCLBAA4 | OutputType=LowerBound | PCT=VolumeTierDiscount | OutputFieldName=LowerBound | PRTM.Recipe=NGPDefaultRecipe | PRTM.PCT=VolumeTierDiscount
+  17rct000000KCMnAAO | OutputType=UpperBound | PCT=VolumeTierDiscount | OutputFieldName=UpperBound | PRTM.Recipe=NGPDefaultRecipe | PRTM.PCT=VolumeTierDiscount

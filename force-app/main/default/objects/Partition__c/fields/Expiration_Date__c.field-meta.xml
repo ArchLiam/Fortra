@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expiration_Date__c</fullName>
+    <description>Date when the partition license expires. Used for renewal tracking and automated expiration workflows.</description>
+    <inlineHelpText>Date when this partition&apos;s license will expire. Leave blank for perpetual licenses.</inlineHelpText>
+    <label>Expiration Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

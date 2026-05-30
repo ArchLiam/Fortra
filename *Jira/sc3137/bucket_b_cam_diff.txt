@@ -1,0 +1,64 @@
+Building UAT data...
+  UAT CAMs: 2229
+Building MB data...
+  MB CAMs: 2043
+
+UAT keyed CAMs: 2229 (no-key: 0)
+MB  keyed CAMs: 2043 (no-key: 0)
+
+Common CAM keys: 2022
+UAT-only CAMs: 207
+MB-only CAMs: 21
+
+--- UAT-only CAM classification ---
+  Fortra-custom / non-__std attr: 131
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'AWSMarketplaceAgreementId2__c', 'AWSMarketplaceAgreementId2__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'AWSMarketplaceOfferId2__c', 'AWSMarketplaceOfferId2__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Billing_Place__c', 'Billing_Place__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'CrossSaleType2__c', 'CrossSaleType2__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Deal_Type__c', 'Deal_Type__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'DisableExportControl2__c', 'DisableExportControl2__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'GSW__c', 'GSW__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'MyCap__c', 'MyCap__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'PaymentPortal2__c', 'PaymentPortal2__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'QuoteTypeText__c', 'QuoteTypeText__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'QuoteType__c', 'QuoteType__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Quote_NARR__c', 'Quote_NARR__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Referral_Partner__c', 'Referral_Partner__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Shipping_Place__c', 'Shipping_Place__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Total_Discount_Amount__c', 'Total_Discount_Amount__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Total_Services__c', 'Total_Services__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Total_Software__c', 'Total_Software__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransaction', 'Order', 'Total_Subscription__c', 'Total_Subscription__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'AllowRegionalPricing__c', 'AllowRegionalPricing__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Attribute_Multiplier_Pct__c', 'Attribute_Multiplier_Pct__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Attribute_Price_Mode__c', 'Attribute_Price_Mode__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Base_Price__c', 'Base_Price__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'COLACalculatedPrice__c', 'COLACalculatedPrice__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'COLA_Uplift_Percent__c', 'COLA_Uplift_Percent__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Currency__c', 'Currency__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Fortra_Product_Type__c', 'Fortra_Product_Type__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'GSA__c', 'GSA__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Hardware_ID__c', 'Hardware_ID__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Hardware__c', 'Hardware__c')  inherited=None
+    ('SalesTransactionContextExt', 'OrderEntitiesMapping', 'SalesTransactionItem', 'OrderItem', 'Has_Attribute_Adjustment__c', 'Has_Attribute_Adjustment__c')  inherited=None
+
+  __std platform-drift: 76
+    ('SalesTransactionContextExt', 'AssetEntitiesMapping', 'AssetActionSource', 'AssetActionSource', 'AASPriceBookEntryPriceBookId__std', 'AASPriceBookEntryPriceBookId__std')  inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASPriceBookEntryPriceBookId__std'
+    ('SalesTransactionContextExt', 'AssetEntitiesMapping', 'AssetActionSource', 'AssetActionSource', 'AASProductSellingModelPricingTermUnit__std', 'AASProductSellingModelPricingTermUnit__std')  inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASProductSellingModelPricingTermUnit__std'
+    ('SalesTransactionContextExt', 'AssetEntitiesMapping', 'AssetActionSource', 'AssetActionSource', 'AASProductSellingModelPricingTerm__std', 'AASProductSellingModelPricingTerm__std')  inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASProductSellingModelPricingTerm__std'
+    ('SalesTransactionContextExt', 'AssetEntitiesMapping', 'AssetActionSource', 'AssetActionSource', 'AASProductSellingModelSellingModelType__std', 'AASProductSellingModelSellingModelType__std')  inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASProductSellingModelSellingModelType__std'
+    ('SalesTransactionContextExt', 'AssetEntitiesMapping', 'AssetContractRelationship', 'AssetContractRelationship', 'ACRContractRenewalTermUnit__std', 'ACRContractRenewalTermUnit__std')  inherited='SalesTransactionContext__stdctx/version/Asset/AssetContractRelationship/ACRContractRenewalTermUnit__std'
+    ... and 71 more __std rows
+
+--- MB-only CAM sample (first 10) ---
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'AdditionalProductInformation', 'AdditionalProductInformation')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'AllowRegionalPricing__c', 'AllowRegionalPricing__c')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'CatalogId', 'CatalogId')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'CategoryId', 'CategoryId')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'Code', 'Code')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'Custom_Product_Name__c', 'Custom_Product_Name__c')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'Fortra_Product_Type__c', 'Fortra_Product_Type__c')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'Has_Pricing_Adjustment__c', 'Has_Pricing_Adjustment__c')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'Id', 'Id')
+  ('ProductDiscoveryContextExt', 'ProductDiscoveryMapping_Clone', 'CategoryProduct', 'CategoryProduct', 'IsQualified', 'IsQualified')

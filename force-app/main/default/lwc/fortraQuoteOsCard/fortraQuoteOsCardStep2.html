@@ -1,0 +1,76 @@
+<template>
+    <div class="fortra-card fortra-card--step2">
+        <div class="fortra-card__step-indicator">
+            <div class="fortra-card__step-dot fortra-card__step-dot--complete"></div>
+            <div class="fortra-card__step-line fortra-card__step-line--complete"></div>
+            <div class="fortra-card__step-dot fortra-card__step-dot--active"></div>
+        </div>
+        <div class="fortra-card__eyebrow">Step 2 of 2</div>
+        <div class="fortra-card__heading">Review and send</div>
+        <div class="fortra-card__body">
+            Confirm the details below. Clicking Send will email the document for signature.
+        </div>
+
+        <div class="fortra-card__details">
+            <div class="fortra-card__detail-row">
+                <div class="fortra-card__detail-label">Recipient</div>
+                <div class="fortra-card__detail-value">
+                    <div class="fortra-card__detail-primary">{signerName}</div>
+                    <div class="fortra-card__detail-secondary">{signerEmail}</div>
+                </div>
+            </div>
+
+            <div class="fortra-card__detail-row">
+                <div class="fortra-card__detail-label">Subject</div>
+                <div class="fortra-card__detail-value">
+                    <div class="fortra-card__detail-primary">{emailSubject}</div>
+                </div>
+            </div>
+
+            <div class="fortra-card__detail-row">
+                <div class="fortra-card__detail-label">Document</div>
+                <div class="fortra-card__detail-value">
+                    <div class="fortra-card__detail-primary">{documentTitle}</div>
+                </div>
+            </div>
+        </div>
+
+        <template lwc:if={hasPdfId}>
+            <div class="fortra-card__actions">
+                <button class="fortra-card__preview-button" type="button" onclick={handleOpenPreview}>
+                    <svg class="fortra-card__preview-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path
+                            d="M8 3C4.5 3 1.7 5.2 0.7 8c1 2.8 3.8 5 7.3 5s6.3-2.2 7.3-5C14.3 5.2 11.5 3 8 3zm0 8.3c-1.8 0-3.3-1.5-3.3-3.3S6.2 4.7 8 4.7s3.3 1.5 3.3 3.3-1.5 3.3-3.3 3.3zm0-5.3c-1.1 0-2 0.9-2 2s0.9 2 2 2 2-0.9 2-2-0.9-2-2-2z"
+                            fill="currentColor" />
+                    </svg>
+                    Preview PDF
+                </button>
+                <span class="fortra-card__preview-hint">
+                    Review the document before sending it for signature
+                </span>
+            </div>
+        </template>
+    </div>
+
+    <template lwc:if={showPdfModal}>
+        <div class="fortra-modal__backdrop" onclick={handleClosePreview}>
+            <div class="fortra-modal" onclick={handleStopPropagation} role="dialog" aria-modal="true"
+                aria-label="Document preview">
+                <div class="fortra-modal__header">
+                    <div class="fortra-modal__title-wrap">
+                        <div class="fortra-modal__eyebrow">Document Preview</div>
+                        <div class="fortra-modal__title">{documentTitle}</div>
+                    </div>
+                    <button class="fortra-modal__close" type="button" onclick={handleClosePreview}
+                        aria-label="Close preview">
+                        &times;
+                    </button>
+                </div>
+                <div class="fortra-modal__body">
+                    <iframe class="fortra-modal__iframe" src={pdfPreviewUrl} title="PDF preview"></iframe>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

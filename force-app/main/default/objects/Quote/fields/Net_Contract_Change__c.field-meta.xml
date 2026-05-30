@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_Contract_Change__c</fullName>
+    <description>Net financial impact of this amendment, calculated as Amendment ARR Impact minus any Credit Amount issued.</description>
+    <formula>Amendment_ARR_Impact__c - Credit_Amount__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>The net financial change resulting from this amendment after credits.</inlineHelpText>
+    <label>Net Contract Change</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

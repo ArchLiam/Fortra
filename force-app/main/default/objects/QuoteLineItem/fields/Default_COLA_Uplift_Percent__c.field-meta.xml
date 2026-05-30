@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_COLA_Uplift_Percent__c</fullName>
+    <description>Original COLA percentage from COLA_Uplift_Rules__mdt - preserved for comparison</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The original COLA rate from the COLA Uplift Rules. Used to detect overrides.</inlineHelpText>
+    <label>Default COLA Uplift Percent</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

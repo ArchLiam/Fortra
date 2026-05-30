@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>c2g__CODAIncomeTaxType__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Income Tax Type</description>
+    <label>Income Tax Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not Reportable</fullName>
+                <default>true</default>
+                <label>Not Reportable</label>
+            </value>
+            <value>
+                <fullName>(MISC) 1 - Rents</fullName>
+                <default>false</default>
+                <label>(MISC) 1 - Rents</label>
+            </value>
+            <value>
+                <fullName>(MISC) 2 - Royalties</fullName>
+                <default>false</default>
+                <label>(MISC) 2 - Royalties</label>
+            </value>
+            <value>
+                <fullName>(MISC) 3 - Other income</fullName>
+                <default>false</default>
+                <label>(MISC) 3 - Other income</label>
+            </value>
+            <value>
+                <fullName>(MISC) 4 - Federal income tax withheld</fullName>
+                <default>false</default>
+                <label>(MISC) 4 - Federal income tax withheld</label>
+            </value>
+            <value>
+                <fullName>(MISC) 5 - Fishing boat proceeds</fullName>
+                <default>false</default>
+                <label>(MISC) 5 - Fishing boat proceeds</label>
+            </value>
+            <value>
+                <fullName>(MISC) 6 - Medical and health care payments</fullName>
+                <default>false</default>
+                <label>(MISC) 6 - Medical and health care payments</label>
+            </value>
+            <value>
+                <fullName>(MISC) 7 - Payer made direct sales of 5000 or more (Checkbox)</fullName>
+                <default>false</default>
+                <label>(MISC) 7 - Payer made direct sales of 5000 or more (Checkbox)</label>
+            </value>
+            <value>
+                <fullName>(MISC) 8 - Substitute payments in lieu of dividends or interest</fullName>
+                <default>false</default>
+                <label>(MISC) 8 - Substitute payments in lieu of dividends or interest</label>
+            </value>
+            <value>
+                <fullName>(MISC) 9 - Crop insurance proceeds</fullName>
+                <default>false</default>
+                <label>(MISC) 9 - Crop insurance proceeds</label>
+            </value>
+            <value>
+                <fullName>(MISC) 10 - Gross proceeds paid to an attorney</fullName>
+                <default>false</default>
+                <label>(MISC) 10 - Gross proceeds paid to an attorney</label>
+            </value>
+            <value>
+                <fullName>(MISC) 11 - Fish purchased for resale</fullName>
+                <default>false</default>
+                <label>(MISC) 11 - Fish purchased for resale</label>
+            </value>
+            <value>
+                <fullName>(MISC) 12 - Section 409A deferrals</fullName>
+                <default>false</default>
+                <label>(MISC) 12 - Section 409A deferrals</label>
+            </value>
+            <value>
+                <fullName>(MISC) 13 - FATCA filing requirement (Checkbox)</fullName>
+                <default>false</default>
+                <label>(MISC) 13 - FATCA filing requirement (Checkbox)</label>
+            </value>
+            <value>
+                <fullName>(MISC) 14 - Excess golden parachute payments</fullName>
+                <default>false</default>
+                <label>(MISC) 14 - Excess golden parachute payments</label>
+            </value>
+            <value>
+                <fullName>(MISC) 15 - Nonqualified deferred compensation</fullName>
+                <default>false</default>
+                <label>(MISC) 15 - Nonqualified deferred compensation</label>
+            </value>
+            <value>
+                <fullName>(MISC) 16 - State tax withheld</fullName>
+                <default>false</default>
+                <label>(MISC) 16 - State tax withheld</label>
+            </value>
+            <value>
+                <fullName>(MISC) 17 - State/Payer&apos;s state no.</fullName>
+                <default>false</default>
+                <label>(MISC) 17 - State/Payer&apos;s state no.</label>
+            </value>
+            <value>
+                <fullName>(MISC) 18 - State income</fullName>
+                <default>false</default>
+                <label>(MISC) 18 - State income</label>
+            </value>
+            <value>
+                <fullName>(NEC) 1 - Nonemployee compensation</fullName>
+                <default>false</default>
+                <label>(NEC) 1 - Nonemployee compensation</label>
+            </value>
+            <value>
+                <fullName>(NEC) 2 - Payer made direct sales of 5000 or more (Checkbox)</fullName>
+                <default>false</default>
+                <label>(NEC) 2 - Payer made direct sales of 5000 or more (Checkbox)</label>
+            </value>
+            <value>
+                <fullName>(NEC) 4 - Federal income tax withheld</fullName>
+                <default>false</default>
+                <label>(NEC) 4 - Federal income tax withheld</label>
+            </value>
+            <value>
+                <fullName>(NEC) 5 - State tax withheld</fullName>
+                <default>false</default>
+                <label>(NEC) 5 - State tax withheld</label>
+            </value>
+            <value>
+                <fullName>(NEC) 6 - State/Payer&apos;s state no.</fullName>
+                <default>false</default>
+                <label>(NEC) 6 - State/Payer&apos;s state no.</label>
+            </value>
+            <value>
+                <fullName>(NEC) 7 - State income</fullName>
+                <default>false</default>
+                <label>(NEC) 7 - State income</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,33 @@
+{
+  "source_org": "FortraUAT (liam.jeong.c@fortra.com.uat)",
+  "pulled_at_utc": "2026-05-29",
+  "fields": [
+    {
+      "entity": "Opportunity",
+      "qualified_api_name": "Territory__c",
+      "label": "Territory",
+      "data_type": "Lookup(Sales Territory)",
+      "length": 18,
+      "is_nillable": true
+    },
+    {
+      "entity": "Product_of_Interest__c",
+      "qualified_api_name": "Sales_Territory__c",
+      "label": "Sales Territory",
+      "data_type": "Lookup(Sales Territory)",
+      "length": 18,
+      "is_nillable": true
+    }
+  ],
+  "compatibility": "Both fields are Lookup(Sales Territory). Direct Id assignment from POI.Sales_Territory__c to Opportunity.Territory__c is type-compatible.",
+  "related_lookups_on_poi": [
+    "Sales_Inquiry__c (Lookup -> Lead/Inquiry)",
+    "Opportunity__c (Lookup -> Opportunity)",
+    "CAM_Territory__c (Lookup -> Sales Territory)",
+    "Notification_Territory__c (Lookup -> Sales Territory)"
+  ],
+  "object_mapping_notes": {
+    "Inquiry": "Lead (Get_triggering_Inquiry recordLookup targets the Lead object; label 'Inquiry' is applied at field-relationship level)",
+    "Products_of_Interest": "Product_of_Interest__c, related to Lead via Sales_Inquiry__c"
+  }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PSA</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>pse__Is_Resource__c</columns>
+    <columns>pse__Is_Resource_Active__c</columns>
+    <columns>pse__Salesforce_User__c</columns>
+    <columns>pse__Work_Calendar__c</columns>
+    <columns>pse__Region__c</columns>
+    <columns>pse__Practice__c</columns>
+    <columns>pse__Group__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.PSA_Resource</value>
+    </filters>
+    <label>PSA Resources</label>
+</ListView>

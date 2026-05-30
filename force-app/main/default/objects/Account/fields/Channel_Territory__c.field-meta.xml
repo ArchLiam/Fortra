@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Channel_Territory__c</fullName>
+    <label>Channel Territory</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>T1: United States, United Kingdom, Ireland, Middle East</fullName>
+                <default>false</default>
+                <label>T1: United States, United Kingdom, Ireland, Middle East</label>
+            </value>
+            <value>
+                <fullName>T2: Canada, Nordics, Benelux, DACH, South Europe</fullName>
+                <default>false</default>
+                <label>T2: Canada, Nordics, Benelux, DACH, South Europe</label>
+            </value>
+            <value>
+                <fullName>T3: Rest of the World</fullName>
+                <default>false</default>
+                <label>T3: Rest of the World</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

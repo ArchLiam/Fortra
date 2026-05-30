@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AWS_Marketplace_Seller_Id__c</fullName>
+    <description>Assigned to the partner&apos;s AWS account that&apos;s registered as a seller in the AWS Marketplace.
+
+Used internally by AWS Marketplace to associate listings, transactions, and reports with the seller.</description>
+    <externalId>false</externalId>
+    <label>AWS Marketplace Seller Id</label>
+    <length>200</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

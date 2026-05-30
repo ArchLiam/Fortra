@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Quote_Line_ARR__c</fullName>
+    <description>Roll-up summary of Annual Recurring Revenue (ARR) from all Quote Line Items. Excludes One-Time products. Calculated by summing Quote_Line_ARR__c from related QuoteLineItem records.</description>
+    <label>Quote NARR (Calculated) (old)</label>
+    <summarizedField>QuoteLineItem.QLI_NARR_Calculated__c</summarizedField>
+    <summaryForeignKey>QuoteLineItem.QuoteId</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ffaws__Vendor_Accounts</fullName>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.TYPE</columns>
+    <columns>c2g__CODAFinanceContact__c</columns>
+    <columns>c2g__CODAPaymentMethod__c</columns>
+    <columns>c2g__CODAAccountTradingCurrency__c</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>c2g__CODAAccountsPayableControl__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Vendor Accounts</label>
+</ListView>

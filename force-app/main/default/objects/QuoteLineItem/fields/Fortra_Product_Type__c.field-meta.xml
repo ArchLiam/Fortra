@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fortra_Product_Type__c</fullName>
+    <description>The Fortra product type for this line item. Used to determine which margin percentage to apply from the Partner Pricing Model.</description>
+    <inlineHelpText>Product type determines which partner margin rate applies.</inlineHelpText>
+    <label>Fortra Product Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Software</fullName>
+                <default>true</default>
+                <label>Software</label>
+            </value>
+            <value>
+                <fullName>Perpetual</fullName>
+                <default>false</default>
+                <label>Perpetual</label>
+            </value>
+            <value>
+                <fullName>New Maintenance</fullName>
+                <default>false</default>
+                <label>New Maintenance</label>
+            </value>
+            <value>
+                <fullName>Renewal Maintenance</fullName>
+                <default>false</default>
+                <label>Renewal Maintenance</label>
+            </value>
+            <value>
+                <fullName>Subscription</fullName>
+                <default>false</default>
+                <label>Subscription</label>
+            </value>
+            <value>
+                <fullName>SaaS Subscription</fullName>
+                <default>false</default>
+                <label>SaaS Subscription</label>
+            </value>
+            <value>
+                <fullName>Services</fullName>
+                <default>false</default>
+                <label>Services</label>
+            </value>
+            <value>
+                <fullName>Professional Service</fullName>
+                <default>false</default>
+                <label>Professional Service</label>
+            </value>
+            <value>
+                <fullName>Renewal Services</fullName>
+                <default>false</default>
+                <label>Renewal Services</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

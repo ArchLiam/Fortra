@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Export_Control_Category__c</fullName>
+    <description>Indicates which Export Control category this product belongs to used to determine what license may apply.</description>
+    <label>Export Control Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>EAR99</fullName>
+                <default>false</default>
+                <label>EAR99</label>
+            </value>
+            <value>
+                <fullName>5D002</fullName>
+                <default>false</default>
+                <label>5D002</label>
+            </value>
+            <value>
+                <fullName>5D992</fullName>
+                <default>false</default>
+                <label>5D992</label>
+            </value>
+            <value>
+                <fullName>NLR (No License Required)</fullName>
+                <default>false</default>
+                <label>NLR (No License Required)</label>
+            </value>
+            <value>
+                <fullName>License Exception</fullName>
+                <default>false</default>
+                <label>License Exception</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

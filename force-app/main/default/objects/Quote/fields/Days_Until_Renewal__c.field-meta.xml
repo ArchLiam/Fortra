@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_Until_Renewal__c</fullName>
+    <description>Number of days remaining until the original contract end date. Used to determine if the quote is within the 120-day renewal window.</description>
+    <externalId>false</externalId>
+    <formula>Renewal_Contract__r.EndDate - TODAY()</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Days remaining until the original contract expires.</inlineHelpText>
+    <label>Days Until Renewal</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

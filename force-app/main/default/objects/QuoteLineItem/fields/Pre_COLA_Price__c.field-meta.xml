@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pre_COLA_Price__c</fullName>
+    <description>Original Asset.Price before COLA application - used for override recalculations</description>
+    <inlineHelpText>The original subscription price from the Asset before COLA was applied.</inlineHelpText>
+    <label>Pre-COLA Price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

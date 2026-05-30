@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardware__c</fullName>
+    <description>Master-Detail relationship to parent Hardware__c record. Each partition belongs to a single hardware instance.</description>
+    <label>Hardware</label>
+    <referenceTo>Hardware__c</referenceTo>
+    <relationshipLabel>Hardware Partitions</relationshipLabel>
+    <relationshipName>Hardware_Partitions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

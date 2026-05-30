@@ -1,0 +1,40 @@
+
+=== UAT ===
+  DTs: 22, DTPs: 179
+  Unique composite keys (DT.DevName, FieldName, Sequence, Usage): 179
+  Duplicate keys: 0
+
+=== fulltemp ===
+  DTs: 19, DTPs: 163
+  Unique composite keys (DT.DevName, FieldName, Sequence, Usage): 163
+  Duplicate keys: 0
+
+=== MergeBuild ===
+  DTs: 22, DTPs: 182
+  Unique composite keys (DT.DevName, FieldName, Sequence, Usage): 182
+  Duplicate keys: 0
+
+=== DTP cross-org check (UAT key vs MB) ===
+  UAT keys: 179
+  Identical Id: 89
+  Mismatched Id (key matches, Id differs): 89
+  Missing in MB: 1
+
+  Sample of UAT keys missing from MB DTP map:
+    ('Index_Rate_Decision_Table', 'CurrencyIsoCode', 4, 'INPUT')  UAT=0lPWC0000000Bun2AE
+
+=== DTP cross-org check (fulltemp key vs MB) ===
+  fulltemp keys: 163
+  Identical Id: 113
+  Mismatched Id: 50
+  Missing in MB: 0
+
+  Sample of fulltemp keys missing from MB DTP map:
+
+=== PPOM FK reachability (UAT source) ===
+  Reachable (UAT DTP -> MB DTP map exists): 26/26
+  Unreachable: 0
+
+=== PPOM FK reachability (fulltemp source) ===
+  Reachable: 26/26
+  Unreachable: 0

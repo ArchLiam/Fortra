@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unique_Product_Identifier__c</fullName>
+    <description>Concatenation of Product Code from related Product and Quote Line Item&apos;s Line Item Description</description>
+    <externalId>false</externalId>
+    <formula>Product2.ProductCode + &quot;:&quot; +  Description</formula>
+    <inlineHelpText>Concatenation of Product Code from related Product and Quote Line Item&apos;s Line Item Description</inlineHelpText>
+    <label>Unique Product Identifier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

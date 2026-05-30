@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_COLA_Overridden__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Set to TRUE when COLA Uplift Percent differs from Default COLA Uplift Percent. Updated by trigger.</description>
+    <inlineHelpText>Indicates whether the COLA percentage has been manually overridden from the default.</inlineHelpText>
+    <label>Is COLA Overridden</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

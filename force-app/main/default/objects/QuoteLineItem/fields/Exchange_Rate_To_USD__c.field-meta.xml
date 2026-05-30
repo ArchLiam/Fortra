@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exchange_Rate_To_USD__c</fullName>
+    <description>Currency exchange rate from the Quote Line Item&apos;s transaction currency to USD, captured at pricing time. Looked up from DatedConversionRate (Advanced Currency Management) with CurrencyType fallback. Refreshed on every reprice. Mapped to OrderItem via Context Definition during Quote-to-Order conversion.</description>
+    <externalId>false</externalId>
+    <label>Exchange Rate To USD</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>10</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

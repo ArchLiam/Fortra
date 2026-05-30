@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Regulatory_Place__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Reference to place for regulatory compliance purposes</description>
+    <inlineHelpText>Select the place that determines regulatory requirements and compliance</inlineHelpText>
+    <label>Regulatory Place</label>
+    <referenceTo>Places__c</referenceTo>
+    <relationshipLabel>Quotes (Regulatory Place)</relationshipLabel>
+    <relationshipName>Quotes5</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

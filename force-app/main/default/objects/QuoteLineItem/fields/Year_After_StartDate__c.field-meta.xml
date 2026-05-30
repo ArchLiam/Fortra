@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Year_After_StartDate__c</fullName>
+    <formula>EndDate - StartDate &lt;= 365</formula>
+    <label>Year After StartDate</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

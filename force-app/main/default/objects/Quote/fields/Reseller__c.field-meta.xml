@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reseller__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>The reseller partner for this quote. Participates in Guaranteed Margin pricing.</description>
+    <inlineHelpText>Select the reseller partner if applicable.</inlineHelpText>
+    <label>Reseller</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>Value does not match the filter criteria. The selected account must be marked as Partner.</errorMessage>
+        <filterItems>
+            <field>Account.Partner__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Quotes (Reseller)</relationshipLabel>
+    <relationshipName>Quotes_Reseller</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COLA_Override_Percent__c</fullName>
+    <description>Quote-level COLA override percentage. When set, this overrides CMDT and Contract-level COLA rates for all lines on this Quote.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a COLA override percentage for this entire Quote (overrides CMDT and Contract-level rates).</inlineHelpText>
+    <label>COLA Override Percent</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

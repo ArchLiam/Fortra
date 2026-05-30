@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Group_Number_List__c</fullName>
+    <label>Group Number List</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Group 100</fullName>
+                <default>false</default>
+                <label>Group 100</label>
+            </value>
+            <value>
+                <fullName>Group 1000</fullName>
+                <default>false</default>
+                <label>Group 1000</label>
+            </value>
+            <value>
+                <fullName>Group 200</fullName>
+                <default>false</default>
+                <label>Group 200</label>
+            </value>
+            <value>
+                <fullName>Group 250</fullName>
+                <default>false</default>
+                <label>Group 250</label>
+            </value>
+            <value>
+                <fullName>Group 300</fullName>
+                <default>false</default>
+                <label>Group 300</label>
+            </value>
+            <value>
+                <fullName>Group 400</fullName>
+                <default>false</default>
+                <label>Group 400</label>
+            </value>
+            <value>
+                <fullName>Group 500</fullName>
+                <default>false</default>
+                <label>Group 500</label>
+            </value>
+            <value>
+                <fullName>Group 600</fullName>
+                <default>false</default>
+                <label>Group 600</label>
+            </value>
+            <value>
+                <fullName>Group 700</fullName>
+                <default>false</default>
+                <label>Group 700</label>
+            </value>
+            <value>
+                <fullName>Group 800</fullName>
+                <default>false</default>
+                <label>Group 800</label>
+            </value>
+            <value>
+                <fullName>Group 900</fullName>
+                <default>false</default>
+                <label>Group 900</label>
+            </value>
+            <value>
+                <fullName>Group 950</fullName>
+                <default>false</default>
+                <label>Group 950</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

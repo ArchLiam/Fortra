@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsProductOfInterest__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Identifies the primary product that attracted customer interest</description>
+    <inlineHelpText>Check this box to identify this line item as the primary product that attracted the customer&apos;s interest. Only one line per Quote can be marked as Product of Interest.</inlineHelpText>
+    <label>Product of Interest</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

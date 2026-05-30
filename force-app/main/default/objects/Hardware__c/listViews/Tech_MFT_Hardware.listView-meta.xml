@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tech_MFT_Hardware</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Tech MFT</label>
+    <queue>Tech_MFT</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

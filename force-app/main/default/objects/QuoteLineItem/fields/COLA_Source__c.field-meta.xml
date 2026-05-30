@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COLA_Source__c</fullName>
+    <description>Indicates the source of the COLA percentage applied to this quote line. Tracks whether the value came from the default CMDT lookup, a Contract-level override, or a manual line-level override.</description>
+    <inlineHelpText>Shows where the COLA percentage came from: CMDT Lookup (default), Contract Override, or Line Override (manual).</inlineHelpText>
+    <label>COLA Source</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CMDT Lookup</fullName>
+                <default>true</default>
+                <label>CMDT Lookup</label>
+            </value>
+            <value>
+                <fullName>Contract Override</fullName>
+                <default>false</default>
+                <label>Contract Override</label>
+            </value>
+            <value>
+                <fullName>Line Override</fullName>
+                <default>false</default>
+                <label>Line Override</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>c2g__DaysSalesOutstanding__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Average number of days it takes to collect payment after a sale has been made, based on the sales and payments made in the last 365 days. The value in this field is automatically calculated.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Average number of days it takes to collect payment after a sale has been made, based on the sales and payments made in the last 365 days. The value in this field is automatically calculated.</inlineHelpText>
+    <label>Days Sales Outstanding (Annual)</label>
+    <precision>16</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

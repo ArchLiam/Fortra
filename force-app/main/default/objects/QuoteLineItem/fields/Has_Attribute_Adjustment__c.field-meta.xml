@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Has_Attribute_Adjustment__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates that this product has price adjustments made based upon product attributes.  Referenced by price procedures and price hooks.</description>
+    <label>Has Attribute Adjustment</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

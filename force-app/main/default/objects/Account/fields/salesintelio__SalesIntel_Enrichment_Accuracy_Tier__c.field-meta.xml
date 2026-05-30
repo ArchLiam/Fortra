@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salesintelio__SalesIntel_Enrichment_Accuracy_Tier__c</fullName>
+    <deprecated>false</deprecated>
+    <label>SalesIntel Enrichment Accuracy Tier</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>HUMAN_VERIFIED</fullName>
+                <default>false</default>
+                <label>Human Verified</label>
+            </value>
+            <value>
+                <fullName>EMAIL_VERIFIED</fullName>
+                <default>false</default>
+                <label>Email Verified</label>
+            </value>
+            <value>
+                <fullName>MACHINE_VERIFIED</fullName>
+                <default>false</default>
+                <label>Machine Verified</label>
+            </value>
+            <value>
+                <fullName>OUTDATED</fullName>
+                <default>false</default>
+                <label>Outdated</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

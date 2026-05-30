@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salesintelio__SalesIntel_Job_Change_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Field to capture date on which salesintel job changed</description>
+    <inlineHelpText>Date that job changed.</inlineHelpText>
+    <label>SalesIntel Job Change Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

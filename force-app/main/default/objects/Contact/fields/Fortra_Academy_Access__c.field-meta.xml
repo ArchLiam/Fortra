@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fortra_Academy_Access__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checking this option will sync the contact to Docebo and allow access to Fortra Academy through the SF Partner Portal</description>
+    <label>Fortra Academy Access</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

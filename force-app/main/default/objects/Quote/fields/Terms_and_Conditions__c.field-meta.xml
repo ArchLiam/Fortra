@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terms_and_Conditions__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Unlocks the Custom Text box to make edits.  Validates whether the quote can have custom text.</description>
+    <inlineHelpText>Please check this box to make edits to the Custom Text field.</inlineHelpText>
+    <label>Enable Terms and Conditions</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

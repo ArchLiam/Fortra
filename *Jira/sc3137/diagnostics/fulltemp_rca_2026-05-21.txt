@@ -1,0 +1,438 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.134.6.
+Compiled successfully.
+Executed successfully.
+
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: /**
+Execute Anonymous:  * Fortra RCA Setup Verification Diagnostic
+Execute Anonymous:  * Run identically in fulltemp and mergebuild
+Execute Anonymous:  * Output goes to debug log; redirect to file via `sf apex run -f`
+Execute Anonymous:  */
+Execute Anonymous: 
+Execute Anonymous: System.debug('==================================================');
+Execute Anonymous: System.debug('RCA Setup Verification — ' + UserInfo.getOrganizationName());
+Execute Anonymous: System.debug('Org ID: ' + UserInfo.getOrganizationId());
+Execute Anonymous: System.debug('User: ' + UserInfo.getUserName());
+Execute Anonymous: System.debug('Run timestamp: ' + System.now());
+Execute Anonymous: System.debug('==================================================');
+Execute Anonymous: 
+Execute Anonymous: // Helper: safely count an object, catch if SObject type doesn't exist
+Execute Anonymous: Map<String, Integer> counts = new Map<String, Integer>();
+Execute Anonymous: List<String> sObjectsToCount = new List<String>{
+Execute Anonymous:     'ContextDefinition', 'ContextDefinitionVersion',
+Execute Anonymous:     'ContextNode', 'ContextAttribute', 'ContextMapping',
+Execute Anonymous:     'ContextNodeMapping', 'ContextAttributeMapping',
+Execute Anonymous:     'ContextTag', 'ContextUseCaseMapping',
+Execute Anonymous:     'ExpressionSet', 'ExpressionSetVersion',
+Execute Anonymous:     'ExpressionSetDefinition', 'ExpressionSetDefinitionContextDefinition',
+Execute Anonymous:     'PricingActionParameters', 'PricingRecipe',
+Execute Anonymous:     'PricingRecipeTableMapping', 'PricingProcedureOutputMap',
+Execute Anonymous:     'RuleLibrary', 'RuleLibraryDefinition',
+Execute Anonymous:     'RuleLibraryVersion', 'RuleLibraryDefVersion',
+Execute Anonymous:     'Product2', 'ProductClassification',
+Execute Anonymous:     'ProductConfigurationFlow', 'ProductConfigurationRule',
+Execute Anonymous:     'ProductFulfillmentDecompRule', 'AttributeBasedAdjRule',
+Execute Anonymous:     'AttributeDefinition', 'AttributeCategory',
+Execute Anonymous:     'DecisionMatrixDefinition', 'DecisionTable',
+Execute Anonymous:     'CalculationMatrixColumn', 'DecisionTableParameter'
+Execute Anonymous: };
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n========== SECTION 0: OBJECT COUNTS ==========');
+Execute Anonymous: for (String sObj : sObjectsToCount) {
+Execute Anonymous:     try {
+Execute Anonymous:         Integer c = Database.countQuery('SELECT COUNT() FROM ' + sObj);
+Execute Anonymous:         counts.put(sObj, c);
+Execute Anonymous:         System.debug(sObj + ': ' + c);
+Execute Anonymous:     } catch (Exception e) {
+Execute Anonymous:         counts.put(sObj, -1);
+Execute Anonymous:         System.debug(sObj + ': ERROR — ' + e.getMessage());
+Execute Anonymous:     }
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 1 — Context Layer
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 1. CONTEXT LAYER ==========');
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ContextDefinition ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (ContextDefinition cd : [SELECT Id, DeveloperName, MasterLabel, InheritedFrom
+Execute Anonymous:                                  FROM ContextDefinition ORDER BY DeveloperName]) {
+Execute Anonymous:         System.debug(cd.DeveloperName + ' | label=' + cd.MasterLabel +
+Execute Anonymous:                      ' | inheritedFrom=' + cd.InheritedFrom +
+Execute Anonymous:                      ' | Id=' + cd.Id);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ContextDefinition query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ContextDefinitionVersion ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (ContextDefinitionVersion cdv : [SELECT Id, ContextDefinition.DeveloperName,
+Execute Anonymous:                                                 VersionNumber, IsActive
+Execute Anonymous:                                          FROM ContextDefinitionVersion
+Execute Anonymous:                                          ORDER BY ContextDefinition.DeveloperName, VersionNumber]) {
+Execute Anonymous:         System.debug(cdv.ContextDefinition.DeveloperName + ' v' + cdv.VersionNumber +
+Execute Anonymous:                      ' | active=' + cdv.IsActive +
+Execute Anonymous:                      ' | Id=' + cdv.Id);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ContextDefinitionVersion query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ContextNode (count by parent) ---');
+Execute Anonymous: try {
+Execute Anonymous:     AggregateResult[] cnGroups = [SELECT ContextDefinitionVersionId, COUNT(Id) cnt
+Execute Anonymous:                                   FROM ContextNode
+Execute Anonymous:                                   GROUP BY ContextDefinitionVersionId];
+Execute Anonymous:     for (AggregateResult ar : cnGroups) {
+Execute Anonymous:         System.debug('CDV ' + ar.get('ContextDefinitionVersionId') + ': ' + ar.get('cnt'));
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ContextNode group failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 2 — Pricing Procedure Layer
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 2. PRICING PROCEDURE LAYER ==========');
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ExpressionSetDefinition ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (ExpressionSetDefinition esd : [SELECT Id, DeveloperName, MasterLabel
+Execute Anonymous:                                         FROM ExpressionSetDefinition
+Execute Anonymous:                                         ORDER BY DeveloperName]) {
+Execute Anonymous:         System.debug(esd.DeveloperName + ' | label=' + esd.MasterLabel + ' | Id=' + esd.Id);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ExpressionSetDefinition query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ExpressionSet ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (ExpressionSet es : [SELECT Id, ApiName, Name,
+Execute Anonymous:                                     ExpressionSetDefinition.DeveloperName, UsageType
+Execute Anonymous:                              FROM ExpressionSet ORDER BY ApiName]) {
+Execute Anonymous:         System.debug(es.ApiName + ' | label=' + es.Name +
+Execute Anonymous:                      ' | esd=' + es.ExpressionSetDefinition.DeveloperName +
+Execute Anonymous:                      ' | usage=' + es.UsageType);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ExpressionSet query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ExpressionSetVersion ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (ExpressionSetVersion esv : [SELECT Id, ApiName,
+Execute Anonymous:                                             ExpressionSet.ApiName,
+Execute Anonymous:                                             VersionNumber, IsActive
+Execute Anonymous:                                      FROM ExpressionSetVersion
+Execute Anonymous:                                      ORDER BY ExpressionSet.ApiName, VersionNumber]) {
+Execute Anonymous:         System.debug(esv.ExpressionSet.ApiName + ' v' + esv.VersionNumber +
+Execute Anonymous:                      ' | apiName=' + esv.ApiName +
+Execute Anonymous:                      ' | active=' + esv.IsActive);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ExpressionSetVersion query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- ExpressionSetDefinitionContextDefinition (junctions) ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (ExpressionSetDefinitionContextDefinition j : [
+Execute Anonymous:             SELECT Id, ExpressionSetDefinition.DeveloperName,
+Execute Anonymous:                    ContextDefinition.DeveloperName,
+Execute Anonymous:                    ContextDefinition.InheritedFrom
+Execute Anonymous:             FROM ExpressionSetDefinitionContextDefinition
+Execute Anonymous:             ORDER BY ExpressionSetDefinition.DeveloperName]) {
+Execute Anonymous:         System.debug(j.ExpressionSetDefinition.DeveloperName + ' <-> ' +
+Execute Anonymous:                      j.ContextDefinition.DeveloperName +
+Execute Anonymous:                      ' (inheritsFrom=' + j.ContextDefinition.InheritedFrom + ')');
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('ESDCD query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 3 — Pricing Action & Recipe Layer
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 3. PRICING ACTION & RECIPE LAYER ==========');
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- PricingActionParameters ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (PricingActionParameters pap : [SELECT Id, DeveloperName, MasterLabel,
+Execute Anonymous:                                                ContextDefinition, ContextMapping,
+Execute Anonymous:                                                PricingProcedure, ObjectName,
+Execute Anonymous:                                                EffectiveFrom, EffectiveTo
+Execute Anonymous:                                         FROM PricingActionParameters
+Execute Anonymous:                                         ORDER BY DeveloperName]) {
+Execute Anonymous:         System.debug(pap.DeveloperName + ' | proc=' + pap.PricingProcedure +
+Execute Anonymous:                      ' | ctx=' + pap.ContextDefinition + ' | obj=' + pap.ObjectName);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('PricingActionParameters query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- PricingRecipe ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (PricingRecipe pr : [SELECT Id, DeveloperName, MasterLabel, IsActive, DefaultPricingProcedureId
+Execute Anonymous:                              FROM PricingRecipe]) {
+Execute Anonymous:         System.debug(pr.DeveloperName + ' | label=' + pr.MasterLabel +
+Execute Anonymous:                      ' | active=' + pr.IsActive +
+Execute Anonymous:                      ' | defaultPPId=' + pr.DefaultPricingProcedureId);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('PricingRecipe query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 4 — Rule Library Layer
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 4. RULE LIBRARY LAYER ==========');
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- RuleLibrary ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (RuleLibrary rl : [SELECT Id, ApiName, Name FROM RuleLibrary ORDER BY ApiName]) {
+Execute Anonymous:         System.debug(rl.ApiName + ' | label=' + rl.Name);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('RuleLibrary query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- RuleLibraryDefinition ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (RuleLibraryDefinition rld : [SELECT Id, DeveloperName, MasterLabel
+Execute Anonymous:                                       FROM RuleLibraryDefinition ORDER BY DeveloperName]) {
+Execute Anonymous:         System.debug(rld.DeveloperName + ' | label=' + rld.MasterLabel);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('RuleLibraryDefinition query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 5 — Decision Table Layer
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 5. DECISION TABLE LAYER ==========');
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- DecisionMatrixDefinition ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (DecisionMatrixDefinition dmd : [SELECT Id, DeveloperName, MasterLabel
+Execute Anonymous:                                          FROM DecisionMatrixDefinition LIMIT 30]) {
+Execute Anonymous:         System.debug(dmd.DeveloperName + ' | label=' + dmd.MasterLabel);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('DMD query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n--- DecisionTable ---');
+Execute Anonymous: try {
+Execute Anonymous:     for (DecisionTable dt : [SELECT Id, DeveloperName, MasterLabel
+Execute Anonymous:                              FROM DecisionTable ORDER BY DeveloperName LIMIT 30]) {
+Execute Anonymous:         System.debug(dt.DeveloperName + ' | label=' + dt.MasterLabel);
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('DT query failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 6 — Permset Audit (current user)
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 6. PERMSET AUDIT (current user) ==========');
+Execute Anonymous: 
+Execute Anonymous: Set<String> requiredPermsets = new Set<String>{
+Execute Anonymous:     'ProductCatalogManagementAdministrator',
+Execute Anonymous:     'UnifiedCatalogAdmin',
+Execute Anonymous:     'Revenue_Cloud_Admin'
+Execute Anonymous: };
+Execute Anonymous: Set<String> assignedPermsets = new Set<String>();
+Execute Anonymous: try {
+Execute Anonymous:     for (PermissionSetAssignment psa : [SELECT PermissionSet.Name, PermissionSet.NamespacePrefix
+Execute Anonymous:                                         FROM PermissionSetAssignment
+Execute Anonymous:                                         WHERE AssigneeId = :UserInfo.getUserId()]) {
+Execute Anonymous:         String fullName = psa.PermissionSet.NamespacePrefix == null
+Execute Anonymous:                           ? psa.PermissionSet.Name
+Execute Anonymous:                           : psa.PermissionSet.NamespacePrefix + '__' + psa.PermissionSet.Name;
+Execute Anonymous:         assignedPermsets.add(fullName);
+Execute Anonymous:         assignedPermsets.add(psa.PermissionSet.Name);
+Execute Anonymous:     }
+Execute Anonymous:     for (String required : requiredPermsets) {
+Execute Anonymous:         System.debug(required + ': ' +
+Execute Anonymous:                      (assignedPermsets.contains(required) ? 'ASSIGNED' : 'MISSING'));
+Execute Anonymous:     }
+Execute Anonymous: } catch (Exception e) { System.debug('Permset audit failed: ' + e.getMessage()); }
+Execute Anonymous: 
+Execute Anonymous: // ============================================================
+Execute Anonymous: // SECTION 7 — DML Restrictions sanity check
+Execute Anonymous: // ============================================================
+Execute Anonymous: System.debug('\n========== 7. DML RESTRICTIONS ==========');
+Execute Anonymous: 
+Execute Anonymous: Map<String, Schema.SObjectType> objMap = new Map<String, Schema.SObjectType>{
+Execute Anonymous:     'ContextDefinition' => ContextDefinition.SObjectType,
+Execute Anonymous:     'ContextDefinitionVersion' => ContextDefinitionVersion.SObjectType,
+Execute Anonymous:     'ExpressionSet' => ExpressionSet.SObjectType,
+Execute Anonymous:     'ExpressionSetVersion' => ExpressionSetVersion.SObjectType,
+Execute Anonymous:     'ExpressionSetDefinition' => ExpressionSetDefinition.SObjectType,
+Execute Anonymous:     'ExpressionSetDefinitionContextDefinition' => ExpressionSetDefinitionContextDefinition.SObjectType,
+Execute Anonymous:     'PricingActionParameters' => PricingActionParameters.SObjectType,
+Execute Anonymous:     'PricingRecipe' => PricingRecipe.SObjectType,
+Execute Anonymous:     'ContextNode' => ContextNode.SObjectType,
+Execute Anonymous:     'ContextAttribute' => ContextAttribute.SObjectType,
+Execute Anonymous:     'RuleLibrary' => RuleLibrary.SObjectType
+Execute Anonymous: };
+Execute Anonymous: List<String> objKeys = new List<String>(objMap.keySet());
+Execute Anonymous: objKeys.sort();
+Execute Anonymous: for (String objName : objKeys) {
+Execute Anonymous:     try {
+Execute Anonymous:         Schema.DescribeSObjectResult d = objMap.get(objName).getDescribe();
+Execute Anonymous:         Boolean hasExtId = d.fields.getMap().containsKey('gearsetexternalid__c');
+Execute Anonymous:         System.debug(objName +
+Execute Anonymous:                      ' | createable=' + d.isCreateable() +
+Execute Anonymous:                      ' | updateable=' + d.isUpdateable() +
+Execute Anonymous:                      ' | deletable=' + d.isDeletable() +
+Execute Anonymous:                      ' | hasGearsetExtId=' + hasExtId);
+Execute Anonymous:     } catch (Exception e) {
+Execute Anonymous:         System.debug(objName + ' | describe failed: ' + e.getMessage());
+Execute Anonymous:     }
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: System.debug('\n==================================================');
+Execute Anonymous: System.debug('Diagnostic complete: ' + UserInfo.getOrganizationName());
+Execute Anonymous: System.debug('==================================================');
+10:36:53.69 (69461813)|USER_INFO|[EXTERNAL]|005aZ00000WzoqH|liam.jeong.c@fortra.com.fulltemp|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+10:36:53.69 (69535311)|EXECUTION_STARTED
+10:36:53.69 (69566253)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+10:36:53.69 (71379389)|USER_DEBUG|[7]|DEBUG|==================================================
+10:36:53.69 (71639884)|USER_DEBUG|[8]|DEBUG|RCA Setup Verification — Fortra
+10:36:53.69 (71702140)|USER_DEBUG|[9]|DEBUG|Org ID: 00DWJ000008WCcX2AW
+10:36:53.69 (71755304)|USER_DEBUG|[10]|DEBUG|User: liam.jeong.c@fortra.com.fulltemp
+10:36:53.69 (71836137)|USER_DEBUG|[11]|DEBUG|Run timestamp: 2026-05-21 17:36:53
+10:36:53.69 (71846287)|USER_DEBUG|[12]|DEBUG|==================================================
+10:36:53.69 (71973882)|USER_DEBUG|[35]|DEBUG|
+========== SECTION 0: OBJECT COUNTS ==========
+10:36:53.69 (84534713)|USER_DEBUG|[40]|DEBUG|ContextDefinition: 2
+10:36:53.69 (94319571)|USER_DEBUG|[40]|DEBUG|ContextDefinitionVersion: 2
+10:36:53.69 (97360015)|USER_DEBUG|[40]|DEBUG|ContextNode: 53
+10:36:53.69 (104665169)|USER_DEBUG|[40]|DEBUG|ContextAttribute: 866
+10:36:53.69 (107859952)|USER_DEBUG|[40]|DEBUG|ContextMapping: 16
+10:36:53.69 (111347280)|USER_DEBUG|[40]|DEBUG|ContextNodeMapping: 134
+10:36:53.69 (118280746)|USER_DEBUG|[40]|DEBUG|ContextAttributeMapping: 2118
+10:36:53.69 (124550030)|USER_DEBUG|[40]|DEBUG|ContextTag: 1781
+10:36:53.69 (129664379)|USER_DEBUG|[40]|DEBUG|ContextUseCaseMapping: 6
+10:36:53.69 (142748375)|USER_DEBUG|[40]|DEBUG|ExpressionSet: 2
+10:36:53.69 (148822907)|USER_DEBUG|[40]|DEBUG|ExpressionSetVersion: 2
+10:36:53.69 (151820741)|USER_DEBUG|[40]|DEBUG|ExpressionSetDefinition: 5
+10:36:53.69 (154811024)|USER_DEBUG|[40]|DEBUG|ExpressionSetDefinitionContextDefinition: 4
+10:36:53.69 (157647625)|USER_DEBUG|[40]|DEBUG|PricingActionParameters: 0
+10:36:53.69 (160380237)|USER_DEBUG|[40]|DEBUG|PricingRecipe: 1
+10:36:53.69 (163325072)|USER_DEBUG|[40]|DEBUG|PricingRecipeTableMapping: 14
+10:36:53.69 (166351776)|USER_DEBUG|[40]|DEBUG|PricingProcedureOutputMap: 26
+10:36:53.69 (170143098)|USER_DEBUG|[40]|DEBUG|RuleLibrary: 1
+10:36:53.69 (173248243)|USER_DEBUG|[40]|DEBUG|RuleLibraryDefinition: 2
+10:36:53.69 (184558592)|USER_DEBUG|[40]|DEBUG|RuleLibraryVersion: 1
+10:36:53.69 (187699758)|USER_DEBUG|[40]|DEBUG|RuleLibraryDefVersion: 3
+10:36:53.69 (285903390)|USER_DEBUG|[40]|DEBUG|Product2: 8846
+10:36:53.69 (298619816)|USER_DEBUG|[40]|DEBUG|ProductClassification: 121
+10:36:53.69 (309674405)|USER_DEBUG|[40]|DEBUG|ProductConfigurationFlow: 1
+10:36:53.69 (313151275)|USER_DEBUG|[40]|DEBUG|ProductConfigurationRule: 0
+10:36:53.69 (341474179)|USER_DEBUG|[40]|DEBUG|ProductFulfillmentDecompRule: 3326
+10:36:53.69 (402046513)|USER_DEBUG|[40]|DEBUG|AttributeBasedAdjRule: 25171
+10:36:53.69 (413564495)|USER_DEBUG|[40]|DEBUG|AttributeDefinition: 17
+10:36:53.69 (424377172)|USER_DEBUG|[40]|DEBUG|AttributeCategory: 11
+10:36:53.69 (427601272)|USER_DEBUG|[40]|DEBUG|DecisionMatrixDefinition: 0
+10:36:53.69 (430724844)|USER_DEBUG|[40]|DEBUG|DecisionTable: 19
+10:36:53.69 (440314087)|USER_DEBUG|[40]|DEBUG|CalculationMatrixColumn: 0
+10:36:53.69 (444037340)|USER_DEBUG|[40]|DEBUG|DecisionTableParameter: 163
+10:36:53.69 (444114084)|USER_DEBUG|[50]|DEBUG|
+========== 1. CONTEXT LAYER ==========
+10:36:53.69 (444120634)|USER_DEBUG|[52]|DEBUG|
+--- ContextDefinition ---
+10:36:53.69 (458527567)|USER_DEBUG|[56]|DEBUG|ProductDiscoveryContextExt &#124; label=ProductDiscoveryContextExt &#124; inheritedFrom=ProductDiscoveryContext__stdctx &#124; Id=11OWJ000000f0vN2AQ
+10:36:53.69 (458583055)|USER_DEBUG|[56]|DEBUG|SalesTransactionContextExt &#124; label=SalesTransactionContextExt &#124; inheritedFrom=SalesTransactionContext__stdctx &#124; Id=11OWJ000000dLm92AE
+10:36:53.69 (458626276)|USER_DEBUG|[62]|DEBUG|
+--- ContextDefinitionVersion ---
+10:36:53.69 (483760310)|USER_DEBUG|[68]|DEBUG|ProductDiscoveryContextExt v1 &#124; active=false &#124; Id=11pWJ00000ENsNqYAL
+10:36:53.69 (483840694)|USER_DEBUG|[68]|DEBUG|SalesTransactionContextExt v2 &#124; active=true &#124; Id=11pWJ00000EIB50YAH
+10:36:53.69 (483873510)|USER_DEBUG|[74]|DEBUG|
+--- ContextNode (count by parent) ---
+10:36:53.69 (495869529)|USER_DEBUG|[80]|DEBUG|CDV 11pWJ00000ENsNqYAL: 8
+10:36:53.69 (495911692)|USER_DEBUG|[80]|DEBUG|CDV 11pWJ00000EIB50YAH: 45
+10:36:53.69 (495928334)|USER_DEBUG|[87]|DEBUG|
+========== 2. PRICING PROCEDURE LAYER ==========
+10:36:53.69 (495933432)|USER_DEBUG|[89]|DEBUG|
+--- ExpressionSetDefinition ---
+10:36:53.69 (505611476)|USER_DEBUG|[94]|DEBUG|Product_Discovery_Pricing_Procedure &#124; label=Product Discovery Pricing Procedure &#124; Id=9QAWJ000000eDrY4AU
+10:36:53.69 (505661597)|USER_DEBUG|[94]|DEBUG|Rev_Mgmt_Default_Pricing_Procedure &#124; label=Revenue Management Default Pricing Procedure &#124; Id=9QAWJ000000eDrX4AU
+10:36:53.69 (505683149)|USER_DEBUG|[94]|DEBUG|Salesforce_Default_Pricing_Discovery_Procedure &#124; label=Salesforce Default Pricing Discovery Procedure &#124; Id=9QAa5000000Siu9GAC
+10:36:53.69 (505702186)|USER_DEBUG|[94]|DEBUG|Salesforce_Pricing_Discovery_Procedure &#124; label=Salesforce Pricing Discovery Procedure &#124; Id=9QAWJ000000dwP74AI
+10:36:53.69 (505720454)|USER_DEBUG|[94]|DEBUG|Test &#124; label=Test &#124; Id=9QAWJ000000eDrZ4AU
+10:36:53.69 (505743481)|USER_DEBUG|[98]|DEBUG|
+--- ExpressionSet ---
+10:36:53.69 (520223371)|USER_DEBUG|[103]|DEBUG|Salesforce_Default_Pricing_Discovery_Procedure &#124; label=Salesforce Default Pricing Discovery Procedure &#124; esd=Salesforce_Default_Pricing_Discovery_Procedure &#124; usage=PricingDiscovery
+10:36:53.69 (520275780)|USER_DEBUG|[103]|DEBUG|Salesforce_Pricing_Discovery_Procedure &#124; label=Salesforce Pricing Discovery Procedure &#124; esd=Salesforce_Pricing_Discovery_Procedure &#124; usage=PricingDiscovery
+10:36:53.69 (520296426)|USER_DEBUG|[109]|DEBUG|
+--- ExpressionSetVersion ---
+10:36:53.69 (548641686)|USER_DEBUG|[116]|DEBUG|Salesforce_Default_Pricing_Discovery_Procedure v1 &#124; apiName=Salesforce_Default_Pricing_Discovery_ProcedureV1 &#124; active=true
+10:36:53.69 (548706898)|USER_DEBUG|[116]|DEBUG|Salesforce_Pricing_Discovery_Procedure v1 &#124; apiName=Salesforce_Pricing_Discovery_Procedure_V1 &#124; active=true
+10:36:53.69 (548733103)|USER_DEBUG|[122]|DEBUG|
+--- ExpressionSetDefinitionContextDefinition (junctions) ---
+10:36:53.69 (578886475)|USER_DEBUG|[130]|DEBUG|Product_Discovery_Pricing_Procedure <-> ProductDiscoveryContextExt (inheritsFrom=ProductDiscoveryContext__stdctx)
+10:36:53.69 (578951141)|USER_DEBUG|[130]|DEBUG|Salesforce_Default_Pricing_Discovery_Procedure <-> null (inheritsFrom=null)
+10:36:53.69 (578989623)|USER_DEBUG|[130]|DEBUG|Salesforce_Pricing_Discovery_Procedure <-> SalesTransactionContextExt (inheritsFrom=SalesTransactionContext__stdctx)
+10:36:53.69 (579010176)|USER_DEBUG|[130]|DEBUG|Test <-> null (inheritsFrom=null)
+10:36:53.69 (579029211)|USER_DEBUG|[139]|DEBUG|
+========== 3. PRICING ACTION & RECIPE LAYER ==========
+10:36:53.69 (579034805)|USER_DEBUG|[141]|DEBUG|
+--- PricingActionParameters ---
+10:36:53.69 (590345778)|USER_DEBUG|[154]|DEBUG|
+--- PricingRecipe ---
+10:36:53.69 (601217545)|USER_DEBUG|[158]|DEBUG|NGPDefaultRecipe &#124; label=NGPDefaultRecipe &#124; active=true &#124; defaultPPId=9QAWJ000000eDrX4AU
+10:36:53.69 (601254314)|USER_DEBUG|[167]|DEBUG|
+========== 4. RULE LIBRARY LAYER ==========
+10:36:53.69 (601260848)|USER_DEBUG|[169]|DEBUG|
+--- RuleLibrary ---
+10:36:53.69 (611692582)|USER_DEBUG|[172]|DEBUG|DRORuleLibrary &#124; label=DRORuleLibrary
+10:36:53.69 (611729250)|USER_DEBUG|[176]|DEBUG|
+--- RuleLibraryDefinition ---
+10:36:53.69 (622487895)|USER_DEBUG|[180]|DEBUG|DRORuleLibrary &#124; label=DRORuleLibrary
+10:36:53.69 (622528982)|USER_DEBUG|[180]|DEBUG|Rule_Library &#124; label=Rule Library
+10:36:53.69 (622552473)|USER_DEBUG|[187]|DEBUG|
+========== 5. DECISION TABLE LAYER ==========
+10:36:53.69 (622558649)|USER_DEBUG|[189]|DEBUG|
+--- DecisionMatrixDefinition ---
+10:36:53.69 (632379476)|USER_DEBUG|[197]|DEBUG|
+--- DecisionTable ---
+10:36:53.69 (642938919)|USER_DEBUG|[201]|DEBUG|Asset_Action_Source_Entries_Decision_Table_V2 &#124; label=Decision Tables
+10:36:53.69 (642978901)|USER_DEBUG|[201]|DEBUG|Attribute_Based_Adjustment_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643132011)|USER_DEBUG|[201]|DEBUG|Attribute_Tier_Pricing_Matrix &#124; label=Decision Tables
+10:36:53.69 (643151868)|USER_DEBUG|[201]|DEBUG|Bundle_Based_Adjustment_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643166184)|USER_DEBUG|[201]|DEBUG|CalculatedVolumeDiscountPriceAdjusmentTier &#124; label=Decision Tables
+10:36:53.69 (643180562)|USER_DEBUG|[201]|DEBUG|Contract_Pricing_Adjustment_Tiers &#124; label=Decision Tables
+10:36:53.69 (643194491)|USER_DEBUG|[201]|DEBUG|Contract_Pricing_Entries_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643208744)|USER_DEBUG|[201]|DEBUG|Contract_Pricing_Volume_Tiers &#124; label=Decision Tables
+10:36:53.69 (643222581)|USER_DEBUG|[201]|DEBUG|Cyber_Partner_Discount_Matrix &#124; label=Decision Tables
+10:36:53.69 (643236051)|USER_DEBUG|[201]|DEBUG|Derived_Pricing_Entries_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643249574)|USER_DEBUG|[201]|DEBUG|Fortra_Regional_Pricing &#124; label=Decision Tables
+10:36:53.69 (643263226)|USER_DEBUG|[201]|DEBUG|Index_Rate_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643276766)|USER_DEBUG|[201]|DEBUG|Price_Adjustment_Tier_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643290221)|USER_DEBUG|[201]|DEBUG|Price_Book_Entry_Decision_Table_v2 &#124; label=Decision Tables
+10:36:53.69 (643303566)|USER_DEBUG|[201]|DEBUG|PriceModeVolumeDiscountPriceAdjusmentTier &#124; label=Decision Tables
+10:36:53.69 (643316898)|USER_DEBUG|[201]|DEBUG|Regional_Pricing &#124; label=Decision Tables
+10:36:53.69 (643330234)|USER_DEBUG|[201]|DEBUG|StandardTax &#124; label=Decision Tables
+10:36:53.69 (643343586)|USER_DEBUG|[201]|DEBUG|Tech_Partner_Discount_Matrix &#124; label=Decision Tables
+10:36:53.69 (643356844)|USER_DEBUG|[201]|DEBUG|Tiered_Adjustment_Tier_Decision_Table &#124; label=Decision Tables
+10:36:53.69 (643379955)|USER_DEBUG|[208]|DEBUG|
+========== 6. PERMSET AUDIT (current user) ==========
+10:36:53.69 (738435054)|USER_DEBUG|[227]|DEBUG|ProductCatalogManagementAdministrator: ASSIGNED
+10:36:53.69 (738471719)|USER_DEBUG|[227]|DEBUG|UnifiedCatalogAdmin: ASSIGNED
+10:36:53.69 (738483849)|USER_DEBUG|[227]|DEBUG|Revenue_Cloud_Admin: ASSIGNED
+10:36:53.69 (738496835)|USER_DEBUG|[235]|DEBUG|
+========== 7. DML RESTRICTIONS ==========
+10:36:53.69 (739910620)|USER_DEBUG|[256]|DEBUG|ContextAttribute &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (740555328)|USER_DEBUG|[256]|DEBUG|ContextDefinition &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (741115178)|USER_DEBUG|[256]|DEBUG|ContextDefinitionVersion &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (741673673)|USER_DEBUG|[256]|DEBUG|ContextNode &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (742960226)|USER_DEBUG|[256]|DEBUG|ExpressionSet &#124; createable=true &#124; updateable=true &#124; deletable=true &#124; hasGearsetExtId=false
+10:36:53.69 (743368647)|USER_DEBUG|[256]|DEBUG|ExpressionSetDefinition &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (743717233)|USER_DEBUG|[256]|DEBUG|ExpressionSetDefinitionContextDefinition &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (745050709)|USER_DEBUG|[256]|DEBUG|ExpressionSetVersion &#124; createable=true &#124; updateable=true &#124; deletable=true &#124; hasGearsetExtId=false
+10:36:53.69 (745606539)|USER_DEBUG|[256]|DEBUG|PricingActionParameters &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (746137606)|USER_DEBUG|[256]|DEBUG|PricingRecipe &#124; createable=false &#124; updateable=false &#124; deletable=false &#124; hasGearsetExtId=false
+10:36:53.69 (748158372)|USER_DEBUG|[256]|DEBUG|RuleLibrary &#124; createable=true &#124; updateable=true &#124; deletable=true &#124; hasGearsetExtId=false
+10:36:53.69 (748219068)|USER_DEBUG|[266]|DEBUG|
+==================================================
+10:36:53.69 (748348066)|USER_DEBUG|[267]|DEBUG|Diagnostic complete: Fortra
+10:36:53.69 (748360215)|USER_DEBUG|[268]|DEBUG|==================================================
+10:36:53.748 (748464164)|CUMULATIVE_LIMIT_USAGE
+10:36:53.748 (748464164)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 47 out of 100
+  Number of query rows: 86 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 240 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+10:36:53.748 (748464164)|CUMULATIVE_LIMIT_USAGE_END
+
+10:36:53.69 (748534332)|CODE_UNIT_FINISHED|execute_anonymous_apex
+10:36:53.69 (748550378)|EXECUTION_FINISHED
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TotalDiscount__c</fullName>
+    <description>Total discount percentage applied to the quote</description>
+    <inlineHelpText>Total discount percentage applied to the quote</inlineHelpText>
+    <label>Total Discount</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <type>Percent</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_Product_Name__c</fullName>
+    <description>Legacy Product Name field is been used in reference to Data Migration mapping</description>
+    <externalId>false</externalId>
+    <label>Legacy Product Name</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

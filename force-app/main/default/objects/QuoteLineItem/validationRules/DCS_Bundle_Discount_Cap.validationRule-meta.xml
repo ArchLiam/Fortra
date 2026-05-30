@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DCS_Bundle_Discount_Cap</fullName>
+    <active>false</active>
+    <description>Enforces 30% discount cap on DCS bundle products</description>
+    <errorConditionFormula>AND(
+    OR(
+        Product2.ProductCode = &apos;CYB-DCS-ESS-BUN&apos;,
+        Product2.ProductCode = &apos;CYB-DCS-ESS-BUN-V2&apos;,
+        Product2.ProductCode = &apos;CYB-DCS-ADV-BUN&apos;,
+        Product2.ProductCode = &apos;CYB-DCS-ADV-BUN-V2&apos;,
+        Product2.ProductCode = &apos;CYB-DCS-ELITE-BUN&apos;,
+        Product2.ProductCode = &apos;CYB-DCS-ELITE-BUN-V2&apos;,
+        Product2.ProductCode = &apos;CYB-DCS-CLOUD-BUN&apos;,
+        CONTAINS(Product2.Name, &apos;DCS&apos;),
+        CONTAINS(Product2.Name, &apos;Bundle&apos;)
+    ),
+    Discount &gt; 30,
+    TEXT(Quote.DiscountApprovalStatus__c) != &apos;Approved&apos;
+)</errorConditionFormula>
+    <errorMessage>DCS Bundle discount exceeds 30% cap. Approval required from Deal Desk or CFO.</errorMessage>
+</ValidationRule>

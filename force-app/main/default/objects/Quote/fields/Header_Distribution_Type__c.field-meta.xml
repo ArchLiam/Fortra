@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Header_Distribution_Type__c</fullName>
+    <label>Header Distribution Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ItemNetTotalPrice</fullName>
+                <default>false</default>
+                <label>ItemNetTotalPrice</label>
+            </value>
+            <value>
+                <fullName>NetUnitPrice</fullName>
+                <default>false</default>
+                <label>NetUnitPrice</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

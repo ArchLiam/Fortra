@@ -1,0 +1,84 @@
+.fortra-card {
+	margin: 0 0 24px;
+	padding: 48px 32px 40px;
+	background: linear-gradient(180deg, #ffffff 0%, #f6fdf9 100%);
+	border: 1px solid #e8eaed;
+	border-radius: 16px;
+	box-shadow:
+		0 1px 3px rgba(16, 24, 40, 0.04),
+		0 1px 2px rgba(16, 24, 40, 0.02);
+	font-family:
+		"SF Pro Text",
+		"Inter",
+		-apple-system,
+		BlinkMacSystemFont,
+		system-ui,
+		sans-serif;
+	color: #101828;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.fortra-card__success-badge {
+	position: relative;
+	width: 72px;
+	height: 72px;
+	margin: 0 auto 24px;
+}
+
+.fortra-card__success-icon {
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: linear-gradient(135deg, #12b76a 0%, #039855 100%);
+	color: #ffffff;
+	font-size: 28px;
+	font-weight: 600;
+	line-height: 56px;
+	text-align: center;
+	box-shadow: 0 4px 12px rgba(18, 183, 106, 0.25);
+	z-index: 1;
+}
+
+.fortra-card__success-ring {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 72px;
+	height: 72px;
+	border-radius: 50%;
+	background: rgba(18, 183, 106, 0.08);
+	animation: fortra-pulse 2s ease-out infinite;
+}
+
+@keyframes fortra-pulse {
+	0% {
+		transform: scale(1);
+		opacity: 0.8;
+	}
+	100% {
+		transform: scale(1.3);
+		opacity: 0;
+	}
+}
+
+.fortra-card__heading {
+	font-size: 24px;
+	font-weight: 600;
+	color: #101828;
+	line-height: 1.3;
+	letter-spacing: -0.4px;
+	margin-bottom: 10px;
+}
+
+.fortra-card__body {
+	font-size: 14px;
+	color: #667085;
+	line-height: 1.6;
+	max-width: 420px;
+	margin: 0 auto;
+}

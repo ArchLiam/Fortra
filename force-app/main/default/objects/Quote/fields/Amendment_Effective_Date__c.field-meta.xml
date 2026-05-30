@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amendment_Effective_Date__c</fullName>
+    <description>The date when this amendment takes effect. For co-terminating amendments, billing may be adjusted based on this date and the original contract end date.</description>
+    <inlineHelpText>Enter the date when this amendment should take effect.</inlineHelpText>
+    <label>Amendment Effective Date</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Date</type>
+</CustomField>

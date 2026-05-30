@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salesintelio__Last_Attempted_Enrichment__c</fullName>
+    <deprecated>false</deprecated>
+    <inlineHelpText>Last date that SalesIntel attempted to add data to the record.</inlineHelpText>
+    <label>Last Attempted Enrichment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

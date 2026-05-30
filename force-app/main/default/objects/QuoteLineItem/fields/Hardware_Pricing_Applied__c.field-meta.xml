@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardware_Pricing_Applied__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether hardware attribute-based pricing was applied to this line item</description>
+    <inlineHelpText>Checked if hardware pricing factors were applied</inlineHelpText>
+    <label>Hardware Pricing Applied</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

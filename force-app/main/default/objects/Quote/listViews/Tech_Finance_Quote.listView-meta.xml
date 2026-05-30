@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tech_Finance_Quote</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Tech Finance</label>
+    <queue>Tech_Finance</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

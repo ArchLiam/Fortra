@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warranty_Status__c</fullName>
+    <label>Warranty Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Under Warranty</fullName>
+                <default>false</default>
+                <label>Under Warranty</label>
+            </value>
+            <value>
+                <fullName>Extended Warranty</fullName>
+                <default>false</default>
+                <label>Extended Warranty</label>
+            </value>
+            <value>
+                <fullName>Out of Warranty</fullName>
+                <default>false</default>
+                <label>Out of Warranty</label>
+            </value>
+            <value>
+                <fullName>N/A</fullName>
+                <default>false</default>
+                <label>N/A</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

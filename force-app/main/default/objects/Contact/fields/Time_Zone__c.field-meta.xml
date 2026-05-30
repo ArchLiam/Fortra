@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Zone__c</fullName>
+    <label>Time Zone</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>&quot;ACDT (UTC+10:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ACDT (UTC+10:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ACST (UTC+09:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ACST (UTC+09:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ACT (UTC-05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ACT (UTC-05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ACWST (UTC+08:45)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ACWST (UTC+08:45)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ADT (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ADT (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AEDT (UTC+11:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AEDT (UTC+11:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AEST (UTC+10:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AEST (UTC+10:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AFT (UTC+04:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AFT (UTC+04:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AKDT (UTC-08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AKDT (UTC-08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AKST (UTC-09:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AKST (UTC-09:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ALMT (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ALMT (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AMST (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AMST (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AMT (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AMT (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ANAT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ANAT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AQTT (UTC+05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AQTT (UTC+05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ART (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ART (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AST (UTC+03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AST (UTC+03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AST (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AST (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AWST (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AWST (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AZOST (UTC+00:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AZOST (UTC+00:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AZOT (UTC-01:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AZOT (UTC-01:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;AZT (UTC+04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;AZT (UTC+04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BDT (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BDT (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BIOT (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BIOT (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BIT (UTC-12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BIT (UTC-12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BOT (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BOT (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BRST (UTC-02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BRST (UTC-02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BRT (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BRT (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BST (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BST (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BST (UTC+01:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BST (UTC+01:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;BTT (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;BTT (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CAT (UTC+02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CAT (UTC+02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CCT (UTC+06:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CCT (UTC+06:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CDT (UTC-05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CDT (UTC-05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CEST (UTC+02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CEST (UTC+02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CET (UTC+01:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CET (UTC+01:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CHADT (UTC+13:45)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CHADT (UTC+13:45)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CHAST (UTC+12:45)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CHAST (UTC+12:45)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CHOT (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CHOT (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CHUT (UTC+10:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CHUT (UTC+10:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CIST (UTC-08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CIST (UTC-08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CKT (UTC-10:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CKT (UTC-10:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CLT (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CLT (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CST (UTC-06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CST (UTC-06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CST (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CST (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CVT (UTC-01:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CVT (UTC-01:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;CXT (UTC+07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;CXT (UTC+07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;DAVT (UTC+07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;DAVT (UTC+07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;DDUT (UTC+10:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;DDUT (UTC+10:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EASST (UTC-05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EASST (UTC-05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EAST (UTC-06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EAST (UTC-06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EAT (UTC+03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EAT (UTC+03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ECT (UTC-05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ECT (UTC-05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EDT (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EDT (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EEST (UTC+03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EEST (UTC+03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EET (UTC+02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EET (UTC+02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EGST (UTC+00:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EGST (UTC+00:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EGT (UTC-01:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EGT (UTC-01:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;EST (UTC-05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;EST (UTC-05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;FET (UTC+03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;FET (UTC+03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;FJT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;FJT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;FKST (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;FKST (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;FKT (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;FKT (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;FNT (UTC-02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;FNT (UTC-02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GALT (UTC-06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GALT (UTC-06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GAMT (UTC-09:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GAMT (UTC-09:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GET (UTC+04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GET (UTC+04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GFT (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GFT (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GILT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GILT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GMT (UTC+00:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GMT (UTC+00:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GST (UTC+04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GST (UTC+04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GST (UTC-02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GST (UTC-02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;GYT (UTC-04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;GYT (UTC-04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;HADT (UTC-09:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;HADT (UTC-09:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;HKT (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;HKT (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;HST (UTC-10:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;HST (UTC-10:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ICT (UTC+07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ICT (UTC+07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IDT (UTC+03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IDT (UTC+03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IOT (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IOT (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IRDT (UTC+04:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IRDT (UTC+04:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IRKT (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IRKT (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IRST (UTC+03:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IRST (UTC+03:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IST (UTC+05:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IST (UTC+05:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IST (UTC+01:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IST (UTC+01:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;IST (UTC+02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;IST (UTC+02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;JST (UTC+09:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;JST (UTC+09:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;KGT (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;KGT (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;KOST (UTC+11:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;KOST (UTC+11:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;KRAT (UTC+07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;KRAT (UTC+07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;KST (UTC+09:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;KST (UTC+09:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;KUYT (UTC+04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;KUYT (UTC+04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;LHST (UTC+10:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;LHST (UTC+10:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;LINT (UTC+14:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;LINT (UTC+14:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MAGT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MAGT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MART (UTC-09:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MART (UTC-09:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MAWT (UTC+05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MAWT (UTC+05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MDT (UTC-06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MDT (UTC-06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MHT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MHT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MMT (UTC+06:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MMT (UTC+06:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MSK (UTC+03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MSK (UTC+03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MST (UTC-07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MST (UTC-07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MUT (UTC+04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MUT (UTC+04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MVT (UTC+05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MVT (UTC+05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;MYT (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;MYT (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NCT (UTC+11:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NCT (UTC+11:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NDT (UTC-02:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NDT (UTC-02:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NFT (UTC+11:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NFT (UTC+11:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NOVT (UTC+07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NOVT (UTC+07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NPT (UTC+05:45)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NPT (UTC+05:45)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NRT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NRT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NST (UTC-03:30)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NST (UTC-03:30)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NUT (UTC-11:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NUT (UTC-11:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NZDT (UTC+13:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NZDT (UTC+13:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;NZST (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;NZST (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;OMST (UTC+06:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;OMST (UTC+06:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;ORAT (UTC+05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;ORAT (UTC+05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PDT (UTC-07:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PDT (UTC-07:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PET (UTC-05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PET (UTC-05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PETT (UTC+12:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PETT (UTC+12:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PGT (UTC+10:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PGT (UTC+10:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PHOT (UTC+13:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PHOT (UTC+13:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PHT (UTC+08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PHT (UTC+08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PKT (UTC+05:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PKT (UTC+05:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PMDT (UTC-02:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PMDT (UTC-02:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PMST (UTC-03:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PMST (UTC-03:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;PST (UTC-08:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;PST (UTC-08:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;SCT (UTC+04:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;SCT (UTC+04:00)&quot;</label>
+            </value>
+            <value>
+                <fullName>&quot;UTC (UTC+00:00)&quot;</fullName>
+                <default>false</default>
+                <label>&quot;UTC (UTC+00:00)&quot;</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

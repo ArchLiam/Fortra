@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Power_Split_Type__c</fullName>
+    <description>Determines how order lines are split for Power products when quantity is greater than 1.
+&quot;Order Line Only&quot; shares hardware across split lines (each line gets own cloned partition linked to shared hardware).
+&quot;Order Line and Hardware&quot; clones hardware for each split line (each line gets own cloned hardware and partition).</description>
+    <inlineHelpText>Select how hardware records should be handled when this product&apos;s order lines are split.</inlineHelpText>
+    <label>Power Split Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Order Line Only</fullName>
+                <default>true</default>
+                <label>Order Line Only</label>
+            </value>
+            <value>
+                <fullName>Order Line and Hardware</fullName>
+                <default>false</default>
+                <label>Order Line and Hardware</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Temperature_Changed_Reason_Required</fullName>
+    <active>true</active>
+    <description>The Temperature Changed Reason must be filled in if the Account Temperature field is changed.</description>
+    <errorConditionFormula>AND(
+    ISCHANGED(Account_Temperature__c),
+    OR(
+        AND(
+            NOT(ISBLANK(TEXT(Account_Temperature__c))),
+            OR(
+                LEN(TRIM(Temperature_Changed_Reason__c)) = 0,
+                NOT(ISCHANGED(Temperature_Changed_Reason__c))
+            )
+        ),
+        AND(
+            ISBLANK(TEXT(Account_Temperature__c)),
+            LEN(TRIM(Temperature_Changed_Reason__c)) &gt; 0
+        )
+    ))</errorConditionFormula>
+    <errorMessage>Temperature Changed Reason is required and cannot be blank. The text must be updated each time as well. Also, if you change the temperature back to None, you will need to remove the text in the Temperature changed reason field.</errorMessage>
+</ValidationRule>

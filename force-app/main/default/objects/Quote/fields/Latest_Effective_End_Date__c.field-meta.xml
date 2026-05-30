@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Latest_Effective_End_Date__c</fullName>
+    <description>System-calculated field showing the latest end date across all Quote Lines</description>
+    <inlineHelpText>This field automatically displays the furthest subscription end date from all Quote Lines</inlineHelpText>
+    <label>Latest Effective End Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

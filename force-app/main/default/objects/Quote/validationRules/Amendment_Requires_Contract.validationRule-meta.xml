@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amendment_Requires_Contract</fullName>
+    <active>true</active>
+    <description>Requires Amendment quotes to be linked to the original Contract being amended.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Quote_Type__c, &apos;Amendment&apos;),
+    ISBLANK(Renewal_Contract__c)
+)</errorConditionFormula>
+    <errorDisplayField>Renewal_Contract__c</errorDisplayField>
+    <errorMessage>Amendment quotes must be linked to the original Contract being amended.</errorMessage>
+</ValidationRule>

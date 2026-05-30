@@ -1,0 +1,54 @@
+UAT CDVs: {'11pWC000001DswTYAS': ('SalesTransactionContextExt', 24, True), '11pWC000001ihOrYAI': ('ProductDiscoveryContextExt', 21, True)}
+MB CDVs: {'11pct000000qcxFAAQ': ('ProductDiscoveryContextExt', 3, True), '11pct000000qcyrAAA': ('SalesTransactionContextExt', 3, True)}
+
+UAT active CDV per CD: {'SalesTransactionContextExt': '11pWC000001DswTYAS', 'ProductDiscoveryContextExt': '11pWC000001ihOrYAI'}
+MB active CDV per CD: {'ProductDiscoveryContextExt': '11pct000000qcxFAAQ', 'SalesTransactionContextExt': '11pct000000qcyrAAA'}
+
+======================================================================
+ContextDefinition: ProductDiscoveryContextExt
+  UAT active CDV: 11pWC000001ihOrYAI (v21)
+  MB  active CDV: 11pct000000qcxFAAQ (v3)
+
+  ContextNode  UAT=9, MB=9, common=9, UAT-only=0, MB-only=0
+
+  ContextAttribute  UAT=66, MB=66, common=66, UAT-only=0, MB-only=0
+
+======================================================================
+ContextDefinition: SalesTransactionContextExt
+  UAT active CDV: 11pWC000001DswTYAS (v24)
+  MB  active CDV: 11pct000000qcyrAAA (v3)
+
+  ContextNode  UAT=45, MB=44, common=44, UAT-only=1, MB-only=0
+    UAT-only ContextNode Titles (candidates to load):
+      'AssetActionSourceAssetPromotion__std'  InheritedFrom='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std'  IsTransposable=False
+
+  ContextAttribute  UAT=852, MB=842, common=815, UAT-only=37, MB-only=27
+    UAT-only ContextAttributes (first 20):
+      ('Asset', 'AllowRegionalPricing__c')  Type=boolean/inputoutput  Inherited=None  MB-parent=✓
+      ('AssetAction', 'OrderLineARR__c')  Type=currency/inputoutput  Inherited=None  MB-parent=✓
+      ('AssetActionSource', 'AASPriceBookEntryPriceBookId__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASPriceBookEntryPriceBookId__std'  MB-parent=✓
+      ('AssetActionSource', 'AASProductSellingModelPricingTermUnit__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASProductSellingModelPricingTermUnit__std'  MB-parent=✓
+      ('AssetActionSource', 'AASProductSellingModelPricingTerm__std')  Type=number/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASProductSellingModelPricingTerm__std'  MB-parent=✓
+      ('AssetActionSource', 'AASProductSellingModelSellingModelType__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AASProductSellingModelSellingModelType__std'  MB-parent=✓
+      ('AssetActionSource', 'OrderLineARR__c')  Type=currency/inputoutput  Inherited=None  MB-parent=✓
+      ('AssetActionSourceAssetPromotion__std', 'AppliedPromotionDate__std')  Type=datetime/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/AppliedPromotionDate__std'  MB-parent=✗ MISSING
+      ('AssetActionSourceAssetPromotion__std', 'AssetActionSourceId__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/AssetActionSourceId__std'  MB-parent=✗ MISSING
+      ('AssetActionSourceAssetPromotion__std', 'CouponCode__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/CouponCode__std'  MB-parent=✗ MISSING
+      ('AssetActionSourceAssetPromotion__std', 'Id__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/Id__std'  MB-parent=✗ MISSING
+      ('AssetActionSourceAssetPromotion__std', 'ParentReference')  Type=reference/input  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/ParentReference'  MB-parent=✗ MISSING
+      ('AssetActionSourceAssetPromotion__std', 'Priority__std')  Type=number/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/Priority__std'  MB-parent=✗ MISSING
+      ('AssetActionSourceAssetPromotion__std', 'PromotionId__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetAction/AssetActionSource/AssetActionSourceAssetPromotion__std/PromotionId__std'  MB-parent=✗ MISSING
+      ('AssetContractRelationship', 'ACRContractRenewalTermUnit__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetContractRelationship/ACRContractRenewalTermUnit__std'  MB-parent=✓
+      ('AssetContractRelationship', 'ACRContractRenewalTerm__std')  Type=number/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetContractRelationship/ACRContractRenewalTerm__std'  MB-parent=✓
+      ('AssetContractRelationship', 'ACRContractUnitPriceUplift__std')  Type=percent/inputoutput  Inherited='SalesTransactionContext__stdctx/version/Asset/AssetContractRelationship/ACRContractUnitPriceUplift__std'  MB-parent=✓
+      ('FulfillmentTransactionItem', 'FulfillmentAssetReference__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/SalesTransaction/FulfillmentTransaction/FulfillmentTransactionItem/FulfillmentAssetReference__std'  MB-parent=✓
+      ('FulfillmentTransactionItem', 'FulfillmentAsset__std')  Type=string/inputoutput  Inherited='SalesTransactionContext__stdctx/version/SalesTransaction/FulfillmentTransaction/FulfillmentTransactionItem/FulfillmentAsset__std'  MB-parent=✓
+      ('FulfillmentTransactionItem', 'FulfillmentItemEndDate__std')  Type=datetime/inputoutput  Inherited='SalesTransactionContext__stdctx/version/SalesTransaction/FulfillmentTransaction/FulfillmentTransactionItem/FulfillmentItemEndDate__std'  MB-parent=✓
+      ... and 17 more
+    MB-only ContextAttributes (first 5):
+      ('AssetActionSrcPriceAdjustment__std', 'AASPriceBookEntryPriceBookId__std')
+      ('AssetActionSrcPriceAdjustment__std', 'AASProductSellingModelPricingTermUnit__std')
+      ('AssetActionSrcPriceAdjustment__std', 'AASProductSellingModelPricingTerm__std')
+      ('AssetActionSrcPriceAdjustment__std', 'AASProductSellingModelSellingModelType__std')
+      ('AssetActionSrcPriceAdjustment__std', 'ACRContractRenewalTermUnit__std')
+      ... and 22 more

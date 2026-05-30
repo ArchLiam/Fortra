@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Server_Type__c</fullName>
+    <label>Server Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Development</fullName>
+                <default>false</default>
+                <label>Development</label>
+            </value>
+            <value>
+                <fullName>Online Non-Production</fullName>
+                <default>false</default>
+                <label>Online Non-Production</label>
+            </value>
+            <value>
+                <fullName>Online Production</fullName>
+                <default>false</default>
+                <label>Online Production</label>
+            </value>
+            <value>
+                <fullName>Production</fullName>
+                <default>false</default>
+                <label>Production</label>
+            </value>
+            <value>
+                <fullName>Staging</fullName>
+                <default>false</default>
+                <label>Staging</label>
+            </value>
+            <value>
+                <fullName>Test</fullName>
+                <default>false</default>
+                <label>Test</label>
+            </value>
+            <value>
+                <fullName>DR</fullName>
+                <default>false</default>
+                <label>DR</label>
+            </value>
+            <value>
+                <fullName>HA</fullName>
+                <default>false</default>
+                <label>HA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

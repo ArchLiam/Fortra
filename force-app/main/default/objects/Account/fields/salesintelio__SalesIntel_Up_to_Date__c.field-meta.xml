@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>salesintelio__SalesIntel_Up_to_Date__c</fullName>
+    <deprecated>false</deprecated>
+    <formula>(!ISBLANK(salesintelio__Last_Matched_Date__c  )) &amp;&amp;  
+(!ISBLANK(salesintelio__Last_Enriched_Date__c  )) &amp;&amp; 
+(salesintelio__Last_Matched_Date__c  &gt;=  salesintelio__Last_Enriched_Date__c)</formula>
+    <inlineHelpText>If your last match date is greater than or equal to your last enriched date then you are up to date. Each time the record is updated this formula will fire.</inlineHelpText>
+    <label>SalesIntel Up-to-Date</label>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

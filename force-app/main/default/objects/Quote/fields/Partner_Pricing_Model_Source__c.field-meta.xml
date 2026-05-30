@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Partner_Pricing_Model_Source__c</fullName>
+    <description>Tracks how the Partner Pricing Model was set - either automatically based on partner defaults or manually overridden by user</description>
+    <inlineHelpText>Shows whether the pricing model was automatically set from partner defaults or manually selected</inlineHelpText>
+    <label>Partner Pricing Model Source</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Auto-Set</fullName>
+                <default>false</default>
+                <label>Auto-Set</label>
+            </value>
+            <value>
+                <fullName>User Override</fullName>
+                <default>false</default>
+                <label>User Override</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
