@@ -1,0 +1,482 @@
+{
+  "summary": "Validate Order_Submit_Validation__mdt config against live FortraUAT: field existence/types, relationship lookups, Places object identity, and the consuming enforcement logic",
+  "agentCount": 6,
+  "logs": [],
+  "result": {
+    "account": {
+      "fields": [
+        {
+          "apiName": "Phone",
+          "exists": true,
+          "type": "phone",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Account Phone",
+          "referenceTo": ""
+        },
+        {
+          "apiName": "DB_DUNS__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "D&B DUNS",
+          "referenceTo": ""
+        },
+        {
+          "apiName": "Name",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Account Name",
+          "referenceTo": ""
+        },
+        {
+          "apiName": "Type",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Account Type",
+          "referenceTo": ""
+        }
+      ],
+      "missing": [],
+      "object": "Account",
+      "objectExists": true,
+      "summary": "All 4 target fields exist on Account in FortraUAT. None are formula fields; all are updateable. Phone (phone), DB_DUNS__c (string, label \"D&B DUNS\"), Name (string), Type (picklist). No reference/lookup fields among the targets."
+    },
+    "contact": {
+      "fields": [
+        {
+          "apiName": "Workday_Customer_Id__c",
+          "exists": false,
+          "type": "",
+          "isFormula": false,
+          "updateable": false,
+          "label": "",
+          "referenceTo": "",
+          "notes": "NOT FOUND on Contact. Closest existing Workday-id fields: Workday_Contact_Id__c (string, 'Workday Contact Id'), Workday_ID__c (string, 'Workday ID'), Workday_Sync_Correlation_Id__c (string). No field named Workday_Customer_Id__c exists."
+        },
+        {
+          "apiName": "Business_Entity_Contact_ID__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Business Entity Contact ID",
+          "referenceTo": "",
+          "notes": "Editable text field."
+        },
+        {
+          "apiName": "FirstName",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "First Name",
+          "referenceTo": "",
+          "notes": "Standard name field."
+        },
+        {
+          "apiName": "LastName",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Last Name",
+          "referenceTo": "",
+          "notes": "Standard name field (required)."
+        },
+        {
+          "apiName": "Workday_MobilePhone_Country_ISO_Code__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Mobile Phone Country",
+          "referenceTo": "",
+          "notes": "Picklist of ISO country codes; drives the International_Phone formula below."
+        },
+        {
+          "apiName": "Workday_MobilePhone_International_Phone__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": true,
+          "updateable": false,
+          "label": "Mobile Phone Code",
+          "referenceTo": "",
+          "notes": "CONFIRMED read-only formula (calculated=true, updateable=false), as German Wren stated. Coastal-built CASE() formula mapping Workday_MobilePhone_Country_ISO_Code__c -> international dialing code (e.g. AND->376, USA->1, DEU->49, GBR->44, IND->91), returning NULL when no match. Returns string. Do NOT attempt to write to this field."
+        },
+        {
+          "apiName": "MobilePhone",
+          "exists": true,
+          "type": "phone",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Mobile Phone",
+          "referenceTo": "",
+          "notes": "Standard phone field, editable."
+        },
+        {
+          "apiName": "Workday_MobilePhone_Device_Type__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Workday MobilePhone Device Type",
+          "referenceTo": "",
+          "notes": "Editable picklist."
+        },
+        {
+          "apiName": "Workday_MobilePhone_Primary__c",
+          "exists": true,
+          "type": "boolean",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Workday MobilePhone Primary",
+          "referenceTo": "",
+          "notes": "Editable boolean."
+        },
+        {
+          "apiName": "Workday_MobilePhone_Usage_Type__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Workday MobilePhone Usage Type",
+          "referenceTo": "",
+          "notes": "Editable picklist."
+        },
+        {
+          "apiName": "Phone",
+          "exists": true,
+          "type": "phone",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Business Phone",
+          "referenceTo": "",
+          "notes": "Standard Phone field; note label is 'Business Phone'. Editable."
+        }
+      ],
+      "missing": [
+        "Workday_Customer_Id__c"
+      ],
+      "object": "Contact",
+      "objectExists": true,
+      "summary": "Of 11 target fields, 10 exist and 1 (Workday_Customer_Id__c) does NOT exist on Contact (closest: Workday_Contact_Id__c, Workday_ID__c, Workday_Sync_Correlation_Id__c). German Wren's note is CONFIRMED: Workday_MobilePhone_International_Phone__c ('Mobile Phone Code') is a read-only Coastal formula (calculated=true, updateable=false) — a CASE() that maps the ISO country picklist to an international dialing code.\\n\\nPHONE FAMILY vs MOBILE FAMILY comparison (re: MuleSoft sends Phone vs MobilePhone): the org has parallel, mirrored field sets for both the standard Phone and the standard MobilePhone. All Workday_Phone_* equivalents exist:\\n- Standard: Phone (label 'Business Phone') vs MobilePhone (label 'Mobile Phone') — both type=phone, editable.\\n- Country/ISO: Workday_Phone_Country_ISO_Code__c ('Phone Country') vs Workday_MobilePhone_Country_ISO_Code__c ('Mobile Phone Country') — picklists.\\n- International code (read-only formula): Workday_Phone_International_Phone_Code__c ('Phone Code', calc=true, upd=false) vs Workday_MobilePhone_International_Phone__c ('Mobile Phone Code', calc=true, upd=false). NOTE the slight API-name asymmetry: the Phone one is *_International_Phone_Code__c, the Mobile one is *_International_Phone__c.\\n- Device Type: Workday_Phone_Device_Type__c vs Workday_MobilePhone_Device_Type__c — picklists.\\n- Primary: Workday_Phone_Primary__c vs Workday_MobilePhone_Primary__c — booleans.\\n- Usage Type: Workday_Phone_Usage_Type__c vs Workday_MobilePhone_Usage_Type__c — picklists.\\n- Public: Workday_Phone_Public__c vs Workday_MobilePhone_Public__c — booleans (extra field not in target list, included for completeness).\\nOther Phone-named fields on Contact: HomePhone, OtherPhone, AssistantPhone (all standard, type=phone, editable), Normalized_Phone__c (string, calc=true read-only formula), GDPR_Contact_via_Phone__c (picklist). So a full mirrored Phone family exists alongside the Mobile family; both have a read-only Coastal formula for the international code.",
+      "relationshipFields": []
+    },
+    "order": {
+      "fields": [
+        {
+          "apiName": "Workday_Contract_ID__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Workday Contract Id",
+          "referenceTo": "",
+          "notes": "Custom text field, user-editable."
+        },
+        {
+          "apiName": "Status",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Status",
+          "referenceTo": "",
+          "notes": "Standard Order status picklist."
+        },
+        {
+          "apiName": "WorkdayReferenceID__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": true,
+          "updateable": false,
+          "label": "Legal Entity's Workday Reference ID",
+          "referenceTo": "",
+          "notes": "Formula field (calculated=true); read-only, not user-editable. Do not write to it."
+        },
+        {
+          "apiName": "Bill_To_Account__c",
+          "exists": true,
+          "type": "reference",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Bill To Account",
+          "referenceTo": "Account",
+          "notes": "Lookup to Account."
+        },
+        {
+          "apiName": "Ship_To_Account__c",
+          "exists": true,
+          "type": "reference",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Ship To Account",
+          "referenceTo": "Account",
+          "notes": "Lookup to Account."
+        },
+        {
+          "apiName": "Workday_Contract_Type__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Workday Contract Type",
+          "referenceTo": "",
+          "notes": "Custom picklist, user-editable."
+        },
+        {
+          "apiName": "Billing_Frequency__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Billing Frequency",
+          "referenceTo": "",
+          "notes": "Custom picklist, user-editable."
+        },
+        {
+          "apiName": "EffectiveDate",
+          "exists": true,
+          "type": "date",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Order Start Date",
+          "referenceTo": "",
+          "notes": "Standard Order date field; label is 'Order Start Date'."
+        }
+      ],
+      "missing": [],
+      "object": "Order",
+      "objectExists": true,
+      "relationshipFields": [
+        {
+          "apiName": "AccountId",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Account",
+          "notes": "Standard Order->Account lookup."
+        },
+        {
+          "apiName": "BillToContactId",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Contact",
+          "notes": "Standard Bill To Contact lookup."
+        },
+        {
+          "apiName": "ShipToContactId",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Contact",
+          "notes": "Standard Ship To Contact lookup."
+        },
+        {
+          "apiName": "Bill_To_Address__c",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Places__c",
+          "notes": "Lookup to the 'Places' object; real API name is Places__c."
+        },
+        {
+          "apiName": "Ship_To_Address__c",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Places__c",
+          "notes": "Lookup to the 'Places' object; real API name is Places__c."
+        }
+      ],
+      "resolvedApiName": "Places__c",
+      "summary": "All 8 target fields and all 5 relationship/lookup fields exist on Order in FortraUAT. Notable: WorkdayReferenceID__c is a formula field (calculated=true, updateable=false) so it is read-only and must not be targeted for writes. Bill_To_Account__c and Ship_To_Account__c are reference fields to Account. The CMDT relationship paths Bill_To_Address__c and Ship_To_Address__c both reference the custom object Places__c, which is the real API name of \"Places\". AccountId references Account; BillToContactId and ShipToContactId reference Contact. EffectiveDate has label 'Order Start Date'. No fields are missing."
+    },
+    "orderItem": {
+      "object": "OrderItem",
+      "objectExists": true,
+      "resolvedApiName": "OrderItem",
+      "fields": [
+        {
+          "apiName": "LineNumber",
+          "exists": true,
+          "type": "int",
+          "isFormula": false,
+          "updateable": false,
+          "label": "Line Number",
+          "referenceTo": "",
+          "notes": "System auto-number, read-only."
+        },
+        {
+          "apiName": "Workday_Contract_Line_Type__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Workday Contract Line Type",
+          "referenceTo": "",
+          "notes": "Custom picklist, user-editable."
+        },
+        {
+          "apiName": "Billing_Frequency__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": true,
+          "updateable": false,
+          "label": "Billing Frequency",
+          "referenceTo": "",
+          "notes": "Custom formula (calculated==true), read-only."
+        },
+        {
+          "apiName": "Id",
+          "exists": true,
+          "type": "id",
+          "isFormula": false,
+          "updateable": false,
+          "label": "Order Product ID",
+          "referenceTo": "",
+          "notes": "Record Id, read-only."
+        },
+        {
+          "apiName": "TotalLineTaxAmount",
+          "exists": true,
+          "type": "currency",
+          "isFormula": false,
+          "updateable": false,
+          "label": "Product Subtotal Tax",
+          "referenceTo": "",
+          "notes": "Real field on OrderItem; standard system-maintained currency, not updateable."
+        },
+        {
+          "apiName": "ProductCode",
+          "exists": false,
+          "type": "",
+          "isFormula": false,
+          "updateable": false,
+          "label": "",
+          "referenceTo": "",
+          "notes": "Does NOT exist on OrderItem. ProductCode lives on Product2 (and PricebookEntry), not OrderItem. Access via PricebookEntry.Product2.ProductCode relationship instead."
+        },
+        {
+          "apiName": "OrderId",
+          "exists": true,
+          "type": "reference",
+          "isFormula": false,
+          "updateable": false,
+          "label": "Order ID",
+          "referenceTo": "Order",
+          "notes": "Relationship path (relationshipName 'Order'); references Order. Not updateable after insert."
+        }
+      ],
+      "relationshipFields": [
+        {
+          "apiName": "OrderId",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Order",
+          "notes": "Master relationship to Order; relationshipName 'Order'. Use OrderItem.Order.<field> to traverse."
+        }
+      ],
+      "missing": [
+        "ProductCode"
+      ],
+      "summary": "6 of 7 target fields exist on OrderItem (Order Product). ProductCode does NOT exist on OrderItem — it is a Product2/PricebookEntry field, as cautioned. TotalLineTaxAmount IS a real OrderItem field (currency, read-only). Billing_Frequency__c is a custom formula field (isFormula=true, read-only). Workday_Contract_Line_Type__c is the only user-editable target (updateable picklist). LineNumber, Id, OrderId, and TotalLineTaxAmount are all read-only (updateable=false). OrderId is the relationship reference to Order (relationshipName 'Order')."
+    },
+    "places": {
+      "fields": [
+        {
+          "apiName": "Street_Address_Line_2__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Street Address Line 2",
+          "referenceTo": "",
+          "notes": "Plain text field; createable and updateable."
+        },
+        {
+          "apiName": "Street_Address_Line_3__c",
+          "exists": true,
+          "type": "string",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Street Address Line 3",
+          "referenceTo": "",
+          "notes": "Plain text field; createable and updateable."
+        },
+        {
+          "apiName": "Public__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Public",
+          "referenceTo": "",
+          "notes": "Picklist (not restricted). Values: True (default), False. Despite picklist type, it models a boolean-style True/False choice."
+        },
+        {
+          "apiName": "Primary__c",
+          "exists": true,
+          "type": "boolean",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Primary",
+          "referenceTo": "",
+          "notes": "Boolean checkbox; createable and updateable."
+        },
+        {
+          "apiName": "Location_Type__c",
+          "exists": true,
+          "type": "picklist",
+          "isFormula": false,
+          "updateable": true,
+          "label": "Location Type",
+          "referenceTo": "",
+          "notes": "RESTRICTED picklist (restrictedPicklist=true). Active values: Billing, Shipping, Regulatory (no default). At the API/field-security layer updateable=true AND createable=true, so the field itself is NOT read-only/system-managed. German Wren reported it is NOT editable on the Place form in UAT; that is therefore a UI-layer constraint (page layout 'Read Only' field property or a form/Flow-level setting), not field-level updateability. To make it editable on the form, check the page layout field properties for Location Type, not the field definition or profile/permset FLS (FLS already permits edit)."
+        }
+      ],
+      "missing": [],
+      "object": "Places",
+      "objectExists": true,
+      "resolvedApiName": "Places__c",
+      "relationshipFields": [
+        {
+          "apiName": "Bill_To_Address__c",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Places__c",
+          "notes": "On Order object; relationshipName Bill_To_Address__r. Used to resolve the Places label -> Places__c API name."
+        },
+        {
+          "apiName": "Ship_To_Address__c",
+          "exists": true,
+          "type": "reference",
+          "referenceTo": "Places__c",
+          "notes": "On Order object; relationshipName Ship_To_Address__r. Confirms Places__c as the address object."
+        }
+      ],
+      "summary": "The object labeled \"Places\" in FortraUAT resolves to API name Places__c. This was confirmed via the Order object's Bill_To_Address__c and Ship_To_Address__c fields, both of which have referenceTo=['Places__c'] (Order also has Bill_To_Place__c and Ship_To_Place__c pointing to the same object). The object's own describe confirms label='Places', name='Places__c'. All five requested fields exist on Places__c and are valid: Street_Address_Line_2__c (string), Street_Address_Line_3__c (string), Public__c (picklist True/False), Primary__c (boolean), Location_Type__c (restricted picklist: Billing/Shipping/Regulatory). None are formula fields. Notable finding: Location_Type__c is updateable=true AND createable=true at the API/FLS level, so it is NOT read-only at the field tier despite German Wren reporting it is not editable on the Place form in UAT -- that constraint is a page-layout/UI-level setting, not field updateability. It is a restricted picklist. Describe JSON saved to /Users/liamjeong/Documents/Code/Fortra/Data/sc-places-check/places_describe.json and order_describe.json."
+    },
+    "consumer": {
+      "found": true,
+      "consumerType": "Flow",
+      "usesActiveFlag": true,
+      "mechanism": "A screen Flow drives the enforcement, NOT a validation rule or Apex orchestrator. The active flow `Fortra_Order_Submission_Check` (force-app/main/default/flows/Fortra_Order_Submission_Check.flow-meta.xml, <status>Active</status> line 1136, apiVersion 66.0) is launched from the Order record page when a user picks an Order Status. Flow: (1) Get_Order (lines 914-934) loads the Order; (2) Status_Route (753-777) - if status != 'Order Complete' it just does Update_Order_Stage and stops (no required-field checks); the 'Order Complete' path proceeds to validation; (3) Get_Order_Submit_Validation (936-955) queries ALL Order_Submit_Validation__mdt rows filtered on Active__c == true (filter at lines 945-951); (4) rows are split by FilterCollectionProcessor into OrderItem vs non-OrderItem sets (collectionProcessors 416-457), sorted, then looped; (5) for each CMDT row the flow calls the invocable Apex action FieldPopulatedCheck (actionName=FieldPopulatedCheck, actionCalls at lines 3-68) passing objectName=Object_API_Name__c, fieldName=Field_API_Name__c, recordId resolved from the relationship; (6) if Apex returns isPopulated=false the formula Error_Message_Format_* is added to Error_Message_Collection; (7) Count_Error(s)/Error(s) Exist? (224-238, 558-582): if ErrorCount==0 -> Set_Order_Status_Order_Complete (also sets Workday_Sync_Status__c='Pending' to trigger the Workday platform-event sync) then Refresh_Page + success toast; if ErrorCount>0 -> errorDisplayLoop builds Error_Display, shows Validation_Error_Screen + failure toast 'Order NOT sent to Workday.' and the status is NOT advanced. The Apex (FieldPopulatedCheck.cls) is only a stateless boolean/serialiser helper invoked by the flow; it does NOT read the CMDT or know about 'Order submission'. The CMDT object is metadata-only (no Apex selector other than the flow's Get element).",
+      "errorMessageUsage": "Surfaced by string concatenation in two flow formulas: Error_Message_Format_Non_OrderItem (lines 822-826) and Error_Message_Format_OrderItem (827-831). Each builds: \"• \" + {!Check_Non_OrderItem_s.Error_Message__c} (or Check_OrderItem_s.Error_Message__c) + \"  \" + HYPERLINK(InstanceURL & \"/lightning/r/\" & Object_API_Name & \"/\" & IDtoCheck & \"/view\", \"Link to Record\") + br(). These bullets accumulate into Error_Message_Collection, are looped into Error_Display, and rendered on the Validation_Error_Screen DisplayText field (DisplayValidationErrors, lines 1113-1125). So Error_Message__c IS the user-facing per-rule message; the hyperlink label is hardcoded as the literal string 'Link to Record' (the link target is built from Object_API_Name + record Id, not from any CMDT field).",
+      "blankErrorMessageHandling": "No null-guard. The flow concatenates {!...Error_Message__c} directly into the bullet formula with no IF/ISBLANK check. For record X00028 (Object=Order, Field_API_Name__c=EffectiveDate / 'Order Start Date', Active__c=true) Error_Message__c is xsi:nil (force-app/main/default/customMetadata/Order_Submit_Validation.X00028.md-meta.xml lines 9-12). So when EffectiveDate is empty on an Order being completed, the rule still fires (it is active and the field is unpopulated), but the rendered bullet collapses to just \"•   Link to Record\" with no explanatory text - i.e. a blank/meaningless error line. The user sees a link but no message telling them EffectiveDate is the problem. (Salesforce formula concatenation of a null string yields null/empty in that position rather than erroring, so the flow does not fault - it just produces a degraded message.)",
+      "phoneVsMobileEvidence": "CMDT rules drive which fields must be populated before the Order is sent to Workday (the success path sets Workday_Sync_Status__c='Pending' to fire the Workday sync). For Account, the ACTIVE rule X00001 enforces standard `Phone` (Object=Account, Field_API_Name__c=Phone, Active__c=true) with message 'Required Field: Account Phone is required... to save... Order Complete'. For Contact, the enforced phone-related fields are all MobilePhone-centric: X00017/X00038 = standard `MobilePhone` but BOTH are Active__c=false (inactive); the ACTIVE Contact phone rules are the Workday_MobilePhone_* custom fields: X00018 Workday_MobilePhone_Device_Type__c (active), X00019 Workday_MobilePhone_Primary__c (active), X00020 Workday_MobilePhone_Usage_Type__c (active); while X00015 Workday_MobilePhone_Country_ISO_Code__c and X00016 Workday_MobilePhone_International_Phone__c are inactive. Net evidence: for Contacts the integration is built around MobilePhone -> Workday_MobilePhone_* mapping fields (the actual phone digits in Workday_MobilePhone_International_Phone__c, with Country/Device/Usage/Primary attributes), and the base MobilePhone source field's required-check is currently turned OFF, whereas Account uses plain Phone. There is no rule for Contact.Phone at all - only MobilePhone and its Workday_MobilePhone_* derivatives. (Note: there are duplicate Contact rule sets X00011-X00020 and X00035-X00044, likely Bill-To vs Ship-To contact coverage.) No Apex/MuleSoft mapping code is present locally to show the exact outbound JSON, but the CMDT field set strongly indicates MobilePhone (not Phone) is what flows to Workday for Contacts.",
+      "locations": [
+        "force-app/main/default/flows/Fortra_Order_Submission_Check.flow-meta.xml — the enforcer (Active screen flow). Key lines: Get_Order_Submit_Validation CMDT query with Active__c==true filter (936-955, filter 945-951); FieldPopulatedCheck Apex action calls (3-68); Error_Message__c concatenation formulas (822-831); Validation_Error_Screen (1102-1128); success path Set_Order_Status_Order_Complete sets Status='Order Complete' + Workday_Sync_Status__c='Pending' (977-1009); failure toast 'Order NOT sent to Workday.' (84-119)",
+        "force-app/main/default/classes/FieldPopulatedCheck.cls — invocable Apex helper (@InvocableMethod 'Check If Field Is Populated', lines 73-161) that the flow calls per field; stateless boolean/serialiser, does not read the CMDT",
+        "force-app/main/default/objects/Order_Submit_Validation__mdt/Order_Submit_Validation__mdt.object-meta.xml — CMDT definition (fields: Active__c, Object_API_Name__c, Field_API_Name__c, Field_Label__c, Object_Label__c, Relationship_Field_API_Name__c, Error_Message__c, Link_Message__c)",
+        "force-app/main/default/customMetadata/Order_Submit_Validation.X00028.md-meta.xml — EffectiveDate rule with nil Error_Message__c (lines 9-12), active=true",
+        "force-app/main/default/customMetadata/Order_Submit_Validation.X00001.md-meta.xml — Account Phone rule (active)",
+        "force-app/main/default/customMetadata/Order_Submit_Validation.X00017.md-meta.xml & X00038 — Contact MobilePhone rules (both Active__c=false)",
+        "force-app/main/default/customMetadata/Order_Submit_Validation.X00018/X00019/X00020 (and dup X00042/X00043/X00044) — active Contact Workday_MobilePhone_* required rules"
+      ],
+      "summary": "Enforcement of the Order_Submit_Validation__mdt required-field checks is a Flow, not a validation rule or Apex orchestrator. The Active screen flow `Fortra_Order_Submission_Check` (force-app/main/default/flows/Fortra_Order_Submission_Check.flow-meta.xml) runs when a user sets Order Status to 'Order Complete'. It queries every Order_Submit_Validation__mdt row WHERE Active__c == true (Get_Order_Submit_Validation, lines 936-955), splits them into OrderItem vs non-OrderItem sets, and for each row calls the invocable Apex FieldPopulatedCheck.cls to test whether the mapped field is populated on the related record (Order / OrderItem / Account / Contact Bill-To & Ship-To / Places Bill-To & Ship-To). Any unpopulated field adds a bullet to an error collection; if any errors exist the flow blocks the submission, shows Validation_Error_Screen, and toasts 'Order NOT sent to Workday.' If zero errors, it sets Status='Order Complete' and Workday_Sync_Status__c='Pending' (which fires the downstream Workday platform-event sync). Error_Message__c is surfaced by direct string concatenation in the flow's Error_Message_Format_* formulas (lines 822-831) into the error screen; the link is a hardcoded HYPERLINK('Link to Record') built from Object_API_Name + record Id. Link_Message__c is NOT referenced anywhere in the flow (confirmed by grep) - it is a dormant CMDT field. There is no null-guard on Error_Message__c, so record X00028 (Order.EffectiveDate, active, Error_Message__c = nil) produces a degraded bullet with no message text - just '•   Link to Record'. No Apex class named *OrderSubmit*/*SubmitValidation* exists in FortraUAT (tooling query returned 0); the only Order validation rule is the unrelated Lock_Currency_At_Order_Activation. Phone/MobilePhone: Account uses standard Phone (X00001, active); Contact uses MobilePhone-derived Workday_MobilePhone_* fields - base Contact.MobilePhone checks (X00017/X00038) are inactive while Workday_MobilePhone_Device_Type/Primary/Usage_Type are active - indicating MobilePhone (mapped into Workday_MobilePhone_* fields), not Phone, is what is sent to Workday for Contacts."
+    }
+  }
+}
