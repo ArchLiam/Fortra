@@ -152,4 +152,8 @@ with columns Object Label · Object API Name · Relationship Field API Name · F
 | `UAT_Order_Submit_Validation_live.csv` | Live SOQL snapshot of all 48 records (incl. live `Active__c`) — source of truth |
 | `UAT_field_validation_results.json` | Structured field-existence/type validation output (per object + consumer-logic analysis) |
 | `SC-3291_Required_Fields_Reconciliation.xlsx` | Pre-existing disposition workbook — **needs updating** to live state + findings F1–F7 |
-| `Order Submission Custom Metadata - Source Custom Metadata Records.csv` | Earlier "source" export — now stale vs live `Active__c`; kept for history |
+| `Order Submission Custom Metadata - Source Custom Metadata Records.csv` | **Ben's baseline export** (original, untouched) — now 18 `Active__c` flips behind live + 1 lost message; kept as the baseline reference |
+| `Order Submission Custom Metadata - UPDATED 2026-06-01.xlsx` | **New updated version of Ben's spreadsheet** — target `Active__c` per German's directives + reconciliation dispositions + findings F1–F7; X00028 message restored, whitespace cleaned, Ship-To mirrored. 3 Active columns (Ben / Live / TARGET) + Disposition / Dynamic Conditions / Notes |
+| `Order Submission Custom Metadata - UPDATED 2026-06-01.csv` | CSV companion of the updated spreadsheet (for diff/review) |
+| `Ben_vs_UAT_comparison.md` | Written diff: Ben's baseline vs live UAT (18 Active flips, X00028 message regression, 5 whitespace artifacts) |
+| `Ben_vs_UAT_comparison.csv` | Row-level side-by-side (all 48 records: Ben_Active vs UAT_Active, change flags) |

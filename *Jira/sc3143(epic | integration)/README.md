@@ -26,3 +26,4 @@ E2E requirements:
 | File | What it is |
 |---|---|
 | `README.md` | This file — ticket scaffold and working notes |
+| [`workday-api-reference/`](workday-api-reference/) | Field-level references (v46.1) for the Contract / Billing Schedule / Revenue (MEA) Workday operations — source field maps for SC-3134 and children |

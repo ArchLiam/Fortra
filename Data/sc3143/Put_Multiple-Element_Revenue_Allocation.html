@@ -1,0 +1,1140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wd="urn:com.workday/bsvc"
+      xmlns:nyw="urn:com.netyourwork/aod"
+      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+      xmlns:functx="http://www.functx.com">
+   <head>
+      <title>Put_Multiple-Element_Revenue_Allocation Operation Details</title>
+      <link rel="stylesheet"
+            href="../../public/stylesheets/ws_doc.css"
+            type="text/css"/>
+      <link rel="shortcut icon"
+            href="../../public/images/workday.ico"
+            type="image/x-icon"/>
+   </head>
+   <body>
+      <div>&nbsp;</div>
+      <div>
+         <a name="top">&nbsp;</a>
+         <a href="../../index.html">Service Directory</a>&nbsp;&gt;&nbsp;<a href="../../versions/v46.1/index.html">v46.1</a>&nbsp;&gt;&nbsp;<a href="Revenue_Management.html">Revenue_Management</a>&nbsp;&gt;&nbsp;Put_Multiple-Element_Revenue_Allocation</div>
+      <div>&nbsp;</div>
+      <h3 class="ws-title">Operation: Put_Multiple-Element_Revenue_Allocation</h3>
+      <p>This service operation will create or update Multiple-Element Revenue Allocation data for Customer Contracts. Customer Contract data includes Customer Contract ID, Currency, No Allocation Threshold Flag, Lower Allocation Percentage, Upper Allocation Percentage, Allocation Basis, Auto-Update Revenue Recognition Schedule Flag, and Contract Line data. Line data includes Linked Contract Line (if applicable), Deferred Revenue Flag, Exclude from Calculation Flag, Fixed Allocation Flag, Fair Value Unit Price, Fair Value Extended Amount, and Revenue Override Amount.</p>
+      <br/>
+      <p>
+                            Contextual Security: Yes</p>
+      <br/>
+      <p>@ - A parameter name with this symbol denotes an XML attribute within the document instead of an XML element. </p>
+      <br/>
+      <h4 class="ws-title">Contents</h4>
+      <div>
+         <ul>
+            <li>
+               <a href="#webservices">Web Service</a>
+            </li>
+            <li>
+               <a href="#Request">Request</a>
+            </li>
+            <li>
+               <a href="#Response">Response</a>
+            </li>
+            <li>
+               <a href="#elements">Elements</a>
+            </li>
+         </ul>
+         <a name="webservice">&nbsp;</a>
+         <h4 class="ws-title"> Web Service </h4>
+         <ul>
+            <li>
+               <a href="Revenue_Management.html">Revenue_Management (v46.1) </a>
+               <span class="xml-link">
+                  <a href="Revenue_Management.wsdl"
+                     onclick="window.open('Revenue_Management.wsdl', 'WSDL');return false;">
+                     <img src="../../public/images/wsdl.gif" title="wsdl" alt="WSDL"/>
+                  </a>
+               </span>
+               <span class="xml-link">
+                  <a href="Revenue_Management.xsd"
+                     onclick="window.open('Revenue_Management.xsd', 'WSDL');return false;">
+                     <img src="../../public/images/xsd.gif" title="schema" alt="Schema"/>
+                  </a>
+               </span>
+            </li>
+         </ul>
+         <a name="Request">&nbsp;</a>
+         <h4 class="ws-title">Request</h4>
+         <ul>
+            <li> Element: <a href="#Put_Multiple-Element_Revenue_Allocation_RequestType">Put_Multiple-Element_Revenue_Allocation_Request</a>
+               <span class="xml-link">
+                  <a href="samples/Put_Multiple-Element_Revenue_Allocation_Request.xml"
+                     onclick="window.open('samples/Put_Multiple-Element_Revenue_Allocation_Request.xml', 'XML');return false;">
+                     <img src="../../public/images/xml.gif" title="sample" alt="Sample"/>
+                  </a>
+               </span>
+            </li>
+         </ul>
+         <a name="Response">&nbsp;</a>
+         <h4 class="ws-title">Response</h4>
+         <ul>
+            <li> Element: <a href="#Put_Multiple-Element_Revenue_Allocation_ResponseType">Put_Multiple-Element_Revenue_Allocation_Response</a>
+               <span class="xml-link">
+                  <a href="samples/Put_Multiple-Element_Revenue_Allocation_Response.xml"
+                     onclick="window.open('samples/Put_Multiple-Element_Revenue_Allocation_Response.xml', 'XML');return false;">
+                     <img src="../../public/images/xml.gif" title="sample" alt="Sample"/>
+                  </a>
+               </span>
+            </li>
+         </ul>
+         <a name="elements">&nbsp;</a>
+         <h4 class="ws-title"> Element(s) </h4>
+      </div>
+      <table>
+         <tr>
+            <td>
+               <a name="Put_Multiple-Element_Revenue_Allocation_RequestType">&nbsp;</a>
+               <h4 class="ws-title"> Request Element: Put_Multiple-Element_Revenue_Allocation_Request</h4>
+               <div>Element containing Customer Contract reference for update and all Customer Contract data items relevant to Multiple-Element Revenue Allocation.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr>
+                        <td>@version</td>
+                        <td>string</td>
+                        <td>[0..1]</td>
+                        <td>Web Service version</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Customer_Contract_Reference&nbsp;</td>
+                        <td>
+                           <a href="#Customer_ContractObjectType">Customer_ContractObject</a>&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>Reference to an existing Customer Contract for update only purposes.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Customer_Contract_Data&nbsp;</td>
+                        <td>
+                           <a href="#MEA_Customer_Contract_DataType">MEA_Customer_Contract_Data</a>&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>Contains customer contract data.&nbsp;</td>
+                        <td>
+                           <table class="typetable" width="100%" cellspacing="0" cellpadding="0">
+                              <tr>
+                                 <th>Validation</th>
+                                 <th>Description</th>
+                              </tr>
+                              <tr>
+                                 <td>Ensure the total revenue override amount matches the total contract amount. To automatically calculate the total revenue override amount, leave the revenue override amounts empty.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>To exclude range calculations for revenue allocation, set the No Allocation Threshold field as true.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Specify all contract lines for the customer contract. Exclude any cancelled or terminated lines. Ensure that all contract lines are for the same customer contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Leave the Currency Reference field empty or specify the existing currency for the customer contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Ensure the total revenue override amount matches the sum of all child contract amounts. To automatically calculate the total revenue override amount, leave the revenue override amounts empty.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Specify all child contract lines for the linked customer contract. Exclude any cancelled or terminated lines. Ensure that all contract lines are child lines for the same linked customer contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Customer contract ID submitted in Customer Contract Reference doesn't match the ID submitted in Customer Contract ID. Leave the Customer Contract ID field empty or specify the same ID for both fields.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                           </table>&nbsp;</td>
+                     </tr>
+                  </table>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <td>
+                           <table class="typetable" width="100%" cellspacing="0" cellpadding="0">
+                              <tr>
+                                 <th>Validation</th>
+                                 <th>Description</th>
+                              </tr>
+                              <tr>
+                                 <td>To run this web service, specify a customer contract that is not in Approval in Process or Amendment in Process status.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Put_Multiple-Element_Revenue_Allocation_ResponseType">&nbsp;</a>
+               <h4 class="ws-title"> Response
+                Element: Put_Multiple-Element_Revenue_Allocation_Response</h4>
+               <div>Response element for Put Multiple-Element Revenue Allocation request.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr>
+                        <td>@version</td>
+                        <td>string</td>
+                        <td>[0..1]</td>
+                        <td>Web Service version</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Customer_Contract_Reference&nbsp;</td>
+                        <td>
+                           <a href="#Customer_ContractObjectType">Customer_ContractObject</a>&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Customer Contract Response Reference.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Exceptions_Response_Data&nbsp;</td>
+                        <td>
+                           <a href="#Application_Instance_Related_Exceptions_DataType">Application_Instance_Related_Exceptions_Data</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Element containing Exceptions Data&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Customer_ContractObjectType">&nbsp;</a>
+               <h4 class="ws-title">Customer_ContractObject</h4> part of: <a href="#Put_Multiple-Element_Revenue_Allocation_RequestType">Put_Multiple-Element_Revenue_Allocation_Request,</a>
+               <a href="#Put_Multiple-Element_Revenue_Allocation_ResponseType">Put_Multiple-Element_Revenue_Allocation_Response</a>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @Descriptor&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Display information used to describe an instance of an object. This 'optional' information is for outbound descriptive purposes only and is not processed on inbound Workday Web Services requests.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>ID&nbsp;</td>
+                        <td>
+                           <a href="#Customer_ContractObjectIDType">Customer_ContractObjectID</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Contains a unique identifier for an instance of an object.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Customer_ContractObjectIDType">&nbsp;</a>
+               <h4 class="ws-title">Customer_ContractObjectID</h4> part of: <a href="#Customer_ContractObjectType">Customer_ContractObject</a>
+               <div>Contains a unique identifier for an instance of an object.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>#text&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @type&nbsp;</td>
+                        <td>WID,  Customer_Contract_Reference_ID&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>The unique identifier type. Each "ID" for an instance of an object contains a type and a value. A single instance of an object can have multiple "ID" but only a single "ID" per "type".  Some "types" require a reference to a parent instance.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="MEA_Customer_Contract_DataType">&nbsp;</a>
+               <h4 class="ws-title">MEA_Customer_Contract_Data</h4> part of: <a href="#Put_Multiple-Element_Revenue_Allocation_RequestType">Put_Multiple-Element_Revenue_Allocation_Request</a>
+               <div>Contains customer contract data.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Customer_Contract_ID&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Customer Contract ID. This is the Customer Contract Unique Identifier.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Currency_Reference&nbsp;</td>
+                        <td>
+                           <a href="#CurrencyObjectType">CurrencyObject</a>&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>The Reference ID for the currency on the contract.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>No_Allocation_Threshold&nbsp;</td>
+                        <td>boolean&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>If true, the upper and lower range percentage for a company is set to 0.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Lower_Range_Percentage&nbsp;</td>
+                        <td>decimal (10, 4)  &gt;0 &nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>The lower range percentage for the company as a demical.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Upper_Range_Percentage&nbsp;</td>
+                        <td>decimal (10, 4)  &gt;0 &nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>The upper range percentage for the company as a decimal.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Allocation_Basis_Reference&nbsp;</td>
+                        <td>
+                           <a href="#Revenue_Allocation_Calculation_BasisObjectType">Revenue_Allocation_Calculation_BasisObject</a>&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>The revenue allocation calculation basis.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Auto-Update_Revenue_Recognition_Schedule&nbsp;</td>
+                        <td>boolean&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>If true, automatically recalculates the revenue recognition schedule upon submission.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Customer_Contract_Line_Data&nbsp;</td>
+                        <td>
+                           <a href="#MEA_Customer_Contract_Line_DataType">MEA_Customer_Contract_Line_Data</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Contains customer contract line data.&nbsp;</td>
+                        <td>
+                           <table class="typetable" width="100%" cellspacing="0" cellpadding="0">
+                              <tr>
+                                 <th>Validation</th>
+                                 <th>Description</th>
+                              </tr>
+                              <tr>
+                                 <td>Contract line can't be both excluded and fixed.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Leave the Revenue Treatment Reference field empty or specify the existing revenue treatment for contract line [contractLineRef] ([contractLine]).&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>[contractLineRef] ([contractLine]) is not the parent contract line for [linkedLineRef] ([linkedLine]). Ensure that all Contract Line Reference values submitted are the parent lines for the Linked Contract Line Reference values submitted.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Specify a Linked Contract Line Reference for every line of a linked contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>You can't modify a parent line [plineRef] ([pline]) that is canceled or terminated. If you leave the parent line reference empty, Workday will create a new parent line for an active child contract line.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                           </table>&nbsp;</td>
+                     </tr>
+                  </table>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <td>
+                           <table class="typetable" width="100%" cellspacing="0" cellpadding="0">
+                              <tr>
+                                 <th>Validation</th>
+                                 <th>Description</th>
+                              </tr>
+                              <tr>
+                                 <td>Ensure the total revenue override amount matches the total contract amount. To automatically calculate the total revenue override amount, leave the revenue override amounts empty.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>To exclude range calculations for revenue allocation, set the No Allocation Threshold field as true.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Specify all contract lines for the customer contract. Exclude any cancelled or terminated lines. Ensure that all contract lines are for the same customer contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Leave the Currency Reference field empty or specify the existing currency for the customer contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Ensure the total revenue override amount matches the sum of all child contract amounts. To automatically calculate the total revenue override amount, leave the revenue override amounts empty.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Specify all child contract lines for the linked customer contract. Exclude any cancelled or terminated lines. Ensure that all contract lines are child lines for the same linked customer contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Customer contract ID submitted in Customer Contract Reference doesn't match the ID submitted in Customer Contract ID. Leave the Customer Contract ID field empty or specify the same ID for both fields.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="CurrencyObjectType">&nbsp;</a>
+               <h4 class="ws-title">CurrencyObject</h4> part of: <a href="#MEA_Customer_Contract_DataType">MEA_Customer_Contract_Data</a>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @Descriptor&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Display information used to describe an instance of an object. This 'optional' information is for outbound descriptive purposes only and is not processed on inbound Workday Web Services requests.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>ID&nbsp;</td>
+                        <td>
+                           <a href="#CurrencyObjectIDType">CurrencyObjectID</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Contains a unique identifier for an instance of an object.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="CurrencyObjectIDType">&nbsp;</a>
+               <h4 class="ws-title">CurrencyObjectID</h4> part of: <a href="#CurrencyObjectType">CurrencyObject</a>
+               <div>Contains a unique identifier for an instance of an object.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>#text&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @type&nbsp;</td>
+                        <td>WID,  Currency_ID,  Currency_Numeric_Code&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>The unique identifier type. Each "ID" for an instance of an object contains a type and a value. A single instance of an object can have multiple "ID" but only a single "ID" per "type".  Some "types" require a reference to a parent instance.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Revenue_Allocation_Calculation_BasisObjectType">&nbsp;</a>
+               <h4 class="ws-title">Revenue_Allocation_Calculation_BasisObject</h4> part of: <a href="#MEA_Customer_Contract_DataType">MEA_Customer_Contract_Data</a>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @Descriptor&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Display information used to describe an instance of an object. This 'optional' information is for outbound descriptive purposes only and is not processed on inbound Workday Web Services requests.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>ID&nbsp;</td>
+                        <td>
+                           <a href="#Revenue_Allocation_Calculation_BasisObjectIDType">Revenue_Allocation_Calculation_BasisObjectID</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Contains a unique identifier for an instance of an object.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Revenue_Allocation_Calculation_BasisObjectIDType">&nbsp;</a>
+               <h4 class="ws-title">Revenue_Allocation_Calculation_BasisObjectID</h4> part of: <a href="#Revenue_Allocation_Calculation_BasisObjectType">Revenue_Allocation_Calculation_BasisObject</a>
+               <div>Contains a unique identifier for an instance of an object.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>#text&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @type&nbsp;</td>
+                        <td>WID,  Revenue_Allocation_Calculation_Basis&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>The unique identifier type. Each "ID" for an instance of an object contains a type and a value. A single instance of an object can have multiple "ID" but only a single "ID" per "type".  Some "types" require a reference to a parent instance.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="MEA_Customer_Contract_Line_DataType">&nbsp;</a>
+               <h4 class="ws-title">MEA_Customer_Contract_Line_Data</h4> part of: <a href="#MEA_Customer_Contract_DataType">MEA_Customer_Contract_Data</a>
+               <div>Contains customer contract line data.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Contract_Line_Reference&nbsp;</td>
+                        <td>
+                           <a href="#Customer_Contract_LineObjectType">Customer_Contract_LineObject</a>&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>A reference to an existing receivable contract line.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Linked_Contract_Line_Reference&nbsp;</td>
+                        <td>
+                           <a href="#Customer_Contract_LineObjectType">Customer_Contract_LineObject</a>&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>A reference to a receivable contract line of a linked contract's child contract. Not applicable for standard (non-linked) contracts.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Revenue_Treatment_Reference&nbsp;</td>
+                        <td>
+                           <a href="#Revenue_TreatmentObjectType">Revenue_TreatmentObject</a>&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>If true, the customer contract line has deferred revenue.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Exclude_From_Calculation&nbsp;</td>
+                        <td>boolean&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>If true, excludes the contract line from the revenue allocation calculation.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Fixed&nbsp;</td>
+                        <td>boolean&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>If true, sets the revenue override amount to fair value extended amount.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>SSP__FV__Unit_Price&nbsp;</td>
+                        <td>decimal (21, 6) &nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>The fair value unit price. Workday ignores this field in the Put Multiple-Element Revenue Allocation web service operation and automatically calculates the Fair Value Unit Price value based on the Fair Value Extended Amount value.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>SSP__FV__Extended_Amount&nbsp;</td>
+                        <td>decimal (18, 3) &nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>The fair value unit price multiplied by the quantity.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Revenue_Override_Amount&nbsp;</td>
+                        <td>decimal (26, 6) &nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>The customer contract line revenue override amount.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <td>
+                           <table class="typetable" width="100%" cellspacing="0" cellpadding="0">
+                              <tr>
+                                 <th>Validation</th>
+                                 <th>Description</th>
+                              </tr>
+                              <tr>
+                                 <td>Contract line can't be both excluded and fixed.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Leave the Revenue Treatment Reference field empty or specify the existing revenue treatment for contract line [contractLineRef] ([contractLine]).&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>[contractLineRef] ([contractLine]) is not the parent contract line for [linkedLineRef] ([linkedLine]). Ensure that all Contract Line Reference values submitted are the parent lines for the Linked Contract Line Reference values submitted.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>Specify a Linked Contract Line Reference for every line of a linked contract.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                              <tr>
+                                 <td>You can't modify a parent line [plineRef] ([pline]) that is canceled or terminated. If you leave the parent line reference empty, Workday will create a new parent line for an active child contract line.&nbsp;</td>
+                                 <td>&nbsp;</td>
+                              </tr>
+                           </table>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Customer_Contract_LineObjectType">&nbsp;</a>
+               <h4 class="ws-title">Customer_Contract_LineObject</h4> part of: <a href="#MEA_Customer_Contract_Line_DataType">MEA_Customer_Contract_Line_Data,</a>
+               <a href="#MEA_Customer_Contract_Line_DataType">MEA_Customer_Contract_Line_Data</a>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @Descriptor&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Display information used to describe an instance of an object. This 'optional' information is for outbound descriptive purposes only and is not processed on inbound Workday Web Services requests.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>ID&nbsp;</td>
+                        <td>
+                           <a href="#Customer_Contract_LineObjectIDType">Customer_Contract_LineObjectID</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Contains a unique identifier for an instance of an object.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Customer_Contract_LineObjectIDType">&nbsp;</a>
+               <h4 class="ws-title">Customer_Contract_LineObjectID</h4> part of: <a href="#Customer_Contract_LineObjectType">Customer_Contract_LineObject</a>
+               <div>Contains a unique identifier for an instance of an object.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>#text&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @type&nbsp;</td>
+                        <td>WID,  Receivable_Contract_Line_Reference_ID&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>The unique identifier type. Each "ID" for an instance of an object contains a type and a value. A single instance of an object can have multiple "ID" but only a single "ID" per "type".  Some "types" require a reference to a parent instance.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Revenue_TreatmentObjectType">&nbsp;</a>
+               <h4 class="ws-title">Revenue_TreatmentObject</h4> part of: <a href="#MEA_Customer_Contract_Line_DataType">MEA_Customer_Contract_Line_Data</a>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @Descriptor&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Display information used to describe an instance of an object. This 'optional' information is for outbound descriptive purposes only and is not processed on inbound Workday Web Services requests.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>ID&nbsp;</td>
+                        <td>
+                           <a href="#Revenue_TreatmentObjectIDType">Revenue_TreatmentObjectID</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Contains a unique identifier for an instance of an object.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Revenue_TreatmentObjectIDType">&nbsp;</a>
+               <h4 class="ws-title">Revenue_TreatmentObjectID</h4> part of: <a href="#Revenue_TreatmentObjectType">Revenue_TreatmentObject</a>
+               <div>Contains a unique identifier for an instance of an object.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>#text&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td> @type&nbsp;</td>
+                        <td>WID,  Revenue_Treatment_ID&nbsp;</td>
+                        <td>[1..1]&nbsp;</td>
+                        <td>The unique identifier type. Each "ID" for an instance of an object contains a type and a value. A single instance of an object can have multiple "ID" but only a single "ID" per "type".  Some "types" require a reference to a parent instance.&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Application_Instance_Related_Exceptions_DataType">&nbsp;</a>
+               <h4 class="ws-title">Application_Instance_Related_Exceptions_Data</h4> part of: <a href="#Put_Multiple-Element_Revenue_Allocation_ResponseType">Put_Multiple-Element_Revenue_Allocation_Response</a>
+               <div>Element containing Exceptions Data</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Exceptions_Data&nbsp;</td>
+                        <td>
+                           <a href="#Application_Instance_Exceptions_DataType">Application_Instance_Exceptions_Data</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Exceptions Data&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Application_Instance_Exceptions_DataType">&nbsp;</a>
+               <h4 class="ws-title">Application_Instance_Exceptions_Data</h4> part of: <a href="#Application_Instance_Related_Exceptions_DataType">Application_Instance_Related_Exceptions_Data</a>
+               <div>Element containing application related exceptions data</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Exception_Data&nbsp;</td>
+                        <td>
+                           <a href="#Exception_DataType">Exception_Data</a>&nbsp;</td>
+                        <td>[0..*]&nbsp;</td>
+                        <td>Exception Data&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Exception_DataType">&nbsp;</a>
+               <h4 class="ws-title">Exception_Data</h4> part of: <a href="#Application_Instance_Exceptions_DataType">Application_Instance_Exceptions_Data</a>
+               <div>Exception (Errors and Warning) associated with the transaction.</div>
+               <div>&nbsp;</div>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Parameter name</th>
+                        <th>Type/Value</th>
+                        <th>Cardinality</th>
+                        <th>Description</th>
+                        <th>Validations</th>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Classification&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Exception Classification (Error or Warning)&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                     <tr class="typetable">
+                        <td>Message&nbsp;</td>
+                        <td>string&nbsp;</td>
+                        <td>[0..1]&nbsp;</td>
+                        <td>Exception Detail&nbsp;</td>
+                        <td>&nbsp;</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Customer_ContractReferenceEnumeration">&nbsp;</a>
+               <h4 class="ws-title">Customer_ContractReferenceEnumeration</h4> part of: <a href="#Customer_ContractObjectIDType">Customer_ContractObjectID</a>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Base Type</th>
+                     </tr>
+                     <tr>
+                        <td>string</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="CurrencyReferenceEnumeration">&nbsp;</a>
+               <h4 class="ws-title">CurrencyReferenceEnumeration</h4> part of: <a href="#CurrencyObjectIDType">CurrencyObjectID</a>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Base Type</th>
+                     </tr>
+                     <tr>
+                        <td>string</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Revenue_Allocation_Calculation_BasisReferenceEnumeration">&nbsp;</a>
+               <h4 class="ws-title">Revenue_Allocation_Calculation_BasisReferenceEnumeration</h4> part of: <a href="#Revenue_Allocation_Calculation_BasisObjectIDType">Revenue_Allocation_Calculation_BasisObjectID</a>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Base Type</th>
+                     </tr>
+                     <tr>
+                        <td>string</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Customer_Contract_LineReferenceEnumeration">&nbsp;</a>
+               <h4 class="ws-title">Customer_Contract_LineReferenceEnumeration</h4> part of: <a href="#Customer_Contract_LineObjectIDType">Customer_Contract_LineObjectID</a>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Base Type</th>
+                     </tr>
+                     <tr>
+                        <td>string</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+         <tr>
+            <td>
+               <a name="Revenue_TreatmentReferenceEnumeration">&nbsp;</a>
+               <h4 class="ws-title">Revenue_TreatmentReferenceEnumeration</h4> part of: <a href="#Revenue_TreatmentObjectIDType">Revenue_TreatmentObjectID</a>
+               <div>
+                  <table class="typetable" cellspacing="0" cellpadding="0" width="100%">
+                     <tr>
+                        <th>Base Type</th>
+                     </tr>
+                     <tr>
+                        <td>string</td>
+                     </tr>
+                  </table>
+               </div>
+            </td>
+         </tr>
+         <tr class="noborder" style="noborder">
+            <td class="noborder" style="noborder;text-align: right;">
+               <span class="xml-link">
+                  <a href="#top">top</a>
+               </span>
+            </td>
+         </tr>
+      </table>
+   </body>
+</html>
