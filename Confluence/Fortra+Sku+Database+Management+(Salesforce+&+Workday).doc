@@ -1,0 +1,1091 @@
+Date: Tue, 2 Jun 2026 16:48:59 +0000 (UTC)
+Message-ID: <297991384.7.1780418939493@2ebb1b3b6ac8>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_57714839.1780418939492"
+
+------=_Part_6_57714839.1780418939492
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Fortra Sku Database Management (Salesforce &amp; Workday)</title=
+>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Fortra Sku Database Management (Salesforce &amp; Workday)</h1>
+    <div class=3D"Section1">
+        <hr local-id=3D"ed0bad85-fe98-4595-b458-0d69b007f31b">
+<style>[data-colorid=3Dkmeci590pt]{color:#006644} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dkmeci590pt]{color:#99ffdd}[data-colorid=3Doveqz50z4a]{c=
+olor:#006644} html[data-color-mode=3Ddark] [data-colorid=3Doveqz50z4a]{colo=
+r:#99ffdd}[data-colorid=3Dtyheu74mpp]{color:#006644} html[data-color-mode=
+=3Ddark] [data-colorid=3Dtyheu74mpp]{color:#99ffdd}[data-colorid=3Dpg8e1a8f=
+ba]{color:#006644} html[data-color-mode=3Ddark] [data-colorid=3Dpg8e1a8fba]=
+{color:#99ffdd}[data-colorid=3Drjhqp4axs6]{color:#006644} html[data-color-m=
+ode=3Ddark] [data-colorid=3Drjhqp4axs6]{color:#99ffdd}[data-colorid=3Dzkjoy=
+rw30w]{color:#006644} html[data-color-mode=3Ddark] [data-colorid=3Dzkjoyrw3=
+0w]{color:#99ffdd}[data-colorid=3Dzs8sfzlung]{color:#006644} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Dzs8sfzlung]{color:#99ffdd}[data-colorid=3Dxl=
+gis203zq]{color:#006644} html[data-color-mode=3Ddark] [data-colorid=3Dxlgis=
+203zq]{color:#99ffdd}[data-colorid=3Dsfdmj8icro]{color:#006644} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Dsfdmj8icro]{color:#99ffdd}[data-colorid=
+=3Diw38osopgs]{color:#006644} html[data-color-mode=3Ddark] [data-colorid=3D=
+iw38osopgs]{color:#99ffdd}[data-colorid=3Dqqf7o5tfcb]{color:#006644} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Dqqf7o5tfcb]{color:#99ffdd}[data-colo=
+rid=3Di0kz3cmm5k]{color:#006644} html[data-color-mode=3Ddark] [data-colorid=
+=3Di0kz3cmm5k]{color:#99ffdd}[data-colorid=3Dq0cf5a5qie]{color:#006644} htm=
+l[data-color-mode=3Ddark] [data-colorid=3Dq0cf5a5qie]{color:#99ffdd}[data-c=
+olorid=3De84udi183r]{color:#006644} html[data-color-mode=3Ddark] [data-colo=
+rid=3De84udi183r]{color:#99ffdd}[data-colorid=3Dgr123kks5z]{color:#006644} =
+html[data-color-mode=3Ddark] [data-colorid=3Dgr123kks5z]{color:#99ffdd}[dat=
+a-colorid=3Dsy2efz4lx7]{color:#006644} html[data-color-mode=3Ddark] [data-c=
+olorid=3Dsy2efz4lx7]{color:#99ffdd}[data-colorid=3Dr56p46w4i0]{color:#00664=
+4} html[data-color-mode=3Ddark] [data-colorid=3Dr56p46w4i0]{color:#99ffdd}[=
+data-colorid=3Dq0vydn4ewi]{color:#006644} html[data-color-mode=3Ddark] [dat=
+a-colorid=3Dq0vydn4ewi]{color:#99ffdd}[data-colorid=3Dihkadmszqs]{color:#00=
+6644} html[data-color-mode=3Ddark] [data-colorid=3Dihkadmszqs]{color:#99ffd=
+d}[data-colorid=3Dcutwq4e4m1]{color:#006644} html[data-color-mode=3Ddark] [=
+data-colorid=3Dcutwq4e4m1]{color:#99ffdd}[data-colorid=3Dz164gc2ok3]{color:=
+#006644} html[data-color-mode=3Ddark] [data-colorid=3Dz164gc2ok3]{color:#99=
+ffdd}[data-colorid=3Dc30ojlj2h6]{color:#006644} html[data-color-mode=3Ddark=
+] [data-colorid=3Dc30ojlj2h6]{color:#99ffdd}</style>
+<h1 local-id=3D"c8829d3c94ac" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-SKU&amp;PriceGovernanceandSystem-of-RecordPlan">SKU &amp; Pric=
+e Governance and System-of-Record Plan</h1>
+<p local-id=3D"09964c230b52"><strong>Salesforce Revenue Cloud Advanced (Sou=
+rce of Truth) =E2=86=92 Workday (Financial System of Record)</strong><br><s=
+trong>Document Owner:</strong> Business Systems &amp; Innovation<br><strong=
+>Last Updated:</strong> <em>(3/6/2026)</em><br><strong>Audience:</strong> R=
+evOps, Sales Ops, Finance, Accounting, BSI Integration, Product, Order Mana=
+gement, Billing</p>
+<hr local-id=3D"d6fda38e-86f2-4fb0-98de-53f0ec7a3d20">
+<h2 local-id=3D"d16b619fd1aa" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-1)Purpose">1) Purpose</h2>
+<p local-id=3D"f1df4d7ae8dd">This document defines the enterprise approach =
+for managing <strong>SKU (Product) master data and price lists</strong> whi=
+le supporting the end-to-end process:</p>
+<blockquote local-id=3D"1526567c-0926-44c3-b06f-005784670b6b">
+<p local-id=3D"40905bb7cdba"><strong>Quote (Salesforce) =E2=86=92 Order (Sa=
+lesforce) =E2=86=92 Contract (Salesforce) -&gt;Contract (Workday) =E2=86=92=
+ Invoice (Workday)</strong></p>
+</blockquote>
+<p local-id=3D"f298c4f03353">Because quoting and invoicing occur in differe=
+nt systems, we must ensure:</p>
+<ol start=3D"1" local-id=3D"3f7651e0-ef9e-4e1b-83e8-258cd5ca946a">
+<li local-id=3D"7e54015d-862b-4181-82c6-77b85b41bac7">
+<p local-id=3D"6dc25cfe9c06"><strong>One single source of truth for SKU and=
+ official price list data</strong></p></li>
+<li local-id=3D"c527c7e3-46f6-4fce-a192-d2b6cad091b3">
+<p local-id=3D"0107c576e302">Ability to <strong>export an official price li=
+st</strong> at any time (audit, customer, internal use)</p></li>
+<li local-id=3D"fa1cb8bf-24b7-4fcc-94b8-c469f5bf94fc">
+<p local-id=3D"f271d7ac6321"><strong>Consistency between Salesforce and Wor=
+kday</strong> to prevent invoice errors, revenue leakage, and reconciliatio=
+n efforts</p></li>
+</ol>
+<hr local-id=3D"d7f85ad7-cae8-4516-bcb8-95826ad83b46">
+<h2 local-id=3D"627a9c8aa34c" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-2)ExecutiveSummary/Decision">2) Executive Summary / Decision</=
+h2>
+<h3 local-id=3D"b02417ce08b5" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Decision">Decision</h3>
+<ul local-id=3D"c793d9c2-6a14-4f7c-a741-3e61acdcb1c0">
+<li local-id=3D"55149680-44c2-4374-b2d9-3bea0d1299fb">
+<p local-id=3D"e578ee33cea6"><strong>Salesforce Revenue Cloud Advanced (RCA=
+) is the System of Truth for SKU and Price Lists</strong></p></li>
+<li local-id=3D"3cd5ec50-824c-4f83-9172-27333efce1b2">
+<p local-id=3D"73f30eb62d8d"><strong>Workday is the Financial System of Rec=
+ord for Contracts and Invoices</strong></p></li>
+<li local-id=3D"f974166b-1363-4325-947d-913562c75205">
+<p local-id=3D"9c45589161d4">SKU and price master data will be <strong>main=
+tained in Salesforce</strong> and <strong>pushed downstream to Workday</str=
+ong> via an integration layer (MuleSoft).</p></li>
+<li local-id=3D"586760a7-84ff-4ca2-9dc5-f6e44c52edfe">
+<p local-id=3D"1feeb858525b"><strong>No manual creation or editing of SKUs =
+in Workday</strong> (except integration-admin controlled mapping fields if =
+required).</p></li>
+</ul>
+<h3 local-id=3D"6c7488e61f61" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-GuidingPrinciples">Guiding Principles</h3>
+<ul local-id=3D"efcc49b3-bf94-4a21-9b07-0768c2a23567">
+<li local-id=3D"ca0c0989-0772-44cd-afdd-d32bfea4fbf3">
+<p local-id=3D"9c71a5075d91"><strong>One-way sync for master data:</strong>=
+ Salesforce =E2=86=92 Workday</p></li>
+<li local-id=3D"a49868ef-67b5-4c99-a922-fd3555c2ccd1">
+<p local-id=3D"d48feb0e50ce"><strong>Event-driven sync for transactions:</s=
+trong> Orders/Amendments from Salesforce =E2=86=92 Workday</p></li>
+<li local-id=3D"e265d097-e11e-4b24-98d7-68bd972ad35a">
+<p local-id=3D"ce2d10e6077e"><strong>Immutable SKU Code:</strong> once crea=
+ted, the SKU identifier never changes</p></li>
+<li local-id=3D"8d02a4c5-d588-41e8-81a6-5bca1ffca3af">
+<p local-id=3D"47e63133b7d6"><strong>Effective dating:</strong> pricing and=
+ key commercial attributes are versioned over time (no overwrites)</p></li>
+</ul>
+<hr local-id=3D"8fd6b803-1ab7-490d-a7e9-4042153db005">
+<h2 local-id=3D"89217f675704" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-3)WhySalesforceOwnsSKU&amp;Price(Rationale)">3) Why Salesforce=
+ Owns SKU &amp; Price (Rationale)</h2>
+<p local-id=3D"d348fae490cb">Salesforce must own SKU and pricing master dat=
+a because:</p>
+<ul local-id=3D"d2a25376-a51f-4393-bab3-274fdefccb4b">
+<li local-id=3D"cf8ff47c-b618-453c-9496-4b7d878426a5">
+<p local-id=3D"f0978d434ec6">Salesforce RCA is the system that <strong>crea=
+tes quotes and orders</strong>, and therefore must <strong>model products, =
+bundles, and commercial pricing</strong> accurately.</p></li>
+<li local-id=3D"55bde4e9-ad0a-40b4-9592-5e8da5e584c1">
+<p local-id=3D"a6ce34314862">Workday is optimized for <strong>financial exe=
+cution</strong>: contracts, invoicing, accounting controls, and revenue rec=
+ognition=E2=80=94not commercial configuration and pricing logic.</p></li>
+<li local-id=3D"6bed1582-c1e3-4c0f-b517-ad316ae4cf9f">
+<p local-id=3D"edf5164d08e7">A single authoritative SKU + price list source=
+ avoids:</p>
+<ul local-id=3D"3972b18c-f59b-45d0-a17f-6a681ae5599f">
+<li local-id=3D"9c846f17-8890-4f36-8186-b615dfccad1d">
+<p local-id=3D"cef7ebda34c4">duplicate SKU definitions</p></li>
+<li local-id=3D"fcf03e20-1e75-4836-af82-9c4482bc0480">
+<p local-id=3D"110e79bfc7ca">mismatched pricing between quote and invoice</=
+p></li>
+<li local-id=3D"e6e527b4-4ab1-41a2-b467-3276bdec5e2c">
+<p local-id=3D"5c93cff935f9">manual reconciliation and audit risk</p></li>
+</ul></li>
+</ul>
+<hr local-id=3D"6ccb59e2-f7ce-4836-b9dd-6021127aadf8">
+<h2 local-id=3D"25b9e99f6ba0" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-4)SystemsofRecordvsSystemsofUse">4) Systems of Record vs Syste=
+ms of Use</h2>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"0ec1398a-c683-4683-9794-b51=
+e870420a3" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"48be155c-76e3-499e-8212-ba98afb65745">
+<th data-local-id=3D"a93b3b6b-1a9b-4f08-8a13-65da825700ca" class=3D"conflue=
+nceTh">
+<p local-id=3D"5902d52b1044">Data Domain</p></th>
+<th data-local-id=3D"4ac2ca83-3792-4777-9ebf-c6a94f033baa" class=3D"conflue=
+nceTh">
+<p local-id=3D"bb2d33fdb9cc">Primary System (Source of Truth)</p></th>
+<th data-local-id=3D"2180fa76-6024-4d66-bc0d-1cf891211524" class=3D"conflue=
+nceTh">
+<p local-id=3D"f1b1b4b8a700">Secondary System</p></th>
+<th data-local-id=3D"d9b723c1-e647-4528-b13e-3fef6b4a0a6e" class=3D"conflue=
+nceTh">
+<p local-id=3D"d19761ff8720">Notes</p></th>
+</tr>
+<tr data-local-id=3D"58233b18-8a25-4173-8cac-8c174e5e1304">
+<td data-local-id=3D"9b1f5194-25c6-425d-b8ed-3d2b6ddf25f6" class=3D"conflue=
+nceTd">
+<p local-id=3D"88d02fe6fef0">SKU / Product Master (commercial definition)</=
+p></td>
+<td data-local-id=3D"ed8cd235-fa6b-43da-836e-688957bb30bf" class=3D"conflue=
+nceTd">
+<p local-id=3D"9351eee4b812"><strong>Salesforce RCA</strong></p></td>
+<td data-local-id=3D"b9ca1fce-704c-4d3a-863f-3050996c231c" class=3D"conflue=
+nceTd">
+<p local-id=3D"0eb52be22324">Workday (mirror)</p></td>
+<td data-local-id=3D"c1f39003-a6ce-4113-b2ad-b694f538cb26" class=3D"conflue=
+nceTd">
+<p local-id=3D"49af78dee768">Workday stores a synchronized subset for billi=
+ng/contract reference</p></td>
+</tr>
+<tr data-local-id=3D"7afa7005-32e4-4690-b652-1ddd66c330f2">
+<td data-local-id=3D"72d2cd93-dd95-4daa-9202-b93c9c797226" class=3D"conflue=
+nceTd">
+<p local-id=3D"faaf6e5af4f8">Official Price Lists (published)</p></td>
+<td data-local-id=3D"6d04f433-6aef-4cef-a63e-fbb69a969176" class=3D"conflue=
+nceTd">
+<p local-id=3D"d90d0ff7ed0f"><strong>Salesforce RCA</strong></p></td>
+<td data-local-id=3D"af914dfc-6143-465d-b248-ab8f77e3d77e" class=3D"conflue=
+nceTd">
+<p local-id=3D"92692163c2c8">Workday (reference optional)</p></td>
+<td data-local-id=3D"df363032-334e-4858-8c9c-24e429c6b64b" class=3D"conflue=
+nceTd">
+<p local-id=3D"a018943517fc">Workday should invoice based on order line amo=
+unts, not re-price</p></td>
+</tr>
+<tr data-local-id=3D"9e7392c5-1250-4f8e-89d8-6152c53e6742">
+<td data-local-id=3D"a18c5509-9fcd-4334-85e6-b788c466e836" class=3D"conflue=
+nceTd">
+<p local-id=3D"567dbe612fd1">Quotes, Orders, Amendments</p></td>
+<td data-local-id=3D"833a7b93-df4d-49c7-bb77-4162d65ba285" class=3D"conflue=
+nceTd">
+<p local-id=3D"f8252fb62f89"><strong>Salesforce RCA</strong></p></td>
+<td data-local-id=3D"a6dfc0be-fa57-4416-bf2c-317678ae8150" class=3D"conflue=
+nceTd">
+<p local-id=3D"2c8a7c4bba17">Workday (consumes)</p></td>
+<td data-local-id=3D"c9c85928-b8b9-4f74-b41d-f2d296e808ba" class=3D"conflue=
+nceTd">
+<p local-id=3D"72de684e8d6b">Orders/amendments are the transactional handof=
+f</p></td>
+</tr>
+<tr data-local-id=3D"b98dc755-d0db-4cfb-b66a-8c317ed16c31">
+<td data-local-id=3D"3988d657-0697-4551-99c3-7dbb5d68dbad" class=3D"conflue=
+nceTd">
+<p local-id=3D"7b5122d3e290">Contracts &amp; Invoices</p></td>
+<td data-local-id=3D"33540b86-698a-4f53-8e76-752fae789cc8" class=3D"conflue=
+nceTd">
+<p local-id=3D"213d60d0e677">Workday</p></td>
+<td data-local-id=3D"4069e2e8-cc60-4937-9504-41d0c993463a" class=3D"conflue=
+nceTd">
+<p local-id=3D"704045bfeb1b">Salesforce (status visibility)</p></td>
+<td data-local-id=3D"549e9305-97ab-4d85-a59f-e24e90aa82f4" class=3D"conflue=
+nceTd">
+<p local-id=3D"30e05bf571bf">Workday owns financial documents and invoice l=
+ifecycle</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr local-id=3D"9874c3d2-7276-4c92-bdc2-dd2b3ef7fb0d">
+<h2 local-id=3D"c28d7c82942b" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-5)DataOwnership&amp;EditingRules">5) Data Ownership &amp; Edit=
+ing Rules</h2>
+<h3 local-id=3D"b45dd569ceb1" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Ownership(whochangeswhat)">Ownership (who changes what)</h3>
+<ul local-id=3D"6f6d9bf8-f23d-41fc-a6c6-3a6dd79f97da">
+<li local-id=3D"b6e10108-5853-47b9-8912-8635c5bf4a1e">
+<p local-id=3D"62ddeea3085d"><strong>RevOps / Product Ops</strong> owns:</p=
+>
+<ul local-id=3D"c0dacb72-630c-4f22-8586-6a9827d2bd91">
+<li local-id=3D"94443aa3-b8dc-453a-a43e-b080410c4023">
+<p local-id=3D"e0daa7b7c5d8">SKU creation/retirement</p></li>
+<li local-id=3D"77bce43e-ff8e-4f85-8bba-33a078cd9efe">
+<p local-id=3D"67d4e67522e0">product naming/descriptions</p></li>
+<li local-id=3D"6efb079b-8390-4932-9ef0-db61310da8b3">
+<p local-id=3D"0b5c77e096e5">packaging/offer structure (bundles)</p></li>
+<li local-id=3D"12a78054-bea0-400f-bba5-e8003e7be222">
+<p local-id=3D"07e0bcd4d99f">price list maintenance (list price + effective=
+ dates)</p></li>
+</ul></li>
+<li local-id=3D"d0ebb334-bc53-4f6b-bcae-05d959c77472">
+<p local-id=3D"29f313656ab3"><strong>Finance</strong> owns:</p>
+<ul local-id=3D"f390b073-8e18-49cf-815a-15953b2b00a3">
+<li local-id=3D"b5f507a5-f338-4fe4-b61a-3dce60df041a">
+<p local-id=3D"7250672d8f32">revenue category/account mapping rules</p></li=
+>
+<li local-id=3D"e7f4e50a-9027-4952-84a1-92c8295c21d5">
+<p local-id=3D"aa652d40a595">taxability and invoicing rules (as they apply =
+to finance)</p></li>
+<li local-id=3D"fe176aad-abf7-4bd5-b0d9-c086bcec5425">
+<p local-id=3D"e60073a48cb7">Workday accounting configuration</p></li>
+</ul></li>
+<li local-id=3D"85fe968f-e735-48f7-8216-bba8959fcbc6">
+<p local-id=3D"6ada18d7fa89"><strong>BSI / Integration</strong> owns:</p>
+<ul local-id=3D"15f5af71-d5f1-4e06-9c2c-230ac50d4519">
+<li local-id=3D"a6fb7d9d-0d54-4835-9e04-de994cf90fe8">
+<p local-id=3D"e9516f8064a5">integration pipelines</p></li>
+<li local-id=3D"1b1ae249-d762-4c81-a720-51cbbc27c6d2">
+<p local-id=3D"7c2c1f2db30f">monitoring, error handling, and retry logic</p=
+></li>
+<li local-id=3D"c73eac9d-1475-45d7-b2a9-8409f866298a">
+<p local-id=3D"d11984260723">data validation and reconciliation reporting</=
+p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"e738fb0e5bc7" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-EditingRules(hardguardrails)">Editing Rules (hard guardrails)<=
+/h3>
+<ul local-id=3D"82619c68-8618-4737-9627-d702aa1bacc7">
+<li local-id=3D"9b7b428f-6290-46cf-b8ca-a2da3ac217a2">
+<p local-id=3D"2918b7ca56b5"><strong>SKUs and Prices are created/updated on=
+ly in Salesforce</strong></p></li>
+<li local-id=3D"3df12b7a-b9d9-4c32-96a1-adfe5bd9af5d">
+<p local-id=3D"7e9f66a70ac7"><strong>Workday SKUs are not created manually<=
+/strong> (unless explicitly approved as an exception process)</p></li>
+<li local-id=3D"9b4853e8-8258-4be1-8c09-25526e50c1d0">
+<p local-id=3D"4db5b060d7a0">Workday may store <strong>finance-specific map=
+ping fields</strong> (if required), but those must be governed and synchron=
+ized back only if explicitly designed (default approach is to manage these =
+mappings in Salesforce)</p></li>
+</ul>
+<hr local-id=3D"4bda8dce-c640-4b20-bff2-d4cbff4e768e">
+<h2 local-id=3D"6ad5a0acdd03" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-6)CanonicalSKUModel:WhatLivesWhere">6) Canonical SKU Model: Wh=
+at Lives Where</h2>
+<p local-id=3D"848f8035b705">This section defines what SKU-level data is au=
+thoritative in Salesforce vs. what is stored in Workday.</p>
+<h3 local-id=3D"0cf6fe23cef2" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-6.1SalesforceSKU-LevelData(SourceofTruth)">6.1 Salesforce SKU-=
+Level Data (Source of Truth)</h3>
+<p local-id=3D"afebd96143fe">Salesforce will store and govern:</p>
+<p local-id=3D"39f0b4349549"><strong>Identity &amp; Commercial Definition</=
+strong></p>
+<ul local-id=3D"972a49a7-3721-4f5e-a60b-62e0b68070ea">
+<li local-id=3D"fc1ad8bf-b96c-4da6-b769-936fba3b0d2c">
+<p local-id=3D"5645b0ea2bc4">SKU Code (immutable unique identifier)</p></li=
+>
+<li local-id=3D"19fae73d-8bd5-4ef2-a0e7-a19e82b9ebe6">
+<p local-id=3D"6a8627a4d3bd">SKU Name / Display Name</p></li>
+<li local-id=3D"bf4e1470-ccbc-40f0-b08c-2658c8ed792d">
+<p local-id=3D"e4c6dac0e457">SKU Type (One-time, Recurring, Usage, Fee, Cre=
+dit)</p></li>
+<li local-id=3D"df611c9e-3d0c-4f8d-95a8-51a7724fdda0">
+<p local-id=3D"85e9a941a4ff">Product Family / Category (commercial taxonomy=
+)</p></li>
+<li local-id=3D"b3c6f05c-7aa9-4224-b9b3-732dd5e5608e">
+<p local-id=3D"5c3ddf4d2962">Unit of Measure (UOM)</p></li>
+<li local-id=3D"00d3244e-23d0-4968-9f8d-9f067e917552">
+<p local-id=3D"841499175d3d">Active/Inactive lifecycle status</p></li>
+<li local-id=3D"45e34ae5-e03a-4cb1-b0fc-e704f306e32f">
+<p local-id=3D"284bb7245a43">Effective dates for versions (if applicable)</=
+p></li>
+</ul>
+<p local-id=3D"d45ca25a38dc"><strong>Commercial Pricing</strong></p>
+<ul local-id=3D"ade0d603-3fe4-434a-9cc8-373cb5159821">
+<li local-id=3D"cc2001b0-74b8-4252-bb45-b820c5289fbc">
+<p local-id=3D"c21b3fad32ad">Official Price Lists (Price Books)</p></li>
+<li local-id=3D"4b7fc1ef-369b-44fe-884a-d762a71c5c50">
+<p local-id=3D"9b4faf7128b0">Price list entries:</p>
+<ul local-id=3D"fdc8d948-77c5-4b2f-849f-1b78f7760b6f">
+<li local-id=3D"f5492485-3bcb-4ab7-89dd-a9e42bc690ce">
+<p local-id=3D"f8c7418ce3c9">list price</p></li>
+<li local-id=3D"3534775f-ebd4-4276-83a7-505a464218f3">
+<p local-id=3D"3b6bc956f927">currency</p></li>
+<li local-id=3D"82f97208-249e-454b-bd90-6a4442f9fc6e">
+<p local-id=3D"637130bf9887">billing frequency (monthly/annual, etc.)</p></=
+li>
+<li local-id=3D"a8888a09-25f3-446b-a8ee-b88f7841a7da">
+<p local-id=3D"eb60f4a24a2b">charge type (one-time/recurring/usage)</p></li=
+>
+<li local-id=3D"775e41db-f10f-48f3-a11e-8849d50ca4c2">
+<p local-id=3D"ca0ce9c0abe4">effective start/end dates</p></li>
+</ul></li>
+</ul>
+<p local-id=3D"ce84d91ff4aa"><strong>Commercial Packaging &amp; Selling Rul=
+es</strong> <em>(Salesforce only)</em></p>
+<ul local-id=3D"202a82ff-722c-4f5a-9db3-2a2aee7ef75a">
+<li local-id=3D"42136731-5d68-49ff-bc42-69810dab64b9">
+<p local-id=3D"9ba2cd72b112">Bundles and package structure</p></li>
+<li local-id=3D"cb9eea15-c525-42d0-b3a8-82be5c4465e8">
+<p local-id=3D"76ee7359618c">Configuration attributes (if used)</p></li>
+<li local-id=3D"eea78e6e-1f9e-4cce-9302-c2c171bec5ff">
+<p local-id=3D"458af804b3e9">Eligibility/constraints</p></li>
+<li local-id=3D"c32e7ce8-93e2-4aac-b4a3-1a57e9e9a5d0">
+<p local-id=3D"c34f87b57736">Discounting rules or pricing logic (as configu=
+red in RCA)</p></li>
+</ul>
+<p local-id=3D"3376efc7630a"><strong>Exportability Requirement</strong></p>
+<ul local-id=3D"89ac8c35-8434-4cac-93f5-d3274fbee573">
+<li local-id=3D"62a3caad-d9db-47a1-a8e2-d2475d8a1362">
+<p local-id=3D"45095533a72c">Salesforce will be able to produce:</p>
+<ul local-id=3D"4eae5129-c0d5-476d-8613-0ba40b76af91">
+<li local-id=3D"3c59db57-55c3-4aa4-ac6e-71ebe637af2f">
+<p local-id=3D"f80130f6f69a">=E2=80=9COfficial Published Price List Export=
+=E2=80=9D</p></li>
+<li local-id=3D"6f18bad7-d8ce-4b17-b4a1-b3d73f512513">
+<p local-id=3D"4ea24d51f46c">=E2=80=9CCurrent Active SKU Catalog Export=E2=
+=80=9D</p></li>
+<li local-id=3D"394feaf7-9a51-4236-8333-b7c4e4efcaed">
+<p local-id=3D"cc6abae946eb">=E2=80=9CSKU Change Log=E2=80=9D</p></li>
+</ul></li>
+</ul>
+<hr local-id=3D"d1a7648e-03f2-45a6-af28-0c7ad1eb9f55">
+<h3 local-id=3D"bdc144d12e08" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-6.2WorkdaySKU-LevelData(DownstreamMirror/FinancialUse)">6.2 Wo=
+rkday SKU-Level Data (Downstream Mirror / Financial Use)</h3>
+<p local-id=3D"ba680a1e0fc5">Workday will store a synchronized subset requi=
+red to:</p>
+<ul local-id=3D"9a5c26eb-6cbc-4185-9b3d-61158ebc80ab">
+<li local-id=3D"73732ad0-6f97-40a1-935b-bad130166001">
+<p local-id=3D"9d40a84a5549">recognize items in contracts</p></li>
+<li local-id=3D"56e142b2-3039-4d0a-82f2-c4cf3c2d815f">
+<p local-id=3D"98e15f245f29">generate invoices</p></li>
+<li local-id=3D"60901304-3e0a-4b88-9c48-7e76b3dc6853">
+<p local-id=3D"e31957fdc055">support downstream accounting and reporting</p=
+></li>
+</ul>
+<p local-id=3D"7e75e540877c">Workday stores:</p>
+<p local-id=3D"e57a7f4e16f3"><strong>SKU Reference Fields (mirrored)</stron=
+g></p>
+<ul local-id=3D"15a834aa-d954-4a78-8450-a216a62d22bd">
+<li local-id=3D"f7e5b3ee-ae50-40c6-a872-9f67ae4efeab">
+<p local-id=3D"8d70e4d031ea">SKU Code (from Salesforce; used as cross-syste=
+m identifier)</p></li>
+<li local-id=3D"8ded77fc-f558-4978-b782-1583728810a4">
+<p local-id=3D"109171d3b1ec">SKU Name (for readability)</p></li>
+<li local-id=3D"b881eb2c-7a9b-4dfa-a469-b0aed9593b2b">
+<p local-id=3D"d59a0173d337">SKU Status (active/inactive)</p></li>
+<li local-id=3D"b68075a3-0c7f-402b-af40-d746d6e7fe5a">
+<p local-id=3D"c315f299f805">Charge type / billing behavior (as needed for =
+invoice rules)</p></li>
+</ul>
+<p local-id=3D"01b6f105f781"><strong>Finance &amp; Billing Classification</=
+strong></p>
+<ul local-id=3D"b11c73e0-fe6a-4106-bce9-0488c58b090e">
+<li local-id=3D"90822d74-5857-4b69-8d19-791e4f689af9">
+<p local-id=3D"fda10f11b357">Revenue category / revenue recognition classif=
+ication (if applicable)</p></li>
+<li local-id=3D"0f6471d5-a93d-4453-bcfa-811f738b719f">
+<p local-id=3D"cc8037c7835b">Tax code or taxability indicator (if applicabl=
+e)</p></li>
+<li local-id=3D"c1782265-0755-4d87-9fc3-959db8d31108">
+<p local-id=3D"d6f4a19e7143">Billing category / invoice grouping</p></li>
+<li local-id=3D"1d18c916-43a0-4d85-95ec-3fccf17cbfb1">
+<p local-id=3D"892037a5f286">GL mapping (as required by Finance policy)</p>=
+</li>
+</ul>
+<blockquote local-id=3D"8f13271d-a43c-4fd2-91c7-3091ee75a586">
+<p local-id=3D"5370449ffa11">Note: Workday should not =E2=80=9Crecompute=E2=
+=80=9D list prices. It should invoice from the <strong>Salesforce order lin=
+e amounts</strong> provided at order submission and amendment events.</p>
+</blockquote>
+<hr local-id=3D"d147b3b4-6cae-42c4-9549-86460f44853d">
+<h1 local-id=3D"7b9fc40176bf" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-TobeImplementedbyBSI"><span data-colorid=3D"gr123kks5z">To be =
+Implemented by BSI </span></h1>
+<h2 local-id=3D"5c756f2b2473" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-7)IntegrationApproach(SyncStrategy)"><span data-colorid=3D"rjh=
+qp4axs6">7) Integration Approach (Sync Strategy)</span></h2>
+<h3 local-id=3D"b1f28f014743" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-7.1MasterDataSync(SKU+PriceLists)"><span data-colorid=3D"sy2ef=
+z4lx7">7.1 Master Data Sync (SKU + Price Lists)</span></h3>
+<p local-id=3D"2fb63ca86ee1"><strong><span data-colorid=3D"ihkadmszqs">Dire=
+ction:</span></strong><span data-colorid=3D"pg8e1a8fba"> Salesforce =E2=86=
+=92 Mulesoft =E2=86=92 Workday</span><br><strong><span data-colorid=3D"c30o=
+jlj2h6">Frequency:</span></strong><span data-colorid=3D"zkjoyrw30w"> Schedu=
+led + Event-driven (recommended)</span></p>
+<ul local-id=3D"caaf593d-23df-43bf-9d68-4f8c8118cb44">
+<li local-id=3D"412a84e5-acfd-4e33-948f-5bca5ccdf67a">
+<p local-id=3D"5aacf9c7ce74"><span data-colorid=3D"zs8sfzlung">Event-driven=
+ for =E2=80=9CPublish=E2=80=9D actions (new or changed SKUs/prices)</span><=
+/p></li>
+<li local-id=3D"2aa2810f-fc39-485f-a8ea-8c215418048b">
+<p local-id=3D"fd803ce56ce6"><span data-colorid=3D"oveqz50z4a">Scheduled re=
+conciliation job (daily) to catch drift</span></p></li>
+</ul>
+<p local-id=3D"f0e36cc63ffc"><strong><span data-colorid=3D"q0vydn4ewi">What=
+ triggers a push?</span></strong></p>
+<ul local-id=3D"a8f3df18-d320-4105-8234-35ca7674813c">
+<li local-id=3D"2acdc926-3aa0-4f12-a2f4-802bc02468ce">
+<p local-id=3D"cfba09131687"><span data-colorid=3D"tyheu74mpp">SKU created =
+or status changed to Active/Retired</span></p></li>
+<li local-id=3D"e8a2ce87-5c44-4e4c-ab85-c0ff2a10c77e">
+<p local-id=3D"5f33f216c650"><span data-colorid=3D"z164gc2ok3">Price list c=
+hanged and set to </span><strong><span data-colorid=3D"i0kz3cmm5k">Approved=
+/Published</span></strong></p></li>
+<li local-id=3D"598764ee-8fa3-413e-b932-1870b53f78d9">
+<p local-id=3D"77847f6fa35e"><span data-colorid=3D"r56p46w4i0">Effective-da=
+ted price entry created/updated</span></p></li>
+</ul>
+<h3 local-id=3D"31519281a435" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-7.2TransactionSync(Orders=E2=86=92WorkdayContract)">7.2 Transa=
+ction Sync (Orders =E2=86=92 Workday Contract)</h3>
+<p local-id=3D"dcca7a890f97"><strong>Direction:</strong> Salesforce Order =
+=E2=86=92 Mulesoft =E2=86=92 Workday Contract<br><strong>What is sent:</str=
+ong></p>
+<ul local-id=3D"c20233d8-b649-422e-adbe-f9ab965b1a34">
+<li local-id=3D"c801af7f-4066-42ee-b8de-516eb32a8819">
+<p local-id=3D"f341af1bd9c4">Customer/account reference</p></li>
+<li local-id=3D"dcaff143-8d8e-4860-b956-c0e4337a4a6b">
+<p local-id=3D"8480df1e51e6">Order lines (SKU code, quantity, price, dates,=
+ billing terms, tax flags)</p></li>
+<li local-id=3D"cc0d7c4f-3a14-4166-ae69-ec9b6d841621">
+<p local-id=3D"caa0a4e62a36">Contract term and billing schedule as required=
+</p></li>
+<li local-id=3D"7a968dd9-2730-400a-8287-3cc30a95bf75">
+<p local-id=3D"792765b667e9">Amendment events for changes after initial ord=
+er</p></li>
+</ul>
+<h3 local-id=3D"0259e2f652b1" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-7.3ErrorHandling&amp;Reconciliation"><span data-colorid=3D"cut=
+wq4e4m1">7.3 Error Handling &amp; Reconciliation</span></h3>
+<p local-id=3D"c6927d980741"><span data-colorid=3D"qqf7o5tfcb">BSI Integrat=
+ion will support:</span></p>
+<ul local-id=3D"ae96540b-206d-483e-a512-5e1c85aa0ff0">
+<li local-id=3D"72fc2e46-8c5e-4112-8d3a-6b3b71980c73">
+<p local-id=3D"a0b99922c685"><span data-colorid=3D"q0cf5a5qie">Retry logic =
+for transient errors</span></p></li>
+<li local-id=3D"3aa205f8-b021-466d-9083-51770c035afb">
+<p local-id=3D"3d4c9b8a990a"><span data-colorid=3D"e84udi183r">Dead-letter =
+queue/error mailbox for exceptions</span></p></li>
+<li local-id=3D"fd9ceead-7f6f-43e1-9724-5a36f742b166">
+<p local-id=3D"0e9e4d48f994"><span data-colorid=3D"kmeci590pt">Daily reconc=
+iliation report:</span></p>
+<ul local-id=3D"a5c20838-d7c3-4683-ad56-a022be0738f9">
+<li local-id=3D"0f1326d0-0576-48a9-ba35-b838ca63fdb2">
+<p local-id=3D"64f7203d86a0"><span data-colorid=3D"xlgis203zq">SKUs missing=
+ in Workday</span></p></li>
+<li local-id=3D"9297e7f3-9d08-40f4-9cef-a9dde4d3905c">
+<p local-id=3D"786671b47b2a"><span data-colorid=3D"sfdmj8icro">status misma=
+tches</span></p></li>
+<li local-id=3D"3c316736-6410-4eda-a4ca-a146cd57ab25">
+<p local-id=3D"7157c09ba499"><span data-colorid=3D"iw38osopgs">pricing effe=
+ctive date conflicts (if mirrored)</span></p></li>
+</ul></li>
+</ul>
+<hr local-id=3D"d6ebd506-1372-4935-b553-1cbd90d3a56c">
+<h2 local-id=3D"91adaff3a38b" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-8)OfficialPriceListExportProcess(RequiredCapability)">8) Offic=
+ial Price List Export Process (Required Capability)</h2>
+<h3 local-id=3D"def4b93f47ec" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Goal">Goal</h3>
+<p local-id=3D"5dcee9f509e4">Any authorized team can export the <strong>off=
+icial price list</strong> at any time.</p>
+<h3 local-id=3D"e6e99ed77af9" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Definitionof=E2=80=9COfficial=E2=80=9D">Definition of =E2=80=
+=9COfficial=E2=80=9D</h3>
+<p local-id=3D"c122489e8f12">A price list is =E2=80=9Cofficial=E2=80=9D whe=
+n it is:</p>
+<ul local-id=3D"f0e13e66-f078-4e86-a9e8-09f185c5b07b">
+<li local-id=3D"8fddfa43-c4ee-4fe2-b65c-60bd0a2af7b2">
+<p local-id=3D"8e98cd3aab43">in <strong>Approved/Published</strong> status<=
+/p></li>
+<li local-id=3D"f19c9f05-c501-4f5d-ab05-2f7fff5fe2cd">
+<p local-id=3D"0454d448db34">effective dated</p></li>
+<li local-id=3D"4859ea41-b0f2-4720-8d29-c49d8eea077d">
+<p local-id=3D"6a5a429dcb25">controlled via change management/approvals</p>=
+</li>
+</ul>
+<h3 local-id=3D"00deb27970af" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-ExportFormat(recommended)">Export Format (recommended)</h3>
+<ul local-id=3D"00284cb7-c177-4cfe-9ff1-f22f658e3c96">
+<li local-id=3D"371cb8cf-9606-4c07-9895-20c642ea98b7">
+<p local-id=3D"39f98931b17b">Price List Code</p></li>
+<li local-id=3D"1c6d98c3-60fc-4bf8-8bfc-f88861bacd9e">
+<p local-id=3D"2161da6de128">Price List Name</p></li>
+<li local-id=3D"947c0f69-5267-4ad2-99fa-0bf921753801">
+<p local-id=3D"f41cf7868ee3">Currency</p></li>
+<li local-id=3D"e898c7e5-92c5-4b61-b724-d3efee832cdf">
+<p local-id=3D"b834a0592298">Market/Segment (if applicable)</p></li>
+<li local-id=3D"2e2fdc78-89d3-47d8-b86b-6d4e05e3f47c">
+<p local-id=3D"2d1f29ad535d">SKU Code</p></li>
+<li local-id=3D"aaeba4ae-877e-43ca-9c66-7ae03367c3f7">
+<p local-id=3D"6e2259bc5ecd">SKU Name</p></li>
+<li local-id=3D"3c14a8a5-e2bb-4ed7-8651-63d180c2d328">
+<p local-id=3D"1655bfcbbcad">Charge Type</p></li>
+<li local-id=3D"7aedf468-fa0c-4531-abbf-3405982710c5">
+<p local-id=3D"b3d37a360d13">Billing Frequency</p></li>
+<li local-id=3D"095f09e8-fb0d-402d-a55e-f6e6a13c712c">
+<p local-id=3D"fa831fc7d5ec">UOM</p></li>
+<li local-id=3D"99cf8170-23b5-4885-8fa8-7066c78ad8bd">
+<p local-id=3D"c55010b7e228">Unit Price</p></li>
+<li local-id=3D"8b92a05a-0f1a-415e-a3f3-291fe51a2748">
+<p local-id=3D"ae7bda159171">Effective Start Date</p></li>
+<li local-id=3D"eb88115b-f5b0-42d6-8fc9-66198e506c22">
+<p local-id=3D"d3185dbf6460">Effective End Date</p></li>
+<li local-id=3D"4662e6c7-4da8-4654-b16c-4f95203736d0">
+<p local-id=3D"c9f7ec33c91b">Published Version / Timestamp</p></li>
+</ul>
+<hr local-id=3D"8704c727-5813-455a-a9d5-ce1849d28c81">
+<h2 local-id=3D"5f67641cbc8c" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-9)Governance&amp;ChangeManagement">9) Governance &amp; Change =
+Management</h2>
+<h3 local-id=3D"c7ce3cb8ec64" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Requiredcontrols">Required controls</h3>
+<ol start=3D"1" local-id=3D"a971d574-adc5-49fe-816a-7ae53c0b0ad7">
+<li local-id=3D"99c7ce0b-6606-4556-87c9-fcacdb952e53">
+<p local-id=3D"ac4347b31d72"><strong>SKU Code Convention &amp; Uniqueness</=
+strong></p></li>
+<li local-id=3D"f71ac045-fa8b-4df2-a782-5c60b53c813b">
+<p local-id=3D"c085a5b5ea51"><strong>Approval workflow</strong> for:</p>
+<ul local-id=3D"26057e05-53b8-4a6d-a852-af95962d4d94">
+<li local-id=3D"3aff08b3-79a8-4772-96ca-7cb4ec9ea821">
+<p local-id=3D"eb673f42efd9">creating new SKUs (optional)</p></li>
+<li local-id=3D"4fc46cce-a8f3-419b-9932-0a02c1ad5cbc">
+<p local-id=3D"2c86c4da0b5e">retiring SKUs</p></li>
+<li local-id=3D"a3e26d21-5749-4838-a522-61c69d2657aa">
+<p local-id=3D"c41398876ed4">publishing price lists</p></li>
+</ul></li>
+<li local-id=3D"5896ea41-dfa5-405e-a76f-e4bdd3ecd2bb">
+<p local-id=3D"65dffb6c6153"><strong>Effective dating enforced</strong></p>=
+</li>
+<li local-id=3D"e70ecc50-2bcb-4f25-bca1-4bf73b37367c">
+<p local-id=3D"a981f6df6a11"><strong>No overlapping effective dates</strong=
+> for the same SKU + price list + charge type + billing frequency</p></li>
+<li local-id=3D"121b04c0-f45d-4862-a8b5-b19bd78063c2">
+<p local-id=3D"d9692beafeea"><strong>Audit logging</strong> for:</p>
+<ul local-id=3D"fa82bdc6-4cbc-404c-bb60-3d259c317f24">
+<li local-id=3D"21147515-ebec-4798-bb89-4fe221e78426">
+<p local-id=3D"437f838c84ef">who changed what</p></li>
+<li local-id=3D"b0d23dde-cdbe-4607-9ada-5da2127cc216">
+<p local-id=3D"bf16eab276af">when changes were approved/published</p></li>
+</ul></li>
+</ol>
+<h3 local-id=3D"d9698cec99bc" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Changetypesandexpectations">Change types and expectations</h3>
+<p local-id=3D"0e2f7567b287"><strong>Minor (non-pricing) changes</strong></=
+p>
+<ul local-id=3D"35606295-ecb5-40c4-84e6-4b2788b725cf">
+<li local-id=3D"bfd5e921-4153-46e8-879e-2bf9245b4b11">
+<p local-id=3D"57deaae0f5e5">Description changes, naming changes</p></li>
+<li local-id=3D"28dfe444-dca8-4fe0-ab32-85f8802f3a86">
+<p local-id=3D"c3c12f32697e">Effective date optional depending on policy</p=
+></li>
+<li local-id=3D"e80d62eb-903a-4d64-b6b5-e33a5f8cb21b">
+<p local-id=3D"6a717b5d3267">Sync to Workday for readability</p></li>
+</ul>
+<p local-id=3D"d23135bb09f3"><strong>Pricing changes</strong></p>
+<ul local-id=3D"3c85161c-5208-4a93-99fc-3404548071a8">
+<li local-id=3D"5176cb34-184f-40e1-8ed8-6556ea2e26f4">
+<p local-id=3D"7951b4cb3460">Always effective-dated</p></li>
+<li local-id=3D"a30ccc7d-8dd5-4f71-84d4-e0febafb1fb8">
+<p local-id=3D"ce284dd32b70">Always requires approval + publish event</p></=
+li>
+<li local-id=3D"b93a24ee-9da5-4685-b8f2-29dfdb58e437">
+<p local-id=3D"6b6c022a9f3f">Always triggers Workday mirror update (if mirr=
+ored)</p></li>
+</ul>
+<p local-id=3D"55779e4f7e7d"><strong>SKU retirement</strong></p>
+<ul local-id=3D"b38ab778-cc91-4689-95d1-ca27d7956ca2">
+<li local-id=3D"55825988-8c61-4bcf-b8c6-8d047afdcf06">
+<p local-id=3D"7a71cce77760">Retire in Salesforce</p></li>
+<li local-id=3D"e2e91c2c-a34e-40c8-a625-efba096d299b">
+<p local-id=3D"a0ed86fcf860">Sync to Workday</p></li>
+<li local-id=3D"2ef43251-f4eb-4cd4-b0ed-5aac84002522">
+<p local-id=3D"44d897ab7212">Prevent quoting new deals; existing contracts =
+unaffected</p></li>
+</ul>
+<hr local-id=3D"ceee8a3c-3e81-4c98-a0ed-59a5f5d5ccd8">
+<h2 local-id=3D"a19f863c20e0" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-10)Responsibilities(RACI-stylesummary)">10) Responsibilities (=
+RACI-style summary)</h2>
+<p local-id=3D"9a56a557bf1b">Legend: R=3DResponsible, A=3DAccountable, C=3D=
+Consulted, I=3DInformed</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"align-start" data-local-id=
+=3D"b12b4bb0-147e-4ea1-8896-0c5156384241" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"149de1c3-238d-4874-9710-c4efbfe7148b">
+<th data-local-id=3D"92a76716-1ab5-45cf-bf9b-8af059f57152" class=3D"conflue=
+nceTh">
+<p local-id=3D"49258c979ac1">Activity</p></th>
+<th data-local-id=3D"b663979b-bc36-4cc4-8f14-73cee1808205" class=3D"conflue=
+nceTh">
+<p local-id=3D"e360a7bf3f17">RevOps/Product Ops</p></th>
+<th data-local-id=3D"e62c7b74-33fd-4939-b978-9144e5689ee7" class=3D"conflue=
+nceTh">
+<p local-id=3D"ba804318cfab">Finance</p></th>
+<th data-local-id=3D"c3b116a3-19b3-4bb5-aa9b-9745403847d6" class=3D"conflue=
+nceTh">
+<p local-id=3D"17350869f402">BSI/Integration</p></th>
+<th data-local-id=3D"b52eab0f-448e-4df3-8f2c-218b10401c37" class=3D"conflue=
+nceTh">
+<p local-id=3D"a2d98c0eb182">Sales</p></th>
+</tr>
+<tr data-local-id=3D"22eb5bd3-949d-499e-bab8-a2caa9743752">
+<td data-local-id=3D"3de617d9-420d-4d82-91ca-5f3ecd252c07" class=3D"conflue=
+nceTd">
+<p local-id=3D"4746bcdbdd12">Create / update SKU in Salesforce</p></td>
+<td data-local-id=3D"45f6df06-587a-4fb0-bbba-b3c26aeb9792" class=3D"conflue=
+nceTd">
+<p local-id=3D"fc8a92f01008"><strong>R</strong></p></td>
+<td data-local-id=3D"f8f7e4b7-0ef4-4c77-bede-90ed9b9e17d5" class=3D"conflue=
+nceTd">
+<p local-id=3D"eab442b36899">C</p></td>
+<td data-local-id=3D"ad938d43-7909-4ef6-817a-bc21e318391f" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b07794710ce">C</p></td>
+<td data-local-id=3D"461a3281-c435-47c0-935b-262dbd483d39" class=3D"conflue=
+nceTd">
+<p local-id=3D"7f4c0aa1a79d">I</p></td>
+</tr>
+<tr data-local-id=3D"8df2d2bc-97ff-46bb-8041-e25e7a9abcea">
+<td data-local-id=3D"ae603970-d5b0-4c2c-85a1-df4104a8709b" class=3D"conflue=
+nceTd">
+<p local-id=3D"14bd791e0fb5">Publish official price list</p></td>
+<td data-local-id=3D"d95bccd6-ce99-40a7-a65a-c3471758444e" class=3D"conflue=
+nceTd">
+<p local-id=3D"996e0cc0fa37"><strong>R</strong></p></td>
+<td data-local-id=3D"4f263c0e-23c4-47c5-8157-c365e3936520" class=3D"conflue=
+nceTd">
+<p local-id=3D"1ddf2d9f08b5">A/C</p></td>
+<td data-local-id=3D"b7a023ab-c861-4b21-816b-a46132bc9b35" class=3D"conflue=
+nceTd">
+<p local-id=3D"d6ab6eeffb39">C</p></td>
+<td data-local-id=3D"48ac10f3-e960-4df2-88a4-f30b850c08ee" class=3D"conflue=
+nceTd">
+<p local-id=3D"79528e5d59f4">I</p></td>
+</tr>
+<tr data-local-id=3D"3b07e053-5a23-4d0a-b769-713ac72fe19b">
+<td data-local-id=3D"bf286489-c44a-42a9-8b68-1667bed2797a" class=3D"conflue=
+nceTd">
+<p local-id=3D"c683e4328cd0">Maintain finance mappings</p></td>
+<td data-local-id=3D"9ecff124-bbc9-4b0f-8f4d-eb99e3e9944a" class=3D"conflue=
+nceTd">
+<p local-id=3D"a487116892d2">C</p></td>
+<td data-local-id=3D"1254ba2a-a0dc-406b-af8a-ce899f8d5351" class=3D"conflue=
+nceTd">
+<p local-id=3D"a925f8564e77"><strong>R/A</strong></p></td>
+<td data-local-id=3D"5ee6c419-1ce4-4957-a047-25686333cd70" class=3D"conflue=
+nceTd">
+<p local-id=3D"35548a614fed">C</p></td>
+<td data-local-id=3D"ffd75a08-5403-4bc3-8a40-678f94a7f6f9" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb4e05529360">I</p></td>
+</tr>
+<tr data-local-id=3D"3f999474-6487-4834-8576-dc985d83bbeb">
+<td data-local-id=3D"a8ae7a52-28a7-4155-b502-8908aee170e7" class=3D"conflue=
+nceTd">
+<p local-id=3D"6ce62e5fb1d6">Integrations (build/monitor/retry)</p></td>
+<td data-local-id=3D"e43d17ab-8d4f-4ef1-9085-107d0e7f36da" class=3D"conflue=
+nceTd">
+<p local-id=3D"8f1e871485fd">I</p></td>
+<td data-local-id=3D"96ea9b16-1f75-4349-b3ca-c1c7a46735d9" class=3D"conflue=
+nceTd">
+<p local-id=3D"083ac72d3b24">I</p></td>
+<td data-local-id=3D"0f2a55b2-6101-4fb0-b60e-ef839fabee13" class=3D"conflue=
+nceTd">
+<p local-id=3D"f950b507b11e"><strong>R/A</strong></p></td>
+<td data-local-id=3D"c99cd8dd-f645-44d1-b283-bc5f0cc22bcf" class=3D"conflue=
+nceTd">
+<p local-id=3D"06350381aa57">I</p></td>
+</tr>
+<tr data-local-id=3D"30c54886-29f2-46cf-aadd-364b061d9b25">
+<td data-local-id=3D"a48500f4-b532-4870-9cd6-97da4061709a" class=3D"conflue=
+nceTd">
+<p local-id=3D"abdd26f13350">Order to contract handoff</p></td>
+<td data-local-id=3D"b8950008-513e-467a-aef2-96c7bd3a36ad" class=3D"conflue=
+nceTd">
+<p local-id=3D"72c2c05c42a2">C</p></td>
+<td data-local-id=3D"8aba70e3-5d34-4a3d-a196-a54b2145cf95" class=3D"conflue=
+nceTd">
+<p local-id=3D"d9086c04cd74">C</p></td>
+<td data-local-id=3D"064ac632-7a29-4929-bb38-7fe45849b50c" class=3D"conflue=
+nceTd">
+<p local-id=3D"4fc1f7371808"><strong>R</strong></p></td>
+<td data-local-id=3D"f9584da0-31f7-476e-b0e0-6243843fea46" class=3D"conflue=
+nceTd">
+<p local-id=3D"713b825cb34d">I</p></td>
+</tr>
+<tr data-local-id=3D"fefb2efa-129d-43ef-a301-84806decfc01">
+<td data-local-id=3D"ecc9d6aa-c367-4674-8c52-e4fa63072682" class=3D"conflue=
+nceTd">
+<p local-id=3D"9b2477a6e652">Invoice generation</p></td>
+<td data-local-id=3D"c73f80ef-0525-4639-945b-64332a21135e" class=3D"conflue=
+nceTd">
+<p local-id=3D"04da0a8c8937">I</p></td>
+<td data-local-id=3D"f2f78cef-cd2e-4a50-9e2f-906e78396252" class=3D"conflue=
+nceTd">
+<p local-id=3D"940cc806c800"><strong>R/A</strong></p></td>
+<td data-local-id=3D"70eddbe0-7d63-43e4-8029-1e638b319acf" class=3D"conflue=
+nceTd">
+<p local-id=3D"8eae19645f9d">C</p></td>
+<td data-local-id=3D"3e1612c3-0fba-4544-8092-7b68c6fc113c" class=3D"conflue=
+nceTd">
+<p local-id=3D"59bc32f83b2d">I</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"4f4e3c22aa27"></p>
+<hr local-id=3D"c74aca8e-9752-4f22-b4cc-55890cddf331">
+<h2 local-id=3D"f99593d8c439" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-11)FAQs/Clarifications">11) FAQs / Clarifications</h2>
+<h3 local-id=3D"3519c29dec61" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Q1:CanWorkdayhavepricestoo?">Q1: Can Workday have prices too?<=
+/h3>
+<p local-id=3D"3e14ea45a059">Workday may store <strong>reference prices</st=
+rong>, but the invoice should be based on <strong>order line pricing from S=
+alesforce</strong> to avoid drift and disagreements. If Workday requires pr=
+icing for certain invoice validation, we will sync only <strong>published</=
+strong> prices and effective dates.</p>
+<h3 local-id=3D"2912e9800715" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Q2:WhocanchangeSKUs?">Q2: Who can change SKUs?</h3>
+<p local-id=3D"680c580687c8">Only approved roles in Salesforce (RevOps/Prod=
+uct Ops). Workday is not an authoring system for SKUs.</p>
+<h3 local-id=3D"552cbe63e844" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Q3:Whataboutdiscounts?">Q3: What about discounts?</h3>
+<p local-id=3D"3ca41061e6fc">Discounting logic and commercial rules remain =
+in Salesforce. Workday receives the <strong>final agreed price</strong> on =
+the order lines.</p>
+<h3 local-id=3D"6ec914bd1e83" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-Q4:WhatifFinanceneedsnewrevenuemapping?">Q4: What if Finance n=
+eeds new revenue mapping?</h3>
+<p local-id=3D"56b34efaee10">Finance can request updates to the SKU=E2=80=
+=99s financial mapping fields in Salesforce (preferred), or in Workday if r=
+equired by policy=E2=80=94but the goal is to keep the mapping authoritative=
+ and governed in one place.</p>
+<hr local-id=3D"97e301f9-93f0-4584-98b7-4d4a3dc269fa">
+<h2 local-id=3D"4ab994778f7c" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-12)NextSteps/ImplementationPlan(HighLevel)">12) Next Steps / I=
+mplementation Plan (High Level)</h2>
+<ol start=3D"1" local-id=3D"3a1d6cb7-9e43-4d17-ad56-06accf76570f">
+<li local-id=3D"ab74aec3-4f2c-4851-9ab0-53caa98154e8">
+<p local-id=3D"be36ca1ae763">Finalize the canonical SKU field list (Salesfo=
+rce master + Workday mirror)</p></li>
+<li local-id=3D"d6e7dcc7-78ef-447b-84a2-ba9f2f0e68cb">
+<p local-id=3D"db5b5374990c">Define SKU code conventions and lifecycle stat=
+es</p></li>
+<li local-id=3D"b1ac90b7-2747-40d6-b45f-6d87ee040ded">
+<p local-id=3D"a496e374c512">Build Salesforce approval workflow for:</p>
+<ul local-id=3D"eb00f231-1928-46ef-b6c2-34502872b685">
+<li local-id=3D"4c3b24ed-e0e9-43d9-b621-ed3a8e6d6d07">
+<p local-id=3D"c3a0f5527f97">SKU retirement</p></li>
+<li local-id=3D"d293d37c-eb39-4345-957b-64ad0f23b35a">
+<p local-id=3D"58bb41e0707a">Price list publish</p></li>
+</ul></li>
+<li local-id=3D"fcb0d474-a612-46a4-a605-dd41fa52f593">
+<p local-id=3D"b30598b77217">Implement iPaaS flows:</p>
+<ul local-id=3D"24a12626-a829-48ff-ac1a-0fa8bd9690e4">
+<li local-id=3D"d1e76bf4-eda1-4f3f-b557-302ea9402c74">
+<p local-id=3D"f3e54e4edb4c">SKU publish =E2=86=92 Workday</p></li>
+<li local-id=3D"6fcd27de-c4b0-4dc5-93bf-91fc824fc2ab">
+<p local-id=3D"2def2bfd89c6">Price list publish =E2=86=92 Workday (optional=
+/reference)</p></li>
+<li local-id=3D"7261a50f-1205-4976-85bc-ba4de28ff160">
+<p local-id=3D"801d99d32fbf">Order submit =E2=86=92 Workday contract creati=
+on</p></li>
+</ul></li>
+<li local-id=3D"429933cc-2367-422b-a2d8-42b3594fdd85">
+<p local-id=3D"5c6176360c48">Establish reconciliation reports + dashboards<=
+/p></li>
+<li local-id=3D"ce1ffe2f-9d59-43ee-bb49-43897dee6336">
+<p local-id=3D"ee6de1b348fb">Train teams on ownership and change process</p=
+></li>
+</ol>
+<hr local-id=3D"d1f47704-28c8-4afb-a425-00117e35b81e">
+<h1 local-id=3D"18ae5fbeb6de" id=3D"FortraSkuDatabaseManagement(Salesforce&=
+amp;Workday)-AppendixA:Recommended=E2=80=9CMinimalRequiredFields=E2=80=9Dto=
+MirrorintoWorkday">Appendix A: Recommended =E2=80=9CMinimal Required Fields=
+=E2=80=9D to Mirror into Workday</h1>
+<p local-id=3D"1ebced6500f3"><strong>Required</strong></p>
+<ul local-id=3D"208106e6-523c-4323-bcb4-b85254634dc0">
+<li local-id=3D"115662fd-6624-48de-8dd4-8f34514f570a">
+<p local-id=3D"3187bb99acd6">SKU Code</p></li>
+<li local-id=3D"9750e056-6a95-4b42-b137-18cb7a876634">
+<p local-id=3D"9572853e874f">SKU Name</p></li>
+<li local-id=3D"3e6db9a0-8e71-42d8-b35d-d5ba10c7a710">
+<p local-id=3D"0ea3b53ba9a4">Status</p></li>
+<li local-id=3D"cd2e88e8-9460-49bc-95e0-8488b3b6ebbf">
+<p local-id=3D"fe4c4e339f96">Charge Type</p></li>
+<li local-id=3D"f63f07cf-fa54-4ccd-96c5-a30e197735d4">
+<p local-id=3D"1024e6f627c0">UOM</p></li>
+<li local-id=3D"4a44b555-c0f8-4ff5-88ab-c06551248680">
+<p local-id=3D"df44d5169ebf">Revenue Category / Billing Category (if requir=
+ed)</p></li>
+<li local-id=3D"96454b9d-6b79-499a-94aa-71efc0dff565">
+<p local-id=3D"d23ffc490900">Tax code / taxability (if required)</p></li>
+<li local-id=3D"4e6a802d-c798-443b-b4b2-91fb2fb6192a">
+<p local-id=3D"63dd2abd1fa7">Effective dates (if applicable)</p></li>
+</ul>
+<p local-id=3D"c782d7cb2586"><strong>Optional</strong></p>
+<ul local-id=3D"c7b0fd32-5e23-4c39-97d4-39bfa3b8bdd3">
+<li local-id=3D"3750da70-7699-4bd2-a73e-e6ce09e7976e">
+<p local-id=3D"b2243d18b0d7">Product family</p></li>
+<li local-id=3D"2b43311b-9720-4642-8582-1ed80aa05d46">
+<p local-id=3D"ce4e44fae33c">Reporting attributes</p></li>
+<li local-id=3D"0dab50d7-b208-4de9-85a9-7e68ccf2f51b">
+<p local-id=3D"308d3f35c176">Workday item code (if Workday needs a differen=
+t internal identifier)</p></li>
+</ul>
+<hr local-id=3D"747afb99-bc99-42ed-808c-32ca39e37d93">
+    </div>
+</body>
+</html>
+------=_Part_6_57714839.1780418939492--

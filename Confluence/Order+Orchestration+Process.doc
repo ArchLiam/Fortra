@@ -1,0 +1,537 @@
+Date: Tue, 2 Jun 2026 16:51:47 +0000 (UTC)
+Message-ID: <837813682.9.1780419107467@361b93102e70>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_8_1746699767.1780419107467"
+
+------=_Part_8_1746699767.1780419107467
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Order Orchestration Process</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Order Orchestration Process</h1>
+    <div class=3D"Section1">
+        <p><a class=3D"external-link" href=3D"https://docs.google.com/sprea=
+dsheets/d/1qR-XArODMjNtecdPj3_VG5QGGwlzthQkWkmIRZmp6vo/edit?gid=3D0#gid=3D0=
+" rel=3D"nofollow"><u>Order Orchestration Process Document</u></a></p>
+<p></p>
+<ul>
+<li>
+<p>Due 100% completed by 11/14</p>
+<ul>
+<li>
+<p>We expect that 80% will be straightforward / less complex. Due 11/7</p><=
+/li>
+<li>
+<p>We expect that 20% will be more complex. Due 11/14</p></li>
+</ul></li>
+<li>
+<p>Review by 11/24</p></li>
+</ul>
+<h2 id=3D"OrderOrchestrationProcess-Homework">Homework</h2>
+<ol start=3D"1">
+<li>
+<p>Identify all of the unique <strong>Fulfillment Processes </strong>that n=
+eed to exist.</p>
+<ol start=3D"1">
+<li>
+<p><strong>Name </strong>each unique Fulfillment Process.</p></li>
+<li>
+<p>Which <strong>Scenarios (Actions) </strong>are the processes applicable =
+to? (Choose one or many of the below for a given Fulfillment Process).</p>
+<ol start=3D"1">
+<li>
+<p>New (Add)</p></li>
+<li>
+<p>Amend</p></li>
+<li>
+<p>Renew</p></li>
+<li>
+<p>Cancel</p></li>
+</ol></li>
+<li>
+<p>What <strong>Steps (Tasks)</strong> need to be completed for a given pro=
+duct to be fulfilled? Note: A collection of <strong>Steps (Tasks)</strong> =
+forms a <strong>Fulfillment Process</strong>.</p>
+<ol start=3D"1">
+<li>
+<p>Step (Task) <strong>Name</strong>: Give the Task a Name</p></li>
+<li>
+<p>Step (Task) <strong>Type</strong>: Is the Task <strong>Manual </strong>o=
+r <strong>Automated</strong>?</p></li>
+<li>
+<p>Step (Task) <strong>Owner</strong>:<strong> </strong>Which <strong>Perso=
+na </strong>owns this Step (Task)?</p></li>
+<li>
+<p>Step (Task) <strong>Assignment Method</strong>: How do we <strong>assign=
+ </strong>a Step (Task) to a Persona? (see definitions below)&nbsp;</p></li=
+>
+<li>
+<p>Step (Task) <strong>Execution Trigger</strong>: When should the Step (Ta=
+sk) begin?<strong> </strong>(see definitions below)</p></li>
+<li>
+<p>Step (Task) <strong>SLA</strong>: <strong>&nbsp;</strong>(if any)</p></l=
+i>
+<li>
+<p><strong>Point of No Return</strong>: The point after which we must creat=
+e an Amendment (vs updating the existing Order) (see definitions below)</p>=
+</li>
+<li>
+<p>Step (Task) <strong>Dependencies</strong>:<strong> </strong>(if any)</p>=
+</li>
+</ol></li>
+<li>
+<p>Identify <strong>Swimlanes </strong>(Task Group) for the defined Steps (=
+Tasks) for a given Fulfillment Process. Note:<strong> </strong>There can be=
+ as many or as few Swimlanes as needed to stay organized.</p>
+<ol start=3D"1">
+<li>
+<p><strong>Swimlane </strong>Sequence: Define in what order the Swimlanes s=
+hould be executed.&nbsp;</p></li>
+<li>
+<p><strong>Task </strong>Sequence: Define in what order the Steps (Tasks) s=
+hould be executed within each Swimlane</p></li>
+</ol></li>
+</ol></li>
+<li>
+<p>For each <strong>Product</strong>, identify the<strong> Fulfillment Proc=
+ess</strong> that needs to occur.&nbsp;</p></li>
+</ol>
+<p></p>
+<p></p>
+<h1 id=3D"OrderOrchestrationProcess-Definitions">Definitions</h1>
+<p></p>
+<h2 id=3D"OrderOrchestrationProcess-Steps(Tasks/FulfillmentSteps)DefiningSp=
+ecificActivities"><strong>Steps (Tasks / Fulfillment Steps)</strong> Defini=
+ng Specific Activities</h2>
+<ul>
+<li>
+<p><strong>Auto Task</strong> - An automated system activity that executes =
+without human intervention (e.g., =E2=80=9CGenerate License Key,=E2=80=9D =
+=E2=80=9CCreate Tenant,=E2=80=9D =E2=80=9CUpdate CRM Record=E2=80=9D). Acti=
+ons complete automatically when triggered.</p></li>
+<li>
+<p><strong>Manual Task</strong> - A human-performed activity requiring some=
+one to complete work and mark it done (e.g., =E2=80=9CShip Hardware,=E2=80=
+=9D =E2=80=9CConfigure Network Settings,=E2=80=9D =E2=80=9CConduct Training=
+=E2=80=9D). These create tasks assigned via your chosen assignment method.<=
+/p></li>
+<li>
+<p><strong>Milestone</strong> - A checkpoint marking significant progress t=
+hat can trigger revenue recognition events (e.g., =E2=80=9CGo-Live Confirme=
+d,=E2=80=9D =E2=80=9CDelivery Completed=E2=80=9D). Critical for linking ful=
+fillment to revenue.</p></li>
+<li>
+<p><strong>Pause</strong> - A planned pause in the process (e.g., =E2=80=9C=
+Wait for Payment Clearance,=E2=80=9D =E2=80=9CHold Until Contract Start Dat=
+e=E2=80=9D). Ensures proper timing and sequencing.</p></li>
+<li>
+<p><strong>Callout</strong> - An integration step that calls external syste=
+ms or APIs (e.g., =E2=80=9CProvision in Cloud Platform,=E2=80=9D =E2=80=9CV=
+alidate with Compliance Service,=E2=80=9D =E2=80=9CGenerate in License Serv=
+er=E2=80=9D). Enables real-time system integration.</p></li>
+<li>
+<p><strong>Staged Assetize</strong> - Converts fulfillment data into Asset =
+records for ongoing lifecycle management (e.g., =E2=80=9CCreate Subscriptio=
+n Asset,=E2=80=9D =E2=80=9CRegister Hardware Asset=E2=80=9D). Critical for =
+renewals and amendments.</p></li>
+</ul>
+<p></p>
+<h2 id=3D"OrderOrchestrationProcess-TaskAssignmentMethods"><strong>Task Ass=
+ignment Methods</strong></h2>
+<ol start=3D"1">
+<li>
+<p><strong>Context Based</strong></p>
+<ol start=3D"1">
+<li>
+<p>Assigns based on the context of the fulfillment order/obligation</p></li=
+>
+<li>
+<p>Uses attributes from the order, account, or product to determine assignm=
+ent</p></li>
+<li>
+<p>Most flexible and intelligent option</p></li>
+<li>
+<p><strong>Examples:</strong></p>
+<ol start=3D"1">
+<li>
+<p>Account Owner: Assigns to whoever owns the customer account</p></li>
+<li>
+<p>Product Specialist: Routes based on product family</p>
+<ol start=3D"1">
+<li>
+<p>Cyber products =E2=86=92 Cyber fulfillment team</p></li>
+<li>
+<p>Tech products =E2=86=92 Tech fulfillment team</p></li>
+</ol></li>
+<li>
+<p>&nbsp;Geographic: Routes based on customer location&nbsp;</p>
+<ol start=3D"1">
+<li>
+<p>US customers =E2=86=92 US fulfillment team</p></li>
+<li>
+<p>EU customers =E2=86=92 EU fulfillment team</p></li>
+</ol></li>
+<li>
+<p>Contract Value: High-value orders =E2=86=92 Senior specialists</p></li>
+</ol></li>
+</ol></li>
+<li>
+<p><strong>Least Loaded</strong></p>
+<ol start=3D"1">
+<li>
+<p>Assigns to the team member with the fewest active assignments</p></li>
+<li>
+<p>Balances workload automatically</p></li>
+<li>
+<p>Prevents bottlenecks from overloaded individuals</p></li>
+<li>
+<p><strong>How it works:</strong></p>
+<ol start=3D"1">
+<li>
+<p>&nbsp;&nbsp;Team Member A: 5 active tasks =E2=86=92 Skip</p></li>
+<li>
+<p>&nbsp;&nbsp;Team Member B: 2 active tasks =E2=86=92 Assign here</p></li>
+<li>
+<p>&nbsp;&nbsp;Team Member C: 7 active tasks =E2=86=92 Skip</p></li>
+</ol></li>
+<li>
+<p><strong>Best for:</strong></p>
+<ol start=3D"1">
+<li>
+<p>&nbsp;Teams with varying work speeds</p></li>
+<li>
+<p>&nbsp;Preventing burnout</p></li>
+<li>
+<p>&nbsp;Optimizing throughput</p></li>
+<li>
+<p>&nbsp;When fairness matters more than rotation</p></li>
+</ol></li>
+</ol></li>
+<li>
+<p><strong>Round Robin</strong></p>
+<ol start=3D"1">
+<li>
+<p>Assigns in sequential rotation</p></li>
+<li>
+<p>Each team member gets next assignment in turn</p></li>
+<li>
+<p>Simple and predictable</p></li>
+<li>
+<p><strong>Example rotation:</strong></p>
+<ol start=3D"1">
+<li>
+<p>&nbsp;&nbsp;Assignment 1 =E2=86=92 User A</p></li>
+<li>
+<p>&nbsp;&nbsp;Assignment 2 =E2=86=92 User B</p></li>
+<li>
+<p>&nbsp;&nbsp;Assignment 3 =E2=86=92 User C</p></li>
+<li>
+<p>&nbsp;&nbsp;Assignment 4 =E2=86=92 User A (starts over)</p></li>
+</ol></li>
+</ol></li>
+</ol>
+<p></p>
+<p><strong>Fortra Implementation Example:</strong></p>
+<ul>
+<li>
+<p><strong>License Generation</strong>: Least Loaded (high volume, standard=
+ process)</p></li>
+<li>
+<p><strong>Implementation Services</strong>: Context Based (route by produc=
+t expertise)</p></li>
+<li>
+<p><strong>Training Scheduling</strong>: Round Robin (fair distribution amo=
+ng trainers)</p></li>
+</ul>
+<p></p>
+<h2 id=3D"OrderOrchestrationProcess-TaskExecutionTrigger"><strong>Task Exec=
+ution Trigger</strong></h2>
+<p>Determines the timing reference point for when a fulfillment step should=
+ execute. This field is crucial for coordinating step execution with busine=
+ss events:</p>
+<ul>
+<li>
+<p><strong>Source Line Start Date</strong> - The step=E2=80=99s execution t=
+iming is based on the start date of the order line item or contract line. T=
+his ensures fulfillment activities align with when the customer=E2=80=99s s=
+ervice or subscription period begins.</p>
+<ul>
+<li>
+<p>For example, =E2=80=9CActivate Subscription=E2=80=9D would execute based=
+ on the contract start date, ensuring services aren=E2=80=99t activated bef=
+ore the customer=E2=80=99s term begins. This is ideal for subscription serv=
+ices, maintenance contracts, or any fulfillment that should coincide with t=
+he service period.</p></li>
+</ul></li>
+<li>
+<p><strong>Previous Steps=E2=80=99 Execute Date</strong> - The step=E2=80=
+=99s execution timing is based on when the previous step in the fulfillment=
+ flow was executed. This creates a sequential chain where each step follows=
+ the completion of the prior step.</p>
+<ul>
+<li>
+<p>For example, =E2=80=9CSend Welcome Email=E2=80=9D would execute immediat=
+ely after =E2=80=9CCreate User Account=E2=80=9D completes. This is the most=
+ common option for steps that have dependencies and must happen in a specif=
+ic order, ensuring proper workflow sequencing.</p></li>
+</ul></li>
+</ul>
+<p></p>
+<p>The choice between these options depends on whether your fulfillment ste=
+p is tied to a specific business date (like a contract start) or should sim=
+ply follow the completion of previous activities in the fulfillment chain. =
+This field works in conjunction with any wait times or delays configured on=
+ the step to provide precise control over fulfillment timing.</p>
+<p></p>
+<h2 id=3D"OrderOrchestrationProcess-PointofNoReturn-ManagingFulfillmentReve=
+rsibility"><strong>Point of No Return</strong> - Managing Fulfillment Rever=
+sibility</h2>
+<p>The Point of No Return field marks a critical threshold in your fulfillm=
+ent process where actions become irreversible or would be costly/complex to=
+ undo. This field helps manage fulfillment risk and ensures appropriate con=
+trols are in place:</p>
+<ul>
+<li>
+<p><strong>True</strong> - Marks this step as a point where reversal become=
+s difficult or impossible. Once a step marked as Point of No Return is comp=
+leted, the system treats subsequent cancellations or modifications differen=
+tly.</p>
+<ul>
+<li>
+<p>Examples include =E2=80=9CShip Physical Product,=E2=80=9D =E2=80=9CProvi=
+sion Perpetual License,=E2=80=9D or =E2=80=9CExecute Third-Party Contract.=
+=E2=80=9D These steps typically involve external systems, physical actions,=
+ or legal commitments that cannot be easily reversed.</p></li>
+</ul></li>
+<li>
+<p><strong>False</strong> - Indicates this step can be reversed or undone i=
+f needed without significant impact. Most preparatory or internal steps fal=
+l into this category, such as =E2=80=9CCreate Account Record,=E2=80=9D =E2=
+=80=9CGenerate Quote Document,=E2=80=9D or =E2=80=9CReserve Inventory.=E2=
+=80=9D These actions can typically be rolled back without major business im=
+plications.</p></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_8_1746699767.1780419107467--

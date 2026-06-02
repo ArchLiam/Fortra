@@ -1,0 +1,457 @@
+Date: Tue, 2 Jun 2026 16:49:22 +0000 (UTC)
+Message-ID: <1229205673.7.1780418962850@6d82205725e6>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_1399318856.1780418962850"
+
+------=_Part_6_1399318856.1780418962850
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Sku Changes Needed in Database/Salesforce/Workday</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Sku Changes Needed in Database/Salesforce/Workday</h1>
+    <div class=3D"Section1">
+        <h1 local-id=3D"24491e754f3c" id=3D"SkuChangesNeededinDatabase/Sale=
+sforce/Workday-NeedanAdmin:"><br>
+Need an Admin:</h1>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"285"><span class=3D"placeholder-inline-tasks">RC=
+A - when quoting filter by License Type Option</span></li>
+<li data-inline-task-id=3D"351"><span class=3D"placeholder-inline-tasks">RC=
+A - Salesforce Work: Solution 3.00 Change: </span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"352"><span class=3D"placeholder-inline-tasks">Ad=
+d =E2=80=9COffensive Security Training=E2=80=9D</span></li>
+<li data-inline-task-id=3D"353"><span class=3D"placeholder-inline-tasks">Re=
+move =E2=80=9CConsulting Services=E2=80=9D</span></li>
+</ul>
+</ul>
+<h1 local-id=3D"1a1c8d0fe6bf" id=3D"SkuChangesNeededinDatabase/Salesforce/W=
+orkday-TODOProjects:">TO DO Projects:</h1>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"390"><span class=3D"placeholder-inline-tasks">Ru=
+les of what is required to own/quote with - all Power Secondary require a p=
+rimary to be owned.</span></li>
+<li data-inline-task-id=3D"363"><span class=3D"placeholder-inline-tasks">Go=
+Anywhere wants to make price changes and wants to work with Partners to do =
+this by July</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"364"><span class=3D"placeholder-inline-tasks">Jo=
+e E working on list</span></li>
+</ul>
+<li data-inline-task-id=3D"365"><span class=3D"placeholder-inline-tasks">Br=
+anching SKUS need to allow Quantity?</span></li>
+<li data-inline-task-id=3D"249"><span class=3D"placeholder-inline-tasks">Gl=
+obalscape Perpetual MAP - New and Renewal maintenance skus</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"273"><span class=3D"placeholder-inline-tasks">Gl=
+obalscape Related to - how?</span></li>
+</ul>
+<li data-inline-task-id=3D"252"><span class=3D"placeholder-inline-tasks">Gl=
+obalscape Sku name to create consistancy </span></li>
+<li data-inline-task-id=3D"268"><span class=3D"placeholder-inline-tasks">Gl=
+obalscape Feature Review - <a class=3D"external-link" href=3D"https://helps=
+ystemsllc-my.sharepoint.com/:x:/r/personal/leah_guenther_helpsystems_com/Do=
+cuments/Globalscape%20Sku%20Review.xlsx?d=3Dwf58391f37a7d4f5998e97817aea5c4=
+a7&amp;csf=3D1&amp;web=3D1&amp;e=3DB7UbJs" rel=3D"nofollow">Globalscape Sku=
+ Review.xlsx</a></span></li>
+<li data-inline-task-id=3D"171"><span class=3D"placeholder-inline-tasks">Fu=
+ll Tax Code Review - Ashley J.</span></li>
+<li data-inline-task-id=3D"286"><span class=3D"placeholder-inline-tasks">Ti=
+ered Pricing - Are we using Attribute =E2=80=9CPricing Tier=E2=80=9D?</span=
+></li>
+<li data-inline-task-id=3D"347"><span class=3D"placeholder-inline-tasks">Re=
+view: To Purchase X have to own Y</span></li>
+<li data-inline-task-id=3D"278"><span class=3D"placeholder-inline-tasks">If=
+ Term Based - Should these have 12 months in the Term? Most have 1 month</s=
+pan></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"280"><span class=3D"placeholder-inline-tasks">If=
+ renewal why only have 1 month?</span></li>
+</ul>
+<li data-inline-task-id=3D"194"><span class=3D"placeholder-inline-tasks">Fu=
+ll Deployment Type Review</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"172"><span class=3D"placeholder-inline-tasks">Fu=
+ll SaaS vs Managed Services Review - Strategy Deployment Type</span></li>
+<li data-inline-task-id=3D"215"><span class=3D"placeholder-inline-tasks">Al=
+l SaaS Sales have one Tax code - how are we going to solve this?</span></li=
+>
+<li data-inline-task-id=3D"216"><span class=3D"placeholder-inline-tasks">Se=
+rvices skus that can be sold with SAAS need a separate SKU for Tax purposes=
+?</span></li>
+<li data-inline-task-id=3D"205"><span class=3D"placeholder-inline-tasks">Fo=
+rtra VM Needs two skus - OnPrem and SaaS for Tax Purposes FT01005 for on-pr=
+em</span></li>
+<li data-inline-task-id=3D"201"><span class=3D"placeholder-inline-tasks">Fu=
+ll Perpetual vs Subscription review do we have enough skus - do we hide? </=
+span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"202"><span class=3D"placeholder-inline-tasks">Wh=
+en should only subscription sku=E2=80=99s show</span></li>
+</ul>
+</ul>
+<li data-inline-task-id=3D"173"><span class=3D"placeholder-inline-tasks">Se=
+rvices</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"253"><span class=3D"placeholder-inline-tasks">Se=
+rvices do we need Training vs Services License Type or grouping</span></li>
+<li data-inline-task-id=3D"180"><span class=3D"placeholder-inline-tasks">Re=
+curring vs non or Pre and post paid</span></li>
+<li data-inline-task-id=3D"266"><span class=3D"placeholder-inline-tasks">Se=
+rvices skus that note Prepaid vs Postpaid?</span></li>
+<li data-inline-task-id=3D"187"><span class=3D"placeholder-inline-tasks">Wh=
+at is Usage vs fixed for and it needs a review - currently a formula</span>=
+</li>
+</ul>
+</ul>
+<p local-id=3D"895127387eac"></p>
+<h1 local-id=3D"361d69669f58" id=3D"SkuChangesNeededinDatabase/Salesforce/W=
+orkday-TODOBundleChanges:">TO DO Bundle Changes:</h1>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"372"><span class=3D"placeholder-inline-tasks">Bu=
+ndles - All Review</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"373"><span class=3D"placeholder-inline-tasks">(H=
+RM Essentials Advanced and elite) BSS-26012</span></li>
+<li data-inline-task-id=3D"374"><span class=3D"placeholder-inline-tasks">Of=
+fensive Security Training Bundle changes <a class=3D"external-link" href=3D=
+"https://helpsystems.atlassian.net/browse/BSS-27582?focusedCommentId=3D4426=
+449&amp;sourceType=3Dmention&amp;atlOrigin=3DeyJpIjoiYzY4NTg1MjdhYTc1NDNkN2=
+FjNzM3MWRkNjA2ZDc3NzYiLCJwIjoiaiJ9" rel=3D"nofollow">BSS-27582</a></span></=
+li>
+</ul>
+</ul>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li data-inline-task-id=3D"157"><span class=3D"placeholder-inline-tasks">Bu=
+ndle Changes on Offensive Security Bundles</span></li>
+<li data-inline-task-id=3D"26"><span class=3D"placeholder-inline-tasks">GoA=
+nywhere Bundle Changes: <span class=3D"confluence-jim-macro jira-issue reso=
+lved" data-jira-key=3D"BS-4371"> <a href=3D"https://helpsystems.atlassian.n=
+et/browse/BS-4371" class=3D"jira-issue-key"><img class=3D"icon" src=3D"http=
+s://helpsystems.atlassian.net/rest/api/2/universal_avatar/view/type/issuety=
+pe/avatar/10613?size=3Dmedium">BS-4371</a> - <span class=3D"summary">BSS-24=
+384 =E2=81=83 GoAnywhere Enterprise Bundle Adjustments (Experlogix Only)(JC=
+)(UAT 11/17) =E2=9C=85(PROD 12/1)</span> <span class=3D"aui-lozenge aui-loz=
+enge-subtle aui-lozenge-success jira-macro-single-issue-export-pdf">Complet=
+ed</span> </span> </span></li>
+<li data-inline-task-id=3D"40"><span class=3D"placeholder-inline-tasks">Upd=
+ate Cyber bundle - Remove a sku from the bundle (managed Services Starter P=
+ack) BSS-26010</span></li>
+</ul>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"3=
+bde6bb1-6373-4e15-beda-8b085156d93f" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"6627ee11-b94a-4efb-a92a-e5da8eec773c">
+<td data-highlight-colour=3D"#ffff00" data-local-id=3D"f764361d-9e32-45aa-a=
+4d4-52a821b6122e" class=3D"confluenceTd">
+<p local-id=3D"67ae9e9a-278e-49c4-8cfd-e025df1015c3">Advanced Security Modu=
+le ASM</p></td>
+</tr>
+<tr data-local-id=3D"b0fcd475-a241-4e31-84ae-86a478eee86f">
+<td data-local-id=3D"56e02543-14fd-4fb0-a426-7f0aa3a8a62b" class=3D"conflue=
+nceTd">
+<p local-id=3D"8c9bbd9a-55e2-4835-b932-4a2851e7d16a">EFT ASM Module</p></td=
+>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 local-id=3D"fc59501945d8" id=3D"SkuChangesNeededinDatabase/Salesforce/W=
+orkday-DONE:">DONE:</h1>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"385"><span class=3D"placeholde=
+r-inline-tasks">Need to add =E2=80=9CProduct Description=E2=80=9D to all Sk=
+u=E2=80=99s - could have just =E2=80=9CLicense Type=E2=80=9D for now until =
+Strategy provides descriptions. </span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"386"><span class=3D"placeholde=
+r-inline-tasks"><a class=3D"external-link" href=3D"https://helpsystemsllc-m=
+y.sharepoint.com/:x:/r/personal/leah_guenther_helpsystems_com/Documents/Pro=
+duct%20Description%20Review.xlsx?d=3Dw554ac4a6a8cc409194107f0505d50432&amp;=
+csf=3D1&amp;web=3D1&amp;e=3DsSPo9o" rel=3D"nofollow">Product Description Re=
+view.xlsx</a></span></li>
+</ul>
+<li class=3D"checked" data-inline-task-id=3D"326"><span class=3D"placeholde=
+r-inline-tasks">Rev Categories - </span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"327"><span class=3D"placeholde=
+r-inline-tasks">Align to workday naming conventions billing templates and a=
+s delivered</span></li>
+<li class=3D"checked" data-inline-task-id=3D"328"><span class=3D"placeholde=
+r-inline-tasks">should 41000 be spread even or blank</span></li>
+</ul>
+<li class=3D"checked" data-inline-task-id=3D"312"><span class=3D"placeholde=
+r-inline-tasks">Salesforce Code with a (</span></li>
+<li class=3D"checked" data-inline-task-id=3D"309"><span class=3D"placeholde=
+r-inline-tasks">Items with No Salesforce Code</span></li>
+<li class=3D"checked" data-inline-task-id=3D"302"><span class=3D"placeholde=
+r-inline-tasks">Globalscape Related to for Subscriptions - Don=E2=80=99t se=
+ll this way anylonger.. set as non-quotable</span></li>
+<li class=3D"checked" data-inline-task-id=3D"303"><span class=3D"placeholde=
+r-inline-tasks">Globalscape removed Yearly from all names</span></li>
+<li class=3D"checked" data-inline-task-id=3D"84"><span class=3D"placeholder=
+-inline-tasks">Globalscape Arcus spelled wrong Legacy number 8130 =E2=80=9C=
+Arcus Hosting=E2=80=9D</span></li>
+<li class=3D"checked" data-inline-task-id=3D"95"><span class=3D"placeholder=
+-inline-tasks">Move RPG Toolbox and Surveyor to Power/Business Intelligence=
+</span></li>
+<li class=3D"checked" data-inline-task-id=3D"100"><span class=3D"placeholde=
+r-inline-tasks">Terranova Sku - Add Campain to end of the name TN0404-HRN</=
+span></li>
+<li class=3D"checked" data-inline-task-id=3D"91"><span class=3D"placeholder=
+-inline-tasks">3-4 Tripwire Sku=E2=80=99s are License Type =E2=80=9CRenewal=
+ Support=E2=80=9D should be =E2=80=9CRenewal Maintenance=E2=80=9D</span></l=
+i>
+</ul>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"85"><span class=3D"placeholder=
+-inline-tasks">The products in the table below should live under Vulnerabil=
+ity Management for =E2=80=9CSolution 3.00=E2=80=9D category.</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"86"><span class=3D"placeholder=
+-inline-tasks">Fortra Penetration Test - External</span></li>
+<li class=3D"checked" data-inline-task-id=3D"87"><span class=3D"placeholder=
+-inline-tasks">Fortra Web Application Scanning</span></li>
+</ul>
+<li class=3D"checked" data-inline-task-id=3D"225"><span class=3D"placeholde=
+r-inline-tasks">Move these skus to Solution 3: Suspicious Email Analysis Sk=
+us that need to move</span></li>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"226"><span class=3D"placeholde=
+r-inline-tasks">PL0143 - Final sku Suspicition Email analysis</span></li>
+</ul>
+<li class=3D"checked" data-inline-task-id=3D"234"><span class=3D"placeholde=
+r-inline-tasks">Automate name and price change: BSS-26762 - CRM Enhancement=
+ - Dynamics 365 CRM (D365) - Update Automate SKU names and prices</span></l=
+i>
+</ul>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2178515326">
+<li class=3D"checked" data-inline-task-id=3D"393"><span class=3D"placeholde=
+r-inline-tasks">PS Services Type Attribute Review.. should it be per and po=
+st paid.. or course detail</span></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_6_1399318856.1780418962850--

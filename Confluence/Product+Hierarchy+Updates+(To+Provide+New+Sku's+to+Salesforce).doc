@@ -1,0 +1,633 @@
+Date: Tue, 2 Jun 2026 16:47:10 +0000 (UTC)
+Message-ID: <957437414.3.1780418830341@7a05105be49b>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_2_2021535463.1780418830341"
+
+------=_Part_2_2021535463.1780418830341
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Product Hierarchy Updates (To Provide New Sku&#39;s to Salesforc=
+e)</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Product Hierarchy Updates (To Provide New Sku&#39;s to Salesforce)<=
+/h1>
+    <div class=3D"Section1">
+        <p>
+<style>[data-colorid=3Dc0bd53b23e]{color:#bf2600} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dc0bd53b23e]{color:#ff6640}[data-colorid=3Duzu9mfgcli]{c=
+olor:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Duzu9mfgcli]{colo=
+r:#ff6640}[data-colorid=3Diixznlo0mq]{color:#bf2600} html[data-color-mode=
+=3Ddark] [data-colorid=3Diixznlo0mq]{color:#ff6640}[data-colorid=3Da4ha7k8n=
+s6]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Da4ha7k8ns6]=
+{color:#ff6640}[data-colorid=3Duuqasrft5v]{color:#bf2600} html[data-color-m=
+ode=3Ddark] [data-colorid=3Duuqasrft5v]{color:#ff6640}[data-colorid=3Du4cv3=
+f28xl]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Du4cv3f28=
+xl]{color:#ff6640}[data-colorid=3Douun8expyu]{color:#bf2600} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Douun8expyu]{color:#ff6640}[data-colorid=3Dsj=
+aak51eff]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Dsjaak=
+51eff]{color:#ff6640}[data-colorid=3Dyhbllevyyz]{color:#bf2600} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Dyhbllevyyz]{color:#ff6640}[data-colorid=
+=3Du729zqasjy]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3D=
+u729zqasjy]{color:#ff6640}[data-colorid=3Dytntnjvbti]{color:#bf2600} html[d=
+ata-color-mode=3Ddark] [data-colorid=3Dytntnjvbti]{color:#ff6640}</style><s=
+trong><span data-colorid=3D"yhbllevyyz">DUE to Coastal by June 26th. </span=
+></strong></p>
+<p>Updating our Product Hierarchy to prepare for Coastal/Salesforce. The ab=
+ilities of Salesforce allow us to move away from 18,000+ sku's to more of a=
+ pick the solution and then pick the attributes, users, server type etc.&nb=
+sp;Our D365 hierarchy currently has 6 layers, these layers are named differ=
+ently in different areas so I have summarized below.</p>
+<p>For the new Salesforce org we are proposing to move our Sku=E2=80=99s up=
+ to Level 4 or 3 then utilizing attributes and the configurator to calculat=
+e price and provided necessary details for key generation and provisioning.=
+</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"center" data-local-id=3D"f6=
+008ec4-37b6-49c5-adaa-02c1bfc87b18" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 316.0px;">
+<col style=3D"width: 1483.0px;">
+</colgroup>
+<tbody>
+<tr>
+<td class=3D"confluenceTd">
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-ProductHie=
+rarchyLevels"><strong>Product Hierarchy Levels</strong></h2></td>
+<td class=3D"confluenceTd">
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-OtherNamin=
+gConventionsAKA">Other Naming Conventions AKA</h2></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Unit 0.00</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Segment, Family Unit</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Solution Group 1.00</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Sub-Segment</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Solution Category 2.00</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Business Unit, Brand Level (Used on Fortra Support Portal KB/Downloads)<=
+/p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"a4ha7k8ns6">Solution 3.00</span></strong><=
+/p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"ytntnjvbti">Product Family (Used on Fortra=
+ Support Portal KB/Downloads)</span></strong></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"u729zqasjy">Feature 4.00</span></strong></=
+p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"c0bd53b23e">Software Product Family (Used =
+on Fortra Support Portal for Case Selection)</span></strong></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"uuqasrft5v">Product/SKU 5.0</span></strong=
+></p></td>
+<td class=3D"confluenceTd">
+<p><strong><span data-colorid=3D"u4cv3f28xl">This is the actual SKU's on qu=
+otes/system Products etc.&nbsp;</span></strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note: Level's (Unit) 0.00 and 2.00 (Solution Category) are set and done,=
+ no changes or review needed. &nbsp; &nbsp;**&nbsp;(Please note leadership =
+are still confirming =E2=80=9CTerranova =3D Human Risk Management=E2=80=9D,=
+ and splitting up =E2=80=9CDREP =3D Data Protection, Email Protection=E2=80=
+=9D).&nbsp;&nbsp;</p>
+<p></p>
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-ACTIONITEM=
+sNeededbyJune26thendofday"><strong><span data-colorid=3D"iixznlo0mq"><u>ACT=
+ION ITEMs Needed by June 26th end of day</u></span></strong></h2>
+<p>I have made 16 copies of my original document. Each document has all sku=
+s that were pulled from D365.. I then filtered each to just what sku's are =
+related to each "Solution Category" I left the other sku's from all others =
+in case you need to adjust and add something that was wrongly marked.&nbsp;=
+</p>
+<p>Edit: Excel Tab =E2=80=9CALL Products=E2=80=9D</p>
+<p>Review on: Excel Tab =E2=80=9COption Sets=E2=80=9D</p>
+<ul>
+<li>
+<p><strong><span data-colorid=3D"sjaak51eff">Review all items under "Soluti=
+on 3.00" </span></strong></p>
+<ul>
+<li>
+<p>Filter by column H "Number" 3.00</p></li>
+<li>
+<p>Remove: Update Column K add "Remove" where we can consolidate</p></li>
+<li>
+<p>Rename: Update column M =E2=80=9CNew Name=E2=80=9D to update the name of=
+ any item</p></li>
+<li>
+<p>Add: add new row where necessary</p></li>
+<li>
+<p>Associate: Use Dropdown to update the Hierarchy fields 1.00 &amp; 2.00 w=
+here necessary</p></li>
+</ul></li>
+<li>
+<p><strong><span data-colorid=3D"uzu9mfgcli">Review all items under "Featur=
+e 4.00" </span></strong></p>
+<ul>
+<li>
+<p>Filter by column H "Number" 4.00</p></li>
+<li>
+<p>Remove: Update Column K add "Remove" where we can consolidate&nbsp;&nbsp=
+;</p></li>
+<li>
+<p>Rename: Or update column M =E2=80=9CNew Name=E2=80=9D to update the name=
+ of an item</p></li>
+<li>
+<p>Add: add new row where necessary</p></li>
+<li>
+<p>Associate: Use Dropdown to update the Hierarchy fields 1.00 &amp; 2.00 &=
+amp; 3.00 where necessary</p></li>
+</ul></li>
+<li>
+<p><strong><span data-colorid=3D"ouun8expyu">Review all items under "Produc=
+t/Sku 4.00" </span></strong></p>
+<ul>
+<li>
+<p>Filter by column H "Number" 5.00</p></li>
+<li>
+<p>Remove: Update Column K to "Remove" where we can consolidate&nbsp;&nbsp;=
+</p></li>
+<li>
+<p>Associate: Use Dropdown to update the Hierarchy fields 1.00 &amp; 2.00 &=
+amp; 3.00 &amp; 4.00 where necessary</p></li>
+</ul></li>
+</ul>
+<p></p>
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-Documentsf=
+orEdits:">Documents for Edits: <br></h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1790" data-layout=3D"center" data-local-id=3D"88=
+c0b3bc-26d4-440e-b469-1e009e5f62fa" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 323.0px;">
+<col style=3D"width: 869.0px;">
+<col style=3D"width: 596.0px;">
+</colgroup>
+<tbody>
+<tr>
+<td class=3D"confluenceTd">
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-SolutionCa=
+tegory">Solution Category</h2></td>
+<td class=3D"confluenceTd">
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-Linktodocu=
+ment">Link to document</h2></td>
+<td class=3D"confluenceTd">
+<h2 id=3D"ProductHierarchyUpdates(ToProvideNewSku'stoSalesforce)-Reviewedby=
+:(Pleaseputyournamehereonceyouarecomfortablewiththedocumentasis)">Reviewed =
+by: (Please put your name here once you are comfortable with the document a=
+s is)</h2></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Brand Protection</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EQlbH-XNfHNIu3we0HhquxUBv=
+eH_g53aThITIj7K-XjMXg?e=3DZobpNc" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Brand Protection.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Erinn?</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cloud Data Protection</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EVsvBKyE-qtAiB-6WM1L83sBL=
+ek5APJkEzwhpmlPsFD3oQ?e=3DC3R2Y8" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Cloud Data Protection.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Michaela Grundman</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Data Protection</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EWJFbgW6Nj5PswL5W9nqyiYBi=
+T-UOPir15kIenS0w4lBZw?e=3D2NwggA" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Data Protection.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Email Security</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EVHba7QU2tRBmowwRucBG-oBk=
+KaYNQo9OWmIYC_haHTKaw?e=3DISULI5" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Email Security.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Michaela Grundman</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>File Integrity Monitoring</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EUfdHJ7GyFlJuLh1RpfYwegBs=
+kQZAMYBf3fzLzVMfG29Og?e=3D5eHU56" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - File Integrity Monitoring.xlsx</a></p></td=
+>
+<td class=3D"confluenceTd">
+<p>Michaela Grundman</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Fortra Platform</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EWQJIa18v_hGqvVGxJ3OgZ0BP=
+3Tfrg1q_c9uvBrJqG_ROg?e=3Daw7ZlJ" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Fortra Platform.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Globalscape</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/Eb-Mf9bvukpCoMBAUeK64o8B6=
+iNV_NDCBcHKT-KlyF0KvQ?e=3DbbxqgJ" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Globalscape.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>GoAnywhere</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EaicJKqbCr9NoyYch37OaboBp=
+TgSm9W8Pqq5-oaUdEINFg?e=3DbRhlpT" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - GoAnywhere.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Human Risk Management</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EVtHeezoTvNBnqdyxn4ds0EBF=
+rjFnrGFxPk0UAmZayKYrw?e=3Dh7ptFY" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Human Risk Management.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Michaela Grundman</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Hybrid</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EVtfZYSiQGdOq47wrpY7RksBj=
+iPx5j7IReUhnYTAqNtuEg?e=3DzXdOJs" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Hybrid.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Cassie Tusler</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EdgveAf-NCRBn-_u1ZXTx1oBP=
+5YIXUC1Q40Jscuk27UmZQ?e=3D05V7js" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Offensive Security.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Done?</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Power</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/EdFXe0QykfhGu6VaS6Dl4UgBs=
+M5a5M8dDh3t2S7Ba5JuOA?e=3DUiXhvl" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Power.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Cassie Tusler</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Robotic Process Automation</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/Eap3x0SzRFBPpe5rk1Rgc8MBE=
+HXA8rJAgp8FIpZXg4e4OQ?e=3DEdkYai" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - RPA.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Cassie Tusler</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Vulnerability Management</p></td>
+<td class=3D"confluenceTd">
+<p><a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoint.com=
+/:x:/s/PROJ-LoBOperationalReadinessTransformation/ERlXdqPOQhxDsh1QnlFnPOMBT=
+UzK1QTIRwnx5iERKpFXTA?e=3DKx5ubD" rel=3D"nofollow">Product Hierarchy All Pr=
+oducts, Families &amp; Bundles - Vulnerability Management.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p>Michaela Grundman</p>
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Workload Automation</p></td>
+<td class=3D"confluenceTd">
+<p>skip <a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoin=
+t.com/:x:/s/PROJ-LoBOperationalReadinessTransformation/Eb-Mf9bvukpCoMBAUeK6=
+4o8B6iNV_NDCBcHKT-KlyF0KvQ?e=3D2iummR" rel=3D"nofollow">Product Hierarchy A=
+ll Products, Families &amp; Bundles - Globalscape.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>XDR</p></td>
+<td class=3D"confluenceTd">
+<p>skip <a class=3D"external-link" href=3D"https://helpsystemsllc.sharepoin=
+t.com/:x:/s/PROJ-LoBOperationalReadinessTransformation/EbcAJWsxcPpAiZG4HcUY=
+Tx4BMPkorUEtq_3s7c_mmiitbQ?e=3DbSRgLq" rel=3D"nofollow">Product Hierarchy A=
+ll Products, Families &amp; Bundles - XDR.xlsx</a></p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p></p>
+<p><strong>Reference Links: </strong><br>
+Combined Document that will go to Coastal: <a class=3D"external-link" href=
+=3D"https://helpsystemsllc.sharepoint.com/:x:/r/sites/DEPT-BusinessSystems2=
+/Shared%20Documents/BSI%20Hub/Product%20Hierarchy%20All%20Products,%20Famil=
+ies%20%26%20Bundles%204-15-25.xlsx?d=3Dwd3ff3fa49c164a76b2ba0271f35f8a3f&am=
+p;csf=3D1&amp;web=3D1&amp;e=3DwWF4eS" rel=3D"nofollow">Product Hierarchy Al=
+l Products, Families &amp; Bundles 4-15-25.xlsx</a></p>
+<p>Coastal's Product Attributes: <a class=3D"external-link" data-card-appea=
+rance=3D"inline" href=3D"https://docs.google.com/spreadsheets/d/1WM0apgqJeY=
+mz1Y6hsBKziwfE07RrcqulrqJjruNpkuE/edit?gid=3D144253440#gid=3D144253440" rel=
+=3D"nofollow">https://docs.google.com/spreadsheets/d/1WM0apgqJeYmz1Y6hsBKzi=
+wfE07RrcqulrqJjruNpkuE/edit?gid=3D144253440#gid=3D144253440</a></p>
+<p>Michaela=E2=80=99s first Coastal config Rules: <a class=3D"external-link=
+" data-card-appearance=3D"inline" href=3D"https://helpsystemsllc.sharepoint=
+.com/:x:/s/PROJ-PricingStrategy/ERgRwBVwgd5KmeEC9Ufzg_QBlf7Nw6tts5KtgY_yLEn=
+d2g?CID=3D3cd92e7c-7880-d5ef-f601-375a3e9a83c0" rel=3D"nofollow">https://he=
+lpsystemsllc.sharepoint.com/:x:/s/PROJ-PricingStrategy/ERgRwBVwgd5KmeEC9Ufz=
+g_QBlf7Nw6tts5KtgY_yLEnd2g?CID=3D3cd92e7c-7880-d5ef-f601-375a3e9a83c0</a></=
+p>
+<p>Product Pricing to Coastal All documents: <a class=3D"external-link" hre=
+f=3D"https://helpsystemsllc.sharepoint.com/:f:/r/sites/PROJ-LoBOperationalR=
+eadinessTransformation/Shared%20Documents/General/Salesforce-Fortra_Coastal=
+_Share/2.%20Discovery,%20Define,%20Planning%20Folder/Discovery%20Session%20=
+Info/Fortra%20Discovery%20Documentation/Pricing%20and%20Products?csf=3D1&am=
+p;web=3D1&amp;e=3D4gohPQ" rel=3D"nofollow">Pricing and Products</a></p>
+<p>Business Unit Names 2025: <a class=3D"external-link" href=3D"https://hel=
+psystemsllc-my.sharepoint.com/:x:/g/personal/leah_guenther_helpsystems_com/=
+ER-Sk8a767pHlwGKwabcZcwB62mHW-1YZ3bc7liLke9Iaw" rel=3D"nofollow">https://he=
+lpsystemsllc-my.sharepoint.com/:x:/g/personal/leah_guenther_helpsystems_com=
+/ER-Sk8a767pHlwGKwabcZcwB62mHW-1YZ3bc7liLke9Iaw</a></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_2_2021535463.1780418830341--

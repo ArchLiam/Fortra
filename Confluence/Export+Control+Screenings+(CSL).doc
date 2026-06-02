@@ -1,0 +1,680 @@
+Date: Tue, 2 Jun 2026 16:48:19 +0000 (UTC)
+Message-ID: <1001001779.3.1780418899629@0eb1d0eb2e5c>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_2_421079047.1780418899628"
+
+------=_Part_2_421079047.1780418899628
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Export Control Screenings (CSL)</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Export Control Screenings (CSL)</h1>
+    <div class=3D"Section1">
+        <div class=3D"contentLayout2">
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #EAE6FF;border-color: #998D=
+D9;border-width: 1px;">
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p local-id=3D"701e01efbca6">Fortra Complete 10.30.2025</p>
+</div>
+</div>
+<p local-id=3D"e2e9bbe52a0a">Color Code: <br><span style=3D"background-colo=
+r: rgb(254,222,200);">Questions needing to be answered</span><br><span styl=
+e=3D"background-color: rgb(198,237,251);">API Call to build</span><br><span=
+ style=3D"background-color: rgb(223,216,253);">Salesforce Field Updated/pop=
+ulated</span><br><span style=3D"background-color: rgb(211,241,167);">Opport=
+unity Stage Form Needed</span></p>
+<h1 local-id=3D"07665cfe4ccc" id=3D"ExportControlScreenings(CSL)-ExportCont=
+rolScreenings(CSL)">Export Control Screenings (CSL)</h1>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout two-equal" data-layout=3D"two-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h2 local-id=3D"fef24d4ef4d4" id=3D"ExportControlScreenings(CSL)-Fieldsneed=
+edatAccountlevel">Fields needed at Account level</h2>
+<ul local-id=3D"b0309649c30e">
+<li local-id=3D"72519d2b982a">
+<p local-id=3D"78c79a9de561"><span style=3D"background-color: rgb(223,216,2=
+53);">=E2=80=9CConsolidated Screening List=E2=80=9D</span></p>
+<ul local-id=3D"86f7a1192433">
+<li local-id=3D"5d927baab679">
+<p local-id=3D"3bc1aada7e0e">Pick list: Not Screened (default), Approved, O=
+n hold, Additional Screening Needed, Denied</p></li>
+<li local-id=3D"35a8953c28cc">
+<p local-id=3D"197c88a0cb51">Only Customer Operations can edit this field (=
+View All)</p></li>
+<li local-id=3D"e010f21a9e66">
+<p local-id=3D"4343b79f1cb3"><span style=3D"background-color: rgb(223,216,2=
+53);">=E2=80=9CDate of Last CSL Run=E2=80=9D: mm.dd.yy</span></p>
+<ul local-id=3D"bef7b2d042ab">
+<li local-id=3D"fd7ac4f1ce41">
+<p local-id=3D"4c9f35bbd140">Need to see history of these statuses</p></li>
+<li local-id=3D"a95d8c5198ee">
+<p local-id=3D"6a19e6275487">Only Customer Operations can edit this field (=
+View All)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"3d9d4b0311be">
+<p local-id=3D"9254387aa0be"><span style=3D"background-color: rgb(223,216,2=
+53);">Offensive Security Screening Notes</span>: (Multi text field)</p>
+<ul local-id=3D"442d2670b0f5">
+<li local-id=3D"9b5d8f4aa89f">
+<p local-id=3D"f495b14fe238">Hidden Field (Permission Group=3DOffensive Sec=
+urity Screening) - can only can view and edit)</p>
+<ul local-id=3D"7f099cd90769">
+<li local-id=3D"175c630a1b7e">
+<p local-id=3D"a449f5d1cf38">Permission Group (2 people Victoria Mullady &a=
+mp; Alex Guderian)</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 local-id=3D"76a196717cc9" id=3D"ExportControlScreenings(CSL)-*Fieldsnee=
+dedatOpportunitylevel">*Fields needed at Opportunity level</h2>
+<ul local-id=3D"5b861741bcb9">
+<li local-id=3D"64a86b216905">
+<p local-id=3D"0ce2ad849870"><span style=3D"background-color: rgb(223,216,2=
+53);">=E2=80=9CConsolidated Screening Status=E2=80=9D </span></p>
+<ul local-id=3D"f1bac56d5ab4">
+<li local-id=3D"570cffde6e40">
+<p local-id=3D"47249618b8ef">Pick list: Not Screened (default), Approved, O=
+n hold, Additional Screening Needed, Denied</p></li>
+<li local-id=3D"9d1260d15ff8">
+<p local-id=3D"194bd331e4a3">Greyed out or hidden on Renewal Opps (not depe=
+ndent on renewal opps proceeding)</p></li>
+<li local-id=3D"421881b02e1c">
+<p local-id=3D"02677c36c22b">See below notes for all automations/dependenci=
+es related to this field</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h2 local-id=3D"a8645e03e2e3" id=3D"ExportControlScreenings(CSL)-ExternalAP=
+I-Automation">External API - Automation</h2>
+<h4 local-id=3D"996198665cb4" id=3D"ExportControlScreenings(CSL)-RunstheCSL=
+API-http://ocr-inc.com/"><span style=3D"background-color: rgb(198,237,251);=
+">Runs the CSL API - </span><a class=3D"external-link" data-card-appearance=
+=3D"inline" href=3D"http://ocr-inc.com/" local-id=3D"3370518cf006" rel=3D"n=
+ofollow">http://ocr-inc.com/</a></h4>
+<ul local-id=3D"b047eb42ded3">
+<li local-id=3D"e7d93380e3d3">
+<p local-id=3D"90d3179e8c24">Utilize Descartes tool API Connection to Fortr=
+a Salesforce (tool managed by Legal)</p>
+<ul local-id=3D"468a72459b35">
+<li local-id=3D"13231e6ac029">
+<p local-id=3D"e3157eca3cb4">Data sent through API</p>
+<ul local-id=3D"3bcf6d79000f">
+<li local-id=3D"2cbbea0a59b3">
+<p local-id=3D"3cf3a07fb850">Account Name (Company Name)</p></li>
+<li local-id=3D"bd4a8ade522f">
+<p local-id=3D"589e90008725">Account ID (Salesforce ID)</p></li>
+<li local-id=3D"151b48b999c5">
+<p local-id=3D"ff79206527ac">Account Ship to Address</p></li>
+</ul></li>
+<li local-id=3D"cbd092e4800e">
+<p local-id=3D"9acbb1a23a40">Returns <span style=3D"background-color: rgb(2=
+23,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</span> Status (=
+On Hold or Approved)</p></li>
+</ul></li>
+</ul>
+<h4 local-id=3D"f31b3858988a" id=3D"ExportControlScreenings(CSL)-ICANLookup=
+-Manualtoday-thiswouldjustbenicetohaveorPhase2">ICAN Lookup - Manual today =
+- this would just be nice to have or Phase 2</h4>
+<ul local-id=3D"3e3e219cf223">
+<li local-id=3D"5b5d9bd3df09">
+<p local-id=3D"36f34f35b33f">API pull <a class=3D"external-link" data-card-=
+appearance=3D"inline" href=3D"https://opendata.icann.org/api/v1/console/dat=
+asets/1.0/search/" local-id=3D"8ab4bf195382" rel=3D"nofollow">https://opend=
+ata.icann.org/api/v1/console/datasets/1.0/search/</a></p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<hr local-id=3D"8669a4863170">
+<h2 local-id=3D"678b4fa2a09e" id=3D"ExportControlScreenings(CSL)-Process1:N=
+ewSaleOpportunities-allFortraProducts(NotRenewals)">Process 1: New Sale Opp=
+ortunities - all Fortra Products (Not Renewals)</h2>
+<p local-id=3D"59e3314d80a0"><span style=3D"background-color: rgb(254,222,2=
+00);">New Global Quote rule needed: </span></p>
+<p local-id=3D"07a195941676"><span style=3D"background-color: rgb(254,222,2=
+00);">
+<del>*Quote Watermark Removal Rule: Once Quote is approved and =E2=80=9CCon=
+solidated Screening Status=E2=80=9D =3D Approved</del></span>- this should =
+be satisfied by recent development for Oppty/Quotes in UAT Env (See <a clas=
+s=3D"external-link" href=3D"https://loop.cloud.microsoft/p/eyJwIjp7InUiOiJo=
+dHRwczovL2hlbHBzeXN0ZW1zbGxjLW15LnNoYXJlcG9pbnQuY29tL3BlcnNvbmFsL2JyaWdldHR=
+lX2NvbHVjY2lfaGVscHN5c3RlbXNfY29tP25hdj1jejBsTWtad1pYSnpiMjVoYkNVeVJtSnlhV2=
+RsZEhSbFgyTnZiSFZqWTJsZmFHVnNjSE41YzNSbGJYTmZZMjl0Sm1ROVlpRlFWakkxV0RkVFpUT=
+kZaWFIyVjNGSFJqbGphMnhwYmtGd00yUTNkemhDU1dsSlYweGlUR2xUYVRCM1pUTnpjRXBGVkhS=
+eFUwcDNiemt4UVVRM05USjJKbVk5TURGTlJFZzFNME5UUVVFMlRrZFJWbEV6UlU1SU0wUk1TVmR=
+ZTlRKT05WbzFOaVpqUFNabWJIVnBaRDB4IiwiciI6ZmFsc2V9fQ%3D%3D" rel=3D"nofollow"=
+>Notes</a>)</p>
+<ul local-id=3D"f1c0eb26a183">
+<li local-id=3D"ad059db38699">
+<p local-id=3D"08dbf55d5b7f">Trigger @ Opportunity Created</p>
+<ul local-id=3D"e4a725cbb792">
+<li local-id=3D"c5f69140a2e6">
+<p local-id=3D"f87bd77298b6"><span style=3D"background-color: rgb(198,237,2=
+51);">Run the CSL API</span></p>
+<ul local-id=3D"d71f08d08a33">
+<li local-id=3D"87e178827054">
+<p local-id=3D"ee0890c0bfb7"><span style=3D"background-color: rgb(198,237,2=
+51);">CSL Returns =3D On Hold</span></p>
+<ul local-id=3D"8f5e8226f844">
+<li local-id=3D"1df5fd96f129">
+<p local-id=3D"3ea31bbdbcf0">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D =
+=3D On Hold</span></p></li>
+<li local-id=3D"8d66a36e3716">
+<p local-id=3D"3b4dedcee72c">Update Opportunity Field <span style=3D"backgr=
+ound-color: rgb(220,223,228);">=E2=80=9CConsolidated Screening Status=E2=80=
+=9D</span> =3D On Hold</p></li>
+<li local-id=3D"849b276495bb">
+<p local-id=3D"69e3874b8834">Opportunity: Customer Operations review needed=
+ <span style=3D"background-color: rgb(254,222,200);">Will be viewed through=
+ Que where </span><span style=3D"background-color: rgb(220,223,228);">=E2=
+=80=9CConsolidated Screening Status=E2=80=9D</span> =3D On Hold</p>
+<ul local-id=3D"0eb914b3b95b">
+<li local-id=3D"e8fa27a7fd2e">
+<p local-id=3D"6e2a7e35bd7a">Once complete Customer Operations will manuall=
+y update Update Opportunity Field <span style=3D"background-color: rgb(220,=
+223,228);">=E2=80=9CConsolidated Screening Status=E2=80=9D</span> =3D (resu=
+lting status value)</p>
+<ul local-id=3D"eb3347393c5d">
+<li local-id=3D"505d4ecfb563">
+<p local-id=3D"5d067f3a35da">If possible, only if set manually by customer =
+ops Automatically Update Account Field <span style=3D"background-color: rgb=
+(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D =3D Approved =
+or Denied</span></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"e66897854adf">
+<p local-id=3D"3695c1261cc0"><span style=3D"background-color: rgb(198,237,2=
+51);">CSL Returns =3D Approved</span></p>
+<ul local-id=3D"3577d77c1b1c">
+<li local-id=3D"6f15f0b5a795">
+<p local-id=3D"e9a5d281147e"><strong>Opportunity Product of interest =3D Of=
+fensive Security</strong></p>
+<ul local-id=3D"4164c2623f1d">
+<li local-id=3D"d6f549734feb">
+<p local-id=3D"6dd0c9512ff7">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</s=
+pan> =3D <span style=3D"background-color: rgb(223,216,253);">Additional Scr=
+eening Needed</span></p></li>
+<li local-id=3D"d4db89bd5ed7">
+<p local-id=3D"ae67c26c2457">Update Opportunity Field <span style=3D"backgr=
+ound-color: rgb(220,223,228);">=E2=80=9CConsolidated Screening Status=E2=80=
+=9D</span> =3D <span style=3D"background-color: rgb(220,223,228);">Addition=
+al Screening Needed</span></p></li>
+<li local-id=3D"4b3ac706bc1b">
+<p local-id=3D"244c3350f1de"><span style=3D"background-color: rgb(211,241,1=
+67);">(today external Microsoft form) Trigger Sales Rep to fill out form: =
+=E2=80=9CExport Screening Request=E2=80=9D</span></p>
+<ul local-id=3D"5465d0f5812f">
+<li local-id=3D"9e9b864117e3">
+<p local-id=3D"703b0c011ddf"><span style=3D"background-color: rgb(211,241,1=
+67);">Questions asked: (Allow Multiple)</span> <span style=3D"background-co=
+lor: rgb(211,241,167);">Select Contact from system - </span></p>
+<ul local-id=3D"c99487ea4442">
+<li local-id=3D"05a081afb722">
+<p local-id=3D"234a46331e5a"><span style=3D"background-color: rgb(211,241,1=
+67);">End user name (person not company) </span></p></li>
+<li local-id=3D"ffd71888691c">
+<p local-id=3D"5ee6995e5c87"><span style=3D"background-color: rgb(211,241,1=
+67);">End user Title: (this is required) </span></p></li>
+<li local-id=3D"2f58bcf0003c">
+<p local-id=3D"429835984a54"><span style=3D"background-color: rgb(211,241,1=
+67);">Shipping Country (Country of End user Location) </span></p></li>
+<li local-id=3D"265d3d7ef8f9">
+<p local-id=3D"34bf5232fd53"><span style=3D"background-color: rgb(211,241,1=
+67);">Required Text Field: Detailed Use Case (Multi text field)</span></p><=
+/li>
+</ul></li>
+</ul></li>
+<li local-id=3D"bed05f00f1b7">
+<p local-id=3D"700e98cc613c">Opportunity: Customer Operations review needed=
+ <span style=3D"background-color: rgb(254,222,200);">Will be viewed through=
+ Queue where </span><span style=3D"background-color: rgb(220,223,228);">=E2=
+=80=9CConsolidated Screening Status=E2=80=9D</span> =3D Additional Screenin=
+g Required</p>
+<ul local-id=3D"27fd4e52b8b7">
+<li local-id=3D"8be3f785336b">
+<p local-id=3D"9760f2ecefe9"><span style=3D"background-color: rgb(254,222,2=
+00);">(nice to have manual process today) ICANN lookup - Country code manua=
+l lookup if ICANN comes back with nothing. </span></p>
+<ul local-id=3D"9791b073c14f">
+<li local-id=3D"4442a807b9ef">
+<p local-id=3D"7dc1e7b2fd45"><span style=3D"background-color: rgb(254,222,2=
+00);">Results will be copied/pasted (manually to start, eventually automate=
+d if possible) into the Export Screening Notes field - if text exists in th=
+e field, we need to append to the end of the pre-existing text (leave a bla=
+nk line).</span></p></li>
+<li local-id=3D"0edad3604fe9">
+<p local-id=3D"83eb82b20da9">Manual research, google, map, real company/end=
+ user etc.</p></li>
+</ul></li>
+<li local-id=3D"1e60689ececa">
+<p local-id=3D"217537524ed8">Once complete Customer Operations will manuall=
+y update Update Opportunity Field <span style=3D"background-color: rgb(220,=
+223,228);">=E2=80=9CConsolidated Screening Status=E2=80=9D</span> =3D Appro=
+ved or Denied result</p></li>
+<li local-id=3D"e24d7b58769a">
+<p local-id=3D"882f0dd18ce2">When the above Consolidated Screening Status (=
+oppty) field changed, automatically Update Account Field <span style=3D"bac=
+kground-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=
+=80=9D</span> =3D <span style=3D"background-color: rgb(223,216,253);">Appro=
+ved or Denied result</span></p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"ffedd93eeb0c">
+<p local-id=3D"d2479d74c752"><strong>Opportunity Product of interest =3D Em=
+ail Security (Secure ICAP Gateway, Secure Email Gateway)</strong></p>
+<ul local-id=3D"4ddb063a307a">
+<li local-id=3D"f8843f3a23fa">
+<p local-id=3D"d580c287d0e9">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</s=
+pan> =3D <span style=3D"background-color: rgb(223,216,253);">Additional Scr=
+eening Needed</span></p></li>
+<li local-id=3D"75b676ee05fd">
+<p local-id=3D"c91300e73ea4">Update Opportunity Field <span style=3D"backgr=
+ound-color: rgb(220,223,228);">=E2=80=9CConsolidated Screening Status=E2=80=
+=9D</span> =3D <span style=3D"background-color: rgb(220,223,228);">Addition=
+al Screening Needed</span></p>
+<ul local-id=3D"976e04fc63d7">
+<li local-id=3D"e43882f38540">
+<p local-id=3D"ad00528e2804">Once complete Customer Operations will manuall=
+y update Update Opportunity Field <span style=3D"background-color: rgb(220,=
+223,228);">=E2=80=9CConsolidated Screening Status=E2=80=9D</span> =3D Appro=
+ved or Denied result</p>
+<ul local-id=3D"54a6067ef67e">
+<li local-id=3D"906810df05e6">
+<p local-id=3D"043edee4ddf0">When the above Consolidated Screening Status (=
+oppty) field changed, automatically Update Account Field <span style=3D"bac=
+kground-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=
+=80=9D =3D Approved or Denied result</span></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"43c16592cb6c">
+<p local-id=3D"db756157ba08"><strong>Opportunity Product of Interest =3D Al=
+l Other Products</strong></p>
+<ul local-id=3D"162da75ca058">
+<li local-id=3D"ec9d78003dea">
+<p local-id=3D"599c0f73380b">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</s=
+pan> =3D <span style=3D"background-color: rgb(223,216,253);">Approved</span=
+></p></li>
+<li local-id=3D"90fd03775468">
+<p local-id=3D"0f66239c11d5">Update Opportunity Field <span style=3D"backgr=
+ound-color: rgb(220,223,228);">=E2=80=9CConsolidated Screening Status=E2=80=
+=9D</span> =3D Approved</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"1ac97022a102">
+<p local-id=3D"af9d379e7e33">Trigger @ Opportunity pushed to Order/Invoice<=
+/p>
+<ul local-id=3D"309536da1271">
+<li local-id=3D"f9728c6da783">
+<p local-id=3D"75136e00ff5f"><span style=3D"background-color: rgb(198,237,2=
+51);">Run the CSL API</span></p>
+<ul local-id=3D"1a8299d38887">
+<li local-id=3D"4ba46236517a">
+<p local-id=3D"9c997751b580"><span style=3D"background-color: rgb(198,237,2=
+51);">CSL Returns =3D On Hold</span></p></li>
+<li local-id=3D"6493a60195ce">
+<p local-id=3D"014ce99d8173">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D =
+=3D On Hold</span></p></li>
+<li local-id=3D"c64b218b6387">
+<p local-id=3D"7cedb583bc64">Update Opportunity Field <span style=3D"backgr=
+ound-color: rgb(220,223,228);">=E2=80=9CConsolidated Screening Status=E2=80=
+=9D</span> =3D On Hold</p></li>
+<li local-id=3D"92bf766c63f7">
+<p local-id=3D"bed22ee95995"><span style=3D"background-color: rgb(254,222,2=
+00);">Error/Notification on Stage? can=E2=80=99t move forward to invoice un=
+til Approved (fulfillment process)</span></p></li>
+<li local-id=3D"dc5e30b6f62f">
+<p local-id=3D"778ffc4db97f">Once complete Customer Operations will manuall=
+y update Update Opportunity Field <span style=3D"background-color: rgb(220,=
+223,228);">=E2=80=9CConsolidated Screening Status=E2=80=9D</span> =3D Appro=
+ved</p></li>
+</ul></li>
+<li local-id=3D"b3b2f3c539ce">
+<p local-id=3D"59896ba35b06"><span style=3D"background-color: rgb(198,237,2=
+51);">CSL Returns =3D Approved</span></p>
+<ul local-id=3D"84e7b0b2e277">
+<li local-id=3D"e11eedd068bc">
+<p local-id=3D"c1b1002fdf8b">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</s=
+pan> =3D <span style=3D"background-color: rgb(223,216,253);">Approved</span=
+></p></li>
+<li local-id=3D"384e09fdfb58">
+<p local-id=3D"583c35c87fc0">Update Opportunity Field <span style=3D"backgr=
+ound-color: rgb(220,223,228);">=E2=80=9CConsolidated Screening Status=E2=80=
+=9D</span> =3D Approved</p></li>
+<li local-id=3D"afe3e299738b">
+<p local-id=3D"a16c4e6c8ff2">Move to next stage of Fulfillment process</p><=
+/li>
+</ul></li>
+</ul></li>
+</ul>
+<hr local-id=3D"89e491f8c7b0">
+<h2 local-id=3D"7a7f89a2d8e7" id=3D"ExportControlScreenings(CSL)-Process2:R=
+ecurringBulkReviews"><span style=3D"background-color: rgb(254,222,200);">Pr=
+ocess 2: Recurring Bulk Reviews</span></h2>
+<h3 local-id=3D"467387bba55a" id=3D"ExportControlScreenings(CSL)-Quarterlyb=
+ulkreviews(AllProducts)">Quarterly bulk reviews (All Products)</h3>
+<p local-id=3D"26d6d77e4600">*Current: Manual export and upload of excels q=
+uarterly to the <span style=3D"background-color: rgb(198,237,251);">CSL web=
+site</span>.</p>
+<ul local-id=3D"165ea5b87fcb">
+<li local-id=3D"34028847f60d">
+<p local-id=3D"108552dec4bc">This report is manually uploaded to OCR.&nbsp;=
+<span style=3D"background-color: rgb(198,237,251);">Runs the CSL API </span=
+></p>
+<ul local-id=3D"729ef24df045">
+<li local-id=3D"e129372590b3">
+<p local-id=3D"7701c3c58092"><span style=3D"background-color: rgb(198,237,2=
+51);">OCR</span> adds their results sends back in excel and provided back t=
+o Fortra.</p></li>
+</ul></li>
+</ul>
+<p local-id=3D"ea068c262994" style=3D"margin-left: 30.0px;"><a class=3D"ext=
+ernal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/:w:/g/personal=
+/emily_bredhold_helpsystems_com/ETFx2sHmtvJBto0iwVWDGwIBXeLtNWeYFozKLe71mQ2=
+a1g?e=3DLb62W9" rel=3D"nofollow">Quarterly Batch Export Screening Process 2=
+025.docx</a></p>
+<p local-id=3D"510383f67053" style=3D"margin-left: 30.0px;">[Future State (=
+Nice to Have) If it=E2=80=99s possible to directly upload records to OCR/De=
+scartes (or other vendor) switch to nightly rescreen process.=E2=80=AF If s=
+anctions are lifted, alerts are automatically updated and automatically cle=
+ars holds.]</p>
+<p local-id=3D"f4470a7dfa41"><strong>Automation To build (Request)</strong>=
+<br>
+Export Screening process batch screening of all active customers periodical=
+ly (quarterly)</p>
+<ul local-id=3D"e7f3e5ca861c">
+<li local-id=3D"960de8adda1f">
+<p local-id=3D"45c87b77c71f">All Active Customers - Renewal and New - with =
+Active Contract - Including Global ultimate (Parent Accounts)</p></li>
+<li local-id=3D"57be3b10a770">
+<p local-id=3D"edb469ea8ffa"><span style=3D"background-color: rgb(198,237,2=
+51);">Run the CSL API</span></p>
+<ul local-id=3D"515239886f24">
+<li local-id=3D"2c2b312ced3d">
+<p local-id=3D"f3a9890b6027"><span style=3D"background-color: rgb(198,237,2=
+51);">CSL Returns =3D On Hold</span></p>
+<ul local-id=3D"75408ea84382">
+<li local-id=3D"619b3f59dd41">
+<p local-id=3D"f033136c7113">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</s=
+pan> =3D <span style=3D"background-color: rgb(223,216,253);">On Hold</span>=
+</p></li>
+<li local-id=3D"9e0c9a8f90f4">
+<p local-id=3D"080c3a74df86">Customer Operations review needed <span style=
+=3D"background-color: rgb(254,222,200);">(task/queue?)</span></p>
+<ul local-id=3D"4b7d4c215053">
+<li local-id=3D"192a1c0a0f4e">
+<p local-id=3D"fdefe229c567">If any concerns or cannot clear a false positi=
+ve, it is escalated to Legal.&nbsp;(Email sent to <a class=3D"external-link=
+" href=3D"mailto:contracts@fortra.com" rel=3D"nofollow">contracts@fortra.co=
+m</a>) - Preferred method is to recieve one email containing all accounts t=
+hat fall into this category</p></li>
+<li local-id=3D"268852771c92">
+<p local-id=3D"8ac5f88e1d83">Once complete Customer Operations will manuall=
+y update <span style=3D"background-color: rgb(223,216,253);">=E2=80=9CConso=
+lidated Screening List=E2=80=9D</span> =3D <span style=3D"background-color:=
+ rgb(223,216,253);">Approved or Denied</span></p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"b83773527e00">
+<p local-id=3D"21a6d6ef00d0"><span style=3D"background-color: rgb(198,237,2=
+51);">CSL Returns =3D Approved</span></p>
+<ul local-id=3D"def1de4f5c99">
+<li local-id=3D"f99ef8ce98a9">
+<p local-id=3D"46839e59c26e">Update Account Field <span style=3D"background=
+-color: rgb(223,216,253);">=E2=80=9CConsolidated Screening List=E2=80=9D</s=
+pan> =3D <span style=3D"background-color: rgb(223,216,253);">Approved</span=
+></p></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_2_421079047.1780418899628--

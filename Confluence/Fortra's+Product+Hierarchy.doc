@@ -1,0 +1,511 @@
+Date: Tue, 2 Jun 2026 16:46:22 +0000 (UTC)
+Message-ID: <1297518797.1.1780418782680@68f877e69789>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_0_712735920.1780418782655"
+
+------=_Part_0_712735920.1780418782655
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Fortra&#39;s Product Hierarchy</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Fortra&#39;s Product Hierarchy</h1>
+    <div class=3D"Section1">
+        <div class=3D"contentLayout2">
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<p local-id=3D"6938b2df7c45"><a class=3D"external-link" href=3D"https://hel=
+psystemsllc-my.sharepoint.com/:x:/g/personal/leah_guenther_helpsystems_com/=
+IQAfkpPGu-u6R5cBisGm3GXMAeRD4Lvcmm9uDil_0EgZzNE" rel=3D"nofollow">Business =
+Unit Changes Source of Truth</a></p>
+<p local-id=3D"493d821b026d"><strong>PowerBI "Product Mapping" aka (Source =
+of Truth) </strong>--&gt; <a class=3D"external-link" href=3D"https://app.po=
+werbi.com/Redirect?action=3DOpenReport&amp;appId=3Df4530bb5-b525-4717-b846-=
+d1774eade730&amp;reportObjectId=3Da64d3696-aa16-43c8-91d5-f72ef195fe3d&amp;=
+ctid=3Dca81e23b-3509-45ee-a998-3e346acf274d&amp;reportPage=3D1f6b4fc27f8a4a=
+ee11b7&amp;pbi_source=3DappShareLink&amp;portalSessionId=3D11186844-c86d-45=
+03-91b7-baee2e971981" rel=3D"nofollow"><u>Product Mapping</u></a></p>
+<p local-id=3D"b9bf93a2d237"></p>
+<hr local-id=3D"75fbe7e16ee8">
+</div>
+</div>
+</div>
+<div class=3D"columnLayout three-equal" data-layout=3D"three-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h1 local-id=3D"0b32a88a1ecd" id=3D"Fortra'sProductHierarchy-Salesforce">Sa=
+lesforce</h1>
+<h3 local-id=3D"419057a4bacf" id=3D"Fortra'sProductHierarchy-Unit0.00">Unit=
+ 0.00</h3>
+<h3 local-id=3D"ce14d17fa2d7" id=3D"Fortra'sProductHierarchy-SolutionGroup1=
+.00">Solution Group 1.00</h3>
+<h3 local-id=3D"22db6fbaf378" id=3D"Fortra'sProductHierarchy-SolutionCatego=
+ry2.00(AKABusinessUnit)">Solution Category 2.00 (AKA Business Unit)</h3>
+<h3 local-id=3D"289dc8b67fe9" id=3D"Fortra'sProductHierarchy-Solution3.00">=
+Solution 3.00</h3>
+<h3 local-id=3D"950c92e3774f" id=3D"Fortra'sProductHierarchy-Sku/Product">S=
+ku/Product</h3>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h1 local-id=3D"fbca777d0bc3" id=3D"Fortra'sProductHierarchy-Workday">Workd=
+ay</h1>
+<h3 local-id=3D"3a88b6e6f513" id=3D"Fortra'sProductHierarchy-SuperiorOrgani=
+zationSegment">Superior Organization Segment</h3>
+<h3 local-id=3D"6da140de1b04" id=3D"Fortra'sProductHierarchy-FortraBusiness=
+UnitHierarchy">Fortra Business Unit Hierarchy</h3>
+<h3 local-id=3D"f4717581af92" id=3D"Fortra'sProductHierarchy-BusinessUnit">=
+Business Unit</h3>
+<h3 local-id=3D"3411454c4031" id=3D"Fortra'sProductHierarchy-Solutionleveli=
+snotinWorkday"><em>Solution level is not in Workday</em></h3>
+<h3 local-id=3D"7cbb8a3de316" id=3D"Fortra'sProductHierarchy-Sku/Product.1"=
+>Sku/Product</h3>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h1 local-id=3D"71f20dba8039" id=3D"Fortra'sProductHierarchy-Adaptive">Adap=
+tive</h1>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<hr local-id=3D"17cd32f4b8e6">
+<h1 local-id=3D"bd22f14c5d97" id=3D"Fortra'sProductHierarchy-HowisProductHi=
+erarchyUsed">How is Product Hierarchy Used</h1>
+<p local-id=3D"c0ce5c1a9565">Fortra Website organization (Marketing)</p>
+<p local-id=3D"a3e2eaf06516">Marketing Lead association (Salesforce)</p>
+<p local-id=3D"1f63323bd225">Territory Routing (Salesforce)</p>
+<p local-id=3D"eb0d0913e7af">Sku Catalog Organization (Salesforce)</p>
+<p local-id=3D"dabc8e678d6e">R&amp;D =E2=80=A6 Security=E2=80=A6? (Product =
+Info Excel? PowerBi? Forge)</p>
+<p local-id=3D"cfbfb5c1e380">PowerBi Report Filters</p>
+<p local-id=3D"5776337ee355">Expense Association (Workday/concur)</p>
+<p local-id=3D"db133eb65d8e">Employee Associations (Workday)</p>
+<h1 local-id=3D"e6e6ec177bff" id=3D"Fortra'sProductHierarchy-SalesforceDepe=
+ndencies(Fieldstoupdate,Workflows)">Salesforce Dependencies (Fields to upda=
+te, Workflows)</h1>
+<ul local-id=3D"a4d7bfd22989">
+<li local-id=3D"e130efc84d0e">
+<p local-id=3D"857f70c89b64">Marketing Products</p></li>
+<li local-id=3D"77dd62806bd4">
+<p local-id=3D"2aa41489b586">Territories</p></li>
+<li local-id=3D"0d4d57dabf6f">
+<p local-id=3D"3bd8010edc9b">Price Book</p></li>
+</ul>
+<h1 local-id=3D"021e3befc6c5" id=3D"Fortra'sProductHierarchy-WorkdayDepende=
+ncies(Fieldstoupdate,Workflows)">Workday Dependencies (Fields to update, Wo=
+rkflows)</h1>
+<p local-id=3D"b13a33233f1f">Superior Organization (Segment: Cyber/Tech)</p=
+>
+<p local-id=3D"1c978591b9f9">Fortra Business Unit Hierarchy</p>
+<p local-id=3D"d27f743b93a4">Fortra Business Unit</p>
+<p local-id=3D"2ce19f6ff441">SKUs &amp; Structure up to level =E2=80=9CSolu=
+tion Category=E2=80=9D / =3D Business Unit</p>
+<p local-id=3D"a6ebd5c1e1ac"></p>
+<p local-id=3D"98a6cdb77bb5"></p>
+<p local-id=3D"922ab561f27a"></p>
+<p local-id=3D"687dd7f3694a">Coastal Documentation: <br></p>
+<p local-id=3D"6aef3a8c40aa"><strong>Marketing Products</strong>&nbsp;</p>
+<p local-id=3D"4c9368576d24">Marketing Products serve as the authoritative =
+reference table for Fortra's product portfolio within Salesforce. These are=
+ not standard Product objects tied to pricing or opportunity line items; ra=
+ther, they are custom objects designed specifically to represent products a=
+t various levels of the product hierarchy for use in territory assignment, =
+product interest tracking, and campaign attribution.&nbsp;</p>
+<p local-id=3D"fb00f6bd3fe5"><strong>Product Hierarchy Levels</strong>&nbsp=
+;</p>
+<p local-id=3D"7cd733aaba5d">Fortra's product portfolio follows a three-lev=
+el hierarchy: Unit =E2=86=92 Solution Group =E2=86=92 Solution Category. Ma=
+rketing Products can exist at any of these three levels, providing flexibil=
+ity to define territories and track interests at the appropriate granularit=
+y for different go-to-market motions.&nbsp;</p>
+<p local-id=3D"bcb921a5ca3b"><strong>Unit Level:</strong> The broadest cate=
+gorization, representing major product divisions such as "Tech" or "Cyber."=
+ A Marketing Product at the unit level has only the Unit field populated, w=
+ith Solution Group and Solution Category left blank. This level supports hi=
+gh-level territory definitions and enterprise-wide product groupings.&nbsp;=
+</p>
+<p local-id=3D"7d75f3c621c0"><strong>Solution Group Level:</strong> A mid-l=
+evel categorization representing product families within a unit, such as "R=
+PA Plus" within the Tech unit or "Defensive Security" within the Cyber unit=
+. Marketing Products at this level have both Unit and Solution Group popula=
+ted, but Solution Category remains blank. This level provides the most comm=
+on granularity for territory assignment and product interest tracking.&nbsp=
+;</p>
+<p local-id=3D"1844c806b197"><strong>Solution Category Level:</strong> The =
+most granular level, representing specific product offerings such as "Capac=
+ity Management" within RPA Plus. Marketing Products at this level have all =
+three hierarchy fields populated=E2=80=94Unit, Solution Group, and Solution=
+ Category. This level supports highly specialized territories and detailed =
+product interest tracking.&nbsp;</p>
+<p local-id=3D"e154421914d7"><strong>Marketing Product Fields</strong>&nbsp=
+;</p>
+<ul local-id=3D"5574cb17-5cb6-4bc3-8fbe-380bf399fb0b">
+<li local-id=3D"2d2e4ced-d433-4c79-a2a5-edd456caefd1">
+<p local-id=3D"b19618c9ea7d"><strong>Marketing Product Name</strong>: The d=
+isplay name for the product, matching exactly what users see in the Product=
+s of Interest picklist on forms, leads, and opportunities&nbsp;</p></li>
+<li local-id=3D"0e6aa270-dcff-4468-b0c7-064c827abf90">
+<p local-id=3D"0deb190e6d4b"><strong>Unit</strong>: The top-level product d=
+ivision (e.g., Tech, Cyber)&nbsp;</p></li>
+<li local-id=3D"39bb77e2-3a11-466a-9072-2700f2102273">
+<p local-id=3D"aa6b5d0cae1a"><strong>Solution Group</strong>: The mid-level=
+ product family within the unit&nbsp;</p></li>
+<li local-id=3D"e04347d6-16f8-4e53-beed-c1035997df8d">
+<p local-id=3D"4ea8b9b5bcad"><strong>Solution Category</strong>: The most g=
+ranular product offering within the solution group&nbsp;</p></li>
+<li local-id=3D"a65d04c0-a08e-41ca-8d5e-606a58ce9929">
+<p local-id=3D"57e9b096f5c8"><strong>Active</strong>: Checkbox indicating w=
+hether this product is currently in use for assignment and tracking&nbsp;</=
+p></li>
+</ul>
+<p local-id=3D"141d7e3432af"><strong>Active Status and Lifecycle Management=
+</strong>&nbsp;</p>
+<p local-id=3D"7a373e820cc5">Marketing Products can be marked as Active or =
+Inactive. Active products are currently sold, marketed, and used for territ=
+ory assignment. Inactive products represent deprecated offerings, sold bran=
+ds, or products temporarily removed from the market.&nbsp;</p>
+<p local-id=3D"241286a5b6df">When a product is deprecated, system administr=
+ators set Active to false rather than deleting the Marketing Product record=
+. This preserves historical relationships=E2=80=94existing Products of Inte=
+rest records, territory assignments, and campaign attributions remain intac=
+t, but the product no longer appears in picklists for new records or trigge=
+rs new territory assignments.&nbsp;</p>
+<p local-id=3D"50652c7f80fe">This lifecycle approach ensures data integrity=
+ over time. Historical leads that expressed interest in a now-deprecated pr=
+oduct maintain that association for reporting purposes, while new leads can=
+not select the deprecated product from current picklists.&nbsp;</p>
+<p local-id=3D"4d4a0f9f0dab"><strong>Synchronization with Products of Inter=
+est Picklist</strong>&nbsp;</p>
+<p local-id=3D"140b6e2699ef">Critical to the Marketing Products architectur=
+e is the one-to-one synchronization between Marketing Product records and t=
+he Products of Interest global picklist. The Products of Interest picklist =
+is a global value set used on HubSpot forms, Lead records, Opportunity reco=
+rds, and throughout the Salesforce environment to capture and track product=
+ interests.&nbsp;</p>
+<p local-id=3D"0e7ac14d80cc">Every active Marketing Product must have a cor=
+responding value in the Products of Interest picklist with an exactly match=
+ing name. When a prospect selects "RPA Plus" from a form dropdown, the syst=
+em must be able to find a Marketing Product record named "RPA Plus" to exec=
+ute territory assignment logic. If the names don't match precisely, assignm=
+ent logic fails.&nbsp;</p>
+<p local-id=3D"33b6ee75b3cf"><strong>Management and Maintenance</strong>&nb=
+sp;</p>
+<p local-id=3D"e67108820f2c">Marketing Products are managed exclusively by =
+system administrators. Sales users, marketing personnel, and other end user=
+s do not create, edit, or deactivate Marketing Product records. This centra=
+lized control ensures data quality and prevents accidental misalignment bet=
+ween Marketing Products and the Products of Interest picklist.&nbsp;</p>
+<p local-id=3D"27b516deb5ba">System administrators follow a defined process=
+ when introducing new products or deprecating existing ones:&nbsp;</p>
+<ol start=3D"1" local-id=3D"0746caa6-7425-4eb6-a2b4-f6d35e9852c5">
+<li local-id=3D"bc385cc1-9e7d-4a41-a1fc-cc7209edae44">
+<p local-id=3D"b0191f743cb4">Create or update the Marketing Product record =
+with appropriate hierarchy level and Active status&nbsp;</p></li>
+<li local-id=3D"882547f7-c8c2-470d-914d-88dbc4489ea0">
+<p local-id=3D"3f854f15dde0">Add or update the corresponding value in the P=
+roducts of Interest global picklist&nbsp;</p></li>
+<li local-id=3D"c746c6b8-10de-4ef2-b72f-0500c99c567c">
+<p local-id=3D"5565c62f68f3">Create or update Sales Territory records that =
+reference the new/updated Marketing Product&nbsp;</p></li>
+<li local-id=3D"10857f28-8da2-4351-b679-c95e2ad53a5a">
+<p local-id=3D"698f4e990e33">Communicate changes to sales operations and ma=
+rketing teams who manage forms and campaigns&nbsp;</p></li>
+</ol>
+<p local-id=3D"279a89a6095c">Recommended best practice includes quarterly r=
+eviews of Marketing Product records against the current product portfolio a=
+nd go-to-market strategy to identify products requiring activation, deactiv=
+ation, or hierarchy adjustments.&nbsp;</p>
+<p local-id=3D"f3476f29188e"><strong>Usage in Territory Assignment</strong>=
+&nbsp;</p>
+<p local-id=3D"fa9e10457d8c">Marketing Products are not directly referenced=
+ during territory assignment. Instead, Sales Territory records reference Ma=
+rketing Products through their hierarchy fields (Unit, Solution Group, Solu=
+tion Category). When a lead arrives with Products of Interest =3D "RPA Plus=
+," the territory assignment flow searches for Sales Territory records where=
+ Solution Group =3D "RPA Plus" (or Unit =3D "Tech" for broader territories)=
+, then evaluates geography, industry, and named account criteria to identif=
+y the matching territory.&nbsp;</p>
+<p local-id=3D"cc2b74498b55">This indirect relationship provides flexibilit=
+y=E2=80=94multiple Sales Territories can reference the same Marketing Produ=
+ct with different coverage criteria (e.g., "RPA Plus - Northeast Geography,=
+" "RPA Plus - Financial Services Industry," "RPA Plus - Named Account: Acme=
+ Corp"), allowing sophisticated territory carving without requiring separat=
+e Marketing Product records for each territory segment.&nbsp;</p>
+<p local-id=3D"1957598caf75"><strong>Key Design Elements</strong>&nbsp;</p>
+<p local-id=3D"13fb0bfc7de7"><strong>Marketing Products Object Configuratio=
+n:</strong>&nbsp;</p>
+<ul local-id=3D"2c0b50df-c253-4b30-b924-f69dbfd9db18">
+<li local-id=3D"199479f1-0e6d-4aa3-b48e-e8f9562d41e7">
+<p local-id=3D"cd65de00b1f1">Custom object serving as authoritative product=
+ reference table&nbsp;</p></li>
+<li local-id=3D"4ba8d334-c7e7-4c05-8ed2-01cfe8ab1f48">
+<p local-id=3D"2bbe99cdd25c">Can exist at any of three hierarchy levels: Un=
+it, Solution Group, or Solution Category&nbsp;</p></li>
+<li local-id=3D"15718721-3d59-48ce-9611-e6d5e111c09d">
+<p local-id=3D"ec3322fef6e5">Unit field: Top-level product division (e.g., =
+Tech, Cyber)&nbsp;</p></li>
+<li local-id=3D"cfe65125-15df-43b7-b7ea-2f43400553f4">
+<p local-id=3D"d86896dd344f">Solution Group field: Mid-level product family=
+ within unit&nbsp;</p></li>
+<li local-id=3D"709dd77e-57d3-4c96-a16e-4eec3e9bf51f">
+<p local-id=3D"c93163b8d9ae">Solution Category field: Most granular product=
+ offering within solution group&nbsp;</p></li>
+<li local-id=3D"f5e53e07-8084-4d5b-bde6-2ecfa56e3332">
+<p local-id=3D"8b1679117607">Marketing Product Name: Display name matching =
+Products of Interest picklist exactly&nbsp;</p></li>
+<li local-id=3D"6853f6ea-51b6-471a-b764-9042af2f8898">
+<p local-id=3D"f5d3ff02a086">Active checkbox: Indicates current use vs. dep=
+recated products&nbsp;</p></li>
+</ul>
+<p local-id=3D"7c629191c866"><strong>Data Management Requirements:</strong>=
+&nbsp;</p>
+<ul local-id=3D"48218a15-e040-452f-a23d-1e0bb0916670">
+<li local-id=3D"50af26bc-84d9-4079-bfc0-abeed410af6b">
+<p local-id=3D"69f72374db34">One-to-one synchronization required with Produ=
+cts of Interest global picklist&nbsp;</p></li>
+<li local-id=3D"3543580f-2ff6-492e-a35e-8c62e1fd3ca4">
+<p local-id=3D"58b3b5f9edd3">Inactive products preserve historical relation=
+ships without enabling new assignments&nbsp;</p></li>
+<li local-id=3D"d1e37884-96e6-4ad9-bd15-e4fdcdfa6681">
+<p local-id=3D"a47978e8df49">Managed exclusively by system administrators, =
+not end users&nbsp;</p></li>
+<li local-id=3D"55e748a4-4c56-4df3-bb75-51d74f8e1920">
+<p local-id=3D"6904ab15717d">Quarterly review recommended to maintain align=
+ment with product portfolio&nbsp;</p></li>
+<li local-id=3D"1d46f8b3-8384-449b-a1d9-b4af1f5de586">
+<p local-id=3D"c0c63b34921c">Deletion restricted to prevent orphaned relati=
+onships&nbsp;</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_0_712735920.1780418782655--

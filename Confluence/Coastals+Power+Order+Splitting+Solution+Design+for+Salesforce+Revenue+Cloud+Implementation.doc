@@ -1,0 +1,890 @@
+Date: Tue, 2 Jun 2026 16:49:54 +0000 (UTC)
+Message-ID: <1333622850.7.1780418994438@bb08a2828a3a>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_1830726575.1780418994438"
+
+------=_Part_6_1830726575.1780418994438
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Coastals Power Order Splitting Solution Design for Salesforce Re=
+venue Cloud Implementation</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Coastals Power Order Splitting Solution Design for Salesforce Reven=
+ue Cloud Implementation</h1>
+    <div class=3D"Section1">
+        <p local-id=3D"d911e5ca8612"><strong>Power Order Splitting</strong>=
+&nbsp;</p>
+<p local-id=3D"4ce24df1ceef">Solution Design Document&nbsp;</p>
+<p local-id=3D"59d9f6bf9111">&nbsp;</p>
+<p local-id=3D"25d9290c020d">Salesforce Revenue Cloud Implementation&nbsp;<=
+/p>
+<ol start=3D"1" local-id=3D"8734ad3743a4">
+<li local-id=3D"e10dcde6eb6b">
+<p local-id=3D"ffd2647d58b7"><strong>Executive Summary</strong>&nbsp;</p></=
+li>
+</ol>
+<p local-id=3D"4e8c5d0efa43">This document outlines the solution design for=
+ the Power Order Splitting feature within the Salesforce Revenue Cloud impl=
+ementation. The feature automates the splitting of order lines for Power so=
+lution group products when quantities exceed one, ensuring proper hardware =
+and partition record management.&nbsp;</p>
+<p local-id=3D"610245ef0044">The solution supports two distinct splitting b=
+ehaviors based on product configuration: sharing hardware across split line=
+s or cloning hardware for each individual line. This flexibility accommodat=
+es various business scenarios while maintaining data integrity and audit tr=
+aceability.&nbsp;</p>
+<ol start=3D"2" local-id=3D"dfeb3c46e2f1">
+<li local-id=3D"1fa1591528ef">
+<p local-id=3D"a89158696016"><strong>Business Requirements</strong>&nbsp;</=
+p></li>
+</ol>
+<p local-id=3D"e6b2778bd52c"><strong>2.1 Background</strong>&nbsp;</p>
+<p local-id=3D"4ab174619492">Power products require special handling during=
+ order processing. When a customer orders multiple units of a Power product=
+ (quantity &gt; 1), each unit must be tracked individually for licensing, m=
+aintenance, and hardware inventory purposes. This requires splitting the or=
+der line into individual quantity-1 lines.&nbsp;</p>
+<p local-id=3D"9a9f7561b6b1"><strong>2.2 Functional Requirements</strong>&n=
+bsp;</p>
+<ol start=3D"1" local-id=3D"3c23bd02-ff78-4107-b789-9089a05dde96">
+<li local-id=3D"8037b98c-4301-4255-b94d-d6b801da6801">
+<p local-id=3D"d359da2d27e1">The system shall automatically split Power pro=
+duct order lines when quantity exceeds one&nbsp;</p></li>
+</ol>
+<ol start=3D"2" local-id=3D"782363c4-782e-4f4f-b38f-eafd731ebdf9">
+<li local-id=3D"e0f853e5-43b7-4d1e-8e96-c4eb49cc8b5e">
+<p local-id=3D"bd9e16421c80">Each split line shall have a quantity of exact=
+ly one (1)&nbsp;</p></li>
+</ol>
+<ol start=3D"3" local-id=3D"6de026d4-09d9-4a7d-bfd7-774443cdbadb">
+<li local-id=3D"99c6c2e2-5603-4926-8520-4d6c3479ad32">
+<p local-id=3D"b9f5370fd067">Manual Discount Amount shall be divided evenly=
+ across all split lines&nbsp;</p></li>
+</ol>
+<ol start=3D"4" local-id=3D"e1445255-ab1c-4998-bf11-a1536bcdae4f">
+<li local-id=3D"a2295452-b80c-46d6-9c6c-cc01c25c1fcb">
+<p local-id=3D"95d2530ada6a">Displaced ARR shall be divided evenly across a=
+ll split lines&nbsp;</p></li>
+</ol>
+<ol start=3D"5" local-id=3D"7b61b575-8d82-4a67-be14-e4c80ede904f">
+<li local-id=3D"8db16076-d006-453d-bc55-3b2ca9f777de">
+<p local-id=3D"5dd43ba6b839">Hardware records shall be shared or cloned bas=
+ed on product configuration&nbsp;</p></li>
+</ol>
+<ol start=3D"6" local-id=3D"068b2ec1-f20a-4381-b2fc-541c78e78608">
+<li local-id=3D"d099d727-fc03-4b8d-b95d-86cfe38a065c">
+<p local-id=3D"be3105820612">Partition records shall always be cloned for e=
+ach split line&nbsp;</p></li>
+</ol>
+<ol start=3D"7" local-id=3D"1d862f82-1b5e-4a39-a154-1cc268f96978">
+<li local-id=3D"80d50dea-d7df-491c-aa28-2fa7efd607df">
+<p local-id=3D"fa63e31ee3a1">Split lines shall maintain a reference to the =
+original order item for audit purposes&nbsp;</p></li>
+</ol>
+<p local-id=3D"c866266976b0"><strong>2.3 Split Type Behaviors</strong>&nbsp=
+;</p>
+<p local-id=3D"bfad58713c45">The system supports two split types, configure=
+d at the product level:&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"b087966b-7758-4bd4-88ca-b67=
+5f27a95a3" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"30579afb-bd67-4cda-a9d1-f586185b3031">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"033698da-68e4-4200-b=
+92e-f17915007a80" class=3D"confluenceTd">
+<p local-id=3D"57bc88bfd8a2"><strong><span class=3D"legacy-color-text-inver=
+se">Split Type</span></strong><span class=3D"legacy-color-text-inverse">&nb=
+sp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"32977e36-98b0-4929-a=
+b1b-4ede4eaf7c49" class=3D"confluenceTd">
+<p local-id=3D"efc49e32acec"><strong><span class=3D"legacy-color-text-inver=
+se">Order Lines</span></strong><span class=3D"legacy-color-text-inverse">&n=
+bsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"aba0bac1-86ce-4d23-b=
+c16-badbd1e87059" class=3D"confluenceTd">
+<p local-id=3D"c451961cd4ee"><strong><span class=3D"legacy-color-text-inver=
+se">Hardware</span></strong><span class=3D"legacy-color-text-inverse">&nbsp=
+;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"e665d7cb-f60a-49a0-b=
+fdd-e95eb9faad57" class=3D"confluenceTd">
+<p local-id=3D"f59f61341a25"><strong><span class=3D"legacy-color-text-inver=
+se">Partitions</span></strong><span class=3D"legacy-color-text-inverse">&nb=
+sp;</span></p></td>
+</tr>
+<tr data-local-id=3D"30af1f3f-a561-4a9b-a084-976326d9626e">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"b1fe1441-2ca8-4d32-9=
+6b1-d3ab9a8a429d" class=3D"confluenceTd">
+<p local-id=3D"2ec8de3d9830">Order Line Only&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"20b0d7d2-4e2c-494f-8=
+891-d874b62b1806" class=3D"confluenceTd">
+<p local-id=3D"c35ed3b77738">Split to qty=3D1 each&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"c03a6ca8-7d57-406a-b=
+0b6-25d90912c8c3" class=3D"confluenceTd">
+<p local-id=3D"bb577a5725d7">SHARED - all lines reference same hardware&nbs=
+p;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"91611cf2-3a7a-40aa-a=
+360-a32d3b8ef626" class=3D"confluenceTd">
+<p local-id=3D"e4edd20f8776">CLONED - each line gets own partition&nbsp;</p=
+></td>
+</tr>
+<tr data-local-id=3D"8258b03b-724d-45e5-b81e-16e548336b38">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"54042b03-3051-4d=
+08-8164-472e2dbc4b74" class=3D"confluenceTd">
+<p local-id=3D"8ae5e6a296a5">Order Line and Hardware&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"557625c4-a75a-48=
+4e-a12f-fd19c545ff76" class=3D"confluenceTd">
+<p local-id=3D"eb769a4b77b3">Split to qty=3D1 each&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"b63979ad-e4ed-4d=
+f3-b60e-67f685952d49" class=3D"confluenceTd">
+<p local-id=3D"481b662bbb22">CLONED - each line gets own hardware&nbsp;</p>=
+</td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"b61d60cc-a4cf-4d=
+5f-bf7a-518685d3d4ba" class=3D"confluenceTd">
+<p local-id=3D"c18a738c65f9">CLONED - each line gets own partition&nbsp;</p=
+></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"4c18535b8eeb">&nbsp;</p>
+<ol start=3D"3" local-id=3D"a0aa910f623c">
+<li local-id=3D"f83ee985509d">
+<p local-id=3D"52fffaefca72"><strong>Solution Overview</strong>&nbsp;</p></=
+li>
+</ol>
+<p local-id=3D"74455e2d213e"><strong>3.1 Architecture</strong>&nbsp;</p>
+<p local-id=3D"27a99085201b">The solution consists of an Invocable Apex ser=
+vice that can be called from Salesforce Flows. This architecture provides f=
+lexibility for integration with existing Quote-to-Order conversion processe=
+s while maintaining testability and separation of concerns.&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"a5d9bc77-9759-4f1e-bd12-434=
+529a75afc" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"e278ddc4-ca4f-447b-b6f4-ab4cfa2a9d95">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"76287ec2-ab51-4fce-9=
+58a-2aecf163e8c5" class=3D"confluenceTd">
+<p local-id=3D"4a65574b9906"><strong><span class=3D"legacy-color-text-inver=
+se">Component</span></strong><span class=3D"legacy-color-text-inverse">&nbs=
+p;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"a77b3043-76e0-43a6-b=
+235-3de1b39c06a6" class=3D"confluenceTd">
+<p local-id=3D"7ff8fcf09d30"><strong><span class=3D"legacy-color-text-inver=
+se">Description</span></strong><span class=3D"legacy-color-text-inverse">&n=
+bsp;</span></p></td>
+</tr>
+<tr data-local-id=3D"7d60a149-b645-48bd-a6b1-cc8754d448f3">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"4a3a8c3e-8c30-40d7-8=
+c45-cca3b321f047" class=3D"confluenceTd">
+<p local-id=3D"a0b3f708572e">PowerOrderSplittingService&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"f7b85d41-2ecf-4369-9=
+a9c-7d2af707a213" class=3D"confluenceTd">
+<p local-id=3D"870a18297cd8">Main Apex service class with @InvocableMethod =
+for Flow integration&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"d6132bca-e040-405f-8d18-d5d227bfc1e1">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"e90b1daf-92fa-48=
+06-895b-e8f9cd0a6f92" class=3D"confluenceTd">
+<p local-id=3D"9c02c96b12a2">SplitRequest&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"9eb66c74-d069-48=
+f6-9ae4-fa07b4503310" class=3D"confluenceTd">
+<p local-id=3D"7486c11d66e2">Input wrapper class containing Order ID for pr=
+ocessing&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"4d06dc72-14d2-4ae4-bea9-5a04cac2ed9d">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"06d8e00f-132a-4eed-b=
+af3-754f3b37188d" class=3D"confluenceTd">
+<p local-id=3D"a32013b39fcc">SplitResult&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"f5d8ec47-c39e-41f4-8=
+cbd-afc67fc4ec75" class=3D"confluenceTd">
+<p local-id=3D"d447289de0f0">Output wrapper with success status, counts, an=
+d error messages&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"c6287d3e-1490-42c4-8735-a539c1455d0a">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"c1953f20-2310-48=
+7f-a88a-f94aefcf4c9d" class=3D"confluenceTd">
+<p local-id=3D"bba1ef8371dd">Quote-to-Order Flow&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"71796fbb-9d27-4d=
+7b-8841-7e3a094ac0ed" class=3D"confluenceTd">
+<p local-id=3D"912e347f3913">Existing flow modified to call the splitting s=
+ervice post-conversion&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"9a3ffcc3ff64">&nbsp;</p>
+<p local-id=3D"c1d0c987748a"><strong>3.2 Process Flow</strong>&nbsp;</p>
+<ol start=3D"1" local-id=3D"87047046-4060-476d-a983-c7ba171691fd">
+<li local-id=3D"34936f4d-beb7-403f-894d-daba2427bfe9">
+<p local-id=3D"a8be2e1c3b99">Quote-to-Order conversion creates Order and Or=
+derItems&nbsp;</p></li>
+</ol>
+<ol start=3D"2" local-id=3D"43e322cd-d28c-4686-afef-9e4fbcef6bad">
+<li local-id=3D"c38d8222-89ff-4752-a803-e1f8ee02c1aa">
+<p local-id=3D"43016cff93b9">Flow calls PowerOrderSplittingService with Ord=
+er ID&nbsp;</p></li>
+</ol>
+<ol start=3D"3" local-id=3D"e5f23784-3a14-41a1-b22b-902c6c3d80e8">
+<li local-id=3D"451aa3de-3def-41bf-a011-eb4c53f9f6c8">
+<p local-id=3D"73d49da6341e">Service queries OrderItems where Product Solut=
+ion_Group__c =3D 'Power' AND Quantity &gt; 1&nbsp;</p></li>
+</ol>
+<ol start=3D"4" local-id=3D"bc71c8b2-5350-4457-ab0a-4d47bffeaacb">
+<li local-id=3D"1d7dea44-6f5a-4c88-b17a-cf332b1963db">
+<p local-id=3D"c3228f01a3d9">For each qualifying line, determine split type=
+ from Product.Power_Split_Type__c&nbsp;</p></li>
+</ol>
+<ol start=3D"5" local-id=3D"4444b969-11ab-49c2-97ba-0ec6d9a66697">
+<li local-id=3D"e3b47fe7-9791-4d4b-a7df-ef1052ac1081">
+<p local-id=3D"11c4482284ac">Clone Hardware records (if 'Order Line and Har=
+dware' type)&nbsp;</p></li>
+</ol>
+<ol start=3D"6" local-id=3D"891dbdf1-782b-42ba-b682-6db84a4ff8b9">
+<li local-id=3D"c6fbb2b0-2aad-4ecc-bdc6-3d62288d1176">
+<p local-id=3D"7f6fcc5dae97">Clone Partition records (always)&nbsp;</p></li=
+>
+</ol>
+<ol start=3D"7" local-id=3D"3806b270-e06b-4ef1-8b0e-a8c4b42c7f67">
+<li local-id=3D"8657f1ea-1ff5-42c9-8df0-e7ce26ab2b6e">
+<p local-id=3D"95af1d2982fa">Create new OrderItems with quantity=3D1, distr=
+ibuted amounts, and proper references&nbsp;</p></li>
+</ol>
+<ol start=3D"8" local-id=3D"3fd486d0-929b-4ca3-854b-1c3caee46623">
+<li local-id=3D"79582577-6117-4dcb-aecf-859561b8c702">
+<p local-id=3D"ac39ae520c17">Update original OrderItem quantity to 1&nbsp;<=
+/p></li>
+</ol>
+<ol start=3D"9" local-id=3D"9acd676a-0cd1-482f-8921-119f16f2b11d">
+<li local-id=3D"f8bc055f-29d7-45f1-a928-6a4ebff6e5c5">
+<p local-id=3D"2c732278a375">Return result with success status and counts&n=
+bsp;</p></li>
+</ol>
+<p local-id=3D"361dd1bce0f9">&nbsp;</p>
+<ol start=3D"4" local-id=3D"2b0ef3f434ea">
+<li local-id=3D"ed05050878b8">
+<p local-id=3D"8cc305c08fc7"><strong>Data Model</strong>&nbsp;</p></li>
+</ol>
+<p local-id=3D"de2a06fb020b"><strong>4.1 New Fields</strong>&nbsp;</p>
+<p local-id=3D"9fb73f7d6a0b"><strong>Product2 Object:</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"b5a204af-8c4a-4597-b3d9-127=
+8240c2852" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"bd3934f5-ede7-43f5-892d-0c9232705dc8">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"d9f7bbc8-19d3-4cc2-a=
+205-2f34ff80d26c" class=3D"confluenceTd">
+<p local-id=3D"5fb03fc51c9d"><strong><span class=3D"legacy-color-text-inver=
+se">Field API Name</span></strong><span class=3D"legacy-color-text-inverse"=
+>&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"04eb4a13-8fa6-4ac1-a=
+db0-2215064103c0" class=3D"confluenceTd">
+<p local-id=3D"83fa038049d8"><strong><span class=3D"legacy-color-text-inver=
+se">Type</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;</s=
+pan></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"c5875845-5c9e-4db7-b=
+f4c-fb912a135614" class=3D"confluenceTd">
+<p local-id=3D"ed34894f77de"><strong><span class=3D"legacy-color-text-inver=
+se">Description</span></strong><span class=3D"legacy-color-text-inverse">&n=
+bsp;</span></p></td>
+</tr>
+<tr data-local-id=3D"169876dc-b46e-47dc-80da-4316dc0e0a50">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"3dc6e051-2bd4-440a-8=
+fdc-9bb7890f8bff" class=3D"confluenceTd">
+<p local-id=3D"4ecfb0bf6291">Power_Split_Type__c&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"0fa918ef-5fd7-4303-8=
+17c-baeb092bdbfa" class=3D"confluenceTd">
+<p local-id=3D"ca3848dc7843">Picklist&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"cda75793-0f80-4ac8-a=
+5fe-e8dfde5a4634" class=3D"confluenceTd">
+<p local-id=3D"1120f9ed43e2">Determines split behavior: 'Order Line Only' o=
+r 'Order Line and Hardware'&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"a15a7244926e">&nbsp;</p>
+<p local-id=3D"34bb27ec119d"><strong>OrderItem Object:</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"68acdba5-35f1-45f3-93c7-70b=
+cebe79aa8" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"dc4bd5f3-a3f8-47b8-8602-add94d0705f9">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"616c17d6-6b06-4bbb-a=
+d55-5ce3b0b84eb0" class=3D"confluenceTd">
+<p local-id=3D"9c6a42e3abc3"><strong><span class=3D"legacy-color-text-inver=
+se">Field API Name</span></strong><span class=3D"legacy-color-text-inverse"=
+>&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"f74f0c70-30ce-4c5d-a=
+812-90b07453e168" class=3D"confluenceTd">
+<p local-id=3D"79a6705720ce"><strong><span class=3D"legacy-color-text-inver=
+se">Type</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;</s=
+pan></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"bca02f5f-0fe9-4a29-9=
+5c0-d31d1926dd16" class=3D"confluenceTd">
+<p local-id=3D"266a508342e5"><strong><span class=3D"legacy-color-text-inver=
+se">Description</span></strong><span class=3D"legacy-color-text-inverse">&n=
+bsp;</span></p></td>
+</tr>
+<tr data-local-id=3D"a6d306d4-ca41-40e6-9f62-201a16a8ff5b">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"ca24d3be-3b35-4bb1-9=
+293-19078061014f" class=3D"confluenceTd">
+<p local-id=3D"9f677c79442c">Hardware__c&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"fb16834f-28fc-48ea-9=
+7a9-d85b2ab6acd6" class=3D"confluenceTd">
+<p local-id=3D"eceae33a4c6d">Lookup&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"46db5741-2e06-477d-8=
+6e0-b4eb6c7cab5f" class=3D"confluenceTd">
+<p local-id=3D"e55ea7df603f">Reference to Hardware__c record&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"06aa0a32-0fcf-4333-b195-d16a52183f78">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"050bc142-329d-44=
+5c-addf-ce14c3226ffa" class=3D"confluenceTd">
+<p local-id=3D"aaf6ff781e74">Partition_Record__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"bf88b438-aadc-4d=
+c9-97bb-e6928014b4a3" class=3D"confluenceTd">
+<p local-id=3D"1520ead1a4c0">Lookup&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"5dfe104d-48ad-4d=
+1e-ad43-dab30a3779e0" class=3D"confluenceTd">
+<p local-id=3D"dc6cf592b71d">Reference to Partition__c record&nbsp;</p></td=
+>
+</tr>
+<tr data-local-id=3D"12128e53-6de2-4454-8143-63ca9a3ccfdd">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"acb9f987-c5d7-4568-a=
+7b0-2faf99cf5366" class=3D"confluenceTd">
+<p local-id=3D"cb86baf9aa84">Manual_Discount__c&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"4faa81eb-62c4-42ef-b=
+036-a1ad43fe0c10" class=3D"confluenceTd">
+<p local-id=3D"fb272dd870e5">Currency&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"674fc4ac-1bd2-420b-9=
+3a7-9bff8e715d3c" class=3D"confluenceTd">
+<p local-id=3D"4ba08e83f76b">Manual discount amount (divided evenly during =
+split)&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"e606a250-1fae-4cb2-816e-aa7d9cbb5f96">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"34da6f49-d72c-48=
+3f-9bea-a11b3dc14771" class=3D"confluenceTd">
+<p local-id=3D"4e572dc9d3fd">Displaced_ARR__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"575bd700-c00a-4a=
+be-8191-c491b5741a63" class=3D"confluenceTd">
+<p local-id=3D"385b274dc5be">Currency&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"c22817bb-2617-44=
+c1-a670-9f56e911b2ae" class=3D"confluenceTd">
+<p local-id=3D"a4b814ac847e">Displaced ARR value (divided evenly during spl=
+it)&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"9cdcef93-c3d8-40a9-85f9-479512423d67">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"98f208d8-c55d-4df5-8=
+866-b408fc718c01" class=3D"confluenceTd">
+<p local-id=3D"312ef078c84b">Is_Split_Line__c&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"b56eb189-f901-4be3-8=
+463-34f1d7068f7f" class=3D"confluenceTd">
+<p local-id=3D"4cb2b8790e6a">Checkbox&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"f610657a-4204-4bf4-8=
+855-e3c502328745" class=3D"confluenceTd">
+<p local-id=3D"bc62dfef45bd">Indicates this line was created by the splitti=
+ng process&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"ecfab34e-55f0-45e7-9909-bb1aaabc0332">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"17a6fd15-3dba-46=
+ae-afbb-fabe1368e8cc" class=3D"confluenceTd">
+<p local-id=3D"07c0ddf32fcd">Original_Order_Item__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"633934ce-e17a-4a=
+55-a164-96613e76afcd" class=3D"confluenceTd">
+<p local-id=3D"5e500cc515fe">Lookup&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"5dee8cfa-4a1b-4e=
+17-a755-c3d85798afbc" class=3D"confluenceTd">
+<p local-id=3D"3c01b2332e0c">Self-reference to the original OrderItem befor=
+e splitting&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"a2eda01ffcd2">&nbsp;</p>
+<p local-id=3D"60bc733bf154"><strong>4.2 Entity Relationship</strong>&nbsp;=
+</p>
+<p local-id=3D"548eae3a5b7f">After splitting, the data model relationships =
+are as follows:&nbsp;</p>
+<ul local-id=3D"210cffd0-effa-4a0e-bc3c-2c782f7311ca">
+<li local-id=3D"5c254f7c-5d24-4307-8419-5e046da385c7">
+<p local-id=3D"88e982d4f32c">=E2=80=8B=E2=80=8BOrder (1) =E2=86=92 OrderIte=
+m (many) - Standard relationship=E2=80=8B&nbsp;</p></li>
+</ul>
+<ul local-id=3D"6ad9d687-bbd4-48bb-90af-57089c506bd8">
+<li local-id=3D"b5b8b21a-c51a-4d9f-9802-14582511b230">
+<p local-id=3D"41ebd00c62c5">=E2=80=8B=E2=80=8BOrderItem =E2=86=92 Hardware=
+__c - Either shared (many:1) or unique (1:1) based on split type=E2=80=8B&n=
+bsp;</p></li>
+</ul>
+<ul local-id=3D"c773ac7d-f935-4c6b-87a9-c63f2c4df0ec">
+<li local-id=3D"34635f2e-8a67-435e-8275-6602f51f3d21">
+<p local-id=3D"35ed77517151">=E2=80=8B=E2=80=8BOrderItem =E2=86=92 Partitio=
+n__c - Always unique (1:1) after splitting=E2=80=8B&nbsp;</p></li>
+</ul>
+<ul local-id=3D"5290b5c5-b4df-4023-baf0-3de70b2312df">
+<li local-id=3D"7d86590f-6d6f-4418-ab4f-68bd9eab0aff">
+<p local-id=3D"b48162493a69">=E2=80=8B=E2=80=8BOrderItem =E2=86=92 Original=
+_Order_Item__c - Links split lines to original for audit trail=E2=80=8B&nbs=
+p;</p></li>
+</ul>
+<ol start=3D"5" local-id=3D"bbaaa4f36f2e">
+<li local-id=3D"0a1464f499ba">
+<p local-id=3D"71d3bce86b9f"><strong>Technical Implementation</strong>&nbsp=
+;</p></li>
+</ol>
+<p local-id=3D"d1f2644fd17c"><strong>5.1 Apex Service Class</strong>&nbsp;<=
+/p>
+<p local-id=3D"9be560e462d8">The PowerOrderSplittingService class implement=
+s the core splitting logic with the following key methods:&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"97fa7192-5526-4771-b414-131=
+07cb146d5" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"dfb22388-3d75-4db4-8f56-5fed25db99e9">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"566db39f-0a75-4e33-b=
+f2c-5b59c84f68ed" class=3D"confluenceTd">
+<p local-id=3D"0063c56b3d79"><strong><span class=3D"legacy-color-text-inver=
+se">Method</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;<=
+/span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"64c993ae-8e24-49a6-8=
+628-b14556b9dac4" class=3D"confluenceTd">
+<p local-id=3D"6ecbd4b8fc74"><strong><span class=3D"legacy-color-text-inver=
+se">Purpose</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;=
+</span></p></td>
+</tr>
+<tr data-local-id=3D"fb974a1f-139c-49bf-8f5d-53b398f69250">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"d8ace200-a0cd-4acc-8=
+545-91a41a0e40b4" class=3D"confluenceTd">
+<p local-id=3D"8b83c2fc8b40">splitPowerOrderLines()&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"7c5d8fd2-c81c-438f-9=
+099-296c63f0008c" class=3D"confluenceTd">
+<p local-id=3D"4e730cb403c0">@InvocableMethod entry point for Flow integrat=
+ion&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"3f356a3a-3e99-48e3-a4f2-ac60673e318b">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"187b3243-5500-4f=
+6a-bca8-4c21a2662d74" class=3D"confluenceTd">
+<p local-id=3D"3c3bdceae051">processOrder()&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"dcd3fa4a-82ce-4e=
+b0-a911-91eda97e10d0" class=3D"confluenceTd">
+<p local-id=3D"6182ed49d794">Main orchestration method for splitting logic&=
+nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"6b2d2797-7c5b-4c6c-a2d7-0cbee165f927">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"99ffdb96-d524-4c1f-9=
+28d-bcbbac4744c1" class=3D"confluenceTd">
+<p local-id=3D"d118bec7f046">cloneHardware()&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"8fdd2002-b335-488c-9=
+437-c7706fea893b" class=3D"confluenceTd">
+<p local-id=3D"9430f5b4b2ae">Creates hardware clones with unique identifier=
+s&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"a2f93f45-783c-461d-abe5-31855ee96f9f">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"da1576e7-e0a1-40=
+3d-83ff-e434f59aa117" class=3D"confluenceTd">
+<p local-id=3D"2343fd04d636">clonePartitions()&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"f4aebede-fe3c-48=
+d2-ac5b-d756359cd079" class=3D"confluenceTd">
+<p local-id=3D"284f1a90f76c">Creates partition clones linked to appropriate=
+ hardware&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"bcb38d9916b0">&nbsp;</p>
+<p local-id=3D"234a3f868049"><strong>5.2 Key Design Decisions</strong>&nbsp=
+;</p>
+<ol start=3D"1" local-id=3D"9c3f19ae-b020-418b-a92c-4ce84137f2a6">
+<li local-id=3D"e0f9eeb6-fe1a-4b8f-b72e-14a31c0b1a13">
+<p local-id=3D"4249f54551e3">Bulk-safe design: All DML operations are bulki=
+fied to handle orders with many line items&nbsp;</p></li>
+</ol>
+<ol start=3D"2" local-id=3D"c87ff8c8-36f4-4872-90c1-725d30b9d3e4">
+<li local-id=3D"aa84ee8e-d169-414c-a774-fe727149bf3c">
+<p local-id=3D"c50bab0cc281">Transaction integrity: Entire operation runs i=
+n a single transaction with automatic rollback on failure&nbsp;</p></li>
+</ol>
+<ol start=3D"3" local-id=3D"ed1bbe52-3d81-4474-9f4d-d640e1113e46">
+<li local-id=3D"635c17c5-0dba-4c17-b30d-9509942c320b">
+<p local-id=3D"db4c53aa9236">Quantity preservation: Original quantities sto=
+red in a Map before modification to prevent data corruption&nbsp;</p></li>
+</ol>
+<ol start=3D"4" local-id=3D"ee44a893-c7b2-49bd-bc9c-e51a06c62fee">
+<li local-id=3D"db7088d1-7caf-48a4-8084-37b153371d26">
+<p local-id=3D"f2824174387f">Even distribution: Currency amounts rounded to=
+ 2 decimal places with remainder applied to first split line&nbsp;</p></li>
+</ol>
+<ol start=3D"5" local-id=3D"a0229913-665b-452d-a68b-4537788db8fb">
+<li local-id=3D"ad03f8c2-9a16-48a6-8e17-33b959a41c4f">
+<p local-id=3D"57b68068322d">Audit trail: Original_Order_Item__c and Is_Spl=
+it_Line__c fields enable full traceability&nbsp;</p></li>
+</ol>
+<p local-id=3D"350438edaaef"><strong>5.3 Governor Limit Considerations</str=
+ong>&nbsp;</p>
+<p local-id=3D"714ec23b0108">The service is designed to operate within Sale=
+sforce governor limits:&nbsp;</p>
+<ul local-id=3D"cf5f0171-804c-4eb8-811a-c8bf7cf478ce">
+<li local-id=3D"b209da8f-1638-49dc-9200-ec973c795f74">
+<p local-id=3D"4d5ddc2a86e9">SOQL queries: Minimized to 4 queries regardles=
+s of data volume&nbsp;</p></li>
+</ul>
+<ul local-id=3D"fe7acd79-c863-460f-bfda-cca9d44d2dc1">
+<li local-id=3D"1e038231-93b0-4256-95d1-1af5c464ab38">
+<p local-id=3D"56a127ab2b4d">DML statements: Batched inserts/updates for Ha=
+rdware, Partitions, and OrderItems&nbsp;</p></li>
+</ul>
+<ul local-id=3D"ed68da31-b9d1-4770-9ce7-cb77ae72ed3f">
+<li local-id=3D"d93cee62-057e-4d31-8677-b34c6d0ffc10">
+<p local-id=3D"34dad29ca6d5">CPU time: Linear complexity O(n) where n =3D t=
+otal order items to split&nbsp;</p></li>
+</ul>
+<p local-id=3D"acca5a966fef">&nbsp;</p>
+<p local-id=3D"1924eac0ed27">&nbsp;</p>
+<ol start=3D"8" local-id=3D"dcf42bd49e88">
+<li local-id=3D"8088994f7b92">
+<p local-id=3D"3f20df4faa53"><strong>Appendix</strong>&nbsp;</p></li>
+</ol>
+<p local-id=3D"00acdae537cc"><strong>8.1 Glossary</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"8f9ecded-f835-48ed-8529-76d=
+e90c385f2" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"0cb56db5-472f-4e9b-a6e0-9ba82d0bbe65">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"de06a05f-0353-441e-8=
+54d-0bbb44f8b9d1" class=3D"confluenceTd">
+<p local-id=3D"145180aa70a9"><strong><span class=3D"legacy-color-text-inver=
+se">Term</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;</s=
+pan></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"10f18efa-7fdc-49d8-b=
+1fa-a65b250bca8d" class=3D"confluenceTd">
+<p local-id=3D"8f5af51aa513"><strong><span class=3D"legacy-color-text-inver=
+se">Definition</span></strong><span class=3D"legacy-color-text-inverse">&nb=
+sp;</span></p></td>
+</tr>
+<tr data-local-id=3D"9861b980-7c87-4e4e-8aaa-bbe74eb1567a">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"6669f402-5399-4589-b=
+216-142fee26fc03" class=3D"confluenceTd">
+<p local-id=3D"9b0167b0670e">Power Products&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"e9018ec0-6c10-46df-9=
+589-558ba80c3047" class=3D"confluenceTd">
+<p local-id=3D"1810d2619b9d">Products where Solution_Group__c =3D 'Power', =
+typically Power systems&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"ac370ffb-118f-472d-9a3e-0c65f9e1ca72">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"47288555-bbb4-44=
+53-b64a-dc26f80d2b93" class=3D"confluenceTd">
+<p local-id=3D"50669491fcea">Split Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"2508de15-d0b4-43=
+b7-8fab-a861dcdf7cf6" class=3D"confluenceTd">
+<p local-id=3D"300c46d85f83">Configuration determining whether hardware is =
+shared or cloned during splitting&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"c77213db-9d64-4e9f-bad2-ce690be4044b">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"947f6d4f-a893-4c55-b=
+6f7-f4755e45acf5" class=3D"confluenceTd">
+<p local-id=3D"85b3c77e2b87">Hardware Record&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"2bbeb899-c502-40ac-8=
+32e-326700c73899" class=3D"confluenceTd">
+<p local-id=3D"c98ec93fa225">Custom object (Hardware__c) representing physi=
+cal server/hardware inventory&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"549762ce-5e3b-4b44-948f-919548ab0b11">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"744a2a0e-a902-4d=
+e9-8c54-a6340cb9fb47" class=3D"confluenceTd">
+<p local-id=3D"cb01fc2ed1d1">Partition&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"d2c8e19c-ecf1-49=
+ce-8d36-9d463a76411e" class=3D"confluenceTd">
+<p local-id=3D"f73f033daa79">Custom object (Partition__c) representing logi=
+cal partition on a hardware system&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"3ab07681-66ac-433c-8de6-d6b542264b23">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"43775b06-a04d-426d-8=
+427-be8621ad630e" class=3D"confluenceTd">
+<p local-id=3D"6cba427332a6">Displaced ARR&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"417ed185-598b-4794-b=
+466-553762f5388b" class=3D"confluenceTd">
+<p local-id=3D"b3706b75c4f8">Annual Recurring Revenue being replaced by thi=
+s order&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"6252a7c5-c61e-4e9a-b577-1cb06e138c25">
+<td data-highlight-colour=3D"transparent" data-local-id=3D"5a6410af-9df1-49=
+29-bcd8-18b48682d9ba" class=3D"confluenceTd">
+<p local-id=3D"15fc1e4420af">Manual Discount&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" data-local-id=3D"ffd90d05-0b59-4e=
+5f-8163-8839d5e723ae" class=3D"confluenceTd">
+<p local-id=3D"5b30d72ce635">Discretionary discount amount applied to the o=
+rder line&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"e3db0ecb5cd6">&nbsp;</p>
+<p local-id=3D"f165f2c2aa42"><strong>8.2 Document Revision History</strong>=
+&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"ac4111f8-68b8-4d10-84e8-73c=
+608c5bf1e" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"2058d6c4-7a49-4465-819e-fd51916eef59">
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"1a2bc23f-3e92-4e69-9=
+270-0f1a6e2cfa15" class=3D"confluenceTd">
+<p local-id=3D"bee90fd56bb8"><strong><span class=3D"legacy-color-text-inver=
+se">Version</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;=
+</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"a3b02273-00e5-41ef-b=
+ef1-3231642f43a6" class=3D"confluenceTd">
+<p local-id=3D"02e825c979e3"><strong><span class=3D"legacy-color-text-inver=
+se">Date</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;</s=
+pan></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"82d3170c-5dec-4c84-8=
+a13-375f6df662e6" class=3D"confluenceTd">
+<p local-id=3D"54146a8a0220"><strong><span class=3D"legacy-color-text-inver=
+se">Author</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;<=
+/span></p></td>
+<td data-highlight-colour=3D"#1b4f72" data-local-id=3D"071d2a0f-afe8-483a-b=
+47a-b912535e4e7f" class=3D"confluenceTd">
+<p local-id=3D"493656222fe2"><strong><span class=3D"legacy-color-text-inver=
+se">Changes</span></strong><span class=3D"legacy-color-text-inverse">&nbsp;=
+</span></p></td>
+</tr>
+<tr data-local-id=3D"59df143a-e0ed-4738-b457-bbb798ce91b1">
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"5ee2720f-94f3-411d-9=
+3c5-395353b90c86" class=3D"confluenceTd">
+<p local-id=3D"3e16f00a4e0d">1.0&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"593afd01-a340-4518-8=
+cec-c38d5fdd0aa0" class=3D"confluenceTd">
+<p local-id=3D"52eb42fa9e99">12/16/2025&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"17fc043a-af97-4e47-8=
+368-f0d7f90d56b1" class=3D"confluenceTd">
+<p local-id=3D"d08812efc244">Implementation Team&nbsp;</p></td>
+<td data-highlight-colour=3D"#f8f9fa" data-local-id=3D"9893e49c-5a61-427d-a=
+07c-2f49f0ddf80f" class=3D"confluenceTd">
+<p local-id=3D"796d2bd8694a">Initial version&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"c413b765c615">&nbsp;</p>
+    </div>
+</body>
+</html>
+------=_Part_6_1830726575.1780418994438--

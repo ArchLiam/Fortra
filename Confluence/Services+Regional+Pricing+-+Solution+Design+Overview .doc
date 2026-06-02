@@ -1,0 +1,661 @@
+Date: Tue, 2 Jun 2026 16:50:56 +0000 (UTC)
+Message-ID: <1415495184.7.1780419056557@7a05105be49b>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_1721137829.1780419056556"
+
+------=_Part_6_1721137829.1780419056556
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Services Regional Pricing - Solution Design Overview=C2=A0</titl=
+e>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Services Regional Pricing - Solution Design Overview=C2=A0</h1>
+    <div class=3D"Section1">
+        <p>&nbsp;</p>
+<p><strong>Services Regional Pricing - Solution Design Overview</strong>&nb=
+sp;</p>
+<p><strong>Fortra | Salesforce Revenue Cloud</strong>&nbsp;</p>
+<p><em>Document Version: 1.0 | Date: December 2025</em>&nbsp;</p>
+<ol start=3D"1">
+<li>
+<p><strong>Executive Summary</strong>&nbsp;</p></li>
+</ol>
+<p>This document outlines the technical solution design for implementing Se=
+rvices Regional Pricing in Salesforce Revenue Cloud. The solution addresses=
+ the business requirement to adjust professional services pricing based on =
+customer geography to account for market rate differences that exchange rat=
+es do not fully capture.&nbsp;</p>
+<p><strong>1.1 Business Objective</strong>&nbsp;</p>
+<p>Implement automated regional pricing adjustments for Services products t=
+hat apply multipliers ranging from 0.4 to 1.015 based on the customer's shi=
+pping country. This ensures competitive and market-appropriate pricing acro=
+ss 100+ countries while maintaining pricing transparency through Revenue Cl=
+oud's native calculation details.&nbsp;</p>
+<p><strong>1.2 Solution Approach</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Leverage Revenue Cloud's native Advanced Pricing Procedure framework&nbs=
+p;</p></li>
+</ul>
+<ul>
+<li>
+<p>Create a Decision Table backed by Custom Metadata Type for regional mult=
+ipliers&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Insert pricing element immediately after List Price lookup&nbsp;</p></li=
+>
+</ul>
+<ul>
+<li>
+<p>Apply rounding logic to nearest 5 currency units&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Display adjustment details in Revenue Cloud's Calculation Details popup&=
+nbsp;</p></li>
+</ul>
+<p>&nbsp;</p>
+<ol start=3D"2">
+<li>
+<p><strong>Solution Scope</strong>&nbsp;</p></li>
+</ol>
+<p><strong>2.1 In Scope</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Services products flagged with "Allow Regional Pricing" checkbox&nbsp;</=
+p></li>
+</ul>
+<ul>
+<li>
+<p>New Quote and Amendment transaction types&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Regional multiplier data for 100+ countries across APAC, Europe, LATAM, =
+MEA, and North America&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Integration with existing Revenue Cloud Pricing Procedures&nbsp;</p></li=
+>
+</ul>
+<ul>
+<li>
+<p>Round-up pricing logic to nearest 5 units (all currencies)&nbsp;</p></li=
+>
+</ul>
+<p><strong>2.2 Out of Scope</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Renewal transactions (existing asset price governs)&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Cancellation transactions&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Non-Services products&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Modifications to existing currency conversion mechanisms (handled by Pri=
+ce Book Entries)&nbsp;</p></li>
+</ul>
+<p>&nbsp;</p>
+<ol start=3D"3">
+<li>
+<p><strong>Technical Architecture</strong>&nbsp;</p></li>
+</ol>
+<p><strong>3.1 Architecture Overview</strong>&nbsp;</p>
+<p>The solution leverages Revenue Cloud's native pricing framework to apply=
+ regional adjustments as part of the standard pricing calculation flow. The=
+ architecture ensures pricing transparency, maintainability, and performanc=
+e.&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"801879f0-7e13-4487-8c1a-e51=
+90282762f" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Component</span></stro=
+ng><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Description</span></st=
+rong><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p><strong>Custom Metadata Type</strong>&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Services_Regional_Pricing__mdt stores country/multiplier mappings. Deplo=
+yable, version-controlled, and cacheable for performance.&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p><strong>Decision Table</strong>&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Advanced Decision Table references CMDT records. Provides lookup functio=
+nality based on Quote shipping country.&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p><strong>Pricing Procedure Element</strong>&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>New element added to existing Pricing Procedure immediately after List P=
+rice. Applies multiplier and rounding logic.&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p><strong>Product2 Field</strong>&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Allow_Regional_Pricing__c checkbox determines eligibility for regional p=
+ricing adjustment.&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>3.2 Data Flow</strong>&nbsp;</p>
+<ol start=3D"1">
+<li>
+<p>User adds product to Quote&nbsp;</p></li>
+</ol>
+<ol start=3D"2">
+<li>
+<p>Pricing Procedure triggers&nbsp;</p></li>
+</ol>
+<ol start=3D"3">
+<li>
+<p>List Price Element retrieves base price from Price Book Entry (currency =
+already converted)&nbsp;</p></li>
+</ol>
+<ol start=3D"4">
+<li>
+<p>Regional Pricing Element evaluates:&nbsp;</p></li>
+</ol>
+<ul>
+<li>
+<p>Checks Allow_Regional_Pricing__c =3D true&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Retrieves ShippingCountry from Quote&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Queries Decision Table for matching multiplier&nbsp;</p></li>
+</ul>
+<ul>
+<li>
+<p>Applies: AdjustedPrice =3D CEILING(ListPrice =C3=97 Multiplier / 5) =C3=
+=97 5&nbsp;</p></li>
+</ul>
+<ol start=3D"5">
+<li>
+<p>Result flows to subsequent pricing elements and displays in Calculation =
+Details&nbsp;</p></li>
+</ol>
+<p>&nbsp;</p>
+<ol start=3D"4">
+<li>
+<p><strong>Data Model</strong>&nbsp;</p></li>
+</ol>
+<p><strong>4.1 Custom Metadata Type: Services_Regional_Pricing__mdt</strong=
+>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"380b7249-0095-471e-9e2b-2eb=
+23d2ff624" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Field Name</span></str=
+ong><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Type</span></strong><s=
+pan class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Description</span></st=
+rong><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Country__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text(80)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Country name (e.g., "Australia")&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Country_Code__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text(3)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>ISO country code for reliable matching&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Region__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text(50)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Region (APAC, Europe, LATAM, MEA, North America)&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Subregion__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text(50)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Subregion (e.g., "Australia &amp; New Zealand")&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Multiplier__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Number(4,3)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Regional multiplier (e.g., 0.65)&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Is_Active__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Checkbox&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Enable/disable specific country rule&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Effective_Start_Date__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Date&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Optional rule effective start date&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Effective_End_Date__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Date&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Optional rule effective end date&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>4.2 Regional Multiplier Summary</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"a33c85a9-4137-4e50-b0dd-7f4=
+a124a5707" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Region</span></strong>=
+<span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Multiplier</span></str=
+ong><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Example Countries</spa=
+n></strong><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>APAC - South Asia&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.4&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>India, Bangladesh, Pakistan, Sri Lanka&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>LATAM&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.5&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Mexico, Brazil, Caribbean nations&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>APAC - Southeast Asia&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.6&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Indonesia, Malaysia, Thailand, Vietnam&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Eastern Europe&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.64&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Poland, Czech Republic, Romania&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>APAC - ANZ&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.65&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Australia, New Zealand&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>APAC - East Asia&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.8&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Japan, South Korea, Hong Kong&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Western Europe&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0.96&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Germany, France, Netherlands&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>North America&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>1.0&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>USA, Canada (no adjustment)&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>United Kingdom&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>1.015&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>United Kingdom, Guernsey&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<ol start=3D"5">
+<li>
+<p><strong>Risks and Mitigations</strong>&nbsp;</p></li>
+</ol>
+<div class=3D"table-wrap">
+<table data-layout=3D"default" data-local-id=3D"420d059b-dfcf-427f-9a02-db8=
+1615533c6" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Risk</span></strong><s=
+pan class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Impact</span></strong>=
+<span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+<td data-highlight-colour=3D"#1b4f72" class=3D"confluenceTd">
+<p><strong><span class=3D"legacy-color-text-inverse">Mitigation</span></str=
+ong><span class=3D"legacy-color-text-inverse">&nbsp;</span></p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Decision Table refresh lag&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Stale pricing data&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Configure automated refresh flow&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Incorrect country matching&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Wrong multiplier&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Use ISO country codes for matching&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#f8f9fa" class=3D"confluenceTd">
+<p>Rounding discrepancies&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Price inconsistencies&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Standardize rounding at procedure level&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Performance with 100+ rules&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Slow calculations&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Decision Tables are cached for performance&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+    </div>
+</body>
+</html>
+------=_Part_6_1721137829.1780419056556--

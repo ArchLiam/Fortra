@@ -1,0 +1,1352 @@
+Date: Tue, 2 Jun 2026 16:46:32 +0000 (UTC)
+Message-ID: <996177269.5.1780418792283@a63564de668b>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_521441545.1780418792283"
+
+------=_Part_4_521441545.1780418792283
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Salesforce Hierarchy Management Runbook</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Salesforce Hierarchy Management Runbook</h1>
+    <div class=3D"Section1">
+        <div class=3D"confluence-information-macro confluence-information-m=
+acro-information">
+<span class=3D"aui-icon aui-icon-small aui-iconfont-info confluence-informa=
+tion-macro-icon"></span>
+<div class=3D"confluence-information-macro-body">
+<p local-id=3D"bfc1a449aa86">Admin runbook for changing Unit__c, Solution_G=
+roup__c, Solution_Category__c, and Solution__c across the product, territor=
+y, pricing, and reporting footprint in Fortra=E2=80=99s Salesforce environm=
+ent.</p>
+</div>
+</div>
+<h2 local-id=3D"722f09ec4140" id=3D"SalesforceHierarchyManagementRunbook-Co=
+ntents">Contents</h2>
+<ul local-id=3D"9de7c67f6b2d">
+<li local-id=3D"fd7978b70a60">
+<p local-id=3D"609eb9dd9f1e">Overview</p></li>
+<li local-id=3D"2d4baf68c137">
+<p local-id=3D"1508e5280f15">Unit__c</p></li>
+<li local-id=3D"107bc1a8f0f3">
+<p local-id=3D"ac1e3c4e1b57">Solution_Group__c</p></li>
+<li local-id=3D"dc4526db81dd">
+<p local-id=3D"dbd7b2805fc0">Solution_Category__c</p></li>
+<li local-id=3D"e97bd01a6238">
+<p local-id=3D"c798b9746b65">Solution__c</p></li>
+<li local-id=3D"b66bfb788c15">
+<p local-id=3D"1ed8e236ad6a">Automation Test Matrix</p></li>
+</ul>
+<h2 local-id=3D"3a2941a7201c" id=3D"SalesforceHierarchyManagementRunbook-Ov=
+erview">Overview</h2>
+<p local-id=3D"5dd445d03ce2">The hierarchy does not live in a single model.=
+ Some fields are shared picklists, some are dependent picklists, and some a=
+re plain text on product or metadata records. Because of that, every hierar=
+chy change needs to be handled at the field level, not as a generic metadat=
+a task.</p>
+<ul local-id=3D"1234f52942c6">
+<li local-id=3D"6c6d6147f45a">
+<p local-id=3D"878e561bd00a">Unit__c =3D shared picklist</p></li>
+<li local-id=3D"b98089954d81">
+<p local-id=3D"7d1b8f585c67">Solution_Group__c =3D mixed picklist + text</p=
+></li>
+<li local-id=3D"3bfcf784feb0">
+<p local-id=3D"8db9a51bba8b">Solution_Category__c =3D mixed picklist + text=
+</p></li>
+<li local-id=3D"f52336624016">
+<p local-id=3D"163127161570">Solution__c =3D text</p></li>
+</ul>
+<p local-id=3D"75fb7db137e6">For an Add, existing records only need updates=
+ if some current records should begin using the new value. For a Rename or =
+Remove, the dependency work still has to be done: mappings, hardcoded refer=
+ences, text-field records, related metadata, and regression testing.</p>
+<div class=3D"confluence-information-macro confluence-information-macro-not=
+e">
+<span class=3D"aui-icon aui-icon-small aui-iconfont-warning confluence-info=
+rmation-macro-icon"></span>
+<div class=3D"confluence-information-macro-body">
+<p local-id=3D"9d0d5f69bf7e">Primary risk: Product2 stores three hierarchy =
+levels as text, so metadata changes do not cascade automatically.</p>
+</div>
+</div>
+<h2 local-id=3D"361fdb5aee1a" id=3D"SalesforceHierarchyManagementRunbook-Un=
+it__c">Unit__c</h2>
+<p local-id=3D"f0af3621631c">Unit__c is the most controlled hierarchy field=
+. It uses the shared value set Unit and also acts as the controlling field =
+for Solution_Group__c on three objects.</p>
+<h3 local-id=3D"8efc7d96cef5" id=3D"SalesforceHierarchyManagementRunbook-Fi=
+eldInventory">Field Inventory</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"d0=
+ce25f5d6e4" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"c49829ab2d04">
+<th data-local-id=3D"33618feb7c72" class=3D"confluenceTh">
+<p local-id=3D"ed17d337dd5c"><strong>Object</strong></p></th>
+<th data-local-id=3D"37a62d1716ab" class=3D"confluenceTh">
+<p local-id=3D"53794f89af4e"><strong>Field</strong></p></th>
+<th data-local-id=3D"d365db7ef901" class=3D"confluenceTh">
+<p local-id=3D"efaba7fd78c3"><strong>Field Type</strong></p></th>
+<th data-local-id=3D"33a9b31b5cb2" class=3D"confluenceTh">
+<p local-id=3D"8bc4786df2fc"><strong>Source / Where To Update</strong></p><=
+/th>
+</tr>
+<tr data-local-id=3D"5f8b8e5fada4">
+<td data-local-id=3D"14f1c1bff0db" class=3D"confluenceTd">
+<p local-id=3D"1d39afac6c06">Product2</p></td>
+<td data-local-id=3D"3899c7348bbe" class=3D"confluenceTd">
+<p local-id=3D"30500ffa9da8">Unit__c</p></td>
+<td data-local-id=3D"022515c3f655" class=3D"confluenceTd">
+<p local-id=3D"3fd59325ef55">Picklist</p></td>
+<td data-local-id=3D"18dc99eec3d1" class=3D"confluenceTd">
+<p local-id=3D"3f13dd69faf4">Shared value set Unit; update in Setup -&gt; P=
+icklist Value Sets -&gt; Unit</p></td>
+</tr>
+<tr data-local-id=3D"dafa594773f6">
+<td data-local-id=3D"0eb264755670" class=3D"confluenceTd">
+<p local-id=3D"4ca38fab205f">Marketing_Product__c</p></td>
+<td data-local-id=3D"76e59bbe4e67" class=3D"confluenceTd">
+<p local-id=3D"77b48f339218">Unit__c</p></td>
+<td data-local-id=3D"a2f4ab14ba4b" class=3D"confluenceTd">
+<p local-id=3D"1b45f11e31d9">Picklist</p></td>
+<td data-local-id=3D"aa11a36730c5" class=3D"confluenceTd">
+<p local-id=3D"49285258d809">Shared value set Unit; update in Setup -&gt; P=
+icklist Value Sets -&gt; Unit</p></td>
+</tr>
+<tr data-local-id=3D"e3ed687768d6">
+<td data-local-id=3D"d00f8abfe313" class=3D"confluenceTd">
+<p local-id=3D"b658fe747ec1">Sales_Territory__c</p></td>
+<td data-local-id=3D"e7d51036e2e7" class=3D"confluenceTd">
+<p local-id=3D"dbf6daeafe18">Unit__c</p></td>
+<td data-local-id=3D"c51fb4481dc4" class=3D"confluenceTd">
+<p local-id=3D"394d339bed29">Picklist</p></td>
+<td data-local-id=3D"9294587c2176" class=3D"confluenceTd">
+<p local-id=3D"28abd954a218">Shared value set Unit; update in Setup -&gt; P=
+icklist Value Sets -&gt; Unit</p></td>
+</tr>
+<tr data-local-id=3D"38e6fb57564c">
+<td data-local-id=3D"6fdd82e63b06" class=3D"confluenceTd">
+<p local-id=3D"e167bfe6339f">AccountTeamMember</p></td>
+<td data-local-id=3D"9571f7a2e9f6" class=3D"confluenceTd">
+<p local-id=3D"3d3a002fb229">Unit__c</p></td>
+<td data-local-id=3D"f32f1561d7dd" class=3D"confluenceTd">
+<p local-id=3D"2c03dfe41008">Picklist</p></td>
+<td data-local-id=3D"2a13d18556e2" class=3D"confluenceTd">
+<p local-id=3D"da3db69f4ff6">Shared value set Unit; update in Setup -&gt; P=
+icklist Value Sets -&gt; Unit</p></td>
+</tr>
+<tr data-local-id=3D"82721a6daff3">
+<td data-local-id=3D"265c8c4f44b1" class=3D"confluenceTd">
+<p local-id=3D"6aee77b560a7">Lead</p></td>
+<td data-local-id=3D"44c42f6e156b" class=3D"confluenceTd">
+<p local-id=3D"04c839b53319">Unit__c</p></td>
+<td data-local-id=3D"e102e6afcc2a" class=3D"confluenceTd">
+<p local-id=3D"fe75902ccb22">Picklist</p></td>
+<td data-local-id=3D"55e6b16a171f" class=3D"confluenceTd">
+<p local-id=3D"d868fc84df80">Shared value set Unit; update in Setup -&gt; P=
+icklist Value Sets -&gt; Unit</p></td>
+</tr>
+<tr data-local-id=3D"fef7835121ad">
+<td data-local-id=3D"d13b68574a61" class=3D"confluenceTd">
+<p local-id=3D"c44019aef0af">Product_of_Interest__c</p></td>
+<td data-local-id=3D"6bb4b067d892" class=3D"confluenceTd">
+<p local-id=3D"6d3b9040bfbd">Product_Unit__c</p></td>
+<td data-local-id=3D"0d8a5e987392" class=3D"confluenceTd">
+<p local-id=3D"cd06a0c654d2">Formula Text</p></td>
+<td data-local-id=3D"c88195d4c956" class=3D"confluenceTd">
+<p local-id=3D"a7f0ef8006d8">No direct update; derives from TEXT(Marketing_=
+Product__r.Unit__c)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"d9b537661e8d" id=3D"SalesforceHierarchyManagementRunbook-Cu=
+rrentDependentMappingsFromUnit__cToSolution_Group__c">Current Dependent Map=
+pings From Unit__c To Solution_Group__c</h3>
+<p local-id=3D"50b95b061e75">Mappings must be configured on Marketing_Produ=
+ct__c, Sales_Territory__c, and AccountTeamMember as controlling (Unit__c) t=
+o dependent (Solution_Group__c) value sets.</p>
+<ul local-id=3D"481a89c968c7">
+<li local-id=3D"dd1046da6e65">
+<p local-id=3D"6bf9a0597384">Marketing_Product__c: Defensive Security, Offe=
+nsive Security, Managed File Transfer, Power, RPA+</p></li>
+<li local-id=3D"f0839b2cd360">
+<p local-id=3D"fdfc733d250e">Sales_Territory__c: Defensive Security, Offens=
+ive Security, Managed File Transfer, Power, RPA+</p></li>
+<li local-id=3D"aced8b22ff7f">
+<p local-id=3D"2fd5e227b795">AccountTeamMember: Defensive Security, Offensi=
+ve Security, Managed File Transfer, Power, RPA+</p></li>
+</ul>
+<h3 local-id=3D"81fa17f9edff" id=3D"SalesforceHierarchyManagementRunbook-Ha=
+rdcodedReferencesThatDependOnUnit__c">Hardcoded References That Depend On U=
+nit__c</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"de=
+be80b6c55b" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"ea700f8a03e5">
+<th data-local-id=3D"63352a24aa01" class=3D"confluenceTh">
+<p local-id=3D"b2655d0173ff"><strong>Component</strong></p></th>
+<th data-local-id=3D"0c48e8c4bb72" class=3D"confluenceTh">
+<p local-id=3D"b24e179ebc11"><strong>Exact Dependency</strong></p></th>
+</tr>
+<tr data-local-id=3D"31f134ef26ae">
+<td data-local-id=3D"307f0543e1cb" class=3D"confluenceTd">
+<p local-id=3D"37f6384a117a">Inquiry_Conversion_Screen_Flow</p></td>
+<td data-local-id=3D"3ad6363401d0" class=3D"confluenceTd">
+<p local-id=3D"0fb03db58f24">Screen visibility rule Get_triggering_Inquiry.=
+Unit__c =3D Cyber</p></td>
+</tr>
+<tr data-local-id=3D"9edab95be952">
+<td data-local-id=3D"6640085c83a6" class=3D"confluenceTd">
+<p local-id=3D"5d2a1569be3f">Inquiry_Conversion_Screen_Flow</p></td>
+<td data-local-id=3D"dcc9fbe42c0e" class=3D"confluenceTd">
+<p local-id=3D"4763eb686ec8">Screen visibility rule Get_triggering_Inquiry.=
+Unit__c =3D Tech</p></td>
+</tr>
+<tr data-local-id=3D"b7ccfb90c3a5">
+<td data-local-id=3D"13190c9a83ea" class=3D"confluenceTd">
+<p local-id=3D"1775883f7650">Screen_Flow_Partner_Portal_Deal_Registration_F=
+orm</p></td>
+<td data-local-id=3D"939436c302b1" class=3D"confluenceTd">
+<p local-id=3D"eac4ac3b1bc7">Decision branch Unit Selection is Cyber</p></t=
+d>
+</tr>
+<tr data-local-id=3D"4200efa74e54">
+<td data-local-id=3D"e56d506d163c" class=3D"confluenceTd">
+<p local-id=3D"9380955277dd">Screen_Flow_Partner_Portal_Deal_Registration_F=
+orm</p></td>
+<td data-local-id=3D"7b084ea92948" class=3D"confluenceTd">
+<p local-id=3D"3b47c370dc47">Lookup Get_Cyber_Marketing_Products filters Un=
+it__c =3D Cyber</p></td>
+</tr>
+<tr data-local-id=3D"cedbcfde5133">
+<td data-local-id=3D"66c8dd1f2446" class=3D"confluenceTd">
+<p local-id=3D"feda7728539b">Screen_Flow_Partner_Portal_Deal_Registration_F=
+orm</p></td>
+<td data-local-id=3D"838c9a1fba7a" class=3D"confluenceTd">
+<p local-id=3D"00f33296cc4d">Lookup Get_Tech_Marketing_Products filters Uni=
+t__c =3D Tech</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"4ae44edd185c" id=3D"SalesforceHierarchyManagementRunbook-Au=
+tomationAndUIThatUsesUnit__cDynamically">Automation And UI That Uses Unit__=
+c Dynamically</h3>
+<ul local-id=3D"fa9bca5435b3">
+<li local-id=3D"62a255d99a41">
+<p local-id=3D"638cb48c28fd">TerritoryFlowHelper</p></li>
+<li local-id=3D"0e197874750b">
+<p local-id=3D"0c681b93ad14">Sales_Inquiry_Territory_Assignment</p></li>
+<li local-id=3D"267abf717f7c">
+<p local-id=3D"455125a8b7cd">Sales_Territories_Before_Insert_Update</p></li=
+>
+<li local-id=3D"1d3b2be2f4eb">
+<p local-id=3D"5e3accbbb601">Marketing_Product_Record_Page</p></li>
+</ul>
+<h3 local-id=3D"3057f86dfc8b" id=3D"SalesforceHierarchyManagementRunbook-Ch=
+angeProcedures">Change Procedures</h3>
+<h4 local-id=3D"61d1e407163c" id=3D"SalesforceHierarchyManagementRunbook-If=
+AddingANewUnit__c">If Adding A New Unit__c</h4>
+<ol start=3D"1" local-id=3D"23d8fb0bba7f">
+<li local-id=3D"77d899d42e79">
+<p local-id=3D"77915b743199">Add the new value to shared value set Unit.</p=
+></li>
+<li local-id=3D"ab622515dfc0">
+<p local-id=3D"668b7402a9f8">Add new Unit__c -&gt; Solution_Group__c mappin=
+gs on Marketing_Product__c, Sales_Territory__c, and AccountTeamMember.</p><=
+/li>
+<li local-id=3D"b0f1ed63ec81">
+<p local-id=3D"50997c927d50">Update any existing records that should use th=
+e new unit.</p></li>
+<li local-id=3D"e5a53cc80fec">
+<p local-id=3D"40da9f4fd626">Review and update the hardcoded Flow logic if =
+the new unit must be supported in Inquiry_Conversion_Screen_Flow and Screen=
+_Flow_Partner_Portal_Deal_Registration_Form.</p></li>
+<li local-id=3D"72997b2412ec">
+<p local-id=3D"ea6e2af76e0f">Run the test steps in the Automation Test Matr=
+ix for the unit-dependent automations and UI paths.</p></li>
+</ol>
+<h4 local-id=3D"5abeb06f4257" id=3D"SalesforceHierarchyManagementRunbook-If=
+RenamingUnit__c">If Renaming Unit__c</h4>
+<ol start=3D"1" local-id=3D"37f6f81df7f6">
+<li local-id=3D"b1ea66cba9f2">
+<p local-id=3D"19b846abd84b">Rename the value in shared value set Unit.</p>=
+</li>
+<li local-id=3D"022a33571b6d">
+<p local-id=3D"0121cc03b9b7">Replace the old controlling value in every Uni=
+t__c -&gt; Solution_Group__c mapping listed above.</p></li>
+<li local-id=3D"cba47a2e72b7">
+<p local-id=3D"21bf80f8d6ab">Update existing records holding the old unit o=
+n Product2, Marketing_Product__c, Sales_Territory__c, AccountTeamMember, an=
+d Lead.</p></li>
+<li local-id=3D"8040e469fb6a">
+<p local-id=3D"9a99a31992fc">Update the hardcoded references in Inquiry_Con=
+version_Screen_Flow and Screen_Flow_Partner_Portal_Deal_Registration_Form.<=
+/p></li>
+<li local-id=3D"1475594275a4">
+<p local-id=3D"09a89ddbebc4">Retest all unit-dependent automations and UI p=
+aths.</p></li>
+</ol>
+<h4 local-id=3D"cf5b7684abd3" id=3D"SalesforceHierarchyManagementRunbook-If=
+RemovingUnit__c">If Removing Unit__c</h4>
+<ol start=3D"1" local-id=3D"efcb2dfb6657">
+<li local-id=3D"6c19a3a027bb">
+<p local-id=3D"ddf48abf26c9">Reassign or clear all records using that unit.=
+</p></li>
+<li local-id=3D"b57d3c3bae45">
+<p local-id=3D"b2fcdea83f9b">Remove all Unit__c -&gt; Solution_Group__c map=
+pings that use that unit.</p></li>
+<li local-id=3D"6fac467bfe93">
+<p local-id=3D"a1d300d69e58">Remove or replace any hardcoded Flow reference=
+s to that unit.</p></li>
+<li local-id=3D"679b24d1414f">
+<p local-id=3D"ee494a8bddee">Remove the value from shared value set Unit.</=
+p></li>
+<li local-id=3D"457154649c10">
+<p local-id=3D"efdb7da71ff9">Retest all unit-dependent automations and UI p=
+aths.</p></li>
+</ol>
+<h2 local-id=3D"565808081c1f" id=3D"SalesforceHierarchyManagementRunbook-So=
+lution_Group__c">Solution_Group__c</h2>
+<p local-id=3D"4cad743d87fd">Solution_Group__c is a mixed model. It is a de=
+pendent picklist on three objects, but it is plain text on Product2 and Par=
+tner_Discount_Matrix__c. That means a rename or removal requires both metad=
+ata work and data remediation.</p>
+<h3 local-id=3D"66fac574308b" id=3D"SalesforceHierarchyManagementRunbook-Fi=
+eldInventory.1">Field Inventory</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"bb=
+1a854239fc" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"8c43cc724cc6">
+<th data-local-id=3D"e6687a63eb90" class=3D"confluenceTh">
+<p local-id=3D"0ff274f9279c"><strong>Object</strong></p></th>
+<th data-local-id=3D"3c567113fd0c" class=3D"confluenceTh">
+<p local-id=3D"112d64f80968"><strong>Field</strong></p></th>
+<th data-local-id=3D"907da2c9436c" class=3D"confluenceTh">
+<p local-id=3D"89466252b300"><strong>Field Type</strong></p></th>
+<th data-local-id=3D"a3f722b60680" class=3D"confluenceTh">
+<p local-id=3D"47a388350232"><strong>Source / Where To Update</strong></p><=
+/th>
+</tr>
+<tr data-local-id=3D"21786997cba7">
+<td data-local-id=3D"cad884262caa" class=3D"confluenceTd">
+<p local-id=3D"4e44a3a5fb89">Marketing_Product__c</p></td>
+<td data-local-id=3D"cf36b103ab1b" class=3D"confluenceTd">
+<p local-id=3D"4673ff21641b">Solution_Group__c</p></td>
+<td data-local-id=3D"52c53899058c" class=3D"confluenceTd">
+<p local-id=3D"fe60ff9775ec">Dependent Picklist</p></td>
+<td data-local-id=3D"12693ee3d42f" class=3D"confluenceTd">
+<p local-id=3D"05c211774fa0">Object field metadata on Marketing_Product__c;=
+ update in Object Manager -&gt; Marketing Product -&gt; Fields &amp; Relati=
+onships -&gt; Solution Group</p></td>
+</tr>
+<tr data-local-id=3D"ff9385076f31">
+<td data-local-id=3D"13f1012718d4" class=3D"confluenceTd">
+<p local-id=3D"866842e29e00">Sales_Territory__c</p></td>
+<td data-local-id=3D"c8a3d18b3679" class=3D"confluenceTd">
+<p local-id=3D"c3a7fa7379fb">Solution_Group__c</p></td>
+<td data-local-id=3D"5bc343e518b3" class=3D"confluenceTd">
+<p local-id=3D"510006b68add">Dependent Picklist</p></td>
+<td data-local-id=3D"813391f98da9" class=3D"confluenceTd">
+<p local-id=3D"8f97a473186c">Shared value set Solution_Group plus object-le=
+vel mappings; update value set in Setup -&gt; Picklist Value Sets -&gt; Sol=
+ution_Group, update mappings on the object field</p></td>
+</tr>
+<tr data-local-id=3D"2412e9c42bcc">
+<td data-local-id=3D"2ac7c1c045fa" class=3D"confluenceTd">
+<p local-id=3D"eb3eca1711e8">AccountTeamMember</p></td>
+<td data-local-id=3D"e5f05d37ad12" class=3D"confluenceTd">
+<p local-id=3D"2e9291650e06">Solution_Group__c</p></td>
+<td data-local-id=3D"57ddeff1cabf" class=3D"confluenceTd">
+<p local-id=3D"d4ebb9193ac4">Dependent Picklist</p></td>
+<td data-local-id=3D"28bbfd3343df" class=3D"confluenceTd">
+<p local-id=3D"b398eeba2fdc">Shared value set Solution_Group plus object-le=
+vel mappings; update value set in Setup -&gt; Picklist Value Sets -&gt; Sol=
+ution_Group, update mappings on the object field</p></td>
+</tr>
+<tr data-local-id=3D"21563141b7db">
+<td data-local-id=3D"660affbfae21" class=3D"confluenceTd">
+<p local-id=3D"24cb66f090ad">Product2</p></td>
+<td data-local-id=3D"8fc65d86dd2d" class=3D"confluenceTd">
+<p local-id=3D"3b40ad52471a">Solution_Group__c</p></td>
+<td data-local-id=3D"ac5b4d576160" class=3D"confluenceTd">
+<p local-id=3D"6a6ba03d1e05">Text</p></td>
+<td data-local-id=3D"c31f1d6d51f5" class=3D"confluenceTd">
+<p local-id=3D"13ae7833b548">Data update on product records</p></td>
+</tr>
+<tr data-local-id=3D"dc545ee4dd7d">
+<td data-local-id=3D"3bf85df44f02" class=3D"confluenceTd">
+<p local-id=3D"5d261d2ec90d">Partner_Discount_Matrix__c</p></td>
+<td data-local-id=3D"a0f2d43aac99" class=3D"confluenceTd">
+<p local-id=3D"5d01ba015ade">Solution_Group__c</p></td>
+<td data-local-id=3D"1d6a27fc8bba" class=3D"confluenceTd">
+<p local-id=3D"d0d283087188">Text</p></td>
+<td data-local-id=3D"2498e02d56ec" class=3D"confluenceTd">
+<p local-id=3D"a68401970361">Data update on matrix records</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"8a77db2a6746" id=3D"SalesforceHierarchyManagementRunbook-Cu=
+rrentUnit__cToSolution_Group__cMappings">Current Unit__c To Solution_Group_=
+_c Mappings</h3>
+<p local-id=3D"b6d2e634c3fe">Configure the following allowed values for eac=
+h Unit__c on each object:</p>
+<ul local-id=3D"691b40961659">
+<li local-id=3D"3d3aa545e92d">
+<p local-id=3D"ef14faf7868c">Marketing_Product__c: Defensive Security, Offe=
+nsive Security, Managed File Transfer, Power, RPA+</p></li>
+<li local-id=3D"a9f92d42caf7">
+<p local-id=3D"b12c0ffbbd98">Sales_Territory__c: Defensive Security, Offens=
+ive Security, Managed File Transfer, Power, RPA+</p></li>
+<li local-id=3D"c922a8e9d969">
+<p local-id=3D"6c7377655651">AccountTeamMember: Defensive Security, Offensi=
+ve Security, Managed File Transfer, Power, RPA+</p></li>
+</ul>
+<h3 local-id=3D"497b6b8e304b" id=3D"SalesforceHierarchyManagementRunbook-Ha=
+rdcodedReferencesThatDependOnSolution_Group__c">Hardcoded References That D=
+epend On Solution_Group__c</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"f2=
+42216a826f" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"67088860ccc4">
+<th data-local-id=3D"d6c660ec3b76" class=3D"confluenceTh">
+<p local-id=3D"9697f08cd2de"><strong>Component</strong></p></th>
+<th data-local-id=3D"a7d6d3970534" class=3D"confluenceTh">
+<p local-id=3D"8700a9bca69e"><strong>Exact Dependency</strong></p></th>
+</tr>
+<tr data-local-id=3D"62136b793f4a">
+<td data-local-id=3D"1cba0f8d0605" class=3D"confluenceTd">
+<p local-id=3D"7092bb0740d3">displayAndFilterKnowledge.js</p></td>
+<td data-local-id=3D"2bef76584e40" class=3D"confluenceTd">
+<p local-id=3D"39fbb9902b3f">Hardcoded filter list includes General, Defens=
+ive Security, Managed File Transfer, Power, RPA+, Offensive Security, and X=
+DR</p></td>
+</tr>
+<tr data-local-id=3D"be171bb09ec3">
+<td data-local-id=3D"0c356d11727d" class=3D"confluenceTd">
+<p local-id=3D"8477a1ba3be6">Partner_Product_Compliance_Alert</p></td>
+<td data-local-id=3D"98016537e160" class=3D"confluenceTd">
+<p local-id=3D"e117cc1dc023">Hardcoded CASE() values: Offensive Security, D=
+efensive Security, XDR, Managed File Transfer, Power, and RPA Plus</p></td>
+</tr>
+<tr data-local-id=3D"ccf1b3ed8a26">
+<td data-local-id=3D"2805c1af1593" class=3D"confluenceTd">
+<p local-id=3D"027bbdba7ef9">PowerOrderSplittingService</p></td>
+<td data-local-id=3D"4b2e04f3b7dd" class=3D"confluenceTd">
+<p local-id=3D"773e01b41563">Hardcoded Product2.Solution_Group__c =3D Power=
+</p></td>
+</tr>
+<tr data-local-id=3D"dda10cb27f09">
+<td data-local-id=3D"bc796b844e8f" class=3D"confluenceTd">
+<p local-id=3D"61414f8a9699">RCATechnicalProductService</p></td>
+<td data-local-id=3D"b2a7c5654a21" class=3D"confluenceTd">
+<p local-id=3D"74edd2632e8f">Copies Solution_Group__c from commercial produ=
+cts to technical products</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"4cee5fbc4b0f" id=3D"SalesforceHierarchyManagementRunbook-Au=
+tomationAndUIThatUsesSolution_Group__cDynamically">Automation And UI That U=
+ses Solution_Group__c Dynamically</h3>
+<ul local-id=3D"3e9afa00fd14">
+<li local-id=3D"3e7887d0da0c">
+<p local-id=3D"7e08a3dacdce">TerritoryFlowHelper</p></li>
+<li local-id=3D"3c2923316c30">
+<p local-id=3D"8828d191fe3f">Sales_Territories_Before_Insert_Update</p></li=
+>
+<li local-id=3D"03fc9adbf2ad">
+<p local-id=3D"645fa55184ee">Marketing_Product_Record_Page</p></li>
+</ul>
+<h3 local-id=3D"02ce5e2b0ca5" id=3D"SalesforceHierarchyManagementRunbook-Ch=
+angeProcedures.1">Change Procedures</h3>
+<h4 local-id=3D"cf34d3b60e5b" id=3D"SalesforceHierarchyManagementRunbook-If=
+AddingANewSolution_Group__c">If Adding A New Solution_Group__c</h4>
+<ol start=3D"1" local-id=3D"70c9f17d8703">
+<li local-id=3D"979d5f4f6797">
+<p local-id=3D"d0d854652df3">Add the new value to Marketing_Product__c.Solu=
+tion_Group__c and to shared value set Solution_Group.</p></li>
+<li local-id=3D"d3f5f669f829">
+<p local-id=3D"b57c5e35e685">Add the new Unit__c -&gt; Solution_Group__c ma=
+ppings on Marketing_Product__c, Sales_Territory__c, and AccountTeamMember.<=
+/p></li>
+<li local-id=3D"91c514892e28">
+<p local-id=3D"d9c91e42acc8">Update any existing records that should use th=
+e new group on Product2, Marketing_Product__c, Sales_Territory__c, AccountT=
+eamMember, and Partner_Discount_Matrix__c.</p></li>
+<li local-id=3D"1a6acbf39cf0">
+<p local-id=3D"29aa0483855e">Update hardcoded logic if the new group must b=
+e supported in displayAndFilterKnowledge.js, Partner_Product_Compliance_Ale=
+rt, or PowerOrderSplittingService.</p></li>
+<li local-id=3D"44e97dd94d5a">
+<p local-id=3D"444455f7d912">Run the solution-group tests in the Automation=
+ Test Matrix.</p></li>
+</ol>
+<h4 local-id=3D"76fec6da38b3" id=3D"SalesforceHierarchyManagementRunbook-If=
+RenamingSolution_Group__c">If Renaming Solution_Group__c</h4>
+<ol start=3D"1" local-id=3D"ca6c813fb121">
+<li local-id=3D"958835c83c48">
+<p local-id=3D"59d02edfb218">Rename the value in Marketing_Product__c.Solut=
+ion_Group__c and in shared value set Solution_Group.</p></li>
+<li local-id=3D"7a86b0dd850d">
+<p local-id=3D"a8caeb24aabd">Replace the old value in every Unit__c -&gt; S=
+olution_Group__c mapping listed above.</p></li>
+<li local-id=3D"9ecebf3f0ca6">
+<p local-id=3D"704ff1d09b53">Update all existing text data holding the old =
+group on Product2.Solution_Group__c and Partner_Discount_Matrix__c.Solution=
+_Group__c.</p></li>
+<li local-id=3D"0a357ad0b3ec">
+<p local-id=3D"abd63fadb21c">Update hardcoded logic in displayAndFilterKnow=
+ledge.js, Partner_Product_Compliance_Alert, and PowerOrderSplittingService =
+if the renamed group is Power.</p></li>
+<li local-id=3D"f05d227c8303">
+<p local-id=3D"c1fac22df430">Update existing technical products if they sho=
+uld reflect the rename.</p></li>
+<li local-id=3D"911fee7ac397">
+<p local-id=3D"dcd9e72a970f">Retest all solution-group-dependent automation=
+s and UI paths.</p></li>
+</ol>
+<h4 local-id=3D"0ace29594195" id=3D"SalesforceHierarchyManagementRunbook-If=
+RemovingSolution_Group__c">If Removing Solution_Group__c</h4>
+<ol start=3D"1" local-id=3D"a3e68e5d1ce9">
+<li local-id=3D"9a0d0c49db33">
+<p local-id=3D"ef97d70bcc27">Reassign or clear all records using that group=
+.</p></li>
+<li local-id=3D"1dcbb2274c09">
+<p local-id=3D"513761387efe">Remove the Unit__c -&gt; Solution_Group__c map=
+pings listed above for that group.</p></li>
+<li local-id=3D"a5d3dd3d7522">
+<p local-id=3D"9699c96684f5">Remove or replace hardcoded references in disp=
+layAndFilterKnowledge.js, Partner_Product_Compliance_Alert, and PowerOrderS=
+plittingService.</p></li>
+<li local-id=3D"aae94daa4236">
+<p local-id=3D"fb1a4aba71e3">Remove the value from Marketing_Product__c.Sol=
+ution_Group__c and from shared value set Solution_Group.</p></li>
+<li local-id=3D"f32efdb6288b">
+<p local-id=3D"335c58f03ea6">Retest all solution-group-dependent automation=
+s and UI paths.</p></li>
+</ol>
+<h2 local-id=3D"a14a01208a46" id=3D"SalesforceHierarchyManagementRunbook-So=
+lution_Category__c">Solution_Category__c</h2>
+<p local-id=3D"cad8b1626c8a">Solution_Category__c is the most operationally=
+ sensitive hierarchy field because it feeds pricing maintenance, COLA logic=
+, territory assignment, dashboards, and campaign classification. It is a de=
+pendent picklist on three objects, a shared picklist on Campaign, and text =
+elsewhere.</p>
+<h3 local-id=3D"f31293d09560" id=3D"SalesforceHierarchyManagementRunbook-Fi=
+eldInventory.2">Field Inventory</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"31=
+2e42908797" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"009d607e1dc7">
+<th data-local-id=3D"60aed2ce4bce" class=3D"confluenceTh">
+<p local-id=3D"75064960778d"><strong>Object</strong></p></th>
+<th data-local-id=3D"cd495dceaf1c" class=3D"confluenceTh">
+<p local-id=3D"6541bf1f034d"><strong>Field</strong></p></th>
+<th data-local-id=3D"b8740802297e" class=3D"confluenceTh">
+<p local-id=3D"f12497e05f70"><strong>Field Type</strong></p></th>
+<th data-local-id=3D"e98bd9276c3f" class=3D"confluenceTh">
+<p local-id=3D"1e6f75b128ad"><strong>Source / Where To Update</strong></p><=
+/th>
+</tr>
+<tr data-local-id=3D"c517f5b71a69">
+<td data-local-id=3D"cc1633a3aa41" class=3D"confluenceTd">
+<p local-id=3D"365478a61ecd">Marketing_Product__c</p></td>
+<td data-local-id=3D"854428ea4e96" class=3D"confluenceTd">
+<p local-id=3D"25f26fc3f7d5">Solution_Category__c</p></td>
+<td data-local-id=3D"e36849f8f07d" class=3D"confluenceTd">
+<p local-id=3D"817f37aa065b">Dependent Picklist</p></td>
+<td data-local-id=3D"b1eb9f7c8a1e" class=3D"confluenceTd">
+<p local-id=3D"c2194278b9b6">Shared value set Solution_Category plus object=
+-level mappings; update value set in Setup -&gt; Picklist Value Sets -&gt; =
+Solution_Category, update mappings on the object field</p></td>
+</tr>
+<tr data-local-id=3D"71fc0e83784e">
+<td data-local-id=3D"8e611e28fec1" class=3D"confluenceTd">
+<p local-id=3D"89dbbd1557ec">Sales_Territory__c</p></td>
+<td data-local-id=3D"b68fbb8a6a26" class=3D"confluenceTd">
+<p local-id=3D"c5094e0a9a79">Solution_Category__c</p></td>
+<td data-local-id=3D"42defa2f0035" class=3D"confluenceTd">
+<p local-id=3D"9d5a35aa64a5">Dependent Picklist</p></td>
+<td data-local-id=3D"31b841757c52" class=3D"confluenceTd">
+<p local-id=3D"188a9253f78e">Shared value set Solution_Category plus object=
+-level mappings; update value set in Setup -&gt; Picklist Value Sets -&gt; =
+Solution_Category, update mappings on the object field</p></td>
+</tr>
+<tr data-local-id=3D"debd4af2c6ca">
+<td data-local-id=3D"0cf9bf45a121" class=3D"confluenceTd">
+<p local-id=3D"3dcb9a5ca463">AccountTeamMember</p></td>
+<td data-local-id=3D"3ecfa446629e" class=3D"confluenceTd">
+<p local-id=3D"47054caec884">Solution_Category__c</p></td>
+<td data-local-id=3D"74dd18609bb9" class=3D"confluenceTd">
+<p local-id=3D"de5105374eb5">Dependent Picklist</p></td>
+<td data-local-id=3D"bfd8504f2aa1" class=3D"confluenceTd">
+<p local-id=3D"e25c9f421049">Shared value set Solution_Category plus object=
+-level mappings; update value set in Setup -&gt; Picklist Value Sets -&gt; =
+Solution_Category, update mappings on the object field</p></td>
+</tr>
+<tr data-local-id=3D"29adb62a70f1">
+<td data-local-id=3D"1a3f2f94ec5f" class=3D"confluenceTd">
+<p local-id=3D"f521d384bf0d">Campaign</p></td>
+<td data-local-id=3D"637f8bb47589" class=3D"confluenceTd">
+<p local-id=3D"5eb436ab2f9d">Solution_Category__c</p></td>
+<td data-local-id=3D"20faa70a88d2" class=3D"confluenceTd">
+<p local-id=3D"b7679b0f1e9a">Picklist</p></td>
+<td data-local-id=3D"18a007f92b34" class=3D"confluenceTd">
+<p local-id=3D"99643ab633ab">Shared value set Solution_Category; update in =
+Setup -&gt; Picklist Value Sets -&gt; Solution_Category</p></td>
+</tr>
+<tr data-local-id=3D"7e5b30c0f3d6">
+<td data-local-id=3D"a02dc471594d" class=3D"confluenceTd">
+<p local-id=3D"dfc16a0303b2">Product2</p></td>
+<td data-local-id=3D"dd5e272b0297" class=3D"confluenceTd">
+<p local-id=3D"7acf255bc01d">Solution_Category__c</p></td>
+<td data-local-id=3D"ebfeb154b7e2" class=3D"confluenceTd">
+<p local-id=3D"df12dab34f32">Text</p></td>
+<td data-local-id=3D"df73be00984e" class=3D"confluenceTd">
+<p local-id=3D"ad61362f3eb4">Data update on product records</p></td>
+</tr>
+<tr data-local-id=3D"ab8e6ae2d30a">
+<td data-local-id=3D"74282e18d0ac" class=3D"confluenceTd">
+<p local-id=3D"87347a79f04d">COLA_Uplift_Rules__mdt</p></td>
+<td data-local-id=3D"7e4c1998db79" class=3D"confluenceTd">
+<p local-id=3D"a8fe46615ea7">Solution_Category__c</p></td>
+<td data-local-id=3D"241da4c79315" class=3D"confluenceTd">
+<p local-id=3D"f71daef2cb98">Text, External ID</p></td>
+<td data-local-id=3D"71cb7fbab99e" class=3D"confluenceTd">
+<p local-id=3D"4bb291256c75">Update custom metadata record values</p></td>
+</tr>
+<tr data-local-id=3D"09218b6ca9ab">
+<td data-local-id=3D"d39ed2cd609a" class=3D"confluenceTd">
+<p local-id=3D"bc1c82367079">QuoteLineItem</p></td>
+<td data-local-id=3D"4136a697cf2c" class=3D"confluenceTd">
+<p local-id=3D"30eff215decd">COLA_Solution_Category__c</p></td>
+<td data-local-id=3D"90b87c13ad7a" class=3D"confluenceTd">
+<p local-id=3D"850b25981340">Text</p></td>
+<td data-local-id=3D"8c4e7e5ad9c0" class=3D"confluenceTd">
+<p local-id=3D"29ffaac60dcb">Historical/reporting update only if reporting =
+requires alignment</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"25dc774a08b7" id=3D"SalesforceHierarchyManagementRunbook-Cu=
+rrentSolution_Group__cToSolution_Category__cMappings">Current Solution_Grou=
+p__c To Solution_Category__c Mappings</h3>
+<div class=3D"panel" style=3D"background-color: #EAE6FF;border-color: #998D=
+D9;border-width: 1px;">
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p local-id=3D"7eb4305d6a8a">Important: AccountTeamMember currently has the=
+ Power and RPA+ category sets reversed compared with Marketing_Product__c a=
+nd Sales_Territory__c. Preserve that behavior unless the intent is to corre=
+ct it as a separate change.</p>
+</div>
+</div>
+<p local-id=3D"fb39c6b1f0ed">Allowed categories by Solution_Group__c:</p>
+<ul local-id=3D"5b994860732c">
+<li local-id=3D"bc072aba8d46">
+<p local-id=3D"cf7ea69202e5">Marketing_Product__c</p>
+<ul local-id=3D"2990abb690fb">
+<li local-id=3D"3040b0fbc71f">
+<p local-id=3D"361075e35920">Defensive Security: Vulnerability Management, =
+File Integrity Monitoring, Email Security, Brand Protection, Human Risk Man=
+agement, Data Protection, Cloud Data Protection, Fortra Platform</p></li>
+<li local-id=3D"357bd906ac74">
+<p local-id=3D"836427b97fce">Managed File Transfer: GoAnywhere, Globalscape=
+</p></li>
+<li local-id=3D"358e02d80515">
+<p local-id=3D"5a42b61ff0ab">Power: Power (multiple sub-categories as confi=
+gured)</p></li>
+<li local-id=3D"6e3ff28b11a8">
+<p local-id=3D"834c78419c8e">RPA+: Business Intelligence, Doc Management, S=
+ystems Management, Cybersecurity, IPP, Robotic Process Automation</p></li>
+</ul></li>
+<li local-id=3D"6b494a2ca3db">
+<p local-id=3D"f548f388de8e">Sales_Territory__c</p>
+<ul local-id=3D"21260f712e95">
+<li local-id=3D"619a0a2d0b3b">
+<p local-id=3D"a9ee0bdd3d11">Defensive Security: Vulnerability Management, =
+File Integrity Monitoring, Email Security, Brand Protection, Human Risk Man=
+agement, Data Protection, Cloud Data Protection, Fortra Platform</p></li>
+<li local-id=3D"18ba5103f0c3">
+<p local-id=3D"b3a831ad0549">Managed File Transfer: GoAnywhere, Globalscape=
+</p></li>
+<li local-id=3D"4041e00bb37d">
+<p local-id=3D"1cbebae196ed">Power: Power (multiple sub-categories as confi=
+gured)</p></li>
+<li local-id=3D"272d1bbbe438">
+<p local-id=3D"d73be6fd0c7b">RPA+: Business Intelligence, Doc Management, S=
+ystems Management, Cybersecurity, IPP, Robotic Process Automation, Core IGA=
+, Network Monitoring, Powertech Identity &amp; Access Manager (BoKS), Capac=
+ity Management</p></li>
+</ul></li>
+<li local-id=3D"0fab2ca809d0">
+<p local-id=3D"ee9bca30654e">AccountTeamMember</p>
+<ul local-id=3D"d2d0dfb79a14">
+<li local-id=3D"d4d31d31b62b">
+<p local-id=3D"10050485a98d">Defensive Security: Vulnerability Management, =
+File Integrity Monitoring, Email Security, Brand Protection, Human Risk Man=
+agement, Data Protection, Cloud Data Protection, Fortra Platform</p></li>
+<li local-id=3D"de212e39a64a">
+<p local-id=3D"c5a82ad31b9b">Managed File Transfer: GoAnywhere, Globalscape=
+</p></li>
+<li local-id=3D"d8569f455dbe">
+<p local-id=3D"b8bfd3de8074">Power: Power (multiple sub-categories as confi=
+gured)</p></li>
+<li local-id=3D"0b858ae668fd">
+<p local-id=3D"d97d83a831ec">RPA+: Robotic Process Automation, Core IGA, Ne=
+twork Monitoring, Powertech Identity &amp; Access Manager (BoKS), Capacity =
+Management, Business Intelligence, Doc Management, Systems Management, Cybe=
+rsecurity, IPP</p></li>
+</ul></li>
+</ul>
+<h3 local-id=3D"48b8f49ce593" id=3D"SalesforceHierarchyManagementRunbook-Ha=
+rdcodedReferencesThatDependOnSolution_Category__c">Hardcoded References Tha=
+t Depend On Solution_Category__c</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"75=
+9583d6fd92" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"af882d9b92e4">
+<th data-local-id=3D"0ce556146e51" class=3D"confluenceTh">
+<p local-id=3D"886c2d09d0b5"><strong>Component</strong></p></th>
+<th data-local-id=3D"4b4972a86f8a" class=3D"confluenceTh">
+<p local-id=3D"dcecb542a4c4"><strong>Exact Dependency</strong></p></th>
+</tr>
+<tr data-local-id=3D"af29abdc1565">
+<td data-local-id=3D"6d183b9f9559" class=3D"confluenceTd">
+<p local-id=3D"61b289d28a55">Fortra_Bulk_Price_Update_Flow</p></td>
+<td data-local-id=3D"661350f8704b" class=3D"confluenceTd">
+<p local-id=3D"a5b6eb5a92ec">Category choices are manually defined in the f=
+low</p></td>
+</tr>
+<tr data-local-id=3D"3bd80abd5a4e">
+<td data-local-id=3D"aeb26c3760ba" class=3D"confluenceTd">
+<p local-id=3D"db12fdec2bb0">COLAUpliftPrehook</p></td>
+<td data-local-id=3D"ec738e9ddb0f" class=3D"confluenceTd">
+<p local-id=3D"6b3274ce9d2a">Looks up Product2.Solution_Category__c against=
+ COLA_Uplift_Rules__mdt.Solution_Category__c</p></td>
+</tr>
+<tr data-local-id=3D"28500d550460">
+<td data-local-id=3D"9c6ac2b62b81" class=3D"confluenceTd">
+<p local-id=3D"92f69795b579">COLAUpliftHandler</p></td>
+<td data-local-id=3D"073ccc946e75" class=3D"confluenceTd">
+<p local-id=3D"25f8ed778917">Looks up Product2.Solution_Category__c against=
+ COLA_Uplift_Rules__mdt.Solution_Category__c and writes QuoteLineItem.COLA_=
+Solution_Category__c</p></td>
+</tr>
+<tr data-local-id=3D"20a733af66c9">
+<td data-local-id=3D"a742cb1de4e9" class=3D"confluenceTd">
+<p local-id=3D"4c245d3d39ec">RCATechnicalProductService</p></td>
+<td data-local-id=3D"a67bac9b7889" class=3D"confluenceTd">
+<p local-id=3D"ecc2c4fd751e">Copies Solution_Category__c from commercial pr=
+oducts to technical products</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"04a0f389f5b0" id=3D"SalesforceHierarchyManagementRunbook-Au=
+tomationAndUIThatUsesSolution_Category__cDynamically">Automation And UI Tha=
+t Uses Solution_Category__c Dynamically</h3>
+<ul local-id=3D"740ec338cb26">
+<li local-id=3D"a90c9ee77ad2">
+<p local-id=3D"28d777179212">TerritoryFlowHelper</p></li>
+<li local-id=3D"4f1418c429a2">
+<p local-id=3D"ed586b41f222">Sales_Territories_Before_Insert_Update</p></li=
+>
+<li local-id=3D"d45a04578def">
+<p local-id=3D"450f2f699dde">Sales_Inquiry_Territory_Assignment</p></li>
+<li local-id=3D"17ff09409296">
+<p local-id=3D"a67508eef69c">Fortra_BulkPriceUpdateInvocable</p></li>
+<li local-id=3D"575212f91cac">
+<p local-id=3D"39911465d638">Fortra_BulkPriceUpdateBatch</p></li>
+<li local-id=3D"8e499cdfc317">
+<p local-id=3D"870adb67bb39">Marketing_Product_Record_Page</p></li>
+</ul>
+<h3 local-id=3D"0d4870cf68d2" id=3D"SalesforceHierarchyManagementRunbook-Ch=
+angeProcedures.2">Change Procedures</h3>
+<h4 local-id=3D"aa3726f7b8ba" id=3D"SalesforceHierarchyManagementRunbook-If=
+AddingANewSolution_Category__c">If Adding A New Solution_Category__c</h4>
+<ol start=3D"1" local-id=3D"dc2533d11077">
+<li local-id=3D"f9281a9d9478">
+<p local-id=3D"0f005de1f3b9">Add the new value to shared value set Solution=
+_Category.</p></li>
+<li local-id=3D"a20caa66d36a">
+<p local-id=3D"e523f73ad7ac">Add the new Solution_Group__c -&gt; Solution_C=
+ategory__c mapping on Marketing_Product__c, Sales_Territory__c, and Account=
+TeamMember.</p></li>
+<li local-id=3D"6ebf376361c1">
+<p local-id=3D"b8c91768f366">Update any existing records that should use th=
+e new category on Product2, Marketing_Product__c, Sales_Territory__c, Accou=
+ntTeamMember, and Campaign.</p></li>
+<li local-id=3D"9e0602f62e2d">
+<p local-id=3D"9e5cfe93f1ec">Add or update COLA_Uplift_Rules__mdt if the ne=
+w category needs COLA behavior.</p></li>
+<li local-id=3D"83ff72f3de4a">
+<p local-id=3D"d18ec39ca161">Add the new category to Fortra_Bulk_Price_Upda=
+te_Flow if it must be selectable there.</p></li>
+<li local-id=3D"d25d75882f8b">
+<p local-id=3D"88460fcb2340">Run the solution-category tests in the Automat=
+ion Test Matrix.</p></li>
+</ol>
+<h4 local-id=3D"04b031940744" id=3D"SalesforceHierarchyManagementRunbook-If=
+RenamingSolution_Category__c">If Renaming Solution_Category__c</h4>
+<ol start=3D"1" local-id=3D"83607a769837">
+<li local-id=3D"fb41001e4bac">
+<p local-id=3D"66c05183e617">Rename the value in shared value set Solution_=
+Category.</p></li>
+<li local-id=3D"eb8c5aa4014c">
+<p local-id=3D"ce81c4c39f4a">Replace the old value in every Solution_Group_=
+_c -&gt; Solution_Category__c mapping table above.</p></li>
+<li local-id=3D"38b6f439eae4">
+<p local-id=3D"665218253e7f">Update text data and metadata holding the old =
+category on Product2.Solution_Category__c, COLA_Uplift_Rules__mdt.Solution_=
+Category__c, and optionally QuoteLineItem.COLA_Solution_Category__c if hist=
+orical reporting should align.</p></li>
+<li local-id=3D"2d084c20ba09">
+<p local-id=3D"1482e2938049">Update the hardcoded category list in Fortra_B=
+ulk_Price_Update_Flow.</p></li>
+<li local-id=3D"824d0889281c">
+<p local-id=3D"6dfe975d5e2c">Update existing technical products if they sho=
+uld reflect the rename.</p></li>
+<li local-id=3D"f9a477303d5d">
+<p local-id=3D"91cb4934a1a6">Retest all solution-category-dependent automat=
+ions and UI paths.</p></li>
+</ol>
+<h4 local-id=3D"f268d1b1f01e" id=3D"SalesforceHierarchyManagementRunbook-If=
+RemovingSolution_Category__c">If Removing Solution_Category__c</h4>
+<ol start=3D"1" local-id=3D"ce657bef22d2">
+<li local-id=3D"4fa2012ba460">
+<p local-id=3D"1aac21141117">Reassign or clear all records using that categ=
+ory.</p></li>
+<li local-id=3D"59ad3fea6d9d">
+<p local-id=3D"a5ee62a653f4">Remove the mapping from every Solution_Group__=
+c -&gt; Solution_Category__c table above where it appears.</p></li>
+<li local-id=3D"efcb62dddff5">
+<p local-id=3D"8325e9650c51">Remove or replace the value in shared value se=
+t Solution_Category, in Fortra_Bulk_Price_Update_Flow, and in the related C=
+OLA_Uplift_Rules__mdt record.</p></li>
+<li local-id=3D"62c87bf990ed">
+<p local-id=3D"17efe55b7911">Decide whether historical QuoteLineItem.COLA_S=
+olution_Category__c values remain unchanged.</p></li>
+<li local-id=3D"ef46265268b0">
+<p local-id=3D"a7b4d5fcd0f2">Retest all solution-category-dependent automat=
+ions and UI paths.</p></li>
+</ol>
+<h2 local-id=3D"4011bb62e040" id=3D"SalesforceHierarchyManagementRunbook-So=
+lution__c">Solution__c</h2>
+<p local-id=3D"8b09043eae10">Solution__c is simpler than the other hierarch=
+y fields because it is text on Product2. The main operational consideration=
+ is that technical products created by RCATechnicalProductService receive a=
+ copied value at creation time and do not self-correct later.</p>
+<h3 local-id=3D"0c9971b0eb4b" id=3D"SalesforceHierarchyManagementRunbook-Fi=
+eldInventory.3">Field Inventory</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"af=
+30580f6324" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"5b5c6560c2b4">
+<th data-local-id=3D"c23c429dac2b" class=3D"confluenceTh">
+<p local-id=3D"1d01ce17fc86"><strong>Object</strong></p></th>
+<th data-local-id=3D"3d04a58bb609" class=3D"confluenceTh">
+<p local-id=3D"b31c67711a20"><strong>Field</strong></p></th>
+<th data-local-id=3D"146cc9e1b0ef" class=3D"confluenceTh">
+<p local-id=3D"ccb9a60cae2c"><strong>Field Type</strong></p></th>
+<th data-local-id=3D"03dfab8e9810" class=3D"confluenceTh">
+<p local-id=3D"f1a2218abadd"><strong>Source / Where To Update</strong></p><=
+/th>
+</tr>
+<tr data-local-id=3D"c1543d13a011">
+<td data-local-id=3D"f55adf9173f9" class=3D"confluenceTd">
+<p local-id=3D"413f631ea1a8">Product2</p></td>
+<td data-local-id=3D"b7137c112231" class=3D"confluenceTd">
+<p local-id=3D"49a10700c505">Solution__c</p></td>
+<td data-local-id=3D"4849b2857efe" class=3D"confluenceTd">
+<p local-id=3D"854a679e014c">Text</p></td>
+<td data-local-id=3D"1dcd7c04bf47" class=3D"confluenceTd">
+<p local-id=3D"aea72cdf982c">Data update on product records</p></td>
+</tr>
+<tr data-local-id=3D"b5d4658f3521">
+<td data-local-id=3D"ba2359a7fa5b" class=3D"confluenceTd">
+<p local-id=3D"250c9c434874">Technical Product2 records</p></td>
+<td data-local-id=3D"7d1a308e6b58" class=3D"confluenceTd">
+<p local-id=3D"fb2f3249c907">Solution__c</p></td>
+<td data-local-id=3D"8d8ec6270b60" class=3D"confluenceTd">
+<p local-id=3D"f22fcd638a99">Text copy from commercial product at creation =
+time</p></td>
+<td data-local-id=3D"144a7f7b0923" class=3D"confluenceTd">
+<p local-id=3D"890a568968b2">Existing records require data update if alignm=
+ent is needed</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"34a9dffd2ce0" id=3D"SalesforceHierarchyManagementRunbook-Cu=
+rrentDependencies">Current Dependencies</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"c1=
+7e256b4a63" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"f68301afa2c4">
+<th data-local-id=3D"bc68ffbdbea2" class=3D"confluenceTh">
+<p local-id=3D"17740dee68a6"><strong>Component</strong></p></th>
+<th data-local-id=3D"6ab816461c99" class=3D"confluenceTh">
+<p local-id=3D"cac64a28e68d"><strong>Exact Dependency</strong></p></th>
+</tr>
+<tr data-local-id=3D"3d068276e033">
+<td data-local-id=3D"cdd536a1fadb" class=3D"confluenceTd">
+<p local-id=3D"5e856495df77">RCATechnicalProductService</p></td>
+<td data-local-id=3D"3e8bf255dd3d" class=3D"confluenceTd">
+<p local-id=3D"7b847cac5a91">Copies Solution__c from the commercial product=
+ to the technical product</p></td>
+</tr>
+<tr data-local-id=3D"d1c2c8c87607">
+<td data-local-id=3D"6ee332e11023" class=3D"confluenceTd">
+<p local-id=3D"4d9b7b9a49e2">Product_Record_Page_UAT</p></td>
+<td data-local-id=3D"92a3562093f0" class=3D"confluenceTd">
+<p local-id=3D"63b206ab0d4a">Displays Product2.Solution__c</p></td>
+</tr>
+<tr data-local-id=3D"01caa1d801a9">
+<td data-local-id=3D"d7153f09930f" class=3D"confluenceTd">
+<p local-id=3D"9d5a92f2d085">ssot__Product__dlm</p></td>
+<td data-local-id=3D"5c2d64cb59f5" class=3D"confluenceTd">
+<p local-id=3D"34ab53287566">Mirrors Solution__c</p></td>
+</tr>
+<tr data-local-id=3D"69d6d770f073">
+<td data-local-id=3D"7c44b9440da3" class=3D"confluenceTd">
+<p local-id=3D"ad9445a60ff8">Revenue_Model__dlm</p></td>
+<td data-local-id=3D"c81dc5a2b926" class=3D"confluenceTd">
+<p local-id=3D"8600bfbed07c">Mirrors Solution__c</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"ba4167e1f29e" id=3D"SalesforceHierarchyManagementRunbook-Ch=
+angeProcedures.3">Change Procedures</h3>
+<h4 local-id=3D"9a09730cc282" id=3D"SalesforceHierarchyManagementRunbook-If=
+AddingANewSolution__c">If Adding A New Solution__c</h4>
+<ol start=3D"1" local-id=3D"b99317f22874">
+<li local-id=3D"2841774d21fd">
+<p local-id=3D"f4eac6643aeb">Update any existing Product2 records that shou=
+ld use the new solution.</p></li>
+<li local-id=3D"0a46dd4f27d3">
+<p local-id=3D"cd0a70524952">Update any existing technical products that sh=
+ould also use the new value.</p></li>
+<li local-id=3D"eb557a5033f8">
+<p local-id=3D"4a0c2adf96f4">Validate downstream reporting where Solution__=
+c is mirrored.</p></li>
+</ol>
+<h4 local-id=3D"fe067c9d6bc0" id=3D"SalesforceHierarchyManagementRunbook-If=
+RenamingSolution__c">If Renaming Solution__c</h4>
+<ol start=3D"1" local-id=3D"8c274f7a6abe">
+<li local-id=3D"36b9e8739244">
+<p local-id=3D"8f6b02e20ae2">Update Product2.Solution__c values directly.</=
+p></li>
+<li local-id=3D"90f93508704e">
+<p local-id=3D"4f855a2cba3d">Update existing technical products if they sho=
+uld stay aligned.</p></li>
+<li local-id=3D"bac0e9b08ba7">
+<p local-id=3D"0a83bf956765">Validate downstream reporting where Solution__=
+c is mirrored.</p></li>
+</ol>
+<h4 local-id=3D"d789e23f5db3" id=3D"SalesforceHierarchyManagementRunbook-If=
+RemovingSolution__c">If Removing Solution__c</h4>
+<ol start=3D"1" local-id=3D"36e0d128d305">
+<li local-id=3D"4a274d2a3adf">
+<p local-id=3D"1f64ec6105cd">Reassign or clear Product2 records using that =
+solution.</p></li>
+<li local-id=3D"b969afb849cb">
+<p local-id=3D"95a17dcf47f3">Reassign or clear related technical products i=
+f needed.</p></li>
+<li local-id=3D"256646cbde8d">
+<p local-id=3D"eca98b71781b">Validate downstream reporting where Solution__=
+c is mirrored.</p></li>
+</ol>
+<h2 local-id=3D"433d31cdbd39" id=3D"SalesforceHierarchyManagementRunbook-Au=
+tomationTestMatrix">Automation Test Matrix</h2>
+<p local-id=3D"4e200a7711df">Use this matrix to validate the affected flows=
+, triggers, Apex classes, and UI paths after a hierarchy change. Each row l=
+ists the entry point and the record setup needed for confirmation.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"760" data-layout=3D"default" data-local-id=3D"d2=
+65ad4dc6af" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"4f4a329ed115">
+<th data-local-id=3D"888e57bd1a5f" class=3D"confluenceTh">
+<p local-id=3D"8f1d98294522"><strong>Automation / UI</strong></p></th>
+<th data-local-id=3D"79b3eb0ba3a4" class=3D"confluenceTh">
+<p local-id=3D"71380bd0929a"><strong>Entry Point</strong></p></th>
+<th data-local-id=3D"1c96700b3e00" class=3D"confluenceTh">
+<p local-id=3D"7f06af25be97"><strong>Exact Test Setup</strong></p></th>
+</tr>
+<tr data-local-id=3D"7411ff38db95">
+<td data-local-id=3D"59571be1803f" class=3D"confluenceTd">
+<p local-id=3D"ca09a4e29cb2">Sales_Territories_Before_Insert_Update</p></td=
+>
+<td data-local-id=3D"b0b9ea0c41e4" class=3D"confluenceTd">
+<p local-id=3D"a9179d1fb00c">Before-save flow on Sales_Territory__c</p></td=
+>
+<td data-local-id=3D"b6790d0a11cc" class=3D"confluenceTd">
+<p local-id=3D"321e0ae0c98a">Create or edit a territory record using the ch=
+anged hierarchy value and confirm Unique_Value__c recalculates correctly.</=
+p></td>
+</tr>
+<tr data-local-id=3D"91833f51cd11">
+<td data-local-id=3D"c978dadca649" class=3D"confluenceTd">
+<p local-id=3D"4e47a801f736">TerritoryFlowHelper</p></td>
+<td data-local-id=3D"9ece30660472" class=3D"confluenceTd">
+<p local-id=3D"f2965792a4fc">Invoked from Sales_Inquiry_Territory_Assignmen=
+t</p></td>
+<td data-local-id=3D"7285d2fee998" class=3D"confluenceTd">
+<p local-id=3D"741d700fc12f">Create a Lead, related Marketing_Product__c, a=
+nd matching Sales_Territory__c with the changed hierarchy value; confirm pr=
+oduct assignment resolves as expected.</p></td>
+</tr>
+<tr data-local-id=3D"bdbd26c5cff3">
+<td data-local-id=3D"b97df1f83d14" class=3D"confluenceTd">
+<p local-id=3D"95d4866fc5e7">Sales_Inquiry_Territory_Assignment</p></td>
+<td data-local-id=3D"a63745ab64ae" class=3D"confluenceTd">
+<p local-id=3D"1499d5df1a32">After-save flow on Lead</p></td>
+<td data-local-id=3D"6b77a3c4209a" class=3D"confluenceTd">
+<p local-id=3D"457678bef931">Save a lead carrying the changed hierarchy and=
+ confirm owner, status, and product-of-interest behavior.</p></td>
+</tr>
+<tr data-local-id=3D"a306c66a31f1">
+<td data-local-id=3D"b5bbd14872df" class=3D"confluenceTd">
+<p local-id=3D"b88ac4fde3b3">Inquiry_Conversion_Screen_Flow</p></td>
+<td data-local-id=3D"bab1b9eac59a" class=3D"confluenceTd">
+<p local-id=3D"0a715548c8ec">Manual screen flow</p></td>
+<td data-local-id=3D"6d32754c52bc" class=3D"confluenceTd">
+<p local-id=3D"a430315d3868">Launch from a lead using the changed hierarchy=
+ and confirm the correct screen branches still appear.</p></td>
+</tr>
+<tr data-local-id=3D"e804f61e7229">
+<td data-local-id=3D"6ed7b854fd10" class=3D"confluenceTd">
+<p local-id=3D"9962a6820a68">Screen_Flow_Partner_Portal_Deal_Registration_F=
+orm</p></td>
+<td data-local-id=3D"4a45f1d2beb6" class=3D"confluenceTd">
+<p local-id=3D"2dfffbd56b32">Manual screen flow</p></td>
+<td data-local-id=3D"77d9422591eb" class=3D"confluenceTd">
+<p local-id=3D"b833b1f84cd4">Launch the flow and confirm marketing-product =
+lookup behavior still works for the changed hierarchy.</p></td>
+</tr>
+<tr data-local-id=3D"fd4ac045cfc6">
+<td data-local-id=3D"b3445046c8f1" class=3D"confluenceTd">
+<p local-id=3D"7a9007c8b433">Fortra_Bulk_Price_Update_Flow</p></td>
+<td data-local-id=3D"af88e6a9bb5d" class=3D"confluenceTd">
+<p local-id=3D"ea2332c41ac9">Manual screen flow</p></td>
+<td data-local-id=3D"128759ed1649" class=3D"confluenceTd">
+<p local-id=3D"0824953037a4">Launch the flow and confirm the changed catego=
+ry appears in the selection list and returns expected preview results.</p><=
+/td>
+</tr>
+<tr data-local-id=3D"a729809c51c6">
+<td data-local-id=3D"dbec48e77f30" class=3D"confluenceTd">
+<p local-id=3D"04d45d625ddb">COLAUpliftHandler</p></td>
+<td data-local-id=3D"eba972dfa97f" class=3D"confluenceTd">
+<p local-id=3D"e412f6563f93">QuoteLineItem before insert / before update tr=
+igger</p></td>
+<td data-local-id=3D"dddd5c6e2e38" class=3D"confluenceTd">
+<p local-id=3D"dafe4614c09f">Insert or update a renewal quote line whose so=
+urce asset product uses the changed category and confirm COLA fields popula=
+te correctly.</p></td>
+</tr>
+<tr data-local-id=3D"59612a07a90e">
+<td data-local-id=3D"a8b3764613d5" class=3D"confluenceTd">
+<p local-id=3D"e1fa78ad07fe">COLAUpliftPrehook</p></td>
+<td data-local-id=3D"ee36bde1e37a" class=3D"confluenceTd">
+<p local-id=3D"b987aef94715">Revenue Cloud pricing procedure</p></td>
+<td data-local-id=3D"24864064a211" class=3D"confluenceTd">
+<p local-id=3D"e080c3f0414f">Reprice a renewal quote and confirm category-b=
+ased COLA logic still resolves.</p></td>
+</tr>
+<tr data-local-id=3D"639ecd974767">
+<td data-local-id=3D"d44f79a13757" class=3D"confluenceTd">
+<p local-id=3D"4cd6f6c83032">displayAndFilterKnowledge</p></td>
+<td data-local-id=3D"3e0ee1f600d6" class=3D"confluenceTd">
+<p local-id=3D"aa618703ff6c">LWC filter UI</p></td>
+<td data-local-id=3D"edf5f17243b5" class=3D"confluenceTd">
+<p local-id=3D"3ace438f81bf">Open the component and confirm the changed sol=
+ution-group value appears and filters correctly.</p></td>
+</tr>
+<tr data-local-id=3D"8de9a298daf1">
+<td data-local-id=3D"a9ed491913a6" class=3D"confluenceTd">
+<p local-id=3D"2e371b5cb987">Partner_Product_Compliance_Alert</p></td>
+<td data-local-id=3D"069fdcba3b54" class=3D"confluenceTd">
+<p local-id=3D"96bcbccd47b1">Manual screen flow</p></td>
+<td data-local-id=3D"1a3eb60e7606" class=3D"confluenceTd">
+<p local-id=3D"b8cef52e1a36">Run the flow with a Product_of_Interest__c who=
+se marketing product uses the changed solution group and confirm compliance=
+ logic still evaluates correctly.</p></td>
+</tr>
+<tr data-local-id=3D"aa1cde5b8d7b">
+<td data-local-id=3D"f9d3838e8f5c" class=3D"confluenceTd">
+<p local-id=3D"a0e4e0cb79f4">PowerOrderSplittingService</p></td>
+<td data-local-id=3D"0e2ce34489e4" class=3D"confluenceTd">
+<p local-id=3D"93482d794eb9">Invocable Apex during order processing</p></td=
+>
+<td data-local-id=3D"c47508c8764b" class=3D"confluenceTd">
+<p local-id=3D"2feb8092372f">Only required when Power is changed; confirm P=
+ower-only split behavior still works.</p></td>
+</tr>
+<tr data-local-id=3D"ca6c39ef0907">
+<td data-local-id=3D"c6cc5848e60d" class=3D"confluenceTd">
+<p local-id=3D"40a5316ed7c7">Marketing_Product_Record_Page</p></td>
+<td data-local-id=3D"03c40ac74cc1" class=3D"confluenceTd">
+<p local-id=3D"bb8d48faf14a">Flexipage / dashboard filters</p></td>
+<td data-local-id=3D"6a56fcb5767c" class=3D"confluenceTd">
+<p local-id=3D"e9f387232cf2">Open a marketing product record with the chang=
+ed hierarchy and confirm all dashboard tabs still filter correctly.</p></td=
+>
+</tr>
+</tbody>
+</table>
+</div>
+<div class=3D"confluence-information-macro confluence-information-macro-inf=
+ormation">
+<span class=3D"aui-icon aui-icon-small aui-iconfont-info confluence-informa=
+tion-macro-icon"></span>
+<div class=3D"confluence-information-macro-body">
+<p local-id=3D"784a0bfceccb">Execution order recommendation: update metadat=
+a first, update text-field records second, update hardcoded references thir=
+d, then run the exact validation path for the changed field.</p>
+</div>
+</div>
+<div class=3D"panel" style=3D"background-color: #EAE6FF;border-color: #998D=
+D9;border-width: 1px;">
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p local-id=3D"7fae4290baf5">Standalone reference page generated for the hi=
+erarchy administration library. This page is self-contained and does not de=
+pend on live data sources.</p>
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_4_521441545.1780418792283--

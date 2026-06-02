@@ -1,0 +1,943 @@
+Date: Tue, 2 Jun 2026 16:52:53 +0000 (UTC)
+Message-ID: <946658223.5.1780419173913@b4b0f4e079ce>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_2118784158.1780419173912"
+
+------=_Part_4_2118784158.1780419173912
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Automated Renewals Requirements</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Automated Renewals Requirements</h1>
+    <div class=3D"Section1">
+        <h1 local-id=3D"67f443599b7e" id=3D"AutomatedRenewalsRequirements-A=
+utomatedRenewals(Salesforce+Workday)">Automated Renewals (Salesforce + Work=
+day)</h1>
+<h2 local-id=3D"9f8826acca51" id=3D"AutomatedRenewalsRequirements-1.Documen=
+tDetails">1. Document Details</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"c=
+df6cdc6-b7ca-4e97-a8ed-958cc61597a4" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"cee58cf6-858d-4605-904d-5a29b8577863">
+<th data-local-id=3D"a8bd6e84-496c-46aa-b98b-a58bb38e4847" class=3D"conflue=
+nceTh">
+<p local-id=3D"0b18bb969a4b">Field</p></th>
+<th data-local-id=3D"11803be4-1729-4e9a-835e-a1234ed73d1c" class=3D"conflue=
+nceTh">
+<p local-id=3D"2a7d6259ef6b">Value</p></th>
+</tr>
+<tr data-local-id=3D"d35ab367-2ed7-4f6a-95b4-cf749b20f6be">
+<td data-local-id=3D"778fbd32-a785-49b6-a60c-3a64ec31fd33" class=3D"conflue=
+nceTd">
+<p local-id=3D"d2a43c11c15f">Request / Enhancement Name</p></td>
+<td data-local-id=3D"1932f7a3-0a7a-43ba-a068-dac0076dd229" class=3D"conflue=
+nceTd">
+<p local-id=3D"939c2558992a">Automated Renewals =E2=80=93 Auto Quote Creati=
+on &amp; Delivery (Salesforce + Workday) <a class=3D"external-link" href=3D=
+"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystem=
+s_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD50=
+5AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&=
+amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals =
+R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"aaccbce1-b5b2-4e84-8d71-a096e083b07f">
+<td data-local-id=3D"49b2f61c-0857-452c-baa4-3b82d697286c" class=3D"conflue=
+nceTd">
+<p local-id=3D"89133d7e48a3">Prepared By</p></td>
+<td data-local-id=3D"3f2ac1b9-af1b-49ee-a4f9-8b673a605dc0" class=3D"conflue=
+nceTd">
+<p local-id=3D"bb40cd87a8d2">Leah Guenther <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"33f1101c-2a54-4c47-93bf-06cd79684b19">
+<td data-local-id=3D"fe2808b4-8836-4131-a965-1c65da6f4831" class=3D"conflue=
+nceTd">
+<p local-id=3D"e77d3e37ecfe">Date</p></td>
+<td data-local-id=3D"82dc468f-f2c8-4aa1-aa79-4b90c76879ae" class=3D"conflue=
+nceTd">
+<p local-id=3D"49cf56a759ea">May 27, 2026 <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"77040d71-339d-4ac8-9aab-94a0836884be">
+<td data-local-id=3D"96fbeb2d-7083-41e8-9ff3-8c73e7c25799" class=3D"conflue=
+nceTd">
+<p local-id=3D"8d31c2a91a7e">Business Owner</p></td>
+<td data-local-id=3D"3fda6744-6c2a-40b9-b485-f5f2a8e965d3" class=3D"conflue=
+nceTd">
+<p local-id=3D"1e7385040150">Assumption: Customer Operations leadership (Te=
+ch &amp; Cyber) <a class=3D"external-link" href=3D"https://helpsystemsllc-m=
+y.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.asp=
+x?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewal=
+s%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;=
+mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a=
+></p></td>
+</tr>
+<tr data-local-id=3D"2e60cb62-c5c1-4559-be3a-a8da1bc077c5">
+<td data-local-id=3D"31b71cde-cb92-4ea7-99cd-c2141f842369" class=3D"conflue=
+nceTd">
+<p local-id=3D"8530b30ac3c7">System / Application</p></td>
+<td data-local-id=3D"8d884bfa-e37c-4835-9bff-2c4ac7b019b8" class=3D"conflue=
+nceTd">
+<p local-id=3D"31f22cac0e8a">Salesforce; Workday <a class=3D"external-link"=
+ href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_he=
+lpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E=
+6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesfor=
+ce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[R=
+enewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"df6533bd-1db5-472c-b39f-2ad2301aea56">
+<td data-local-id=3D"dcd246da-97bc-4e35-a057-11b7b6ae2e58" class=3D"conflue=
+nceTd">
+<p local-id=3D"f9a34e1af2fe">Status</p></td>
+<td data-local-id=3D"2b54ac31-a1e1-49b4-ba34-7820473d309f" class=3D"conflue=
+nceTd">
+<p local-id=3D"fca8c901a774">Draft <a class=3D"external-link" href=3D"https=
+://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/=
+_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D=
+&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;ac=
+tion=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Sa=
+lesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"0a9213a63864" id=3D"AutomatedRenewalsRequirements-2.Request=
+Summary">2. Request Summary</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"c=
+924ccc6-bdfe-492f-ac19-3721bdc7f287" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"831bfd47-4e23-4305-81cf-cc32822525f1">
+<th data-local-id=3D"42a74393-4ac1-488e-b0e7-b011a6936708" class=3D"conflue=
+nceTh">
+<p local-id=3D"8d1e15c9089f">Category</p></th>
+<th data-local-id=3D"39320727-bf66-432e-9bca-499b55021d99" class=3D"conflue=
+nceTh">
+<p local-id=3D"9f036837a8db">Details</p></th>
+</tr>
+<tr data-local-id=3D"b34b8eb6-8ea6-4f70-9d10-5b09624497c0">
+<td data-local-id=3D"e6369d7f-9739-40f5-8d26-725ce9cb200e" class=3D"conflue=
+nceTd">
+<p local-id=3D"269ec71f871f">Business Need</p></td>
+<td data-local-id=3D"ee6aacc7-dc2d-4866-944b-3a68f45962dc" class=3D"conflue=
+nceTd">
+<p local-id=3D"31d8977acab5">Automate renewal processing by creating renewa=
+l quotes automatically (at least 90 days before contract expiration) and op=
+tionally delivering those quotes automatically, with control/override capab=
+ility and alignment to invoice creation/flow to Workday. <a class=3D"extern=
+al-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_gue=
+nther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A9=
+8-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20=
+Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofo=
+llow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"74e4b463-220b-4530-926c-3da2024eafef">
+<td data-local-id=3D"ba1376a1-60f8-4751-bb10-c5c65dca536b" class=3D"conflue=
+nceTd">
+<p local-id=3D"f1d10cb72b95">Why This Is Needed Now</p></td>
+<td data-local-id=3D"40fd31ce-6cf5-43d0-8c5d-4be7df9fe4a7" class=3D"conflue=
+nceTd">
+<p local-id=3D"09f3894afc26">The team is approaching a July 20 go-live date=
+ and needs requirements defined for UAT and build decisions, including auto=
+-renewal workflow timing and controls. <a class=3D"external-link" href=3D"h=
+ttps://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_=
+com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505A=
+B%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&am=
+p;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R.=
+..Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"9d218ec9-30ea-486b-a301-da723b405734">
+<td data-local-id=3D"fc3bcbfb-5cf8-46a0-9d1e-dfe2a85e12e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"5b217d734cfc">Who Is Impacted</p></td>
+<td data-local-id=3D"d6334113-fc89-4b13-b81a-ca4641727b89" class=3D"conflue=
+nceTd">
+<p local-id=3D"6d9a2ac86aed">Customer Operations (Tech), Renewal Specialist=
+s / Customer Cyber Operations; Cyber Operations users supporting auto-renew=
+al brands. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sha=
+repoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sou=
+rcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20R=
+equirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobil=
+eredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p>=
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"64a761caced1" id=3D"AutomatedRenewalsRequirements-3.Scope">=
+3. Scope</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"2=
+f26dbae-67c5-4c01-abe6-8bee3ab841fe" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"97eed2e2-f187-40ca-a67e-e79a5a901e75">
+<th data-local-id=3D"869d02cf-30c9-4bc1-b998-6ef289afbca9" class=3D"conflue=
+nceTh">
+<p local-id=3D"882ec7ba6fda">Scope Type</p></th>
+<th data-local-id=3D"a466c671-4feb-4434-90d2-a298de3cf459" class=3D"conflue=
+nceTh">
+<p local-id=3D"f6904e9998ac">Details</p></th>
+</tr>
+<tr data-local-id=3D"fff88e54-d419-4f5a-a729-2922a1df3453">
+<td data-local-id=3D"64d6fcc0-b5e9-4a4d-b6ca-d524f413deb4" class=3D"conflue=
+nceTd">
+<p local-id=3D"4fb2dbc833dd">In Scope</p></td>
+<td data-local-id=3D"724f8d36-6e9a-4377-9d69-bdf373d4dc19" class=3D"conflue=
+nceTd">
+<p local-id=3D"c51b0268333f">Auto-creation of renewal quotes; rules for tim=
+ing (e.g., 90 days); ability to auto-deliver quotes based on a solution-lev=
+el default with contract-level override; scheduling approach that supports =
+a review window between quote creation and delivery; considerations for dow=
+nstream order activation leading toward invoicing. <a class=3D"external-lin=
+k" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_=
+helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9=
+-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesf=
+orce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">=
+[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"38197ff2-c198-4abf-9778-95a3580fdd29">
+<td data-local-id=3D"7bb5dff6-116d-439c-8671-b344168f0104" class=3D"conflue=
+nceTd">
+<p local-id=3D"a54043686d99">Out of Scope</p></td>
+<td data-local-id=3D"f8b28aaf-1e91-475c-98c3-7872edffb61b" class=3D"conflue=
+nceTd">
+<p local-id=3D"c6c66cb5fd2e">Detailed cancel/rebill design and tax recalcul=
+ation process; final decisions on quote expiration logic; exact go-live pha=
+sing decisions (e.g., first-month manual review period) beyond capturing th=
+e requirement for a configurable control. <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"0be1c522191d" id=3D"AutomatedRenewalsRequirements-4.Functio=
+nalRequirements">4. Functional Requirements</h2>
+<ul local-id=3D"1d21e088-0cd9-477f-a1c1-0726cac8d4bb">
+<li local-id=3D"cac3db64-5b7f-4395-9700-9db3c390ba22">
+<p local-id=3D"5ea7ccce424a"><strong>FR-1:</strong> The system must automat=
+ically create renewal quotes at least <strong>90 days prior to contract exp=
+iration</strong>. <a class=3D"external-link" href=3D"https://helpsystemsllc=
+-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.a=
+spx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenew=
+als%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&am=
+p;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]<=
+/a></p></li>
+<li local-id=3D"a8ae852b-07ee-4e54-a531-06eef793cf32">
+<p local-id=3D"391548bb03a7"><strong>FR-2:</strong> The system must support=
+ an option to <strong>automatically deliver (send) renewal quotes</strong>,=
+ controlled by a <strong>solution-level</strong> setting. <a class=3D"exter=
+nal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_gu=
+enther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A=
+98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%2=
+0Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nof=
+ollow">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"bdfd9fa2-296e-41fe-8363-5e933b97b1a4">
+<p local-id=3D"ea047bcf3b0b"><strong>FR-3:</strong> The system must allow a=
+uthorized users to <strong>override</strong> the solution-level auto-delive=
+ry behavior <strong>at the contract level</strong>. <a class=3D"external-li=
+nk" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther=
+_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A=
+9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Sales=
+force.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow"=
+>[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"57939628-e964-405b-b720-469aaa111caf">
+<p local-id=3D"6c34cdf2c4c2"><strong>FR-4:</strong> The system must schedul=
+e quote automation such that there is <strong>1=E2=80=932 business days</st=
+rong> between quote creation and quote delivery to allow customer operation=
+s review/adjustment before sending. <a class=3D"external-link" href=3D"http=
+s://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com=
+/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7=
+D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;a=
+ction=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...S=
+alesforce | Word]</a></p></li>
+<li local-id=3D"b8f0f649-3790-462c-888f-e1489b388851">
+<p local-id=3D"c2e4e792300a"><strong>FR-5:</strong> The system must support=
+ a <strong>manual/batched delivery mechanism</strong> (e.g., selecting up t=
+o ~200 records in a list view) to release quotes when auto-delivery is not =
+enabled or during an initial stabilization period. <a class=3D"external-lin=
+k" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_=
+helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9=
+-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesf=
+orce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">=
+[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"60ce077c-ed7d-4dc9-9505-1029908bc6b1">
+<p local-id=3D"f6fdb44285ae"><strong>FR-6:</strong> The renewal workflow mu=
+st include the ability to convert an auto-created quote into an <strong>ord=
+er</strong>, and <strong>activate</strong> the order as the end of the Sale=
+sforce renewal process (prior to invoicing in Workday). <a class=3D"externa=
+l-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guen=
+ther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98=
+-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20S=
+alesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofol=
+low">[Renewals R...Salesforce | Word]</a></p></li>
+</ul>
+<h2 local-id=3D"46eb7b3d1440" id=3D"AutomatedRenewalsRequirements-5.Busines=
+sRules">5. Business Rules</h2>
+<ul local-id=3D"c1c3f077-e1ad-4db7-963a-4efa4039fd3e">
+<li local-id=3D"841f647b-2356-49c9-ad25-481ae6fa87fb">
+<p local-id=3D"551fb9223cd9"><strong>BR-1:</strong> Auto-delivery of renewa=
+l quotes must <strong>default based on solution</strong>, with contract-lev=
+el override permitted for authorized users. <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></li>
+<li local-id=3D"2f31c306-52f1-4b8b-ab0e-df0a8ab9822b">
+<p local-id=3D"1c774e2505d3"><strong>BR-2:</strong> Quote creation may occu=
+r on the <strong>1st of the month regardless of day</strong>, but quote del=
+ivery should occur at the <strong>end of the first or second business day</=
+strong> (to allow review time). <a class=3D"external-link" href=3D"https://=
+helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_la=
+youts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&am=
+p;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;actio=
+n=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Sales=
+force | Word]</a></p></li>
+<li local-id=3D"26526977-e95b-42eb-9235-77f459bbcf90">
+<p local-id=3D"6123bc442531"><strong>BR-3:</strong> Only users in <strong>C=
+ustomer Operations</strong> (including renewal specialist/customer cyber op=
+erations roles) may override contract-level auto-delivery behavior. <a clas=
+s=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/person=
+al/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC=
+40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathe=
+ring%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" =
+rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li>
+</ul>
+<h2 local-id=3D"b67bdc4bf4a8" id=3D"AutomatedRenewalsRequirements-6.Data/Fi=
+eldImpacts">6. Data / Field Impacts</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"6=
+58ada41-c2cb-4c23-b726-b0f7cc172137" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"523f1543-1375-4097-8e7c-9e3972ff32ac">
+<th data-local-id=3D"dec82b6e-723f-43be-a094-d734d9a8f9d1" class=3D"conflue=
+nceTh">
+<p local-id=3D"1efc08066e2f">Category</p></th>
+<th data-local-id=3D"4f1ae373-faf2-4fd0-952c-487ce85028ea" class=3D"conflue=
+nceTh">
+<p local-id=3D"3fff73669699">Details</p></th>
+</tr>
+<tr data-local-id=3D"4357c413-9666-467f-96b0-6192c3199f6d">
+<td data-local-id=3D"0179a9d3-aa5a-4d76-9315-91dfc5d9e43d" class=3D"conflue=
+nceTd">
+<p local-id=3D"eef31f4309ce">Fields Used</p></td>
+<td data-local-id=3D"e5fcecf9-d327-4d7d-8df5-c27658d3f9c4" class=3D"conflue=
+nceTd">
+<p local-id=3D"0d0513e9bf50">Contract expiration date (used to calculate 90=
+-day quote creation window). <a class=3D"external-link" href=3D"https://hel=
+psystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layou=
+ts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;f=
+ile=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=
+=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesf=
+orce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"6e522140-3f88-4aed-be63-747725583d86">
+<td data-local-id=3D"17eccbc1-28b0-4edd-b65b-5b01b1dfa8f7" class=3D"conflue=
+nceTd">
+<p local-id=3D"3c7d9b13bc08">Fields Updated</p></td>
+<td data-local-id=3D"21c56aff-bc05-495d-9d20-f51b915dfc34" class=3D"conflue=
+nceTd">
+<p local-id=3D"5daba68c948f">Solution-level =E2=80=9CSend Quote Yes/No=E2=
+=80=9D control; Contract-level override for sending behavior. <a class=3D"e=
+xternal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/lea=
+h_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080=
+D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%2=
+0-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D=
+"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"b16d4e58-ba2a-488a-8da0-801565452c62">
+<td data-local-id=3D"cb3a7f7c-a6d1-45de-9bf5-a38cf3211c9c" class=3D"conflue=
+nceTd">
+<p local-id=3D"311cd269eafd">Required Inputs</p></td>
+<td data-local-id=3D"e39c3218-da60-446d-b49d-777570d01ef2" class=3D"conflue=
+nceTd">
+<p local-id=3D"8a87a5fe0757">Defined mapping of =E2=80=9Csolution=E2=80=9D =
+to default send behavior; contract record associated to the renewal. <a cla=
+ss=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/perso=
+nal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844E=
+C40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gath=
+ering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue"=
+ rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"3ba22d2f-ec5a-4726-8b48-dc9ada04b4c2">
+<td data-local-id=3D"c68495fa-715f-4f75-aca2-2b74388f8503" class=3D"conflue=
+nceTd">
+<p local-id=3D"cb54df018302">Validation Rules</p></td>
+<td data-local-id=3D"968f6fe6-6626-4669-bfed-74cc62db32df" class=3D"conflue=
+nceTd">
+<p local-id=3D"1ff1e48584a9">Assumption: Prevent unintended multiple automa=
+ted renewals for the same contract by checking whether a renewal quote has =
+already been generated. (Not finalized; noted in discussion.) <a class=3D"e=
+xternal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/lea=
+h_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080=
+D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%2=
+0-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D=
+"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"b67a053dbb98" id=3D"AutomatedRenewalsRequirements-7.Integra=
+tion/AutomationImpacts">7. Integration / Automation Impacts</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"3=
+691da08-2306-4d71-94a7-636e6b12ccb0" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"43eb44df-779f-4930-bc1b-a8880dbdd5a0">
+<th data-local-id=3D"6f540348-92f1-4f6a-b3f9-e2ba5f6bcf83" class=3D"conflue=
+nceTh">
+<p local-id=3D"b938aec09411">Category</p></th>
+<th data-local-id=3D"1dbfa3f9-35e8-41e5-9ce6-004f1eeb1bb6" class=3D"conflue=
+nceTh">
+<p local-id=3D"0d0a70ef4e27">Details</p></th>
+</tr>
+<tr data-local-id=3D"7f80b5e1-46da-4910-aabb-58a36d0a3d35">
+<td data-local-id=3D"4660f54e-6fab-4143-8fef-1054e982fba7" class=3D"conflue=
+nceTd">
+<p local-id=3D"71073f79aacc">Source System</p></td>
+<td data-local-id=3D"caee4cb6-003f-43ea-bd4e-12cb374938a5" class=3D"conflue=
+nceTd">
+<p local-id=3D"1a93e6e584a7">Salesforce (renewal contract/solution configur=
+ation). <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharep=
+oint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?source=
+doc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requ=
+irement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobilere=
+direct=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></t=
+d>
+</tr>
+<tr data-local-id=3D"f3fad298-0a32-4219-ac4e-48a651ea8628">
+<td data-local-id=3D"e7c8582c-ee60-42bd-bc4b-69cd18b7363c" class=3D"conflue=
+nceTd">
+<p local-id=3D"70746c0608d8">Target System</p></td>
+<td data-local-id=3D"55913a59-8b68-4f2c-b180-453b94590492" class=3D"conflue=
+nceTd">
+<p local-id=3D"6939fb65741a">Workday (invoice creation downstream once orde=
+r activation occurs). <a class=3D"external-link" href=3D"https://helpsystem=
+sllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/D=
+oc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DR=
+enewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefaul=
+t&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Wo=
+rd]</a></p></td>
+</tr>
+<tr data-local-id=3D"0a8f66e0-a735-4b7b-8a17-499afe75341f">
+<td data-local-id=3D"5c6c6d03-e569-4e40-a046-cf00c52c50a4" class=3D"conflue=
+nceTd">
+<p local-id=3D"9309c67dc742">Trigger</p></td>
+<td data-local-id=3D"56f7b634-ac30-4cc2-aa41-e7c88463776c" class=3D"conflue=
+nceTd">
+<p local-id=3D"0fd51bd1712e">Time-based automation: 90 days before contract=
+ expiration for quote creation; scheduled delivery event 1=E2=80=932 busine=
+ss days later. <a class=3D"external-link" href=3D"https://helpsystemsllc-my=
+.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx=
+?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals=
+%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;m=
+obileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a>=
+</p></td>
+</tr>
+<tr data-local-id=3D"7f948165-4821-4bb1-90b0-94c22d70f833">
+<td data-local-id=3D"50f217c7-72cd-44a6-b865-6f4315e8d843" class=3D"conflue=
+nceTd">
+<p local-id=3D"4a6274da66d7">Recalculation / Sync Rules</p></td>
+<td data-local-id=3D"7cdaed00-dc6a-4408-bb7e-bc8f7c52cda4" class=3D"conflue=
+nceTd">
+<p local-id=3D"12991b97312e">If automation is disabled, users must be able =
+to batch-release delivery (e.g., via list view selection). <a class=3D"exte=
+rnal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_g=
+uenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4=
+A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%=
+20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"no=
+follow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"73a574cc0eda" id=3D"AutomatedRenewalsRequirements-8.Securit=
+y/Access">8. Security / Access</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"1=
+d6a1167-9c4e-4524-8e02-8192edcf133f" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"f3125af9-970e-4938-8b24-868e5d6d8585">
+<th data-local-id=3D"67d445fa-0736-405e-8257-3b3f55c07b62" class=3D"conflue=
+nceTh">
+<p local-id=3D"c1d14618dcea">Permission</p></th>
+<th data-local-id=3D"98528a08-e201-49b4-b399-89f8f5cf86c7" class=3D"conflue=
+nceTh">
+<p local-id=3D"bfbce3fc28d3">Details</p></th>
+</tr>
+<tr data-local-id=3D"e00be522-d7cb-4bea-be1f-4eb2d2548faa">
+<td data-local-id=3D"ab39b6be-06a3-4c34-b38a-1f4eee10c9ee" class=3D"conflue=
+nceTd">
+<p local-id=3D"12e4bcf2eac3">Who Can View</p></td>
+<td data-local-id=3D"78278c68-d235-44b7-92a9-4da0845be426" class=3D"conflue=
+nceTd">
+<p local-id=3D"63e87e7df695">Assumption: Users with access to contracts/quo=
+tes in Salesforce (Customer Operations, related Sales).</p></td>
+</tr>
+<tr data-local-id=3D"49e44daf-8c23-4777-ad94-3cf85a8dada4">
+<td data-local-id=3D"f2bba5bb-67fc-4903-a227-ac9bfc8a6b51" class=3D"conflue=
+nceTd">
+<p local-id=3D"4afd51b9e2cd">Who Can Edit</p></td>
+<td data-local-id=3D"306ed293-fb19-4db6-8a26-21e276802456" class=3D"conflue=
+nceTd">
+<p local-id=3D"d120ef9cd1c0">Customer Operations users (incl. renewal speci=
+alist/customer cyber operations) for contract-level override; others per ex=
+isting Salesforce permissions. <a class=3D"external-link" href=3D"https://h=
+elpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_lay=
+outs/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp=
+;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=
+=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesf=
+orce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"3aa6636b-1e29-4415-afe6-d76ca1bcc335">
+<td data-local-id=3D"ca9c91f6-1d9e-4a26-8396-21cf20423d51" class=3D"conflue=
+nceTd">
+<p local-id=3D"c3f150fd51dd">Who Can Override</p></td>
+<td data-local-id=3D"7bca4758-9b00-4a01-9a89-be21548c60f2" class=3D"conflue=
+nceTd">
+<p local-id=3D"878b2f788afa">Customer Operations users only (tech side expl=
+icitly called out). <a class=3D"external-link" href=3D"https://helpsystemsl=
+lc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc=
+.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRen=
+ewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&=
+amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word=
+]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"2429ad5dc650" id=3D"AutomatedRenewalsRequirements-9.Reporti=
+ng/Audit">9. Reporting / Audit</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"4=
+dd4dfe3-08fa-4707-85cd-15c97e2c08d0" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"ea9b5f2f-406a-46f7-ac6f-0a3bd7f124b8">
+<th data-local-id=3D"759ac6ae-74fc-4aa4-9da5-97c4595de7a9" class=3D"conflue=
+nceTh">
+<p local-id=3D"8b7ee5aca82f">Category</p></th>
+<th data-local-id=3D"5ec1c7aa-2bec-4a29-9b37-6e6e99f32f4f" class=3D"conflue=
+nceTh">
+<p local-id=3D"c7fd809bceef">Details</p></th>
+</tr>
+<tr data-local-id=3D"1a6dd786-c5e6-4674-b6fb-7ce9cb2cc91f">
+<td data-local-id=3D"1c0d5f6c-5f91-4057-b2e4-2c75b4f51c19" class=3D"conflue=
+nceTd">
+<p local-id=3D"fea925727c73">Reporting Impact</p></td>
+<td data-local-id=3D"2451dc7c-ecc2-4320-b9a4-ace2f9e572b2" class=3D"conflue=
+nceTd">
+<p local-id=3D"4873306a3014">Need visibility into which renewal quotes were=
+ auto-created and which were auto-delivered vs manually delivered/batched. =
+<a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com=
+/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7=
+BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%=
+20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=
+=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"010f8f14-6042-46ff-ba7a-733491119ca6">
+<td data-local-id=3D"4037095d-a227-41e6-97dc-8362e476642c" class=3D"conflue=
+nceTd">
+<p local-id=3D"e850bf3a8138">Traceability Needed</p></td>
+<td data-local-id=3D"43c493ef-d62a-42f8-8f10-ce5da1e1dc8b" class=3D"conflue=
+nceTd">
+<p local-id=3D"941f211e1d15">Assumption: Log when automation created the qu=
+ote and when/if delivery occurred (audit timestamps).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"002d6eada3b0" id=3D"AutomatedRenewalsRequirements-10.Accept=
+anceCriteria">10. Acceptance Criteria</h2>
+<ul local-id=3D"6dc94fbc-8d02-46f2-a999-46b4882ad795">
+<li local-id=3D"1cd2a3c7-9652-41d2-9c2c-cff618bd6131">
+<p local-id=3D"d89fe2d9b32f"><strong>AC-1:</strong> Given a contract expiri=
+ng on date X, a renewal quote is automatically created no later than <stron=
+g>X-90 days</strong>. <a class=3D"external-link" href=3D"https://helpsystem=
+sllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/D=
+oc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DR=
+enewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefaul=
+t&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Wo=
+rd]</a></p></li>
+<li local-id=3D"4f7042d9-d1bb-4179-a262-e02ee406c908">
+<p local-id=3D"9ecda3a145ab"><strong>AC-2:</strong> When solution-level aut=
+o-delivery is enabled, the quote is delivered on the configured schedule, a=
+llowing <strong>at least 1 business day and no more than 2 business days</s=
+trong> after creation. <a class=3D"external-link" href=3D"https://helpsyste=
+msllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/=
+Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3D=
+Renewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefau=
+lt&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | W=
+ord]</a></p></li>
+<li local-id=3D"74a454f0-0cb5-4048-81ff-fb1b3dfb9215">
+<p local-id=3D"82bf38947af4"><strong>AC-3:</strong> An authorized Customer =
+Operations user can override the contract-level delivery setting, and the s=
+ystem follows the override for that contract. <a class=3D"external-link" hr=
+ef=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helps=
+ystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B6=
+4BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.=
+docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Rene=
+wals R...Salesforce | Word]</a></p></li>
+</ul>
+<h2 local-id=3D"2e46c7854f59" id=3D"AutomatedRenewalsRequirements-11.Requir=
+ementsTraceability">11. Requirements Traceability</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"3=
+b0c23d1-0c10-475a-9568-81dbfd3887c2" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"845a37e8-f05f-4333-a635-4171c856769a">
+<th data-local-id=3D"6d1ba3cf-2db0-4825-81da-80803f5c90a2" class=3D"conflue=
+nceTh">
+<p local-id=3D"504f67614eec">Requirement / Rule ID</p></th>
+<th data-local-id=3D"47f83151-20a9-445d-97cd-67a7fad57313" class=3D"conflue=
+nceTh">
+<p local-id=3D"e935cc814763">Related Jira Work Item(s)</p></th>
+<th data-local-id=3D"84130936-0884-4c68-a316-2931392074e1" class=3D"conflue=
+nceTh">
+<p local-id=3D"5ee838a05ed9">Related Test Coverage</p></th>
+<th data-local-id=3D"4cfc3d3d-fb9f-43af-84ee-f868bc976e1f" class=3D"conflue=
+nceTh">
+<p local-id=3D"17f3cf79eef5">Notes</p></th>
+</tr>
+<tr data-local-id=3D"d2bc61f8-ada0-45fa-88a8-0a7da03b9339">
+<td data-local-id=3D"ed96e37f-9dda-4ec9-bcc9-3127d9b79b1e" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb88aa3e699e">FR-1, FR-4, AC-1, AC-2</p></td>
+<td data-local-id=3D"9b5d41a7-c2fb-4eaf-90f0-4168e40b0498" class=3D"conflue=
+nceTd">
+<p local-id=3D"55c682626ec5">TBD</p></td>
+<td data-local-id=3D"cc669263-fc15-4ae1-aab1-291bac718725" class=3D"conflue=
+nceTd">
+<p local-id=3D"8751c508db8a">TBD</p></td>
+<td data-local-id=3D"5051a5e1-4a7e-4de7-bff3-dc146ae95c53" class=3D"conflue=
+nceTd">
+<p local-id=3D"c520deabf3e8">Renewal quote timing &amp; scheduling. <a clas=
+s=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/person=
+al/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC=
+40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathe=
+ring%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" =
+rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"0a1e9bf8-84f6-4bae-ad19-9b801d88e6ec">
+<td data-local-id=3D"1c516585-da95-435d-87df-17f0f472b7ee" class=3D"conflue=
+nceTd">
+<p local-id=3D"7b3b7d95c61f">FR-2, FR-3, BR-1, BR-3, AC-3</p></td>
+<td data-local-id=3D"eae2d604-57ad-4b82-b13e-92067d8d4747" class=3D"conflue=
+nceTd">
+<p local-id=3D"84eb66edac8f">TBD</p></td>
+<td data-local-id=3D"c27c49cb-f517-4eb0-a46a-fd55d60f5c5a" class=3D"conflue=
+nceTd">
+<p local-id=3D"c81c4ac18775">TBD</p></td>
+<td data-local-id=3D"38dbc2fb-1c3f-492c-b370-2eb5beb32993" class=3D"conflue=
+nceTd">
+<p local-id=3D"790eb1ecd4f8">Solution default + contract override + permiss=
+ions. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoi=
+nt.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedo=
+c=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requir=
+ement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredi=
+rect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"558688bb-ede5-446a-9c49-151825ff2ced">
+<td data-local-id=3D"515fa47d-b8af-4935-971a-79931ce4df09" class=3D"conflue=
+nceTd">
+<p local-id=3D"89cc9b808f5e">FR-5</p></td>
+<td data-local-id=3D"4ab581bb-2d4e-47b4-af0d-14c870b5500d" class=3D"conflue=
+nceTd">
+<p local-id=3D"7fb61b62632f">TBD</p></td>
+<td data-local-id=3D"8794522f-3f0d-4313-8393-9326cdca196a" class=3D"conflue=
+nceTd">
+<p local-id=3D"6e617a6592c2">TBD</p></td>
+<td data-local-id=3D"52efb695-9881-4b9c-a1e5-3bebe27d864f" class=3D"conflue=
+nceTd">
+<p local-id=3D"d841563072a9">Batch/manual delivery approach (list view sele=
+ction). <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharep=
+oint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?source=
+doc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requ=
+irement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobilere=
+direct=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></t=
+d>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"5a0c2253a451" id=3D"AutomatedRenewalsRequirements-12.OpenQu=
+estions">12. Open Questions</h2>
+<ul local-id=3D"9f6f3897-584b-4269-b0a2-f26e7ba55085">
+<li local-id=3D"2d6420a1-260b-48b6-8125-8b966fa9d781">
+<p local-id=3D"56483ad01c7e"><strong>Q-1:</strong> Should the quote creatio=
+n window remain at <strong>90 days</strong>, or should any solutions move t=
+o <strong>120 days</strong>? (A preference for 90 was stated; confirm if an=
+y exceptions required.) <a class=3D"external-link" href=3D"https://helpsyst=
+emsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15=
+/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=
+=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Dde=
+fault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce =
+| Word]</a></p>
+<ul local-id=3D"6e1d221d4cf5">
+<li local-id=3D"b574a3a161d2">
+<p local-id=3D"08395c869d44">A-1: 90 days</p></li>
+</ul></li>
+<li local-id=3D"b6149d03-0e7a-4d55-8e95-f9b3641ccdb1">
+<p local-id=3D"e380166b9e36"><strong>Q-2:</strong> What is the required <st=
+rong>quote expiration date</strong> logic for auto-renewal quotes created 9=
+0 days in advance? <a class=3D"external-link" href=3D"https://helpsystemsll=
+c-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.=
+aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRene=
+wals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&a=
+mp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]=
+</a></p>
+<ul local-id=3D"245de77f2c3a">
+<li local-id=3D"ca1a877f2d58">
+<p local-id=3D"f649a48d6365">A- 2: BSI?</p></li>
+</ul></li>
+<li local-id=3D"87c2a31c-e854-45dc-aa0b-5fddc6c5fa33">
+<p local-id=3D"98db742110d1"><strong>Q-3:</strong> Should auto-delivery be =
+<strong>disabled for the first 1=E2=80=932 months post go-live</strong> and=
+ require batch release, or enabled immediately? <a class=3D"external-link" =
+href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_hel=
+psystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6=
+B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforc=
+e.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Re=
+newals R...Salesforce | Word]</a></p>
+<ul local-id=3D"72aafaf287f7">
+<li local-id=3D"a4b1dc875c36">
+<p local-id=3D"6b53f950afde">A-3: Yes with ability to send in bulk 200 or s=
+o at a time.</p></li>
+</ul></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_4_2118784158.1780419173912--

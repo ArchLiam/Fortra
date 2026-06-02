@@ -1,0 +1,925 @@
+Date: Tue, 2 Jun 2026 16:53:11 +0000 (UTC)
+Message-ID: <760282183.7.1780419191547@855a742b9156>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_1178529846.1780419191546"
+
+------=_Part_6_1178529846.1780419191546
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>New Sales Start Date Defaulting &amp; Override Rules in Salesfor=
+ce</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>New Sales Start Date Defaulting &amp; Override Rules in Salesforce<=
+/h1>
+    <div class=3D"Section1">
+        <h1 local-id=3D"cd9113847b17" id=3D"NewSalesStartDateDefaulting&amp=
+;OverrideRulesinSalesforce-HowtoSetStartDate(NewSalesStartDateDefaults+Over=
+rides)">How to Set Start Date (New Sales Start Date Defaults + Overrides)</=
+h1>
+<h2 local-id=3D"c19778cb1a6c" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-1.DocumentDetails">1. Document Details</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"e=
+2710f6c-b2de-494c-81cb-83c2fb132702" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"4e1615f2-c863-4015-aa78-b28b45cbc95d">
+<th data-local-id=3D"8b55cbff-a1c7-4f13-9188-3747f214bbf2" class=3D"conflue=
+nceTh">
+<p local-id=3D"dfe6456d50ae">Field</p></th>
+<th data-local-id=3D"4d165ab4-4088-4ad2-9bd2-2aa828e69a67" class=3D"conflue=
+nceTh">
+<p local-id=3D"f214f0f25927">Value</p></th>
+</tr>
+<tr data-local-id=3D"1bbd69b3-216d-4607-8f4d-dab562d8220a">
+<td data-local-id=3D"ba0e79a0-6fa6-4af9-b626-636d82a79277" class=3D"conflue=
+nceTd">
+<p local-id=3D"b7b951454741">Request / Enhancement Name</p></td>
+<td data-local-id=3D"e96eaa48-59dd-4b63-bb5b-7c7a3a802f95" class=3D"conflue=
+nceTd">
+<p local-id=3D"4d27b64acf61">New Sales Start Date Defaulting &amp; Override=
+ Rules (Quote/Order) <a class=3D"external-link" href=3D"https://helpsystems=
+llc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Do=
+c.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRe=
+newals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault=
+&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Wor=
+d]</a></p></td>
+</tr>
+<tr data-local-id=3D"5366573e-3502-47de-8b76-922083ae9d56">
+<td data-local-id=3D"954e891e-74d9-4f85-87e6-72dffd339001" class=3D"conflue=
+nceTd">
+<p local-id=3D"41fde3ec449c">Prepared By</p></td>
+<td data-local-id=3D"a459e6e1-c0f5-419f-b278-050f15a076e4" class=3D"conflue=
+nceTd">
+<p local-id=3D"b65404b2edf6">Leah Guenther <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"182451ce-e19d-4e57-acc8-88560037e794">
+<td data-local-id=3D"4464a77c-fbb1-4ef1-ab16-b588cf2ef0e1" class=3D"conflue=
+nceTd">
+<p local-id=3D"8df49d6d5a3d">Date</p></td>
+<td data-local-id=3D"134a925c-6dad-4dc6-99b3-ad0192118b0c" class=3D"conflue=
+nceTd">
+<p local-id=3D"aec8bf770e69">May 27, 2026 <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"e56a0be3-5a5d-4ccd-a0b2-db5907c8ff8b">
+<td data-local-id=3D"4ab83ff8-c710-4544-b23a-d3e1a16670e6" class=3D"conflue=
+nceTd">
+<p local-id=3D"87bbf6e1884d">Business Owner</p></td>
+<td data-local-id=3D"1cb75a9a-514c-44d1-88aa-593e625937bb" class=3D"conflue=
+nceTd">
+<p local-id=3D"99ccd3967685">Assumption: Customer Operations + Sales Operat=
+ions leadership <a class=3D"external-link" href=3D"https://helpsystemsllc-m=
+y.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.asp=
+x?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewal=
+s%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;=
+mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a=
+></p></td>
+</tr>
+<tr data-local-id=3D"87e95232-972d-4c47-9114-d2b59215381d">
+<td data-local-id=3D"89a54f1a-00b9-4318-ab3a-8062caaea604" class=3D"conflue=
+nceTd">
+<p local-id=3D"1ada9f45a2a1">System / Application</p></td>
+<td data-local-id=3D"c0311fc9-c08c-437b-8886-7ac25c423b89" class=3D"conflue=
+nceTd">
+<p local-id=3D"3aebc7c497ec">Salesforce (Quotes/Orders) <a class=3D"externa=
+l-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guen=
+ther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98=
+-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20S=
+alesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofol=
+low">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"d0c08cc3-db8c-487a-8b30-2f7a9932e6bc">
+<td data-local-id=3D"0f0e8867-e971-44b7-9b06-120c9dee4165" class=3D"conflue=
+nceTd">
+<p local-id=3D"9be7dc0962fb">Status</p></td>
+<td data-local-id=3D"14960e12-fd2f-4916-8396-f50bdb82beae" class=3D"conflue=
+nceTd">
+<p local-id=3D"46559a8cafc7">Draft <a class=3D"external-link" href=3D"https=
+://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/=
+_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D=
+&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;ac=
+tion=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Sa=
+lesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"72d5c13c471e" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-2.RequestSummary">2. Request Summary</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"a=
+667d446-6934-4a36-882b-15d909f4ddce" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"45cd58a5-7740-494c-a7d2-6aa304bafa3c">
+<th data-local-id=3D"d34bd003-75d4-4127-aefb-e976f08fedd2" class=3D"conflue=
+nceTh">
+<p local-id=3D"d71269a4a60d">Category</p></th>
+<th data-local-id=3D"dadee176-e0f2-4315-9d2c-2edcb3a019f1" class=3D"conflue=
+nceTh">
+<p local-id=3D"50b281db4a0f">Details</p></th>
+</tr>
+<tr data-local-id=3D"d3655824-98bb-4dd6-9692-45c6a2e5cd33">
+<td data-local-id=3D"17a7cea0-c538-4775-b7b0-1116faadc369" class=3D"conflue=
+nceTd">
+<p local-id=3D"173b8a4fafcf">Business Need</p></td>
+<td data-local-id=3D"141d7458-c674-465a-9367-fb983fc22c80" class=3D"conflue=
+nceTd">
+<p local-id=3D"0465102bedf7">Define how a <strong>start date</strong> shoul=
+d be set for <strong>new sales</strong>, including defaulting logic, the ab=
+ility to override frequently, and guardrails to prevent quotes with start d=
+ates that have already passed. <a class=3D"external-link" href=3D"https://h=
+elpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_lay=
+outs/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp=
+;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=
+=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesf=
+orce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"ec0323d0-7a3c-4147-a0e2-5e6a162a0fce">
+<td data-local-id=3D"1da1d0d7-c4d5-40a9-a474-bdd3a09e0c38" class=3D"conflue=
+nceTd">
+<p local-id=3D"62ba717703f9">Why This Is Needed Now</p></td>
+<td data-local-id=3D"b6fbfa8b-0eec-4e2d-90c4-c9fd8a9f7d65" class=3D"conflue=
+nceTd">
+<p local-id=3D"6ca8fa248e68">Start date logic impacts customer experience (=
+pushback when licenses are sent mid-month for already-passed start dates) a=
+nd is needed for UAT/go-live readiness. <a class=3D"external-link" href=3D"=
+https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems=
+_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505=
+AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&a=
+mp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R=
+...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"0035a318-219d-4d8e-80a2-a6c6fd2f8e74">
+<td data-local-id=3D"718e94f0-d317-4918-9762-10b4160d606d" class=3D"conflue=
+nceTd">
+<p local-id=3D"e3929a897090">Who Is Impacted</p></td>
+<td data-local-id=3D"52b90c7f-dc16-437d-a2bf-b2408d95d846" class=3D"conflue=
+nceTd">
+<p local-id=3D"1d2238ce9fda">Operations teams processing orders; Sales user=
+s creating quotes; customers affected by start date alignment and license t=
+iming. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepo=
+int.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourced=
+oc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requi=
+rement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobilered=
+irect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td=
+>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"ec4d43b9e9bb" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-3.Scope">3. Scope</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"6=
+7b5d13f-68dc-4a95-b48c-e6e926130680" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"90d738f7-ef98-4bab-8313-6293bed0e8a6">
+<th data-local-id=3D"3be2c561-5891-45de-b220-3844f40b16d0" class=3D"conflue=
+nceTh">
+<p local-id=3D"59dc130f2842">Scope Type</p></th>
+<th data-local-id=3D"c22058c2-a5b3-4945-a294-31fd4918142c" class=3D"conflue=
+nceTh">
+<p local-id=3D"56d7be9f780d">Details</p></th>
+</tr>
+<tr data-local-id=3D"dede5daf-bb41-4b6a-99f6-fe904cdfe120">
+<td data-local-id=3D"19a1f4a2-6988-4ebc-8314-abf06e60e8f3" class=3D"conflue=
+nceTd">
+<p local-id=3D"e6c4d33dcd45">In Scope</p></td>
+<td data-local-id=3D"faf727e5-7e8d-4963-bde6-4bbcdba9e8fe" class=3D"conflue=
+nceTd">
+<p local-id=3D"5d4e5e6f59bc">Default start date rules for new sales quotes;=
+ ability to override start date during order processing (before contract cr=
+eation); validation/guardrail linking quote expiration to line item start d=
+ate to prevent start dates in the past without quote being expired. <a clas=
+s=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/person=
+al/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC=
+40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathe=
+ring%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" =
+rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"80d790ef-9b6a-4630-93cb-62ad597052d1">
+<td data-local-id=3D"38c734d5-bbb3-4994-9cac-18f8a5a3dbfb" class=3D"conflue=
+nceTd">
+<p local-id=3D"c26530547e89">Out of Scope</p></td>
+<td data-local-id=3D"731ab6c9-c017-4531-ba04-6a70aa7e3c65" class=3D"conflue=
+nceTd">
+<p local-id=3D"873cd9bbed39">Final decision on whether default should be =
+=E2=80=9C1st of current month=E2=80=9D vs =E2=80=9C1st of next month=E2=80=
+=9D (requirement captured as pending); any downstream license generation me=
+chanics beyond start-date impacts. <a class=3D"external-link" href=3D"https=
+://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/=
+_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D=
+&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;ac=
+tion=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Sa=
+lesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"6d297fc9fce5" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-4.FunctionalRequirements">4. Functional Requirements</h2=
+>
+<ul local-id=3D"d7a8aae1-0c7c-45c4-b2fe-7e9defbf4a59">
+<li local-id=3D"b5b5dc89-e40a-4580-8f93-34a50cfc72aa">
+<p local-id=3D"8a7f5a2def69"><strong>FR-1:</strong> The system must apply a=
+ <strong>default start date</strong> for new sales quotes based on defined =
+business logic (current rule referenced as default to the 1st of the month;=
+ alternative rule proposed). <a class=3D"external-link" href=3D"https://hel=
+psystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layou=
+ts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;f=
+ile=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=
+=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesf=
+orce | Word]</a></p></li>
+<li local-id=3D"dcb7e8f2-fab6-4e8d-b134-12c4af671011">
+<p local-id=3D"ea9d0ea546e1"><strong>FR-2:</strong> The system must allow o=
+perations users to <strong>override</strong> the start date during <strong>=
+order processing</strong> (before contract creation). <a class=3D"external-=
+link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenth=
+er_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-9=
+0A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Sal=
+esforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollo=
+w">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"a000b484-f8ac-4176-adc9-078b9ab4c252">
+<p local-id=3D"800820e825a8"><strong>FR-3:</strong> The system must prevent=
+ scenarios where a quote remains valid when the <strong>line item start dat=
+e has already passed</strong>, by enforcing a validation related to quote e=
+xpiration vs start date. <a class=3D"external-link" href=3D"https://helpsys=
+temsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/1=
+5/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=
+=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Dde=
+fault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce =
+| Word]</a></p></li>
+<li local-id=3D"c7e7fedf-8fdc-4e97-a31e-5af0b214e2c5">
+<p local-id=3D"11f0a146d3e3"><strong>FR-4:</strong> The system must enforce=
+ that if the quote becomes expired due to the start date passing, users mus=
+t <strong>update the start date</strong> (or otherwise correct configuratio=
+n) before proceeding. <a class=3D"external-link" href=3D"https://helpsystem=
+sllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/D=
+oc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DR=
+enewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefaul=
+t&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Wo=
+rd]</a></p></li>
+</ul>
+<h2 local-id=3D"6760c1b46291" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-5.BusinessRules">5. Business Rules</h2>
+<ul local-id=3D"229c2beb-818b-4403-ab90-6fa8f1e86d45">
+<li local-id=3D"8a0e5950-479e-4198-8cd3-fc32031e5bc2">
+<p local-id=3D"6737c5384195"><strong>BR-1:</strong> Proposed defaulting rul=
+e: if the date is within the <strong>first ~5 days</strong> of the month, d=
+efault start date to the <strong>1st of the current month</strong>; if afte=
+r that, default to the <strong>1st of the next month</strong>. (Proposed; n=
+ot yet confirmed.) <a class=3D"external-link" href=3D"https://helpsystemsll=
+c-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.=
+aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRene=
+wals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&a=
+mp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]=
+</a></p></li>
+<li local-id=3D"749fa9b7-c097-4a3e-9459-284077c109ca">
+<p local-id=3D"3a86481db5e7"><strong>BR-2:</strong> Start date overrides mu=
+st be available once the record is handed to operations for processing and =
+must occur <strong>before contract creation</strong>. <a class=3D"external-=
+link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenth=
+er_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-9=
+0A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Sal=
+esforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollo=
+w">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"79e09b28-1dcb-4013-a452-1a7cb1ea8901">
+<p local-id=3D"8e7ac7aa8822"><strong>BR-3:</strong> =E2=80=9CA quote expira=
+tion date can=E2=80=99t exceed line item start date.=E2=80=9D (Validation r=
+ule requirement stated in discussion.) <a class=3D"external-link" href=3D"h=
+ttps://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_=
+com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505A=
+B%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&am=
+p;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R.=
+..Salesforce | Word]</a></p></li>
+</ul>
+<h2 local-id=3D"a6ec90850c7d" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-6.Data/FieldImpacts">6. Data / Field Impacts</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"e=
+2427a71-f2dd-4270-8b49-9146bedfffed" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"b7d458bc-6783-41fb-aabc-9ca901b8e8f7">
+<th data-local-id=3D"7292b49a-7752-4986-913f-4eb88b8de5dc" class=3D"conflue=
+nceTh">
+<p local-id=3D"2d253f32e1d8">Category</p></th>
+<th data-local-id=3D"8461f760-5a75-4583-bb66-faccbc2b22c2" class=3D"conflue=
+nceTh">
+<p local-id=3D"eb17a62bde35">Details</p></th>
+</tr>
+<tr data-local-id=3D"bf4ae009-3864-4797-a08b-a6d18a3645bf">
+<td data-local-id=3D"38ee0160-dd5b-4668-9839-45e6af961ea8" class=3D"conflue=
+nceTd">
+<p local-id=3D"bb8fe782e806">Fields Used</p></td>
+<td data-local-id=3D"ac6e9032-b09b-4010-8b14-81124b1073cd" class=3D"conflue=
+nceTd">
+<p local-id=3D"1dc0104e5045">Quote expiration date; line item start date. <=
+a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/=
+personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7B=
+A844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%2=
+0Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3D=
+true" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"c702f6bf-f3ca-42f4-93c4-7ca1b363cc6f">
+<td data-local-id=3D"9fb8dc77-b4b3-47b0-b42d-535745334748" class=3D"conflue=
+nceTd">
+<p local-id=3D"4f72e3355b96">Fields Updated</p></td>
+<td data-local-id=3D"3b8ba600-8df2-4ef4-9c8c-0c2f459164e8" class=3D"conflue=
+nceTd">
+<p local-id=3D"1c023f28b1a7">Start date (quote/line item or order-level sta=
+rt date, depending on configuration); quote expiration date behavior as it =
+relates to start date. <a class=3D"external-link" href=3D"https://helpsyste=
+msllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/=
+Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3D=
+Renewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefau=
+lt&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | W=
+ord]</a></p></td>
+</tr>
+<tr data-local-id=3D"2f29eb13-e2f7-4c0f-9f9f-33c6062165b6">
+<td data-local-id=3D"577096f2-08e6-4d7b-8ccd-ad962b536654" class=3D"conflue=
+nceTd">
+<p local-id=3D"7d5dab5bb112">Required Inputs</p></td>
+<td data-local-id=3D"8db25b74-0ca5-422e-bab3-11f0a9482a68" class=3D"conflue=
+nceTd">
+<p local-id=3D"9cf0a0cd152e">Defined decision on defaulting rule and where =
+start date is maintained (quote line vs order). <a class=3D"external-link" =
+href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_hel=
+psystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6=
+B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforc=
+e.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Re=
+newals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"f3c52850-02f8-471c-b05d-ae84869da631">
+<td data-local-id=3D"c263a3f4-52d4-4791-944e-0933d230f673" class=3D"conflue=
+nceTd">
+<p local-id=3D"c93f8f23c0c5">Validation Rules</p></td>
+<td data-local-id=3D"240c3ec6-d064-4f0f-8fa4-4b6af667b15a" class=3D"conflue=
+nceTd">
+<p local-id=3D"756847ef19d6">Quote expiration must not exceed line item sta=
+rt date; if start date is in the past, the quote should be treated as expir=
+ed / require correction. <a class=3D"external-link" href=3D"https://helpsys=
+temsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/1=
+5/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=
+=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Dde=
+fault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce =
+| Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"9c1b1eb7a49a" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-7.Integration/AutomationImpacts">7. Integration / Automa=
+tion Impacts</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"a=
+a73b32a-d594-4a3a-9d8d-6cf40745743e" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"9a4cce4c-7d2d-4ddc-82b5-a5f6956dfa78">
+<th data-local-id=3D"afac5b2b-362b-443e-9503-73fce3651929" class=3D"conflue=
+nceTh">
+<p local-id=3D"0da92f73623e">Category</p></th>
+<th data-local-id=3D"4a4dbf60-d004-43fa-83fb-f75ace77bffd" class=3D"conflue=
+nceTh">
+<p local-id=3D"8c1e862b4440">Details</p></th>
+</tr>
+<tr data-local-id=3D"bcdd5c28-5a2d-49b6-9f51-712f169cb7a2">
+<td data-local-id=3D"0827643c-90db-40ef-942f-d063cfd10616" class=3D"conflue=
+nceTd">
+<p local-id=3D"a9cf0a21cf74">Source System</p></td>
+<td data-local-id=3D"738b7247-7afe-4c4d-9ae8-c00e403c6f3f" class=3D"conflue=
+nceTd">
+<p local-id=3D"d64e87271e05">Salesforce (quote/opportunity/order data). <a =
+class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/pe=
+rsonal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA8=
+44EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20G=
+athering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtr=
+ue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"2f42f5dc-c316-4e4a-96b6-d68ac5e0ced5">
+<td data-local-id=3D"75893d48-0ba7-480e-be2b-4610a0ba9951" class=3D"conflue=
+nceTd">
+<p local-id=3D"0e60dcda62b0">Target System</p></td>
+<td data-local-id=3D"854595d4-b0e3-40f0-8dc7-fe58edbef561" class=3D"conflue=
+nceTd">
+<p local-id=3D"2912224d2a8f">Assumption: downstream systems consuming start=
+ date (e.g., invoicing/fulfillment), but not specified in transcript.</p></=
+td>
+</tr>
+<tr data-local-id=3D"dae1f43c-11b5-4fa3-ae75-9eba472a201d">
+<td data-local-id=3D"bebbe8f4-2d48-470f-a85e-2debac5f0413" class=3D"conflue=
+nceTd">
+<p local-id=3D"20300e222f14">Trigger</p></td>
+<td data-local-id=3D"ed345c30-f99e-4142-8416-8f316eac9dc2" class=3D"conflue=
+nceTd">
+<p local-id=3D"93fc3c43dda7">Quote creation/configuration; order processing=
+ handoff to operations for override. <a class=3D"external-link" href=3D"htt=
+ps://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_co=
+m/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%=
+7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;=
+action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...=
+Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"e985465e-f766-4b64-bfa4-21ec61c3febe">
+<td data-local-id=3D"d9297580-2448-4da0-9b5b-15918195d4d8" class=3D"conflue=
+nceTd">
+<p local-id=3D"0022259f37bc">Recalculation / Sync Rules</p></td>
+<td data-local-id=3D"7f51dd12-2ecd-4c7c-987b-bc7fa7390af6" class=3D"conflue=
+nceTd">
+<p local-id=3D"528885a1abb7">When start date is updated, quote validity/exp=
+iration validation must re-evaluate. <a class=3D"external-link" href=3D"htt=
+ps://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_co=
+m/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%=
+7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;=
+action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...=
+Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"b82995e1b854" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-8.Security/Access">8. Security / Access</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"6=
+10093ba-ae1b-40ad-8a40-0caba512bf90" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"23389211-b021-43fe-98cb-53c11acb2a90">
+<th data-local-id=3D"3310b4ab-daea-49f9-9c57-4e5ac04e9353" class=3D"conflue=
+nceTh">
+<p local-id=3D"6d37585a17ca">Permission</p></th>
+<th data-local-id=3D"2eac6d8a-cb52-42b3-ac30-c763998ac915" class=3D"conflue=
+nceTh">
+<p local-id=3D"f28db4740316">Details</p></th>
+</tr>
+<tr data-local-id=3D"662db433-309b-4089-80a3-f6714a0f0325">
+<td data-local-id=3D"dc2d0aea-d654-459f-b494-3ebe2ea46664" class=3D"conflue=
+nceTd">
+<p local-id=3D"4c4f98854cc7">Who Can View</p></td>
+<td data-local-id=3D"139b7a69-6c52-432d-bc74-7b1779ffa7d9" class=3D"conflue=
+nceTd">
+<p local-id=3D"0a11d08e5ed2">Sales and Operations users working opportuniti=
+es/quotes/orders. <a class=3D"external-link" href=3D"https://helpsystemsllc=
+-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.a=
+spx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenew=
+als%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&am=
+p;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]<=
+/a></p></td>
+</tr>
+<tr data-local-id=3D"15c6edc9-29ee-43ec-9a42-57aec27b037a">
+<td data-local-id=3D"0af73339-0c98-4e50-ac27-967aedb0be0b" class=3D"conflue=
+nceTd">
+<p local-id=3D"ee83f5a9a16f">Who Can Edit</p></td>
+<td data-local-id=3D"fae4dc13-6f59-4f6b-8e01-f8d84a87c40f" class=3D"conflue=
+nceTd">
+<p local-id=3D"683e6604f4d7">Operations users must be able to change start =
+date during order processing; Sales may also need access (not finalized). <=
+a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/=
+personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7B=
+A844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%2=
+0Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3D=
+true" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"0cf29445-d967-456c-821c-1d5d04bb4293">
+<td data-local-id=3D"deed2bf6-f8f6-498f-ae03-12bf7c70c5eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"129e1b061117">Who Can Override</p></td>
+<td data-local-id=3D"6dc35271-34ba-4839-85cf-6a09c0ef1b51" class=3D"conflue=
+nceTd">
+<p local-id=3D"dd47f5a5dde1">Operations users (as the team processing) must=
+ be able to override; whether Sales can override is an open decision. <a cl=
+ass=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/pers=
+onal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844=
+EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gat=
+hering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue=
+" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"4b8716574e98" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-9.Reporting/Audit">9. Reporting / Audit</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"9=
+d412c7c-36fd-46f9-9166-438be9a5358a" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"f36a9ff9-a7b9-45e5-bb09-aaefdcc2a868">
+<th data-local-id=3D"21917a1b-0816-44cb-a572-d07754f3632c" class=3D"conflue=
+nceTh">
+<p local-id=3D"269bb7891dec">Category</p></th>
+<th data-local-id=3D"394f4c69-7c3b-4b7e-b310-3d412af421ba" class=3D"conflue=
+nceTh">
+<p local-id=3D"d9bfe057ec33">Details</p></th>
+</tr>
+<tr data-local-id=3D"8d598571-ef7e-42af-b2ae-2691e16aa12c">
+<td data-local-id=3D"009b0acc-0916-4082-aa11-df6d696850f6" class=3D"conflue=
+nceTd">
+<p local-id=3D"f2732d9b71a9">Reporting Impact</p></td>
+<td data-local-id=3D"c3d52141-c519-47af-9a3e-a5c655a762fd" class=3D"conflue=
+nceTd">
+<p local-id=3D"aacd16295d28">Assumption: reporting for quotes with start da=
+tes in the past and/or quotes forced expired due to start date validation.<=
+/p></td>
+</tr>
+<tr data-local-id=3D"3b964802-5892-40e8-97fb-438d9d9f1bb0">
+<td data-local-id=3D"79d883a0-a468-41fd-bd95-3670b0487b48" class=3D"conflue=
+nceTd">
+<p local-id=3D"4ab1b86fc5b1">Traceability Needed</p></td>
+<td data-local-id=3D"6c0b4e4d-1bf5-46d5-8f6b-48522f6d4748" class=3D"conflue=
+nceTd">
+<p local-id=3D"536f2f00bbdd">Assumption: audit trail of start date changes =
+(who/when) to support customer disputes and process improvement.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"a9b2408652c4" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-10.AcceptanceCriteria">10. Acceptance Criteria</h2>
+<ul local-id=3D"c9e28984-b12b-4257-8ff5-6f154b8406df">
+<li local-id=3D"5fe8d930-bfe9-475a-8c61-f81a1449c80d">
+<p local-id=3D"7705466aeb4a"><strong>AC-1:</strong> For a new sales quote c=
+reated on a date that matches the defined defaulting rule, the system sets =
+the start date to the expected default (e.g., current month vs next month p=
+er rule). <a class=3D"external-link" href=3D"https://helpsystemsllc-my.shar=
+epoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sour=
+cedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Re=
+quirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobile=
+redirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p><=
+/li>
+<li local-id=3D"6a758b42-b308-42e7-b7b3-d6e74f53bd5c">
+<p local-id=3D"35f32aa34678"><strong>AC-2:</strong> An operations user can =
+update/override the start date during order processing prior to contract cr=
+eation, and the saved value is retained. <a class=3D"external-link" href=3D=
+"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystem=
+s_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD50=
+5AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&=
+amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals =
+R...Salesforce | Word]</a></p></li>
+<li local-id=3D"28fa4ae9-ddac-4c45-a766-34c7542ceb29">
+<p local-id=3D"30b8cbcc2d2b"><strong>AC-3:</strong> If the line item start =
+date is earlier than allowed by quote expiration logic, the system prevents=
+ progression and indicates the quote is expired / requires start date corre=
+ction. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepo=
+int.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourced=
+oc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requi=
+rement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobilered=
+irect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li=
+>
+</ul>
+<h2 local-id=3D"4e78fed450ab" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-11.RequirementsTraceability">11. Requirements Traceabili=
+ty</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"3=
+e282ca6-7383-484c-8305-e2a2909252f5" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"2fbfbc85-14cf-43b5-9c59-2a62b9dc5513">
+<th data-local-id=3D"7b0b0796-766c-4e2a-93bf-d9ec79a24b46" class=3D"conflue=
+nceTh">
+<p local-id=3D"c81490891e9f">Requirement / Rule ID</p></th>
+<th data-local-id=3D"e32ba25d-c93c-4b97-9e23-4c1e047e25b7" class=3D"conflue=
+nceTh">
+<p local-id=3D"0b9711b5b382">Related Jira Work Item(s)</p></th>
+<th data-local-id=3D"12a785ec-100a-4c5c-9f97-b0993100f58e" class=3D"conflue=
+nceTh">
+<p local-id=3D"e84f6105a1f1">Related Test Coverage</p></th>
+<th data-local-id=3D"5a9d4839-2d8d-4709-ab91-2e40a23437fa" class=3D"conflue=
+nceTh">
+<p local-id=3D"b523a5f7e793">Notes</p></th>
+</tr>
+<tr data-local-id=3D"27a51486-459d-49c8-929a-c21b9f68eacf">
+<td data-local-id=3D"4875fb2a-ad6d-4b01-bbd5-0a826d97c504" class=3D"conflue=
+nceTd">
+<p local-id=3D"b8e0c39d0b47">FR-1, BR-1, AC-1</p></td>
+<td data-local-id=3D"ece9d90f-4de8-4702-bebb-2dc6367254bf" class=3D"conflue=
+nceTd">
+<p local-id=3D"5a0ef3ba8b3c">TBD</p></td>
+<td data-local-id=3D"c731e3df-04dd-4f2a-a4ec-05192ddd75b7" class=3D"conflue=
+nceTd">
+<p local-id=3D"d4ff7f4a6038">TBD</p></td>
+<td data-local-id=3D"59a27f0b-9e73-4d22-aa79-0fad465cd9ef" class=3D"conflue=
+nceTd">
+<p local-id=3D"4640898cf3b0">Defaulting logic decision required. <a class=
+=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/persona=
+l/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC4=
+0-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gather=
+ing%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" r=
+el=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"6f4ca6a3-9494-4295-be65-bc70032f8c4a">
+<td data-local-id=3D"f16bae83-e953-41a1-9bb5-653f408234ab" class=3D"conflue=
+nceTd">
+<p local-id=3D"18d5f684c616">FR-2, BR-2, AC-2</p></td>
+<td data-local-id=3D"c7b232a8-2528-4fba-8151-88492ab9afa8" class=3D"conflue=
+nceTd">
+<p local-id=3D"d7339cc84ae3">TBD</p></td>
+<td data-local-id=3D"cd8f9477-7cb7-41fe-850b-cba8182bfd94" class=3D"conflue=
+nceTd">
+<p local-id=3D"ce29fd54f1b7">TBD</p></td>
+<td data-local-id=3D"7c4f1ef5-cf6c-4168-bb5f-85aa442d0cc1" class=3D"conflue=
+nceTd">
+<p local-id=3D"ff951a93fc72">Override point in process. <a class=3D"externa=
+l-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guen=
+ther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98=
+-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20S=
+alesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofol=
+low">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"4d226db1-4c4f-40be-93a3-361f7485c504">
+<td data-local-id=3D"0d0cc426-9778-4be8-8ab5-df502b615094" class=3D"conflue=
+nceTd">
+<p local-id=3D"8c085613b9c7">FR-3, FR-4, BR-3, AC-3</p></td>
+<td data-local-id=3D"58ae664d-7ecd-4fee-951a-98621a5060ce" class=3D"conflue=
+nceTd">
+<p local-id=3D"a016ae984f05">TBD</p></td>
+<td data-local-id=3D"46d92eef-5b5d-41c0-98d0-3691ceb4429e" class=3D"conflue=
+nceTd">
+<p local-id=3D"e3b445feb5e9">TBD</p></td>
+<td data-local-id=3D"a72bf390-24c3-47d9-ae7c-0405b6f2bb7d" class=3D"conflue=
+nceTd">
+<p local-id=3D"43acf03892d4">Validation linking quote expiration and start =
+date. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoi=
+nt.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedo=
+c=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requir=
+ement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredi=
+rect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"dd90e644a456" id=3D"NewSalesStartDateDefaulting&amp;Overrid=
+eRulesinSalesforce-12.OpenQuestions">12. Open Questions</h2>
+<ul local-id=3D"6b7bdb61-caba-4e8c-aae1-5008bd896bf1">
+<li local-id=3D"240c45ca-6108-47ca-ac63-1d643ec8eaf3">
+<p local-id=3D"c87f21b6d661"><strong>Q-1:</strong> Confirm the final defaul=
+ting rule for new sales start dates: =E2=80=9C1st of month=E2=80=9D vs =E2=
+=80=9Calways next month=E2=80=9D vs the proposed =E2=80=9Cfirst 5 days=E2=
+=80=9D rule. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.s=
+harepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?s=
+ourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%2=
+0Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mob=
+ileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></=
+p>
+<ul local-id=3D"935047eaeb18">
+<li local-id=3D"c7e90c312590">
+<p local-id=3D"530793219bdc">A-1: Victoria Mullady will supply 5.27.2026</p=
+></li>
+</ul></li>
+<li local-id=3D"1b5e5c22-73a5-4c1e-9772-116b1a24e7a2">
+<p local-id=3D"b161fa88c03f"><strong>Q-2:</strong> At what stage(s) should =
+Sales be able to override the start date versus limiting edits to Operation=
+s during order processing? <a class=3D"external-link" href=3D"https://helps=
+ystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts=
+/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;fil=
+e=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Dd=
+efault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce=
+ | Word]</a></p>
+<ul local-id=3D"4e02a113c17b">
+<li local-id=3D"0b91a66f93ad">
+<p local-id=3D"62dda8309449">A-2: BSI?</p></li>
+</ul></li>
+<li local-id=3D"a83c6c89-731c-4d8e-b88a-1d570d4082c2">
+<p local-id=3D"47c178646db8"><strong>Q-3:</strong> Where exactly should the=
+ validation be enforced (quote line, quote header, order, or opportunity), =
+and what message/action is required when the quote is expired due to start =
+date? <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoi=
+nt.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedo=
+c=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requir=
+ement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredi=
+rect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p>
+<ul local-id=3D"1ec272d43bf6">
+<li local-id=3D"783bdb056798">
+<p local-id=3D"17da36d96730">A-3: BSI?</p></li>
+</ul></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_6_1178529846.1780419191546--

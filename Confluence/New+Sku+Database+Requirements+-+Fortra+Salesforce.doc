@@ -1,0 +1,2353 @@
+Date: Tue, 2 Jun 2026 16:49:15 +0000 (UTC)
+Message-ID: <72801097.5.1780418955835@361b93102e70>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_7300694.1780418955834"
+
+------=_Part_4_7300694.1780418955834
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>New Sku Database Requirements - Fortra Salesforce</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>New Sku Database Requirements - Fortra Salesforce</h1>
+    <div class=3D"Section1">
+        <h1 local-id=3D"149c08efca50" id=3D"NewSkuDatabaseRequirements-Fort=
+raSalesforce-TablesNeeded:">
+<style>[data-colorid=3Dpf6xa28ros]{color:#ff5630} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dpf6xa28ros]{color:#cf2600}</style>Tables Needed:</h1>
+<ol start=3D"1" local-id=3D"e7c3692363cc">
+<li local-id=3D"7923772ff405">
+<p local-id=3D"7491b0f885d2">All Fortra Products</p>
+<ol start=3D"1" local-id=3D"696cdcaf0fa5">
+<li local-id=3D"0c65a563b013">
+<p local-id=3D"bb6cb406d148">Official Single Source of Truth for all Histor=
+ical to New SKU mapping detail</p></li>
+</ol></li>
+<li local-id=3D"38ce4580015a">
+<p local-id=3D"182c84a11c26">Product Codes (Uses Hierarchy &amp; Rev Catego=
+ry)</p>
+<ol start=3D"1" local-id=3D"4e96751a7ed8">
+<li local-id=3D"ff73d30547ca">
+<p local-id=3D"ca8631786ceb">Defines the New SKU Code with abbreviation</p>
+<ol start=3D"1" local-id=3D"1b14fba27538">
+<li local-id=3D"b74bd0522fcf">
+<p local-id=3D"f46be512c37a">Solution Category (abbreviation)</p></li>
+<li local-id=3D"6bd9bfd85746">
+<p local-id=3D"ed044797244a">Solution (abbreviation)</p></li>
+<li local-id=3D"17e64ec4096e">
+<p local-id=3D"2a4b2b928da5">Rev Category (abbreviation)</p></li>
+<li local-id=3D"4041f66ec1b8">
+<p local-id=3D"4b0465158ce8">Product (abbreviation)</p></li>
+</ol></li>
+</ol></li>
+<li local-id=3D"6e68d80a3c80">
+<p local-id=3D"a365a5222b62">Workday Revenue Treatment Reference</p>
+<ol start=3D"1" local-id=3D"f4b172937b88">
+<li local-id=3D"893897e75001">
+<p local-id=3D"042d6cd580f7">Populates additional detail of Rev Category af=
+ter =E2=80=9CRev Category=E2=80=9D is selected. + Revenue Category Name + R=
+evenue Treatment + Revenue Schedule Template</p>
+<ol start=3D"1" local-id=3D"880720a9cade">
+<li local-id=3D"17e27e3da0b8">
+<p local-id=3D"3b9f594e270d">The rules are different for Standard / License=
+ / Maintenance SKUS (column BC) (Subscriptions)</p></li>
+</ol></li>
+</ol></li>
+<li local-id=3D"e8cf2e21c396">
+<p local-id=3D"8a71e31afdc2">Business Unit Mapping (May Help to have the en=
+tire Hierarchy in Tables?)</p>
+<ol start=3D"1" local-id=3D"6f5d90940cb9">
+<li local-id=3D"826be43b40b0">
+<p local-id=3D"ac5f4b436177">Workday Specific Field Need (Solution Category=
+, Fortra Business Unit ID) Example: Email Security, BU49</p></li>
+<li local-id=3D"521f5b69-cea4-4bf1-9edf-569899c8dda2">
+<p local-id=3D"24b70a590b19">Hierarchy</p>
+<ol start=3D"1" local-id=3D"0dd9a86a-2965-4758-8932-b44f0f8c2022">
+<li local-id=3D"45d0d78c-a913-4a27-895c-24657276f2f0">
+<p local-id=3D"28d2a5675a68">Unit</p></li>
+<li local-id=3D"e9e5841b-1a81-43cf-b34f-364c6db5b278">
+<p local-id=3D"0d3dbee64a05">Solution Group</p></li>
+<li local-id=3D"630749cc-bdaa-4817-90ff-c785cced4b3f">
+<p local-id=3D"d784aacc00ce">Solution Category</p></li>
+<li local-id=3D"8b7ff0d7-9342-4162-ad27-7ee75098595b">
+<p local-id=3D"7b125180fd5f">Solution</p></li>
+</ol></li>
+</ol></li>
+</ol>
+<p local-id=3D"134770cc8bf2"></p>
+<h1 local-id=3D"a328fabe3720" id=3D"NewSkuDatabaseRequirements-FortraSalesf=
+orce-Rules/Requirements:">Rules / Requirements:</h1>
+<p local-id=3D"aee1d07e8aa3"><strong>Duplicate Checks</strong></p>
+<ul local-id=3D"b34ba536e9ba">
+<li local-id=3D"2d7262bef8b1">
+<p local-id=3D"5c2ebfdda752">A New or Seperate SKU is needed if we do not h=
+ave a sku that matches these three categories, we should be able to just us=
+e attributes if the below three match. If one of the below is different a n=
+ew Sku is needed.</p>
+<ul local-id=3D"125a8bb9-ed42-4393-871a-9097a66944fa">
+<li local-id=3D"3bcf5d5d-1265-4ce2-ada8-db62157867fb">
+<p local-id=3D"83760c84536d">Final SKU name and license type</p></li>
+<li local-id=3D"738f96fd-b2bf-49a8-9397-15803dca4b58">
+<p local-id=3D"4a29ab623d3a">Rev Category (From Finance)</p></li>
+<li local-id=3D"ac70361b-331e-42b9-9fef-90cae2505b83">
+<p local-id=3D"fc8f4117a90a">Tax Code (From Tax Team)</p></li>
+</ul></li>
+<li local-id=3D"046371119267">
+<p local-id=3D"0b4693ac7970">Can not have a duplicate Salesforce Product co=
+de ID</p></li>
+<li local-id=3D"5412ab5e62ec">
+<p local-id=3D"5b8bc471c079">Product Abriviation</p></li>
+<li local-id=3D"facf9a3979d9">
+<p local-id=3D"f55bf261b3d2">Can not have a duplicate Final SKU + License_T=
+ype Name</p></li>
+</ul>
+<p local-id=3D"33c1c5f5c09f"><strong>When Multiple Skus Are Created - Based=
+ on Rev Category</strong></p>
+<ul local-id=3D"d3c2b27274e8">
+<li local-id=3D"74228209a015">
+<p local-id=3D"82d4c904cd8b"><span style=3D"background-color: rgb(198,237,2=
+51);">This has been automated: (These _Lic and _Maint sku=E2=80=99s will on=
+ly be utilized in Workday)</span><br>
+Subscription SKU =3D Rev category RC_41202</p>
+<ul local-id=3D"ab9560845853">
+<li local-id=3D"1b254323c0c1">
+<p local-id=3D"78c31c63ac36">We need 3 SKU=E2=80=99s for one Item (Subscrip=
+tion) This was for previous SubSplit</p></li>
+<li local-id=3D"d4d70b10-25f7-4963-a8b3-be0a11e6d99b">
+<p local-id=3D"633a7fb6393f">RC_41202 but not ending in LIC or MAINT =3D Tr=
+ue =3D This sku would be the license portion of Workday bunble sku and reco=
+gnized upfront.</p>
+<ul local-id=3D"8d887a1452f4">
+<li local-id=3D"7dcd7a848615">
+<p local-id=3D"a434821c2bad">A copy of the above sku with different suffix =
+name, amount 30/60, and tax code is different</p>
+<ul local-id=3D"ebe0a277f364">
+<li local-id=3D"96a2c385bab7">
+<p local-id=3D"35fda6d437ec"><em>LIC - Final Sku Name + License Type has _L=
+IC at the end of the name (Salesforce Product Code is differet, Rev</em>Cat=
+egory =3D RC_41202 Tax =3D DC010500 - software)</p>
+<ul local-id=3D"5d10b7b87d94">
+<li local-id=3D"4b52e896a9a6">
+<p local-id=3D"e7aec87888ea">Recenue Recognition Scheuled Tempate =3D Sprea=
+d Even</p></li>
+<li local-id=3D"d2cb0041c3fa">
+<p local-id=3D"f42e745fccc9">Non Quotable in Salesforce</p></li>
+</ul></li>
+<li local-id=3D"f135428eeafc">
+<p local-id=3D"19ed7714d2c6"><em>MAINT - Final Sku Name + License type has =
+_MAINT at the end of name, (Salesforce Product Code is Differet, Rev_Catego=
+ry =3D RC</em>43120 Tax =3D SC100222 - Maintenance =3D Spread Even</p>
+<ul local-id=3D"777850ff5e0d">
+<li local-id=3D"fb5ec12a9a37">
+<p local-id=3D"a52b94fd7fbe">Non Quotable in Salesforce</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"5fdbec63eabe">
+<p local-id=3D"3d336a9e2b02"><span style=3D"background-color: rgb(198,237,2=
+51);">This is manually maintained: (When adding a sku to database we have t=
+o remember to add new and renewal maintenance)</span></p>
+<ul local-id=3D"4cbfef9b7762">
+<li local-id=3D"cd28b5957468">
+<p local-id=3D"27e2b67aaf55">Perpetual SKU=3D Rev Category RC_41000</p>
+<ul local-id=3D"41604cc05c90">
+<li local-id=3D"71a514b44911">
+<p local-id=3D"2c41f7c842af">Sku is Perpetual it must have 2 additional sku=
+=E2=80=99s created identical except for these details call out below:</p>
+<ul local-id=3D"b86fb94916dc">
+<li local-id=3D"cdd2bd003518">
+<p local-id=3D"a4c7b4127348">New Maintenance</p></li>
+<li local-id=3D"635a2b4b5d4c">
+<p local-id=3D"f8edb9cc93b5">Renewal Maintenance</p></li>
+<li local-id=3D"233043fa808c">
+<p local-id=3D"7dccabc960e5">Fields in database differences below (All othe=
+r fields should be identical to Parent):</p></li>
+<li local-id=3D"4a1a06ca7e43">
+<p local-id=3D"7dbcd54cb39a"></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"align-start" data-local-id=
+=3D"be13fe6e-0a23-4f8b-b6dc-5668d8311a9c" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"8e0af1388a73">
+<th data-local-id=3D"f209c097ed7c" class=3D"confluenceTh">
+<p local-id=3D"de6f347dc588"><strong>License Type</strong></p></th>
+<th data-local-id=3D"ab90f71afab8" class=3D"confluenceTh">
+<p local-id=3D"de22e3f1c3cc"><strong>RC</strong></p></th>
+<th data-local-id=3D"59387d81a05f" class=3D"confluenceTh">
+<p local-id=3D"87f35e9f49cf"><strong>Tax</strong></p></th>
+<th data-local-id=3D"1c525a164e70" class=3D"confluenceTh">
+<p local-id=3D"1257940d835e"><strong>Product type</strong></p></th>
+<th data-local-id=3D"3e6406f259c9" class=3D"confluenceTh">
+<p local-id=3D"d99b215bc9a8"><strong>Product Selling Model</strong></p></th=
+>
+<th data-local-id=3D"ef39abfa49f2" class=3D"confluenceTh">
+<p local-id=3D"4fee0c758c98"><strong>Price</strong></p></th>
+<th data-local-id=3D"0b4788b6084b" class=3D"confluenceTh">
+<p local-id=3D"01f64fa28f6d"><strong>Related To</strong></p></th>
+</tr>
+<tr data-local-id=3D"ab3688afa024">
+<td data-local-id=3D"230c6b101fea" class=3D"confluenceTd">
+<p local-id=3D"d581aff6d918">Perpetual</p></td>
+<td data-local-id=3D"84c9834a0cdc" class=3D"confluenceTd">
+<p local-id=3D"ee0d832fd379">RC_41000</p></td>
+<td data-local-id=3D"7f0b519f56e6" class=3D"confluenceTd">
+<p local-id=3D"3f2d41774e70">DC010500</p></td>
+<td data-local-id=3D"bd4142bc6539" class=3D"confluenceTd">
+<p local-id=3D"381e40c73f48">Stand Alone</p></td>
+<td data-local-id=3D"95dcbf19d15c" class=3D"confluenceTd">
+<p local-id=3D"62a8c2b273ed">One Time</p></td>
+<td data-local-id=3D"35162bc761ba" class=3D"confluenceTd">
+<p local-id=3D"a399c324507e"></p></td>
+<td data-local-id=3D"5cdf0bf8c2c4" class=3D"confluenceTd">
+<p local-id=3D"a4642be7fb2c">New Maintenance Sku RC_42000 (RNM)</p></td>
+</tr>
+<tr data-local-id=3D"6843227e5ae2">
+<td data-local-id=3D"a4698151cd4f" class=3D"confluenceTd">
+<p local-id=3D"80ab7041a023">New Maintenance</p></td>
+<td data-local-id=3D"f296e2eb3138" class=3D"confluenceTd">
+<p local-id=3D"0f15eddfac12">RC_42000</p></td>
+<td data-local-id=3D"cd0e4b0e412e" class=3D"confluenceTd">
+<p local-id=3D"c6f5e73f9e26">SC100222</p></td>
+<td data-local-id=3D"a9b265630442" class=3D"confluenceTd">
+<p local-id=3D"3466f0b5ab74">Add On</p></td>
+<td data-local-id=3D"7e95432e7bab" class=3D"confluenceTd">
+<p local-id=3D"fccbb6fadbc5">One Time</p></td>
+<td data-local-id=3D"f1a88e10d4cc" class=3D"confluenceTd">
+<p local-id=3D"8db1a2baaca1">$0</p></td>
+<td data-local-id=3D"11c88eb94602" class=3D"confluenceTd">
+<p local-id=3D"ba583ec422b4">Renewal Mantenance SKU RC_4300 (RRM)</p></td>
+</tr>
+<tr data-local-id=3D"d646f733e856">
+<td data-local-id=3D"e836e7580f9f" class=3D"confluenceTd">
+<p local-id=3D"add701f31d6c">Renewal Maintenance</p></td>
+<td data-local-id=3D"4802e4e54d59" class=3D"confluenceTd">
+<p local-id=3D"bfd48a30b1ba">RC_43000</p></td>
+<td data-local-id=3D"030d6c31ea24" class=3D"confluenceTd">
+<p local-id=3D"e8bf1f2b7376">SC100122</p></td>
+<td data-local-id=3D"515509c92347" class=3D"confluenceTd">
+<p local-id=3D"6d21cbb3308b">Add On</p></td>
+<td data-local-id=3D"2e7e12735ecc" class=3D"confluenceTd">
+<p local-id=3D"7a721725351b">Term Based - Renew</p></td>
+<td data-local-id=3D"130df000d563" class=3D"confluenceTd">
+<p local-id=3D"4a0574ce8cea">$0</p></td>
+<td data-local-id=3D"0cca1b0d-599f-40ec-98e7-9fce32732c02" class=3D"conflue=
+nceTd">
+<p local-id=3D"cb3f0b72dd64"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul local-id=3D"9753f9ca206a">
+<li local-id=3D"7d172a24d3ae">
+<p local-id=3D"cf5aa84cf5e5">Based on Rev Category Selected - Default the f=
+ollowing fields<br></p></li>
+</ul>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1593" data-layout=3D"center" data-local-id=3D"18=
+b0f44f-f990-46ab-b2cc-5ee1f0844136" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"5113569c-a975-4a08-ba00-c158aa3b26da">
+<td data-local-id=3D"59044c7c-a524-413b-8211-8b7550ca91e2" class=3D"conflue=
+nceTd">
+<p local-id=3D"c5c03e02c031">Revenue Category</p></td>
+<td data-local-id=3D"45e19906-7ad2-40a6-a865-bac4cc288728" class=3D"conflue=
+nceTd">
+<p local-id=3D"d9e50b0944cd">Product Identifier</p></td>
+<td data-local-id=3D"6d71311f-3f3e-4cd8-b6c4-27fd5ac4a368" class=3D"conflue=
+nceTd">
+<p local-id=3D"3a8ec9d6b707">Revenue Category Name</p></td>
+<td data-local-id=3D"eef3b386-2047-4d88-a1b7-2684b0d204c1" class=3D"conflue=
+nceTd">
+<p local-id=3D"d0a81eea450d">Revenue Recognition Schedule Template</p></td>
+<td data-local-id=3D"9cada5f0-6e01-48b0-81b6-5938fec164c0" class=3D"conflue=
+nceTd">
+<p local-id=3D"f9fc6ed8bc29">Revenue Treatment</p></td>
+<td data-local-id=3D"ccc6ff74-d396-419f-81c3-a7852f542ad0" class=3D"conflue=
+nceTd">
+<p local-id=3D"883a0b74ef68">Product Selling Model&nbsp;</p></td>
+<td data-local-id=3D"16d08f16-6d1d-4531-8232-bcc67b718617" class=3D"conflue=
+nceTd">
+<p local-id=3D"6e296a15352f">Term Length</p></td>
+</tr>
+<tr data-local-id=3D"374aab6b-2f8e-4a1d-9738-1a532fddc2a2">
+<td data-local-id=3D"8698658a-d6dc-48ad-a497-c52b6a855c88" class=3D"conflue=
+nceTd">
+<p local-id=3D"db425669009c">RC_41000</p></td>
+<td data-local-id=3D"52893b44-e9c8-4d69-ae0e-8d1d41de7c3e" class=3D"conflue=
+nceTd">
+<p local-id=3D"d9014eebdc53">SOFTWARE</p></td>
+<td data-local-id=3D"2c60be4d-40cf-4559-8aab-a01a20e19b68" class=3D"conflue=
+nceTd">
+<p local-id=3D"5b0006920800">Non-Recurring Perpetual Sales - Software</p></=
+td>
+<td data-local-id=3D"02b18618-a5de-4ab9-aae2-4cf700c3c770" class=3D"conflue=
+nceTd">
+<p local-id=3D"b0483020a9c6"></p></td>
+<td data-local-id=3D"593cbf1e-d9db-4495-ab9a-c9e1036e4bb4" class=3D"conflue=
+nceTd">
+<p local-id=3D"c322205b19fd">Invoice</p></td>
+<td data-local-id=3D"d4ae3a96-8ba6-419f-908f-e4dd171ad2a6" class=3D"conflue=
+nceTd">
+<p local-id=3D"d25dd979ad73">One-Time</p></td>
+<td data-local-id=3D"a54c8300-87aa-44af-91e2-3fdbe1f07edc" class=3D"conflue=
+nceTd">
+<p local-id=3D"a86ec9b72a1e">(Blank)</p></td>
+</tr>
+<tr data-local-id=3D"0b355c43-c4f1-4882-b1d5-38f0835f6333">
+<td data-local-id=3D"5496de44-2cc6-4c3c-a5e6-b1a777e4b226" class=3D"conflue=
+nceTd">
+<p local-id=3D"36bbd9c57ba9">RC_41200</p></td>
+<td data-local-id=3D"62cf0384-ed26-4626-a959-f5af456bb264" class=3D"conflue=
+nceTd">
+<p local-id=3D"0fb35418daf1">SUBSCRIPT</p></td>
+<td data-local-id=3D"a1afc103-f18d-43b7-b0ba-798651596fb8" class=3D"conflue=
+nceTd">
+<p local-id=3D"749c205cade0">Recurring Sales - Software Rentals</p></td>
+<td data-local-id=3D"172bfa08-f458-4d79-82d9-711a29599543" class=3D"conflue=
+nceTd">
+<p local-id=3D"0ebf8cc5a48b">Spread_Even</p></td>
+<td data-local-id=3D"a15da779-f7e0-4643-bc50-8457f67d163b" class=3D"conflue=
+nceTd">
+<p local-id=3D"c0821fce399d">Deferred</p></td>
+<td data-local-id=3D"da929931-5683-42c6-bc8e-3cd625a42b24" class=3D"conflue=
+nceTd">
+<p local-id=3D"d35294607563">Term Based - Renew</p></td>
+<td data-local-id=3D"8dab3cab-37b1-4b45-aace-16adbd7a721f" class=3D"conflue=
+nceTd">
+<p local-id=3D"d3642ad4be08">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"628a7858-0237-43ad-8764-717c3fac8f77">
+<td data-local-id=3D"7951156b-96a6-4c1b-ba9f-4c3f94d33b6c" class=3D"conflue=
+nceTd">
+<p local-id=3D"0d49d4d5579e">RC_41202</p></td>
+<td data-local-id=3D"89ccd929-415d-4598-a02d-032e69664769" class=3D"conflue=
+nceTd">
+<p local-id=3D"75c9a4916b2c">SUBS SPLIT</p></td>
+<td data-local-id=3D"22e7e0dd-7630-49f4-a542-fe75fbe39bb2" class=3D"conflue=
+nceTd">
+<p local-id=3D"664aedfc06bb">Recurring Sales - Software Subscriptions</p></=
+td>
+<td data-local-id=3D"8ebc24b2-6fc5-47dd-98a3-a8f6f07235ff" class=3D"conflue=
+nceTd">
+<p local-id=3D"4305c19f0597">Subscription Split</p></td>
+<td data-local-id=3D"4c6ccbd0-a289-4531-8b1d-13bef4995427" class=3D"conflue=
+nceTd">
+<p local-id=3D"d0aee73ab39f">Deferred</p></td>
+<td data-local-id=3D"34b64aa0-4bac-4ffd-94c1-11acd430fe47" class=3D"conflue=
+nceTd">
+<p local-id=3D"a3767a4eccda">Term Based - Renew</p></td>
+<td data-local-id=3D"51b04c6a-91a2-4e71-83c2-4429dd40f831" class=3D"conflue=
+nceTd">
+<p local-id=3D"ae784d51779b">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"c639692e-a5a8-4bfb-8749-d6d1c8ae312f">
+<td data-local-id=3D"3692d38b-ee16-43db-869f-1eb971e6711c" class=3D"conflue=
+nceTd">
+<p local-id=3D"068d3bb132d1">RC_41204</p></td>
+<td data-local-id=3D"8a683ae0-5036-4c33-a19a-8da284196fe3" class=3D"conflue=
+nceTd">
+<p local-id=3D"f8df5f55d304">SUBS SAAS</p></td>
+<td data-local-id=3D"26f54794-b29d-4a6c-bf9b-b8d27f8f8c3a" class=3D"conflue=
+nceTd">
+<p local-id=3D"cce15bc7e197">Recurring Sub Sales - SaaS License</p></td>
+<td data-local-id=3D"1c7b3cd1-94f4-49f1-928d-dce81b46e192" class=3D"conflue=
+nceTd">
+<p local-id=3D"374a10a3a083">Spread_Even</p></td>
+<td data-local-id=3D"b953f439-b510-443a-99a9-a5df7bb62102" class=3D"conflue=
+nceTd">
+<p local-id=3D"72fda145426d">Deferred</p></td>
+<td data-local-id=3D"01019d33-d223-470e-82e5-222a6691a47e" class=3D"conflue=
+nceTd">
+<p local-id=3D"8487922d3aee">Term Based - Renew</p></td>
+<td data-local-id=3D"022a4af1-506a-4d17-b6a7-d2d84044d0f2" class=3D"conflue=
+nceTd">
+<p local-id=3D"a374f71eb2af">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"23ec530d-5a41-4db2-965c-1c5c9bebb572">
+<td data-local-id=3D"b7770553-2ef4-4f2f-b009-72783755595c" class=3D"conflue=
+nceTd">
+<p local-id=3D"e8d1d0922c70">RC_41205</p></td>
+<td data-local-id=3D"69d11fe4-d593-4d51-bed0-e2179a016a3c" class=3D"conflue=
+nceTd">
+<p local-id=3D"ead8ed60a80f">SUBS SAAS HOST</p></td>
+<td data-local-id=3D"570f3928-3609-42bd-9643-7f47c6c0c56c" class=3D"conflue=
+nceTd">
+<p local-id=3D"67bf6c07dfe8">Recurring Sub Sales - SaaS Hosting</p></td>
+<td data-local-id=3D"8fd0061c-d775-468b-a45e-03d10767bab8" class=3D"conflue=
+nceTd">
+<p local-id=3D"abd0e9a3bac4">Spread_Even</p></td>
+<td data-local-id=3D"58eaf84b-52f1-4dc4-af71-68eea64d6f4d" class=3D"conflue=
+nceTd">
+<p local-id=3D"b4fedef1280e">Deferred</p></td>
+<td data-local-id=3D"37cceb2a-1d1c-4b8e-9eb2-c8c76964b717" class=3D"conflue=
+nceTd">
+<p local-id=3D"4027f0e94cf4">Term Based - Renew</p></td>
+<td data-local-id=3D"99768bd7-8403-4ef8-b4d9-a56701af9241" class=3D"conflue=
+nceTd">
+<p local-id=3D"b85888b69a7f">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"d84c035d-ff44-4659-adf8-cf1148a95f85">
+<td data-local-id=3D"6a9cc66e-dd2b-4378-8f68-0317b2543643" class=3D"conflue=
+nceTd">
+<p local-id=3D"cc50fbc747e7">RC_42000</p></td>
+<td data-local-id=3D"f1745cae-4962-4765-a924-50f30abd126e" class=3D"conflue=
+nceTd">
+<p local-id=3D"c60e15acbf20">NEW MAINT</p></td>
+<td data-local-id=3D"c1342572-fbc5-4edc-a012-3f07098e37ef" class=3D"conflue=
+nceTd">
+<p local-id=3D"a2dd0a19a616">Recurring New Maintenance</p></td>
+<td data-local-id=3D"428ddf6a-69bf-4f79-b7c0-e4ba113cda66" class=3D"conflue=
+nceTd">
+<p local-id=3D"3ba9ef47a504">Spread_Even</p></td>
+<td data-local-id=3D"7dabb20f-45ba-4709-aa30-574b78a0215f" class=3D"conflue=
+nceTd">
+<p local-id=3D"e8cd471612c8">Deferred</p></td>
+<td data-local-id=3D"873713b5-8dd3-4a75-aa96-65bdde8a6c11" class=3D"conflue=
+nceTd">
+<p local-id=3D"36ed51a72280">Term Based - Renew</p></td>
+<td data-local-id=3D"b5c921fb-d4ff-4520-b9f6-08a782100bfc" class=3D"conflue=
+nceTd">
+<p local-id=3D"25a942002b13">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"94993f48-b6ed-4e57-80cf-45f4fd0a0a0b">
+<td data-local-id=3D"b9389507-bf2c-4fde-9b6c-546f37768071" class=3D"conflue=
+nceTd">
+<p local-id=3D"6391cb4b6277">RC_43000</p></td>
+<td data-local-id=3D"c47e4bde-a3f4-4a19-b8e4-7348cd7612d4" class=3D"conflue=
+nceTd">
+<p local-id=3D"33a5476eb71f">RENEW MAIN</p></td>
+<td data-local-id=3D"bdd99263-3ab3-4d8e-b09b-d04d5a4d6752" class=3D"conflue=
+nceTd">
+<p local-id=3D"d76db1ef01a2">Recurring Renew Maintenance</p></td>
+<td data-local-id=3D"ca206c19-3c3e-44f7-ba2f-cf009b04961c" class=3D"conflue=
+nceTd">
+<p local-id=3D"a442c1c2dc9d">Spread_Even</p></td>
+<td data-local-id=3D"ec26e841-27ff-4932-9898-fa9b44d71906" class=3D"conflue=
+nceTd">
+<p local-id=3D"6e5048278e6f">Deferred</p></td>
+<td data-local-id=3D"de787b77-74dc-4573-8c99-a713824c9dc1" class=3D"conflue=
+nceTd">
+<p local-id=3D"4b517d512f36">Term Based - Renew</p></td>
+<td data-local-id=3D"4eca9d68-dd3a-4257-93b7-10b39b174369" class=3D"conflue=
+nceTd">
+<p local-id=3D"de1da4c223a2">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"81fa22d3-9542-4c78-b901-ccb5f5354823">
+<td data-local-id=3D"1fa32cfb-2b5e-49bf-af64-5fedbd9c40ac" class=3D"conflue=
+nceTd">
+<p local-id=3D"e5e32f7f9090">RC_43120</p></td>
+<td data-local-id=3D"0de885ff-faa3-4482-acb5-f40cd1d06026" class=3D"conflue=
+nceTd">
+<p local-id=3D"657de2f295d0">Recurring Sales - Renew Maintenance Subs ASC 6=
+06</p></td>
+<td data-local-id=3D"e3e9c8a9-3f0c-455e-a998-6cb9391b19d7" class=3D"conflue=
+nceTd">
+<p local-id=3D"13565b72dda2">Recurring Sales - Renew Maintenance Subs ASC 6=
+06</p></td>
+<td data-local-id=3D"9b4ec1d9-7e36-4d05-ba18-78b4c99db094" class=3D"conflue=
+nceTd">
+<p local-id=3D"19914e524a9d">Spread_Even</p></td>
+<td data-local-id=3D"8e95fbc1-1e51-4af4-b067-e3b85b5f08c3" class=3D"conflue=
+nceTd">
+<p local-id=3D"184d38788a81">Deferred</p></td>
+<td data-local-id=3D"779cc905-1c16-4efa-b7c9-2abefdc47c75" class=3D"conflue=
+nceTd">
+<p local-id=3D"87f32bc35611">Term Based - Renew</p></td>
+<td data-local-id=3D"f7add109-7a44-4c2e-83ea-8a1f9e399948" class=3D"conflue=
+nceTd">
+<p local-id=3D"ce69e6d78bab">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"5da004ac-4b58-4186-8016-91977bee0e54">
+<td data-local-id=3D"3c8683df-4d3d-4f72-b4a9-8df4ac131918" class=3D"conflue=
+nceTd">
+<p local-id=3D"e02bbc7f1bbb">RC_44000</p></td>
+<td data-local-id=3D"954198e3-3d6c-488b-970e-dae1ab2e1cae" class=3D"conflue=
+nceTd">
+<p local-id=3D"83b7250b6ff1">CHANGE FEE</p></td>
+<td data-local-id=3D"fa93ba97-aec5-4613-a793-fa35ca8fe583" class=3D"conflue=
+nceTd">
+<p local-id=3D"ef59b631c72d">CHANGE FEE</p></td>
+<td data-local-id=3D"b46add25-1360-45f8-ab18-2f7fa3aaf543" class=3D"conflue=
+nceTd">
+<p local-id=3D"94fc39525331"></p></td>
+<td data-local-id=3D"12ec08c1-82de-4a9b-8202-0236646af03a" class=3D"conflue=
+nceTd">
+<p local-id=3D"25990dcedd7a">Invoice</p></td>
+<td data-local-id=3D"d4717321-be5e-475b-9c01-b809098ecfff" class=3D"conflue=
+nceTd">
+<p local-id=3D"2e6c3528be09">One-Time</p></td>
+<td data-local-id=3D"f7f1bcb2-82ee-4114-893c-237155d0f0c6" class=3D"conflue=
+nceTd">
+<p local-id=3D"c43a195f972f">(Blank)</p></td>
+</tr>
+<tr data-local-id=3D"60b180a8-13a9-48ad-8697-de9c9b90665a">
+<td data-local-id=3D"7b7bd581-5ad1-4aa8-81a1-57c4c18f6371" class=3D"conflue=
+nceTd">
+<p local-id=3D"b74662b02caa">RC_45000</p></td>
+<td data-local-id=3D"100d77b0-44d7-488b-88c4-41000542a567" class=3D"conflue=
+nceTd">
+<p local-id=3D"aa9bb96970a8">SERVICES</p></td>
+<td data-local-id=3D"2b71c6c5-1933-4901-a937-b166d4a9918c" class=3D"conflue=
+nceTd">
+<p local-id=3D"94badf421497">Non-Recurring Services Sales - Training</p></t=
+d>
+<td data-local-id=3D"8a7a911c-95d8-43db-9bfc-2403af11bbc6" class=3D"conflue=
+nceTd">
+<p local-id=3D"d936213a68b6">As Delivered</p></td>
+<td data-local-id=3D"026ecdcf-e8b8-4b37-a8eb-dbe7a0b5d4eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"cd5fa967195c">Deferred</p></td>
+<td data-local-id=3D"2afc4014-4cec-4f7b-8fef-90ba93e550ad" class=3D"conflue=
+nceTd">
+<p local-id=3D"a1b75e5c21e3">One-Time</p></td>
+<td data-local-id=3D"0ca0ee4b-ac2d-4c56-86b4-05a639760f97" class=3D"conflue=
+nceTd">
+<p local-id=3D"10469a5427bd">(Blank)</p></td>
+</tr>
+<tr data-local-id=3D"84308b14-ec39-4bb5-ae73-f11c6c4f1077">
+<td data-local-id=3D"277d6422-4613-49af-a73d-db84d80a8de8" class=3D"conflue=
+nceTd">
+<p local-id=3D"506b5f0df764">RC_45001</p></td>
+<td data-local-id=3D"a888274d-b387-4422-b6ca-f69affedd9ea" class=3D"conflue=
+nceTd">
+<p local-id=3D"7918f5f5f2e2">SERV SUP</p></td>
+<td data-local-id=3D"1ee79ca1-ec0c-42e8-807b-4972978467c8" class=3D"conflue=
+nceTd">
+<p local-id=3D"3d5be45fe673">Non-Recurring Services Sales - Set Up</p></td>
+<td data-local-id=3D"0eae10a2-c58c-4480-8926-d61f5360761f" class=3D"conflue=
+nceTd">
+<p local-id=3D"cf5d13b8bc4d">As Delivered</p></td>
+<td data-local-id=3D"1849d76b-4e99-44d3-adcf-176c9cb1ae24" class=3D"conflue=
+nceTd">
+<p local-id=3D"5ddfbdf7eddc">Deferred</p></td>
+<td data-local-id=3D"302625b2-f566-4f6b-8742-2a46b951c587" class=3D"conflue=
+nceTd">
+<p local-id=3D"a5e70e84f10d">One-Time</p></td>
+<td data-local-id=3D"2224fbb3-3575-4f74-93ea-a12e90ac6383" class=3D"conflue=
+nceTd">
+<p local-id=3D"3ec48f691e7b">(Blank)</p></td>
+</tr>
+<tr data-local-id=3D"d2d77920-9032-4962-a890-5596b5de525c">
+<td data-local-id=3D"7602bfa1-f61f-4439-95ac-2f6176126974" class=3D"conflue=
+nceTd">
+<p local-id=3D"5ce12aecfc43">RC_45002</p></td>
+<td data-local-id=3D"7e1643f4-2a04-487e-8988-b9efb2f2ea9b" class=3D"conflue=
+nceTd">
+<p local-id=3D"593df5961e75">SERV EXP</p></td>
+<td data-local-id=3D"b9814df2-65e1-4111-928b-d6b6336e4d57" class=3D"conflue=
+nceTd">
+<p local-id=3D"0e842af438cb">Non-Recurring Services Sales - Services Expens=
+e Reimbursements</p></td>
+<td data-local-id=3D"a21f2c51-31ab-41a1-8aee-0542336e5dc5" class=3D"conflue=
+nceTd">
+<p local-id=3D"0122dc1a18dd">Expense Reimbursement</p></td>
+<td data-local-id=3D"1449f574-5dae-4e42-ae0f-5d512ba9dab9" class=3D"conflue=
+nceTd">
+<p local-id=3D"4f9426969132">Invoice</p></td>
+<td data-local-id=3D"ead44e4f-9e59-4eec-92ac-791dfa357e9a" class=3D"conflue=
+nceTd">
+<p local-id=3D"02d24c938ff7">One-Time</p></td>
+<td data-local-id=3D"3976e8c1-2fe1-4f4d-a2d7-7960645cc05c" class=3D"conflue=
+nceTd">
+<p local-id=3D"a580d7c33ee4">(Blank)</p></td>
+</tr>
+<tr data-local-id=3D"7e34d1d3-a66c-4b0e-b2a9-212ebb50086d">
+<td data-local-id=3D"dd5408fa-b692-47f6-a45f-7e37cc58f83e" class=3D"conflue=
+nceTd">
+<p local-id=3D"f796bd8f4fe8">RC_45004</p></td>
+<td data-local-id=3D"35f81511-c275-423a-905c-bd9a5d0f7c3d" class=3D"conflue=
+nceTd">
+<p local-id=3D"4cc3fc0f11e4">SERV RECUR</p></td>
+<td data-local-id=3D"06130cd1-ed32-4996-8744-75cf86f61c2a" class=3D"conflue=
+nceTd">
+<p local-id=3D"52fe85599131">Recurring Services Sales - Recurring Professio=
+nal Services</p></td>
+<td data-local-id=3D"75d8338d-e429-42b5-becd-5fea73c26599" class=3D"conflue=
+nceTd">
+<p local-id=3D"13f942e3cb96">Spread_Even</p></td>
+<td data-local-id=3D"9ba382c9-18d6-44b5-a63b-48a0ea9184a0" class=3D"conflue=
+nceTd">
+<p local-id=3D"e1792680979a">Deferred</p></td>
+<td data-local-id=3D"24af3bd7-6a99-4605-99db-eecc3be49ac0" class=3D"conflue=
+nceTd">
+<p local-id=3D"fb87d1be0252">Term Based - Renew</p></td>
+<td data-local-id=3D"d5712368-75d2-49b8-8175-e5c6f13f0008" class=3D"conflue=
+nceTd">
+<p local-id=3D"8f37c7dc404a">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"720bd52e-d618-4fa3-a27e-32023751577d">
+<td data-local-id=3D"b6d72b7f-a830-4a8d-b11e-54016c6b153a" class=3D"conflue=
+nceTd">
+<p local-id=3D"c041bebf2d96">RC_45005</p></td>
+<td data-local-id=3D"f0d75100-4efb-4dfc-9dfc-22d43a98cb18" class=3D"conflue=
+nceTd">
+<p local-id=3D"8273b99c9376">SUBS MSS</p></td>
+<td data-local-id=3D"3817143e-1469-4682-8b3e-8b31b5e7c375" class=3D"conflue=
+nceTd">
+<p local-id=3D"31c97d18d9d8">Recurring Managed Services Sales - Managed Ser=
+vices</p></td>
+<td data-local-id=3D"ec117c22-c903-4d3c-bfca-508a2bb2b5d0" class=3D"conflue=
+nceTd">
+<p local-id=3D"3ab9a1464888">Spread_Even</p></td>
+<td data-local-id=3D"491e6c7c-08d2-4b67-abe7-3f8a9e3071b1" class=3D"conflue=
+nceTd">
+<p local-id=3D"7048d469df99">Deferred</p></td>
+<td data-local-id=3D"e6b341c0-4370-45d4-aba9-c6bc4c07cd7c" class=3D"conflue=
+nceTd">
+<p local-id=3D"c2c0f0c929e8">Term Based - Renew</p></td>
+<td data-local-id=3D"5fbabbdc-e223-41aa-b1db-69f0b6f82b0d" class=3D"conflue=
+nceTd">
+<p local-id=3D"838e5f93f2a4">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"93ce4ea7-0e1b-45ba-93c6-0b92a5469d11">
+<td data-local-id=3D"4d1e6085-71ec-4342-b326-b6c3055f9232" class=3D"conflue=
+nceTd">
+<p local-id=3D"f68dbd6e2519">RC_46000</p></td>
+<td data-local-id=3D"a2f0b000-2bab-45d7-96b2-f6ecf2095956" class=3D"conflue=
+nceTd">
+<p local-id=3D"98bcd545614d">OTHER</p></td>
+<td data-local-id=3D"c06104fc-5915-4953-8dc2-70b91d2bc2e4" class=3D"conflue=
+nceTd">
+<p local-id=3D"236554352cf1">Non-Recurring Other Revenue Sales - Other</p><=
+/td>
+<td data-local-id=3D"cb2755c7-d6fd-4452-b51d-492e20d7a629" class=3D"conflue=
+nceTd">
+<p local-id=3D"81b0873e6917"></p></td>
+<td data-local-id=3D"fa5fcbc5-e715-4577-8603-0b7c29c1b112" class=3D"conflue=
+nceTd">
+<p local-id=3D"2ef3837e36a0">Invoice</p></td>
+<td data-local-id=3D"3817e82d-0a95-4f39-a405-953365a6ba94" class=3D"conflue=
+nceTd">
+<p local-id=3D"32d8408e4b3f">One-Time</p></td>
+<td data-local-id=3D"c4c8e354-1016-4031-9b0a-641640f8d1c5" class=3D"conflue=
+nceTd">
+<p local-id=3D"899f02691877">(Blank)</p></td>
+</tr>
+<tr data-local-id=3D"0feb6ee7-b29e-482b-99de-f25025a39a48">
+<td data-local-id=3D"845ccbf4-d15c-4569-94c2-6477210d94f5" class=3D"conflue=
+nceTd">
+<p local-id=3D"fa1b6bf7c3eb">RC_47000</p></td>
+<td data-local-id=3D"7f370b0f-36ea-48ed-92ab-34861d716139" class=3D"conflue=
+nceTd">
+<p local-id=3D"27b0a9996a38">UNISYS SW</p></td>
+<td data-local-id=3D"370c342d-8c46-4843-99f4-6a5019a24ae4" class=3D"conflue=
+nceTd">
+<p local-id=3D"a037bebc724c">Recurring Sales - Unisys Software</p></td>
+<td data-local-id=3D"b37ff5e8-9835-40f3-a99e-8d543ed0d073" class=3D"conflue=
+nceTd">
+<p local-id=3D"9068db10a843"></p></td>
+<td data-local-id=3D"f80103e2-811a-49b4-bf5c-cdbf5b57a89e" class=3D"conflue=
+nceTd">
+<p local-id=3D"22f041fdb998">Invoice</p></td>
+<td data-local-id=3D"14f35ab1-71fc-4f1f-8419-e67a38603119" class=3D"conflue=
+nceTd">
+<p local-id=3D"8ed374122382">Term Based - Renew</p></td>
+<td data-local-id=3D"b040a808-b165-4aa7-b5f6-6d0adb1c8f91" class=3D"conflue=
+nceTd">
+<p local-id=3D"4d187e5860b3">12 Months</p></td>
+</tr>
+<tr data-local-id=3D"48e3de48-ce2d-4cee-9390-52db8f00d418">
+<td data-local-id=3D"e7103a59-744a-49da-b310-1743c539d964" class=3D"conflue=
+nceTd">
+<p local-id=3D"a462559f2ee4">RC_48000</p></td>
+<td data-local-id=3D"dc3855ed-78d4-4f81-b635-624b664e207a" class=3D"conflue=
+nceTd">
+<p local-id=3D"311c192157c3">UNISYS SUBS MAINT</p></td>
+<td data-local-id=3D"9313b346-1bb9-4b4c-978c-c0432a184336" class=3D"conflue=
+nceTd">
+<p local-id=3D"6d639becd037">Recurring Sales - Unisys Maintenance</p></td>
+<td data-local-id=3D"0c8ce9ad-488e-48a4-a22c-409dfd44afc9" class=3D"conflue=
+nceTd">
+<p local-id=3D"c955ee4e438a">Spread_Even</p></td>
+<td data-local-id=3D"ef19142c-634f-4336-bbde-c58af7de4667" class=3D"conflue=
+nceTd">
+<p local-id=3D"fce33f6efb9c">Deferred</p></td>
+<td data-local-id=3D"5961b248-11ab-4620-b416-e8d71140e19f" class=3D"conflue=
+nceTd">
+<p local-id=3D"48e4698713c0">Term Based - Renew</p></td>
+<td data-local-id=3D"234ed0a8-d956-4cfc-aa6a-49f33f1b4bc1" class=3D"conflue=
+nceTd">
+<p local-id=3D"abff0d810b80">12 Months</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 local-id=3D"4a476555e488" id=3D"NewSkuDatabaseRequirements-FortraSalesf=
+orce-FinalDatabaseColumns">Final Database Columns</h1>
+<ul local-id=3D"eb42f9859181">
+<li local-id=3D"82e0e7b7161f">
+<p local-id=3D"820053127851">Legacy System</p>
+<ul local-id=3D"b1a258324821">
+<li local-id=3D"a08515daa810">
+<p local-id=3D"ecd8e13ff23c">System Purpose: Legacy Mapping Only</p></li>
+<li local-id=3D"098dd45b440b">
+<p local-id=3D"a7a43d3dee1f">Definition: What CRM system did this historica=
+l sku come from)</p></li>
+<li local-id=3D"283f64484894">
+<p local-id=3D"f59dd3ebabe0">Required for a Database New Add: No</p></li>
+<li local-id=3D"510a40e11f0f">
+<p local-id=3D"8df6c3b7e7f8">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"081f99896efd">
+<p local-id=3D"7c0623e1c306">Data: Choice Options:</p>
+<ul local-id=3D"f0738875815c">
+<li local-id=3D"779f433bf9f6">
+<p local-id=3D"e2437bf87e64">D365</p></li>
+<li local-id=3D"6b4cb0f67823">
+<p local-id=3D"f2b8de6f38c8">Tripwire Salesforce</p></li>
+<li local-id=3D"9838616eca15">
+<p local-id=3D"56b7fe89d1d0">Globalscape Salesforce</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"a7b02af43380">
+<p local-id=3D"ee17ef01a508">Legacy productid</p>
+<ul local-id=3D"7c4f6822f3b4">
+<li local-id=3D"0f4c53bee37a">
+<p local-id=3D"88139a412ba5">System Purpose: Legacy Mapping Only</p></li>
+<li local-id=3D"5244da031373">
+<p local-id=3D"aa626caadf70">Definition: Pulled from legacy system, used to=
+ link back to legacy systems in reverse migartion (What is the id of the sk=
+u from the historical sku system)</p></li>
+<li local-id=3D"08d84b753671">
+<p local-id=3D"db2b9794999b">Required for a Database New Add: No</p></li>
+<li local-id=3D"c6b6a712845a">
+<p local-id=3D"bd072b21fe42">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"19e540970baf">
+<p local-id=3D"1f1d5f5e22c6">Data: Text</p>
+<ul local-id=3D"a2fb3e661850">
+<li local-id=3D"4ec2801f682b">
+<p local-id=3D"13019f9bd0cc">Example: 01752A00-3E45-EB11-8112-0050569F6BB1<=
+/p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"c7811ef015eb">
+<p local-id=3D"d25384b2ac08">Legacy Name</p>
+<ul local-id=3D"7c611719e8d7">
+<li local-id=3D"ceb98a2f78a7">
+<p local-id=3D"6b952e52def0">System Purpose: Legacy Mapping Only</p></li>
+<li local-id=3D"aba96037028a">
+<p local-id=3D"a8f8a8a1ab20">Definition: Legacy name showing on legacy Invo=
+ices, Pulled from legacy system</p></li>
+<li local-id=3D"0a6f2d73fda8">
+<p local-id=3D"dca4ac5e65bd">Required for a Database New Add: No</p></li>
+<li local-id=3D"1ffeec2a4138">
+<p local-id=3D"06c4483e98d6">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"f691fd59-82c6-4754-9d2f-842551c7110b">
+<p local-id=3D"99efc8d46c0b">Data: Text</p>
+<ul local-id=3D"9b2ef6b0e1c9">
+<li local-id=3D"98d4e04d49ac">
+<p local-id=3D"24d6e14b9969">Example: SECURE Exchange Gateway Essential Sec=
+urity Package (Kaspersky AV) Additional Instance - Perpetual - 25-99</p></l=
+i>
+</ul></li>
+</ul></li>
+<li local-id=3D"7c2980341422">
+<p local-id=3D"aff1c1d7f1ab">Legacy Product Number</p>
+<ul local-id=3D"ee48a929adc0">
+<li local-id=3D"1eff0372-878b-4a65-8ea5-089ab9fccf70">
+<p local-id=3D"6f95faffb608">System Purpose: Legacy Mapping Only</p></li>
+<li local-id=3D"ec8b8af3-1bec-4c4c-be63-63c40a95ebf1">
+<p local-id=3D"b83fe882a690">Definition: Pulled from legacy system, Legacy =
+used to link back to legacy systems in reverse migartion</p></li>
+<li local-id=3D"b2cb6e8c8538">
+<p local-id=3D"c525e5b8faa0">Required for a Database New Add: No</p></li>
+<li local-id=3D"e5ea51f45b0b">
+<p local-id=3D"bc81000a72d3">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"8a6eda3e-f70c-41a8-888a-b16b17b8a03d">
+<p local-id=3D"77abc91a9292">Data: Text</p>
+<ul local-id=3D"3a2eb4702a15">
+<li local-id=3D"63cee1081665">
+<p local-id=3D"50ec50c6c97b">Example: CS01360</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"9eb1f9a52aa6">
+<p local-id=3D"d79b9b98e630">Migrate Y/N?</p>
+<ul local-id=3D"895c95869fc6">
+<li local-id=3D"2bf5ed9d-cf78-4763-9b69-70b32308172b">
+<p local-id=3D"adb1a4910d42">System Purpose: Database Filtering Only</p></l=
+i>
+<li local-id=3D"520145cd-6f42-45e8-a64d-b7519defa2a5">
+<p local-id=3D"12c75e865e7d">Definition: Drives Filtering if this will be u=
+tilized in the new Fortra Salesforce or if it is a Legacy SKY to leave behi=
+nd and to not include</p></li>
+<li local-id=3D"0845b79368c3">
+<p local-id=3D"3ea451b35a59">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"12b64f3bde80">
+<p local-id=3D"e18dad969153">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"04e21a7f-d63c-43e4-b046-dd3e64c0c93d">
+<p local-id=3D"914477eb2825">Data: Choice Options:</p>
+<ul local-id=3D"488d2a235ba6">
+<li local-id=3D"2f17324ab350">
+<p local-id=3D"763c49eb0a21">Yes (Default)</p></li>
+<li local-id=3D"151f735308da">
+<p local-id=3D"912244dfa32a">No - Legacy Confirmed</p></li>
+<li local-id=3D"4389522a7a83">
+<p local-id=3D"6503ca250918">No - Inactive Services</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"39735d23d938">
+<p local-id=3D"4a4b3355b327">Legacy Item?</p>
+<ul local-id=3D"3429aa2b2759">
+<li local-id=3D"e2dcc657-36a9-4a01-a0fa-9b900d0b759a">
+<p local-id=3D"e6972a4d301a">System Purpose: RCA only</p></li>
+<li local-id=3D"01935428-c4a1-46e6-97e2-53e0bdc0e7e9">
+<p local-id=3D"0f86ee1aca4d">Definition: Does this need to be configured RC=
+A for New Sales or renewal Only? (Is this needed for New Sales or only Lega=
+cy Renewal) - Will only need to be built for New Sales quoting if marked =
+=E2=80=9CNew Sales)</p></li>
+<li local-id=3D"c7b9f6947331">
+<p local-id=3D"a1e73827185c">Required for a Database New Add: No</p></li>
+<li local-id=3D"fd3dc2b65a85">
+<p local-id=3D"b22037c7bbdf">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"63428f17-8c2e-4f16-91a4-c16e8a899f5a">
+<p local-id=3D"cabc182ac172">Data: Choice Options:</p>
+<ul local-id=3D"9a7c83c13413">
+<li local-id=3D"c5f5fc351dd9">
+<p local-id=3D"b0d9f9d61c98">Legacy Renewal Only</p></li>
+<li local-id=3D"401e3aa68420">
+<p local-id=3D"c2e00330cdaf">New Sales (Default)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"af225b5e-0a02-4128-b57e-1306c05967e4">
+<p local-id=3D"9bcd8a9525ee">Unit 0.00</p>
+<ul local-id=3D"deaf5358234d">
+<li local-id=3D"0271f40966f0">
+<p local-id=3D"9f7c27ca8191">System Purpose: All Systems Product Hierarchy<=
+/p></li>
+<li local-id=3D"5dd0214b-b69f-4d67-b486-9851abeb0378">
+<p local-id=3D"61ac92ca36ba">Definition: Higherarchy to define organization=
+ of SKUS</p></li>
+<li local-id=3D"e98f68b9eaec">
+<p local-id=3D"bc2379d79d71">Required for a Database New Add: YES</p></li>
+<li local-id=3D"dac4427bbc9c">
+<p local-id=3D"07ec82f35344">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"12b6ccf9-3280-4a41-aecc-ed44f8b3babd">
+<p local-id=3D"9b865b6af37c">Data: Choice Options:</p>
+<ul local-id=3D"ca60c23ac780">
+<li local-id=3D"1376afdfac4e">
+<p local-id=3D"7139a85ec0cf">(Default Blank)</p></li>
+<li local-id=3D"9ebb7277461b">
+<p local-id=3D"e757b0ce37ac">Cyber</p></li>
+<li local-id=3D"5c129227a0cb">
+<p local-id=3D"2d2df59177d7">Corporate</p></li>
+<li local-id=3D"5c001fe75527">
+<p local-id=3D"9e932192b038">Tech</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"d208d163fd88">
+<p local-id=3D"65935b973571">Solution Group 1.00</p>
+<ul local-id=3D"180d158a5638">
+<li local-id=3D"cbcd645d-5e1b-4757-8ad0-7d4e7f4280b2">
+<p local-id=3D"5c5e387471e5">System Purpose: All Systems Product Hierarchy<=
+/p></li>
+<li local-id=3D"3695df04-8c80-435d-a18e-235bec43d97a">
+<p local-id=3D"1067f46ac211">Definition: Higherarchy to define organization=
+ of SKUS</p></li>
+<li local-id=3D"cfe6bf397d9b">
+<p local-id=3D"32ce0e0d8953">Required for a Database New Add: YES</p></li>
+<li local-id=3D"66910eebbec3">
+<p local-id=3D"4516578f7c20">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"bb3b8290-a6a4-48ed-a97c-fb244569b962">
+<p local-id=3D"099deaa880bf">Data: Choice Options;</p>
+<ul local-id=3D"6d335b470b9e">
+<li local-id=3D"374385137588">
+<p local-id=3D"e8dc1b898763">Defensive Security</p></li>
+<li local-id=3D"d55e4a384ade">
+<p local-id=3D"d21a8f8cf0d1">Fortra Corporate</p></li>
+<li local-id=3D"1d1fc3ee57d6">
+<p local-id=3D"666cad50f193">Managed File Transfer</p></li>
+<li local-id=3D"cd270d6eb135">
+<p local-id=3D"96157e6a1e62">Offensive Security</p></li>
+<li local-id=3D"a5e69d96e129">
+<p local-id=3D"bac28ad7d88b">Power</p></li>
+<li local-id=3D"38b17714b609">
+<p local-id=3D"3fb5a66323e8">RPA+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"a5b41ba4-a5cd-428d-a259-4c57b8eece62">
+<p local-id=3D"af6462b32d61">Solution Category 2.00</p>
+<ul local-id=3D"d60cdc95-a35e-49e5-bd26-8c7b6518e880">
+<li local-id=3D"f59f4a4d-0e7c-400b-a4c0-0497337d4745">
+<p local-id=3D"00e722056f83">System Purpose: All Systems Product Hierarchy<=
+/p></li>
+<li local-id=3D"49b2c37b-b5f3-4032-9c0c-cc3a7040ba28">
+<p local-id=3D"d83f58ee6a41">Definition: Higherarchy to define organization=
+ of SKUS</p></li>
+<li local-id=3D"ca73cd5d0210">
+<p local-id=3D"ba447d644be9">Required for a Database New Add: YES</p></li>
+<li local-id=3D"c4b319bfc810">
+<p local-id=3D"dbf4ef0047fd">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"5150086f-cc78-40ff-bd11-b1a7d0842348">
+<p local-id=3D"dfbd0b7d7ace">Data: Choice Options:</p>
+<ul local-id=3D"ca75618cbfb3">
+<li local-id=3D"adcac2a591c7">
+<p local-id=3D"7d392a45c593">Multiple (Examples - Email Security, Business =
+Intelligence=E2=80=A6.)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"81fe0422-bf54-4c23-ad49-86ecf92f2f81">
+<p local-id=3D"0e4f26dfc5fe">Solution 3.00</p>
+<ul local-id=3D"c68b636a-63b9-4ad6-bace-861e30fba22b">
+<li local-id=3D"e7bd87e6-b7ac-48a7-a0ff-c2fe9ab63d73">
+<p local-id=3D"8fb5f99af672">System Purpose: All Systems Product Hierarchy<=
+/p></li>
+<li local-id=3D"1ad20f12-4c34-4c9c-87eb-fb40da9038de">
+<p local-id=3D"4295b6557357">Definition: Higherarchy to define organization=
+ of SKUS</p></li>
+<li local-id=3D"be1078c3fec0">
+<p local-id=3D"725fca1ca15e">Required for a Database New Add: YES</p></li>
+<li local-id=3D"40d707a3f448">
+<p local-id=3D"e05809ba7029">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"f2c2b072-07d5-4206-978a-63e56d7bf612">
+<p local-id=3D"ea651b63798f">Data: Choice Options:</p>
+<ul local-id=3D"f221e1de4229">
+<li local-id=3D"24e0803faaac">
+<p local-id=3D"465254ae293f">Multiple (Examples - Secure Web Gateway, RPG T=
+oolbox...)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"74387d3a-0756-4973-9a26-11316a149451">
+<p local-id=3D"4bc8bb79b39f"><span class=3D"inline-comment-marker" data-ref=
+=3D"600250f9-ad52-4858-a8d2-5096b6ebdac4">Final Sku Name</span></p>
+<ul local-id=3D"c7920028-cce8-4f17-8f60-268e021e6ac9">
+<li local-id=3D"adf548ff-507c-47e9-9d27-baa491304e62">
+<p local-id=3D"ca700f827437">System Purpose: Database Formulas Only</p></li=
+>
+<li local-id=3D"57a3a6b4-3ebb-4127-868f-ac5ad0b8832b">
+<p local-id=3D"92e8dd441db9">Definition: Simplified Name Used for Formulas =
+only - Utilized in Formula for Next Column - Initial Name of Sku before For=
+mulas to add License Type +</p></li>
+<li local-id=3D"4bc07a80db53">
+<p local-id=3D"f32f9da127fb">Required for a Database New Add: YES</p></li>
+<li local-id=3D"dbedb11a68b9">
+<p local-id=3D"83a575fdfb9b">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"235a50fb993e">
+<p local-id=3D"fd287a9c0d51">Data: Text</p>
+<ul local-id=3D"501a2919b1f0">
+<li local-id=3D"e8fa529a2779">
+<p local-id=3D"5fbc2532ef4c">Multiple (Example - SECURE Email Gateway Essen=
+tials)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"f98d0399-31f2-4057-867a-f83cd144afdb">
+<p local-id=3D"c2f87ec9b3c1">Final Sku Name + License_Type</p>
+<ul local-id=3D"ec977898-e469-49f3-a3ef-18932b6e9f99">
+<li local-id=3D"05f7153a-2f5d-47f6-a37a-08696c839765">
+<p local-id=3D"705907a05469">System Purpose: Salesforce and Workday</p></li=
+>
+<li local-id=3D"8ae6c9d9-f328-45e2-9e83-a1b9ad91cee9">
+<p local-id=3D"dd55e89a85f4">Definition: Final SKU name to be shown on Invo=
+ices/Quotes</p></li>
+<li local-id=3D"1ce558354b57">
+<p local-id=3D"0967d4eba352">Required for a Database New Add: YES</p></li>
+<li local-id=3D"e5b18293d730">
+<p local-id=3D"96ecf52abffe">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"9ce0b240-d66f-4610-a44c-0b49c01327c7">
+<p local-id=3D"fb33da596170">Data: (Formula different based on License Type=
+ Rev Category)</p>
+<ul local-id=3D"fa537c812084">
+<li local-id=3D"289e96369f34">
+<p local-id=3D"fce3374910da">(Column K =E2=80=9CFinal Sku Name=E2=80=9D Col=
+umn, =E2=80=9C - =E2=80=9C, =E2=80=9CColumn O =E2=80=9CLicense_Type=E2=80=
+=9D)</p></li>
+<li local-id=3D"e02da7f976ee">
+<p local-id=3D"89c0f39380ee">If Rev Category =3D RC_43120</p>
+<ul local-id=3D"5d47c677f5a7">
+<li local-id=3D"5b2d20217d55">
+<p local-id=3D"a09773957d78">(Column K =E2=80=9CFinal Sku Name=E2=80=9D Col=
+umn, =E2=80=9C - =E2=80=9C, =E2=80=9CColumn O =E2=80=9CLicense_Type=E2=80=
+=9D, =E2=80=9C_MAINT=E2=80=9D)</p></li>
+</ul></li>
+<li local-id=3D"f86ff937e72e">
+<p local-id=3D"0e32533db365">If Rev Category =3D RC_41202</p>
+<ul local-id=3D"49dd34776e26">
+<li local-id=3D"12db8354614e">
+<p local-id=3D"e9bb8b129fe9">If not the =E2=80=9CWorkday Bundle Parent Bund=
+le SKU</p></li>
+<li local-id=3D"fdfd97d1de10">
+<p local-id=3D"a3ae420949c2">(Column K =E2=80=9CFinal Sku Name=E2=80=9D Col=
+umn, =E2=80=9C - =E2=80=9C, =E2=80=9CColumn O =E2=80=9CLicense_Type=E2=80=
+=9D, =E2=80=9C_LIC=E2=80=9D)</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"0289f505c1e7">
+<p local-id=3D"30808cb0c46d">Product Family</p>
+<ul local-id=3D"6da9e92a35bd">
+<li local-id=3D"98a75b12-6d5e-4d6c-855d-68f0baf52be7">
+<p local-id=3D"5b030387b4ec">System Purpose: RCA Only</p></li>
+<li local-id=3D"9ffcbc04-629f-4044-a244-f0861e168090">
+<p local-id=3D"7cbc80c93c72">Definition: This column drives how sku=E2=80=
+=99s will be organized in RCA for quoting only, Asside from Services and Tr=
+aining this should match Licenses type exactly. Probably shouldn=E2=80=99t =
+have had this seperate?</p></li>
+<li local-id=3D"b38775f59bdc">
+<p local-id=3D"3c70b6b08df2">Required for a Database New Add: YES</p></li>
+<li local-id=3D"b0f83f4e3ca1">
+<p local-id=3D"225c6b9a058f">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"f2d3e61c-1a0b-466a-a99e-b86b723d49d6">
+<p local-id=3D"53f9c925305a">Data: Choice:</p>
+<ul local-id=3D"2bdd1060600e">
+<li local-id=3D"6c541a0c1b70">
+<p local-id=3D"6da576e4f39d">Subscription</p></li>
+<li local-id=3D"dbbfb5ab74db">
+<p local-id=3D"2bdff470290f">Perpetual</p></li>
+<li local-id=3D"ba117ca29151">
+<p local-id=3D"f70745e0c5b0">Services</p></li>
+<li local-id=3D"08756b46ffe0">
+<p local-id=3D"0199ae454395">Training</p></li>
+<li local-id=3D"59def4e9798f">
+<p local-id=3D"895d4342b09d">Other</p></li>
+<li local-id=3D"b25dbec5ada7">
+<p local-id=3D"81265ad1f36a">New Maintenance</p></li>
+<li local-id=3D"a89659d9d123">
+<p local-id=3D"9a37226cd154">Renewal Maintenance</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"c9d3659151ad">
+<p local-id=3D"11872c9350c5">LineItem Description</p>
+<ul local-id=3D"ba1f7be24b96">
+<li local-id=3D"7883495c-a29f-4246-a796-07e005347d0e">
+<p local-id=3D"a85a0844596d">System Purpose: Salesforce and Workday</p></li=
+>
+<li local-id=3D"5ade8c09-6547-45d5-a363-18e4c298d5a6">
+<p local-id=3D"d0f71e622a25">Definition: Description is used in Workday for=
+ invoice detail of all attributes from the legacy SKU and for Salesforce Al=
+l Attributes selected through RCA during quoting.</p></li>
+<li local-id=3D"c5479ce215d8">
+<p local-id=3D"bb41ebdba5fa">Required for a Database New Add: YES</p></li>
+<li local-id=3D"b421e2e95021">
+<p local-id=3D"6277106cc066">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"78d2a0c1-2b42-4018-99e3-7e001b5a9c42">
+<p local-id=3D"6fb2c8c07156">Data: (Formula based on all Attribute columns)=
+</p>
+<ul local-id=3D"45630fbdbd80">
+<li local-id=3D"727e4cc4da5c">
+<p local-id=3D"0e84ca0932fe">Join Text seperated by =E2=80=9C | =E2=80=9D</=
+p></li>
+<li local-id=3D"39a3d4cc9e39">
+<p local-id=3D"53cc7521a120">If Column T has =E2=80=9CUsers=E2=80=9D or =E2=
+=80=9CPer users=E2=80=9D do not add =E2=80=9C | =E2=80=9C</p></li>
+<li local-id=3D"748b93d1666c">
+<p local-id=3D"b654e28231f7">=3DTEXTJOIN(" | ", TRUE, IF('Unit Type'=3D"", =
+"", IF('Unit Type'=3D"Users", IF('Number of Units'=3D"", "Per User", =E2=80=
+=98Unit Type=E2=80=99&amp;" "&amp;'Number of Units'), =E2=80=98Unit Type'&a=
+mp;" "&amp;=E2=80=99Number of Units')), =E2=80=98License_Type=E2=80=99, 'PS=
+ Services Type', =E2=80=98Feature=E2=80=99, =E2=80=98Maintenance Type=E2=80=
+=99, =E2=80=98Deployment Type', Server Location Type=E2=80=99, Power Licens=
+e Type', =E2=80=98Server Type=E2=80=99, =E2=80=98Group Number=E2=80=99)</p>
+<p local-id=3D"54f9566bfaba"></p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"800884377324">
+<p local-id=3D"2523a58e7c1c">License_type</p>
+<ul local-id=3D"259091dd5c94">
+<li local-id=3D"2559bec5-3eb8-47be-bfe3-a5b0d0d8b9ef">
+<p local-id=3D"471bf6b4222e">System Purpose: Salesforce and Workday</p></li=
+>
+<li local-id=3D"133689ef-24ef-4094-bdf0-dc4b49598156">
+<p local-id=3D"177fa9a6cef4">Deffinition: Drives the type of product and wh=
+at is being sold, SKU IT, Rev Recognition</p></li>
+<li local-id=3D"caa7a3ab854f">
+<p local-id=3D"4b2f99bec3cc">Required for a Database New Add: YES</p></li>
+<li local-id=3D"158e9ff4d967">
+<p local-id=3D"1fda393ac4f1">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"28c994ee-b15a-401b-b938-f975a8d0eb8f">
+<p local-id=3D"3da8aa8382e5">Data: Choice:</p>
+<ul local-id=3D"1cec7f3c8698">
+<li local-id=3D"398ace596ba4">
+<p local-id=3D"a38d3729ee49">Perpetual</p></li>
+<li local-id=3D"315e2eacb509">
+<p local-id=3D"d227cde7a20e">Subscription</p></li>
+<li local-id=3D"45a32f078fc1">
+<p local-id=3D"aee0d035c3dc">Services</p></li>
+<li local-id=3D"4de480f64dc6">
+<p local-id=3D"3a3945e1f017">Change Fee</p></li>
+<li local-id=3D"378970fd273d">
+<p local-id=3D"c8721526a428">Renewal Maintenance</p></li>
+<li local-id=3D"715b0949aa37">
+<p local-id=3D"722f3814a9a8">New Maintenance</p></li>
+<li local-id=3D"1dcd229f5f70">
+<p local-id=3D"7414645a9171">Other</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"c9779c766356">
+<p local-id=3D"bbb7e381c4c9">PS Services Type</p>
+<ul local-id=3D"5ac49b014589">
+<li local-id=3D"f594723e-2655-4724-b5b0-c43684242f47">
+<p local-id=3D"279242e1aa4e">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"f08020a3-a92f-4393-987a-543ec6abded6">
+<p local-id=3D"d401d6902313">Definition: Where a services sku needs to be b=
+roken out with more detail</p></li>
+<li local-id=3D"5f4b233a6ccd">
+<p local-id=3D"bd672c6c0044">Required for a Database New Add: NO</p></li>
+<li local-id=3D"3d0fd6a8d9b6">
+<p local-id=3D"d180adad9a12">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"ef786136-a310-40ad-929a-246d43581def">
+<p local-id=3D"d6c42053345e">Data: Choice</p>
+<ul local-id=3D"b728934b97aa">
+<li local-id=3D"7b5c393097a6">
+<p local-id=3D"e6dd2ac32dc5">Depends on the SKU - May need multiple options=
+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"eb3e26581ae6">
+<p local-id=3D"663be19c026d">Feature</p>
+<ul local-id=3D"29f548916618">
+<li local-id=3D"28a3c9eb-4769-4c1d-9573-1715427e031c">
+<p local-id=3D"212dc9d40184">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"2f017889-d171-4d6c-839b-e377c9b7f2b5">
+<p local-id=3D"86d126ee68a3">Definition: Specifics about a SKU that need mo=
+re detail for customer, or License Key Generation</p></li>
+<li local-id=3D"813b6dc8ada2">
+<p local-id=3D"544284773ceb">Required for a Database New Add: NO</p></li>
+<li local-id=3D"ec348d3f2fcd">
+<p local-id=3D"5c1564295228">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"0c863ada-e2f3-4646-af28-d92c822c64eb">
+<p local-id=3D"76ffe761bc38">Data: Choice</p>
+<ul local-id=3D"1dccc36b650c">
+<li local-id=3D"8d1381c86eed">
+<p local-id=3D"5876ff748a0c">Depends on the SKU - May need multiple options=
+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"09c211220842">
+<p local-id=3D"af4df7ffa489">Pricing Tier</p>
+<ul local-id=3D"e3f74b92a703">
+<li local-id=3D"9a958230-ba44-4b29-9a32-e53aa5be8e3a">
+<p local-id=3D"a07f73d32528">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"89b06bb9-8531-4178-a26e-5d5f027343a7">
+<p local-id=3D"b0d24cb46810">Definition: If Pricing is driven by a tier bas=
+ed sale</p></li>
+<li local-id=3D"8ee2cb6713f8">
+<p local-id=3D"526f3b8b6e5a">Required for a Database New Add: NO</p></li>
+<li local-id=3D"b1c45bd0be94">
+<p local-id=3D"dbcaf4078e7a">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"a2c06d1c-ee4d-4a5c-b345-7749664a14c4">
+<p local-id=3D"2c1e58627ee2">Data: Choice</p>
+<ul local-id=3D"85a11666cfa7">
+<li local-id=3D"4188e5a87e67">
+<p local-id=3D"8cc8a69b2872">Depends on the SKU - May need multiple options=
+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"9cc3b769ec8f">
+<p local-id=3D"1419b3fe7980">Maintenance Type</p>
+<ul local-id=3D"29424bcdb4b4">
+<li local-id=3D"dda47bd0-4326-46b4-8b90-af965412d332">
+<p local-id=3D"524076d48777">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"f4963b76-f9d5-4cba-9936-b785e571069e">
+<p local-id=3D"6264b6592f37">Definition: Some Products may require a specia=
+l maintenance type to drive price</p></li>
+<li local-id=3D"b33f92d0a8a5">
+<p local-id=3D"7b9eb83ca763">Required for a Database New Add: NO</p></li>
+<li local-id=3D"7819fc733d76">
+<p local-id=3D"e6dfbd0caad8">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"a9fdfe00-0c32-4fb5-9a55-34512b12c0ec">
+<p local-id=3D"90a2762b8fe9">Data: Choice</p>
+<ul local-id=3D"f4521d5d9ebc">
+<li local-id=3D"8fdb19b57c5e">
+<p local-id=3D"8213676e8152">Express</p></li>
+<li local-id=3D"1b5979084159">
+<p local-id=3D"cb7c5d3069fd">Limited</p></li>
+<li local-id=3D"3d2a09fa8301">
+<p local-id=3D"213ea006a9c2">Premium</p></li>
+<li local-id=3D"6c29aa9d1eb7">
+<p local-id=3D"9a37a10b1bfd">Standard</p></li>
+<li local-id=3D"f86c61103dbc">
+<p local-id=3D"fe4ced726ce4">Basic</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"91df72a9b67d">
+<p local-id=3D"64fffd4b3b28">Unit Type</p>
+<ul local-id=3D"7a3689579e07">
+<li local-id=3D"5ff4b0df-eaf1-4404-ba0c-b41955ee019b">
+<p local-id=3D"586f683d9c61">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"c4fef605-3c7d-4f62-b042-986ad6389fcc">
+<p local-id=3D"355b64214918">Definition: Specifics about a SKU that need mo=
+re detail for customer, or License Key Generation</p></li>
+<li local-id=3D"27cfa707f484">
+<p local-id=3D"802b46a39caf">Required for a Database New Add: NO</p></li>
+<li local-id=3D"1f3a467ff953">
+<p local-id=3D"849246a7219d">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"f01b2e40-28ba-46af-85c0-3a46ea680792">
+<p local-id=3D"da1fe8982dd3">Data: Choice</p>
+<ul local-id=3D"f2f7064db6d2">
+<li local-id=3D"f353fad21864">
+<p local-id=3D"698bb8576918">Depends on the SKU - May need multiple options=
+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"d8da48258723">
+<p local-id=3D"690b94fb3db7">Number of Units</p>
+<ul local-id=3D"88f78121fbc5">
+<li local-id=3D"88731036-fe46-40da-88b8-453a5ac378f1">
+<p local-id=3D"1b81d3bc7096">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"572e913c-014c-4d95-844d-dd492ff126c4">
+<p local-id=3D"87a870702f8d">Definition: Based on the =E2=80=9CUnit Type=E2=
+=80=9D Will need to define how many</p></li>
+<li local-id=3D"6defaec429d0">
+<p local-id=3D"052a73f4ae7d">Required for a Database New Add: NO</p></li>
+<li local-id=3D"746e4636fb34">
+<p local-id=3D"04fe39e4110a">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"d2845762-feb3-4629-b4c9-2f9d0e6772c9">
+<p local-id=3D"cb9bc04146c5">Data: Defaults to a number</p>
+<ul local-id=3D"3d3e50cb6f37">
+<li local-id=3D"9dcedab4dd4a">
+<p local-id=3D"ac47c5b62d67">Example: 1500</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"90e842a8a2a6">
+<p local-id=3D"1d9fe4ddf221">Deployment Type</p>
+<ul local-id=3D"d00186ebef24">
+<li local-id=3D"a53558d8-00ae-498c-926a-ed88a8ab22f0">
+<p local-id=3D"6ded95972402">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"413096dd-0508-43d2-a440-33dff2b9c380">
+<p local-id=3D"5a2fd89d52a2">Definition: Defines Type of Server customer wi=
+ll be on</p></li>
+<li local-id=3D"849e81836941">
+<p local-id=3D"941c80f9b429">Required for a Database New Add: NO</p></li>
+<li local-id=3D"a58f81bdfba2">
+<p local-id=3D"3370a41f7699">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"103b36d3-3560-474e-b841-0d8dcc6e26bf">
+<p local-id=3D"1da4b7c586d1">Data: Choice</p>
+<ul local-id=3D"60d61f725bd8">
+<li local-id=3D"035a974a83b0">
+<p local-id=3D"bc65e8469982">Hosted</p></li>
+<li local-id=3D"a34956dbb331">
+<p local-id=3D"3f964a7127e7">Managed</p></li>
+<li local-id=3D"569ccec1db31">
+<p local-id=3D"cded32d53f0b">Managed Services</p></li>
+<li local-id=3D"4971dbeabf20">
+<p local-id=3D"c9ec6d0ad20a">On Premise</p></li>
+<li local-id=3D"112a1e7542cb">
+<p local-id=3D"4f0d96720e09">SaaS</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"84d713f40c14">
+<p local-id=3D"206f37afd977"><span class=3D"inline-comment-marker" data-ref=
+=3D"fec84f86-8b99-482c-aff2-0e877c078b45">Server Location Type</span></p>
+<ul local-id=3D"624097282cf1">
+<li local-id=3D"976de8b7-a2ae-4895-9ab3-a8c4a99f85c3">
+<p local-id=3D"f41030c1fe43">Do Not Need</p></li>
+</ul></li>
+<li local-id=3D"c9b139579667">
+<p local-id=3D"4ff6aebd47e6">Power License Type (<span data-colorid=3D"pf6x=
+a28ros">UPDATED 5.21.2026 - Removing This column as an Attribute - we creat=
+ed seperate sku=E2=80=99s for Primary and Secondary) </span></p>
+<ul local-id=3D"066ada428857">
+<li local-id=3D"cee7f405-9e2b-45d5-9e2e-bddf55c41adc">
+<p local-id=3D"249c51ec9e0d">
+<del>System Purpose: Attribute / Product table Invoice View</del></p></li>
+<li local-id=3D"ea7c665f-57f4-4675-9c35-ec22473356e7">
+<p local-id=3D"1ed233d304ed">
+<del>Definition: Defines type of License Customer is on for License Key Gen=
+</del></p></li>
+<li local-id=3D"9fb90ef31bcd">
+<p local-id=3D"12368566fd1d">
+<del>Required for a Database New Add: NO</del></p></li>
+<li local-id=3D"5563254091c0">
+<p local-id=3D"ce900ebc5437">
+<del>Populated:</del><span style=3D"background-color: rgb(211,241,167);">
+<del>(Manually - Choice)</del></span></p></li>
+<li local-id=3D"899ec3cb-b0a7-4ca6-9500-76c4162c428c">
+<p local-id=3D"96e8818d403e">
+<del>Data: Choice</del></p>
+<ul local-id=3D"165ecd5f6aab">
+<li local-id=3D"3d2a33228fc4">
+<p local-id=3D"99ccce6c3af9">
+<del>Primary</del></p></li>
+<li local-id=3D"5051443e842e">
+<p local-id=3D"a206520af0e2">
+<del>Secondary</del></p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"a09f66069705">
+<p local-id=3D"27218831431a">Server Type</p>
+<ul local-id=3D"61e5b36932fe">
+<li local-id=3D"bb93f4ca-4a20-4398-a9d9-d9a984bdeb6b">
+<p local-id=3D"88e9f0a3c3ca">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"ae1fb270-6bd3-40a4-8bb5-ae6172236bbb">
+<p local-id=3D"b7290d657d33">Definition: Defines production, Dev etc server=
+ type of customer which drives price.</p></li>
+<li local-id=3D"0f2708272890">
+<p local-id=3D"63501fed8115">Required for a Database New Add: NO</p></li>
+<li local-id=3D"2a774afb9437">
+<p local-id=3D"6c4e7e9dd806">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"db285f5a-3e3f-49ec-bf0d-b9e354727d12">
+<p local-id=3D"385f2b0ace43">Data: Choice</p>
+<ul local-id=3D"3aaa3b3e736a">
+<li local-id=3D"0228cd5df910">
+<p local-id=3D"bd7a23727aed">Dev / Test</p></li>
+<li local-id=3D"359a602dcd00">
+<p local-id=3D"cc604cd060d7">DR</p></li>
+<li local-id=3D"b14d50818610">
+<p local-id=3D"68ec43f6ffeb">DR - HA/DR</p></li>
+<li local-id=3D"100ac80a6c35">
+<p local-id=3D"dcd21c06b25f">HA</p></li>
+<li local-id=3D"7e8fa12d7cba">
+<p local-id=3D"3e4fc8fc8d6f">HA &amp; DR</p></li>
+<li local-id=3D"63c26f228d69">
+<p local-id=3D"86381df426f5">Non-Production</p></li>
+<li local-id=3D"cf1bc05390cf">
+<p local-id=3D"993cb979ae04">Production</p></li>
+<li local-id=3D"e82f378b820e">
+<p local-id=3D"1d8a44fab018">Staging</p></li>
+<li local-id=3D"c51a12bf7c4a">
+<p local-id=3D"e4b8e410addd">Staging - HA/DR</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"5ab9b1c51148">
+<p local-id=3D"d00929334a80">Discount based on =E2=80=9CServer Type=E2=80=
+=9D</p>
+<ul local-id=3D"816f5698fb8f">
+<li local-id=3D"ffc4167c-28d3-42dc-8e7a-7730b03f49d9">
+<p local-id=3D"151f4768f334">System Purpose: RCA Discount Rules Only</p></l=
+i>
+<li local-id=3D"91258595-f6a1-4ee7-a8b3-0c77477622d7">
+<p local-id=3D"59080f0af934">Definition: This tells the Coastal team how to=
+ build RCA discounts</p></li>
+<li local-id=3D"25855781121f">
+<p local-id=3D"d4b997a37a5b">Required for a Database New Add: NO</p></li>
+<li local-id=3D"a2b34a1d148a">
+<p local-id=3D"6c84104e9439">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"4da13b4a-c929-4131-a500-591af11fd2ce">
+<p local-id=3D"bd4e3c50effd">Data:</p>
+<ul local-id=3D"f7bad36ed31c">
+<li local-id=3D"65b38c5c3185">
+<p local-id=3D"0f626278415e">Example: DR/HA 50% Discount</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"bfd9a1e7f082">
+<p local-id=3D"95f4096a0158">Operating System</p>
+<ul local-id=3D"c01b385c86af">
+<li local-id=3D"8880003c-bba1-4445-b1e9-1acc28d608d6">
+<p local-id=3D"a483032d2bed">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"28f79948-4c6a-46e2-bbc8-c85fd715b4db">
+<p local-id=3D"fe41ca300d83">Definition: This describes the system the cust=
+omer owns and drives the License Key Creation</p></li>
+<li local-id=3D"bfafe6673093">
+<p local-id=3D"2330570cc385">Required for a Database New Add: NO</p></li>
+<li local-id=3D"f31ea0d0d1cb">
+<p local-id=3D"50c48be3049c">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"8a4e45f8-ca1d-4ebc-8407-2419a35670f7">
+<p local-id=3D"294a2b9a20aa">Data: Choice</p>
+<ul local-id=3D"ea493af71c8f">
+<li local-id=3D"b54ce634c8ff">
+<p local-id=3D"7ad33ecd78d3">Cross</p></li>
+<li local-id=3D"befc9eca618b">
+<p local-id=3D"1a9f59b902c0">IBM i</p></li>
+<li local-id=3D"6e0b8a50ffbd">
+<p local-id=3D"0c2643db6f08">Linux</p></li>
+<li local-id=3D"2b684aad0073">
+<p local-id=3D"6ca2b07b991f">OSX</p></li>
+<li local-id=3D"24469a39dd91">
+<p local-id=3D"d87c13774b43">Windows</p></li>
+<li local-id=3D"dc995345f1e8">
+<p local-id=3D"1c749ef30140">AIX/UNIX/HP=3DUX/Solaris</p></li>
+<li local-id=3D"696d85ea4ad4">
+<p local-id=3D"e3b8722968a0">Unix (AIX, Sun Solaris, HPUX)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"da0cadc4c933">
+<p local-id=3D"48ee1acb575f">PGroup</p>
+<ul local-id=3D"eb66bbe196bf">
+<li local-id=3D"03755596-fa71-4e67-a31f-b7226fd8c47d">
+<p local-id=3D"22568e452cb2">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"4b8f9741-ef58-4cb8-8c50-c34ce93ebd02">
+<p local-id=3D"76ae88a5c4db">Definition: Describes Customer system drives L=
+icense Key Creation</p></li>
+<li local-id=3D"328df38923c3">
+<p local-id=3D"c3ab1afea671">Required for a Database New Add: NO</p></li>
+<li local-id=3D"058217bd34f8">
+<p local-id=3D"d14d0ac1d65f">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"88007981-3fe4-48a0-9ff0-b6119e88fa85">
+<p local-id=3D"ee3ab1dbd68d">Data: Choice</p>
+<ul local-id=3D"f72e25c91b72">
+<li local-id=3D"9887c3db5599">
+<p local-id=3D"514df18dca18">P05</p></li>
+<li local-id=3D"9b5b7b86b12e">
+<p local-id=3D"2fe4325dfed0">P10</p></li>
+<li local-id=3D"f2722b34c35a">
+<p local-id=3D"444a85aed365">P20</p></li>
+<li local-id=3D"b5427611143e">
+<p local-id=3D"84817ad13324">P30</p></li>
+<li local-id=3D"db44e0778a11">
+<p local-id=3D"3c36371d0c25">P40</p></li>
+<li local-id=3D"e80b7f488288">
+<p local-id=3D"1fddff3080a7">P50</p></li>
+<li local-id=3D"d75cd49e3c81">
+<p local-id=3D"a1a5b814eb83">P60</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"280434959e5a">
+<p local-id=3D"e4052526752f">Group Number</p>
+<ul local-id=3D"b02e726a8816">
+<li local-id=3D"a446421c-6535-4be0-9cc8-5bd62d16f9a1">
+<p local-id=3D"767f9d26da0c">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"afc4fc06-4b58-4ec9-8320-1777449eae5b">
+<p local-id=3D"aa5dae7ba4d9">Definition: Describes Customer system drives L=
+icense Key Creation</p></li>
+<li local-id=3D"063b68e80e2e">
+<p local-id=3D"d832b9a935e7">Required for a Database New Add: NO</p></li>
+<li local-id=3D"5e7df2acac47">
+<p local-id=3D"c76bb94253d0">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"77d8a8d4-4492-4ef7-87e4-026fe1d273ce">
+<p local-id=3D"8536e0c9a30d">Data: Choice</p>
+<ul local-id=3D"dd9b72dfbdba">
+<li local-id=3D"1723d6467e9a">
+<p local-id=3D"5c4c756bafd0">Multiple</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"c65e311ac30e">
+<p local-id=3D"de3bafee9da1">Agent Type</p>
+<ul local-id=3D"877afce2d8f6">
+<li local-id=3D"26b5ee82-c7b8-4d55-bc6e-47fc9e4494bb">
+<p local-id=3D"7a1cdf128248">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"f769d5d3-9122-45cd-b111-7293d654a473">
+<p local-id=3D"df4dc861d703">Definition: If this is an Agent type product w=
+hat type of Agent</p></li>
+<li local-id=3D"20187a054b94">
+<p local-id=3D"f1a150b478b9">Required for a Database New Add: NO</p></li>
+<li local-id=3D"ca27f05cc669">
+<p local-id=3D"255e639d7e1e">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"88c7e734-dc69-46a4-9255-fb3daabd99e8">
+<p local-id=3D"12bad2926d1a">Data: Text</p>
+<ul local-id=3D"68bee4ca3093">
+<li local-id=3D"78d03a998c71">
+<p local-id=3D"673dfe16571c">Example: Advanced</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"3c6a2ee1c76a">
+<p local-id=3D"7d3672b63c1b">Number of Agents</p>
+<ul local-id=3D"fa7ec46a9610">
+<li local-id=3D"858ee471-01a3-4260-bfce-e8b41a4d1fff">
+<p local-id=3D"a356518a6c86">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"206b5c8f-84be-49d1-9f52-678ba2cbc0bf">
+<p local-id=3D"b356945c84d8">Definition: If this is an Agent type product h=
+ow many Agent</p></li>
+<li local-id=3D"019bd7f7add2">
+<p local-id=3D"d2979a09abc9">Required for a Database New Add: NO</p></li>
+<li local-id=3D"e11a26f21853">
+<p local-id=3D"ac9f32d58e67">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"e733e652-66b8-4e9c-a177-b985f00e6515">
+<p local-id=3D"49a429c5a02e">Data: Number or text</p>
+<ul local-id=3D"d4cbaeaa0c7e">
+<li local-id=3D"7fdfba3fdbc9">
+<p local-id=3D"0e64cf9505cb">Example: 5</p></li>
+<li local-id=3D"91b4b39013f9">
+<p local-id=3D"55c33e1f61de">Example: Unlimited</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"72deed5ef68d">
+<p local-id=3D"2a9bfe9a5de5">Clustered</p>
+<ul local-id=3D"5cfbcb64f134">
+<li local-id=3D"489623db-c241-422a-becb-dd59f9bc671a">
+<p local-id=3D"2d201a20fac3">System Purpose: Attribute / Product table Invo=
+ice View</p></li>
+<li local-id=3D"6bd0c436-342a-45b5-bd61-920f8c319e81">
+<p local-id=3D"3af5ac379c81">Definition: Describes Customer system drives L=
+icense Key Creation</p></li>
+<li local-id=3D"04b155661392">
+<p local-id=3D"569685d3af11">Required for a Database New Add: NO</p></li>
+<li local-id=3D"6da27e2bc1ba">
+<p local-id=3D"e83fc09c1a84">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"f0862892-82d5-458f-a7d5-355eb1451bd6">
+<p local-id=3D"7da71fe073ec">Data: Choice:</p>
+<ul local-id=3D"4817e888c32f">
+<li local-id=3D"76053c0ede97">
+<p local-id=3D"aaa642b32bb7">=E2=80=9Cblank=E2=80=9D</p></li>
+<li local-id=3D"d30a478afc30">
+<p local-id=3D"474459a7ccdb">Clustered</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"b111da1bd6ef">
+<p local-id=3D"cd04498d8702">Rev Category</p>
+<ul local-id=3D"c7de2aea81be">
+<li local-id=3D"e2ce3490-5b76-4ba3-9f79-9ab67919a4e3">
+<p local-id=3D"d23ebe47a633">System Purpose: Product Table / Workday Rules<=
+/p></li>
+<li local-id=3D"45146c6a-d642-49d2-97d3-f1c8013fa901">
+<p local-id=3D"31ee511cc3c9">Definition: Categorization Used by Finance to =
+define rev treatment and schedule</p></li>
+<li local-id=3D"0e43d5638966">
+<p local-id=3D"b5fda1e0caf3">Required for a Database New Add: YES</p></li>
+<li local-id=3D"afb678586f7d">
+<p local-id=3D"1e457d0ba732">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"fa737912-d98d-4b70-bd5a-0c5c3a9c864f">
+<p local-id=3D"a696ba3ada11">Data: Choice:</p>
+<ul local-id=3D"e28de889866c">
+<li local-id=3D"92c2886ad1f7">
+<p local-id=3D"0bec512045a7">See list of Rev Categories (Example: RC_43000)=
+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"b02ae0b8b037">
+<p local-id=3D"042d2722f7df">Rev Category Name</p>
+<ul local-id=3D"d5ed4eb1558e">
+<li local-id=3D"c072ead4-2a65-445e-b10f-7459d24c0b48">
+<p local-id=3D"727790f57e83">System Purpose: Product Table / Workday Rules<=
+/p></li>
+<li local-id=3D"f1a97a6c-022f-4d8a-859c-bfb3d72b6fba">
+<p local-id=3D"49d98d1c3e3a">Definition: Name of Rev Category Provided by F=
+inance</p></li>
+<li local-id=3D"07f336c0d2a4">
+<p local-id=3D"6a8d339b8a68">Required for a Database New Add: YES</p></li>
+<li local-id=3D"000e64fb5677">
+<p local-id=3D"1c5f89030d8d">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"541c87cd-1d3b-42d1-afb6-218c6a1e6647">
+<p local-id=3D"49204ba8833e">Data: Formula</p>
+<ul local-id=3D"d606c8b592bc">
+<li local-id=3D"298eff014a85">
+<p local-id=3D"c232957ecb8b">Utilize Rev Category Table</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"192453f31d58">
+<p local-id=3D"b6f55e043067">Revenue Treatment</p>
+<ul local-id=3D"6c6472b1c4ff">
+<li local-id=3D"b3197936-e5de-4847-be4a-46ba3f9334ad">
+<p local-id=3D"22e85a8c91cb">System Purpose: Product Table / Workday Rules<=
+/p></li>
+<li local-id=3D"d12ced1f-1787-46ef-b7f9-40012a020276">
+<p local-id=3D"1746b828d9b0">Definition: Rev Category Treatment provided by=
+ Finance</p></li>
+<li local-id=3D"e326c36af921">
+<p local-id=3D"5d8327b92065">Required for a Database New Add: YES</p></li>
+<li local-id=3D"159da9db91be">
+<p local-id=3D"0f5866acd4e2">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"e9a546b0-8b29-4e88-9848-5ecab2a6f4bc">
+<p local-id=3D"ef2260ec1535">Data: Formula</p>
+<ul local-id=3D"683476791290">
+<li local-id=3D"9ce905084615">
+<p local-id=3D"57cc99d811a9">Utilize Rev Category Table</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"6851fd709237">
+<p local-id=3D"6468b0952415">Revenue Recognition Schedule Template</p>
+<ul local-id=3D"55baeab22370">
+<li local-id=3D"990d913a-925c-47d8-91b5-16e0dfeae3c5">
+<p local-id=3D"c3c75d76283f">System Purpose: Product Table / Workday Rules<=
+/p></li>
+<li local-id=3D"63b2ba75-827a-4eac-9b0f-d08c281dfefc">
+<p local-id=3D"527d2cffc1bb">Definition: Recognition provided by Finance</p=
+></li>
+<li local-id=3D"25d13f19bec8">
+<p local-id=3D"6356576ef9d1">Required for a Database New Add: YES</p></li>
+<li local-id=3D"1d696ff1a5d4">
+<p local-id=3D"b03e9b411d97">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"023d9abc-7355-47dd-a466-c9d3c6263a94">
+<p local-id=3D"0db1660b2c50">Data: Formula</p>
+<ul local-id=3D"48287efdb7af">
+<li local-id=3D"161d8d7d4176">
+<p local-id=3D"75ab723f8c84">Utilize Rev Category Table</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"3c00905b1369">
+<p local-id=3D"c8e4a3d0629f">Rev Schedule</p>
+<ul local-id=3D"4652e61d0e6e">
+<li local-id=3D"93586416f303">
+<p local-id=3D"10c7f709fede">DONT NEED Incorrectly Populated</p></li>
+</ul></li>
+<li local-id=3D"e4d1e7d33048">
+<p local-id=3D"13ba093b7634">Product Description</p>
+<ul local-id=3D"6d0031a31421">
+<li local-id=3D"eb007baa-b430-4a3d-8d6e-9be0b1215537">
+<p local-id=3D"a51ee19bc271">System Purpose: RCA Only</p></li>
+<li local-id=3D"f8401682-d267-4aba-8f06-3eff2c7e2515">
+<p local-id=3D"e443000a35ea">Definition: Description that shows in RCA for =
+a product to the Salesteam when quoting</p></li>
+<li local-id=3D"2cb8bf8d8414">
+<p local-id=3D"178ec62589a7">Required for a Database New Add: No</p></li>
+<li local-id=3D"ea3e35772944">
+<p local-id=3D"d53a3eaa6823">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"7ff9ec73-281b-4869-91d4-c4af4e6e1f7d">
+<p local-id=3D"d8102cf9160d">Data: Sentence or Two</p>
+<ul local-id=3D"a6fa3ba3e172">
+<li local-id=3D"e56d53fc1802">
+<p local-id=3D"ee01130ed250">Example: =E2=80=9CPer Business Consumer=E2=80=
+=9D</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"38faba931508">
+<p local-id=3D"e668b6df71c9">Product Type</p>
+<ul local-id=3D"75c1629c6292">
+<li local-id=3D"dba7a05c-2c58-486e-a9fb-d3859cddd8b4">
+<p local-id=3D"1e65de0eea0c">System Purpose: RCA Only</p></li>
+<li local-id=3D"74f2d3d1-7c19-4e2a-8633-0a871cc8e75f">
+<p local-id=3D"e23c1916665d">Definition: If a product is required to be sol=
+d with another product</p></li>
+<li local-id=3D"0d6c4c2ee3c7">
+<p local-id=3D"153253692cbb">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"ecc80c4b7db3">
+<p local-id=3D"6f656f83de80">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"4e12945c-9b6a-448e-b6a2-794712af9531">
+<p local-id=3D"7371d216f35e">Data: choice</p>
+<ul local-id=3D"06a7e6d4fbb6">
+<li local-id=3D"59907c2fa58d">
+<p local-id=3D"c8d6c43ed0f9">Add-On</p></li>
+<li local-id=3D"0fa12b0ce6fd">
+<p local-id=3D"789b8bbc1307">Bundle</p></li>
+<li local-id=3D"9324e399ff12">
+<p local-id=3D"42c299f6a896">Bundle Component</p></li>
+<li local-id=3D"873bbc22d855">
+<p local-id=3D"2d4f849ec179">Standalone (Default)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"581101d08552">
+<p local-id=3D"55d2e04944f4">Product Configuration Rules</p>
+<ul local-id=3D"fbdd91416d8d">
+<li local-id=3D"f6ee00ea-ac50-459b-9c35-a2f4be928d7b">
+<p local-id=3D"4aafa073d28f">DONT NEED System Purpose: RCA Only</p></li>
+</ul></li>
+<li local-id=3D"d5794e31f5e4">
+<p local-id=3D"b6968c929212">Price Rules</p>
+<ul local-id=3D"4f0f6ceed52b">
+<li local-id=3D"63fb9c59-14e0-4098-9f11-0247cfd2b404">
+<p local-id=3D"0eb12b0a94da">DONT NEED System Purpose: RCA Only</p></li>
+</ul></li>
+<li local-id=3D"f7477fd936d2">
+<p local-id=3D"dd68db40a62c">USD Price</p>
+<ul local-id=3D"6bc23563418a">
+<li local-id=3D"4c8ee73d-1d28-4f92-bf18-0cc7ad32eebb">
+<p local-id=3D"c4d4bd9176c8">System Purpose: RCA Only, Don=E2=80=99t think =
+this is needed in Workday?</p></li>
+<li local-id=3D"a642c378d939">
+<p local-id=3D"70c68e63afb0">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"564215fc291e">
+<p local-id=3D"71795e682501">Definition: Set Price in USD (All pricing conv=
+ersion from this point)</p></li>
+<li local-id=3D"c63bbb3a-adcc-4d95-a7b7-1bfed27901e5">
+<p local-id=3D"665944c53097">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"6ee49842-04ba-4e08-8783-62b3fe9a1ffc">
+<p local-id=3D"d3b6f0b2f161">Data: Number</p>
+<ul local-id=3D"e63eaa30791c">
+<li local-id=3D"447e8d70aeb4">
+<p local-id=3D"5de7eab53217">Example: $500.00</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"2140fa6f2b76">
+<p local-id=3D"6df8039d99f7">Fed Price</p>
+<ul local-id=3D"012ab7de5052">
+<li local-id=3D"93ba12b2-8b8e-4b37-bc9f-467f4eabaa02">
+<p local-id=3D"76f5ebfc962c">System Purpose: RCA Only</p></li>
+<li local-id=3D"4e554dc4-8920-416b-af65-e95bb43b4b91">
+<p local-id=3D"ab520430aabd">Definition: Set Price in USD (All pricing conv=
+ersion from this point)</p></li>
+<li local-id=3D"4f54090a0a9f">
+<p local-id=3D"6022f3f1f801">Required for a Database New Add: No</p></li>
+<li local-id=3D"ad630f410227">
+<p local-id=3D"cb969549e375">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span></p></li>
+<li local-id=3D"5014d529-c2a9-45f0-9d9f-37cfbf4b7985">
+<p local-id=3D"f35b2a2741e0">Data: Number</p>
+<ul local-id=3D"d1ba355444c4">
+<li local-id=3D"f3406da13df7">
+<p local-id=3D"d6f52404fc24">Example: $450.00</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"63d679a1cabb">
+<p local-id=3D"01b2269866f9">Services Discount Based on Region Conversion T=
+able</p>
+<ul local-id=3D"a7354dfe4635">
+<li local-id=3D"9122355c-c262-43b4-b509-525f4ef0fa95">
+<p local-id=3D"e71954480b5d">System Purpose: RCA Only</p></li>
+<li local-id=3D"85d89631-4828-47d2-bf1e-f30240e5715e">
+<p local-id=3D"d1e7b68d0937">Definition: If this is yes then RCA knows to u=
+tilize the Serivices Discount rules</p></li>
+<li local-id=3D"34a5d937ec17">
+<p local-id=3D"0a8fd784c718">Required for a Database New Add: No</p></li>
+<li local-id=3D"fb04f877e886">
+<p local-id=3D"c1c8148ba24f">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"64c6800f-d09a-4722-b9eb-121407035e32">
+<p local-id=3D"ebbc75055965">Data: Choice</p>
+<ul local-id=3D"7e3211589cf1">
+<li local-id=3D"5b0a538e58ad">
+<p local-id=3D"067f12cb5efe">No (Default)</p></li>
+<li local-id=3D"8833a0019760">
+<p local-id=3D"6ca95444a42d">Yes</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"f23c3eec2a3f">
+<p local-id=3D"9a5304a2fbf5">Product Selling Model</p>
+<ul local-id=3D"ffd6415b5bd2">
+<li local-id=3D"d8a04ca2-7533-4782-b06a-831f55e22477">
+<p local-id=3D"1a1599050117">System Purpose: RCA Only (Might be needed in p=
+roduct Table for Salesforce and Workday)</p></li>
+<li local-id=3D"3455e642-ea43-40ed-a8e7-ba1cce5f9607">
+<p local-id=3D"e6d9a8f150ab">Definition: Drives RCA details</p></li>
+<li local-id=3D"3eed53360022">
+<p local-id=3D"ab2bd9505912">Required for a Database New Add:Yes</p></li>
+<li local-id=3D"7f75239e6129">
+<p local-id=3D"6914fa56fe87">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"899de924-315c-46c1-8ebe-3cc0f900a130">
+<p local-id=3D"9432a9f707c4">Data: Choice</p>
+<ul local-id=3D"e820f4bf8c35">
+<li local-id=3D"94db66163b5a">
+<p local-id=3D"48e488808426">One-Time</p></li>
+<li local-id=3D"2cab9e4788f3">
+<p local-id=3D"70423ae11a11">Term Based - Renew (Default)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"7ea1e5ef2328">
+<p local-id=3D"03a4db50c807">Term Length</p>
+<ul local-id=3D"33e60e53ceb6">
+<li local-id=3D"9ef6bfd7-6b74-490d-98f5-0b36649ab81e">
+<p local-id=3D"66191643d139">System Purpose: RCA Only</p></li>
+<li local-id=3D"2553e499-b949-46b5-a6e6-854940e42076">
+<p local-id=3D"e3bc79b34b3b">Definition: Drives length of sale</p></li>
+<li local-id=3D"78b5690f4f1d">
+<p local-id=3D"17856789f6f9">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"0d01f62442ff">
+<p local-id=3D"bc3f457806f0">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"a21f2978-af80-4cc8-96cb-4fccf3bdbdf5">
+<p local-id=3D"c2f4a7a9669e">Data: Choice Depends on Sale</p>
+<ul local-id=3D"ea112010ab59">
+<li local-id=3D"b545fbed69b7">
+<p local-id=3D"41da34e40cb1">1 Month</p></li>
+<li local-id=3D"de401ab20a9f">
+<p local-id=3D"5f020ef3d07f">3 Months</p></li>
+<li local-id=3D"39b9e34f22ad">
+<p local-id=3D"29103adc0543">6 Months</p></li>
+<li local-id=3D"9f64b054dbd8">
+<p local-id=3D"efdd2945bd6d">12 Months (Default)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"09120800df1d">
+<p local-id=3D"0dca919b2a77">Unit of Measure</p>
+<ul local-id=3D"550c4eead616">
+<li local-id=3D"b150b589-5627-4425-bb0b-37c1d2eceda9">
+<p local-id=3D"d74886dd6db0">System Purpose: RCA Only</p></li>
+<li local-id=3D"f4b9072b-2986-4369-9405-727856f79ac4">
+<p local-id=3D"ca8e1c6b6eb0">Definition: Tells if there should be a quantit=
+y allowed or not</p></li>
+<li local-id=3D"b498a733b657">
+<p local-id=3D"71c8eda8528c">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"e1187519950b">
+<p local-id=3D"5c10612df815">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"bee21e91-a45d-49cc-ad3d-34e482a06444">
+<p local-id=3D"8a82dee8c223">Data: Choice</p>
+<ul local-id=3D"98732bd3e8ad">
+<li local-id=3D"90e40b3394fd">
+<p local-id=3D"6e836aff56af">1 Each (Default)</p></li>
+<li local-id=3D"6a73f910e5be">
+<p local-id=3D"57455b5fcd01">Quantity</p></li>
+<li local-id=3D"865e11f389a6">
+<p local-id=3D"042ebedbc2ac">Tier Based</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"a541fda47279">
+<p local-id=3D"547129423a04">Related to (What Maintenance SKU to add on whe=
+n Sold)</p>
+<ul local-id=3D"2fdd3c48e26d">
+<li local-id=3D"33f16f3a-d7ce-47fe-ab64-900152052202">
+<p local-id=3D"938a9d06badb">System Purpose: RCA Only</p></li>
+<li local-id=3D"8159f489-c3a8-4db7-8b69-ece19178e5d9">
+<p local-id=3D"e4ffe8603211">Definition: For perpetual what new maintenance=
+ sku is used, as well as for each New Maintenance sku what renewal sku is u=
+tilized in quotes and orders.</p></li>
+<li local-id=3D"f8152d958d36">
+<p local-id=3D"6abebc5d5f10">Required for a Database New Add: No</p></li>
+<li local-id=3D"a4e016aca75e">
+<p local-id=3D"9ba7ea494502">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"4f8cdbe4-7799-4755-8734-e2bcffc90cbf">
+<p local-id=3D"d4b569b54599">Data: Formula</p>
+<ul local-id=3D"ebd5891df533">
+<li local-id=3D"d44bca7f161a">
+<p local-id=3D"2b7fb6be776f">License Type =3D Perpetual (=3DCONCATENATE(Fin=
+al Sku Name," - "," New Maintenance")</p></li>
+<li local-id=3D"e4f54284850f">
+<p local-id=3D"0851ac5c287b">License Type =3D New Maintenance (=3DCONCATENA=
+TE(Final Sku Name," - "," Renewal Maintenance")</p></li>
+<li local-id=3D"96dba87a4571">
+<p local-id=3D"904f27739b01">License Type =3D Renewal Maintenance</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"69a05c49d649">
+<p local-id=3D"bfcd90aaa2f2">Salesforce Product Code</p>
+<ul local-id=3D"da3ab2c20122">
+<li local-id=3D"fc6fba70-0468-4aee-8559-bbe22cc05b9a">
+<p local-id=3D"d441ff9fb20a">System Purpose: Official NEW SKU Code to link =
+all systems</p></li>
+<li local-id=3D"3dbcbae1-ca18-48c2-94c3-e1fc1b47738a">
+<p local-id=3D"a94bc3b7709f">Definition: Code created using multiple tables=
+ and used to link all systems of record.</p></li>
+<li local-id=3D"57efe7770764">
+<p local-id=3D"ddd078c96319">Required for a Database New Add: YES</p></li>
+<li local-id=3D"8f722f54e16f">
+<p local-id=3D"66b91768f62b">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"e82dceab-442e-42ad-88af-4abc97849e4a">
+<p local-id=3D"69c15811b9c8">Data: Formula</p>
+<ul local-id=3D"e8c5bc3da000">
+<li local-id=3D"f7916442435d">
+<p local-id=3D"e4491d31cb14">=3Diferror(VLOOKUP(trim(I6101),'Product Codes'=
+!I:J,2,false)&amp;"-"&amp; VLOOKUP(trim(J6101),'Product Codes'!A:B,2,false)=
+&amp;"-"&amp;VLOOKUP(trim(AH6101),'Product Codes'!C:D,2,false)&amp;"-"&amp;=
+VLOOKUP(trim(L6101),'Product Codes'!E:F,2,false))</p></li>
+<li local-id=3D"5203a0e6163d">
+<p local-id=3D"3594186fbe4c">=3Diferror(VLOOKUP(trim(I33909),'Product Codes=
+'!I:J,2,false)&amp;"-"&amp; VLOOKUP(trim(J33909),'Product Codes'!A:B,2,fals=
+e)&amp;"-"&amp;VLOOKUP(trim(AH33909),'Product Codes'!C:D,2,false)&amp;"-"&a=
+mp;VLOOKUP(trim(substitute(L33909,"_LIC","")),'Product Codes'!E:F,2,false))=
+&amp;"_LIC"</p></li>
+<li local-id=3D"a6e855752533">
+<p local-id=3D"7098322dec22">=3Diferror(VLOOKUP(trim(I24487),'Product Codes=
+'!I:J,2,false)&amp;"-"&amp; VLOOKUP(trim(J24487),'Product Codes'!A:B,2,fals=
+e)&amp;"-"&amp;VLOOKUP(trim(AH24487),'Product Codes'!C:D,2,false)&amp;"-"&a=
+mp;VLOOKUP(trim(substitute(L24487,"_MAINT","")),'Product Codes'!E:F,2,false=
+))&amp;"_MAINT"</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"b67e7e8fca8c">
+<p local-id=3D"6ee8171b59ca">Added to Fortra Salesforce</p>
+<ul local-id=3D"81bd09cdb94e">
+<li local-id=3D"12e62de60b2b">
+<p local-id=3D"45a226d2d941">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+<li local-id=3D"6120b7cbfc71">
+<p local-id=3D"977c0dd3bc94">Added to Workday</p>
+<ul local-id=3D"7a5fde35aee4">
+<li local-id=3D"60f7f12cd076">
+<p local-id=3D"f137453155aa">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+<li local-id=3D"572c00b443eb">
+<p local-id=3D"4d5671c9f26a">Added to Legacy Systems</p>
+<ul local-id=3D"15cb3cf0e32b">
+<li local-id=3D"8279cfc6b42b">
+<p local-id=3D"20d073d435fa">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+<li local-id=3D"1d1b05b302ae">
+<p local-id=3D"5e85862dde19">Last Reviewed / Updated / Modifield / After 10=
+.14</p>
+<ul local-id=3D"72b172460692">
+<li local-id=3D"4649ef271f8d">
+<p local-id=3D"a1a63e5c9a1b">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+</ul>
+<p local-id=3D"ace8b52d9a58"></p>
+<ul local-id=3D"4e26c5b2f3c4">
+<li local-id=3D"d3f2d8e07cdb">
+<p local-id=3D"5163bb218c3e"><span class=3D"inline-comment-marker" data-ref=
+=3D"aa05e752-14e4-4aa8-b7be-acbd75d024d4">Fixed or Usage Based</span></p>
+<ul local-id=3D"28fd809de818">
+<li local-id=3D"c814893a4931">
+<p local-id=3D"774b929fe185">System Purpose: Workday, RCA</p></li>
+<li local-id=3D"6e291a38-0078-4c8e-b7a9-1f990231ea78">
+<p local-id=3D"91a56315a45d"><span style=3D"background-color: rgb(254,222,2=
+00);">Definition: Not sure</span></p></li>
+<li local-id=3D"da3afaa27d6f">
+<p local-id=3D"14fa1a1682dd">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"4b81ada3b3a9">
+<p local-id=3D"1aa55df99e81">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"72b76a9d-1c3f-417f-95cc-9f393cefedba">
+<p local-id=3D"8d6be13bc4bc">Data:</p>
+<ul local-id=3D"70c1b2422935">
+<li local-id=3D"62af851b6377">
+<p local-id=3D"b5ec0ffe083a">If RC_45000 or RC_45001 or RC_45003 =3D Usage =
+Based</p></li>
+<li local-id=3D"7422907c608a">
+<p local-id=3D"e0b4f6ab2f19">=3Dif(or(AK6106=3D"Pre Pay Service",AK6106=3D"=
+Post Pay Service"),"Usage Based","Fixed")</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"906ff5ad7271">
+<p local-id=3D"0429bd8a5f29">Product Classification</p>
+<ul local-id=3D"42f3b47f47d5">
+<li local-id=3D"b304e255-1d99-4981-8279-b6782f6794e2">
+<p local-id=3D"35649654ac19">System Purpose: Legacy Database</p></li>
+<li local-id=3D"0021916f-6ed6-41bb-914d-be6cf7406213">
+<p local-id=3D"30f5bd99010a"><span style=3D"background-color: rgb(248,230,1=
+60);">Definition: Not Sure</span></p></li>
+<li local-id=3D"0d701c44069d">
+<p local-id=3D"26e10c61f975">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"cc71107e2118">
+<p local-id=3D"71c412be8885">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"f97785da-ff92-474f-96aa-accbe1be04e5">
+<p local-id=3D"e45b1829a4d5">Data: Formula</p>
+<ul local-id=3D"decab4bc9a54">
+<li local-id=3D"baf6fda35936">
+<p local-id=3D"1114b8bd5c24">if(right(AW6109,6)=3D"_MAINT","_MAINT",if(righ=
+t(AW6109,4)=3D"_LIC","_LIC","Standard"))</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"b6cf20691ed2">
+<p local-id=3D"0048e1b69e01">Is Workday Bundle</p>
+<ul local-id=3D"de997873dceb">
+<li local-id=3D"b67c7663-6bc9-413c-91c0-42977081d23b">
+<p local-id=3D"e7c4d6ab8eb5">System Purpose: Workday Data</p></li>
+<li local-id=3D"dae6ee1c-4842-4b31-8535-e4191c5724ea">
+<p local-id=3D"fd94192a4105">Definition: This tells us what SubSplit is the=
+ Parent SKU =3D True</p></li>
+<li local-id=3D"bed1d605fcfc">
+<p local-id=3D"d36eae319977">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"6bdaf75bc84c">
+<p local-id=3D"7df178d0c676">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA </span></p></li>
+<li local-id=3D"6c677be3-6df8-4b88-b1ce-8db848af4e2a">
+<p local-id=3D"8c2c4172a9be">Data: Formula</p>
+<ul local-id=3D"5093b2b37f30">
+<li local-id=3D"73687fef9b6e">
+<p local-id=3D"1ddaa409c13a">=3Dif(and(BE6109=3D"",AG6109=3D"RC_41202"),TRU=
+E,FALSE)</p></li>
+<li local-id=3D"d8fd6741672a">
+<p local-id=3D"cd07aebd86f4">If Rev Category =3D 'RC_41202' and SF Product =
+code doesn't end with _LIC or _MAINT=3D True</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"1fcd1174c5c4">
+<p local-id=3D"b39c5a1e8ed5">Workday Bundle Parent Code</p>
+<ul local-id=3D"2764f6951d8f">
+<li local-id=3D"2450f80e-3641-4c5b-9149-f953149af24b">
+<p local-id=3D"241ad998000c">System Purpose: Workday Specific Detail</p></l=
+i>
+<li local-id=3D"69467bea-c60b-4676-991c-366ea9bb958f">
+<p local-id=3D"df219a103ced"><span style=3D"background-color: rgb(248,230,1=
+60);">Definition: Not Sure </span></p></li>
+<li local-id=3D"8bb350fed945">
+<p local-id=3D"354ba6b615ae">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"454822dada50">
+<p local-id=3D"7701bcf608a1">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"f9c43199-f6d5-4ad2-bb9e-b3195ac00333">
+<p local-id=3D"a6c79ea52ad6">Data: Formula</p>
+<ul local-id=3D"c2a96728b590">
+<li local-id=3D"1d641865f32d">
+<p local-id=3D"f15c78f757c1">=3DSUBSTITUTE(Substitute(AW6066,"_MAINT",""),"=
+_LIC","")</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"cc0a59ae1c9f">
+<p local-id=3D"2e604481e76f">Contract Line type</p>
+<ul local-id=3D"d612681c9804">
+<li local-id=3D"553e46b9-682a-4b6a-80ff-88c88aa45e66">
+<p local-id=3D"1605522e23e6">System Purpose: Workday Bundle Detail</p></li>
+<li local-id=3D"ef1fd8ae0a0b">
+<p local-id=3D"bb75ad97d729"><span style=3D"background-color: rgb(248,230,1=
+60);">Definition: Not Sure </span></p></li>
+<li local-id=3D"59129432893b">
+<p local-id=3D"8b790f1078ad">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"ec1a54121c58">
+<p local-id=3D"eec45ef5b294">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"f8efd2dd-dfe3-4921-ae92-d38c32a022b6">
+<p local-id=3D"b531dbe4ceb8">Data: Formula</p>
+<ul local-id=3D"caa135d8eeb1">
+<li local-id=3D"d7df281ca07c">
+<p local-id=3D"58c0c8258634">=3Dif(BD6062,"Fixed Amount - Billing Only","")=
+</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"bbb028cb6c00">
+<p local-id=3D"2c72d24a8413">Is Services Estimate Product (Certinia)</p>
+<ul local-id=3D"b8e81809b9e4">
+<li local-id=3D"0caff509-3477-48ac-baf1-3d6507ae97b5">
+<p local-id=3D"3f617308bb90">System Purpose: Certinia</p></li>
+<li local-id=3D"2c776c806caf">
+<p local-id=3D"2fcbe4d9d2af"><span style=3D"background-color: rgb(248,230,1=
+60);">Definition: Not Sure </span></p></li>
+<li local-id=3D"2327332801d8">
+<p local-id=3D"c1f1f30215be">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"b5c4d173067c">
+<p local-id=3D"833aefff3954">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"bbeea75c-b498-49b3-af45-37f7d0cf21fc">
+<p local-id=3D"bdde4ea28d2b">Data: Formula</p>
+<ul local-id=3D"c133dda7b7c8">
+<li local-id=3D"e8ec77a9d4f2">
+<p local-id=3D"fb0a92c578d3">=3Dif(O6061=3D"Services",TRUE,FALSE)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"2a0a8fbc7b70">
+<p local-id=3D"08a54425feb5">Fortra Business Unit</p>
+<ul local-id=3D"dbc6c82672b5">
+<li local-id=3D"eb959829-0833-449e-894f-99d582469cc4">
+<p local-id=3D"66afcbb1732c">System Purpose: Workday</p></li>
+<li local-id=3D"fef2cfd2-4bd5-4391-8309-b3a52bb7c59f">
+<p local-id=3D"9fec8a82ee52">Definition: Utilize table to find Solution Cat=
+egory and Workday Code for BU</p></li>
+<li local-id=3D"66b75d1697ff">
+<p local-id=3D"dabe885c2b64">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"d06f7914930c">
+<p local-id=3D"dc6c0b801b48">Populated: <span style=3D"background-color: rg=
+b(253,208,236);">FORMULA</span></p></li>
+<li local-id=3D"3d1cc8c9-56b1-4428-a62e-52f944e4947e">
+<p local-id=3D"ae4416e42a9f">Data: Formula</p>
+<ul local-id=3D"c7a67675e44e">
+<li local-id=3D"c61bafa28ab8">
+<p local-id=3D"6e55c937226b">=3DVLOOKUP(I6063,'Business Unit Mapping'!A:B,2=
+,false)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"36d6f1a340b1">
+<p local-id=3D"0e611a892644">7Bundle</p>
+<ul local-id=3D"50bc993dc194">
+<li local-id=3D"ab5261a55bbd">
+<p local-id=3D"dbe39bd2a211">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+<li local-id=3D"97671c6c2c6d">
+<p local-id=3D"b0deee202ebc">Royalties</p>
+<ul local-id=3D"01b1c07dc1e2">
+<li local-id=3D"c9cd67db175a">
+<p local-id=3D"1314935774a9">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+<li local-id=3D"d7ece51ae74d">
+<p local-id=3D"47ebc7e8eec7">Branching</p>
+<ul local-id=3D"8665fdcc2ffd">
+<li local-id=3D"88d7e23e-d5ac-440e-bf78-1d2aded127e5">
+<p local-id=3D"00ab033a28b0">System Purpose: RCA? (Need to verify with Coas=
+tal team has this is selected)</p></li>
+<li local-id=3D"45431f3c-76bd-46e9-812f-a625159dde1a">
+<p local-id=3D"1bd63b53de4b">Definition: This is used in RCA to know when w=
+e need seperate line items at the order on Hardware or partitions.</p></li>
+<li local-id=3D"846d6ea8194c">
+<p local-id=3D"7c96e39d249d">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"97d576021bab">
+<p local-id=3D"5267b527fbcc">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"d506874e-f60c-4609-a5f0-d656563d2261">
+<p local-id=3D"9c065d5c92c5">Data: Choice</p>
+<ul local-id=3D"26b978d5f233">
+<li local-id=3D"66d2adfd7387">
+<p local-id=3D"9f3dbf2371cf">Order Line and Hardware</p></li>
+<li local-id=3D"88e8333cf95e">
+<p local-id=3D"4de2b5f89ec8">Order Line Only</p></li>
+<li local-id=3D"3c1a80f37ca0">
+<p local-id=3D"91589cf7e0ef">None (Default)</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"4bc2dd580d67">
+<p local-id=3D"25735bf325c3">Tax Code</p>
+<ul local-id=3D"197c73093e9b">
+<li local-id=3D"a1de979c-a301-4833-99f6-664518c1383b">
+<p local-id=3D"acc5b8db2e3f">System Purpose: Workday</p></li>
+<li local-id=3D"5c796c85-b4fc-4e9a-b5f7-e0c1da298fdf">
+<p local-id=3D"15988760d165">Definition: Set by Tax Team</p></li>
+<li local-id=3D"3beb41fff02d">
+<p local-id=3D"784f37de8ae0">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"f9bb180b8b55">
+<p local-id=3D"72e0c1daf2a6">Populated: <span style=3D"background-color: rg=
+b(248,230,160);">(Manually - Text) </span> - could be choice if we had a fu=
+ll list of options from Tax team</p></li>
+<li local-id=3D"dd6a8d70-bdf5-42ca-bd7f-69d569b5a68f">
+<p local-id=3D"6f608a08a255">Data:</p>
+<ul local-id=3D"68bf631f4064">
+<li local-id=3D"5492fa6a01df">
+<p local-id=3D"debd79b7223f">Example: DC010500</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"ad70e9119fd5">
+<p local-id=3D"3b1e98c4e8ac">Legacy Product Brand</p>
+<ul local-id=3D"b2dda9342afb">
+<li local-id=3D"8ab1fc32-f286-4b41-8f54-304969f5a019">
+<p local-id=3D"2a3a2280b8e8">System Purpose: Salesforce Mapping</p></li>
+<li local-id=3D"53983ab87415">
+<p local-id=3D"03daca00a2ff">Definition: Need to show previous Brand, in so=
+me cases the two old sku=E2=80=99s were merged into one and we had to chooc=
+e a brand. If it is simple 1 for 1 easy then no choice. Just pull from Lega=
+cy System.</p></li>
+<li local-id=3D"d1d2e9406c23">
+<p local-id=3D"ef202df41ddc">Required for a Database New Add: Yes</p></li>
+<li local-id=3D"7e03953f430b">
+<p local-id=3D"09c3f8a98753">Populated: <span style=3D"background-color: rg=
+b(211,241,167);">(Manually - Choice) </span></p></li>
+<li local-id=3D"8a734710-4b36-4727-b9fa-4db6551b9d72">
+<p local-id=3D"c26b5ca2c3e8">Data: Based mainly on D365 Legacy Brand Names<=
+/p>
+<ul local-id=3D"e6a80b2409fd">
+<li local-id=3D"de33d01f3eed">
+<p local-id=3D"fa0db69382f0">Example: Core IGA</p></li>
+</ul></li>
+</ul></li>
+<li local-id=3D"0c3ef129df2b">
+<p local-id=3D"34f6c182953d">Marketing Products of Interest Group</p>
+<ul local-id=3D"db826c3e4c5d">
+<li local-id=3D"43a201ebedf1">
+<p local-id=3D"846cdf4e1db0">DONT NEED Tracking Purposes only</p></li>
+</ul></li>
+</ul>
+<p local-id=3D"a43a10913824"></p>
+<p local-id=3D"36cb49afc37f"></p>
+    </div>
+</body>
+</html>
+------=_Part_4_7300694.1780418955834--

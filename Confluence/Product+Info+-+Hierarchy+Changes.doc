@@ -1,0 +1,399 @@
+Date: Tue, 2 Jun 2026 16:47:42 +0000 (UTC)
+Message-ID: <334977381.5.1780418862243@855a742b9156>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_414965340.1780418862243"
+
+------=_Part_4_414965340.1780418862243
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Product Info - Hierarchy Changes</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Product Info - Hierarchy Changes</h1>
+    <div class=3D"Section1">
+        <p local-id=3D"f5da98cb78bf"><strong>PowerBI "Product Mapping" aka =
+(Source of Truth) </strong>--&gt; <a class=3D"external-link" href=3D"https:=
+//app.powerbi.com/Redirect?action=3DOpenReport&amp;appId=3Df4530bb5-b525-47=
+17-b846-d1774eade730&amp;reportObjectId=3Da64d3696-aa16-43c8-91d5-f72ef195f=
+e3d&amp;ctid=3Dca81e23b-3509-45ee-a998-3e346acf274d&amp;reportPage=3D1f6b4f=
+c27f8a4aee11b7&amp;pbi_source=3DappShareLink&amp;portalSessionId=3D11186844=
+-c86d-4503-91b7-baee2e971981" rel=3D"nofollow">Product Mapping</a></p>
+<p local-id=3D"af8882307faa"></p>
+<p local-id=3D"388ad02f039c"><strong>Internal Naming and Mapping of Fortra =
+Developed Products</strong></p>
+<p local-id=3D"a162942e4593"></p>
+<p local-id=3D"7d4ebc5c636c"><strong>Definitions (drafting):</strong>&nbsp;=
+</p>
+<p local-id=3D"17aadc94ff6b">Unit&nbsp;</p>
+<p local-id=3D"95cd63d27f15">Solution Group&nbsp;</p>
+<p local-id=3D"1a2e853aca7d">Business Unit&nbsp;</p>
+<p local-id=3D"91ec8a5dc58a">Brand / Product Line&nbsp;</p>
+<p local-id=3D"2ab0a866712c">Product =E2=80=93 A solution that is developed=
+ by our R&amp;D teams.&nbsp;</p>
+<p local-id=3D"fd96d127ca05"><strong>Summary:</strong>&nbsp;</p>
+<p local-id=3D"51559c937454">Fortra=E2=80=99s corporate level mapping of pr=
+oducts by Unit, Solution Group, and Product Line (Business Unit). This repo=
+rt will live on the Fortra Hub and will be our "Source of Truth" for intern=
+al naming and mapping. A change management process will be created and adop=
+ted for future changes to this =E2=80=9CSource of Truth.=E2=80=9D&nbsp;&nbs=
+p;</p>
+<ul local-id=3D"7be821d07b7d">
+<li local-id=3D"cd4538a057ff">
+<p local-id=3D"51d73d71ae46">This should NOT initially change any integral =
+tools (CRM/ADP/Etc) today =E2=80=93 just a reference point.&nbsp;&nbsp;</p>=
+</li>
+</ul>
+<ul local-id=3D"51904e17048d">
+<li local-id=3D"de511b007066">
+<p local-id=3D"9dec753a6cf7">Over the next few months, the Innovation Cente=
+r will reach out to each department and analyze what tools can or should be=
+ changed while working closely with each department to confirm a change man=
+agement process is in place. Please reach out to ensure any changes you mak=
+e will not affect other departments or reporting before making a change.&nb=
+sp;&nbsp;</p></li>
+</ul>
+<p local-id=3D"d4c29a1b7121"><strong>The Problem:&nbsp;</strong>&nbsp;</p>
+<p local-id=3D"a41f300f9594">It is important that we all speak the same lan=
+guage internally across Fortra.&nbsp;&nbsp;</p>
+<ul local-id=3D"b3ac9351f404">
+<li local-id=3D"9a0278f18b67">
+<p local-id=3D"613613952ecc">Historically we have not had good change manag=
+ement process, communication, or collaboration at all department levels at =
+=E2=80=9CUnit/Solution Group/Business Unit=E2=80=9D as each department uses=
+ a different name for one Brand or Solution Group.&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"34cb974e20a9">
+<li local-id=3D"ed96ed287a0e">
+<p local-id=3D"2bf96d41cb75">Changes happen in one location but not others.=
+&nbsp;</p></li>
+</ul>
+<ul local-id=3D"9b0e788b9f92">
+<li local-id=3D"8035a3c3c78f">
+<p local-id=3D"a1b248b4ace0">Teams not knowing the =E2=80=9Cright=E2=80=9D =
+terminology to use.&nbsp;</p></li>
+</ul>
+<ul local-id=3D"e7971467beda">
+<li local-id=3D"61b26bf98db0">
+<p local-id=3D"33d5a81df882">Loss of Identity:&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"e7448eb2197a">
+<li local-id=3D"0ee15376cc0d">
+<p local-id=3D"26b45ee449aa">New employees may not understand where they fi=
+t when listening to an All-Company meeting where abbreviations or Solution =
+Group names are being used.&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"a93a6bfd1fa5">
+<li local-id=3D"e7017e444213">
+<p local-id=3D"3daff6f51276">Extra work as multiple systems are out of sync=
+ and require manual "work arounds" to map correctly.&nbsp;&nbsp;</p></li>
+</ul>
+<p local-id=3D"b9b6897ab6bd"><strong>The Solution:</strong>&nbsp;</p>
+<ul local-id=3D"32478d026783">
+<li local-id=3D"f66fd5ef8b20">
+<p local-id=3D"8df0b08f7695">One central location on SharePoint Fortra Hub =
+for the =E2=80=9CSource of Truth=E2=80=9D of our internal naming convention=
+s and mapping of Unit/Solution Group/Business Unit. This process will be ow=
+ned by the Innovation Center with review and approval of changes through OT=
+M.&nbsp;</p></li>
+</ul>
+<ul local-id=3D"6f9119208c12">
+<li local-id=3D"144edb4250b1">
+<p local-id=3D"e0849b505d0e">This =E2=80=9CSource of Truth=E2=80=9D will be=
+ a reference point for teams to know the latest internal naming conventions=
+.&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"67ed60aced0f">
+<li local-id=3D"76eef96ba8d6">
+<p local-id=3D"7ca99113fd4f">This will NOT initially change any integral to=
+ols =E2=80=93 just a reference point for today.&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"1400950a0d57">
+<li local-id=3D"0a97c0055813">
+<p local-id=3D"74da97c4a72c">There will be an intake form on this page for =
+suggested changes in the future to be reviewed and approved by OTM.&nbsp;</=
+p></li>
+</ul>
+<ul local-id=3D"3ecb21963664">
+<li local-id=3D"00e441b55b08">
+<p local-id=3D"dcd41d8f019e">If a change is requested of this =E2=80=9CSour=
+ce of Truth=E2=80=9D in the future =E2=80=93 it would go through a review b=
+y the OTM team =E2=80=93 then be updated on the =E2=80=9CSource of Truth.=
+=E2=80=9D&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"23d5e73b5209">
+<li local-id=3D"dd8a838d1bde">
+<p local-id=3D"4a3f7e76f75a">Any changes reviewed by the OTM would then kic=
+k off:&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"1865111b436a">
+<li local-id=3D"4f4713a3f7ff">
+<p local-id=3D"fd214c43eca0">Change Management Process Review - (being defi=
+ned and created now)&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"84cb845769b0">
+<li local-id=3D"822542a93b87">
+<p local-id=3D"ff56c3d02760">We will define set times change can take place=
+ (1-2 times per year).&nbsp;</p></li>
+</ul>
+<ul local-id=3D"2533759468dd">
+<li local-id=3D"ee4168339867">
+<p local-id=3D"71dc52ff325e">This Project will be owned by the Innovation C=
+enter, figuring out what tools will be affected, who all needs to be inform=
+ed, ensuring change management is in the process before any changes take pl=
+ace, documenting where changes cannot take place, etc.&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"f5618654edb4">
+<li local-id=3D"aba17b8450b8">
+<p local-id=3D"fd26c45639c7">Some tools might not be able to change example=
+ D365 =E2=80=9Cbrand=E2=80=9D field. We could still make changes to the new=
+er Product Family fields to map to the new naming conventions, but that wil=
+l be worked out with multiple departments weighing in.&nbsp;&nbsp;</p></li>
+</ul>
+<ul local-id=3D"d8bfa4baf7b0">
+<li local-id=3D"8303d1bff49b">
+<p local-id=3D"91e2fc7af632">Others may take time, prioritized based on urg=
+ency or need for finance reporting or active directory needs.&nbsp;&nbsp;</=
+p></li>
+</ul>
+<ul local-id=3D"a1ae1436f110">
+<li local-id=3D"21d19782a6b5">
+<p local-id=3D"6fc6689894ff">Others need a good change management process (=
+IT and HR are currently working on creating this now for ADP).&nbsp;&nbsp;<=
+/p></li>
+</ul>
+<ul local-id=3D"f80f8c4bcea7">
+<li local-id=3D"4d85f6d40991">
+<p local-id=3D"fae0910268bd">The Innovation Center will be working with eac=
+h department to flush out who will need to be notified on changes and what =
+tools would be affected to manage if a change can or should take place ther=
+e.&nbsp;&nbsp;</p></li>
+</ul>
+<p local-id=3D"d42a72b208e1"></p>
+<p local-id=3D"74fe23054d3a"></p>
+<p local-id=3D"9edd29d4f6de"></p>
+<p local-id=3D"1f1dd84c4058"></p>
+<p local-id=3D"c0adbba27640"></p>
+<p local-id=3D"324cda484a16"></p>
+    </div>
+</body>
+</html>
+------=_Part_4_414965340.1780418862243--

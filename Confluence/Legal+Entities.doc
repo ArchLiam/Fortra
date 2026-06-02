@@ -1,0 +1,679 @@
+Date: Tue, 2 Jun 2026 16:51:27 +0000 (UTC)
+Message-ID: <1511087323.7.1780419087881@ad4a0577c43c>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_1468977791.1780419087880"
+
+------=_Part_6_1468977791.1780419087880
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Legal Entities</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Legal Entities</h1>
+    <div class=3D"Section1">
+        <div class=3D"panel" style=3D"background-color: #EAE6FF;border-colo=
+r: #998DD9;border-width: 1px;">
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p local-id=3D"d2020642ddf9">Fortra Review Complete 10.10.2025 (Revised 10.=
+23.2025) (Revised 3.30.2026 - to add legacy for data migration)</p>
+</div>
+</div>
+<h2 local-id=3D"46f41857d3c1" id=3D"LegalEntities-FortraSalesforceBuild">Fo=
+rtra Salesforce Build</h2>
+<p local-id=3D"2366be8a5400"><strong>Renewals:</strong></p>
+<p local-id=3D"933fa0a10763">Use currency and legal entity from legacy orgs=
+. Default renewals to previous - always.</p>
+<p local-id=3D"081088c04684"><strong>New Sales: </strong></p>
+<p local-id=3D"7b39b0ab2a2f">1st - If Billing =E2=80=9CPlaces=E2=80=9D is P=
+hilippines - Fortra LLC Default</p>
+<p local-id=3D"beea5ca76a6f">2nd - Check =E2=80=9CPlaces=E2=80=9D of Billin=
+g location if there is a Default Legal Entity and/or Default Currency - use=
+ that.</p>
+<p local-id=3D"d6d6199630a7">3rd - If not Philippines and no default listed=
+ in billing =E2=80=9Cplaces=E2=80=9D then Legal Entity is based on Sales Re=
+p location - Located in User account detail.</p>
+<p local-id=3D"0b2c3e05f749"><strong>Rules: </strong></p>
+<p local-id=3D"d1ac39fa1d13">Currency is based on default currency for the =
+Legal Entity listed in below table, only certain currencies are options to =
+each entity.</p>
+<p local-id=3D"c884fea8751a">Philippines: Can only be billed from Fortra LL=
+C or Fortra International PTY LTD</p>
+<h1 local-id=3D"0b3b730a7bf5" id=3D"LegalEntities-NewSalesDefaultsshoulduse=
+thefollowingbasedonSalesRep:">New Sales Defaults should use the following b=
+ased on Sales Rep:</h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1770" data-layout=3D"center" data-local-id=3D"77=
+bc8fce-8f99-4d77-bbc9-53132fa98ccd" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 442.0px;">
+<col style=3D"width: 442.0px;">
+<col style=3D"width: 577.0px;">
+<col style=3D"width: 305.0px;">
+</colgroup>
+<tbody>
+<tr data-local-id=3D"0354a733f4b6">
+<td data-highlight-colour=3D"#ffffff" data-local-id=3D"370e3b7eeb76" class=
+=3D"confluenceTd">
+<h1 local-id=3D"9a8fd37c6372" id=3D"LegalEntities-LegalEntity">Legal Entity=
+</h1></td>
+<td data-highlight-colour=3D"#ffffff" data-local-id=3D"b39678254f7d" class=
+=3D"confluenceTd">
+<h1 local-id=3D"a546ba89b593" id=3D"LegalEntities-RegisteredAddress">Regist=
+ered Address</h1></td>
+<td data-highlight-colour=3D"#ffffff" data-local-id=3D"c8d58d8eb2f8" class=
+=3D"confluenceTd">
+<h1 local-id=3D"1cb2b10af2b6" id=3D"LegalEntities-DefaultCurrency">Default =
+Currency</h1></td>
+<td data-highlight-colour=3D"#ffffff" data-local-id=3D"011a2343b8e3" class=
+=3D"confluenceTd">
+<h1 local-id=3D"c05faba5396f" id=3D"LegalEntities-WorkdayReferenceID">Workd=
+ay Reference ID</h1></td>
+</tr>
+<tr data-local-id=3D"e6b582e97410">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"7994f886a56b" class=
+=3D"confluenceTd">
+<p local-id=3D"d1592eb5b0b6">Fortra Argentina S.R.L.</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"2d20b8a750c7" class=
+=3D"confluenceTd">
+<p local-id=3D"811935c35a76">Fortra Argentina S.R.L.<br>
+Maip=C3=BA 1210 - Piso 8<br>
+(C1006ACT) Ciudad Aut=C3=B3noma de Buenos Aires<br>
+Phone: +54 (0) 11 4774-0112</p>
+<p local-id=3D"4cab118855dd">CUIT: 30-69062698-1 <br>
+ING BRUTOS CM: 901/30- 69062698-1 <br>
+INCIO ACTIVIDADES: 1/6/97 <br>
+Reg. IGJ N=C2=B0 3306 Libro 106 <br>
+Tomo de SRL<br><a class=3D"external-link" data-card-appearance=3D"inline" h=
+ref=3D"http://www.fortra.com" local-id=3D"7586f3c32598" rel=3D"nofollow">ht=
+tp://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"ed13721040e8" class=
+=3D"confluenceTd">
+<p local-id=3D"4cdf5c8b472c">Default: Argentina Peso <br>
+Allow: USD</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"4d8887e22c1b" class=
+=3D"confluenceTd">
+<p local-id=3D"dc337aab4154">COM026</p></td>
+</tr>
+<tr data-local-id=3D"f1941e18d08e">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"aa9ee9e333cb" class=
+=3D"confluenceTd">
+<p local-id=3D"cad5fa9a0939">Fortra Canada Inc.</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"848d6f39520c" class=
+=3D"confluenceTd">
+<p local-id=3D"e594731b3746">Fortra Canada Inc.<br>
+343 Preston Street, Suite 800<br>
+Ottawa, ON K1S1N4 <br>
+Canada</p>
+<p local-id=3D"25d86a073f31">Tax ID: 81930-6747 <br>
+Phone: +1 952-933-0609</p>
+<p local-id=3D"09d7a6aa58be"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"500033d7460a" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"ab73e57ded4a" class=
+=3D"confluenceTd">
+<p local-id=3D"033a55bc5b78">Default: CAD</p>
+<p local-id=3D"db978890db2b">Allow: USD</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"16bed7cf713d" class=
+=3D"confluenceTd">
+<p local-id=3D"c3596f6d4c32">COM048</p></td>
+</tr>
+<tr data-local-id=3D"9f03665ab07b">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"d3cb1c1f8311" class=
+=3D"confluenceTd">
+<p local-id=3D"421a435e3826">Fortra International GmbH</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"c649a145f8c7" class=
+=3D"confluenceTd">
+<p local-id=3D"7c9285b07771">Fortra International GmbH<br>
+Balsberg<br>
+CH-8058 Zurich-Airport<br>
+Switzerland</p>
+<p local-id=3D"7013a7d030a9">CHE-114.490.160 MWST</p>
+<p local-id=3D"791d52c91136">Phone: +44 (0) 870 120 3148</p>
+<p local-id=3D"26f7b5e2bd23"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"3d69c94d7f0f" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"6011dad03950" class=
+=3D"confluenceTd">
+<p local-id=3D"7fdccd570e22">Default: eruo</p>
+<p local-id=3D"f2b450d917c7">Allow: USD</p>
+<p local-id=3D"3aeb117151bc">Pound Sterling</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"ea306ea2ecf2" class=
+=3D"confluenceTd">
+<p local-id=3D"b4c6b5d0a6dd">COM010</p></td>
+</tr>
+<tr data-local-id=3D"25e8306cd665">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"dc1e39a7a92a" class=
+=3D"confluenceTd">
+<p local-id=3D"b845487840dd">Fortra International Limited</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"b7456ac7aa94" class=
+=3D"confluenceTd">
+<p local-id=3D"f285f72ddc14">Fortra International Limited<br>
+Oakwood Corporate Services Ltd<br>
+3rd Floor 1 Ashley Road<br>
+Altrincham, Cheshire WA14 2DT</p>
+<p local-id=3D"d9dcf6623176">Company No: 4172068 <br>
+VAT Reg No: GB770614141 <br>
+Phone: +44 (0) 870 120 3148 <br><a class=3D"external-link" data-card-appear=
+ance=3D"inline" href=3D"http://www.fortra.com" local-id=3D"38d628958218" re=
+l=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"a7900b3f6ea0" class=
+=3D"confluenceTd">
+<p local-id=3D"152f318a1a0d">Default: Pound Sterling</p>
+<p local-id=3D"2a09f4c6aedc">Allow: USD<br>
+EURO<br>
+Japanese Yn<br>
+franc suisse<br>
+AUD<br>
+CAD</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"1c770abb1a5b" class=
+=3D"confluenceTd">
+<p local-id=3D"ce59f5f85b26">COM008</p></td>
+</tr>
+<tr data-local-id=3D"376d850f222c">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"26ac0e16e4b5" class=
+=3D"confluenceTd">
+<p local-id=3D"5f6cf0aa5d44">Fortra International PTY LTD</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"45cbfa4f3362" class=
+=3D"confluenceTd">
+<p local-id=3D"fa270b5dd058">Fortra International Pty Ltd.<br>
+Minerva Corporate, Level 8<br>
+99 St. Georges Terrace<br>
+Perth WA 6000<br>
+Australia<br></p>
+<p local-id=3D"a0cfeede5946">ABN: 38 114 482 021 <br>
+Phone: +61 (0) 3 8546 7000</p>
+<p local-id=3D"5f89fd920e93"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"c3af1e3cad08" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"4f53a329543c" class=
+=3D"confluenceTd">
+<p local-id=3D"8ea3aeea5b09">Default: AUD</p>
+<p local-id=3D"75a5f84ea782">Allow: USD<br>
+New Zealand Dollar<br>
+Pound Sterling</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"613921253145" class=
+=3D"confluenceTd">
+<p local-id=3D"8c3d9cc03f76">COM009</p></td>
+</tr>
+<tr data-local-id=3D"688abba23a59">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"953509b334e4" class=
+=3D"confluenceTd">
+<p local-id=3D"124cd412a791">Fortra, LLC</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"03a4014e123d" class=
+=3D"confluenceTd">
+<p local-id=3D"112e667a868a">Fortra, LLC<br>
+11095 Viking Drive, Suite 100<br>
+Eden Prairie, MN 55344<br>
+United States</p>
+<p local-id=3D"2a5c1229f94a">Tax ID: 30-0290533 <br>
+Phone: +1 952-933-0609</p>
+<p local-id=3D"1d9072e5e0e3"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"acd74b1594a7" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"85034463330e" class=
+=3D"confluenceTd">
+<p local-id=3D"8c5c03c3874e">Default: USD<br>
+Allow: euro</p>
+<p local-id=3D"45075f406a17">Canadian Dollar</p>
+<p local-id=3D"17b11447cfa8">Pound Sterling</p>
+<p local-id=3D"061914c51714">Japanese Yen</p>
+<p local-id=3D"74539679c23b">Australian Dollar</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"1345bd72131e" class=
+=3D"confluenceTd">
+<p local-id=3D"944059d0a159">COM003</p></td>
+</tr>
+<tr data-local-id=3D"bce84cb19820">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"e03fb25bec24" class=
+=3D"confluenceTd">
+<p local-id=3D"5f8bd60ce2ca">Fortra Computing Group, S.L.U.</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"256547d770ef" class=
+=3D"confluenceTd">
+<p local-id=3D"1c6a884dc22e">Fortra Computing Group, S.L.U.<br>
+Reg. Mercantil de Barcelona<br>
+Tomo 25991, Libro - , Secc. Gral., <br>
+Folio 0216, Hoja 96367<br>
+CIF: B-60341401<br>
+EMEA Headquarters: <br>
+Gv De Les Corts Catalanes,583 <br>
+P.2 Despacho 209 <br>
+Barcelona (08011) - Spain <br>
+Phone: + 34 93 274 0051</p>
+<p local-id=3D"dad80a0c906b"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"f95a8bfbb738" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"01dcf34c4cf4" class=
+=3D"confluenceTd">
+<p local-id=3D"7577dc0e7b97">Default: euro</p>
+<p local-id=3D"edbb9a04f28f">Allow: USD</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"99bb19b8bdcf" class=
+=3D"confluenceTd">
+<p local-id=3D"e4512e6f253b">COM025</p></td>
+</tr>
+<tr data-local-id=3D"6c4f4873ad78">
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"1a469a3b0a8c" class=
+=3D"confluenceTd">
+<p local-id=3D"0abb660aeace">Fortra Japan KK</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"c636d5449176" class=
+=3D"confluenceTd">
+<p local-id=3D"95e7d60fea77">Fortra Japan K.K.</p>
+<p local-id=3D"ca91ae9bcefa">4F Otemachi First Square East Tower,</p>
+<p local-id=3D"7470f599dead">1-5-1 Otemachi, Chiyoda-ku,</p>
+<p local-id=3D"583a660e78ea">Tokyo 100-0004</p>
+<p local-id=3D"fd24aad80d64">Phone: ????</p>
+<p local-id=3D"69a70f6950c5"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"15a3880a84a6" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"d38d8565a642" class=
+=3D"confluenceTd">
+<p local-id=3D"2fbca1b6fff0">Default: JPY</p></td>
+<td data-highlight-colour=3D"#deebff" data-local-id=3D"b72e4e337db3" class=
+=3D"confluenceTd">
+<p local-id=3D"f608e37d9b42">COM071</p></td>
+</tr>
+<tr data-local-id=3D"ba2a60058e91">
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"a64f02c1937f" class=
+=3D"confluenceTd">
+<p local-id=3D"8b9f7be9972c">(renewal only no new sales)<br>
+Terranova Worldwide Corporation</p></td>
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"e8d852166c9d" class=
+=3D"confluenceTd">
+<p local-id=3D"272cef303b38">Terranova Worldwide Corporation<br>
+1155, boul. Ren=C3=A9-L=C3=A9vesque Ouest <br>
+Porte 4100 <br>
+Montr=C3=A9al (Qu=C3=A9bec) <br>
+H3B 3V2 <br>
+Canada</p>
+<p local-id=3D"aeb0145fb85f">GST/TPS: 86600 3338 RT0001 <br>
+QST/TVQ : 1090162728 <br>
+TQ0001 <br>
+Phone: (514) 489-5806</p>
+<p local-id=3D"8041dc955e2a"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"53d70d4d315c" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"038b94490089" class=
+=3D"confluenceTd">
+<p local-id=3D"42595a207224">Default: CAD</p>
+<p local-id=3D"9809ec329ae5">(only Human Risk Management products)</p>
+<p local-id=3D"23a0b72f8679">Allow: franc suisse<br>
+euro<br>
+US Dollar</p></td>
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"727ee9fe1020" class=
+=3D"confluenceTd">
+<p local-id=3D"88c41cab53e2">COM079</p></td>
+</tr>
+<tr data-local-id=3D"6bfdc76b3a55">
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"40587a16736a" class=
+=3D"confluenceTd">
+<p local-id=3D"1cdf2167a1f3">(renewal only no new sales)<br>
+Tripwire Inc.</p></td>
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"4c225cf2fd9f" class=
+=3D"confluenceTd">
+<p local-id=3D"148b1a3b3669">Tripwire Inc. <br>
+11095 Viking Drive, Suite 100<br>
+Eden Prairie, MN 55344<br>
+United States</p>
+<p local-id=3D"568cfc457215">Federal ID: 91-1826027<br>
+QST# 1087434598<br>
+GST/HST#87050 1020 RT0001<br>
+DUNS #05-913-6577</p>
+<p local-id=3D"da436c7152d3"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"b7060bec777d" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"0744d146faa5" class=
+=3D"confluenceTd">
+<p local-id=3D"1673fb75e4a6">Default: US Dollar</p>
+<p local-id=3D"7de5b1795b8c">(only File Integrity Monitoring products)</p><=
+/td>
+<td data-highlight-colour=3D"#abf5d1" data-local-id=3D"ab9fe9ffef05" class=
+=3D"confluenceTd">
+<p local-id=3D"357aae833f86">COM074</p></td>
+</tr>
+<tr data-local-id=3D"a1e0a53849ce">
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"6de2fb6806ef" class=
+=3D"confluenceTd">
+<p local-id=3D"7a5736d5fc8e">(Data Migration ONLY no new sales)<br>
+Clearswift Limited</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"a02783e8668b" class=
+=3D"confluenceTd">
+<p local-id=3D"f5c04fdd5019">Clearswift Limited<br>
+Oakwood Corporate Services Ltd<br>
+3rd Floor 1 Ashley Road<br>
+Altrincham, Cheshire WA14 2DT<br></p>
+<p local-id=3D"afc515816dad">Company No: 3367495 <br>
+VAT Reg No: GB787427676 <br>
+Phone: +44 (0) 870 120 3148</p>
+<p local-id=3D"67acc7954950"><a class=3D"external-link" data-card-appearanc=
+e=3D"inline" href=3D"http://www.fortra.com" local-id=3D"43ccc0a384b1" rel=
+=3D"nofollow">http://www.fortra.com</a></p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"28c6b7825480" class=
+=3D"confluenceTd">
+<p local-id=3D"52f2428c99fb">Default: GBP</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"94dadc972e60" class=
+=3D"confluenceTd">
+<p local-id=3D"d48fd5574733">COM043</p></td>
+</tr>
+<tr data-local-id=3D"44f508f83b71">
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"9a7a43d22691" class=
+=3D"confluenceTd">
+<p local-id=3D"a477db9cdac9">(Data Migration ONLY no new sales)</p>
+<p local-id=3D"9f060a3120a7">CCSS Deutschland GmbH</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"f76cd81c6a84" class=
+=3D"confluenceTd">
+<p local-id=3D"2ae2b9d69af1">Germany</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"8f718f2f800b" class=
+=3D"confluenceTd">
+<p local-id=3D"2fd488e6652a">Default: EUR</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"c115778a63bd" class=
+=3D"confluenceTd">
+<p local-id=3D"99bbd74cde95">COM016</p></td>
+</tr>
+<tr data-local-id=3D"0e31d4c3b238">
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"0344c9528d73" class=
+=3D"confluenceTd">
+<p local-id=3D"c2c7e61ce436">(Data Migration ONLY no new sales)</p>
+<p local-id=3D"5a9a008711ac">SafeStone Technologies BV</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"e0995dc1f701" class=
+=3D"confluenceTd">
+<p local-id=3D"c19649be6200">Netherlands</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"a7e025dd1b98" class=
+=3D"confluenceTd">
+<p local-id=3D"a1cfebe69649">Default: EUR</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"17c766cb77f6" class=
+=3D"confluenceTd">
+<p local-id=3D"8ee546905836">COM014</p></td>
+</tr>
+<tr data-local-id=3D"62054f6e88c8">
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"c4357a373524" class=
+=3D"confluenceTd">
+<p local-id=3D"4684443a595c">(Data Migration ONLY no new sales)</p>
+<p local-id=3D"b149bdd546b9">Help/Systems International S.A.S</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"75e6c601870c" class=
+=3D"confluenceTd">
+<p local-id=3D"4ca9395d988b">France</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"c77f2e9070ae" class=
+=3D"confluenceTd">
+<p local-id=3D"677b232a31fe">Default: EUR</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"86fdf0da7af7" class=
+=3D"confluenceTd">
+<p local-id=3D"fd0a1010bc7e">COM011</p></td>
+</tr>
+<tr data-local-id=3D"3ad421b8265d">
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"f83af64a2ae9" class=
+=3D"confluenceTd">
+<p local-id=3D"f90806008714">(Data Migration ONLY no new sales)</p>
+<p local-id=3D"9da2ceb3a3d1">Clearswift KK</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"1dc5602ead3b" class=
+=3D"confluenceTd">
+<p local-id=3D"21c1af07fd1a">Japan</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"82ff0050d588" class=
+=3D"confluenceTd">
+<p local-id=3D"ec75628e0c4c">Default: JPY</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"730713410a9d" class=
+=3D"confluenceTd">
+<p local-id=3D"37924d8d4519">COM047</p></td>
+</tr>
+<tr data-local-id=3D"11927616cc39">
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"63bfb71e0a49" class=
+=3D"confluenceTd">
+<p local-id=3D"5f2c753798d5">(Data Migration ONLY no new sales)</p>
+<p local-id=3D"8ba4d2622cf8">Terranova Security Europe S.A.S.</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"609a7f219322" class=
+=3D"confluenceTd">
+<p local-id=3D"01aa853381ed">France</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"9c0b54432219" class=
+=3D"confluenceTd">
+<p local-id=3D"1f7763f08aa3">Default: EUR</p></td>
+<td data-highlight-colour=3D"#ffbdad" data-local-id=3D"c2e198dc6272" class=
+=3D"confluenceTd">
+<p local-id=3D"868e3bacf162">COM080</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"c678694b3913" id=3D"LegalEntities-FutureFortraprojecttoacco=
+mplishaftermovetoSalesforce:">Future Fortra project to accomplish after mov=
+e to Salesforce:</h2>
+<ul local-id=3D"81f8836e425c">
+<li local-id=3D"4adc7e3dc772">
+<p local-id=3D"d7c7a7792b7c">Regarding billing =E2=80=9CPlaces=E2=80=9D def=
+ault Legal Entity and Currency, we unfortunately don=E2=80=99t have Legal E=
+ntity stored at the account level today in legacy systems</p>
+<ol start=3D"1" local-id=3D"91b18bfe915e">
+<li local-id=3D"116bbee8d618">
+<p local-id=3D"1102799ccf7b">We would suggest fields at the Places entity f=
+or default Legal Entity and Currency - Once we move into salesforce these w=
+ill be updated by customer operations (additional ask billing contact possi=
+ble field.)</p></li>
+</ol></li>
+<li local-id=3D"8965dca588f4">
+<p local-id=3D"89dcfd9136a4">Fortra LLC =E2=80=93 use this entity to bill U=
+S sales, that were previously billed out of other US legal entities, out of=
+ Fortra LLC (eg Tripwire, Inc)</p></li>
+<li local-id=3D"f3ab9e6a779f">
+<p local-id=3D"7e7b98d90c76">Fortra Canada - similar to Fortra LLC, move al=
+l country=E2=80=99s sales to bill out of one legal entity in the country (e=
+g Terranova Worldwide Corp)</p></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_6_1468977791.1780419087880--

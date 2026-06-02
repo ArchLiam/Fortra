@@ -1,0 +1,938 @@
+Date: Tue, 2 Jun 2026 16:53:06 +0000 (UTC)
+Message-ID: <1297532700.5.1780419186633@1b4e7bc23ff8>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_498897229.1780419186633"
+
+------=_Part_4_498897229.1780419186633
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Paid Invoice Status Signal Integration for License Key Fulfillme=
+nt in Salesforce</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Paid Invoice Status Signal Integration for License Key Fulfillment =
+in Salesforce</h1>
+    <div class=3D"Section1">
+        <h1 local-id=3D"16f67211b63d" id=3D"PaidInvoiceStatusSignalIntegrat=
+ionforLicenseKeyFulfillmentinSalesforce-PaidInvoice/AssetorContractStatusCo=
+nnection(LicenseKeys+=E2=80=9CPaid=E2=80=9DSignal)">Paid Invoice / Asset or=
+ Contract Status Connection (License Keys + =E2=80=9CPaid=E2=80=9D Signal)<=
+/h1>
+<h2 local-id=3D"b8e77ca5a092" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-1.DocumentDetails">1. Document Details</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"0=
+2063563-bb04-4e3a-a139-160de1f416e2" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"a0e9b41a-cb53-4fb9-919d-dee3ae69aed9">
+<th data-local-id=3D"adaad03d-f407-4a29-9674-123b7a322805" class=3D"conflue=
+nceTh">
+<p local-id=3D"59e8fe414b24">Field</p></th>
+<th data-local-id=3D"481f9d19-e9ba-4848-a8fa-92bbe753a65a" class=3D"conflue=
+nceTh">
+<p local-id=3D"708385cb6117">Value</p></th>
+</tr>
+<tr data-local-id=3D"0f50269b-3cc3-46c7-a6b3-0674896b19e0">
+<td data-local-id=3D"c64fb978-a91d-4bbf-818f-4fa1827d8fca" class=3D"conflue=
+nceTd">
+<p local-id=3D"e5e71afbd837">Request / Enhancement Name</p></td>
+<td data-local-id=3D"3787b81b-a2b2-46fa-8899-f92a64ee5bfa" class=3D"conflue=
+nceTd">
+<p local-id=3D"8c7d64784a9a">Paid Invoice Status Signal in Salesforce (Cont=
+ract/Order/Asset) for License Key Fulfillment <a class=3D"external-link" hr=
+ef=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helps=
+ystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B6=
+4BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.=
+docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Rene=
+wals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"4d33d8de-e89d-4cfc-a0d6-fdc8326ac3d5">
+<td data-local-id=3D"cafa513a-8e7c-4f13-b001-9201ba41c33e" class=3D"conflue=
+nceTd">
+<p local-id=3D"c2a743a83fef">Prepared By</p></td>
+<td data-local-id=3D"d7f912c9-930d-433c-b288-1576e3840b4c" class=3D"conflue=
+nceTd">
+<p local-id=3D"acf31eb18f5d">Leah Guenther <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"38de0a26-ca19-40b0-b95f-785a15a99ddf">
+<td data-local-id=3D"36c1db7c-c512-4c90-9c3e-7e71dd37f3cf" class=3D"conflue=
+nceTd">
+<p local-id=3D"de1bd21e2903">Date</p></td>
+<td data-local-id=3D"9bd1a15c-c461-433f-b275-3ac53bf06346" class=3D"conflue=
+nceTd">
+<p local-id=3D"03cf7a4ebafc">May 27, 2026 <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"dcd0b2d8-0fe1-4522-9f3a-67b00f536cd0">
+<td data-local-id=3D"fe7c761f-46f6-464b-9cd7-e071eb6652cf" class=3D"conflue=
+nceTd">
+<p local-id=3D"b1742d9f1aa9">Business Owner</p></td>
+<td data-local-id=3D"0c8673a0-50e4-4a15-b964-fb3583be7d67" class=3D"conflue=
+nceTd">
+<p local-id=3D"a74333870028">Assumption: Customer Operations leadership + F=
+ulfillment / License Key operations owners <a class=3D"external-link" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsys=
+tems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64B=
+D505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.do=
+cx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewa=
+ls R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"b2aac552-fd1d-4145-b23c-e5604fc11016">
+<td data-local-id=3D"46533e8b-b015-44ba-8655-8cb972072600" class=3D"conflue=
+nceTd">
+<p local-id=3D"e50721d1f0de">System / Application</p></td>
+<td data-local-id=3D"b162d7ff-3914-46cb-ab45-8e42f4283d19" class=3D"conflue=
+nceTd">
+<p local-id=3D"f9422613729a">Salesforce; Workday (invoice status source) <a=
+ class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/p=
+ersonal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA=
+844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20=
+Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dt=
+rue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"10258c3c-43d7-47ee-b6fa-76f22178646c">
+<td data-local-id=3D"61f5329b-c986-4b59-bd6b-a18f2f41096a" class=3D"conflue=
+nceTd">
+<p local-id=3D"67df0cd1927d">Status</p></td>
+<td data-local-id=3D"1cf77322-19e2-49bc-931d-be1c652e1673" class=3D"conflue=
+nceTd">
+<p local-id=3D"3a2ee3ab8308">Draft <a class=3D"external-link" href=3D"https=
+://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/=
+_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D=
+&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;ac=
+tion=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Sa=
+lesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"61877d9dda9e" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-2.RequestSummary">2. Request Summary</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"b=
+b1f5c75-9942-46c2-a4ce-751766e704cd" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"4c7c9ea6-7294-49f2-8ea2-67bdf4306149">
+<th data-local-id=3D"481cd781-857b-4c0c-8182-8171859827bc" class=3D"conflue=
+nceTh">
+<p local-id=3D"36e877e33542">Category</p></th>
+<th data-local-id=3D"30b06baa-5d5a-4948-b14c-85e639e297c1" class=3D"conflue=
+nceTh">
+<p local-id=3D"9da646abd868">Details</p></th>
+</tr>
+<tr data-local-id=3D"a055bf01-6a62-4c46-9bb7-2ee47571f7ba">
+<td data-local-id=3D"ce2a2bed-6b8c-4601-9134-997992f3052f" class=3D"conflue=
+nceTd">
+<p local-id=3D"c42a3475e23e">Business Need</p></td>
+<td data-local-id=3D"ca94798a-8535-4b4c-a4f2-0e3a7759db7e" class=3D"conflue=
+nceTd">
+<p local-id=3D"cf48617ffca3">Establish a reliable connection between =E2=80=
+=9Cinvoice paid=E2=80=9D status from Workday and a Salesforce indicator (at=
+ contract/order/asset level) so operations teams can identify what is ready=
+ for license key delivery and record completion. <a class=3D"external-link"=
+ href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_he=
+lpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E=
+6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesfor=
+ce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[R=
+enewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"84155b04-be84-4a72-822d-200020da56a9">
+<td data-local-id=3D"48a5f695-ae74-4b2f-812c-109404c06bd4" class=3D"conflue=
+nceTd">
+<p local-id=3D"8d48354de336">Why This Is Needed Now</p></td>
+<td data-local-id=3D"c9fcc192-046e-4161-a58b-ea0d3cd38741" class=3D"conflue=
+nceTd">
+<p local-id=3D"d6fac042f89e">Auto-renewal and invoice automation introduces=
+ scenarios where Salesforce records (contracts/assets/orders) may be create=
+d before payment is received; operations needs a paid/unpaid signal and wor=
+kflow to prevent premature key delivery. <a class=3D"external-link" href=3D=
+"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystem=
+s_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD50=
+5AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&=
+amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals =
+R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"46842d17-503b-4561-828b-4858fadb4c7a">
+<td data-local-id=3D"2d437365-f7cd-4666-958d-be77217aa768" class=3D"conflue=
+nceTd">
+<p local-id=3D"a58032f5e7b8">Who Is Impacted</p></td>
+<td data-local-id=3D"14079d7a-f686-4ec3-9594-2522831ff1f2" class=3D"conflue=
+nceTd">
+<p local-id=3D"4a372b073829">Customer Operations (Tech) for all tech-side i=
+tems; Cyber Operations for specific auto-renewal brands (Offensive Security=
+, Vulnerability Management, Clearswift). <a class=3D"external-link" href=3D=
+"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystem=
+s_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD50=
+5AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&=
+amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals =
+R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"59d8f2cc656f" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-3.Scope">3. Scope</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"2=
+5f4016d-9602-4d9e-86ec-84d1085680d5" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"fc7ad57c-0a71-4ce9-8be8-264a03068eb4">
+<th data-local-id=3D"cf49c194-13a3-4f03-9442-8c67a3392d5a" class=3D"conflue=
+nceTh">
+<p local-id=3D"e26979d5eb13">Scope Type</p></th>
+<th data-local-id=3D"1f39507c-ff7c-4783-9146-22e72306b7a2" class=3D"conflue=
+nceTh">
+<p local-id=3D"2e7c20d0fd88">Details</p></th>
+</tr>
+<tr data-local-id=3D"7dbcbea7-3fc8-4aac-8b01-f118f238ab58">
+<td data-local-id=3D"4d55aa3d-56ea-48ee-9442-b8ccd248ef32" class=3D"conflue=
+nceTd">
+<p local-id=3D"0808b7bf2354">In Scope</p></td>
+<td data-local-id=3D"b9a6fc26-4b1c-42e3-90ac-2f85ce357534" class=3D"conflue=
+nceTd">
+<p local-id=3D"4073f173ec77">Create a =E2=80=9Cpaid/unpaid=E2=80=9D indicat=
+or and/or =E2=80=9Cpaid on=E2=80=9D timestamp in Salesforce (location to be=
+ determined: contract/order/asset); enable list/report/dashboard views for =
+paid changes; provide a user =E2=80=9Ccheck off=E2=80=9D mechanism to recor=
+d that license keys were delivered. <a class=3D"external-link" href=3D"http=
+s://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com=
+/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7=
+D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;a=
+ction=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...S=
+alesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"5570bd27-27eb-4a00-9d36-713eda2f255b">
+<td data-local-id=3D"7d6b0bde-f298-4e0f-b9c0-a0ad51f01d78" class=3D"conflue=
+nceTd">
+<p local-id=3D"7b156360ecf1">Out of Scope</p></td>
+<td data-local-id=3D"a20305b4-4ea2-48d0-9073-b0c57dc31f52" class=3D"conflue=
+nceTd">
+<p local-id=3D"1d7658e215e9">Full definition of how RevCloud artifacts are =
+created/rolled back on cancel/rebill; complete MuleSoft cancellation/rebuil=
+d synchronization design (not finalized in transcript). <a class=3D"externa=
+l-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guen=
+ther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98=
+-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20S=
+alesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofol=
+low">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"dca9804af3e5" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-4.FunctionalRequirements">4. Functional Req=
+uirements</h2>
+<ul local-id=3D"393cc034-dcef-4076-aa98-bec9d5158fbe">
+<li local-id=3D"90540e5b-ea70-4a3e-a35f-cc6fd7d53348">
+<p local-id=3D"c663a4a7346c"><strong>FR-1:</strong> The system must display=
+ an <strong>invoice paid status</strong> in Salesforce using a clear indica=
+tor (e.g., =E2=80=9CPaid/Unpaid=E2=80=9D) at a defined level (contract, ord=
+er, or asset). <a class=3D"external-link" href=3D"https://helpsystemsllc-my=
+.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx=
+?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals=
+%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;m=
+obileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a>=
+</p></li>
+<li local-id=3D"dce849cb-f500-448f-8683-6f3952f4d69d">
+<p local-id=3D"42697d10efc4"><strong>FR-2:</strong> The system must support=
+ capturing a <strong>timestamp</strong> (e.g., =E2=80=9CPaid On=E2=80=9D) w=
+hen the status changes to paid, enabling filtering such as =E2=80=9Cpaid in=
+ last X days.=E2=80=9D <a class=3D"external-link" href=3D"https://helpsyste=
+msllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/=
+Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3D=
+Renewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefau=
+lt&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | W=
+ord]</a></p></li>
+<li local-id=3D"f6488a5a-f77d-400c-91b7-a39b4d9eec54">
+<p local-id=3D"993a587e00a7"><strong>FR-3:</strong> The system must provide=
+ a <strong>report/list/dashboard</strong> that enables teams to identify it=
+ems that changed from unpaid to paid (or are now paid and pending fulfillme=
+nt). <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoin=
+t.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=
+=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Require=
+ment%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredir=
+ect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"e4237048-5282-4736-8cd5-3a7560e0bd93">
+<p local-id=3D"85f3457693f1"><strong>FR-4:</strong> The system must provide=
+ a mechanism for operations users to <strong>record completion</strong> of =
+license key delivery (e.g., a checkbox/field such as =E2=80=9CKeys Delivere=
+d=E2=80=9D). <a class=3D"external-link" href=3D"https://helpsystemsllc-my.s=
+harepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?s=
+ourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%2=
+0Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mob=
+ileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></=
+p></li>
+<li local-id=3D"a7a94844-52d7-47d0-81fd-06cf396a7b7a">
+<p local-id=3D"4bb3568140f8"><strong>FR-5:</strong> The =E2=80=9Cpaid statu=
+s + fulfillment check-off=E2=80=9D workflow must support Tech-side needs fo=
+r <strong>all</strong> tech contracts (long term) and Cyber needs for <stro=
+ng>auto-renewal brands</strong> specifically. <a class=3D"external-link" hr=
+ef=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helps=
+ystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B6=
+4BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.=
+docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Rene=
+wals R...Salesforce | Word]</a></p></li>
+</ul>
+<h2 local-id=3D"d8948caf745c" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-5.BusinessRules">5. Business Rules</h2>
+<ul local-id=3D"cb97d2da-bcef-4c0c-8936-5163a0dea929">
+<li local-id=3D"432a031a-bb99-4da4-bb75-3c060b4f20f4">
+<p local-id=3D"a178ebfe5b9c"><strong>BR-1:</strong> For operational usabili=
+ty, the paid signal should be tracked at the <strong>contract or order leve=
+l</strong> when a contract may include <strong>hundreds of assets</strong>,=
+ to avoid per-asset check-offs. <a class=3D"external-link" href=3D"https://=
+helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_la=
+youts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&am=
+p;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;actio=
+n=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Sales=
+force | Word]</a></p></li>
+<li local-id=3D"f68be3b2-9260-4f4d-8a2d-cfed594930a6">
+<p local-id=3D"ed90239d1a43"><strong>BR-2:</strong> Tech-side operations re=
+quires a workflow tied to payment for <strong>everything</strong> (excludin=
+g current exceptions noted like GlobalScape, moving toward auto renewal). <=
+a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/=
+personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7B=
+A844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%2=
+0Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3D=
+true" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"9d8cb3d5-52e6-42ec-8c83-0668a1bc2321">
+<p local-id=3D"585c0b5158d6"><strong>BR-3:</strong> Cyber operations requir=
+es the paid/fulfillment tracking for <strong>auto-renewal brands</strong> (=
+Offensive Security, Vulnerability Management, Clearswift). <a class=3D"exte=
+rnal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_g=
+uenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4=
+A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%=
+20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"no=
+follow">[Renewals R...Salesforce | Word]</a></p></li>
+</ul>
+<h2 local-id=3D"4b03e736e07e" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-6.Data/FieldImpacts">6. Data / Field Impact=
+s</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"b=
+630b674-f987-4180-ab64-0f76d37b29a1" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"9ad90006-189a-4234-baec-3677db64e9db">
+<th data-local-id=3D"657a5c7d-1fde-4e1a-b571-65fe6774bb3f" class=3D"conflue=
+nceTh">
+<p local-id=3D"b228b18e9f97">Category</p></th>
+<th data-local-id=3D"ad83b1ad-2780-4148-a0e5-8c48d1ffcd80" class=3D"conflue=
+nceTh">
+<p local-id=3D"7991dd25ae0d">Details</p></th>
+</tr>
+<tr data-local-id=3D"05c23642-aa4c-4239-91bc-c913157d931f">
+<td data-local-id=3D"2ce90e25-ea83-496f-a74d-1c54ae9c29e8" class=3D"conflue=
+nceTd">
+<p local-id=3D"9bf7ee036348">Fields Used</p></td>
+<td data-local-id=3D"de2be828-073c-4900-8c4b-a5446ad3f3e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"0f3a93960e93">Workday invoice payment status (source of trut=
+h); Salesforce order/contract reference to match the invoice. <a class=3D"e=
+xternal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/lea=
+h_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080=
+D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%2=
+0-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D=
+"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"e79e5808-ee37-4e7d-81b8-071902cef748">
+<td data-local-id=3D"53a697dc-29eb-47f1-8028-648cf558e6bc" class=3D"conflue=
+nceTd">
+<p local-id=3D"88bec6c0f285">Fields Updated</p></td>
+<td data-local-id=3D"ec253a6b-da1f-404a-82af-d2cf4dd31730" class=3D"conflue=
+nceTd">
+<p local-id=3D"0558f27ba3fa">=E2=80=9CPaid/Unpaid=E2=80=9D indicator; =E2=
+=80=9CPaid On=E2=80=9D timestamp; =E2=80=9CKeys Delivered=E2=80=9D (or equi=
+valent completion field). <a class=3D"external-link" href=3D"https://helpsy=
+stemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/=
+15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=
+=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Dde=
+fault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce =
+| Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"a07e1fb0-23c0-4e31-9452-18125f706b96">
+<td data-local-id=3D"b7374689-9fe7-4018-b734-7b429f92fde3" class=3D"conflue=
+nceTd">
+<p local-id=3D"5621c7430de4">Required Inputs</p></td>
+<td data-local-id=3D"67fbabbc-39f5-4713-a8c8-45aa7f971240" class=3D"conflue=
+nceTd">
+<p local-id=3D"073811e8afad">Unique linkage between Salesforce order (or co=
+ntract) and Workday invoice to update paid status in Salesforce. <a class=
+=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/persona=
+l/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC4=
+0-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gather=
+ing%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" r=
+el=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"90313090-1e59-439c-9255-7c3f5c7f6299">
+<td data-local-id=3D"82297836-3a85-41b8-9060-1ab4c1864394" class=3D"conflue=
+nceTd">
+<p local-id=3D"9c062d33554d">Validation Rules</p></td>
+<td data-local-id=3D"aa91929b-c6ce-4916-aaa3-538aceaa14eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"a18acb657b05">If payment status changes to Paid, the record =
+must become visible in the operations working list/dashboard; completion mu=
+st require an explicit user action (check-off). <a class=3D"external-link" =
+href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_hel=
+psystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6=
+B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforc=
+e.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Re=
+newals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"d8657c86b2fc" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-7.Integration/AutomationImpacts">7. Integra=
+tion / Automation Impacts</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"8=
+52c422d-9925-44bb-95d2-1e77b1a69984" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"81f43387-ac21-4dcf-abcc-6fa3963c9adc">
+<th data-local-id=3D"4c5285f3-7810-4514-8f27-4e633fa1dfb3" class=3D"conflue=
+nceTh">
+<p local-id=3D"4378174e4b66">Category</p></th>
+<th data-local-id=3D"0c9b5740-e505-45dc-bef5-a67ed05378ed" class=3D"conflue=
+nceTh">
+<p local-id=3D"5a1f093d5e10">Details</p></th>
+</tr>
+<tr data-local-id=3D"95aad50b-6d36-42b8-9261-0f89245ff8a1">
+<td data-local-id=3D"9eb6217a-60ee-491c-bb76-aeda9b3f8b36" class=3D"conflue=
+nceTd">
+<p local-id=3D"e4a8da30da46">Source System</p></td>
+<td data-local-id=3D"236cce69-52e4-425e-ad3f-64108e39790d" class=3D"conflue=
+nceTd">
+<p local-id=3D"796c0f5da1e3">Workday (invoice paid event/status). <a class=
+=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/persona=
+l/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC4=
+0-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gather=
+ing%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" r=
+el=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"5976db32-a582-4492-82a1-e53edc797050">
+<td data-local-id=3D"2c8fa6fb-bd72-4584-b822-d7f9d863dffc" class=3D"conflue=
+nceTd">
+<p local-id=3D"92d0605432f8">Target System</p></td>
+<td data-local-id=3D"77192e1d-2cb3-406d-b8e6-af0828975108" class=3D"conflue=
+nceTd">
+<p local-id=3D"d786c987144d">Salesforce (order/contract/asset indicator + t=
+imestamps). <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sh=
+arepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?so=
+urcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20=
+Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobi=
+leredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p=
+></td>
+</tr>
+<tr data-local-id=3D"20f79b2e-595e-4834-924e-602354fc1c46">
+<td data-local-id=3D"9f6de997-efd7-4853-8a82-a6f54f0ddd69" class=3D"conflue=
+nceTd">
+<p local-id=3D"52697bcec981">Trigger</p></td>
+<td data-local-id=3D"a8a7c82f-63f1-4f15-97d4-bbb4bb07d19d" class=3D"conflue=
+nceTd">
+<p local-id=3D"110b561186dd">Change in invoice state to <strong>Paid</stron=
+g> in Workday. <a class=3D"external-link" href=3D"https://helpsystemsllc-my=
+.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx=
+?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals=
+%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;m=
+obileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a>=
+</p></td>
+</tr>
+<tr data-local-id=3D"de1248f7-dcc4-4e4b-a56c-1b022ed2cdfd">
+<td data-local-id=3D"4cbdcffa-c6b4-43d7-bd2d-03a94d949307" class=3D"conflue=
+nceTd">
+<p local-id=3D"dd0d9fb761ba">Recalculation / Sync Rules</p></td>
+<td data-local-id=3D"fd4971e2-76c2-443c-802c-6efa6fedfe9e" class=3D"conflue=
+nceTd">
+<p local-id=3D"6b49e18b651c">Salesforce should update =E2=80=9CPaid/Unpaid=
+=E2=80=9D and =E2=80=9CPaid On=E2=80=9D on the linked record; reporting vie=
+ws should allow filtering by paid date window (e.g., last X days). <a class=
+=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/persona=
+l/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC4=
+0-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gather=
+ing%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" r=
+el=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"9abfecd33197" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-8.Security/Access">8. Security / Access</h2=
+>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"4=
+7c00237-e0cf-4167-afc7-cbd9d75d8a81" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"5c585bd3-6c36-4a24-b07c-65c145c6a051">
+<th data-local-id=3D"970fede7-2515-49e9-ade2-42247d85086c" class=3D"conflue=
+nceTh">
+<p local-id=3D"6b0fe53408e9">Permission</p></th>
+<th data-local-id=3D"dc775338-0b7e-44b5-a524-0018adb1f977" class=3D"conflue=
+nceTh">
+<p local-id=3D"d0b71d6edfcb">Details</p></th>
+</tr>
+<tr data-local-id=3D"8461e13c-8f17-4a4c-9dcf-0e18da42ab4a">
+<td data-local-id=3D"1da76672-489c-4d7a-82a6-036e6d000e81" class=3D"conflue=
+nceTd">
+<p local-id=3D"9a377e322621">Who Can View</p></td>
+<td data-local-id=3D"e52347f5-55ec-44b7-9aa8-829cf4c5374b" class=3D"conflue=
+nceTd">
+<p local-id=3D"22926935aa24">Customer Operations and relevant Cyber Ops use=
+rs viewing paid/ready items via dashboards/lists. <a class=3D"external-link=
+" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_h=
+elpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-=
+E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesfo=
+rce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[=
+Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"88084223-4d93-4fd2-bed6-e6d77ab6920e">
+<td data-local-id=3D"5dbfa8ff-3917-4564-9a25-462e4aa00fbe" class=3D"conflue=
+nceTd">
+<p local-id=3D"7ae385f73fc3">Who Can Edit</p></td>
+<td data-local-id=3D"f3e82a96-00af-45d4-afdd-76cb46ce5867" class=3D"conflue=
+nceTd">
+<p local-id=3D"6f75fcd99787">Operations teams responsible for fulfillment m=
+ust be able to mark =E2=80=9CKeys Delivered=E2=80=9D complete. <a class=3D"=
+external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/le=
+ah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-08=
+0D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%=
+20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=
+=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"0ef6ecc8-18d9-43a5-bbd8-7469363c3137">
+<td data-local-id=3D"15b84e6f-3b41-4e2e-a42a-b78c7a0ffc4d" class=3D"conflue=
+nceTd">
+<p local-id=3D"362a038819e2">Who Can Override</p></td>
+<td data-local-id=3D"d4262dec-5833-4931-96c4-20022286a09a" class=3D"conflue=
+nceTd">
+<p local-id=3D"d1725db76e53">Assumption: Only designated operations roles c=
+an mark fulfillment complete; paid status itself should be system-updated f=
+rom Workday.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"279d02aceea6" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-9.Reporting/Audit">9. Reporting / Audit</h2=
+>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"e=
+1d4ed68-0331-4f35-8bf7-091d629a378b" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"66ed95bd-6829-4aa4-92da-4ccedab3c82f">
+<th data-local-id=3D"c46f63a2-f2b2-4412-b640-7fdea678e4ef" class=3D"conflue=
+nceTh">
+<p local-id=3D"4414264217dd">Category</p></th>
+<th data-local-id=3D"ba278ae3-db7c-40c3-b14f-c847da3ef00c" class=3D"conflue=
+nceTh">
+<p local-id=3D"b7cb29d22e07">Details</p></th>
+</tr>
+<tr data-local-id=3D"7f2920c9-c8c3-426a-9de8-7309ed4329b9">
+<td data-local-id=3D"a3549b04-087e-4e9b-ada2-006607844ac4" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b7a5df8f5fd">Reporting Impact</p></td>
+<td data-local-id=3D"dbf76255-5a33-486b-aafe-dc624ab8183d" class=3D"conflue=
+nceTd">
+<p local-id=3D"4e3475c7447d">New dashboards/lists needed: items that change=
+d from unpaid=E2=86=92paid; paid but not yet =E2=80=9CKeys Delivered=E2=80=
+=9D; paid-by-date filters. <a class=3D"external-link" href=3D"https://helps=
+ystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_com/_layouts=
+/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;fil=
+e=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&amp;action=3Dd=
+efault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce=
+ | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"081b29c2-8c94-4648-a702-952eb8f46453">
+<td data-local-id=3D"26244ff3-9dcc-4ca7-94b2-d6e0c9e508b7" class=3D"conflue=
+nceTd">
+<p local-id=3D"cd2b73e550a7">Traceability Needed</p></td>
+<td data-local-id=3D"f2298d05-0181-494c-9248-06d0a8361faa" class=3D"conflue=
+nceTd">
+<p local-id=3D"972067c40014">Paid status change and fulfillment completion =
+should be auditable (timestamps for paid and keys delivered). <a class=3D"e=
+xternal-link" href=3D"https://helpsystemsllc-my.sharepoint.com/personal/lea=
+h_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080=
+D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%2=
+0-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D=
+"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"2a0a60a02215" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-10.AcceptanceCriteria">10. Acceptance Crite=
+ria</h2>
+<ul local-id=3D"57a9899c-0c84-46b7-b626-898be3bd3b41">
+<li local-id=3D"ab042a90-fb31-4d9b-a7c4-7d712c6da0b4">
+<p local-id=3D"31338c618ab6"><strong>AC-1:</strong> When an invoice linked =
+to a Salesforce order/contract becomes <strong>Paid</strong> in Workday, Sa=
+lesforce updates the =E2=80=9CPaid/Unpaid=E2=80=9D indicator accordingly. <=
+a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/=
+personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7B=
+A844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%2=
+0Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3D=
+true" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"c7cf13c8-635e-4367-91b3-be205c7d2390">
+<p local-id=3D"365585870593"><strong>AC-2:</strong> Salesforce captures a <=
+strong>Paid On</strong> timestamp when the status flips to paid and enables=
+ filtering/reporting by that timestamp. <a class=3D"external-link" href=3D"=
+https://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems=
+_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505=
+AB%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&a=
+mp;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R=
+...Salesforce | Word]</a></p></li>
+<li local-id=3D"7042cc21-a831-450d-9b62-a7767e92da33">
+<p local-id=3D"818679fcec11"><strong>AC-3:</strong> An authorized operation=
+s user can mark =E2=80=9CKeys Delivered=E2=80=9D complete, and the item no =
+longer appears in the =E2=80=9CPaid but pending fulfillment=E2=80=9D list/d=
+ashboard. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.shar=
+epoint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sour=
+cedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Re=
+quirement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobile=
+redirect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p><=
+/li>
+</ul>
+<h2 local-id=3D"f03c218aad8c" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-11.RequirementsTraceability">11. Requiremen=
+ts Traceability</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"f=
+c3319f5-c9a1-472f-885e-860fabefe551" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"5503f61f-a225-4f25-86e0-b7a76f1694f2">
+<th data-local-id=3D"11625bcd-8485-456b-969c-a7e664cc2464" class=3D"conflue=
+nceTh">
+<p local-id=3D"460e41ed0ee8">Requirement / Rule ID</p></th>
+<th data-local-id=3D"0dd8fe44-d24e-4be2-a785-945fd0a36dd0" class=3D"conflue=
+nceTh">
+<p local-id=3D"38f49424a789">Related Jira Work Item(s)</p></th>
+<th data-local-id=3D"ee126d33-92e7-40c1-a669-d9daae2160ea" class=3D"conflue=
+nceTh">
+<p local-id=3D"ec219289f242">Related Test Coverage</p></th>
+<th data-local-id=3D"667b0b41-7ce4-4042-a87c-40e2a05c9ffc" class=3D"conflue=
+nceTh">
+<p local-id=3D"917c33240fb6">Notes</p></th>
+</tr>
+<tr data-local-id=3D"8873cb06-82e5-4983-83cd-62da0d5e402c">
+<td data-local-id=3D"c0a9bd01-4118-4059-b3e2-68649366c3a8" class=3D"conflue=
+nceTd">
+<p local-id=3D"07aa06156921">FR-1, FR-2, AC-1, AC-2</p></td>
+<td data-local-id=3D"a9e7e9db-6396-47db-a9b5-539eb0044759" class=3D"conflue=
+nceTd">
+<p local-id=3D"3568d33ca3d6">TBD</p></td>
+<td data-local-id=3D"7026b94d-d437-49a8-9717-c72374a97161" class=3D"conflue=
+nceTd">
+<p local-id=3D"af03ff4c1977">TBD</p></td>
+<td data-local-id=3D"4ae5b63a-4bc4-4cd5-8985-21c7a56ab2c1" class=3D"conflue=
+nceTd">
+<p local-id=3D"20adeb381740">Paid status + timestamp integration. <a class=
+=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/persona=
+l/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC4=
+0-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gather=
+ing%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" r=
+el=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"604b4351-e3b1-4000-9898-ff9ac109a8db">
+<td data-local-id=3D"92bef5d3-aa27-4172-8fb6-dbfde98fea4b" class=3D"conflue=
+nceTd">
+<p local-id=3D"1960a777b98a">FR-3</p></td>
+<td data-local-id=3D"40dab552-eac2-44f8-abe0-abeacb2d0ce8" class=3D"conflue=
+nceTd">
+<p local-id=3D"3ccccf46d531">TBD</p></td>
+<td data-local-id=3D"b0374ea3-ebd2-4121-bfef-9c02b88c2258" class=3D"conflue=
+nceTd">
+<p local-id=3D"de9e55bf0172">TBD</p></td>
+<td data-local-id=3D"d672d7b2-a741-40c6-a618-cc4045e1b336" class=3D"conflue=
+nceTd">
+<p local-id=3D"7231168b148d">Dashboard/list/report requirements. <a class=
+=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.com/persona=
+l/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC4=
+0-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requirement%20Gather=
+ing%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredirect=3Dtrue" r=
+el=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></td>
+</tr>
+<tr data-local-id=3D"23a19400-c879-4661-8331-e2738ae15a18">
+<td data-local-id=3D"3ec574c7-a0c9-4a92-9545-e4a0077a708d" class=3D"conflue=
+nceTd">
+<p local-id=3D"936543f3a312">FR-4, AC-3</p></td>
+<td data-local-id=3D"cb9f54fb-f827-4141-80d4-7bc03323ea91" class=3D"conflue=
+nceTd">
+<p local-id=3D"e6d1cc7ef135">TBD</p></td>
+<td data-local-id=3D"63082eaa-47b5-4206-81f5-f805712cf3ed" class=3D"conflue=
+nceTd">
+<p local-id=3D"0c68d52750dd">TBD</p></td>
+<td data-local-id=3D"86b56471-77ae-4959-9164-d5f5a6bfc02a" class=3D"conflue=
+nceTd">
+<p local-id=3D"3413af3ac200">=E2=80=9CKeys Delivered=E2=80=9D completion tr=
+acking. <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharep=
+oint.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?source=
+doc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Requ=
+irement%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobilere=
+direct=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></t=
+d>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"0ffa4f0a15d2" id=3D"PaidInvoiceStatusSignalIntegrationforLi=
+censeKeyFulfillmentinSalesforce-12.OpenQuestions">12. Open Questions</h2>
+<ul local-id=3D"bcb91c7c-f4c3-4d70-925a-21dabae1b57b">
+<li local-id=3D"20f1e37a-a3b3-4ecb-86da-d2af017b241d">
+<p local-id=3D"6f1104579346"><strong>Q-1:</strong> Should the paid/unpaid i=
+ndicator live at the <strong>asset</strong>, <strong>contract</strong>, or =
+<strong>order</strong> level (or multiple), given operational scale concern=
+s? <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint.=
+com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=
+=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Require=
+ment%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredir=
+ect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li>
+<li local-id=3D"2d5002c5-9d2a-45e9-8c54-8b4169c59457">
+<p local-id=3D"ff7dd3d3e350"><strong>Q-2:</strong> Do teams require an <str=
+ong>alert/notification</strong> when payment occurs, or is a dashboard/list=
+ sufficient (mixed preference stated)? <a class=3D"external-link" href=3D"h=
+ttps://helpsystemsllc-my.sharepoint.com/personal/leah_guenther_helpsystems_=
+com/_layouts/15/Doc.aspx?sourcedoc=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505A=
+B%7D&amp;file=3DRenewals%20Requirement%20Gathering%20-%20Salesforce.docx&am=
+p;action=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">[Renewals R.=
+..Salesforce | Word]</a></p></li>
+<li local-id=3D"602c9b24-f43d-4a55-8823-43a37529a60b">
+<p local-id=3D"c28b1b530ce7"><strong>Q-3:</strong> What is the authoritativ=
+e identifier used to match a Workday invoice back to the correct Salesforce=
+ record for paid updates (order number, contract reference, invoice ID, etc=
+.)? <a class=3D"external-link" href=3D"https://helpsystemsllc-my.sharepoint=
+.com/personal/leah_guenther_helpsystems_com/_layouts/15/Doc.aspx?sourcedoc=
+=3D%7BA844EC40-080D-4A98-90A9-E6B64BD505AB%7D&amp;file=3DRenewals%20Require=
+ment%20Gathering%20-%20Salesforce.docx&amp;action=3Ddefault&amp;mobileredir=
+ect=3Dtrue" rel=3D"nofollow">[Renewals R...Salesforce | Word]</a></p></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_4_498897229.1780419186633--

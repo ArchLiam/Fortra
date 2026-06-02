@@ -1,0 +1,942 @@
+Date: Tue, 2 Jun 2026 16:47:36 +0000 (UTC)
+Message-ID: <452345847.3.1780418856163@ad4a0577c43c>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_2_138221358.1780418856163"
+
+------=_Part_2_138221358.1780418856163
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Product Hierarchy Updates D365</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Product Hierarchy Updates D365</h1>
+    <div class=3D"Section1">
+        <h1 id=3D"ProductHierarchyUpdatesD365-FSP-Notes">FSP - Notes</h1>
+<p>Black is "level 2.00 "Solution Category"</p>
+<p>Green is "level 3.00 "Solution"</p>
+<p>Cases choose the "Solution" that has =E2=80=9CShow In Portal Field =3D Y=
+es=E2=80=9D (Cases in D365 are set to associated Software Product Master")<=
+/p>
+<h1 id=3D"ProductHierarchyUpdatesD365-FAM,0=3DUnit">FAM, 0 =3D Unit</h1>
+<p style=3D"margin-left: 30.0px;">Cyber<br>
+Tech<br>
+Corporate (BSS-23284 to update Non-Specific to Corporate)</p>
+<h1 id=3D"ProductHierarchyUpdatesD365-F1=3DSolutionGroup">F1 =3D Solution G=
+roup</h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"706" data-layout=3D"align-start" data-local-id=
+=3D"8d42367d-f6f2-4ce2-9ec9-92fb961874ee" class=3D"confluenceTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p><strong>Cyber</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Tech</strong></p></th>
+<th class=3D"confluenceTh">
+<p><strong>Corporate</strong></p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>RPA+ (BSS-23284 Update Automation to RPA+)</p></td>
+<td class=3D"confluenceTd">
+<p>Fortra Corporate (BSS-23284 Update Other to Fortra Corporate)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Power (BSS-23284 Update Power &amp; Hybrid to =E2=80=9CPower=E2=80=9D)</=
+p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>XDR</p></td>
+<td class=3D"confluenceTd">
+<p>Managed File Transfer</p></td>
+<td class=3D"confluenceTd">
+<p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"ProductHierarchyUpdatesD365-F2=3DSolutionCategory">F2 =3D Solutio=
+n Category</h1>
+<ol start=3D"1">
+<li>
+<p>Brand Level Changes (Level 2.00) =3D BSS-23284 Update Automation to RPA+=
+</p>
+<ol start=3D"1">
+<li>
+<p>=E2=80=9CBeyond Security=E2=80=9D F2BEYONDSECURITY &amp; =E2=80=9CDigita=
+l Defense=E2=80=9D F2DIGITALDEFENSE Move these and all associated Products =
+to "Defensive Security" F1DIGITALRISKPROTECT.</p></li>
+<li>
+<p>BoKS F2BOKS, Capacity Management F2CAPACITYMANAGEMENT, Core IGA F2COREIG=
+A, InterMapper F2INTERMAPPER, Move to RPA+ =E2=80=9CF1AUTOMATION</p></li>
+</ol></li>
+</ol>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<hr>
+<h3 id=3D"ProductHierarchyUpdatesD365-NextChangestoLevel2NeededafterBusines=
+sApproval">Next Changes to Level 2 Needed after Business Approval</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"center" data-local-id=3D"24=
+c020d7-b42f-473e-a11d-92ac8a6f8467" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 271.0px;">
+<col style=3D"width: 274.0px;">
+<col style=3D"width: 131.0px;">
+<col style=3D"width: 303.0px;">
+<col style=3D"width: 262.0px;">
+<col style=3D"width: 258.0px;">
+<col style=3D"width: 300.0px;">
+</colgroup>
+<tbody>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Product SKU</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Current Name (DO NOT EDIT)</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>New Name&nbsp;</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Unit&nbsp; 0.00</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Solution Group 1.00</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Solution Category 2.00</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2BEYONDSECURITY</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Beyond Security</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Vulnerability Management</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Vulnerability Management</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2CLEARSWIFT</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Clearswift</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Brand Protection</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Brand Protection</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2COBALTSTRIKE</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cobalt Strike</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2DIGITALGUARDIANDLP</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Digital Guardian DLP</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Data Protection</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Data Protection</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2TERRANOVASECURITY</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Terranova</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Human Risk Management</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Human Risk Management</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>NEW</p></td>
+<td class=3D"confluenceTd">
+<p>NEW</p></td>
+<td class=3D"confluenceTd">
+<p>no</p></td>
+<td class=3D"confluenceTd">
+<p>Fortra Platform</p></td>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Fortra Platform</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>NEW</p></td>
+<td class=3D"confluenceTd">
+<p>NEW</p></td>
+<td class=3D"confluenceTd">
+<p>no</p></td>
+<td class=3D"confluenceTd">
+<p>Email Security</p></td>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Email Security</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>File Integrity Monitoring</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>File Integrity Monitoring</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>XDR</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>XDR</p></td>
+<td class=3D"confluenceTd">
+<p>XDR</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2AUTOMATE</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Automate</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Robotic Process Automation</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p>Robotic Process Automation</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2CAPACITYMANAGEMENT</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Capacity Management</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p>Hybrid</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2MANAGEDFILETRANSFE</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Managed File Transfer</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>GoAnywhere</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Managed File Transfer</p></td>
+<td class=3D"confluenceTd">
+<p>GoAnywhere</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>F2POWERTECH</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Powertech</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Power&nbsp;&nbsp;</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Globalscape</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Managed File Transfer</p></td>
+<td class=3D"confluenceTd">
+<p>Globalscape</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>NEW</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>no</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cloud Data Protection</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p>Cloud Data Protection</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2SHOWCASE</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>ShowCase</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2TANGO04</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tango</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2WORKLOADAUTO</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Workload Automation</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Workload Automation</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Corporate</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Workload Automation</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2ROBOT</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Robot</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2SAFESTONE</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Safestone</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2SECURECOLLABORATION</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Secure Collaboration</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Data Protection</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Data Protection</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2SEQUEL</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Sequel</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2AGARI</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Agari</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Digital Risk &amp; Email Protection</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Digital Risk &amp; Email Protection</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2BOKS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>BoKS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2BYTWARE</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Bytware</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2CCSS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>CCSS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2CORECTS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Core CTS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2COREIGA</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Core IGA</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2DATACLASSIFICATION</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Data Classification</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Data Protection</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Data Protection</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2DIGITALDEFENSE</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Digital Defense</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Vulnerability Management</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Vulnerability Management</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2DOCMANAGEMENT</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Doc Management</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2FORTRA</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Fortra</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Workload Automation</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Corporate</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Fortra Corporate</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Workload Automation</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2FORTRASECURITYSERV</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Fortra Security Services</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2HALCYON</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Halcyon</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Power</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2INTERMAPPER</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>InterMapper</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Tech</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Hybrid</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2OUTFLANK</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Outflank</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Offensive Security</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>F2PHISHLABS</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>PhishLabs</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Remove</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Brand Protection</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td data-highlight-colour=3D"#4c9aff" class=3D"confluenceTd">
+<p>Brand Protection</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id=3D"ProductHierarchyUpdatesD365-F3=3DSolution">F3 =3D Solution</h1>
+<h1 id=3D"ProductHierarchyUpdatesD365-F4=3DFeature">F4 =3D Feature</h1>
+<h1 id=3D"ProductHierarchyUpdatesD365-5=3DSku/Product(BrandInitial+Numberso=
+rletters-Level5Product/Sku)">5 =3D Sku/Product (Brand Initial + Numbers or =
+letters - Level 5 Product/Sku)</h1>
+<p></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_2_138221358.1780418856163--

@@ -1,0 +1,1466 @@
+Date: Tue, 2 Jun 2026 16:52:43 +0000 (UTC)
+Message-ID: <577096918.5.1780419163301@2beaeac313d8>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_957164449.1780419163300"
+
+------=_Part_4_957164449.1780419163300
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Partner Pricing V2: Technical Requirements</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Partner Pricing V2: Technical Requirements</h1>
+    <div class=3D"Section1">
+        <div class=3D"contentLayout2">
+<style>[data-colorid=3Dkqe5pc9eqe]{color:#e3e3e3} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dkqe5pc9eqe]{color:#1c1c1c}[data-colorid=3Dd5m52tn00f]{c=
+olor:#e3e3e3} html[data-color-mode=3Ddark] [data-colorid=3Dd5m52tn00f]{colo=
+r:#1c1c1c}[data-colorid=3Djhtgwkv1un]{color:#e3e3e3} html[data-color-mode=
+=3Ddark] [data-colorid=3Djhtgwkv1un]{color:#1c1c1c}[data-colorid=3Dxtp452e0=
+ol]{color:#e3e3e3} html[data-color-mode=3Ddark] [data-colorid=3Dxtp452e0ol]=
+{color:#1c1c1c}[data-colorid=3Dz5qgsejv4n]{color:#e3e3e3} html[data-color-m=
+ode=3Ddark] [data-colorid=3Dz5qgsejv4n]{color:#1c1c1c}[data-colorid=3Dwfxae=
+1uwba]{color:#e3e3e3} html[data-color-mode=3Ddark] [data-colorid=3Dwfxae1uw=
+ba]{color:#1c1c1c}[data-colorid=3Dnsr4x3wopi]{color:#e3e3e3} html[data-colo=
+r-mode=3Ddark] [data-colorid=3Dnsr4x3wopi]{color:#1c1c1c}[data-colorid=3Dio=
+5u34xp9s]{color:#e3e3e3} html[data-color-mode=3Ddark] [data-colorid=3Dio5u3=
+4xp9s]{color:#1c1c1c}[data-colorid=3Duzc6npjexg]{color:#e3e3e3} html[data-c=
+olor-mode=3Ddark] [data-colorid=3Duzc6npjexg]{color:#1c1c1c}</style>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #006A56;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #006A56;">
+<p><span class=3D"legacy-color-text-inverse">Build-ready Salesforce require=
+ments for Partner Pricing V2, including object fields, Revenue Cloud contex=
+t attributes, Apex behavior, runtime outputs, and cutover validation.</span=
+></p>
+</div>
+</div>
+<p><span class=3D"status-macro aui-lozenge aui-lozenge-visual-refresh aui-l=
+ozenge-complete">TECHNICAL REQUIREMENTS</span> <span class=3D"status-macro =
+aui-lozenge aui-lozenge-visual-refresh">LAST MODIFIED: 04/24/2026</span></p=
+>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-PurposeAndScope">Purpose A=
+nd Scope</h2>
+<p>Partner Pricing V2 extends the existing partner pricing design by select=
+ing the final partner pricing model at the quote-line level and by using a =
+separate discount field set for Fortra-originated deals.</p>
+<p>Build these Apex assets as part of the V2 implementation:</p>
+<ul>
+<li>
+<p><code>PartnerPricingPrehookV2</code></p></li>
+<li>
+<p><code>PartnerPricingServiceV2</code></p></li>
+<li>
+<p><code>PartnerPricingPrehookV2Test</code></p></li>
+<li>
+<p><code>PartnerPricingServiceV2Test</code></p></li>
+</ul>
+<p>This specification is written for the DP2 pricing chain. Before applying=
+ it in UAT, verify that UAT uses the same source files, context mapping, an=
+d regional-to-partner pricing route named in this document.</p>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-BusinessRequirements">Busi=
+ness Requirements</h2>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout two-equal" data-layout=3D"two-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-1.Line-LevelModelResolutio=
+n">1. Line-Level Model Resolution</h3>
+<p>The quote header continues to identify the partner pricing model family,=
+ such as <span data-colorid=3D"d5m52tn00f"><strong><em>Discount</em></stron=
+g></span> or <span data-colorid=3D"z5qgsejv4n"><strong><em>Guaranteed Margi=
+n</em></strong></span>. V2 then chooses the final <span data-colorid=3D"jht=
+gwkv1un"><strong><em>Partner Pricing Model</em></strong></span> record for =
+each quote line by comparing the line's product hierarchy to the candidate =
+model records.</p>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-2.Deal-Type-BasedDiscountS=
+election">2. Deal-Type-Based Discount Selection</h3>
+<p>When the quote deal type is <span data-colorid=3D"xtp452e0ol"><strong><e=
+m>Fortra Originated</em></strong></span>, V2 uses the <span data-colorid=3D=
+"io5u34xp9s"><strong><em>Non-Originating</em></strong></span> percentage fi=
+elds. For every other deal type, including blank values, V2 uses the standa=
+rd partner pricing percentage fields.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-HierarchyResolutionOrder">=
+Hierarchy Resolution Order</h3>
+<ol start=3D"1">
+<li>
+<p><strong>Solution Category:</strong> use a candidate model where <code>So=
+lution_Category__c</code> matches the quote line.</p></li>
+<li>
+<p><strong>Solution Group:</strong> if no category match exists, use a cand=
+idate model where <code>Solution_Group__c</code> matches and <code>Solution=
+_Category__c</code> is blank.</p></li>
+<li>
+<p><strong>Unit:</strong> if no group match exists, use a candidate model w=
+here <code>Unit__c</code> matches and both higher hierarchy fields are blan=
+k.</p></li>
+<li>
+<p><strong>Blank fallback:</strong> if no hierarchy match exists, use a mod=
+el where <code>Unit__c</code>, <code>Solution_Group__c</code>, and <code>So=
+lution_Category__c</code> are all blank.</p></li>
+<li>
+<p><strong>No match:</strong> if there is no fallback model, that partner c=
+ontributes 0 percent on that line. Pricing continues successfully.</p></li>
+</ol>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-DeveloperImplementationSte=
+ps">Developer Implementation Steps</h2>
+<p>Follow these steps to build Partner Pricing V2 in the DP2 chained pricin=
+g design. The steps name the source files, object fields, context attribute=
+s, and code change required for cutover.</p>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-1.BuildTheV2ApexAssets">1.=
+ Build The V2 Apex Assets</h3>
+<p>Create the V2 Apex files and their metadata files. Keep <code>PartnerPri=
+cingPrehook</code> and <code>PartnerPricingService</code> unchanged so the =
+V1 implementation remains available for rollback.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>File</p></th>
+<th class=3D"confluenceTh">
+<p>Purpose</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>src/classes/PartnerPricingServiceV2.cls</code><br><code>src/classe=
+s/PartnerPricingServiceV2.cls-meta.xml</code></p></td>
+<td class=3D"confluenceTd">
+<p>Reusable service logic for candidate model loading, hierarchy selection,=
+ deal-type percentage selection, and price calculation.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>src/classes/PartnerPricingPrehookV2.cls</code><br><code>src/classe=
+s/PartnerPricingPrehookV2.cls-meta.xml</code></p></td>
+<td class=3D"confluenceTd">
+<p>Revenue Cloud prehook that reads pricing context, calls the service clas=
+s, and writes partner pricing outputs back to the line context.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>src/classes/PartnerPricingServiceV2Test.cls</code><br><code>src/cl=
+asses/PartnerPricingServiceV2Test.cls-meta.xml</code></p></td>
+<td class=3D"confluenceTd">
+<p>Service-layer unit tests for effective candidate loading, hierarchy matc=
+hing, duplicate handling, deal-type field selection, and pricing calculatio=
+ns.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>src/classes/PartnerPricingPrehookV2Test.cls</code><br><code>src/cl=
+asses/PartnerPricingPrehookV2Test.cls-meta.xml</code></p></td>
+<td class=3D"confluenceTd">
+<p>Prehook helper tests for partner collection, line context extraction, no=
+-match behavior, and Fortra-originated discount behavior.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-2.BuildThePartnerPricingMo=
+delMetadata">2. Build The Partner Pricing Model Metadata</h3>
+<p>Configure <code>src/objects/Partner_Pricing_Model__c.object</code> with =
+the fields below. The V2 code expects these API names exactly.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Field</p></th>
+<th class=3D"confluenceTh">
+<p>Type</p></th>
+<th class=3D"confluenceTh">
+<p>Build Requirement</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Account__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Lookup</p></td>
+<td class=3D"confluenceTd">
+<p>Stores the partner account that owns the pricing model. Candidate model =
+loading filters by this field.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Model_Type__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Picklist</p></td>
+<td class=3D"confluenceTd">
+<p>Must support <code>Discount</code> and <code>Guaranteed Margin</code>. C=
+andidate model loading filters by this field.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Is_Active__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Checkbox</p></td>
+<td class=3D"confluenceTd">
+<p>Only records where this field is true are eligible for V2 pricing.</p></=
+td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Effective_Start_Date__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Date</p></td>
+<td class=3D"confluenceTd">
+<p>Records with a future start date are not eligible for V2 pricing.</p></t=
+d>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Effective_End_Date__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Date</p></td>
+<td class=3D"confluenceTd">
+<p>Records with an end date before today are not eligible for V2 pricing.</=
+p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Software_Percent__c</code><br><code>Subscription_Percent__c</code>=
+<br><code>New_Maintenance_Percent__c</code><br><code>Renewal_Maintenance_Pe=
+rcent__c</code><br><code>Services_Percent__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Percent</p></td>
+<td class=3D"confluenceTd">
+<p>Standard percentage fields used for blank deal type and every deal type =
+other than <code>Fortra Originated</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Unit__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Text</p></td>
+<td class=3D"confluenceTd">
+<p>Broadest product hierarchy match when no Solution Category or Solution G=
+roup model applies.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Solution_Group__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Text</p></td>
+<td class=3D"confluenceTd">
+<p>Middle product hierarchy match when no Solution Category model applies.<=
+/p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Solution_Category__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Text</p></td>
+<td class=3D"confluenceTd">
+<p>Most specific product hierarchy match.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Non_Orig_Software_Pct__c</code><br><code>Non_Orig_Subscription_Pct=
+__c</code><br><code>Non_Orig_New_Maint_Pct__c</code><br><code>Non_Orig_Ren_=
+Maint_Pct__c</code><br><code>Non_Orig_Services_Pct__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Percent</p></td>
+<td class=3D"confluenceTd">
+<p>Discount or margin percentages used when <code>Quote.Deal_Type__c</code>=
+ is <code>Fortra Originated</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-3.UpdateTheDP2QuotePricing=
+ContextMapping">3. Update The DP2 Quote Pricing Context Mapping</h3>
+<p>In DP2, update <code>QuoteEntitiesMapping</code> so the Revenue Cloud co=
+ntext contains the exact attributes below. The V2 prehook reads these attri=
+butes by API name from context. Use the attribute names exactly as listed.<=
+/p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Context Node</p></th>
+<th class=3D"confluenceTh">
+<p>Attribute Name Required By V2</p></th>
+<th class=3D"confluenceTh">
+<p>DP2 Source Value</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransaction</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Partner_Pricing_Model__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Quote.Partner_Pricing_Model__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransaction</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Deal_Type__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Quote.Deal_Type__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransaction</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Billing_Partner__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Quote.Billing_Partner__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransaction</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Reseller__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Quote.Reseller__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransaction</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Distributor__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Quote.Distributor__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransaction</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Referral_Partner__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Quote.Referral_Partner__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransactionItem</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Fortra_Product_Type__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>QuoteLineItem.Fortra_Product_Type__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransactionItem</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Unit__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>QuoteLineItem.Product2.Unit__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransactionItem</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Solution_Group__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>QuoteLineItem.Product2.Solution_Group__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>SalesTransactionItem</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Solution_Category__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>QuoteLineItem.Product2.Solution_Category__c</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Build requirement: <code>PartnerPricingPrehookV2</code> reads product hi=
+erarchy from the <code>SalesTransactionItem</code> context attributes liste=
+d above during pricing execution.</p>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-4.MakeTheDP2ApexCutover">4=
+. Make The DP2 Apex Cutover</h3>
+<p>In DP2, partner pricing is called from the regional pricing prehook. Cha=
+nge exactly one line in <code>src/classes/RegionalServicesPricingPrehook.cl=
+s</code>.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Item</p></th>
+<th class=3D"confluenceTh">
+<p>DP2 Value</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>File</p></td>
+<td class=3D"confluenceTd">
+<p><code>src/classes/RegionalServicesPricingPrehook.cls</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p><code>private String executePartnerPricing(RevSignaling.TransactionReque=
+st request)</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Change</p></td>
+<td class=3D"confluenceTd">
+<p>Replace the V1 partner hook instantiation with the V2 partner hook insta=
+ntiation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Before:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">Partner=
+PricingPrehook partnerHook =3D new PartnerPricingPrehook();
+RevSignaling.TransactionResponse partnerResponse =3D partnerHook.execute(re=
+quest);</pre>
+</div>
+</div>
+<p>After:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">Partner=
+PricingPrehookV2 partnerHook =3D new PartnerPricingPrehookV2();
+RevSignaling.TransactionResponse partnerResponse =3D partnerHook.execute(re=
+quest);</pre>
+</div>
+</div>
+<p>Keep the existing call to <code>partnerHook.execute(request)</code> beca=
+use both prehooks implement <code>RevSignaling.SignalingApexProcessor</code=
+>.</p>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-5.TestTheCutover">5. Test =
+The Cutover</h3>
+<p>Run the V2 test classes and the regional pricing prehook test class as p=
+art of deployment validation. Include <code>RegionalServicesPricingPrehookT=
+est</code> because the production regional pricing class is changed during =
+cutover.</p>
+<ul>
+<li>
+<p><code>PartnerPricingServiceV2Test</code></p></li>
+<li>
+<p><code>PartnerPricingPrehookV2Test</code></p></li>
+<li>
+<p><code>RegionalServicesPricingPrehookTest</code></p></li>
+</ul>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-BuildInventory">Build Inve=
+ntory</h2>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Build Area</p></th>
+<th class=3D"confluenceTh">
+<p>Required Component</p></th>
+<th class=3D"confluenceTh">
+<p>Required Action</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Apex service</p></td>
+<td class=3D"confluenceTd">
+<p><code>src/classes/PartnerPricingServiceV2.cls</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create the reusable pricing service class and implement the methods list=
+ed in the Service Class section.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Apex prehook</p></td>
+<td class=3D"confluenceTd">
+<p><code>src/classes/PartnerPricingPrehookV2.cls</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create the Revenue Cloud prehook class and implement the context orchest=
+ration methods listed in the Prehook Class section.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Apex tests</p></td>
+<td class=3D"confluenceTd">
+<p><code>PartnerPricingServiceV2Test</code>, <code>PartnerPricingPrehookV2T=
+est</code>, and <code>RegionalServicesPricingPrehookTest</code></p></td>
+<td class=3D"confluenceTd">
+<p>Build and run tests covering the service logic, prehook helper behavior,=
+ and DP2 regional pricing cutover.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Object metadata</p></td>
+<td class=3D"confluenceTd">
+<p><code>Partner_Pricing_Model__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Add the hierarchy fields and Non-Originating percent fields listed in th=
+e object-field table.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Context mapping</p></td>
+<td class=3D"confluenceTd">
+<p><code>QuoteEntitiesMapping</code></p></td>
+<td class=3D"confluenceTd">
+<p>Add the required <code>SalesTransaction</code> and <code>SalesTransactio=
+nItem</code> attributes listed in the context mapping table.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Runtime cutover</p></td>
+<td class=3D"confluenceTd">
+<p><code>RegionalServicesPricingPrehook.executePartnerPricing(...)</code></=
+p></td>
+<td class=3D"confluenceTd">
+<p>Replace the V1 partner hook instantiation with <code>PartnerPricingPreho=
+okV2</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-ProductTypePercentageMappi=
+ng">Product Type Percentage Mapping</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Product Type Values</p></th>
+<th class=3D"confluenceTh">
+<p>Standard Field</p></th>
+<th class=3D"confluenceTh">
+<p>Fortra-Originated Field</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Software</code>, <code>Perpetual</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Software_Percent__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Non_Orig_Software_Pct__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>New Maintenance</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>New_Maintenance_Percent__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Non_Orig_New_Maint_Pct__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Renewal Maintenance</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Renewal_Maintenance_Percent__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Non_Orig_Ren_Maint_Pct__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Subscription</code>, <code>SaaS Subscription</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Subscription_Percent__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Non_Orig_Subscription_Pct__c</code></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Services</code>, <code>Professional Service</code>, <code>Renewal =
+Services</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Services_Percent__c</code></p></td>
+<td class=3D"confluenceTd">
+<p><code>Non_Orig_Services_Pct__c</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-ServiceClass">Service Clas=
+s</h2>
+<p>Copy <code>PartnerPricingService.cls</code> to <code>PartnerPricingServi=
+ceV2.cls</code> and rename the class declaration to <code>PartnerPricingSer=
+viceV2</code>. Keep the class as <code>public without sharing</code>. This =
+class owns reusable pricing logic: candidate loading, hierarchy model selec=
+tion, percentage selection, and price calculation. Keep Revenue Cloud conte=
+xt orchestration in <code>PartnerPricingPrehookV2</code>.</p>
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-ClassMembers">Class Member=
+s</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Class Member</p></th>
+<th class=3D"confluenceTh">
+<p>Action</p></th>
+<th class=3D"confluenceTh">
+<p>Member Type</p></th>
+<th class=3D"confluenceTh">
+<p>Build Requirement</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>DEAL_TYPE_FORTRA_ORIGINATED</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create</p></td>
+<td class=3D"confluenceTd">
+<p>Constant</p></td>
+<td class=3D"confluenceTd">
+<p>Create a private constant with value <code>Fortra Originated</code>. Use=
+ this constant when deciding whether to read standard percentage fields or =
+Non-Originating percentage fields.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>getPricingModel(Id, String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this single-record V1 lookup from V2. V2 loads all eligible candi=
+date records and resolves the final model per line.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>getPricingModels(Set&lt;Id&gt;, String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this one-model-per-partner V1 helper from V2. V2 returns candidat=
+e lists per partner.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>getPricingModelCandidates(Set&lt;Id&gt;, String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Load all valid <code>Partner_Pricing_Model__c</code> candidate records f=
+or participating partner accounts and the selected model type. Include acti=
+ve records, filter out future-dated and expired records, include hierarchy =
+and Non-Originating fields, and order by <code>Account__c</code> then newes=
+t <code>CreatedDate</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>selectBestModelForLine(List&lt;Partner_Pricing_Model__c&gt;, Strin=
+g, String, String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Select one candidate pricing model for one quote line. Check Solution Ca=
+tegory, then Solution Group, then Unit, then the blank fallback model. Beca=
+use candidate records are ordered newest first, duplicate matches at the sa=
+me level resolve to the newest record.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>getMarginForProductType(Partner_Pricing_Model__c, String, String)<=
+/code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Replace the V1 two-parameter method with a three-parameter method that a=
+lso receives deal type. Return the applicable percentage for the quote line=
+'s product type and deal type. Use <code>Non_Orig_*</code> fields only when=
+ the deal type is <code>Fortra Originated</code>. Otherwise use the standar=
+d percentage fields. Unknown product types return 0.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>calculateGuaranteedMarginPrice(Decimal, List&lt;Decimal&gt;)</code=
+></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Keep the V1 calculation. Add positive partner margins together, cap the =
+total at 100 percent, and apply <code>List Price x (1 - total margin)</code=
+>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>calculateDiscountPrice(Decimal, Decimal)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Keep the V1 calculation. Apply one billing-partner discount percentage u=
+sing <code>List Price x (1 - discount percent)</code>. Null, zero, and nega=
+tive discounts leave the price unchanged.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-PrehookClass">Prehook Clas=
+s</h2>
+<p>Copy <code>PartnerPricingPrehook.cls</code> to <code>PartnerPricingPreho=
+okV2.cls</code> and rename the class declaration to <code>PartnerPricingPre=
+hookV2</code>. Keep the class <code>global</code> and keep <code>RevSignali=
+ng.SignalingApexProcessor</code>. This class is the orchestration layer. It=
+ reads quote and line data from Revenue Cloud context, determines participa=
+ting partners, delegates pricing decisions to <code>PartnerPricingServiceV2=
+</code>, and submits line updates back to context.</p>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout two-equal" data-layout=3D"two-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-HeaderInputs">Header Input=
+s</h3>
+<p>The prehook reads quote-level values from the <span data-colorid=3D"uzc6=
+npjexg"><strong><em>Sales Transaction</em></strong></span> context, includi=
+ng partner pricing model, deal type, billing partner, reseller, distributor=
+, and referral partner.</p>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-LineInputs">Line Inputs</h=
+3>
+<p>The prehook reads line-level values from <span data-colorid=3D"kqe5pc9eq=
+e"><strong><em>Sales Transaction Item</em></strong></span>, including produ=
+ct type, unit, solution group, and solution category.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout two-equal" data-layout=3D"two-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-PartnerParticipation">Part=
+ner Participation</h3>
+<p>For <span data-colorid=3D"wfxae1uwba"><strong><em>Discount</em></strong>=
+</span>, only the billing partner contributes. For <span data-colorid=3D"ns=
+r4x3wopi"><strong><em>Guaranteed Margin</em></strong></span>, billing partn=
+er, reseller, distributor, and referral partner can contribute when those p=
+artners are present on the quote.</p>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-No-MatchBehavior">No-Match=
+ Behavior</h3>
+<p>When no applicable pricing model is found, the affected partner contribu=
+tes 0 percent and pricing continues successfully.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h3 id=3D"PartnerPricingV2:TechnicalRequirements-ClassMembers.1">Class Memb=
+ers</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Class Member</p></th>
+<th class=3D"confluenceTh">
+<p>Action</p></th>
+<th class=3D"confluenceTh">
+<p>Member Type</p></th>
+<th class=3D"confluenceTh">
+<p>Build Requirement</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>MODEL_GUARANTEED_MARGIN</code>, <code>MODEL_DISCOUNT</code></p></t=
+d>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Constants</p></td>
+<td class=3D"confluenceTd">
+<p>Keep the V1 constants with values <code>Guaranteed Margin</code> and <co=
+de>Discount</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>QuoteHeaderData</code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Inner class</p></td>
+<td class=3D"confluenceTd">
+<p>Store quote-level context values: quote id, billing partner id, reseller=
+ id, distributor id, referral partner id, partner pricing model type, and d=
+eal type. Include a helper that identifies whether the quote has the minimu=
+m required partner pricing inputs.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>LineItemContextData</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create</p></td>
+<td class=3D"confluenceTd">
+<p>Inner class</p></td>
+<td class=3D"confluenceTd">
+<p>Store line-level context values: line item id, product type, unit, solut=
+ion group, and solution category.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>PartnerMarginDetail</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Inner class</p></td>
+<td class=3D"confluenceTd">
+<p>Store partner id, partner name, partner role, and percentage contributio=
+n. Provide a method that converts the detail to a map for JSON serializatio=
+n into <code>Partner_Margin_Detail__c</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>execute(RevSignaling.TransactionRequest)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Read the context instance id, query quote header data, clear stale partn=
+er pricing fields when required header inputs are missing, load participati=
+ng partner models, process all line items, submit context updates, and retu=
+rn <code>SUCCESS</code> with a readable message.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>queryQuoteHeaderFromContext(String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Query the <code>SalesTransaction</code> context node and populate <code>=
+QuoteHeaderData</code> with <code>Partner_Pricing_Model__c</code>, <code>De=
+al_Type__c</code>, <code>Billing_Partner__c</code>, <code>Reseller__c</code=
+>, <code>Distributor__c</code>, and <code>Referral_Partner__c</code>.</p></=
+td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>collectPartnerIds(QuoteHeaderData)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>For <code>Discount</code>, return only the billing partner id. For <code=
+>Guaranteed Margin</code>, return billing partner, reseller, distributor, a=
+nd referral partner ids when present.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>loadPartnerPricingModels(Set&lt;Id&gt;, String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Delegate to <code>PartnerPricingServiceV2.getPricingModelCandidates</cod=
+e> and return a map of partner account id to ordered candidate model list.<=
+/p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>getPartnerNames(Set&lt;Id&gt;)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Keep the V1 account-name lookup helper for partner margin detail output.=
+</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>processLineItems(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Query <code>SalesTransactionItem</code> context data, build the line con=
+text map, process each line, collect non-null line updates, and submit the =
+updates through the context API.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>buildLineItemContextDataById(List&lt;Map&lt;String, Object&gt;&gt;=
+)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Create</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Build a map from line item record id to <code>LineItemContextData</code>=
+ so each line can reuse parsed context values during pricing.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>buildLineItemContextData(Map&lt;String, Object&gt;)</code></p></td=
+>
+<td class=3D"confluenceTd">
+<p>Create</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Extract <code>Fortra_Product_Type__c</code>, <code>Unit__c</code>, <code=
+>Solution_Group__c</code>, and <code>Solution_Category__c</code> from one <=
+code>SalesTransactionItem</code> context payload.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>processLineItem(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Modify</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Determine current price from <code>UnitPrice</code> with <code>ListPrice=
+</code> fallback, resolve hierarchy values from line context, select the be=
+st model for the line, calculate the partner-adjusted price, and return the=
+ context update map for that line.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>getPartnerRole(Id, QuoteHeaderData)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Return <code>Billing Partner</code>, <code>Reseller</code>, <code>Distri=
+butor</code>, <code>Referral Partner</code>, or <code>Unknown</code> based =
+on the matching quote header partner id.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>submitContextUpdates(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Call <code>updateContextAttributes</code> with the line update payload b=
+uilt by <code>processLineItem</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>extractFieldValue(...)</code>, <code>getStringFromTag(...)</code>,=
+ <code>getDecimalFromTag(...)</code>, <code>getIdFromTag(...)</code></p></t=
+d>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Methods</p></td>
+<td class=3D"confluenceTd">
+<p>Support both direct values and nested <code>tagValue</code> structures r=
+eturned by Revenue Cloud context APIs. Return null for missing fields and c=
+onversion failures.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>isModelEffective(Partner_Pricing_Model__c, Date)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this V1 helper from V2 because candidate eligibility is handled i=
+n <code>PartnerPricingServiceV2.getPricingModelCandidates</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>buildMarginDetailJson(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this V1 helper from V2. Serialize the partner margin detail direc=
+tly from the <code>PartnerMarginDetail</code> maps built during line proces=
+sing.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>clearPartnerPricingFields(String)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Unchanged</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Clear partner pricing output attributes from all line items when the quo=
+te lacks required partner pricing header inputs.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>processLineItemsWithWarningOnly(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this V1 warning-only path from V2. V2 line processing handles mis=
+sing model matches as 0 percent partner contribution.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>buildWarningOnlyUpdate(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this V1 warning-only update helper from V2.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>buildMissingModelWarning(...)</code></p></td>
+<td class=3D"confluenceTd">
+<p>Remove</p></td>
+<td class=3D"confluenceTd">
+<p>Method</p></td>
+<td class=3D"confluenceTd">
+<p>Remove this V1 missing-model warning helper from V2. V2 applies hierarch=
+y fallback and writes normal pricing outputs for each processed line.</p></=
+td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-RuntimeOutputs">Runtime Ou=
+tputs</h2>
+<p>The V2 prehook writes partner pricing results back to the line context. =
+These values support downstream pricing display and audit visibility.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Output Attribute</p></th>
+<th class=3D"confluenceTh">
+<p>Meaning</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Pre_Partner_Price__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>The price before the partner pricing adjustment. In this pricing chain, =
+it represents the price after regional pricing has already run.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Partner_Adjusted_Price__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>The calculated price after partner pricing is applied.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Partner_Pricing_Model_Applied__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>The partner pricing model family selected on the quote, such as <code>Di=
+scount</code> or <code>Guaranteed Margin</code>.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Partner_Pricing_Source__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Set to <code>System Calculated</code> when V2 calculates the partner pri=
+cing result.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Partner_Margin_Detail__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>JSON detail showing partner role and contribution percentage when applic=
+able.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>PartnerUnitPrice</code></p></td>
+<td class=3D"confluenceTd">
+<p>Revenue Cloud standard partner unit price value for display and downstre=
+am pricing behavior.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>PartnerDiscountPercent</code></p></td>
+<td class=3D"confluenceTd">
+<p>Total partner discount or margin percentage written for Revenue Cloud di=
+splay.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>Partner_Pricing_Warning__c</code></p></td>
+<td class=3D"confluenceTd">
+<p>Cleared when the normal V2 line-pricing path completes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-TestCoverage">Test Coverag=
+e</h2>
+<p>Build test coverage for service-layer calculations, candidate loading, h=
+ierarchy selection, deal-type-specific field selection, and prehook helper =
+behavior.</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" class=3D"confluenc=
+eTable">
+<tbody>
+<tr>
+<th class=3D"confluenceTh">
+<p>Test Class</p></th>
+<th class=3D"confluenceTh">
+<p>Coverage Areas</p></th>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>PartnerPricingServiceV2Test</code></p></td>
+<td class=3D"confluenceTd">
+<p>Valid candidate loading, effective-date filtering, hierarchy selection, =
+newest-created duplicate handling, standard vs Non-Originating percentage s=
+election, discount calculation, and guaranteed-margin calculation.</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><code>PartnerPricingPrehookV2Test</code></p></td>
+<td class=3D"confluenceTd">
+<p>Prehook instantiation, helper behavior, candidate loading delegation, no=
+-match discount behavior, Fortra-originated discount behavior, context hier=
+archy extraction, partner collection, partner role labeling, and clearing b=
+ehavior for invalid context.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Perform an integration test in a pricing-enabled org to validate end-to-=
+end execution of <code>execute(RevSignaling.TransactionRequest)</code>.</p>
+<h2 id=3D"PartnerPricingV2:TechnicalRequirements-ReleaseValidation">Release=
+ Validation</h2>
+<ol start=3D"1">
+<li>
+<p>Confirm the V2 object fields exist on <code>Partner_Pricing_Model__c</co=
+de>: <code>Unit__c</code>, <code>Solution_Group__c</code>, <code>Solution_C=
+ategory__c</code>, and the <code>Non_Orig_*</code> percentage fields.</p></=
+li>
+<li>
+<p>Confirm the quote-pricing context provides <code>Deal_Type__c</code> on =
+<code>SalesTransaction</code>.</p></li>
+<li>
+<p>Confirm <code>SalesTransactionItem</code> provides <code>Fortra_Product_=
+Type__c</code>, <code>Unit__c</code>, <code>Solution_Group__c</code>, and <=
+code>Solution_Category__c</code>.</p></li>
+<li>
+<p>Confirm partner pricing model data follows the expected pattern of one p=
+opulated hierarchy field per model record, with blank hierarchy fields used=
+ for fallback records.</p></li>
+<li>
+<p>Confirm inactive, future-dated, and expired partner pricing model record=
+s are ignored.</p></li>
+<li>
+<p>Maintain one active record per partner, model type, and hierarchy level.=
+ If duplicates exist at the same hierarchy level, the newest record will be=
+ selected.</p></li>
+<li>
+<p>Update and validate the pricing route so the partner pricing step execut=
+es <code>PartnerPricingPrehookV2</code>.</p></li>
+<li>
+<p>Run UAT scenarios for category match, group fallback, unit fallback, bla=
+nk fallback, no model match, Fortra-originated discount selection, standard=
+ discount selection, and Guaranteed Margin with multiple partner roles.</p>=
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_4_957164449.1780419163300--

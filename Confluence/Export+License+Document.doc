@@ -1,0 +1,435 @@
+Date: Tue, 2 Jun 2026 16:48:27 +0000 (UTC)
+Message-ID: <1369027339.5.1780418907751@6d82205725e6>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_1976042074.1780418907751"
+
+------=_Part_4_1976042074.1780418907751
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Export License Document</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Export License Document</h1>
+    <div class=3D"Section1">
+        <div class=3D"panel" style=3D"background-color: #EAE6FF;border-colo=
+r: #998DD9;border-width: 1px;">
+<style>[data-colorid=3Dd28rpu3mle]{color:#bf2600} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dd28rpu3mle]{color:#ff6640}[data-colorid=3Dd57tk2taqj]{c=
+olor:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Dd57tk2taqj]{colo=
+r:#ff6640}[data-colorid=3Dz3g5gasc4x]{color:#bf2600} html[data-color-mode=
+=3Ddark] [data-colorid=3Dz3g5gasc4x]{color:#ff6640}[data-colorid=3Dpriscce7=
+zp]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Dpriscce7zp]=
+{color:#ff6640}[data-colorid=3Do62xryw7j1]{color:#bf2600} html[data-color-m=
+ode=3Ddark] [data-colorid=3Do62xryw7j1]{color:#ff6640}[data-colorid=3Dwjfgx=
+lvw69]{color:#bf2600} html[data-color-mode=3Ddark] [data-colorid=3Dwjfgxlvw=
+69]{color:#ff6640}</style>
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p local-id=3D"98c0b297-af2d-4694-9d99-5d9fa8505027">Fortra Review Complete=
+ 11.6.2025</p>
+</div>
+</div>
+<h1 local-id=3D"57a13661-f4a9-46fe-a6ad-0990b2c86e34" id=3D"ExportLicenseDo=
+cument-ProcessOverview">Process Overview</h1>
+<p local-id=3D"f9c4d5fb-07f1-4a1a-9355-d6ab0c4e198d">Based on customer coun=
+try, certain Export Licenses Documents are Required to be housed at the acc=
+ount level for all new sales and renewals of Offensive Security and Email S=
+ecurity (Secure ICAP Gateway, Secure Email Gateway) products. An export doc=
+ument is required before these can be processed and sent to the customer. T=
+his is a legal requirement by the Export Control Joint Unit (ECJU) <a class=
+=3D"external-link" data-card-appearance=3D"inline" href=3D"https://www.gov.=
+uk/government/organisations/export-control-organisation" local-id=3D"693171=
+96-a354-4350-a44e-916e42e52aa4" rel=3D"nofollow">https://www.gov.uk/governm=
+ent/organisations/export-control-organisation</a> and falls into four categ=
+ories of countries and determines the type of export document required.&nbs=
+p;</p>
+<h1 local-id=3D"922e93e7-1572-498d-970f-e89eb49bc9f1" id=3D"ExportLicenseDo=
+cument-DocumentFieldsNeeded"><span style=3D"background-color: rgb(223,216,2=
+53);">Document Fields Needed </span></h1>
+<p local-id=3D"a02e8c84-8083-4f1f-80ce-291ad97d735e"><span style=3D"backgro=
+und-color: rgb(254,222,200);">TBD - if at account level or a new entity. </=
+span></p>
+<p local-id=3D"db0f210e-a0c4-496a-ab7b-8ede3d0ea78f"><u>Document Record Fie=
+lds</u></p>
+<p local-id=3D"52be5c28-f9e3-451e-975e-0224761bebbb"><strong><span data-col=
+orid=3D"priscce7zp">*</span>Status (Picklist) </strong>Active, Expired, Req=
+uested</p>
+<ul local-id=3D"d0579cde-045a-4a7e-b4b8-46ee9dc83d80">
+<li local-id=3D"e5ef3095-5a63-40f1-afcc-7bf01c292d07">
+<p local-id=3D"ff92e3dc-a491-4f1c-a64e-89eb9ff73453">Expired - automation t=
+hat changes status based on end date (further down)</p></li>
+</ul>
+<p local-id=3D"e8e414b9-abab-495c-9932-f6e08866a48e"><strong><span data-col=
+orid=3D"o62xryw7j1">*</span>Document Type (Picklist) </strong>End User Unde=
+rtaking, EU General Export Authorization, Open Individual Export License, S=
+tandard Individual Export License, US Export Control License - Offensive Se=
+curity</p>
+<p local-id=3D"005dd48e-0200-4a57-9b61-02593470d1b0"><strong><span data-col=
+orid=3D"d57tk2taqj">*</span>Export Control Category (Picklist, allow multi-=
+select)</strong> Secure Email Gateway, Secure ICAP Gateway, Cobalt Strike, =
+Core Impact, Outflank</p>
+<p local-id=3D"c488dcf6-1078-450b-b7eb-031a99948014"><strong><span data-col=
+orid=3D"wjfgxlvw69">*</span>Start Date</strong></p>
+<p local-id=3D"376286cb-f6ee-4b3f-9635-ec4660369a20"><strong><span data-col=
+orid=3D"z3g5gasc4x">*</span>End Date</strong></p>
+<p local-id=3D"3858fa1d-4616-42c0-ac37-a664b0a94f39"><strong>License Number=
+</strong> - multi text field</p>
+<p local-id=3D"fc7c28f2-836a-4574-8390-fe02b76c9134"><strong>Check boxes </=
+strong>- Default Open License, Regional License.</p>
+<ul local-id=3D"0ec04967-1f9b-4348-bda5-21bcdc25abbe">
+<li local-id=3D"ce689c68-8eda-4c3d-a236-3fc426f428de">
+<p local-id=3D"c3ea125a-9940-460a-ab41-f8b85b3fd146"><span style=3D"backgro=
+und-color: rgb(254,222,200);">(FOR BSI TO SOLVE with License Key Generation=
+: Automation will update license email template language based on which box=
+ is selected. </span></p></li>
+</ul>
+<p local-id=3D"d5a24e25-8dff-46d7-a632-dc2191a0f90f"><strong><span data-col=
+orid=3D"d28rpu3mle">*</span>Document Link </strong>- This is a URL field.</=
+p>
+<h1 local-id=3D"41e5e03c-bdf8-43ca-a9bf-ed1e339c1688" id=3D"ExportLicenseDo=
+cument-Automationbasedondocumentenddates"><strong>Automation based on docum=
+ent end dates</strong></h1>
+<ul local-id=3D"de131f93-df85-41e3-a6a0-a9517580c1bf">
+<li local-id=3D"03a662d1-3aca-4b7f-a448-2c724faad605">
+<p local-id=3D"4564d86a-13e7-441b-bc7d-7cc85f508e8f">1. Status Field =3D Ex=
+pired (Today or earlier) - automation that will update status field on acco=
+unt based on end date</p></li>
+<li local-id=3D"34847d27-8514-4db0-9acf-479f36cc69b7">
+<p local-id=3D"4df20c7e-4037-4a8d-8876-68dd446c9a38">2. Send email to <a cl=
+ass=3D"external-link" href=3D"mailto:cyber.operations@fortra.com" rel=3D"no=
+follow">cyber.operations@fortra.com</a> with <a class=3D"external-link" hre=
+f=3D"mailto:cyber.renewals@fortra.com" rel=3D"nofollow">cyber.renewals@fort=
+ra.com</a> in cc list of all license expiring in 90 days.</p>
+<ul local-id=3D"40660b0e-482d-445f-8fda-b6acd450ff3b">
+<li local-id=3D"f62a4659-6356-4462-b3df-a02108884b28">
+<p local-id=3D"b9841337-2d54-4503-bcd2-f9a1553a07a2">Ideally this would inc=
+lude which document is expiring. Proposed format: ABC Customer, US Export C=
+ontrol License - Offensive Security, Expires xx.xx.xxxx</p></li>
+<li local-id=3D"e72df0d6-b4cd-4d04-9b93-c0505999bdbf">
+<p local-id=3D"6bffddba-d28b-496f-b131-6de1496051d2">Frequency: Weekly on M=
+ondays, AM CT</p></li>
+</ul></li>
+<li local-id=3D"0d710b04-1651-478b-b0fd-9cfcfe0e0b50">
+<p local-id=3D"6dffdda0-f3b8-4351-8f81-561254128648">3. Automation Required=
+ at the quote level:</p></li>
+</ul>
+<p local-id=3D"b6abd501-2fab-45bc-8bee-93a718d5aa0e"><strong>Approval Flows=
+:</strong></p>
+<ul local-id=3D"de131f93-df85-41e3-a6a0-a9517580c1bf">
+<li local-id=3D"3b6094d2-5f41-4f35-a8b1-718ba58feb7c">
+<p local-id=3D"2337f6b0-b87b-43eb-8927-56b6b0a54bd8"><strong>Offensive Secu=
+rity - </strong>To not allow activation of quote until Customer Operations =
+Export Approval =3D Yes</p></li>
+<li local-id=3D"78b1bb69-3541-4f51-9e6a-70cb8613c4c7">
+<p local-id=3D"0f1f3a6d-ddc5-4091-a378-94900429ffd2"><strong>Email Security=
+ (Secure ICAP Gateway, Secure Email Gateway) </strong>System looks at quote=
+ line items Solution Level 3 + Customer Ship To Country =E2=86=92 return wh=
+at document type is required.</p>
+<ul local-id=3D"be746dca-8f73-4c8e-9f26-17e7b219a035">
+<li local-id=3D"b77cb585-b5b1-46e3-a91a-a1e23bcddeda">
+<p local-id=3D"a44760de-11b3-40ee-abcb-adca8331a88c">Use this spreadsheet f=
+or reference on <a class=3D"external-link" href=3D"https://helpsystemsllc-m=
+y.sharepoint.com/:x:/g/personal/leah_guenther_helpsystems_com/EZYCR8GraElLm=
+yETFcdviuIBzn4HClJCYiv4JLl10RiZag?e=3D0xjq3t" rel=3D"nofollow">Country spec=
+ific Export Control List.xlsx</a>.</p></li>
+<li local-id=3D"208f2b98-cf49-4770-b256-c338bd17fa77">
+<p local-id=3D"a1904d59-42ad-4b9f-aa93-87152c794003">If the country does no=
+t have a specific Export Control Document required and is blank - Allow act=
+ivation of quote.</p></li>
+<li local-id=3D"a0646285-ca47-4ba8-bf49-ce9fe25ed27b">
+<p local-id=3D"2012fb96-1407-40b8-ac45-2bfa2f62d81a">If the system does fin=
+d a specific Country Export license required:</p>
+<ul local-id=3D"8efcc038-0f2b-4934-bd44-71afc5329cef">
+<li local-id=3D"e2157dc2-231c-4217-936c-ce0a8bee2788">
+<p local-id=3D"d8f1d991-0d82-46fc-bf3d-888483a0820b">System to look if docu=
+ment exists at account level, if the document type is the correct type for =
+the solution level + country - Look at end date.</p>
+<ul local-id=3D"73918462-5b42-4651-8d95-1078dbec1934">
+<li local-id=3D"d6145704-8d0d-4ad0-919f-593970339cef">
+<p local-id=3D"e487ebd7-ed92-42ee-acad-0a763e4575fa">If Expired (End date i=
+s more then 30 days from today date or earlier) - trigger approval workflow=
+. <a class=3D"external-link" href=3D"mailto:cyber.operations@fortra.com" re=
+l=3D"nofollow">cyber.operations@fortra.com</a> with representative in cc is=
+ notified that a document is required for [quote link]</p></li>
+<li local-id=3D"6d3fd1ae-064f-4d50-8a48-526325241a5b">
+<p local-id=3D"4cbec057-faa5-4bb0-ade0-5b19dd9a76a6">If Active - (End date =
+is more then 30 days from today) allow activation of quote</p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p local-id=3D"e2802651-03ed-4833-a084-b14c8879596b"></p>
+<h2 local-id=3D"0d9413f1-52b1-4f8e-9b1f-6a91bd990c20" id=3D"ExportLicenseDo=
+cument-ExportcontrolsReportingNeeds">Export controls Reporting Needs</h2>
+<p local-id=3D"091f803b-6c54-4857-aeb4-2916c689236f">Dashboards</p>
+<ol start=3D"1" local-id=3D"cf92fccb-a4de-4c1f-a31f-13ff99d8d8de">
+<li local-id=3D"6c0e3721-9d8a-4aec-a528-29799b8e2928">
+<p local-id=3D"500317f8-19ad-498c-946e-2de2f0110ae7">Documents that are exp=
+ired</p>
+<ol start=3D"1" local-id=3D"b2c8fd77-b78c-41ff-ad9c-e68d417cd7cb">
+<li local-id=3D"a945a0ae-dfe4-452e-9f63-2b88e61ae163">
+<p local-id=3D"4ce34025-e63c-4e27-917b-5d507ee378b2">Filter/Product</p></li=
+>
+</ol></li>
+<li local-id=3D"1899d5a8-bd9b-4c18-b7b1-bf3b754f2cbe">
+<p local-id=3D"ddf3811f-3e9a-4033-9c1d-41ad1c230420">Documents about to exp=
+ire</p>
+<ol start=3D"1" local-id=3D"58232613-e462-4654-ad35-269807c3f9c5">
+<li local-id=3D"943cb4fd-e73c-44a9-b9d5-5721bbab323d">
+<p local-id=3D"d35d870e-0041-4049-bb12-b4f7f90771fc">Filter/Product</p></li=
+>
+</ol></li>
+<li local-id=3D"751d906b-921d-40a3-9b4c-77f74cea2c84">
+<p local-id=3D"d7537bc6-bc37-4d07-aa17-c4846bcda5f4">Document Status moved =
+from =E2=80=9CRequested=E2=80=9D to =E2=80=9CActive=E2=80=9D</p></li>
+<li local-id=3D"2b93f744-e8c9-4ecb-92c1-9cbcebddaca2">
+<p local-id=3D"a225af8d-0f9b-44d5-9965-3026e19e041d">Accounts on CSL On hol=
+d - Additional Screening Needed - Denied</p>
+<ol start=3D"1" local-id=3D"e39887a5-b8fe-4c82-9135-24fbc60580da">
+<li local-id=3D"e2551416-c2e5-4e71-8740-b381eb46930d">
+<p local-id=3D"3b94371f-6892-427d-a56e-f98ce64021a2">Filter/Product/Solutio=
+n Group</p></li>
+</ol></li>
+<li local-id=3D"087011a4-14d8-49db-9360-9039e3c55ec8">
+<p local-id=3D"70af559a-b0d7-4760-ab0d-c0da2ce9b57d">Opportunities on CSL O=
+n hold - Additional Screening Needed - Denied</p>
+<ol start=3D"1" local-id=3D"c0212ec4-4ae1-4ef5-832c-e68ec3370ca6">
+<li local-id=3D"d67bc46a-12b3-45fa-b5cf-baa209339ea4">
+<p local-id=3D"bea1fb2c-e747-4cfe-938d-e98c50df9f82">Filter/Product/Solutio=
+n Group</p></li>
+</ol></li>
+<li local-id=3D"59d5db42-f776-4441-961a-123464d71786">
+<p local-id=3D"1710f1d9-9781-4bf9-992e-e575487175ac">Opportunity Stage Metr=
+ix?</p>
+<ol start=3D"1" local-id=3D"544ea104-95e9-4f3a-8862-ac64b0e12fcd">
+<li local-id=3D"7bb147dd-b7e7-4e0b-aaf6-fff96c6f78c9">
+<p local-id=3D"79f428a9-13e1-4b4c-a812-75c930fea2e0">How long does this sta=
+y</p></li>
+</ol></li>
+<li local-id=3D"4695c004-5660-4043-9891-e73cef6d4be2">
+<p local-id=3D"db4eff12-6f32-42e5-8454-fa436d54e526"></p></li>
+</ol>
+<p local-id=3D"593fd5b1-f5de-40b9-9453-fe06daa1a66d"></p>
+<p local-id=3D"731457a8-9c42-4f7b-a9d7-0f7ed29e1a44"></p>
+    </div>
+</body>
+</html>
+------=_Part_4_1976042074.1780418907751--

@@ -1,0 +1,380 @@
+Date: Tue, 2 Jun 2026 16:51:52 +0000 (UTC)
+Message-ID: <1474013566.1.1780419112598@aee5e9ed57c2>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_0_978018156.1780419112575"
+
+------=_Part_0_978018156.1780419112575
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Step by Step</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Step by Step</h1>
+    <div class=3D"Section1">
+        <p><a class=3D"external-link" data-card-appearance=3D"inline" href=
+=3D"https://docs.google.com/spreadsheets/d/1qR-XArODMjNtecdPj3_VG5QGGwlzthQ=
+kWkmIRZmp6vo/edit?gid=3D0#gid=3D0" rel=3D"nofollow">https://docs.google.com=
+/spreadsheets/d/1qR-XArODMjNtecdPj3_VG5QGGwlzthQkWkmIRZmp6vo/edit?gid=3D0#g=
+id=3D0</a></p>
+<p></p>
+<h2 id=3D"StepbyStep-WhensalesrepisreadyforQuotetoInvoice:">When sales rep =
+is ready for Quote to Invoice:</h2>
+<ol start=3D"1">
+<li>
+<p>They fill out the sales order form</p></li>
+<li>
+<p>CSL Automation</p></li>
+<li>
+<p>Sent to Customer Operations <span style=3D"background-color: rgb(254,222=
+,200);">Que/task</span></p></li>
+</ol>
+<p></p>
+<p>Convert to order:</p>
+<ul>
+<li>
+<p>Creates Order Record</p></li>
+<li>
+<p>Copies detail from quote</p></li>
+<li>
+<p>Order Line items created</p></li>
+</ul>
+<p>Opportunity Stage =3D ?</p>
+<p>Assets/Contracts created =3D ?</p>
+<p></p>
+<p></p>
+<h1 id=3D"StepbyStep-CyberNew&amp;Renew">Cyber New &amp; Renew</h1>
+<ol start=3D"1">
+<li>
+<p>Opportunity Stage Moves to - =E2=80=9CReady to Review for Order=E2=80=9D=
+</p></li>
+<li>
+<p><strong>Callout</strong> - CSL Automation</p>
+<ol start=3D"1">
+<li>
+<p>Run the CSL API</p>
+<ul>
+<li>
+<p>CSL Returns =3D On Hold</p></li>
+<li>
+<p>Update Account Field =E2=80=9CConsolidated Screening List=E2=80=9D =3D O=
+n Hold</p></li>
+<li>
+<p>Update Opportunity Field =E2=80=9CConsolidated Screening Status=E2=80=9D=
+ =3D On Hold</p></li>
+<li>
+<p><strong>Auto Task: </strong>Product Specialist: Routes based on product =
+family</p></li>
+<li>
+<p><strong>Manual: </strong>Customer Operations review</p></li>
+<li>
+<p>Once complete Customer Operations will manually update Update Opportunit=
+y Field =E2=80=9CConsolidated Screening Status=E2=80=9D =3D Approved</p></l=
+i>
+</ul></li>
+<li>
+<p>CSL Returns =3D Approved</p>
+<ul>
+<li>
+<p>Update Account Field =E2=80=9CConsolidated Screening List=E2=80=9D =3D A=
+pproved</p></li>
+<li>
+<p>Update Opportunity Field =E2=80=9CConsolidated Screening Status=E2=80=9D=
+ =3D Approved</p></li>
+<li>
+<p>Move to next stage of Fulfillment process</p></li>
+</ul></li>
+</ol></li>
+<li>
+<p><strong>Manual</strong>: Sales Rep Fills out Form</p>
+<ol start=3D"1">
+<li>
+<p>Questions needed:</p>
+<ol start=3D"1">
+<li>
+<p>=E2=80=A6=E2=80=A6(See MS Form)</p></li>
+</ol></li>
+</ol></li>
+<li>
+<p><strong>Auto Task: </strong>Product Specialist: Routes based on product =
+family</p>
+<ol start=3D"1">
+<li>
+<p>Cyber products =E2=86=92 Cyber fulfillment team</p></li>
+<li>
+<p>Tech products =E2=86=92 Tech fulfillment team</p>
+<ol start=3D"1">
+<li>
+<p>RPA+ =E2=86=92 Tech fulfillment team</p></li>
+<li>
+<p>MFT =E2=86=92 Tech fulfillment team</p></li>
+<li>
+<p>Power =E2=86=92 Tech fulfillment team</p></li>
+</ol></li>
+</ol></li>
+<li>
+<p><strong>Manual Task</strong> - Review Opportunity</p></li>
+<li>
+<p>=E2=80=A6=E2=80=A6Mark opp as Closed won=E2=80=A6</p></li>
+<li>
+<p><strong>Auto Task:</strong> Create Order</p></li>
+<li>
+<p><strong>Manual Task</strong>: Activate Order</p></li>
+<li>
+<p><strong>Staged Assetize:</strong></p></li>
+<li>
+<p><strong>Callout</strong>: Invoice detail sent to Workday (<strong>Point =
+of No Return</strong>)</p></li>
+<li>
+<p><span style=3D"background-color: rgb(254,222,200);">? Do assets get crea=
+ted but we can still wait until after payment? (Assets/Contracts/Next Oppor=
+tunity)</span></p></li>
+<li>
+<p><span style=3D"background-color: rgb(254,222,200);">? Do customers get a=
+ccess to support portal at what point? </span></p></li>
+<li>
+<p><span style=3D"background-color: rgb(254,222,200);">? How difficult is i=
+t to re-do after Created Assets to make adjust? </span></p></li>
+<li>
+<p><strong>Manual Task: </strong>Coordinate customer access (owner varies)<=
+/p></li>
+<li>
+<p><strong>Manual Task</strong>: Send notification to customer about access=
+ (owner varies)</p></li>
+<li>
+<p><strong>Auto Task:</strong> Create Renewal Opportunity/Assets/Contract e=
+tc</p></li>
+<li>
+<p><span style=3D"background-color: rgb(254,222,200);">If we need the Futur=
+e Opp to auto create quote 90 days before expiration date do we need to doc=
+ument this here in Order Orchestration</span></p>
+<ol start=3D"1">
+<li>
+<p><span style=3D"background-color: rgb(254,222,200);">This may might be an=
+other fulfillment process for Automated Renewals?</span></p></li>
+</ol></li>
+</ol>
+<p></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_0_978018156.1780419112575--

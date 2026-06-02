@@ -1,0 +1,1061 @@
+Date: Tue, 2 Jun 2026 16:51:12 +0000 (UTC)
+Message-ID: <1155148526.5.1780419072458@2c7bf48a0f75>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_200457434.1780419072457"
+
+------=_Part_4_200457434.1780419072457
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>COLA Uplift Feature - Solution Design Overview=C2=A0</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>COLA Uplift Feature - Solution Design Overview=C2=A0</h1>
+    <div class=3D"Section1">
+        <p><strong>COLA Uplift Feature - Solution Design Overview</strong>&=
+nbsp;</p>
+<p><strong>Fortra | Salesforce Revenue Cloud</strong>&nbsp;</p>
+<p><em>Document Version: 2.0 | Date: December 2025&nbsp;</em>&nbsp;</p>
+<ol start=3D"1">
+<li>
+<p><strong>Executive Summary</strong>&nbsp;</p></li>
+</ol>
+<p>This document describes the solution design for implementing automated C=
+ost of Living Adjustment (COLA) uplift functionality within Fortra's Salesf=
+orce Revenue Cloud environment. The solution automatically applies annual p=
+rice increases to renewal quotes based on predefined percentages by Solutio=
+n Category, while providing sales representatives the flexibility to overri=
+de these values when business needs require.&nbsp;</p>
+<p><strong>1.1 Business Objectives</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Standardize annual renewal pricing increases across all product Solution=
+ Categories<code>&nbsp;</code></p></li>
+<li>
+<p>Reduce manual pricing errors and ensure compliance with corporate pricin=
+g policies<code>&nbsp;</code></p></li>
+<li>
+<p>Maintain complete audit trail of COLA applications and user overrides<co=
+de>&nbsp;</code></p></li>
+<li>
+<p>Provide flexibility for sales to adjust COLA percentages based on custom=
+er negotiations&nbsp;</p></li>
+</ul>
+<ol start=3D"2">
+<li>
+<p><strong>Solution Overview</strong>&nbsp;</p></li>
+</ol>
+<p>The COLA Uplift solution leverages Salesforce Revenue Cloud's asset-base=
+d ordering capabilities to automatically calculate and apply price increase=
+s when renewal quotes are generated. The solution uses the current Asset pr=
+ice as the base amount and applies a percentage increase based on the produ=
+ct's Solution Category.&nbsp;</p>
+<p><strong>2.1 Key Components</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"3=
+d99671d-ab0c-44f5-9ec8-06e797b65301" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Component&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Purpose&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Uplift_Rules__mdt&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Custom Metadata Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Stores COLA percentages by Solution Category with effective dates&nbsp;<=
+/p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>QuoteLineItem Fields&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Custom Fields (9)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Track COLA application, overrides, and audit information&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>QuoteLineItemTrigger&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Apex Trigger&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Automatically applies COLA on quote line creation and handles overrides&=
+nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLAUpliftHandler&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Apex Class&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Contains business logic for COLA calculation and field population&nbsp;<=
+/p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>2.2 Solution Architecture</strong>&nbsp;</p>
+<p>The solution integrates with the existing Revenue Cloud data model throu=
+gh the following relationships:&nbsp;</p>
+<p><code>QuoteLineItem --&gt; QuoteAction --&gt; Asset --&gt; Product2 --&g=
+t; ProductCategory (Solution Category)&nbsp;</code></p>
+<p>When a renewal quote is created, the system traverses this relationship =
+to determine the appropriate COLA percentage based on the product's Solutio=
+n Category in the catalog hierarchy.&nbsp;</p>
+<ol start=3D"3">
+<li>
+<p><strong>Data Model</strong>&nbsp;</p></li>
+</ol>
+<p><strong>3.1 COLA Uplift Rules (Custom Metadata Type)</strong>&nbsp;</p>
+<p>The COLA_Uplift_Rules__mdt Custom Metadata Type stores the COLA percenta=
+ge configurations. Using CMDT allows administrators to update COLA rates wi=
+thout code deployments and provides version control through metadata deploy=
+ments.&nbsp;</p>
+<p><strong>CMDT Fields:</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"6=
+a019b3a-bd99-495d-bce1-2b08a3fc4901" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Field Name&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Description&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Solution_Category__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text (100)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Matches ProductCategory.Name for Solution Category level&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Default_Uplift_Percent__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Number (5,2)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA percentage to apply (e.g., 7.85)&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Is_Active__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Checkbox&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Enable/disable rule without deletion&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Effective_Start_Date__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Date&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Rule effective from date&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Effective_End_Date__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Date&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Rule effective until date (optional)&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Description__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text (255)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Administrative notes&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>3.2 COLA Rates by Solution Category</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"b=
+3477914-03b4-417a-8b40-b011407915f2" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Solution Category&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA %&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Robotic Process Automation&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>9.85%&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Network Monitoring, GoAnywhere, Globalscape, Systems Management, Doc Man=
+agement, Business Intelligence, Cybersecurity, Powertech IAM BoKS&nbsp;</p>=
+</td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>7.85%&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Vulnerability Management, Offensive Security&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>6.20%&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Email Security, Brand Protection, Human Risk Management, Cloud Data Prot=
+ection, File Integrity Monitoring&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>5.00%&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Data Protection, Core IGA, Capacity Management&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>4.70%&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Fortra Platform (IPP)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0%&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Default (No Match)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>0%&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>3.3 QuoteLineItem COLA Fields</strong>&nbsp;</p>
+<p>Nine custom fields are added to QuoteLineItem to track COLA application =
+and provide audit capabilities:&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"6=
+bb3b276-3058-4902-b1d9-e15a75f67ef1" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Field Name&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Editable&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Purpose&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Uplift_Percent__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Number (5,2)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Yes&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Applied COLA percentage - users can override&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Default_COLA_Uplift_Percent__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Number (5,2)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Original COLA % from rules - preserved for comparison&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Pre_COLA_Price__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Currency&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Asset.Price stored for override recalculations&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Solution_Category__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text (100)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Solution Category used for COLA lookup&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Applied_Date__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>DateTime&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>When COLA was first applied&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Modified_By__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Lookup (User)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>User who last modified COLA %&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Modified_Date__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>DateTime&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>When COLA % was last modified&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Override_Reason__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Text (255)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Yes&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Justification for override&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Is_COLA_Overridden__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Formula&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>N/A&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TRUE if COLA % differs from Default&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol start=3D"4">
+<li>
+<p><strong>Business Logic</strong>&nbsp;</p></li>
+</ol>
+<p><strong>4.1 COLA Application Process</strong>&nbsp;</p>
+<p>When a renewal quote line is created, the system automatically:&nbsp;</p=
+>
+<ol start=3D"1">
+<li>
+<p>Identifies the quote line as a renewal by checking QuoteAction.Type =3D =
+'Renew'<code>&nbsp;</code></p></li>
+<li>
+<p>Retrieves the current subscription price from Asset.Price<code>&nbsp;</c=
+ode></p></li>
+<li>
+<p>Navigates the Product Catalog hierarchy to find the Solution Category<co=
+de>&nbsp;</code></p></li>
+<li>
+<p>Looks up the corresponding COLA percentage from COLA_Uplift_Rules__mdt<c=
+ode>&nbsp;</code></p></li>
+<li>
+<p>Calculates the new price: UnitPrice =3D Asset.Price x (1 + COLA%/100)<co=
+de>&nbsp;</code></p></li>
+<li>
+<p>Populates all COLA tracking fields for audit purposes&nbsp;</p></li>
+</ol>
+<p><strong>4.2 Override Handling</strong>&nbsp;</p>
+<p>Sales representatives can override the COLA percentage when business nee=
+ds require. When the COLA_Uplift_Percent__c field is modified:&nbsp;</p>
+<ol start=3D"1">
+<li>
+<p>The system recalculates: UnitPrice =3D Pre_COLA_Price__c x (1 + New COLA=
+%/100)<code>&nbsp;</code></p></li>
+<li>
+<p>COLA_Modified_By__c is set to the current user<code>&nbsp;</code></p></l=
+i>
+<li>
+<p>COLA_Modified_Date__c is set to the current timestamp<code>&nbsp;</code>=
+</p></li>
+<li>
+<p>Is_COLA_Overridden__c formula evaluates to TRUE&nbsp;</p></li>
+</ol>
+<p>The Pre_COLA_Price__c field preserves the original Asset.Price, ensuring=
+ accurate recalculation regardless of how many times the COLA percentage is=
+ adjusted.&nbsp;</p>
+<ol start=3D"5">
+<li>
+<p><strong>User Experience</strong>&nbsp;</p></li>
+</ol>
+<p><strong>5.1 Quote Line Item Layout</strong>&nbsp;</p>
+<p>A new 'COLA Information' section will be added to the QuoteLineItem page=
+ layout, displaying:&nbsp;</p>
+<ul>
+<li>
+<p>COLA Uplift % (editable) - The applied percentage, modifiable by sales<c=
+ode>&nbsp;</code></p></li>
+<li>
+<p>Default COLA Uplift % (read-only) - Original percentage from rules<code>=
+&nbsp;</code></p></li>
+<li>
+<p>COLA Solution Category (read-only) - Category used for lookup<code>&nbsp=
+;</code></p></li>
+<li>
+<p>Is COLA Overridden (formula) - Visual indicator when override applied<co=
+de>&nbsp;</code></p></li>
+<li>
+<p>COLA Override Reason (editable) - Required justification for overrides<c=
+ode>&nbsp;</code></p></li>
+<li>
+<p>Audit fields (read-only) - Applied Date, Modified By, Modified Date&nbsp=
+;</p></li>
+</ul>
+<ol start=3D"6">
+<li>
+<p><strong>Testing Approach</strong>&nbsp;</p></li>
+</ol>
+<p>The solution will be validated through the following test scenarios:&nbs=
+p;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"d=
+32f62fd-8045-4e71-9197-49fd95211c5e" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Test Case&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Description&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-001&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Renewal quote line receives correct COLA % based on Solution Category&nb=
+sp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-002&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Non-renewal quote lines do not receive COLA application&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-003&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Products without matching Solution Category default to 0% COLA&nbsp;</p>=
+</td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-004&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Override tracking captures user and timestamp correctly&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-005&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Price recalculates correctly when COLA % is overridden&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-006&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Bulk renewal processing handles multiple quote lines efficiently&nbsp;</=
+p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>TC-007&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Inactive COLA rules are excluded from processing&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<ol start=3D"8">
+<li>
+<p><strong>Assumptions and Dependencies</strong>&nbsp;</p></li>
+</ol>
+<ul>
+<li>
+<p>Product Catalog hierarchy includes Solution Category level (Unit &gt; So=
+lution Group &gt; Solution Category &gt; Solution Name)<code>&nbsp;</code><=
+/p></li>
+<li>
+<p>Asset records are properly created when orders are activated<code>&nbsp;=
+</code></p></li>
+<li>
+<p>QuoteAction records link correctly to source Assets for renewal transact=
+ions<code>&nbsp;</code></p></li>
+<li>
+<p>Sales users have appropriate permissions to edit COLA fields&nbsp;</p></=
+li>
+</ul>
+<ol start=3D"9">
+<li>
+<p><strong>Appendix: Calculation Examples</strong>&nbsp;</p></li>
+</ol>
+<p><strong>Example 1: Standard COLA Application</strong>&nbsp;</p>
+<p>Product: GoAnywhere MFT (Solution Category: GoAnywhere)<code>&nbsp;</cod=
+e><br>
+Asset.Price: $10,000<code>&nbsp;</code><br>
+COLA Rate: 7.85%<code>&nbsp;</code><br>
+Calculation: $10,000 x (1 + 0.0785) =3D $10,785<code>&nbsp;</code><br>
+Result: QuoteLineItem.UnitPrice =3D $10,785&nbsp;</p>
+<p><strong>Example 2: COLA Override</strong>&nbsp;</p>
+<p>Product: GoAnywhere MFT (Solution Category: GoAnywhere)<code>&nbsp;</cod=
+e><br>
+Pre_COLA_Price__c: $10,000 (preserved from initial application)<code>&nbsp;=
+</code><br>
+Original COLA: 7.85% -&gt; UnitPrice =3D $10,785<code>&nbsp;</code><br>
+User Override: COLA changed to 5.00%<code>&nbsp;</code><br>
+Recalculation: $10,000 x (1 + 0.05) =3D $10,500<code>&nbsp;</code><br>
+Result: QuoteLineItem.UnitPrice =3D $10,500, Is_COLA_Overridden__c =3D TRUE=
+&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>10. Enhancement: Contract-Level COLA Override</strong>&nbsp;</p>
+<p>This enhancement extends the COLA Uplift solution to support Contract-le=
+vel COLA overrides that persist across multiple renewal cycles. This enable=
+s negotiated pricing adjustments to be honored automatically without manual=
+ intervention on each renewal quote.&nbsp;</p>
+<p><strong>10.1 Three-Tier Override Hierarchy</strong>&nbsp;</p>
+<p>The COLA percentage is now determined using a three-tier override hierar=
+chy (highest to lowest priority):&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"a=
+1b8a72c-c6ce-44e9-933c-989bc5de4b71" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Priority&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Source&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Condition&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Source__c&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Tier 1 (Highest)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Line Override&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>User manually edits COLA_Uplift_Percent__c on QuoteLineItem&nbsp;</p></t=
+d>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Line Override&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Tier 2&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Contract Override&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Contract.COLA_Override_Percent__c has value AND persist date is valid&nb=
+sp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Contract Override&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Tier 3 (Default)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>CMDT Lookup&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Default from COLA_Uplift_Rules__mdt by Solution Category&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>CMDT Lookup&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>10.2 Additional Data Model</strong>&nbsp;</p>
+<p><strong>Contract Custom Fields:</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"2=
+3968818-a14a-4645-89eb-ef7ef7a285e0" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Field Name&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Editable&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Purpose&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Override_Percent__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Number (5,2)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Yes&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Optional COLA override percentage for all Assets under this Contract&nbs=
+p;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Override_Persist_Until__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Date&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Yes&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Date until which override applies. Null =3D one-time use for next renewa=
+l only&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<p><strong>Additional QuoteLineItem Field:</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"a=
+a86c9bd-245f-4bef-a39c-8811506b2e28" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Field Name&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Type&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Editable&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Purpose&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Source__c&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Picklist&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>No&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Tracks which tier of the override hierarchy provided the COLA percentage=
+. Values: CMDT Lookup, Contract Override, Line Override&nbsp;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>10.3 Updated Business Logic</strong>&nbsp;</p>
+<p>When a renewal quote line is created, the system now follows an updated =
+process:<code>&nbsp;</code><br><code>&nbsp;</code></p>
+<ol start=3D"1">
+<li>
+<p>Identifies the quote line as a renewal by checking QuoteAction.Type =3D =
+'Renew'<code>&nbsp;</code></p></li>
+<li>
+<p>Retrieves the current subscription price from Asset.Price<code>&nbsp;</c=
+ode></p></li>
+<li>
+<p>Navigates the Product Catalog hierarchy to find the Solution Category<co=
+de>&nbsp;</code></p></li>
+<li>
+<p>NEW: Queries AssetContractRelationship to find the active Contract for t=
+he Asset<code>&nbsp;</code></p></li>
+<li>
+<p>NEW: If Contract has COLA_Override_Percent__c set AND persist date is va=
+lid (null or future):<code>&nbsp;</code></p></li>
+</ol>
+<ul>
+<li>
+<p>Uses Contract override percentage<code>&nbsp;</code></p></li>
+<li>
+<p>Sets COLA_Source__c =3D 'Contract Override'<code>&nbsp;</code></p></li>
+</ul>
+<ol start=3D"6">
+<li>
+<p>If no valid Contract override, looks up COLA percentage from COLA_Uplift=
+_Rules__mdt:<code>&nbsp;</code></p></li>
+</ol>
+<ul>
+<li>
+<p>Sets COLA_Source__c =3D 'CMDT Lookup'<code>&nbsp;</code></p></li>
+</ul>
+<ol start=3D"7">
+<li>
+<p>Calculates the new price: UnitPrice =3D Asset.Price x (1 + COLA%/100)<co=
+de>&nbsp;</code></p></li>
+<li>
+<p>Populates all COLA tracking fields for audit purposes&nbsp;</p></li>
+</ol>
+<p><strong>10.4 Contract Override Persist Date Logic</strong>&nbsp;</p>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"9=
+a959bd9-7945-4c77-88ce-7cec832bb482" class=3D"confluenceTable">
+<tbody>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>COLA_Override_Persist_Until__c Value&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Behavior&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Null/Empty&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>One-time use - Contract override applies to next renewal only&nbsp;</p><=
+/td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Future Date (&gt;=3D today)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Multi-renewal - Contract override applies to all renewals until that dat=
+e&nbsp;</p></td>
+</tr>
+<tr>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Past Date (&lt; today)&nbsp;</p></td>
+<td data-highlight-colour=3D"transparent" class=3D"confluenceTd">
+<p>Expired - Contract override is ignored, falls back to CMDT lookup&nbsp;<=
+/p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>10.5 Calculation Examples with Contract Override</strong>&nbsp;<=
+/p>
+<p>Example 3: Contract Override (Multi-Renewal)<code>&nbsp;</code><br><code=
+>&nbsp;</code><br>
+Product: GoAnywhere MFT (Solution Category: GoAnywhere, CMDT COLA: 7.85%)<c=
+ode>&nbsp;</code><br>
+Contract: COLA_Override_Percent__c =3D 5.00%, COLA_Override_Persist_Until__=
+c =3D 2027-12-31<code>&nbsp;</code><br>
+Asset.Price: $10,000<code>&nbsp;</code><br>
+Calculation: $10,000 x (1 + 0.05) =3D $10,500<code>&nbsp;</code><br>
+Result: QuoteLineItem.UnitPrice =3D $10,500, COLA_Source__c =3D 'Contract O=
+verride'<code>&nbsp;</code><br><code>&nbsp;</code><br>
+Example 4: Contract Override (One-Time Use)<code>&nbsp;</code><br><code>&nb=
+sp;</code><br>
+Product: GoAnywhere MFT (Solution Category: GoAnywhere, CMDT COLA: 7.85%)<c=
+ode>&nbsp;</code><br>
+Contract: COLA_Override_Percent__c =3D 3.00%, COLA_Override_Persist_Until__=
+c =3D null<code>&nbsp;</code><br>
+Asset.Price: $10,000<code>&nbsp;</code><br>
+Calculation: $10,000 x (1 + 0.03) =3D $10,300<code>&nbsp;</code><br>
+Result: QuoteLineItem.UnitPrice =3D $10,300, COLA_Source__c =3D 'Contract O=
+verride'<code>&nbsp;</code><br>
+Note: Override applies to this renewal only; future renewals will use CMDT =
+lookup<code>&nbsp;</code><br><code>&nbsp;</code><br>
+Example 5: Expired Contract Override Falls Back to CMDT<code>&nbsp;</code><=
+br><code>&nbsp;</code><br>
+Product: GoAnywhere MFT (Solution Category: GoAnywhere, CMDT COLA: 7.85%)<c=
+ode>&nbsp;</code><br>
+Contract: COLA_Override_Percent__c =3D 3.00%, COLA_Override_Persist_Until__=
+c =3D 2024-12-31 (past date)<code>&nbsp;</code><br>
+Asset.Price: $10,000<code>&nbsp;</code><br>
+Calculation: $10,000 x (1 + 0.0785) =3D $10,785 (uses CMDT percentage)<code=
+>&nbsp;</code><br>
+Result: QuoteLineItem.UnitPrice =3D $10,785, COLA_Source__c =3D 'CMDT Looku=
+p'&nbsp;</p>
+<p><strong>10.6 Updated Solution Architecture</strong>&nbsp;</p>
+<p>The solution now integrates with the Revenue Cloud data model through an=
+ extended relationship path:<code>&nbsp;</code><br><code>&nbsp;</code><br>
+QuoteLineItem --&gt; QuoteAction --&gt; Asset --&gt; AssetContractRelations=
+hip --&gt; Contract<code>&nbsp;</code><br><code>&nbsp;</code><br>
+Key relationships:<code>&nbsp;</code></p>
+<ul>
+<li>
+<p>Asset connects to Contract via the AssetContractRelationship junction ob=
+ject (Revenue Cloud standard)<code>&nbsp;</code></p></li>
+<li>
+<p>Only Contracts with Status =3D 'Activated' are considered for COLA overr=
+ides<code>&nbsp;</code></p></li>
+<li>
+<p>Multiple Assets can share the same Contract override<code>&nbsp;</code><=
+/p></li>
+</ul>
+<p><br><code>&nbsp;</code><br>
+Updated Components:<code>&nbsp;</code><br><code>&nbsp;</code></p>
+<ol start=3D"1">
+<li>
+<p>Contract Custom Fields:<code>&nbsp;</code></p></li>
+</ol>
+<ul>
+<li>
+<p>COLA_Override_Percent__c (Number 5,2)<code>&nbsp;</code></p></li>
+<li>
+<p>COLA_Override_Persist_Until__c (Date)<code>&nbsp;</code></p></li>
+</ul>
+<p><br><code>&nbsp;</code></p>
+<ol start=3D"2">
+<li>
+<p>QuoteLineItem Custom Field:<code>&nbsp;</code></p></li>
+</ol>
+<ul>
+<li>
+<p>COLA_Source__c (Picklist: CMDT Lookup, Contract Override, Line Override)=
+<code>&nbsp;</code></p></li>
+</ul>
+<p><br><code>&nbsp;</code></p>
+<ol start=3D"3">
+<li>
+<p>COLAUpliftHandler.cls:<code>&nbsp;</code></p></li>
+</ol>
+<ul>
+<li>
+<p>Added getContractOverrides() method using dynamic SOQL<code>&nbsp;</code=
+></p></li>
+<li>
+<p>Uses AssetContractRelationship to traverse from Asset to Contract<code>&=
+nbsp;</code></p></li>
+<li>
+<p>Validates persist date logic before applying Contract override<code>&nbs=
+p;</code></p></li>
+</ul>
+<p><br><code>&nbsp;</code></p>
+<ol start=3D"4">
+<li>
+<p>COLA_Admin Permission Set:<code>&nbsp;</code></p></li>
+</ol>
+<ul>
+<li>
+<p>Added read/edit access to Contract COLA override fields<code>&nbsp;</cod=
+e></p></li>
+<li>
+<p>Added read access to QuoteLineItem.COLA_Source__c&nbsp;</p></li>
+</ul>
+    </div>
+</body>
+</html>
+------=_Part_4_200457434.1780419072457--

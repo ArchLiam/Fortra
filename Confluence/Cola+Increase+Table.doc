@@ -1,0 +1,772 @@
+Date: Tue, 2 Jun 2026 16:51:06 +0000 (UTC)
+Message-ID: <1651066591.11.1780419066143@6d82205725e6>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_10_1181471072.1780419066143"
+
+------=_Part_10_1181471072.1780419066143
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Cola Increase Table</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Cola Increase Table</h1>
+    <div class=3D"Section1">
+        <div class=3D"panel" style=3D"background-color: #EAE6FF;border-colo=
+r: #998DD9;border-width: 1px;">
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p>FORTRA Review Complete 10.10.2025</p>
+</div>
+</div>
+<p><strong>Proposed Solution</strong></p>
+<p><strong>Functional Summary</strong></p>
+<ul>
+<li>
+<p>Each renewal quote line will include a COLA Uplift % field.</p></li>
+<li>
+<p>This field is automatically populated during renewal quote creation by q=
+uerying a Custom Metadata Type (CMDT) that stores uplift percentages by Sol=
+ution Name.</p></li>
+<li>
+<p>Solution Name will be pulled directly from the Product linked to each qu=
+ote line.</p></li>
+<li>
+<p>If no matching entry is found in CMDT, the uplift will default to 0%.</p=
+></li>
+<li>
+<p>Users can manually override the uplift % on individual quote lines after=
+ creation. Once edited, the automation will not overwrite the value.</p></l=
+i>
+<li>
+<p>The pricing application mechan<a class=3D"external-link" data-card-appea=
+rance=3D"inline" href=3D"https://helpsystems.atlassian.net/browse/SC-933" r=
+el=3D"nofollow">https://helpsystems.atlassian.net/browse/SC-933</a>ism (e.g=
+., Price Rule, Action, Flow, Apex) is flexible and can be selected by the R=
+CA development team based on best fit.</p></li>
+</ul>
+<p><strong>Logic and Rules</strong></p>
+<ol start=3D"1">
+<li>
+<p><strong>Quote Line Creation</strong></p></li>
+</ol>
+<p>When each renewal quote line is created:</p>
+<ul>
+<li>
+<p>Retrieve the Solution Name from the associated Product.</p></li>
+<li>
+<p>Query COLA_Uplift_Rules (CMDT) for a record with a matching Solution Nam=
+e.</p></li>
+<li>
+<p>If a match is found, set:</p>
+<ul>
+<li>
+<p>COLA_Uplift_Percent__c =3D Default_Uplift_Percent__c from CMDT</p></li>
+<li>
+<p>Default_COLA_Uplift_Percent__c =3D same CMDT value (read-only reference)=
+</p></li>
+</ul></li>
+<li>
+<p>If no match is found, set both fields to 0%.</p></li>
+<li>
+<p>Both values are stored directly on the quote line record for pricing and=
+ reference.</p></li>
+</ul>
+<ol start=3D"2">
+<li>
+<p><strong>Uplift Calculation</strong></p></li>
+</ol>
+<p>=C2=B7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Apply the uplift =
+during pricing using the formula:</p>
+<p>o&nbsp;&nbsp;&nbsp; Final Price =3D Base Renewal Price =C3=97 (1 + COLA_=
+Uplift_Percent__c / 100)</p>
+<p>=C2=B7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COLA_Uplift_Perce=
+nt__c is always sourced from the quote line field, not directly from CMDT. =
+This ensures that any user override is respected during price calculation.<=
+/p>
+<ol start=3D"3">
+<li>
+<p><strong>User Override Behavior</strong></p></li>
+</ol>
+<ul>
+<li>
+<p>Users may edit the COLA_Uplift_Percent__c field on the quote line after =
+creation.</p></li>
+<li>
+<p>When this field is updated, the system will automatically reprice the li=
+ne using the new value.</p></li>
+<li>
+<p>The automation will not recalculate or overwrite the field after the ini=
+tial creation, even if the quote is recalculated or CMDT values are changed=
+ later.</p></li>
+</ul>
+<p>Users can not update the Default_COLA_Uplift_Percent__c field.</p>
+<div class=3D"table-wrap">
+<table data-local-id=3D"6c609ef2-aea2-4bd6-be4d-39b019ff7da7" data-layout=
+=3D"default" data-table-width=3D"1800" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 121.0px;">
+<col style=3D"width: 172.0px;">
+<col style=3D"width: 513.0px;">
+<col style=3D"width: 691.0px;">
+<col style=3D"width: 303.0px;">
+</colgroup>
+<tbody>
+<tr>
+<td data-highlight-colour=3D"#e3fcef" class=3D"confluenceTd">
+<p><strong>Unit</strong></p></td>
+<td data-highlight-colour=3D"#e3fcef" class=3D"confluenceTd">
+<p><strong>Solution Group</strong></p></td>
+<td data-highlight-colour=3D"#e3fcef" class=3D"confluenceTd">
+<p><strong>Solution Category</strong></p></td>
+<td data-highlight-colour=3D"#e3fcef" class=3D"confluenceTd">
+<p><strong>Solution</strong></p></td>
+<td data-highlight-colour=3D"#e3fcef" class=3D"confluenceTd">
+<p><strong>Default COLA Percentage</strong></p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Vulnerability Management</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Beyond Security Legacy<br>
+Digital Defense Legacy<br>
+Vulnerability Management<br>
+Application Security<br>
+Consulting Services</p></td>
+<td class=3D"confluenceTd">
+<p>6.20</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>File Integrity Management</strong></p></td>
+<td class=3D"confluenceTd">
+<p>File Integrity Monitoring<br>
+FIM Legacy<br>
+Tripwire Log Center</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>5.00</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Email Security</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Cloud Email Protection<br>
+DMARC Protection<br>
+Secure Email Gateway<br>
+Secure Exchange Gateway<br>
+Secure ICAP Gateway<br>
+Secure Web Gateway<br>
+Suspicious Email Analysis</p></td>
+<td class=3D"confluenceTd">
+<p>5.00</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Brand Protection</strong></p></td>
+<td class=3D"confluenceTd">
+<p>External Threat Monitoring<br>
+Takedown Services</p></td>
+<td class=3D"confluenceTd">
+<p>5.00</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Human Risk Management</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Human Risk Management</p></td>
+<td class=3D"confluenceTd">
+<p>5.00</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Data Protection</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Data Classification<br>
+Data Loss Prevention<br>
+Secure Collaboration</p></td>
+<td class=3D"confluenceTd">
+<p>4.70</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Cloud Data Protection</strong></p></td>
+<td class=3D"confluenceTd">
+<p>CASB<br>
+DSPM<br>
+SWG<br>
+ZTNA</p></td>
+<td class=3D"confluenceTd">
+<p>5.00</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Fortra Platform</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Event Fusion Center (EFC)<br>
+Fortra Platform</p></td>
+<td class=3D"confluenceTd">
+<p>(no current skus)</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Cyber</p></td>
+<td class=3D"confluenceTd">
+<p>Defensive Security</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Offensive Security</strong><br></p></td>
+<td class=3D"confluenceTd">
+<p>Cobalt Strike<br>
+Core Impact<br>
+Outflank Security</p></td>
+<td class=3D"confluenceTd">
+<p>6.20</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Robotic Process Automation</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Automate<br>
+Automate Desktop<br>
+Automate Intelligent Capture</p></td>
+<td class=3D"confluenceTd">
+<p>9.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Core IGA</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Access Assurance Suite<br>
+Core Access Insight<br>
+Visual Identity Suite</p></td>
+<td class=3D"confluenceTd">
+<p>4.70</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Network Monitoring</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Automated Analytics<br>
+InterMapper<br>
+Intermapper Remote Access</p></td>
+<td class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Powertech Identity &amp; Access Manager (BoKS)</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Powertech Identity &amp; Access Manager (BoKS)</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>RPA+</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Capacity Management</strong></p></td>
+<td class=3D"confluenceTd">
+<p>TeamQuest OEM<br>
+TeamQuest Predictor<br>
+TeamQuest Surveyor<br>
+TeamQuest Unisys<br>
+VCM - Vityl Capacity Management<br>
+Vityl Monitor</p></td>
+<td class=3D"confluenceTd">
+<p>4.70</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Managed File Transfer</strong></p></td>
+<td class=3D"confluenceTd">
+<p><strong>GoAnywhere</strong></p></td>
+<td class=3D"confluenceTd">
+<p>FileCatalyst<br>
+GoAnywhere MFT<br>
+GoAnywhere MFTaaS</p></td>
+<td class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Managed File Transfer</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Globalscape</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Globalscape EFT<br>
+CuteFTP<br>
+EFT Arcus (MFTaaS)</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Business Intelligence</strong></p></td>
+<td class=3D"confluenceTd">
+<p>Abstract<br>
+AnyDate<br>
+Client Report Option<br>
+Deployment Bundle<br>
+Esend<br>
+Insite Analytics<br>
+Query &amp; Report Writer<br>
+Sequel<br>
+Sequel Data Warehouse (RODIN)<br>
+Sequel Legacy<br>
+SEQUEL Web Interface<br>
+Warehouse Builder<br>
+Warehouse Manager</p></td>
+<td class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Doc Management</strong></p></td>
+<td class=3D"confluenceTd">
+<p>DeliverNow<br>
+DocAlpha (Artsyl)<br>
+Document Management Bundle<br>
+Document Management Legacy<br>
+Email Utilities<br>
+Enterprise Workflow<br>
+IBMi Integration<br>
+IBMi Report Converter<br>
+IBMi Report Management<br>
+iForms<br>
+PC Report Management<br>
+RPG Toolbox<br>
+SignHere<br>
+Surveyor/400<br>
+WebDocs<br>
+Webdocs Capture Utilities<br>
+Webdocs Forms Management<br>
+Webspool</p></td>
+<td class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Systems Management</strong><br></p></td>
+<td class=3D"confluenceTd">
+<p>MessengerConsole<br>
+MessengerPlus<br>
+PeekPlus</p></td>
+<td class=3D"confluenceTd">
+<p>12.00</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Systems Management</strong><br></p></td>
+<td class=3D"confluenceTd">
+<p>Advanced Job Scheduler<br>
+Advanced Reporting Suite<br>
+Alert Intelligence<br>
+Audit Journal Manager<br>
+Authority Swapper<br>
+Capacity Planning<br>
+Data Monitor<br>
+Disk Space Manager<br>
+Document Management System<br>
+Easy View<br>
+Enterprise Console<br>
+Halcyon Custom Suite<br>
+Halcyon Exit Point Manager<br>
+HA-MX Monitor<br>
+Lvl1: Message Management Suite<br>
+Lvl2: Systems Operations Suite<br>
+Lvl3: Advanced Automation Suite<br>
+Lvl4: Operations Center Suite<br>
+MQ Manager<br>
+Network Server Suite<br>
+Password Reset Manager<br>
+Performance Analyzer<br>
+Performance Navigator<br>
+QMessageMonitor<br>
+QRemoteControl<br>
+QSystemMonitor<br>
+Record and Playback<br>
+Referral Fee<br>
+Robot Alert<br>
+Robot Autotune<br>
+Robot Bundle<br>
+Robot Console<br>
+Robot CPA<br>
+Robot HA<br>
+Robot LPAR<br>
+Robot Monitor<br>
+Robot Network<br>
+Robot Replay<br>
+Robot Reports<br>
+Robot Save<br>
+Robot Schedule<br>
+Robot Schedule Enterprise<br>
+Robot Schedule EnterpriseOne Interface<br>
+Robot Space<br>
+Robot Transform<br>
+SAP Interface<br>
+Snapshot<br>
+Spooled File Manager<br>
+Systems Management Bundle<br>
+System Management Legacy Product<br>
+Task Supervisor<br>
+VISUAL Message Center<br>
+VISUAL Security Suite<br>
+Vityl IT &amp; Business Monitoring</p></td>
+<td class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Cybersecurity</strong><br></p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>SecureCare<br>
+Single Sign On Managed Services - IBM i</p></td>
+<td class=3D"confluenceTd">
+<p>4.70</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>Power&nbsp;</p></td>
+<td class=3D"confluenceTd">
+<p><strong>Cybersecurity</strong><br></p></td>
+<td class=3D"confluenceTd">
+<p>Cybersecurity Legacy Product<br>
+DetectIT<br>
+Fortra Application Hub<br>
+Insite<br>
+Powertech Antivirus<br>
+Powertech Authority Broker for IBM i<br>
+Powertech Command Security for IBM i<br>
+Powertech Compliance Monitor for IBM i<br>
+Powertech Database Monitor for IBM i<br>
+Powertech Encryption for IBM i<br>
+Powertech Event Manager<br>
+Powertech Exit Point Manager for IBM i<br>
+Powertech Identity Manager for IBM i<br>
+Powertech Multi-Factor Authentication for IBM i<br>
+Powertech Password Self Help for IBM i<br>
+Powertech Policy Minder for IBM i<br>
+Powertech Risk Assessor for IBM i<br>
+Powertech Security Auditor<br>
+PowerTech Security Scan<br>
+Powertech SIEM Agent for IBM i<br>
+RSA SecurID Agent for IBM i<br>
+Safestone Password Self Help<br>
+Security Audit<br>
+Security Scan</p></td>
+<td class=3D"confluenceTd">
+<p>7.85</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p>Tech</p></td>
+<td class=3D"confluenceTd">
+<p>IPP</p></td>
+<td class=3D"confluenceTd">
+<p><strong>IPP</strong></p></td>
+<td class=3D"confluenceTd">
+<p>IPP</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_10_1181471072.1780419066143--

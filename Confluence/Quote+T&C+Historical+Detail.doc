@@ -1,0 +1,873 @@
+Date: Tue, 2 Jun 2026 16:51:41 +0000 (UTC)
+Message-ID: <410272932.5.1780419101361@88ba15076325>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_781824820.1780419101361"
+
+------=_Part_4_781824820.1780419101361
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Quote T&amp;C Historical Detail</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Quote T&amp;C Historical Detail</h1>
+    <div class=3D"Section1">
+        <p>This pages document the Legal Verbiage and T&amp;Cs used today i=
+n D365, Globalscape Salesforce and Tripwire Salesforce as of today (9/2025)=
+</p>
+<h1 id=3D"QuoteT&amp;CHistoricalDetail-D365"><strong>D365</strong></h1>
+<p>BSI Documentation:</p>
+<p>Quote Summary: <a class=3D"external-link" data-card-appearance=3D"inline=
+" href=3D"https://helpsystemsllc.sharepoint.com/:w:/r/sites/PROJ-LoBOperati=
+onalReadinessTransformation/Shared%20Documents/General/Salesforce-Fortra_Co=
+astal_Share/2.%20Discovery,%20Define,%20Planning%20Folder/Discovery%20Sessi=
+on%20Info/Fortra%20Discovery%20Documentation/Quotes%20and%20Billing/D365%20=
+TandC%20Rules/QUOTE%20Terms%20and%20Condition%20Rules.docx?d=3Dw8205d1dbe76=
+c4e0c92516c8b881e3c2a&amp;csf=3D1&amp;web=3D1&amp;e=3DO3JUux" rel=3D"nofoll=
+ow">https://helpsystemsllc.sharepoint.com/:w:/r/sites/PROJ-LoBOperationalRe=
+adinessTransformation/Shared%20Documents/General/Salesforce-Fortra_Coastal_=
+Share/2.%20Discovery,%20Define,%20Planning%20Folder/Discovery%20Session%20I=
+nfo/Fortra%20Discovery%20Documentation/Quotes%20and%20Billing/D365%20TandC%=
+20Rules/QUOTE%20Terms%20and%20Condition%20Rules.docx?d=3Dw8205d1dbe76c4e0c9=
+2516c8b881e3c2a&amp;csf=3D1&amp;web=3D1&amp;e=3DO3JUux</a></p>
+<p>Invoice Summary: <a class=3D"external-link" data-card-appearance=3D"inli=
+ne" href=3D"https://helpsystemsllc.sharepoint.com/:w:/r/sites/PROJ-LoBOpera=
+tionalReadinessTransformation/Shared%20Documents/General/Salesforce-Fortra_=
+Coastal_Share/2.%20Discovery,%20Define,%20Planning%20Folder/Discovery%20Ses=
+sion%20Info/Fortra%20Discovery%20Documentation/Quotes%20and%20Billing/D365%=
+20TandC%20Rules/INVOICE%20Terms%20and%20Condition%20Rules.docx?d=3Dw32c46c3=
+05fd6470fa59019ec81df065f&amp;csf=3D1&amp;web=3D1&amp;e=3DLYeXam" rel=3D"no=
+follow">https://helpsystemsllc.sharepoint.com/:w:/r/sites/PROJ-LoBOperation=
+alReadinessTransformation/Shared%20Documents/General/Salesforce-Fortra_Coas=
+tal_Share/2.%20Discovery,%20Define,%20Planning%20Folder/Discovery%20Session=
+%20Info/Fortra%20Discovery%20Documentation/Quotes%20and%20Billing/D365%20Ta=
+ndC%20Rules/INVOICE%20Terms%20and%20Condition%20Rules.docx?d=3Dw32c46c305fd=
+6470fa59019ec81df065f&amp;csf=3D1&amp;web=3D1&amp;e=3DLYeXam</a></p>
+<p style=3D"margin-left: 90.0px;">Info from Customer Ops:</p>
+<p style=3D"margin-left: 90.0px;"><strong>For Offensive Security:</strong><=
+/p>
+<p style=3D"margin-left: 90.0px;">This Quote is subject to the terms and co=
+nditions set forth in <a class=3D"external-link" href=3D"https://nam11.safe=
+links.protection.outlook.com/?url=3Dhttps%3A%2F%2Fstatic.fortra.com%2Finfra=
+structure-protection%2Fpdfs%2FEULA-Offensive-Security-Solutions.pdf&amp;dat=
+a=3D05%7C02%7Cdawn.krauss%40fortra.com%7C6d096dc832b0453f79ec08ddefe87f67%7=
+Cca81e23b350945eea9983e346acf274d%7C0%7C0%7C638930504032782184%7CUnknown%7C=
+TWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkF=
+OIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=3Dymk5KpE%2Bc5a8n1fpKM=
+GKa0ZX4nl8ve6A5iqZKjtdAEw%3D&amp;reserved=3D0" rel=3D"nofollow">https://sta=
+tic.fortra.com/infrastructure-protection/pdfs/EULA-Offensive-Security-Solut=
+ions.pdf</a></p>
+<p style=3D"margin-left: 60.0px;">&nbsp;</p>
+<p style=3D"margin-left: 90.0px;"><strong>A service order:</strong></p>
+<p style=3D"margin-left: 90.0px;">This Service Order is issued under and su=
+bject to the <a class=3D"external-link" href=3D"https://nam11.safelinks.pro=
+tection.outlook.com/?url=3Dhttps%3A%2F%2Fwww.fortra.com%2Flegal%2Fmaster-so=
+lutions-agreement&amp;data=3D05%7C02%7Cdawn.krauss%40fortra.com%7C6d096dc83=
+2b0453f79ec08ddefe87f67%7Cca81e23b350945eea9983e346acf274d%7C0%7C0%7C638930=
+504032818163%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMD=
+AwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sda=
+ta=3DHjGNBFYPm5XA1wNIJMGdiTZ3PxqVIbAcgmluqGSzOfg%3D&amp;reserved=3D0" rel=
+=3D"nofollow">Governing Terms</a> which are incorporated herein by referenc=
+e. Any purchase order terms and conditions issued by Client for the same Se=
+rvices are null and void. The Services ordered above are described in, and =
+subject to the terms in, the separate Service Description documents which a=
+re incorporated herein by reference and may be enhanced from time to time b=
+y Fortra.</p>
+<p style=3D"margin-left: 60.0px;"></p>
+<p style=3D"margin-left: 90.0px;"><strong>Invoicing:</strong></p>
+<p style=3D"margin-left: 90.0px;">All Service Fees and Payment are exclusiv=
+e of any applicable sales, use, excise, or VAT taxes. Client will be invoic=
+ed the non-refundable Total First Year Fees upon Client's execution of this=
+ Service Order. The Annual Service Fee will increase annually after the ini=
+tial Service Term unless this Service Order is terminated or not renewed pe=
+r the above terms.</p>
+<p style=3D"margin-left: 60.0px;"></p>
+<p style=3D"margin-left: 90.0px;">&nbsp;<strong>Standard Order:</strong></p=
+>
+<p style=3D"margin-left: 90.0px;">This Quote is subject to the terms and co=
+nditions set forth in the Fortra Master Solutions Agreement and applicable =
+Solution Specific Schedule(s) located at <a class=3D"external-link" href=3D=
+"https://nam11.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fwww.for=
+tra.com%2Flegal&amp;data=3D05%7C02%7Cdawn.krauss%40fortra.com%7C6d096dc832b=
+0453f79ec08ddefe87f67%7Cca81e23b350945eea9983e346acf274d%7C0%7C0%7C63893050=
+4032836655%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAw=
+MCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&amp;sdata=
+=3DWiPS%2FOEQ2MR5Bss%2B11YLH3yXEQvMMd3bwN7w0vfBVV8%3D&amp;reserved=3D0" rel=
+=3D"nofollow">www.fortra.com/legal</a></p>
+<p style=3D"margin-left: 60.0px;"></p>
+<p style=3D"margin-left: 30.0px;"><strong>Other Notes:</strong></p>
+<p style=3D"margin-left: 30.0px;">Some users have permission to add custom =
+text for T&amp;Cs in D365 today. Permissions vary by Brand.</p>
+<h1 id=3D"QuoteT&amp;CHistoricalDetail-GLOBALSCAPESalesforce"><strong>GLOBA=
+LSCAPE Salesforce</strong></h1>
+<p style=3D"margin-left: 30.0px;"><strong>Professional Services Clause:</st=
+rong></p>
+<p style=3D"margin-left: 60.0px;">If Professional Services are quoted above=
+, signature below and/or issuance of a Purchase Order ("PO") with reference=
+ to this Quotation by Customer is evidence of Customer's and Globalscape's =
+agreement to be bound by this Quotation, Globalscape's Professional Service=
+s Terms and Conditions herein, and the provisions of any designated Stateme=
+nt(s) of Work and/or exhibits/appendices.</p>
+<p style=3D"margin-left: 30.0px;"><strong>Master Solutions Agreement:</stro=
+ng></p>
+<p style=3D"margin-left: 60.0px;">This Quote is subject to the terms and co=
+nditions set forth in the Fortra Master Solutions Agreement and applicable =
+Solution Specific Schedule(s) located at <a class=3D"external-link" data-ca=
+rd-appearance=3D"inline" href=3D"http://www.fortra.com/legal" rel=3D"nofoll=
+ow">http://www.fortra.com/legal</a> .</p>
+<p style=3D"margin-left: 30.0px;"><strong>ToC-Standard &amp; ToC-Standard (=
+Dual Signature):</strong></p>
+<p style=3D"margin-left: 60.0px;"><strong>Applicable Sales Taxes will be ap=
+plied to the invoice.</strong></p>
+<p style=3D"margin-left: 60.0px;">Customer has caused its &nbsp;authorized =
+representative to execute this Quotation. Any executed copy of this Quotati=
+on made by reliable means (e.g. photocopy, pdf, facsimile, electronic or di=
+gital signature service) is considered an original.</p>
+<p style=3D"margin-left: 60.0px;"><strong>By selecting the checkbox below, =
+Customer represents that a purchase order is NOT required for Customer to p=
+rocess this order for payment. If a Customer purchase order is required, Cu=
+stomer must submit the purchase order with this signed Quotation.</strong><=
+/p>
+<p style=3D"margin-left: 60.0px;"><strong><u>NO PURCHASE ORDER IS REQUIRED =
+TO PROCESS PAYMENT</u></strong></p>
+<p style=3D"margin-left: 30.0px;"><strong>M&amp;S Notice:</strong></p>
+<p style=3D"margin-left: 60.0px;">If quote includes maintenance and support=
+, the pricing is based off of the start and end dates on the quote. Any cha=
+nges to the support dates will result in a price change.Quotes marked as =
+=E2=80=9CDraft=E2=80=9D are ineligible for approval and processing.</p>
+<p style=3D"margin-left: 30.0px;"><strong>Signature Block with Checkbox ( a=
+nd-Reseller):</strong></p>
+<p style=3D"margin-left: 60.0px;">By each party=E2=80=99s signature below, =
+each party hereto has caused their duly authorized representative to execut=
+e this Quotation. This Quotation may be executed in counterparts, each of w=
+hich will be deemed to be an original but all of which together will consti=
+tute one and the same instrument.&nbsp; Any executed copy of this Quotation=
+ made by reliable means (e.g. photocopy, pdf, facsimile, electronic or digi=
+tal signature service) is considered an original.</p>
+<p style=3D"margin-left: 60.0px;"><strong>By selecting the checkbox below, =
+Customer represents that a purchase order is NOT required for Customer to p=
+rocess this order for payment. If a Customer purchase order is required, Cu=
+stomer must submit the purchase order with this signed Quotation.</strong><=
+/p>
+<p style=3D"margin-left: 60.0px;"><strong><u>NO PURCHASE ORDER IS REQUIRED =
+TO PROCESS PAYMENT</u></strong></p>
+<p></p>
+<h1 id=3D"QuoteT&amp;CHistoricalDetail-TripwireSalesforce"><strong>Tripwire=
+ Salesforce</strong></h1>
+<p>For expertise on what T&amp;C is applied when, please consult Tripwire C=
+ustomer Ops at <a class=3D"external-link" href=3D"mailto:tw-customeroperati=
+ons@tripwire.com" rel=3D"nofollow">tw-customeroperations@tripwire.com</a>.<=
+/p>
+<h3 id=3D"QuoteT&amp;CHistoricalDetail-Standard/EnhancedQuoteTemplates">Sta=
+ndard / Enhanced Quote Templates</h3>
+<div id=3D"expander-1743736206" class=3D"expand-container">
+<div id=3D"expander-control-1743736206" class=3D"expand-control">
+<span class=3D"expand-control-icon"><img style=3D"vertical-align:middle;" c=
+lass=3D"expand-control-image" src=3D"2d55757a8cc81e5a3aaafca18b62ee2d6ef0ac=
+9d2b73cf4998bd8820e6865bfa" width=3D"16" height=3D"16"></span><span class=
+=3D"expand-control-text">From the Standard &amp; Enhanced Quote Templates, =
+not all T&amp;Cs apply for all quotes:</span>
+</div>
+<div id=3D"expander-content-1743736206" class=3D"expand-content">
+<ul>
+<li>
+<p><strong>Terms Apply</strong> -- The products and services listed in this=
+ quotation are provided subject to the terms and conditions at <a class=3D"=
+external-link" data-card-appearance=3D"inline" href=3D"http://www.fortra.co=
+m/legal" rel=3D"nofollow">http://www.fortra.com/legal</a> . Pricing include=
+d in this quotation is an offer for the product quantities and term specifi=
+ed in this quotation only. Nothing in this quotation will impact pricing fo=
+r any other purchases, or renewals for previously purchased products.</p></=
+li>
+<li>
+<p><strong>Purchase Order</strong> -- Purchase Order must reference the Tri=
+pwire Quotation number; any additional or conflicting terms in the purchase=
+ order are expressly rejected.</p></li>
+<li>
+<p><strong>Payment Terms</strong> -- Net 153045607590 days subject to credi=
+t acceptance by Tripwire, Inc. Products, support, and technical account man=
+agement (TAM) services are invoiced on order acceptance.</p></li>
+<li>
+<p><strong>Hardware Appliance Shipping Terms</strong> -- Hardware appliance=
+s are sold FCA Origin (Incoterms 2010); title and risk of loss pass on deli=
+very of the appliance to the carrier. Unless the Customer specifies a prefe=
+rred carrier in the order, Tripwire will select the method and routing of t=
+ransportation. Freight charges and any other fees paid by Tripwire on shipm=
+ents to the Customer or additionally incurred as a result of any agreed upo=
+n Customer=E2=80=99s specific routing, packaging, labeling, insurance or do=
+cumentation instructions, will be invoiced to the Customer, and shall be in=
+ addition to the price of goods. Ship date is dependent on inventory lead t=
+imes and order backlog. Tripwire will make reasonable efforts to ship withi=
+n 30 days of order acceptance, and will provide the estimated ship date on =
+request.</p></li>
+<li>
+<p><strong>Sales Tax</strong> -- Prices above do not include sales, use, an=
+d similar transaction based tax. Such tax will be calculated based on the S=
+hip-to address on Customer order.</p></li>
+<li>
+<p><strong>Extended Support and Subscription Terms</strong> -- Tripwire wil=
+l offer limited technical support for the extended product quoted herein un=
+til the expiration date of the support period you purchased. Tripwire will =
+continue to provide the same level of technical support you currently enjoy=
+ with the following exceptions:</p>
+<ul>
+<li>
+<p>If a product defect is found and verified, Tripwire Customer Support wil=
+l document and evaluate the defect.</p></li>
+<li>
+<p>Where a workaround for the issue exists, Tripwire will not provide progr=
+ammatic fixes for the Product. Workarounds that may cause performance issue=
+s, scalability issues, or are labor intensive for the customer are consider=
+ed valid workarounds.</p></li>
+<li>
+<p>If the issues require functional enhancements to the product, Tripwire w=
+ill not provide further enhancements for the Product. This means that Tripw=
+ire will not develop additional features and/or functionalities for the Pro=
+duct.</p></li>
+</ul></li>
+<li>
+<p><strong>Support &amp; Maintenance</strong> -- Includes updates to the ap=
+plicable product, telephone support and enhanced email support for designat=
+ed Site Administrators in accordance with Tripwire=E2=80=99s Standard Suppo=
+rt Policies at <a class=3D"external-link" href=3D"https://www.tripwire.com/=
+legal/support-maintenance." rel=3D"nofollow">https://www.tripwire.com/legal=
+/support-maintenance.</a></p></li>
+<li>
+<p><strong>Support &amp; Maintenance, Subscription and SaaS Service Terms</=
+strong> -- All new Support &amp; Maintenance, Subscription and SaaS terms b=
+egin on the final day of the month of product shipment.</p></li>
+<li>
+<p><strong>Support &amp; Maintenance, Subscription and SaaS Service Terms</=
+strong> -- All new Support &amp; Maintenance, Subscription and SaaS terms w=
+ill begin two weeks post product shipment.</p></li>
+<li>
+<p><strong>Support &amp; Maintenance, Subscription and SaaS Service Terms</=
+strong> -- All new Support &amp; Maintenance, Subscription and SaaS terms w=
+ill begin commensurate with product shipment. All new SaaS service terms wi=
+ll begin on the day Tripwire provides user credentials and access to the se=
+rvice.</p></li>
+<li>
+<p><strong>Tripwire Connect</strong> -- Customer=E2=80=99s usage of the Tri=
+pwire Connect license is limited to the maximum daily indexing volume in Gi=
+gabytes as stated on the order. License Violations occur when a Customer ex=
+ceeds the maximum daily indexing volume allowed for its license in a 24 hou=
+r period. After five license violations in any rolling 30 day period, Custo=
+mer data will continue to be indexed, however certain functions such as sea=
+rch, scheduled reports and alerts, will be unavailable (=E2=80=9CReset Even=
+t=E2=80=9D). Customer must contact Tripwire support when a Reset Event occu=
+rs to request a manual reset. Customer is allowed a maximum of three manual=
+ resets during any rolling 90 day period. Tripwire is not obligated to prov=
+ide a fourth reset and Customer must either reduce its indexing volume or i=
+ncrease the size of its license. Tripwire recommends that Customer monitor =
+license usage and purchase a license sufficient to support its intended usa=
+ge, in order to avoid License Violations and Reset Events.</p></li>
+<li>
+<p><strong>Coterminous Support and Subscriptions</strong> -- New support an=
+d subscriptions included on this quotation are based on a specified term be=
+ginning and ending on the dates shown above. If an order is accepted in res=
+ponse to this quotation after the start date included above, the term start=
+ date will be adjusted to begin on the support start date described in this=
+ quotation and end on the end date shown above. The amount billed to the Cu=
+stomer will be prorated to reflect this shortened term.</p></li>
+<li>
+<p><strong>Hardware Refresh</strong> -- All products purchased in response =
+to this quote, which are replacement products for existing appliances, will=
+ assume the prepaid, unexpired support term of the to-be replaced appliance=
+. Upon execution of an order in response to this quote the prepaid support =
+services shall be cancelled on the pre-existing appliance and transferred t=
+o the newly purchased product. To confirm the intention to transfer support=
+, serial numbers of units to be replaced shall be provided to Tripwire at t=
+he time of order. If Support from a pre-existing purchase is not being tran=
+sferred and Support is being purchased for the refresh products, the next s=
+upport renewal, if purchased, will not increase by more than 5% over the an=
+nual support unit price charged. Support services purchased for refresh pro=
+ducts shall begin upon expiration of the transferred support term, if any. =
+In no event shall the quantity of appliances under support or support term =
+length increase as a result of this transfer. The support term for applianc=
+e purchases which are not replacements will begin upon shipment.</p></li>
+<li>
+<p><strong>Tripwire ExpertOps Remote Operations</strong> -- Fees associated=
+ with Tripwire ExpertOps Remote Operations service purchased in response to=
+ this quotation shall be billable upon receipt of a valid purchase order an=
+d due in accordance with the payment terms included herein. The term of the=
+ service begins on the first day of the month in which the service is made =
+available to the Customer. Service is available upon: a) delivery of the op=
+erational procedures guide, and (b) the completion of the implementation ph=
+ase as outlined in the applicable Statement of Work or Engagement Letter.</=
+p></li>
+<li>
+<p><strong>Tripwire ExpertOps Industrial Visibility</strong> -- Fees associ=
+ated with Tripwire ExpertOps Industrial Visibility service purchased in res=
+ponse to this quotation shall be billable upon receipt of a valid purchase =
+order and due in accordance with the payment terms included herein. The ter=
+m of the service begins on the first day of the month in which the service =
+is made available to the Customer. Service is available upon: a) delivery o=
+f the operational procedures guide, and (b) the completion of the implement=
+ation phase as outlined in the applicable Statement of Work or Engagement L=
+etter.</p></li>
+<li>
+<p><strong>Tripwire ExpertOps</strong> -- Fees associated with Tripwire Exp=
+ertOps services purchased in response to this quotation are billable upon r=
+eceipt of a valid purchase order and due in accordance with the payment ter=
+ms included herein. The term for Tripwire ExpertOps services begins on the =
+day in which Tripwire provides to the Customer user access credentials and =
+access to the ExpertOps console, proxy appliances, and Tripwire Enterprise =
+agents for download.</p></li>
+<li>
+<p><strong>Tripwire ExpertOps Base Fee</strong> -- For the Base Fee quoted =
+herein the following additional entitlements are included, 250 VM IPs and 2=
+5 Configuration Manager Accounts.</p></li>
+<li>
+<p><strong>Tripwire ExpertOps Bundle Advanced -- Small</strong> -- This bun=
+dle includes the Advanced level Base fee, 1,000 SCM/FIM licenses, 1,000 VM =
+licenses and 100 CM licenses.</p></li>
+<li>
+<p><strong>Tripwire ExpertOps Bundle Advanced -- Medium</strong> -- This bu=
+ndle includes the Advanced level Base fee, 5,000 SCM/FIM licenses, 5,000 VM=
+ licenses and 500 CM licenses.</p></li>
+<li>
+<p><strong>Tripwire ExpertOps Bundle Advanced -- Large</strong> -- This bun=
+dle includes the Advanced level Base fee, 10,000 SCM/FIM licenses, 10,000 V=
+M licenses and 1,000 CM licenses.</p></li>
+<li>
+<p><strong>Professional Services</strong> -- Fees associated with services =
+purchased in response to this quotation shall be billable upon receipt of a=
+ valid purchase order and due in accordance with the payment terms included=
+ herein. Customer agrees that if it has not used the services within one ye=
+ar, Tripwire has no further obligations and Customer shall not be entitled =
+to a refund. Unless the parties have signed a Statement of Work, this quota=
+tion states Tripwire=E2=80=99s entire commitment to Customer with regard to=
+ the services described herein.</p></li>
+<li>
+<p><strong>Professional Services</strong> -- Fees associated with services =
+purchased in response to this quotation shall be billable as services are d=
+elivered. Unless the parties have signed a Statement of Work, this quotatio=
+n states Tripwire=E2=80=99s entire commitment to Customer with regard to th=
+e services described herein.</p></li>
+<li>
+<p><strong>Advisory Services</strong> -- The Advisory Services consulting h=
+ours included in this quotation are available on a monthly basis, in the am=
+ount of 4 hours/month multiplied by the quantity of subscriptions purchased=
+. Unused monthly hours do not carry over month-to-month, and hours for subs=
+equent months may not be used in earlier months.</p></li>
+<li>
+<p><strong>Performance of Services</strong> -- Services purchased in respon=
+se to this quotation shall be performed by a Tripwire authorized subcontrac=
+tor only.</p></li>
+<li>
+<p><strong>Resident Engineer</strong> -- Fees associated with Resident Engi=
+neer(s) purchased in response to this quotation shall be billable upon rece=
+ipt of a valid purchase order and due in accordance with the payment terms =
+included herein. The term of the Resident Engineer(s) included in this quot=
+ation will begin upon the arrival of the Resident Engineer(s) onsite. Arriv=
+al and commencement of the term shall be confirmed by both parties in writi=
+ng.</p></li>
+<li>
+<p><strong>Tripwire Resident Engineer (Remote) - Part Time</strong> -- All =
+services will be performed remotely in a consecutive four hour shift, sched=
+uled for either the morning, or the afternoon. On Tripwire=E2=80=99s accept=
+ance of an order in response to this quotation, Tripwire and customer will =
+agree on either the morning or afternoon shift, which will remain fixed dur=
+ing the term unless agreed to by the parties in writing. Once per calendar =
+quarter during the term, Customer may request the Resident Engineer to perf=
+orm services on-site, subject to the following conversion rate: 5 days of p=
+art-time remote services is equal to 2 full days and one half day of on-sit=
+e service. Customer will be required to reimburse Tripwire for travel and e=
+xpenses incurred associated with the on-site services as identified in a se=
+parate quote provided by Tripwire. Fees associated with Part-Time Remote Re=
+sident Engineer purchased in response to this quotation shall be billable u=
+pon receipt of a valid purchase order and due in accordance with the paymen=
+t terms included herein. Commencement of the term shall be confirmed by bot=
+h parties in writing.</p></li>
+<li>
+<p><strong>Resident Engineer</strong> -- Unless otherwise stated in this qu=
+otation or a signed statement of work, Fees associated with Resident Engine=
+er(s) purchased in response to this quotation shall be billable upon commen=
+cement of term and due in accordance with the payment terms included herein=
+. The term of the Resident Engineer(s) included in this quotation will begi=
+n upon the arrival of the Resident Engineer(s) onsite. Arrival and commence=
+ment of the term shall be confirmed by both parties in writing.</p></li>
+<li>
+<p><strong>Tripwire Resident Engineer (Remote) - Part Time</strong> -- All =
+services will be performed remotely in a consecutive four hour shift, sched=
+uled for either the morning, or the afternoon. On Tripwire=E2=80=99s accept=
+ance of an order in response to this quotation, Tripwire and customer will =
+agree on either the morning or afternoon shift, which will remain fixed dur=
+ing the term unless agreed to by the parties in writing. Once per calendar =
+quarter during the term, Customer may request the Resident Engineer to perf=
+orm services on-site, subject to the following conversion rate: 5 days of p=
+art-time remote services is equal to 2 full days and one half day of on-sit=
+e service. Customer will be required to reimburse Tripwire for travel and e=
+xpenses incurred associated with the on-site services as identified in a se=
+parate quote provided by Tripwire. Fees associated with Part-Time Remote Re=
+sident Engineer(s) purchased in response to this quotation shall be billabl=
+e upon commencement of term and due in accordance with the payment terms in=
+cluded herein. Commencement of the term shall be confirmed by both parties =
+in writing.</p></li>
+<li>
+<p><strong>No-Charge Add-on Functionality</strong> -- The no-charge Tripwir=
+e Connect Extension listed in this quotation is licensed for use with a sin=
+gle supported Tripwire Enterprise (TE) console, for as long as the TE conso=
+le remains under support. Tripwire will provide support for the Extension o=
+n this TE console as part of the support for the TE console, at no addition=
+al charge, under the same support terms as Tripwire provides for the TE con=
+sole. Additional Tripwire Connect Additional Data Source licenses, to allow=
+ Tripwire Connect to aggregate data from additional TE sources, are availab=
+le for purchase.</p></li>
+<li>
+<p><strong>Tripwire Industrial Suite - License (per Industrial Device)</str=
+ong> -- The product bundle included on this quote is comprised of the follo=
+wing components:</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">  Qty 1=
+: Tripwire Enterprise for Industrial Devices - License
+  Qty 1: Tripwire Log Center for Industrial Networks -- License
+  Qty 1: Tripwire App - Whitelist Profiler - Utility</pre>
+</div>
+</div></li>
+<li>
+<p><strong>Hardware Importer</strong> -- To the extent applicable, Customer=
+ shall be the importer of record for all Products listed on this quote. As =
+the importer of record, Customer shall be responsible for all aspects of im=
+porting the Products, including (a) customs and other regulatory clearance =
+of the Products; (b) payment of all tariffs, duties, customs, fees, taxes, =
+assessments, withholding taxes, levies, imposts, penalties, deductions, exp=
+enses and charges payable in connection with the importation and delivery o=
+f the Products; and (c) keeping all records, documents, correspondence and =
+tracking information required by applicable laws and regulations arising ou=
+t of or in connection with the importation or delivery of the Products.</p>=
+</li>
+<li>
+<p><strong>While Supplies Last</strong> -- Quantities for appliances on thi=
+s quote are limited and we cannot guarantee our ability to fulfill this pur=
+chase order for the appliance items listed herein. Please contact your sale=
+s representative to ensure the items are still available prior to submittin=
+g your purchase order.</p></li>
+<li>
+<p><strong>Tripwire App -- Custom Workflow Integration for Nozomi -- For th=
+e Tripwire App</strong> -- Custom Workflow Integration for Nozomi license p=
+urchased on this quotation, the product will need to be delivered by the Tr=
+ipwire Professional Services Team. Therefore, the term will begin upon comp=
+letion of the associated professional services days quoted herein.</p></li>
+</ul>
+</div>
+</div>
+<h3 id=3D"QuoteT&amp;CHistoricalDetail-RenewalQuoteTemplate">Renewal Quote =
+Template</h3>
+<div id=3D"expander-837368611" class=3D"expand-container">
+<div id=3D"expander-control-837368611" class=3D"expand-control">
+<span class=3D"expand-control-icon"><img style=3D"vertical-align:middle;" c=
+lass=3D"expand-control-image" src=3D"2d55757a8cc81e5a3aaafca18b62ee2d6ef0ac=
+9d2b73cf4998bd8820e6865bfa" width=3D"16" height=3D"16"></span><span class=
+=3D"expand-control-text">From the Renewal Quote Template, not all T&amp;Cs =
+apply for all quotes:</span>
+</div>
+<div id=3D"expander-content-837368611" class=3D"expand-content">
+<ul>
+<li>
+<p><strong>Terms Apply</strong> -- Terms Apply - The products and services =
+listed in this quotation are provided subject to the terms and conditions a=
+t <a class=3D"external-link" data-card-appearance=3D"inline" href=3D"http:/=
+/www.fortra.com/legal" rel=3D"nofollow">http://www.fortra.com/legal</a> . P=
+ricing included in this quotation is an offer for the product quantities an=
+d term specified in this quotation only. Nothing in this quotation will imp=
+act pricing for any other purchases, or renewals for previously purchased p=
+roducts.</p></li>
+<li>
+<p><strong>Purchase Order</strong> -- Purchase Order must reference the Tri=
+pwire Quotation number; any additional or conflicting terms in the purchase=
+ order are expressly rejected.</p></li>
+<li>
+<p><strong>Terms Apply</strong> -- Terms Apply</p></li>
+<li>
+<p><strong>Payment Terms</strong> -- Net 153045607590 days subject to credi=
+t acceptance by Tripwire, Inc. Products, support, and technical account man=
+agement (TAM) services are invoiced on order acceptance.</p></li>
+<li>
+<p><strong>Hardware Appliance Shipping Terms</strong> -- Hardware appliance=
+s are sold FCA Origin (Incoterms 2010); title and risk of loss pass on deli=
+very of the appliance to the carrier. Unless the Customer specifies a prefe=
+rred carrier in the order, Tripwire will select the method and routing of t=
+ransportation. Freight charges and any other fees paid by Tripwire on shipm=
+ents to the Customer or additionally incurred as a result of any agreed upo=
+n Customer=E2=80=99s specific routing, packaging, labeling, insurance or do=
+cumentation instructions, will be invoiced to the Customer, and shall be in=
+ addition to the price of goods. Ship date is dependent on inventory lead t=
+imes and order backlog. Tripwire will make reasonable efforts to ship withi=
+n 30 days of order acceptance, and will provide the estimated ship date on =
+request.</p></li>
+<li>
+<p><strong>Sales Tax</strong> -- Prices above do not include sales, use, an=
+d similar transaction based tax. Such tax will be calculated based on the S=
+hip-to address on Customer order.</p></li>
+<li>
+<p><strong>Extended Support and Subscription Terms</strong> -- Tripwire wil=
+l offer limited technical support for the extended product quoted herein un=
+til the expiration date of the support period you purchased. Tripwire will =
+continue to provide the same level of technical support you currently enjoy=
+ with the following exceptions:</p>
+<ul>
+<li>
+<p>If a product defect is found and verified, Tripwire Customer Support wil=
+l document and evaluate the defect.</p></li>
+<li>
+<p>Where a workaround for the issue exists, Tripwire will not provide progr=
+ammatic fixes for the Product. Workarounds that may cause performance issue=
+s, scalability issues, or are labor intensive for the customer are consider=
+ed valid workarounds.</p></li>
+<li>
+<p>If the issues require functional enhancements to the product, Tripwire w=
+ill not provide further enhancements for the Product. This means that Tripw=
+ire will not develop additional features and/or functionalities for the Pro=
+duct.</p></li>
+</ul></li>
+<li>
+<p><strong>Support &amp; Maintenance</strong> -- Includes updates to the ap=
+plicable product, telephone support and enhanced email support for designat=
+ed Site Administrators in accordance with Tripwire=E2=80=99s Standard Suppo=
+rt Policies at <a class=3D"external-link" href=3D"https://www.tripwire.com/=
+legal/support-maintenance." rel=3D"nofollow">https://www.tripwire.com/legal=
+/support-maintenance.</a></p></li>
+<li>
+<p><strong>Coterminous Support and Subscriptions</strong> -- New support an=
+d subscriptions included on this quotation are based on a specified term be=
+ginning and ending on the dates shown above. If an order is accepted in res=
+ponse to this quotation after the start date included above, the term start=
+ date will be adjusted to begin on the support start date described in this=
+ quotation and end on the end date shown above. The amount billed to the Cu=
+stomer will be prorated to reflect this shortened term.</p></li>
+<li>
+<p><strong>Hardware Refresh</strong> -- All products purchased in response =
+to this quote, which are replacement products for existing appliances, will=
+ assume the prepaid, unexpired support term of the to-be replaced appliance=
+. Upon execution of an order in response to this quote the prepaid support =
+services shall be cancelled on the pre-existing appliance and transferred t=
+o the newly purchased product. To confirm the intention to transfer support=
+, serial numbers of units to be replaced shall be provided to Tripwire at t=
+he time of order. If Support from a pre-existing purchase is not being tran=
+sferred and Support is being purchased for the refresh products, the next s=
+upport renewal, if purchased, will not increase by more than 5% over the an=
+nual support unit price charged. Support services purchased for refresh pro=
+ducts shall begin upon expiration of the transferred support term, if any. =
+In no event shall the quantity of appliances under support or support term =
+length increase as a result of this transfer. The support term for applianc=
+e purchases which are not replacements will begin upon shipment.</p></li>
+<li>
+<p><strong>Tripwire Remote Operations</strong> -- Fees associated with TRO =
+purchased in response to this quotation shall be billable upon receipt of a=
+ valid purchase order and due in accordance with the payment terms included=
+ herein. The TRO services are deemed effective from the first day of the mo=
+nth in which the TRO services are made available to the Customer. TRO servi=
+ces are available upon: a) delivery of the operational procedures guide, an=
+d (b) the completion of the implementation phase as outlined in the applica=
+ble Statement of Work or Engagement Letter.</p></li>
+<li>
+<p><strong>Tripwire Expert Ops</strong> -- Fees associated with Tripwire Ex=
+pertOps services purchased in response to this quotation are billable upon =
+receipt of a valid purchase order and due in accordance with the payment te=
+rms included herein. The annual term for Tripwire ExpertOps services begins=
+ on the first day of the month in which Tripwire provides access credential=
+s to Customer.</p></li>
+<li>
+<p><strong>Professional Services</strong> -- Fees associated with services =
+purchased in response to this quotation shall be billable upon receipt of a=
+ valid purchase order and due in accordance with the payment terms included=
+ herein. Customer agrees that if it has not used the services within one ye=
+ar, Tripwire has no further obligations and Customer shall not be entitled =
+to a refund. Unless the parties have signed a Statement of Work, this quota=
+tion states Tripwire=E2=80=99s entire commitment to Customer with regard to=
+ the services described herein.</p></li>
+<li>
+<p><strong>Professional Services</strong> -- Fees associated with services =
+purchased in response to this quotation shall be billable as services are d=
+elivered. Unless the parties have signed a Statement of Work, this quotatio=
+n states Tripwire=E2=80=99s entire commitment to Customer with regard to th=
+e services described herein.</p></li>
+<li>
+<p><strong>Resident Engineer</strong> -- Fees associated with Resident Engi=
+neer(s) purchased in response to this quotation shall be billable upon rece=
+ipt of a valid purchase order and due in accordance with the payment terms =
+included herein. The term of the Resident Engineer(s) included in this quot=
+ation will begin upon the arrival of the Resident Engineer(s) onsite. Arriv=
+al and commencement of the term shall be confirmed by both parties in writi=
+ng.</p></li>
+<li>
+<p><strong>Tripwire Resident Engineer (Remote) - Part Time</strong> -- The =
+Part-Time Remote Resident Engineer will be available to perform services fo=
+ur hours per day, five days per week during the term. All services will be =
+performed remotely in a consecutive four hour shift, scheduled for either t=
+he morning, or the afternoon. On Tripwire=E2=80=99s acceptance of an order =
+in response to this quotation, Tripwire and customer will agree on either t=
+he morning or afternoon shift, which will remain fixed during the term unle=
+ss agreed to by the parties in writing. Once per calendar quarter during th=
+e term, Customer may request the Resident Engineer to perform services on-s=
+ite, subject to the following conversion rate: 5 days of part-time remote s=
+ervices is equal to 2 full days and one half day of on-site service. Custom=
+er will be required to reimburse Tripwire for travel and expenses incurred =
+associated with the on-site services as identified in a separate quote prov=
+ided by Tripwire. Fees associated with Part-Time Remote Resident Engineer p=
+urchased in response to this quotation shall be billable upon receipt of a =
+valid purchase order and due in accordance with the payment terms included =
+herein. Commencement of the term shall be confirmed by both parties in writ=
+ing.</p></li>
+<li>
+<p><strong>No-Charge Add-on Functionality</strong> -- The no-charge Tripwir=
+e Connect Extension listed in this quotation is licensed for use with a sin=
+gle supported Tripwire Enterprise (TE) console, for as long as the TE conso=
+le remains under support. Tripwire will provide support for the Extension o=
+n this TE console as part of the support for the TE console, at no addition=
+al charge, under the same support terms as Tripwire provides for the TE con=
+sole. Additional Tripwire Connect Additional Data Source licenses, to allow=
+ Tripwire Connect to aggregate data from additional TE sources, are availab=
+le for purchase.</p></li>
+<li>
+<p><strong>While Supplies Last</strong> -- Quantities for appliances on thi=
+s quote are limited and we cannot guarantee our ability to fulfill this pur=
+chase order for the appliance items listed herein. Please contact your sale=
+s representative to ensure the items are still available prior to submittin=
+g your purchase order.</p></li>
+<li>
+<p><strong>Advisory Services</strong> -- The Advisory Services consulting h=
+ours included in this quotation are available on a monthly basis, in the am=
+ount of 4 hours/month multiplied by the quantity of subscriptions purchased=
+. Unused monthly hours do not carry over month-to-month, and hours for subs=
+equent months may not be used in earlier months.</p></li>
+</ul>
+</div>
+</div>
+<p></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_4_781824820.1780419101361
+Content-Type: application/octet-stream
+Content-Transfer-Encoding: base64
+Content-Location: file:///C:/2d55757a8cc81e5a3aaafca18b62ee2d6ef0ac9d2b73cf4998bd8820e6865bfa
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAA3NCSVQICAjb4U/gAAAAFVBMVEX/
+//9wcHBwcHBwcHBwcHBwcHBwcHA3RenHAAAAB3RSTlMAZoiZzN3/SzZomQAAAAlwSFlzAAALEgAA
+CxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAUdEVYdENy
+ZWF0aW9uIFRpbWUANi8xLzEzOKlF0AAAACFJREFUCJljYCATsCgwqIAZTMnMyRAhsTABCIMxkVxT
+GQCLcwHyUKXpLgAAAABJRU5ErkJggg==
+------=_Part_4_781824820.1780419101361--

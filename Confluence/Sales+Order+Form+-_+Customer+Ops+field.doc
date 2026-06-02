@@ -1,0 +1,3404 @@
+Date: Tue, 2 Jun 2026 16:52:03 +0000 (UTC)
+Message-ID: <556656819.3.1780419123819@68f877e69789>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_2_397054502.1780419123818"
+
+------=_Part_2_397054502.1780419123818
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Sales Order Form -&gt; Customer Ops field</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Sales Order Form -&gt; Customer Ops field</h1>
+    <div class=3D"Section1">
+        <div class=3D"confluence-information-macro confluence-information-m=
+acro-note">
+<span class=3D"aui-icon aui-icon-small aui-iconfont-warning confluence-info=
+rmation-macro-icon"></span>
+<div class=3D"confluence-information-macro-body">
+<p local-id=3D"2d6f7794-8af2-4447-8a97-cc7df1ecde7b">Requirements completed=
+ by Victoria M. <time datetime=3D"2025-12-11" class=3D"date-past">11 Dec 20=
+25</time></p>
+</div>
+</div>
+<p local-id=3D"5a5323dd-5b2b-4924-96f8-8dbf79063c97">In comments: Is this o=
+nly for reporting, can this be found on the Opp in salesforce if we move to=
+ Order Processes.</p>
+<p local-id=3D"19c277b2-dc00-414b-af86-772f0afd3267">Sales Analysis of Serv=
+ices Forms: <a class=3D"external-link" data-card-appearance=3D"inline" href=
+=3D"https://helpsystemsllc-my.sharepoint.com/:x:/g/personal/greg_schweitzer=
+_helpsystems_com/IQCme3VWdAqxT64tefVLScYzAYXqEwxyxie7WPUrTliem6A?wdOrigin=
+=3DTEAMS-MAGLEV.p2p_ns.rwc&amp;wdExp=3DTEAMS-TREATMENT&amp;wdhostclicktime=
+=3D1764624847716&amp;web=3D1" local-id=3D"69997589-d8aa-4eb7-b426-8ef3cd5b5=
+935" rel=3D"nofollow">https://helpsystemsllc-my.sharepoint.com/:x:/g/person=
+al/greg_schweitzer_helpsystems_com/IQCme3VWdAqxT64tefVLScYzAYXqEwxyxie7WPUr=
+Tliem6A?wdOrigin=3DTEAMS-MAGLEV.p2p_ns.rwc&amp;wdExp=3DTEAMS-TREATMENT&amp;=
+wdhostclicktime=3D1764624847716&amp;web=3D1</a></p>
+<h1 local-id=3D"69f7151c-6f6e-43d9-8aad-61dfb37cdb05" id=3D"SalesOrderForm-=
+>CustomerOpsfield-OrderFormRouting">Order Form Routing</h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"align-start" data-local-id=
+=3D"c2857a14-b27a-412e-a6a1-a911ed58eb42" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"7a9b2a90-0f18-4e18-bbb7-ca3aa13b9d2a">
+<th data-local-id=3D"7899f548-3c6d-4374-9259-cf9be9645330" class=3D"conflue=
+nceTh">
+<p local-id=3D"1c615f99-952d-4cf1-908e-5ef67fdac60c"><strong>Routing Criter=
+ia (Solution Groups)</strong></p></th>
+<th data-local-id=3D"7e657075-1f6a-4b78-ad5c-a63aaa8af29a" class=3D"conflue=
+nceTh">
+<p local-id=3D"c64fed58-4a59-4328-8c99-4a0419091301"><strong>Owner</strong>=
+</p></th>
+<th data-local-id=3D"3f34a5b7-8dbd-48a8-b360-c9f98b38b10f" class=3D"conflue=
+nceTh">
+<p local-id=3D"4ed0f745-3e02-4e14-87f7-09e7e3b24ff5"></p></th>
+</tr>
+<tr data-local-id=3D"344ee81e-794f-44e6-b09f-d6e6c274f5c4">
+<td data-local-id=3D"1e82d50c-41f5-45b6-b35a-1aed9d8d9d2c" class=3D"conflue=
+nceTd">
+<p local-id=3D"2fef916b-8837-401e-b06f-d669702e2680">Tech Power</p></td>
+<td data-local-id=3D"1a67121d-3cb7-4669-94dc-731203a34b6f" class=3D"conflue=
+nceTd">
+<p local-id=3D"1f4f687a-f391-4d91-8de6-ed9267563df4">Will need a generic =
+=E2=80=9CTech Power=E2=80=9D owner for routing - the team members within Po=
+wer will manually add themselves as the owner of the queue object.</p></td>
+<td data-local-id=3D"6590672c-fbf1-4b3d-bf3d-be17015720f0" class=3D"conflue=
+nceTd">
+<p local-id=3D"5b2952fe-83c8-4869-b466-a75527bca02b">Queue for all Power Ne=
+w Sales</p>
+<p local-id=3D"00f68afa-6c24-426a-9f17-e6397784aa83">Power Renewals can byp=
+ass the below order form and queue. Will be processed in full by the renewa=
+ls team member closing the opp for processing.</p>
+<p local-id=3D"de8539b0-af3d-4491-9aaf-3d4a93341cf9">If multiple solution g=
+roups, assign based on Opp owner=E2=80=99s solution group association (if a=
+vailable). If Opp owner group association is not available, assign based on=
+ the highest $ amount by solution group.</p></td>
+</tr>
+<tr data-local-id=3D"2d4678f0-d594-46a9-80ef-d0f9e3fe4f96">
+<td data-local-id=3D"074a39d0-5cf4-4f12-81c4-5648bc5587e4" class=3D"conflue=
+nceTd">
+<p local-id=3D"6239dddc-369d-42d6-a395-8f0d71fa03f3">Tech MFT</p></td>
+<td data-local-id=3D"d28b4224-018a-4e07-b440-686c8c098982" class=3D"conflue=
+nceTd">
+<p local-id=3D"dbaaac99-92cb-4332-b530-0d704e012371">Will need a generic =
+=E2=80=9CTech MFT=E2=80=9D owner for routing. MFT team members will claim o=
+rders as they come in for processing.</p></td>
+<td data-local-id=3D"3a410cdd-86d5-4a12-ada4-f28896010689" class=3D"conflue=
+nceTd">
+<p local-id=3D"aa152994-5cab-4ea2-be05-ac146c5fe3af">Queue for all MFT New =
+Sales</p>
+<p local-id=3D"79c741e5-f630-42df-be6c-24afab668cc6">MFT Renewals can bypas=
+s the below order form and queue. Will be processed in full by the renewals=
+ team member closing the opp for processing.</p>
+<p local-id=3D"ed978552-7d79-42f1-b637-af5860cd4465">If multiple solution g=
+roups, assign based on Opp owner=E2=80=99s solution group/brand association=
+ (if available). If Opp owner association is not available, assign based on=
+ the highest amount by solution group.</p></td>
+</tr>
+<tr data-local-id=3D"3550ac53-eb2d-4a1e-93d0-1e7c84c0e0ad">
+<td data-local-id=3D"6c73f1bf-34f4-42f9-87fb-1880418a859e" class=3D"conflue=
+nceTd">
+<p local-id=3D"28a36fce-e3df-48a7-9465-3bb06bd253f7">Tech RPA</p></td>
+<td data-local-id=3D"b92d2b0d-87cc-4a4d-afe1-24fd5c2d8154" class=3D"conflue=
+nceTd">
+<p local-id=3D"cf04b8be-9906-4183-a3db-e11f5aae3675">Will need a generic =
+=E2=80=9CTech RPA=E2=80=9D owner for routing. RPA team members will claim o=
+rders as they come in for processing.</p></td>
+<td data-local-id=3D"89d55a99-a57a-4234-8359-53a5bb6dc3f8" class=3D"conflue=
+nceTd">
+<p local-id=3D"ac758659-df55-422f-9f84-8dcd4b442527">Queue for all RPA New =
+Sales</p>
+<p local-id=3D"5565f871-39ad-42e1-88d7-6dcbb48c985f">RPA Renewals can bypas=
+s the below order form and queue. Will be processed in full by the renewals=
+ team member closing the opp for processing.</p>
+<p local-id=3D"0dbcafc2-0a07-4aab-8a84-326a9c215110">If multiple solution g=
+roups, assign based on Opp owner=E2=80=99s solution group/brand association=
+ (if available). If Opp owner association is not available, assign based on=
+ the highest amount by solution group.</p></td>
+</tr>
+<tr data-local-id=3D"2d0ad431-5f7b-4126-9e5e-153baaa67eed">
+<td data-local-id=3D"904f6c38-285c-4e9a-a4e1-083827e245f2" class=3D"conflue=
+nceTd">
+<p local-id=3D"9715764d-ba8d-4e33-be1f-ff57436f780a">Tech Hybrid</p></td>
+<td data-local-id=3D"8d001b10-2c99-4968-86d9-fb1d011a6af1" class=3D"conflue=
+nceTd">
+<p local-id=3D"4872f688-7a0b-4fc4-933b-f03368a2ab0e">Will need a generic =
+=E2=80=9CTech Hybrid=E2=80=9D owner for routing. Hybrid team members will c=
+laim orders as they come in for processing.</p></td>
+<td data-local-id=3D"3abbcbe7-e045-4272-9fad-e632d49fde95" class=3D"conflue=
+nceTd">
+<p local-id=3D"ae77dcc8-3294-4acd-90ee-f7a92ebb5b88">Queue for all Hybrid N=
+ew Sales</p>
+<p local-id=3D"c10e9ab2-5377-4041-83de-1cb81a28094b">Hybrid Renewals can by=
+pass the below order form and queue. Will be processed in full by the renew=
+als team member closing the opp for processing.</p>
+<p local-id=3D"0fa0b741-6d22-4bc5-8122-4d8879835026">If multiple solution g=
+roups, assign based on Opp owner=E2=80=99s solution group/brand association=
+ (if available). If Opp owner association is not available, assign based on=
+ the highest amount by solution group.</p></td>
+</tr>
+<tr data-local-id=3D"38af71a0-f07b-4ff9-bd1d-60e8f0f7eaf7">
+<td data-local-id=3D"72383d5f-1757-4959-b49b-e175ae95ead8" class=3D"conflue=
+nceTd">
+<p local-id=3D"635af4c9-3a3d-4869-9098-73d41214b0e5">Cyber All</p></td>
+<td data-local-id=3D"8da63cae-b197-4bca-8165-b21cdd27a56e" class=3D"conflue=
+nceTd">
+<p local-id=3D"b36a161b-c88b-407f-a0b3-181b7081d244">Round Robin - all team=
+ members who report to Victoria Mullady</p>
+<p local-id=3D"f8e3f32a-84a6-48ca-b533-249e03dc8871">Can routing take work =
+hours/shifts into account? We have team members in both Mexico &amp; India =
+on different shifts.</p></td>
+<td data-local-id=3D"55f60faf-0979-42e3-8cf1-0f297d68b464" class=3D"conflue=
+nceTd">
+<p local-id=3D"4fdfbfe6-882c-4b40-abda-4a8b702f273f">Routing for all Cyber =
+solutions</p>
+<p local-id=3D"c05738a4-7a57-4356-9c62-dcc750490f7a">If includes both Cyber=
+ &amp; Tech, route based on Opp owner=E2=80=99s solution group/brand associ=
+ation (if available). If Opp owner association is not available, assign bas=
+ed on the highest $ amount by solution group.</p>
+<p local-id=3D"335e8cf2-0b7d-4b9a-93fc-f50c74607251">Cyber Solutions: Group=
+ User option: <a class=3D"external-link" href=3D"mailto:cyber.operations@fo=
+rtra.com" rel=3D"nofollow">cyber.operations@fortra.com</a></p>
+<p local-id=3D"ce1a5757-bebc-42e5-9c05-4bd612138895">Individuals: Ajinkya G=
+anpatrao Pisal <a class=3D"external-link" href=3D"mailto:ajinkya.pisal@fort=
+ra.com" rel=3D"nofollow">ajinkya.pisal@fortra.com</a>; Fabiola Roman Gonzal=
+ez <a class=3D"external-link" href=3D"mailto:fabiola.roman@fortra.com" rel=
+=3D"nofollow">fabiola.roman@fortra.com</a>; Hilder Gracia <a class=3D"exter=
+nal-link" href=3D"mailto:hilder.gracia@fortra.com" rel=3D"nofollow">hilder.=
+gracia@fortra.com</a>; Isaac Cid <a class=3D"external-link" href=3D"mailto:=
+isaac.cid@fortra.com" rel=3D"nofollow">isaac.cid@fortra.com</a>; Komal Dhar=
+ <a class=3D"external-link" href=3D"mailto:komal.dhar@fortra.com" rel=3D"no=
+follow">komal.dhar@fortra.com</a>; Luis Gomez <a class=3D"external-link" hr=
+ef=3D"mailto:luis.gomez@fortra.com" rel=3D"nofollow">luis.gomez@fortra.com<=
+/a>; Mahek Naim Kotwal <a class=3D"external-link" href=3D"mailto:mahek.kotw=
+al@fortra.com" rel=3D"nofollow">mahek.kotwal@fortra.com</a>; Mohini Sunil T=
+awar <a class=3D"external-link" href=3D"mailto:mohini.tawar@fortra.com" rel=
+=3D"nofollow">mohini.tawar@fortra.com</a>; Natalia Villa <a class=3D"extern=
+al-link" href=3D"mailto:natalia.villa@fortra.com" rel=3D"nofollow">natalia.=
+villa@fortra.com</a>; Omkar Sudam Shinde <a class=3D"external-link" href=3D=
+"mailto:omkar.shinde@fortra.com" rel=3D"nofollow">omkar.shinde@fortra.com</=
+a>; Sachin Dodake <a class=3D"external-link" href=3D"mailto:sachin.dodake@f=
+ortra.com" rel=3D"nofollow">sachin.dodake@fortra.com</a>; Tanya Alexandra G=
+arcia Reyes <a class=3D"external-link" href=3D"mailto:tanya.reyes@fortra.co=
+m" rel=3D"nofollow">tanya.reyes@fortra.com</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 local-id=3D"c1f03b8a-d1d3-4674-8c91-5d7549dfa757" id=3D"SalesOrderForm-=
+>CustomerOpsfield-OrderForm(Consolidated)">Order Form (Consolidated)</h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"align-start" data-local-id=
+=3D"0fd9a315-feb7-4feb-a18e-9a1ca0b39c63" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"65a171bc-396e-4927-8ae3-29b651b31248">
+<th data-local-id=3D"8ec6024f-6b47-4b19-8f81-ff8b2263ba63" class=3D"conflue=
+nceTh">
+<p local-id=3D"c9798a87-f246-4289-b557-cd93185cc74d"><strong>Question</stro=
+ng></p></th>
+<th data-local-id=3D"401ace5b-ba79-49dc-9cc5-8e196e979bb4" class=3D"conflue=
+nceTh">
+<p local-id=3D"8e844ca6-0ef9-4eb1-83ed-e12dc9f246f0"><strong>Subtext</stron=
+g></p></th>
+<th data-local-id=3D"89b930f7-833e-488f-91bb-216f8099ad4f" class=3D"conflue=
+nceTh">
+<p local-id=3D"4efdf658-a3ad-441c-83fb-0bac0163ac19"><strong>Options</stron=
+g></p></th>
+<th data-local-id=3D"6735a7e0-d244-4815-9547-42e4cc8fe690" class=3D"conflue=
+nceTh">
+<p local-id=3D"1e2552f0-c9e1-4ab1-b624-41ce380976f6"><strong>Comments</stro=
+ng></p></th>
+</tr>
+<tr data-local-id=3D"d5cbd8a2-4294-4972-96fe-8eedf67f0267">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"533df7=
+44-e06b-4e64-b317-fe8fc0dcd825" class=3D"confluenceTd">
+<p local-id=3D"a26bbc9b-f614-40a3-8251-06e3da634f1f">Sales Details</p></td>
+</tr>
+<tr data-local-id=3D"07035c50-a227-42cb-8fad-e193a2ea9b98">
+<td data-local-id=3D"94918c78-2fb5-4558-ab16-224833f1cbb0" class=3D"conflue=
+nceTd">
+<p local-id=3D"7363a5c1-f7ff-49d0-aade-e19c9ef71fa8">Maintenance/Subscripti=
+on/Term Start Date</p></td>
+<td data-local-id=3D"5d5ce126-9578-43bb-9309-0b11a2fe668f" class=3D"conflue=
+nceTd">
+<p local-id=3D"8aaa2029-bef8-4a60-bc6c-3489020945b8"><strong>Date must be t=
+he 1st of the selected month.</strong><br></p>
+<p local-id=3D"62ec3199-a5b3-4fce-9f08-b1cf875f2a3a">If the start date is m=
+ore than 30 days from today, attach the accompanying Deal Desk approval lat=
+er in this form.</p></td>
+<td data-local-id=3D"4cc9639b-47bd-4c53-a887-902c8f584644" class=3D"conflue=
+nceTd">
+<p local-id=3D"5c66c746-685e-4ac8-b072-57115ba9dc72">Date</p></td>
+<td data-local-id=3D"6b0f2803-84b4-4d59-88c1-c99681d2011b" class=3D"conflue=
+nceTd">
+<p local-id=3D"ddf80224-0a0c-4a32-8a8c-f503daf9dd8a">Yes, required.</p></td=
+>
+</tr>
+<tr data-local-id=3D"daaa93f1-8feb-4ffa-a4e7-30f3e2252541">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"1ada81=
+6c-0002-4460-adbd-4f665cc4c364" class=3D"confluenceTd">
+<p local-id=3D"84a59a77-b798-4166-a2a7-42e3070cf535">Billing Details</p></t=
+d>
+</tr>
+<tr data-local-id=3D"4d7b919a-f85a-48fa-a996-7385c6044b3e">
+<td data-local-id=3D"44818f66-27b2-46af-b9e0-2c3966c85572" class=3D"conflue=
+nceTd">
+<p local-id=3D"67d4bd5f-b2ad-40e7-b800-a8f33cc497bb">Is this a Multi-Year C=
+ontract Annually Paid (MYCAP)?</p></td>
+<td data-local-id=3D"ad083c81-9e97-4599-8649-eedc2e626036" class=3D"conflue=
+nceTd">
+<p local-id=3D"1b20793c-9576-4fda-85b4-efb7bdc877a3"></p></td>
+<td data-local-id=3D"782313e8-8be2-4010-b25b-f6f4d7ca860d" class=3D"conflue=
+nceTd">
+<p local-id=3D"6cababe2-c40a-4a48-bb00-0e275c5beb83">Yes, No</p></td>
+<td data-local-id=3D"c16650bc-6776-49c0-816f-310b4d8c964c" class=3D"conflue=
+nceTd">
+<p local-id=3D"63d6a680-2e59-46c3-8c9f-2b2bc5f620f3">Required field</p></td=
+>
+</tr>
+<tr data-local-id=3D"2937ee72-c3a2-46c9-b31c-f3084d79f38a">
+<td data-local-id=3D"30d1fcd8-5fca-4367-856c-ae549eb5ffbf" class=3D"conflue=
+nceTd">
+<p local-id=3D"d9a298e3-af70-49a5-bfff-a033a3653e7d">Are any products withi=
+n this order replacing existing Fortra products (swap/displaced ARR)?</p></=
+td>
+<td data-local-id=3D"10fdc2da-141d-425c-93b6-c454f77885c3" class=3D"conflue=
+nceTd">
+<p local-id=3D"131f5bb3-4db6-41cd-b0cc-8872242afb2a"></p></td>
+<td data-local-id=3D"0e81d199-54fc-4c44-b48a-966c51bfbc9d" class=3D"conflue=
+nceTd">
+<p local-id=3D"240b8a4b-e76f-497e-a253-d9e59ad10e3d">Yes, No</p>
+<p local-id=3D"a656c79e-5f06-4093-9fb7-8eb4258f8d98"><span style=3D"backgro=
+und-color: rgb(254,222,200);">If Yes &gt; Justification for swap (long text=
+)</span></p></td>
+<td data-local-id=3D"5bc3e874-0c60-49e5-a2e6-5c1ea861a856" class=3D"conflue=
+nceTd">
+<p local-id=3D"c6098d4c-047a-49d2-858d-2541fcb16b79">Required field</p></td=
+>
+</tr>
+<tr data-local-id=3D"ee737cd3-79a4-4154-9016-e1953bb239fe">
+<td data-local-id=3D"dd047939-56ab-4035-9657-6e6dabc12d6a" class=3D"conflue=
+nceTd">
+<p local-id=3D"647d2942-a5f9-41cd-ac78-316659b3ee13">External Approval(s) -=
+ Attach PDF</p></td>
+<td data-local-id=3D"82995eb0-4d2f-437b-80f4-bf9905af1211" class=3D"conflue=
+nceTd">
+<p local-id=3D"bbae41f3-d657-44fe-9393-8ba23bf7d534"><strong>Deal Desk appr=
+oval <u>must</u> be attached for the following exceptions or the order will=
+ not be processed.</strong>&nbsp;</p>
+<ul local-id=3D"3f3e8285-4c43-49ca-930a-e078d07ebc82">
+<li local-id=3D"a9a1d7fe-bae8-4563-9d41-6411a57f37b6">
+<p local-id=3D"97f912af-dc54-48bb-8ee0-a3e2afbf3b71">Perpetual Software Sal=
+es</p></li>
+<li local-id=3D"df5e60fd-acbd-455d-ac65-c93a75507a45">
+<p local-id=3D"75cee6c3-6fa8-433b-9322-a5b37a45191c">Annual Increase Change=
+ COLA</p></li>
+<li local-id=3D"63f8633e-8ade-49dc-925e-1150874268e1">
+<p local-id=3D"77336b66-9407-4331-a4dd-2611d9939730">Channel MSP Discount</=
+p></li>
+<li local-id=3D"6afc1ddd-d314-4a7a-9cae-de7e671fb62f">
+<p local-id=3D"8d987311-ddb2-42d1-958c-2be192f58687">Displaced/Swap ARR</p>=
+</li>
+<li local-id=3D"9ada469d-020e-4932-bf26-d9ba730b4c7d">
+<p local-id=3D"e8297407-b4af-4a51-b026-9ff30ee2c6cd">Emailed Acceptance of =
+a Quote (unsigned)</p></li>
+<li local-id=3D"45595884-e538-498f-8cd0-ba0c6e8c469f">
+<p local-id=3D"4b424648-31c3-47dc-b8e1-9bc648d4b63e">Hardware Change Fee</p=
+></li>
+<li local-id=3D"1296b65c-03c8-4242-a906-93204b579c27">
+<p local-id=3D"a0224dc3-d7fb-474d-8184-a96b58a1c5e8">Legal Non-Standard Doc=
+umentation for SaaS</p></li>
+<li local-id=3D"8aca7d0e-cd85-4800-b9b1-ffa9be5d7390">
+<p local-id=3D"d0aa8894-4162-4a60-b833-ac00c42d2d86">Legal Non-Standard Doc=
+umentation for On-Prem</p></li>
+<li local-id=3D"58088739-3172-4fa4-bf26-fbb4a6f65a15">
+<p local-id=3D"5f351ab5-f1e4-4c3c-a776-cc3a42bae795">Legal Terms&nbsp;(Non-=
+Standard)</p></li>
+<li local-id=3D"d59e377b-3d6c-49c3-b7f8-ae2b6b1ea309">
+<p local-id=3D"b6ee31b4-3daa-48ce-a6e5-41ab347b8014">Maintenance Discount</=
+p></li>
+<li local-id=3D"180ac4a8-f003-46fb-8ad0-a8c9b8f01da3">
+<p local-id=3D"5d74e039-c7f7-4188-a510-abf002e0431e">Multi-Year Contract An=
+nually Paid (MYCAP)</p></li>
+<li local-id=3D"be18215b-83c8-4620-9c89-86a1f7a154ad">
+<p local-id=3D"9a11a734-37ca-45ed-8ec1-d038485c1d7d">Net Terms</p></li>
+<li local-id=3D"e87bc269-5978-4b3f-9787-2ec3bcc60567">
+<p local-id=3D"24f826b0-914c-499b-a8fe-4c862601a02f">Non-Standard License T=
+ype</p></li>
+<li local-id=3D"5934588a-d0f8-44e9-b6c5-fcc3c1f6a92b">
+<p local-id=3D"3e99ccd9-6063-45f4-8dbd-21e2fbc178e8">Offline Quote</p></li>
+<li local-id=3D"5a22092c-6025-4b7b-8735-d5400c38005a">
+<p local-id=3D"f88a5ac7-751d-4cf1-93cd-83c3e155519a">Perpetual/Subscription=
+ License Discount</p></li>
+<li local-id=3D"e55cc3c3-d4eb-415d-af01-12d5d3ec7ac2">
+<p local-id=3D"be522043-d983-4e1f-8d6a-d83a74c01ba9">SAARC</p></li>
+<li local-id=3D"a421b728-bc9f-458d-9e1b-7c88a0ce807d">
+<p local-id=3D"94bd96de-d0ab-4a15-b610-5a41cc080a6f">Services Discount</p><=
+/li>
+<li local-id=3D"9f5e7fa5-53c4-482e-a30d-441ae1058f91">
+<p local-id=3D"e9ba2868-ac72-40f7-9b67-e0608ed3f2ac">Subscription Start Dat=
+e &gt; 30 Days</p></li>
+</ul>
+<p local-id=3D"7ef761f3-43b6-4fd4-9737-e6835c33a0e0">To attach an email cha=
+in, first save it as a PDF and then attach to this form</p></td>
+<td data-local-id=3D"face9852-92b6-459a-af03-5b6220d032ce" class=3D"conflue=
+nceTd">
+<p local-id=3D"d5dbf32e-f402-4d06-b425-64538411e0fb"></p></td>
+<td data-local-id=3D"7c3a718f-97fd-44b9-882d-36a6a4dd99c4" class=3D"conflue=
+nceTd">
+<p local-id=3D"dd36b4a5-89e8-41ca-8127-8348051e4814"><span style=3D"backgro=
+und-color: rgb(254,222,200);">Required unless Deal Desk process is moving i=
+nternally through SF.</span></p></td>
+</tr>
+<tr data-local-id=3D"b2283b53-0833-4a1a-ab59-cd023d5d712e">
+<td data-local-id=3D"3793ebf1-e857-4912-ae3f-69d7819b98fd" class=3D"conflue=
+nceTd">
+<p local-id=3D"6a7b50e5-7f0e-4540-bbe2-acd2da67dc75">Was this order accepte=
+d via AWS Marketplace?</p></td>
+<td data-local-id=3D"cea739a8-8b1a-489e-a97e-8307e8a6525e" class=3D"conflue=
+nceTd">
+<p local-id=3D"b9c9d5ec-f967-4764-965a-946c05695cff"></p></td>
+<td data-local-id=3D"329e89bd-cc74-4cb3-9f69-aa2a833feba2" class=3D"conflue=
+nceTd">
+<p local-id=3D"050bdc8d-3693-4017-b7ee-0cf322778715">Yes, No</p></td>
+<td data-local-id=3D"c5dcad2a-8374-4189-9d44-7b6112d75e06" class=3D"conflue=
+nceTd">
+<p local-id=3D"4b58ddbd-6c87-46f0-b711-f9d396cbd2a1">Required field.</p></t=
+d>
+</tr>
+<tr data-local-id=3D"762dd8e9-39d2-485d-98d5-45370ef61723">
+<td data-local-id=3D"b088e00e-a04b-4433-a691-2f618a688775" class=3D"conflue=
+nceTd">
+<p local-id=3D"4e3b8ec9-c4d6-4a5c-8cae-e5cb9ad70a35">(Attach PDF) Customer =
+Order Approval Document(s)</p></td>
+<td data-local-id=3D"d5d40eb5-7b48-483b-a86e-14d489d52a23" class=3D"conflue=
+nceTd">
+<p local-id=3D"e09d077b-9a3e-4e79-bad4-204d25fc8589">Please attach the Purc=
+hase Order, Signed Quote, AWS Offer Acceptance, or Email Approval for this =
+order.</p>
+<p local-id=3D"b48ac332-146e-4fb8-a4c4-f792854372b8"></p>
+<p local-id=3D"a980347c-b8d4-4441-bd6d-69ce4bfec978">*If there is signed SO=
+W, please include it here<br>
+To attach an email chain, first save it as a PDF and then attach to this fo=
+rm</p></td>
+<td data-local-id=3D"b5cdf565-5c00-4eeb-a8d6-77865123d34f" class=3D"conflue=
+nceTd">
+<p local-id=3D"019af35b-b0e0-45da-af1d-37fb40126cff"></p></td>
+<td data-local-id=3D"5d2cd026-1f50-422f-b4a9-026aee9b42a4" class=3D"conflue=
+nceTd">
+<p local-id=3D"21eb3361-c467-4b2c-9013-bdf7429e58ec">Required field.</p></t=
+d>
+</tr>
+<tr data-local-id=3D"deef66a9-2230-484d-af7d-4e9e2f2c683c">
+<td data-local-id=3D"a354b82c-0ffd-479d-8918-832b67b9dc88" class=3D"conflue=
+nceTd">
+<p local-id=3D"9945c30e-a7fe-40e6-86ef-22a6d1489a6f">Customized SLSA or Spe=
+cial Terms?</p></td>
+<td data-local-id=3D"ff2a593f-8ef0-4343-9faf-9b8ef18a6467" class=3D"conflue=
+nceTd">
+<p local-id=3D"23f0ca29-489f-4c48-b6b9-083ef795445e">COLA, Net Terms, Licen=
+sing Exceptions, etc.</p></td>
+<td data-local-id=3D"6156e90a-b012-42df-9478-53d2b0276f18" class=3D"conflue=
+nceTd">
+<p local-id=3D"51978dcd-7d47-4401-a5bf-633f52fb3b8d">Yes, No</p></td>
+<td data-local-id=3D"888bd370-1c5f-49e3-9af9-ef49d7e14b7f" class=3D"conflue=
+nceTd">
+<p local-id=3D"a840895e-76d7-4e94-9c63-5841dab99fc8">Not a required field.<=
+/p></td>
+</tr>
+<tr data-local-id=3D"0f2190f6-8d31-46fa-8067-b3e27c718077">
+<td data-local-id=3D"b03ffc6a-048e-46d2-a8f7-19adce2fdfe0" class=3D"conflue=
+nceTd">
+<p local-id=3D"a704d014-1f07-4d3a-9147-a57588bafe07">Details of Customized =
+SLSA or Special Terms</p></td>
+<td data-local-id=3D"d9155b28-1722-4775-8bdf-e60bdbf1565f" class=3D"conflue=
+nceTd">
+<p local-id=3D"5bace5af-64e8-474b-ab63-dda707ad5994"></p></td>
+<td data-local-id=3D"9165e80a-f43f-4179-8ac0-678c02f9b821" class=3D"conflue=
+nceTd">
+<p local-id=3D"a08f7130-3e30-4388-9e4c-01bb1b7257a3"></p></td>
+<td data-local-id=3D"a4691702-6b3b-4707-addc-e7022de4ccf2" class=3D"conflue=
+nceTd">
+<p local-id=3D"773ce9e8-691f-49c9-b275-fe57ea995f9e">Not a required field.<=
+/p></td>
+</tr>
+<tr data-local-id=3D"58d1dad7-46f3-4243-b2ff-deafb17481d5">
+<td data-local-id=3D"c2715be1-56c0-46ff-af43-4c2d03aaf20c" class=3D"conflue=
+nceTd">
+<p local-id=3D"0c2ee146-73cd-4e67-b6a7-e92b7ccc49ad">Special Notes</p></td>
+<td data-local-id=3D"4f16c73b-e421-4142-96fd-71b5444f1bbd" class=3D"conflue=
+nceTd">
+<p local-id=3D"9e4fc15c-40aa-437a-90c3-ff4425d2e1f6">Place to add any speci=
+al notes or handling of invoice/license delivery</p></td>
+<td data-local-id=3D"5f19f107-70a4-43c4-ab90-7177c8fcb058" class=3D"conflue=
+nceTd">
+<p local-id=3D"369f4c1e-2eed-4864-bcee-64df4b9028b8"></p></td>
+<td data-local-id=3D"fa3e9111-02b6-465e-954c-8fbf2769266f" class=3D"conflue=
+nceTd">
+<p local-id=3D"6daf669e-8be1-416d-b566-219512831a66">Open text field that w=
+ould include notes that are needed for processing. Not a required field.</p=
+></td>
+</tr>
+<tr data-local-id=3D"4771ef54-756c-449c-8073-124fdd28684b">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"22ca22=
+9f-828c-4fe1-980d-de68017eb845" class=3D"confluenceTd">
+<p local-id=3D"0b73058b-6ffb-4fb0-859a-a1adb6fde4ee"><strong>Cloud Data Pro=
+tection + Data Protection </strong></p></td>
+</tr>
+<tr data-local-id=3D"4e3a2d3a-673d-4800-9a2e-67c01daeb0b1">
+<td data-local-id=3D"a0eac6ce-9461-4748-97c6-88cc5f1f22d5" class=3D"conflue=
+nceTd">
+<p local-id=3D"f4261f10-802e-43d6-acf7-6eabc189e4a6">Vera sales only - prov=
+ide the Tenant Admin Email Address</p></td>
+<td data-local-id=3D"6968e535-a4a1-468a-900b-f066440ad506" class=3D"conflue=
+nceTd">
+<p local-id=3D"5fa4897a-71dc-4d3c-ab78-7fe2e24f5ccd"></p></td>
+<td data-local-id=3D"f23db7d5-181e-4665-8e5d-7e1887a604ff" class=3D"conflue=
+nceTd">
+<p local-id=3D"9d15cc66-b579-4af4-a578-e634744c1264"></p></td>
+<td data-local-id=3D"1d3e8968-69af-4d8f-836d-b5ae18dec9c2" class=3D"conflue=
+nceTd">
+<p local-id=3D"0e3788bc-185d-411f-83b1-3334df530c7f">Required field</p></td=
+>
+</tr>
+<tr data-local-id=3D"cb8d3acc-8b30-4a76-9622-abf169a25ed6">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"78e896=
+da-d89d-4762-b735-28e112d6866a" class=3D"confluenceTd">
+<p local-id=3D"16346693-142a-4be1-bcfc-04b3761e6177"><strong><span style=3D=
+"background-color: rgb(254,222,200);">Terranova - below questions are used =
+by managed services team, unsure if this is being covered under the service=
+s form conversations.</span></strong></p></td>
+</tr>
+<tr data-local-id=3D"f1332669-c6ba-4c4a-8745-6f1614a94b0e">
+<td data-local-id=3D"90540d5e-272c-4bd1-8542-d612ba26146c" class=3D"conflue=
+nceTd">
+<p local-id=3D"66860911-8fad-4d16-8176-04bbcdc4295d">Is Fortra to engage th=
+e customer directly?</p></td>
+<td data-local-id=3D"f0cb732b-ea17-4587-8ef6-e0ebd16d1086" class=3D"conflue=
+nceTd">
+<p local-id=3D"f452e7a2-1d06-4789-94a7-da082dc9e03c"></p></td>
+<td data-local-id=3D"3942cfe1-411d-4db4-ab2d-7ab9b7f789ad" class=3D"conflue=
+nceTd">
+<p local-id=3D"a36d5ef9-4b38-44fc-863f-f5ef66573b0c">Yes, No Engage with Pa=
+rtner</p></td>
+<td data-local-id=3D"e043768c-b6b9-49f6-928e-0a124eecbfa5" class=3D"conflue=
+nceTd">
+<p local-id=3D"247e7393-4a45-4c47-a60c-a9b2c1f8f568"></p></td>
+</tr>
+<tr data-local-id=3D"1a34b74d-bccf-4802-9f3c-4ec57591e3c9">
+<td data-local-id=3D"9a3bd013-17b4-4e7f-9b4d-7b9d777a0031" class=3D"conflue=
+nceTd">
+<p local-id=3D"fbbc1d3c-0a80-4a16-ada8-8e9f6cc166d5">Requires SCORM File De=
+livery</p></td>
+<td data-local-id=3D"388cb059-5120-4ac5-82d9-b48ec6a60fa8" class=3D"conflue=
+nceTd">
+<p local-id=3D"d82ddbc4-02d5-416a-bbd0-b074bef396da"></p></td>
+<td data-local-id=3D"bab3e37a-aa92-4901-a122-2fb991cbf8e3" class=3D"conflue=
+nceTd">
+<p local-id=3D"bc50aa46-e498-411a-a066-9bb7c8e4041a">Yes, No</p></td>
+<td data-local-id=3D"418a0c9e-31c5-4ea6-af3c-2fd7b953b7cf" class=3D"conflue=
+nceTd">
+<p local-id=3D"7844e7ee-1ad4-4d4a-9a3f-614f373811f8"></p></td>
+</tr>
+<tr data-local-id=3D"805b1895-d446-451f-aaac-b2db0d9fccf7">
+<td data-local-id=3D"ef39e1e4-6614-4a78-9a86-bcb5d954245b" class=3D"conflue=
+nceTd">
+<p local-id=3D"2fa740f1-ffeb-4667-9e8e-af07eeb194e9">Name of the LMS were t=
+he content will be hosted</p></td>
+<td data-local-id=3D"73780788-79e9-4987-8959-7e4f6e27f5c3" class=3D"conflue=
+nceTd">
+<p local-id=3D"62a0d257-89bf-40b8-b70f-fe799e9a121e"></p></td>
+<td data-local-id=3D"cd02cacb-0cc6-4572-b9d2-f279467a1f9c" class=3D"conflue=
+nceTd">
+<p local-id=3D"46270cf3-a58f-4d2b-bfec-a4ac22233c4b"></p></td>
+<td data-local-id=3D"9808ee0a-cfa8-4c8c-ab75-0a8c6b81ed8b" class=3D"conflue=
+nceTd">
+<p local-id=3D"ba67eb3d-0aca-482a-bb46-7d45b3b56e5e"></p></td>
+</tr>
+<tr data-local-id=3D"b624906a-8ad6-4a1d-9c3f-4ff2b8dfe4d1">
+<td data-local-id=3D"89814f81-1e9d-4063-8c72-2f579178deb1" class=3D"conflue=
+nceTd">
+<p local-id=3D"b6b1bcbc-8272-439f-a5d1-66ff77efa52c">Languages</p></td>
+<td data-local-id=3D"9c2dcea6-85c8-4dec-9778-7efd923efc98" class=3D"conflue=
+nceTd">
+<p local-id=3D"c5e50c9f-77e0-4ccf-a80f-adeceb087664">Enter the actual langu=
+ages, NOT a numeric value.</p></td>
+<td data-local-id=3D"3a608e4c-fa71-444d-9d50-9f1c096de3ee" class=3D"conflue=
+nceTd">
+<p local-id=3D"78f07095-0fb9-4189-aac1-7362e1c48681"></p></td>
+<td data-local-id=3D"79f67641-f77f-4cbd-8b9b-e85c80a43196" class=3D"conflue=
+nceTd">
+<p local-id=3D"afadd301-1802-4da1-84cf-7a93d8685a1c"></p></td>
+</tr>
+<tr data-local-id=3D"c6c8d67d-12f0-4863-a52b-c579521e7562">
+<td data-local-id=3D"5a677dad-0131-4322-bd0e-3e92367cc66c" class=3D"conflue=
+nceTd">
+<p local-id=3D"c815d917-b277-4cfe-9893-44ad763ae905">Number of Instances or=
+ Incidents</p></td>
+<td data-local-id=3D"4e97c795-6455-4adc-9ddb-e7428967ef6f" class=3D"conflue=
+nceTd">
+<p local-id=3D"0dad1443-2ba8-497d-8f27-7a5c7ab9db58"></p></td>
+<td data-local-id=3D"eb535391-47be-4c0c-a93b-05cc07064e99" class=3D"conflue=
+nceTd">
+<p local-id=3D"69cb56ae-0fe9-43d5-aead-40ec7adbaa12"></p></td>
+<td data-local-id=3D"cb347bd3-fda2-4dc7-8375-9ff90906088d" class=3D"conflue=
+nceTd">
+<p local-id=3D"805a67f0-0616-4edb-94f7-665791819db6"></p></td>
+</tr>
+<tr data-local-id=3D"c2af6c32-7c01-4027-b665-8417ccc36e08">
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"03336ec6-220d-425b-8=
+123-ca1dfeec982d" class=3D"confluenceTd">
+<p local-id=3D"914d2d41-1267-473a-b1d4-f577cd9c2bfc"><strong>Vulnerability =
+Management</strong></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"1a682dc5-f0ad-4905-9=
+aba-cbfcfdf9bed2" class=3D"confluenceTd">
+<p local-id=3D"fbcfc958-394d-47f5-ba53-b6c6aa1a6b61"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"1a650b88-7f3e-4b1c-b=
+06c-3a73e4fe2951" class=3D"confluenceTd">
+<p local-id=3D"b9e6eefc-0727-4681-9b09-0fcf70137440"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"d5a7e588-f3ae-4ecd-8=
+0c7-709f790dff54" class=3D"confluenceTd">
+<p local-id=3D"8940a235-bb6a-4aaa-abcd-0f1686d41136"></p></td>
+</tr>
+<tr data-local-id=3D"1baa34af-5591-4096-8965-e1ef91d9926a">
+<td data-local-id=3D"86152efb-7996-4be6-b492-628e53a4a518" class=3D"conflue=
+nceTd">
+<p local-id=3D"2c32a140-516c-4bc9-b04c-f52d8846867f">If the order contains =
+beSTORM licenses, indicate which package(s) should be included.</p></td>
+<td data-local-id=3D"0780c867-71e3-4711-bf1b-5be5a9972e64" class=3D"conflue=
+nceTd">
+<p local-id=3D"fb77b269-0e26-4244-8e4e-c4a8351c32ce">If individual modules =
+are needed instead of packages, list the protocols under "other"</p></td>
+<td data-local-id=3D"b016f162-e411-4ce9-86a1-abf602a57479" class=3D"conflue=
+nceTd">
+<p local-id=3D"c4362942-7d5e-49fe-b63c-395e0c276269">Basic IPv4, Basic IPv6=
+, Basic Network clients, basic Network Servers, bluetooth, CANbus, Custome =
+Module, EDSA, Files, Hardware, Metro Ethernet, Mobile Network Clients, Rout=
+ing, SCADA Simple Network clients, TLS, Tunneling, VOIP, VPN, WiFi, All Pro=
+tocols</p></td>
+<td data-local-id=3D"eb29ee74-08f2-485d-9fa5-15089ef1e2e9" class=3D"conflue=
+nceTd">
+<p local-id=3D"aed7aca9-a4bd-412a-9b97-ac3feec9b589"><span style=3D"backgro=
+und-color: rgb(254,222,200);">Needed for licensing configuration. I do not =
+believe these are part of the migrated SKU information. </span></p></td>
+</tr>
+<tr data-local-id=3D"e7f70836-3f10-449d-bba3-74826e3f0425">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"ef7a9b=
+83-578d-4adc-94a3-d521c8980ac6" class=3D"confluenceTd">
+<p local-id=3D"8c47a551-ad91-4246-929f-431db5262928"><strong>Power</strong>=
+</p></td>
+</tr>
+<tr data-local-id=3D"ab28ab72-caf1-4ab4-871b-941c5990bb83">
+<td data-local-id=3D"f2a1ef0f-603b-4c67-8f05-cccb1c46ad1f" class=3D"conflue=
+nceTd">
+<p local-id=3D"48ff1166-283e-49f3-b1ec-32b35d9d2c7e">Hosted? - If yes, MSP =
+or Direct</p></td>
+<td data-local-id=3D"7e036013-7396-4b92-8888-3ec361b176ed" class=3D"conflue=
+nceTd">
+<p local-id=3D"33f1f241-17cf-416f-9fd4-82ea0a4684e8"></p></td>
+<td data-local-id=3D"094253ac-2104-47de-a1f5-401976b37536" class=3D"conflue=
+nceTd">
+<p local-id=3D"b25e902a-ad5f-4484-85c3-bf15fe7a18be"></p></td>
+<td data-local-id=3D"5bafe886-93e3-4e8d-be04-dbf46f69ceda" class=3D"conflue=
+nceTd">
+<p local-id=3D"e237150f-283d-4ed5-a292-8ef2e317f0e1"></p></td>
+</tr>
+<tr data-local-id=3D"cac2301c-d03a-411b-8d5f-49d67d0f4992">
+<td data-local-id=3D"7f1d0f1d-88b4-4176-984a-b94e1fd3d33c" class=3D"conflue=
+nceTd">
+<p local-id=3D"70236bdf-1c81-4179-ae5d-354248d730b7">Is Powertech Antivirus=
+ Included? If yes, please note operating system</p></td>
+<td data-local-id=3D"506ce9b1-e5e5-4ba4-9dbd-66f9f6d5a54a" class=3D"conflue=
+nceTd">
+<p local-id=3D"47de68c8-ce81-4b95-a26c-a56bdad9a524"></p></td>
+<td data-local-id=3D"26662d10-017c-4ba5-9a4c-c499d6e957b2" class=3D"conflue=
+nceTd">
+<p local-id=3D"557d851d-78c2-4e88-be0c-fc2d8c01e731"></p></td>
+<td data-local-id=3D"3fe5a47e-c4ef-4678-b703-13bb885ad6a4" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb077d3f-117b-4f43-a768-a94f4a713f7c"></p></td>
+</tr>
+<tr data-local-id=3D"b561b5a4-aa70-4083-91cb-92592bcc3727">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"8c1028=
+13-1207-4b0f-b125-3c40c5692cd5" class=3D"confluenceTd">
+<p local-id=3D"5b429466-5e51-4657-a7b6-986deb5ca626"><strong>MFT</strong></=
+p></td>
+</tr>
+<tr data-local-id=3D"4d15e239-084b-421c-9906-65597c961622">
+<td data-local-id=3D"581f839c-306b-4d83-a3eb-82bc49b72b1e" class=3D"conflue=
+nceTd">
+<p local-id=3D"2d5f177d-9ba7-4d32-95bc-c7d0d2c04433">On Premise or Cloud De=
+ployment?</p></td>
+<td data-local-id=3D"fe11e8c8-a0ee-4e84-83e3-e5257af56d10" class=3D"conflue=
+nceTd">
+<p local-id=3D"29373e8a-8a99-4700-9d8c-8611fac6e867">Cloud Deployment =3D G=
+oAnywhere Online License will be provided</p></td>
+<td data-local-id=3D"fa914c8d-9aab-49a3-97e6-cd5488cf9521" class=3D"conflue=
+nceTd">
+<p local-id=3D"45206dba-246b-440e-8585-e5a4382c0cd0">On Premise, Cloud Depl=
+oyment, Hosted by Fortra</p></td>
+<td data-local-id=3D"dc841651-df71-42fc-837a-72f3ebc21b11" class=3D"conflue=
+nceTd">
+<p local-id=3D"64ec55f3-5143-4b17-96fa-49e322e340c6"></p></td>
+</tr>
+<tr data-local-id=3D"d6337df3-1f74-4780-88ae-1a6b4580c3df">
+<td data-local-id=3D"8796df32-4a19-43eb-8956-8c95c896e8bd" class=3D"conflue=
+nceTd">
+<p local-id=3D"47cec654-5e75-4e83-a293-1dc9a008994c">Operating System</p></=
+td>
+<td data-local-id=3D"29ebc6ce-82f6-47af-bb5b-e054b03039e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"d67ec538-50e2-4a49-b869-39579c47f334"></p></td>
+<td data-local-id=3D"4e1e82b5-7790-47e4-9d3b-94b48a507d6d" class=3D"conflue=
+nceTd">
+<p local-id=3D"e76bc1c7-84ca-4754-919d-c1ce2001a5b0">Windows, Linux, IBM i,=
+ Mac</p></td>
+<td data-local-id=3D"28c49ad4-9780-44e3-bc7a-8f88c9a958e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"bfcedcbb-0ef5-47d6-bdea-56fa1f3d1b0c"></p></td>
+</tr>
+<tr data-local-id=3D"a992162a-1544-468c-9434-c7e38557eedd">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"753fcc=
+b0-ab3d-4dad-a8c7-569048ea2f1d" class=3D"confluenceTd">
+<p local-id=3D"eb154d14-9d71-464f-9ce6-584f3bbadefa"><strong>MFTaaS Sale</s=
+trong></p></td>
+</tr>
+<tr data-local-id=3D"9505af00-3fa6-4843-910b-17c4a83b3326">
+<td data-local-id=3D"6e75d36b-2579-4cbc-bccd-a9d1251fa161" class=3D"conflue=
+nceTd">
+<p local-id=3D"e0284a27-c41c-4aa9-8fdc-39b3b64ae197">Region</p></td>
+<td data-local-id=3D"d2c4e86e-628d-4c26-a9db-8a5b9455cf71" class=3D"conflue=
+nceTd">
+<p local-id=3D"ba24af56-bc3b-4f92-bec9-34799e93cbdc"></p></td>
+<td data-local-id=3D"5cf00561-bbac-4dca-b098-394a15f8030e" class=3D"conflue=
+nceTd">
+<p local-id=3D"67099e97-549c-4942-b93f-ee1c11aa8715">N. Virginia (US), Oreg=
+on (US), Seoul (Asia Pacific), Sinagpore (Asia Pacific), Sydney (Asia Pacif=
+ic), Central (Canada), Frankfurt (Europe), Ireland (Europe) London (Europe)=
+ Paris (Europe), Stockholm (Europe), Bahrain (Middle East)</p></td>
+<td data-local-id=3D"353ac867-2635-4cee-b831-2f4665eb98ae" class=3D"conflue=
+nceTd">
+<p local-id=3D"043dd3db-aa15-4e4d-bc92-f4f8c69b91f7"></p></td>
+</tr>
+<tr data-local-id=3D"5b2f45b9-55dc-4e49-b03f-b1d5f2ae6fd2">
+<td data-local-id=3D"346cb294-a116-44fe-bbcf-520c15709ec1" class=3D"conflue=
+nceTd">
+<p local-id=3D"f4b3278a-8a37-4f35-92c0-06d3f4175ef5">What time zone should =
+be used?</p></td>
+<td data-local-id=3D"ddbae30b-b9c4-4688-888a-d5e5fb479c9a" class=3D"conflue=
+nceTd">
+<p local-id=3D"cc6c8c9a-491f-4de2-b15c-c5747bd2bafd"></p></td>
+<td data-local-id=3D"722830fb-cc54-480f-bd0e-a23e83b890ab" class=3D"conflue=
+nceTd">
+<p local-id=3D"c26c24e4-160a-4e8d-b382-9f5ec0a7cf65"></p></td>
+<td data-local-id=3D"b7957df0-d316-4fa3-bb77-46e4235c81fe" class=3D"conflue=
+nceTd">
+<p local-id=3D"3d60b4d5-8dab-4450-b21d-c45c3deac85c"></p></td>
+</tr>
+<tr data-local-id=3D"b323af34-cb3d-4ef2-8113-c75a34d858b6">
+<td data-local-id=3D"e96d1f02-099b-4a45-a80c-c69d34fb7b4c" class=3D"conflue=
+nceTd">
+<p local-id=3D"116218bd-1fee-4bf0-8f12-a5ae4dc555e0">What ports does the cu=
+stomer want to use?</p></td>
+<td data-local-id=3D"de2ea1a7-414b-4b45-900a-7aad958631e1" class=3D"conflue=
+nceTd">
+<p local-id=3D"166cab20-4581-48b7-bb1a-81a2d314685b"></p></td>
+<td data-local-id=3D"f53acf30-645b-45db-b19c-288b82f508eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"19565179-ecfa-40b0-82f7-41fb20da1fc8"></p></td>
+<td data-local-id=3D"7ec57f44-89e2-4380-ae99-8a2837c18560" class=3D"conflue=
+nceTd">
+<p local-id=3D"baae6db4-be22-4278-ab83-129e0454c398"></p></td>
+</tr>
+<tr data-local-id=3D"d84bda5f-d4df-453a-a768-b885a3b82cf4">
+<td data-local-id=3D"7fc4e9f1-420e-4973-8a89-ded8895ce499" class=3D"conflue=
+nceTd">
+<p local-id=3D"9da23754-927e-4734-a716-90f4a6be0573">List the IP Addresses =
+that need to be white listed for this environment.</p></td>
+<td data-local-id=3D"4b83ae17-f77a-4f84-b556-c2c7a90a02d2" class=3D"conflue=
+nceTd">
+<p local-id=3D"674d1325-4b71-4c82-9062-e549a2a43489">If you do not have thi=
+s information, email Customer Operations once you obtain it. The environmen=
+t cannot be access by the customer without this information.</p></td>
+<td data-local-id=3D"a1d9b1f4-6cb4-4688-b32d-5e817f6ea43e" class=3D"conflue=
+nceTd">
+<p local-id=3D"c7ebe0c1-70f9-4ee2-a705-9b6a112b2a05"></p></td>
+<td data-local-id=3D"d949e182-fd8d-477b-afae-602ea3ca7d77" class=3D"conflue=
+nceTd">
+<p local-id=3D"8a826d94-3d78-4872-8d33-e9c3bca86761"></p></td>
+</tr>
+<tr data-local-id=3D"bc659063-50e8-4ede-b516-dd4aa045bb2c">
+<td data-local-id=3D"4e8e4f0c-b326-49dc-a854-178fc69b5bdf" class=3D"conflue=
+nceTd">
+<p local-id=3D"da933cfa-8c83-41dd-9bd8-578c714fea6a">What domain name does =
+the customer want to use?</p></td>
+<td data-local-id=3D"f27cf40a-05be-48bc-b190-91b8f9a2c0a7" class=3D"conflue=
+nceTd">
+<p local-id=3D"173b3836-52c9-49f6-b784-9dd6df63ebc7"></p></td>
+<td data-local-id=3D"016d3e48-8d2f-4669-800b-dd3f5e27acfc" class=3D"conflue=
+nceTd">
+<p local-id=3D"dbc78b2b-6000-41e2-9ab4-30d5442f31bf"></p></td>
+<td data-local-id=3D"02fec472-8444-4c63-89bc-4f8abe8b363d" class=3D"conflue=
+nceTd">
+<p local-id=3D"60703372-4b00-4874-a4f3-1cd73b3a9087"></p></td>
+</tr>
+<tr data-local-id=3D"532842d3-c357-46b8-8585-0fda546fbdad">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"92fe75=
+d9-ba73-4a3a-bb2a-2c44c5f63c06" class=3D"confluenceTd">
+<p local-id=3D"287a5c37-ccbe-40e1-82c1-c29ebe828dd7">FileCatalyst Sale Info=
+rmation&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"d9a9860b-c569-4678-9561-add890b81e75">
+<td data-local-id=3D"2a68636d-8cad-4937-9a6a-1166328be64a" class=3D"conflue=
+nceTd">
+<p local-id=3D"20a6f1c1-8182-4093-b1b0-7707423246ba">Request String (s):</p=
+></td>
+<td data-local-id=3D"03f31f7c-9a96-467a-a4db-90eeeb81987e" class=3D"conflue=
+nceTd">
+<p local-id=3D"fe503d34-9fde-4b93-b76c-e81d670d66b6"></p></td>
+<td data-local-id=3D"66d3709f-db46-4e21-a2ac-97190b323270" class=3D"conflue=
+nceTd">
+<p local-id=3D"b81af21b-52d6-4861-84fb-999f057b7e42"></p></td>
+<td data-local-id=3D"7097d7ea-e0f6-49df-b5f5-d453968e19dd" class=3D"conflue=
+nceTd">
+<p local-id=3D"7009600f-d54f-433d-84bc-a1cd26a07053"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 local-id=3D"c7179794-fec2-445c-a53d-a9971d4bbf05" id=3D"SalesOrderForm-=
+>CustomerOpsfield-Power"><strong>Power </strong><br></h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"center" data-local-id=3D"21=
+19dcb2-a53d-4815-83de-6a4b7b94f6b2" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"0a1379ca-284b-4b42-b141-284a854f843e">
+<td data-local-id=3D"1b3de49e-c7e6-4684-8da1-3d1b04f5dfbd" class=3D"conflue=
+nceTd">
+<p local-id=3D"5985117a-e170-486d-9f68-4684bcfa1943"><strong>Question</stro=
+ng></p></td>
+<td data-local-id=3D"c17271bb-3e9b-476a-8f81-3d170ebe848b" class=3D"conflue=
+nceTd">
+<p local-id=3D"6b641d2a-111d-4465-b21b-ec94fd5eeb41"><strong>Subtext</stron=
+g></p></td>
+<td data-local-id=3D"4b6fdf01-4732-4d27-a354-1c683b3fe475" class=3D"conflue=
+nceTd">
+<p local-id=3D"4e8dd461-440a-4948-b09a-88b1035f6ba4"><strong>Options</stron=
+g></p></td>
+<td data-local-id=3D"74041a5a-065c-499b-85fe-49d3d3d635d2" class=3D"conflue=
+nceTd">
+<p local-id=3D"7bb24e6c-e1f9-45cc-b877-78f1851b309e"><strong>Comments</stro=
+ng></p></td>
+</tr>
+<tr data-local-id=3D"4769c0ce-94bd-4587-ac83-ed03180c140a">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"3" data-local-id=3D"8ed2de=
+d7-d0b4-466e-94fd-8fbf902f70a2" class=3D"confluenceTd">
+<p local-id=3D"6312504f-c3b9-4132-92b2-4ce143cf4006"><strong>
+<del>New&nbsp;Order&nbsp;Summary</del></strong></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"4d116dca-6488-4076-b=
+2af-58af3bb63c29" class=3D"confluenceTd">
+<p local-id=3D"3772323a-eaac-48d8-8802-4ba5a26ea73b"></p></td>
+</tr>
+<tr data-local-id=3D"fa7096ba-05d0-4165-9189-0e3ff02c0e8d">
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"e49d171d-071e-4b70-a=
+244-d6029478d2cc" class=3D"confluenceTd">
+<p local-id=3D"d21b91b8-24a5-4bb6-a233-a54b769b8127">
+<del>Sales Details</del></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"8a710826-9494-4336-9=
+965-4ace436ca2a5" class=3D"confluenceTd">
+<p local-id=3D"2e366a6d-170f-4aa4-a238-5df9a3131456"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"e74ef9ec-ac99-4c55-8=
+993-e3df20a00b49" class=3D"confluenceTd">
+<p local-id=3D"e9ab97a7-396d-4c0c-890c-2cf6ee7831ca"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"0f08b005-14cb-49da-a=
+acb-c785477eabc3" class=3D"confluenceTd">
+<p local-id=3D"5702f0bf-e675-4743-8ad6-9e6df70e0768"></p></td>
+</tr>
+<tr data-local-id=3D"fc794093-c85a-41e9-b61a-24abdcfc0416">
+<td data-local-id=3D"dc854f6a-cda9-4828-b2d8-5f48b3f25d43" class=3D"conflue=
+nceTd">
+<p local-id=3D"77aacd88-dfc3-4602-8c77-878605723e32">
+<del>Account Number</del></p></td>
+<td data-local-id=3D"f2290d5d-4725-4b51-897b-b44df04f7e17" class=3D"conflue=
+nceTd">
+<p local-id=3D"a119b824-d22d-4b94-a135-24afa9d7bc50"></p></td>
+<td data-local-id=3D"2e54dd7e-b936-441c-93af-6491f5505b2e" class=3D"conflue=
+nceTd">
+<p local-id=3D"c3dcb277-df7b-4279-80ce-25d2b5338609"></p></td>
+<td data-local-id=3D"8f3cc668-cfef-471b-a9f9-e84020ad2acf" class=3D"conflue=
+nceTd">
+<p local-id=3D"b1f8322f-dc98-4462-8d80-c8168515cff2"></p></td>
+</tr>
+<tr data-local-id=3D"c4e0dcf6-d39a-4700-a1a1-e69dcbe65320">
+<td data-local-id=3D"794bf5c8-57e9-4395-89f1-888a9c8bf18d" class=3D"conflue=
+nceTd">
+<p local-id=3D"856dd1c5-e7e6-4bd6-a00e-8706b28baf4d">
+<del>Product Brand(s):&nbsp;</del></p></td>
+<td data-local-id=3D"dd0298ea-a82f-4f7d-b035-27646e4cc508" class=3D"conflue=
+nceTd">
+<p local-id=3D"74c186ae-8536-49f9-b2cb-5dc0a5e9baa5"></p></td>
+<td data-local-id=3D"62f93228-0e47-4ddd-978d-9b61af0bdedd" class=3D"conflue=
+nceTd">
+<p local-id=3D"7dd175a1-7dc9-4a23-8e41-f373f630f1d1"></p></td>
+<td data-local-id=3D"82f578db-e5d1-4a49-bfbf-2cb69c6382f6" class=3D"conflue=
+nceTd">
+<p local-id=3D"96e6a23d-017d-4072-b766-fc918d0efa55"></p></td>
+</tr>
+<tr data-local-id=3D"2405727e-5552-41e6-b5eb-b1ce7fd8d0b9">
+<td data-local-id=3D"2f6a113c-bdeb-47a1-b9d9-f7129920374b" class=3D"conflue=
+nceTd">
+<p local-id=3D"35b2d22a-72eb-4638-91b8-0ff478f9b84c">
+<del>Order Approval Method (Email Approval, Signed Quote, PO #)</del></p></=
+td>
+<td data-local-id=3D"f103cf28-0327-4f6d-8eef-c0cea511c39b" class=3D"conflue=
+nceTd">
+<p local-id=3D"046cd6b8-0e2a-4a94-9393-430e2d473acb"></p></td>
+<td data-local-id=3D"3b19d895-ab77-433a-9c92-b7b5287b73ec" class=3D"conflue=
+nceTd">
+<p local-id=3D"9392a1ed-ab6c-436a-ba4e-3044ef4c7d1d"></p></td>
+<td data-local-id=3D"9d53c7be-5cf9-4022-a69c-70f1fd4b15e2" class=3D"conflue=
+nceTd">
+<p local-id=3D"456eedb2-9033-4598-b3ae-1dde4b7ad425"></p></td>
+</tr>
+<tr data-local-id=3D"ddba8d15-e786-44fe-a1ab-f7c2e29884f5">
+<td data-local-id=3D"5962a909-10a2-4f79-8147-6876d5bb5de5" class=3D"conflue=
+nceTd">
+<p local-id=3D"8eef69d3-ac93-466b-be3a-e2a8ee9cb832">
+<del>Is this Customized SLSA, ELA, Special Terms?&nbsp; If yes, please spec=
+ify</del></p></td>
+<td data-local-id=3D"afdad7e6-9e78-4b8c-8cae-fb1896f67d2a" class=3D"conflue=
+nceTd">
+<p local-id=3D"9e4ea236-5afe-4bb9-a49c-59cf258c5d91"></p></td>
+<td data-local-id=3D"f66ad3f0-f2a9-40df-8f72-fac352221771" class=3D"conflue=
+nceTd">
+<p local-id=3D"2731d8bb-4904-491c-883e-dadaffd99fa1"></p></td>
+<td data-local-id=3D"d45254ae-0ca5-49e0-a7d1-de79ba062ca8" class=3D"conflue=
+nceTd">
+<p local-id=3D"c4d17745-b22e-4206-8422-0b10ce449e52"></p></td>
+</tr>
+<tr data-local-id=3D"fe06d179-2972-421a-9c09-71ba62bca167">
+<td data-local-id=3D"c446c661-ecb4-4174-9d19-c9296caa8bc6" class=3D"conflue=
+nceTd">
+<p local-id=3D"43325373-7094-46fc-8d58-adea4cabab24">
+<del>Details regarding Special Terms</del></p></td>
+<td data-local-id=3D"3e076da8-ad47-441d-bbfc-26c4e239b99e" class=3D"conflue=
+nceTd">
+<p local-id=3D"68d9d52f-52dd-4306-8a6f-ce62b793f204">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"b098cc13-17eb-4dfd-ba5f-ad047b496410" class=3D"conflue=
+nceTd">
+<p local-id=3D"11398c91-63b8-49e4-b495-4987127d3686"></p></td>
+<td data-local-id=3D"7018880b-4a13-4d7c-aca1-d36424f36354" class=3D"conflue=
+nceTd">
+<p local-id=3D"1874288e-fb48-4ebc-842e-75f2770ed1f0"></p></td>
+</tr>
+<tr data-local-id=3D"3dca37b3-fcc5-4fb8-bb86-96e8fca8ef71">
+<td data-local-id=3D"2665eeb1-eace-4a52-9b8b-5bf85605f62c" class=3D"conflue=
+nceTd">
+<p local-id=3D"cdb105eb-364c-4c0b-8d2e-02bc6e370623">
+<del>CRM Quote Number:&nbsp;</del></p></td>
+<td data-local-id=3D"d5d46dc0-241a-4565-b8fd-3f169acee19c" class=3D"conflue=
+nceTd">
+<p local-id=3D"d7072ad7-616e-4808-aa7a-882340f4da0d"></p></td>
+<td data-local-id=3D"c3296a28-e962-41e8-8f72-8611fd2117b1" class=3D"conflue=
+nceTd">
+<p local-id=3D"7898046e-d8f8-44b1-85d4-b8689931f8e5"></p></td>
+<td data-local-id=3D"54dfcc50-58fd-479b-93f5-b38818d82836" class=3D"conflue=
+nceTd">
+<p local-id=3D"a719f7cd-108e-4f44-af0c-0af844904f35"></p></td>
+</tr>
+<tr data-local-id=3D"fe1e6719-ea7d-4305-a6e6-78e77f16c0cc">
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"58ad76f6-e6e6-430a-b=
+44c-e8c715fb93c2" class=3D"confluenceTd">
+<p local-id=3D"20c0b9dc-0021-452e-9af8-c87294fe6f60">
+<del>Sales Type</del></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"7f37197e-8c6b-452c-a=
+856-542649759485" class=3D"confluenceTd">
+<p local-id=3D"0dcf492b-90ca-4bc6-9f18-611145004c53"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"ff518d93-c6c5-41e6-a=
+65e-9a75af7fbe2e" class=3D"confluenceTd">
+<p local-id=3D"a16effb9-95a5-4c39-a899-95a0ea2650cd"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"088dc727-e19b-4368-8=
+0b6-2c47f22438a0" class=3D"confluenceTd">
+<p local-id=3D"6fd67ba7-791a-412d-8be9-dfe3ac1d83b8"></p></td>
+</tr>
+<tr data-local-id=3D"f3c64414-fe7a-404f-9b8b-6cdb9fddd1db">
+<td data-local-id=3D"f9e2cc57-87e2-48d7-8502-34413bf6a04b" class=3D"conflue=
+nceTd">
+<p local-id=3D"6be1449b-4cea-40ba-9f97-ae5ac5c48f6f"><strong>
+<del>PERPETUAL</del></strong></p></td>
+<td data-local-id=3D"a6a9dc31-096e-419f-bd9d-0c39b9d2f39a" class=3D"conflue=
+nceTd">
+<p local-id=3D"49e70b56-849e-4c30-a19a-50ae196dfcbd">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"7316d844-f3ab-4734-862c-8759b04fa5ad" class=3D"conflue=
+nceTd">
+<p local-id=3D"df3d3d56-21bb-441c-a929-d5c2ba182762"></p></td>
+<td data-local-id=3D"51ac6365-1bde-42fa-b545-edaaed099b81" class=3D"conflue=
+nceTd">
+<p local-id=3D"f8f8e689-68ba-4ee7-9c6b-bcef5bbde3a8"></p></td>
+</tr>
+<tr data-local-id=3D"b62a1b85-3098-4cd2-b94a-39a3e88dd350">
+<td data-local-id=3D"0bd16780-11c6-4d13-8683-cddc45bf0ad5" class=3D"conflue=
+nceTd">
+<p local-id=3D"fff345de-a3f6-4b06-a266-bad43d652872">
+<del>Sales Type (AO, AN, NN ):</del></p></td>
+<td data-local-id=3D"1bb9a4ce-f01e-4080-a5a0-52d6a83bd2ca" class=3D"conflue=
+nceTd">
+<p local-id=3D"d8bf114f-085a-48d4-805b-c0b5edec7d6f">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"d75fe774-2a2a-4b3f-ad2c-c5686c5fa844" class=3D"conflue=
+nceTd">
+<p local-id=3D"738e11c8-912f-4828-930c-e07ddfaaa664"></p></td>
+<td data-local-id=3D"8da24d68-6106-4551-9252-ff940eda3eac" class=3D"conflue=
+nceTd">
+<p local-id=3D"e03aa014-8a28-426a-8b83-b9ba38379976"></p></td>
+</tr>
+<tr data-local-id=3D"7aa4aa6c-b03e-45ab-8f6d-b6a4d8c93ab6">
+<td data-local-id=3D"11592422-b9c5-4981-830b-620252e13ebc" class=3D"conflue=
+nceTd">
+<p local-id=3D"f9bde8c8-449e-4716-8ddf-713d5e18cf71">
+<del>1st Year Software</del></p></td>
+<td data-local-id=3D"51464beb-97a3-4a36-a7b4-e99084e72497" class=3D"conflue=
+nceTd">
+<p local-id=3D"0af7f431-9b1d-4d0b-843d-203190af7837">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"bfbd49a5-248d-4846-92c3-7939aa75efa3" class=3D"conflue=
+nceTd">
+<p local-id=3D"b33b7a9f-0384-489c-8e0b-0405417a8f8b"></p></td>
+<td data-local-id=3D"9bf5fd16-53cd-40fb-b0e6-babc5925ec9d" class=3D"conflue=
+nceTd">
+<p local-id=3D"2cf7ec24-dadc-427c-8d8f-34c40a62d341"></p></td>
+</tr>
+<tr data-local-id=3D"94a369fc-bf49-4321-9f94-83a8d92a6e30">
+<td data-local-id=3D"e454cdc9-214e-4043-b757-2c0ffeb39b21" class=3D"conflue=
+nceTd">
+<p local-id=3D"e0f99e19-2897-4376-ac99-3c0e1e59341f">
+<del>1st Year Maintenance</del></p></td>
+<td data-local-id=3D"70725c17-90db-4552-955b-d414f5bcd63c" class=3D"conflue=
+nceTd">
+<p local-id=3D"193f6582-11c3-481f-bf68-03ceb79bb4aa"></p></td>
+<td data-local-id=3D"15bc705c-3696-4a3a-b243-db524848eb26" class=3D"conflue=
+nceTd">
+<p local-id=3D"fd5e7953-bd8a-4ee4-8a15-1cd8cab1bb71"></p></td>
+<td data-local-id=3D"4c04e5ba-9f3c-48dd-8fd0-fcff0651fac0" class=3D"conflue=
+nceTd">
+<p local-id=3D"2faf6cdc-ec60-4875-837e-fb7112d42075"></p></td>
+</tr>
+<tr data-local-id=3D"d6e4fb6f-6f95-4c49-88ed-79145834a3a3">
+<td data-local-id=3D"ee2e8191-2511-446d-8c29-5895224862de" class=3D"conflue=
+nceTd">
+<p local-id=3D"ff9a3b11-3fb3-453b-abcc-69ccbe72b208">
+<del>ALE:</del></p></td>
+<td data-local-id=3D"4af5463a-2503-4cf0-ab54-53b8f4bad760" class=3D"conflue=
+nceTd">
+<p local-id=3D"44a2d175-8b24-4ff5-abab-574aed16032a">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"2b8fe47b-7267-476b-8246-6d838f1b3dfb" class=3D"conflue=
+nceTd">
+<p local-id=3D"57e88962-ccf0-4ea3-829c-d9e10da79044"></p></td>
+<td data-local-id=3D"c8dc57cd-a762-4b66-a43f-8ef390370909" class=3D"conflue=
+nceTd">
+<p local-id=3D"fd917992-d670-4caf-86d5-dea4c1ad4a87"></p></td>
+</tr>
+<tr data-local-id=3D"e1db318d-2e3c-4e89-b5bc-322870786e5b">
+<td data-local-id=3D"769c20a4-2740-4864-9b9a-602c75330370" class=3D"conflue=
+nceTd">
+<p local-id=3D"65a95d39-ce1a-4161-bf01-c2581945bed2">
+<del>Are services included on this quote? If yes, enter amount</del></p></t=
+d>
+<td data-local-id=3D"d604014e-87ab-44ef-bfc7-85130db2264e" class=3D"conflue=
+nceTd">
+<p local-id=3D"0b5a2519-1ec9-44be-8585-79ed34f24119">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"abec4d6b-0236-46ea-a9ac-1923cfdfa6b2" class=3D"conflue=
+nceTd">
+<p local-id=3D"b089ba43-ae21-484c-b42f-f8cc41a16375"></p></td>
+<td data-local-id=3D"4393fffa-3e4f-429d-ab9f-61b1999b2532" class=3D"conflue=
+nceTd">
+<p local-id=3D"d4503c2f-c78b-483f-951c-1af7ef7ba93f"></p></td>
+</tr>
+<tr data-local-id=3D"23a59e8a-1739-4d10-8cc0-91934e9fed2f">
+<td data-local-id=3D"813f6a82-ca2e-4a8a-bcbb-560a48edc5a1" class=3D"conflue=
+nceTd">
+<p local-id=3D"785eb6cd-2348-49cf-a5c7-3550d82f702d">Is Powertech Antivirus=
+ Included? If yes, please note operating system</p></td>
+<td data-local-id=3D"513c4962-f33e-4617-ad23-fcc7ef9e951b" class=3D"conflue=
+nceTd">
+<p local-id=3D"76e9abd9-4499-4e8e-86b1-6a6fddfb40c0">&nbsp;</p></td>
+<td data-local-id=3D"60dbb4ca-26ec-4ad7-bd9c-6b94b084a33a" class=3D"conflue=
+nceTd">
+<p local-id=3D"2c988c56-e715-4e2c-b04a-aca164c8109b"></p></td>
+<td data-local-id=3D"13523d65-724c-4d8d-b992-9f0e7f4583ce" class=3D"conflue=
+nceTd">
+<p local-id=3D"1843eca9-f1a1-4e04-bf43-150946e22a19"></p></td>
+</tr>
+<tr data-local-id=3D"137e684f-5b2f-4688-9652-fff33f0f6856">
+<td data-local-id=3D"e83e021d-ff81-4fbe-b5ce-acb496dd539c" class=3D"conflue=
+nceTd">
+<p local-id=3D"72d10249-b4cb-4cf7-af47-8df6d7b5c6b1"><strong>
+<del>Complete if New&nbsp;Subscription</del></strong></p></td>
+<td data-local-id=3D"45a93c5e-9305-4289-9e11-3786e11ef5f2" class=3D"conflue=
+nceTd">
+<p local-id=3D"9c937231-eb4e-411b-a304-10b1be118d28">
+<del>&nbsp;</del></p></td>
+<td data-local-id=3D"14aecf59-546d-4059-a464-6ab9c4a2a67a" class=3D"conflue=
+nceTd">
+<p local-id=3D"ff1aa196-e514-4d14-8e5a-609252d14a48"></p></td>
+<td data-local-id=3D"34c6d26c-2fd5-43b4-8fe3-ff9525dcc60e" class=3D"conflue=
+nceTd">
+<p local-id=3D"8178e624-46d8-4d25-bab3-f2c8f888efc3"></p></td>
+</tr>
+<tr data-local-id=3D"53ae5dc6-4e9b-49aa-b908-b85fe9f8b31f">
+<td data-local-id=3D"98b0b936-8bb7-4135-8444-7d2d1b4d06f5" class=3D"conflue=
+nceTd">
+<p local-id=3D"950314e5-d8ef-409d-a514-f430a59988bf">
+<del>Sales Type (AO, AN, NN, etc.):</del></p></td>
+<td data-local-id=3D"1cb55597-6076-4322-a70c-24b879db8fd9" class=3D"conflue=
+nceTd">
+<p local-id=3D"0843df22-9b79-4e16-8dca-e1eb1f567bc4"></p></td>
+<td data-local-id=3D"668adeba-bf9c-4df7-95d7-5f77a2ddb239" class=3D"conflue=
+nceTd">
+<p local-id=3D"77935af4-bbf2-4a93-8dd2-d6210465811d"></p></td>
+<td data-local-id=3D"057ecc8c-1ab2-49b6-95f5-b1386d875508" class=3D"conflue=
+nceTd">
+<p local-id=3D"6e571724-fb14-4a13-a769-972f14b2b588"></p></td>
+</tr>
+<tr data-local-id=3D"b135831f-ad39-4deb-8e16-2b66d6b6032a">
+<td data-local-id=3D"80b10e8a-5564-43f0-aac6-6614a856424a" class=3D"conflue=
+nceTd">
+<p local-id=3D"92bc804d-afbe-420d-9013-10e718fe44da">
+<del>Length of Initial Subscription Term</del></p></td>
+<td data-local-id=3D"e4991fa4-5935-4519-816e-2936a8d5baad" class=3D"conflue=
+nceTd">
+<p local-id=3D"595b0de6-913a-4bd7-a2e3-f54ad1e37ffb"></p></td>
+<td data-local-id=3D"c007bda5-23e7-4a8c-bcf8-cfa0ff07d78b" class=3D"conflue=
+nceTd">
+<p local-id=3D"b97d3b0c-0821-4038-a6fd-1a6995061dfa"></p></td>
+<td data-local-id=3D"efe6da0d-3053-4c2d-81a0-02fddf7cceff" class=3D"conflue=
+nceTd">
+<p local-id=3D"777ee0bb-c25b-4e1d-9070-aef8541c128b"></p></td>
+</tr>
+<tr data-local-id=3D"06b7726c-6d56-4107-81a3-f710d4ce03aa">
+<td data-local-id=3D"65fdb7c7-77a4-4800-b197-f2bfa6d1cedd" class=3D"conflue=
+nceTd">
+<p local-id=3D"e51e073c-a9f8-4071-9823-9de32a128ccb">
+<del>1st Year Annualized Subscription Amount:</del></p></td>
+<td data-local-id=3D"cf26ae62-6feb-4e03-843f-df2160744af3" class=3D"conflue=
+nceTd">
+<p local-id=3D"a982457d-1154-43a8-b71e-61c8673edb3f"></p></td>
+<td data-local-id=3D"198e0846-efbb-4cc7-ac29-4cad4fd858bf" class=3D"conflue=
+nceTd">
+<p local-id=3D"7f077ec3-1d6d-46f2-b0b3-3281639c6a0f"></p></td>
+<td data-local-id=3D"cfa782db-3907-4b8e-b03b-2d341f28bc62" class=3D"conflue=
+nceTd">
+<p local-id=3D"28e8f629-5d8d-4a60-9465-23984715eb4c"></p></td>
+</tr>
+<tr data-local-id=3D"4a0dcdc8-bafd-4d45-ad41-aa52b9e7a0a9">
+<td data-local-id=3D"fa64d0cd-f6b0-4ddb-8928-c546cfa14aee" class=3D"conflue=
+nceTd">
+<p local-id=3D"66e5bc8a-ff8d-4760-8553-0c1bc77415a9">
+<del>ALE:</del></p></td>
+<td data-local-id=3D"d1693e2a-8e9a-42ac-9d4e-e86a8ab9cda8" class=3D"conflue=
+nceTd">
+<p local-id=3D"658a7b3d-732c-46fb-b668-139568fd912d"></p></td>
+<td data-local-id=3D"27a6109d-cbab-4c52-b7e7-585d9b753dcc" class=3D"conflue=
+nceTd">
+<p local-id=3D"78a82285-c97b-478f-bc79-6d50c77c9209"></p></td>
+<td data-local-id=3D"b69adabc-25bd-4ab9-b8fd-baab6c852a03" class=3D"conflue=
+nceTd">
+<p local-id=3D"1ce0e513-1f0a-4655-a657-7631d50f3ba3"></p></td>
+</tr>
+<tr data-local-id=3D"9ac97a2d-dff3-4615-89bd-30f799ae34e3">
+<td data-local-id=3D"ea61f99d-3617-4ae0-b4a9-53d557985d1d" class=3D"conflue=
+nceTd">
+<p local-id=3D"c1e97d05-b910-4838-bcb0-f0e0441fa6a3">
+<del>Term License (Yes/No)</del></p></td>
+<td data-local-id=3D"a5473012-f886-4225-b359-95f0f4126791" class=3D"conflue=
+nceTd">
+<p local-id=3D"fc79357e-7baa-4af3-b91e-5c0f89cc3481"></p></td>
+<td data-local-id=3D"e9e2e3be-3b3b-4ef3-8dfc-4c9352c9316d" class=3D"conflue=
+nceTd">
+<p local-id=3D"b2bc27dc-93f7-48df-843f-9c3bf56c0779"></p></td>
+<td data-local-id=3D"b6e35173-4f46-4453-bf8f-7b144e8392fa" class=3D"conflue=
+nceTd">
+<p local-id=3D"fdcf0976-c88b-4cee-9d8b-912848024d5e"></p></td>
+</tr>
+<tr data-local-id=3D"6e6a22b5-07d8-4b23-819f-7edd3ea6ca54">
+<td data-local-id=3D"2a5fb99a-134d-4383-a1d6-839b4c5b49aa" class=3D"conflue=
+nceTd">
+<p local-id=3D"a40edb22-9e30-4540-a21e-c0cae7b61cae">Hosted =E2=80=93 If ye=
+s,&nbsp;MSP&nbsp;or&nbsp;Direct?</p></td>
+<td data-local-id=3D"db6e3af3-8e71-401c-856d-5b2f48f0c195" class=3D"conflue=
+nceTd">
+<p local-id=3D"cf6747ce-b48d-47bb-a2fb-7525687ae55d"></p></td>
+<td data-local-id=3D"10052304-ebcf-47b1-ba65-0e88f9ec3e25" class=3D"conflue=
+nceTd">
+<p local-id=3D"4cf7297a-9d76-47e6-8fc0-781627e96e08"></p></td>
+<td data-local-id=3D"cfdd73e3-5726-4cd2-9a5d-b5520ecf60fa" class=3D"conflue=
+nceTd">
+<p local-id=3D"be8df631-eff3-4349-a883-599af5621aa1"></p></td>
+</tr>
+<tr data-local-id=3D"7c95f0dc-d180-4a14-989c-46e127d7ffa3">
+<td data-local-id=3D"fe2bcdaf-e708-41d5-9133-844a4af8d62d" class=3D"conflue=
+nceTd">
+<p local-id=3D"020b5385-629e-497a-991a-6b23e608f63e">
+<del>Are services included on this quote? If yes, enter amount</del></p></t=
+d>
+<td data-local-id=3D"95b0a324-4fa3-4f6d-b1ae-740b0ef69fb1" class=3D"conflue=
+nceTd">
+<p local-id=3D"5d21458c-817b-49f2-88a1-44d150dd6ad9"></p></td>
+<td data-local-id=3D"bee72147-b77a-494b-b270-9e3c4f49c92a" class=3D"conflue=
+nceTd">
+<p local-id=3D"5f4ca764-0030-4a02-8464-eb41800aabff"></p></td>
+<td data-local-id=3D"2e01254d-62d7-44fc-9387-59ac7cdf94f9" class=3D"conflue=
+nceTd">
+<p local-id=3D"1a7d8660-954e-4aed-888c-f0eea6a8586c"></p></td>
+</tr>
+<tr data-local-id=3D"2b701fc6-2ecd-4aca-827b-229f84a434c0">
+<td data-local-id=3D"aa5d67a3-76ea-4f35-8135-630d28dd25f9" class=3D"conflue=
+nceTd">
+<p local-id=3D"e0509d6a-5ace-4f25-b602-8e5e497f1697">
+<del>Is Powertech Antivirus Included? If yes, please note operating system<=
+/del></p></td>
+<td data-local-id=3D"79abdeb6-d90a-496f-bc42-be6e6a0ef401" class=3D"conflue=
+nceTd">
+<p local-id=3D"534e8c50-1740-4942-a9e7-685d849cdd71"></p></td>
+<td data-local-id=3D"cb076b34-b430-403b-a73d-0303cb4cf0ae" class=3D"conflue=
+nceTd">
+<p local-id=3D"ecc35b7d-618b-4d12-b377-b4746ad48e3c"></p></td>
+<td data-local-id=3D"5c306032-a1ca-4350-b296-737b3b9f52fb" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb8053d6-e8f5-4762-b4ed-9fba63bf93e6"></p></td>
+</tr>
+<tr data-local-id=3D"2bdca1e6-7248-4a05-9d7b-b0abf9fdf75d">
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"48364063-6c94-4298-8=
+94f-9f80f8a57355" class=3D"confluenceTd">
+<p local-id=3D"3b4be06e-a884-41a6-8c86-448ce000d83d">
+<del>Billing Detail</del></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"2abd00ef-4d7e-465c-b=
+f40-e138a09125b5" class=3D"confluenceTd">
+<p local-id=3D"b120fd04-afd9-4f1d-ac14-1cd5cd75921b"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"d0334954-2361-4b3a-b=
+d75-704e5442dc26" class=3D"confluenceTd">
+<p local-id=3D"3548289c-3b60-4c04-b016-d89ab9c38747"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"a1e2f1c9-ae30-4394-9=
+a9b-206890ca5879" class=3D"confluenceTd">
+<p local-id=3D"85b221e4-01e3-4cd2-8a79-3474dd40bdce"></p></td>
+</tr>
+<tr data-local-id=3D"dadc340e-26f5-4077-b2c1-9d7cbc1a5fef">
+<td data-local-id=3D"96d651b7-f898-4df9-8402-24efba8aa9e8" class=3D"conflue=
+nceTd">
+<p local-id=3D"e6e7cc46-b2a9-4028-aae1-ba9f31092ce9">
+<del>Is invoice to be submitted to portal? If yes, specify (i.e., Ariba, Co=
+upa, Transcepta)</del></p></td>
+<td data-local-id=3D"2467a1db-88a6-438a-8f45-bbdd1bda08f0" class=3D"conflue=
+nceTd">
+<p local-id=3D"cc1b4ffb-1bec-4f3e-89f6-719f5aa5b4bb"></p></td>
+<td data-local-id=3D"8155f4c5-e76e-4919-b03a-8f0c3302f17a" class=3D"conflue=
+nceTd">
+<p local-id=3D"96fa1567-776f-4ccd-a963-53fbd67b1514"></p></td>
+<td data-local-id=3D"c52d4bf7-d6c9-444b-97f5-ffd2d2b572a6" class=3D"conflue=
+nceTd">
+<p local-id=3D"a0f225a1-7fa4-4d83-a88c-0d65cfe21ef1"></p></td>
+</tr>
+<tr data-local-id=3D"22cfdcba-9be7-4b9c-92aa-666b6cf55193">
+<td data-local-id=3D"574028d1-5ea3-444b-bb43-ed01978dac4d" class=3D"conflue=
+nceTd">
+<p local-id=3D"be2e25f4-295c-4ad8-97a1-111e0df8e315"><strong>
+<del>Partner, Reseller sale?</del></strong>
+<del>If yes, please specify:</del></p>
+<ul local-id=3D"6e10106c-ff40-4a3f-9624-d3115d1b9cca">
+<li local-id=3D"77e3b919-e004-4ac6-8102-ee20dfcd1076">
+<p local-id=3D"2026d924-a066-4bb5-8b56-2ae19ae48767">
+<del>Partner&nbsp;name</del></p></li>
+</ul>
+<ul local-id=3D"8bfcadec-0ce3-4a0c-9fdb-8ea89ec52968">
+<li local-id=3D"bebfd72a-17dd-4e46-8028-13d74eab188c">
+<p local-id=3D"abd25a09-38c4-43f7-9ad9-750a54de7945">
+<del>CRM Account Number&nbsp;</del></p></li>
+</ul>
+<ul local-id=3D"768108ae-8378-4be6-b751-5b8216be1cd2">
+<li local-id=3D"bb3b5748-c12c-4979-a164-5473344b734e">
+<p local-id=3D"27235dc4-c149-4431-92f1-8c59c7f0e8d8">
+<del>Discount %</del></p></li>
+</ul></td>
+<td data-local-id=3D"a60496f1-bfcb-4066-a1ee-512ad898d953" class=3D"conflue=
+nceTd">
+<p local-id=3D"561fdd29-fd60-4142-a8c2-5613ce5aac80"></p></td>
+<td data-local-id=3D"ac4ba264-ca00-4f02-9305-53d80c3ad314" class=3D"conflue=
+nceTd">
+<p local-id=3D"7cd6ec5a-5e8e-4324-a394-7ef0d66716bf"></p></td>
+<td data-local-id=3D"860758ec-6968-41f4-9692-b1c8485c43f1" class=3D"conflue=
+nceTd">
+<p local-id=3D"b6b00bcb-5ffe-4671-98be-29bfb27ab36d"></p></td>
+</tr>
+<tr data-local-id=3D"ecdc0d92-3ce3-4552-9819-e4218e1f8011">
+<td data-local-id=3D"18fb9878-c9ab-4c24-984b-15e87e09faa1" class=3D"conflue=
+nceTd">
+<p local-id=3D"bbc079a0-8961-44c8-ab77-fe5839ac7f48"><strong>
+<del>Is a Referral&nbsp;Partner&nbsp;tied to this sale?</del></strong>
+<del>If yes:</del></p>
+<p local-id=3D"dd1e996e-bace-4d3d-9fb4-b47f55305055">
+<del>-Referral&nbsp;Partner&nbsp;name</del></p>
+<p local-id=3D"eb7a5fbd-1b09-4fe5-a189-c4f9af70985d">
+<del>-CRM Account Number</del></p>
+<p local-id=3D"0c291e61-f751-45de-a820-aa8203b95f2a">
+<del>-Referral %</del></p>
+<p local-id=3D"3bf391e0-d1b1-4bdf-9e66-1a582f877471">
+<del>-Is this a onetime commission? Yes/No</del></p>
+<p local-id=3D"b3d14231-9846-48d0-a968-c086d4ea7847"><strong>
+<del>&nbsp;</del></strong></p></td>
+<td data-local-id=3D"fe80b588-2340-4f99-8048-9225d71cd294" class=3D"conflue=
+nceTd">
+<p local-id=3D"f70c0bb1-ed1f-4167-936f-828a5d2a6c64"></p></td>
+<td data-local-id=3D"1cbfeac3-6259-4b95-9c08-a7a2896f4660" class=3D"conflue=
+nceTd">
+<p local-id=3D"f46da730-3f97-4d95-88c8-12bdcf962ae3"></p></td>
+<td data-local-id=3D"ee37f541-4736-403b-83ca-b74062463c72" class=3D"conflue=
+nceTd">
+<p local-id=3D"6a83417c-c83a-4dfb-8a27-10494c534d0e"></p></td>
+</tr>
+<tr data-local-id=3D"a1e7a77c-8183-491f-8482-47f1e591a110">
+<td data-local-id=3D"fa502bf6-2440-4aca-9d6f-48b76037c389" class=3D"conflue=
+nceTd">
+<p local-id=3D"37cfb836-bcc0-4e39-9abe-5796d0bf8211">
+<del>Is this Tax Exempt? If yes, do we have the Tax-Exempt Certificate?</de=
+l></p></td>
+<td data-local-id=3D"ead410c4-33f7-44b3-acd4-a07d8bc46745" class=3D"conflue=
+nceTd">
+<p local-id=3D"0d056de5-1826-4d76-ba7b-bdb119d3241d"></p></td>
+<td data-local-id=3D"8edbbd50-376f-41ad-8ce8-45ab1ba9711e" class=3D"conflue=
+nceTd">
+<p local-id=3D"7b4a902a-5e87-4faa-bd33-3d408ae20292"></p></td>
+<td data-local-id=3D"5b3a795f-2c55-4574-9a45-2a84e5e2646e" class=3D"conflue=
+nceTd">
+<p local-id=3D"010aedb8-4b22-491f-ab63-d32da433fc43"></p></td>
+</tr>
+<tr data-local-id=3D"c2569f52-808f-469e-880b-d4b0fda636cc">
+<td data-local-id=3D"4bbd7dfe-954d-49b5-965f-d2d3c11908f4" class=3D"conflue=
+nceTd">
+<p local-id=3D"75c0e90c-15e0-4534-bd34-8340df488594"><em><strong>
+<del>** Please provide this information <u>if different than CRM</u></del><=
+/strong></em></p>
+<p local-id=3D"7ca1232a-1cea-4f0d-85ab-52302253d883">
+<del>&nbsp;&nbsp;&nbsp;&nbsp; ** Ship To Address (Cannot be a PO Box)</del>=
+</p>
+<p local-id=3D"6ddf5902-edf9-4f13-b06e-0dc4cbcf4513">
+<del>&nbsp;&nbsp;&nbsp;&nbsp; ** Bill To Address</del></p>
+<p local-id=3D"486ea0b0-9f3d-4813-b1b8-69aceb22bffd">
+<del>&nbsp;&nbsp;&nbsp;&nbsp; ** Quote Contact&nbsp;</del></p>
+<p local-id=3D"e0d22a65-b1ee-427a-ab0e-6a0955b5a3f5">
+<del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** License Key Contact&nbsp;</del></p>
+<p local-id=3D"a750b69c-ff78-41b9-b599-66300d4f932a">
+<del>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** Invoice Contact</del></p></td>
+<td data-local-id=3D"cb06d1cc-54e6-498c-bb92-2553ede6a2ee" class=3D"conflue=
+nceTd">
+<p local-id=3D"72bccf26-acc5-4852-aba2-f57bcf124bbb"></p></td>
+<td data-local-id=3D"c2e449af-81ae-426c-b288-3ef63d1b9acf" class=3D"conflue=
+nceTd">
+<p local-id=3D"a8d77221-62b3-48af-8f76-3f70808d8e40"></p></td>
+<td data-local-id=3D"0dfdffea-9ed8-4022-a601-efd759017843" class=3D"conflue=
+nceTd">
+<p local-id=3D"69f00913-5632-4210-ab59-0442c8a8395a"></p></td>
+</tr>
+<tr data-local-id=3D"af628100-724a-4599-860a-3ce79eff8ccb">
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"9bbf0e1e-bd01-4246-a=
+a5a-f0d5d07ac334" class=3D"confluenceTd">
+<p local-id=3D"d319f845-aace-4bb2-9c24-ac7f345e03f4">
+<del>Services/Support Details (If Applicable)</del></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"93306cea-e405-407d-8=
+440-0d5fac8f7e44" class=3D"confluenceTd">
+<p local-id=3D"a1241a5c-830f-4c35-8270-ad9bfbef4557"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"b89883bf-9091-41f4-b=
+d10-f5e962d4bac4" class=3D"confluenceTd">
+<p local-id=3D"c398799b-836a-4032-9100-481f2e078d6e"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"4608813e-a5fe-459f-a=
+b23-1dc18c86f975" class=3D"confluenceTd">
+<p local-id=3D"5c160b92-4c6c-4b6c-8c34-49fa5dceff64"></p></td>
+</tr>
+<tr data-local-id=3D"41682fe7-a329-498d-9cc2-c6c0fa9e6dab">
+<td data-local-id=3D"204f49b1-c222-4856-914b-a5f3378d68da" class=3D"conflue=
+nceTd">
+<p local-id=3D"8b4817bb-78ad-432b-bb7e-6775275efdbe">
+<del>Products/Suite(s) purchased</del></p></td>
+<td data-local-id=3D"9781938a-52e3-4d2c-b101-267759f0c515" class=3D"conflue=
+nceTd">
+<p local-id=3D"4c25fc4d-60ec-489f-80f1-6c964716afa6"></p></td>
+<td data-local-id=3D"c1f6447c-b6ae-4fb0-83c2-9b86767af1d3" class=3D"conflue=
+nceTd">
+<p local-id=3D"10490470-659c-4fff-89e0-6dc207059f05"></p></td>
+<td data-local-id=3D"6cc837c8-2ffe-44e8-a425-4fe0edd7b68a" class=3D"conflue=
+nceTd">
+<p local-id=3D"98c897ce-509d-4540-8417-bf827291762d"></p></td>
+</tr>
+<tr data-local-id=3D"f777716a-d0ad-43ac-b3ec-3ea83b09c480">
+<td data-local-id=3D"e5182465-3fb7-4180-b628-e804dc2a1b4d" class=3D"conflue=
+nceTd">
+<p local-id=3D"fdbd427b-738a-4348-91dd-982e2c71aca6">
+<del>What were the business reasons they purchased these tools from us?</de=
+l></p></td>
+<td data-local-id=3D"1695c918-adef-4a50-a70c-b35703c4b549" class=3D"conflue=
+nceTd">
+<p local-id=3D"369dda1b-9440-412c-8d0f-c14d5145d072"></p></td>
+<td data-local-id=3D"37974afe-890b-4718-bf96-04c561bbdf83" class=3D"conflue=
+nceTd">
+<p local-id=3D"b6b9aba2-bd40-4a55-8197-4d2b6f8ed983"></p></td>
+<td data-local-id=3D"8583521f-fb24-4e27-b851-78a707a0e466" class=3D"conflue=
+nceTd">
+<p local-id=3D"e3b697c4-edea-4c0c-91db-2c98944fe5a0"></p></td>
+</tr>
+<tr data-local-id=3D"87539cf3-2d43-4d89-8608-8ffbf2a25dd5">
+<td data-local-id=3D"e1283bbd-6d53-4774-968c-0c6280313cec" class=3D"conflue=
+nceTd">
+<p local-id=3D"c3d6d34e-ae34-491d-ae6c-0bc65f4d1a1f">
+<del>Any other tools/suites they considered in this process but did not pur=
+chase?</del></p>
+<p local-id=3D"49ff650e-efd4-4962-aff6-dcd6f928ae73">
+<del>If so, why did they not purchase?</del></p></td>
+<td data-local-id=3D"1703a26f-83a6-4b49-9a12-494ddc8402b7" class=3D"conflue=
+nceTd">
+<p local-id=3D"cedbd66c-c94f-498f-94f8-cde2256d2126"></p></td>
+<td data-local-id=3D"9e3b95b9-e3cd-44c6-a5d7-478753772279" class=3D"conflue=
+nceTd">
+<p local-id=3D"c7b40423-6e19-44e7-930f-38c9f11795d9"></p></td>
+<td data-local-id=3D"01bd9076-3748-4521-a97e-e648aa821883" class=3D"conflue=
+nceTd">
+<p local-id=3D"72b23a86-fe67-4834-b1ca-678585f4d2ae"></p></td>
+</tr>
+<tr data-local-id=3D"e4a30d8a-4d42-4875-8c38-7aa72137aee4">
+<td data-local-id=3D"60e74955-14a7-4564-82b3-3c6124a07acb" class=3D"conflue=
+nceTd">
+<p local-id=3D"60299d90-296a-4724-a16c-edb80333a4eb">
+<del>Implementation timeline expectations</del></p></td>
+<td data-local-id=3D"e9894837-399a-4b32-a31f-790ab0a29253" class=3D"conflue=
+nceTd">
+<p local-id=3D"757d6c7c-5499-4f76-8c16-6d20f14ec4af"></p></td>
+<td data-local-id=3D"52bb3b7e-bde1-4065-8172-b34eab83664e" class=3D"conflue=
+nceTd">
+<p local-id=3D"edce6620-4337-4f5b-a059-9d8eac570b10"></p></td>
+<td data-local-id=3D"aaf43325-a697-4249-829f-908ddbe8d4be" class=3D"conflue=
+nceTd">
+<p local-id=3D"9f12af5b-6462-4a83-abd4-471eec1dd856"></p></td>
+</tr>
+<tr data-local-id=3D"2cec1308-00e9-41a6-950b-21bf6b85a764">
+<td data-local-id=3D"4066ee13-898f-4f11-ab2f-65da00e42182" class=3D"conflue=
+nceTd">
+<p local-id=3D"98aa3ba7-dba0-4b1d-97bf-ccd8385ea9e3">
+<del>Other notes for support/services?</del></p></td>
+<td data-local-id=3D"0605fd19-4558-4b59-ab6e-d0284a5fdfa6" class=3D"conflue=
+nceTd">
+<p local-id=3D"72abd143-b34b-4a7e-b007-86f1f169f5f5"></p></td>
+<td data-local-id=3D"ebf0ef5a-487e-4a02-ace8-50d606caa148" class=3D"conflue=
+nceTd">
+<p local-id=3D"90a653b9-07af-4316-ac52-5f2541c4c27d"></p></td>
+<td data-local-id=3D"8b6e8178-32df-4f54-87d6-ac7bae9de73b" class=3D"conflue=
+nceTd">
+<p local-id=3D"22649b0b-23a2-4212-9d96-54fed1daa7de"></p></td>
+</tr>
+<tr data-local-id=3D"3cff4778-5119-4304-9949-afd4e274a67c">
+<td data-local-id=3D"f7fbcddd-929f-4160-a21c-a63eded30862" class=3D"conflue=
+nceTd">
+<p local-id=3D"10a3ebab-483d-445e-a727-ec4a464c36f5">
+<del>Type of Services (Getting Started, Pre-Paid, Time and Materials)</del>=
+</p></td>
+<td data-local-id=3D"05acad55-89f6-45a3-b48f-a80b436d3430" class=3D"conflue=
+nceTd">
+<p local-id=3D"6a5b7055-8bba-485e-b316-3028b346b59e"></p></td>
+<td data-local-id=3D"5df09705-318d-465b-8c12-5d9b465246a3" class=3D"conflue=
+nceTd">
+<p local-id=3D"ded01c43-b268-45e0-a997-d830097d9ab8"></p></td>
+<td data-local-id=3D"a2976713-351a-4842-af88-b7d463d3fbda" class=3D"conflue=
+nceTd">
+<p local-id=3D"8a92251d-5e97-41d9-aef5-ec71ba718a87"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 local-id=3D"4ca5e1ce-aa27-4f5f-97b5-08ea794153b9" id=3D"SalesOrderForm-=
+>CustomerOpsfield-Automation-NewOrderForm">
+<del>Automation - New Order Form</del></h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"align-start" data-local-id=
+=3D"d548b797-c161-40d9-9c45-43f723841836" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"21489c02-ad3a-47cf-b445-85e4ae023f06">
+<th data-local-id=3D"c1fa133c-f8fb-4982-b7b5-b85f7fd1d2ee" class=3D"conflue=
+nceTh">
+<p local-id=3D"927d30be-aea2-4a22-a53a-010a360325a1"><strong>
+<del>Question</del></strong></p></th>
+<th data-local-id=3D"5a5f6ee7-feba-4448-978c-0f2882a89ecb" class=3D"conflue=
+nceTh">
+<p local-id=3D"983e0a9e-2764-496c-80fa-eae79cdd1d05"><strong>
+<del>Subtext</del></strong></p></th>
+<th data-local-id=3D"81167605-a747-40f1-8a20-1b61f14ce5d8" class=3D"conflue=
+nceTh">
+<p local-id=3D"eb954186-5338-47f8-93c0-76a681df7b57"><strong>
+<del>Options</del></strong></p></th>
+<th data-local-id=3D"f3297e9a-447d-42f8-ad7f-7ec05a1de074" class=3D"conflue=
+nceTh">
+<p local-id=3D"d7e8caed-3910-4828-b4aa-ee56ba21f75d"><strong>
+<del>Comments</del></strong></p></th>
+</tr>
+<tr data-local-id=3D"b1d510f5-6e40-4006-8894-7756957de8ce">
+<td colspan=3D"4" data-local-id=3D"e8ef2b53-c41f-4e03-bb4a-d147d2b7627d" cl=
+ass=3D"confluenceTd">
+<p local-id=3D"48d95f66-a9fe-4f48-bda8-765b4b7a28dd"><strong>
+<del>CRM Checklist</del></strong></p></td>
+</tr>
+<tr data-local-id=3D"aee336ab-6157-4a86-8f92-c8026e299be1">
+<td data-local-id=3D"2230826b-9cae-4727-980d-5f9bfc129d3f" class=3D"conflue=
+nceTd">
+<p local-id=3D"1bb97350-0086-4ef7-8d6f-788e57d9595b">
+<del>Have all items below been received and updated in CRM?&nbsp;</del></p>=
+</td>
+<td data-local-id=3D"4ef76164-dd0d-4cf2-91c3-ec51b1a0ab87" class=3D"conflue=
+nceTd">
+<p local-id=3D"12ed3140-c8ad-4374-87c1-64b462d3a30f"></p></td>
+<td data-local-id=3D"5f1d44bc-6436-45fe-b600-299cb53a5fd9" class=3D"conflue=
+nceTd">
+<p local-id=3D"6c12a0f1-64ac-4ca3-bf55-39f0ec046208">
+<del>Only ONE active quote on opp</del><br>
+<del>Email approval for discounts, special terms, etc.&nbsp;</del><br>
+<del>Industry, Employee Count</del><br>
+<del>Bill To / Ship To Address</del><br>
+<del>Quote, License, Invoice Contacts</del></p></td>
+<td data-local-id=3D"422e8150-3f09-437c-b916-79eef4d85748" class=3D"conflue=
+nceTd">
+<p local-id=3D"19335b66-0927-4a4d-b9d9-f68b8e5bc2fd"></p></td>
+</tr>
+<tr data-local-id=3D"299cf4e5-361b-44d0-a96a-f9d3ab118f07">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"5b682d=
+1a-83b3-46a5-b06a-91a5327b0f87" class=3D"confluenceTd">
+<p local-id=3D"6d946f8a-3f31-448d-90ef-54d446ae573f">
+<del>Sales Details</del></p></td>
+</tr>
+<tr data-local-id=3D"ef529c8c-4bc2-41c0-86d0-cb23c511373e">
+<td data-local-id=3D"b76aba07-ac34-4b76-b708-20decedf98e5" class=3D"conflue=
+nceTd">
+<p local-id=3D"7265a9ac-c521-4b18-9342-b8523898a906">
+<del>RSM&nbsp;</del></p></td>
+<td data-local-id=3D"07a34356-0845-4f04-8982-68c58d330550" class=3D"conflue=
+nceTd">
+<p local-id=3D"8e74966b-bee3-481d-8e75-d0175eb2310b"></p></td>
+<td data-local-id=3D"3d9e20e4-e8c9-465a-a965-92bb45c277fd" class=3D"conflue=
+nceTd">
+<p local-id=3D"4f57e481-8a41-4a34-abb8-c156a3d3ead2"></p></td>
+<td data-local-id=3D"7a41dd4a-6255-4bf9-9771-e92a48e1f179" class=3D"conflue=
+nceTd">
+<p local-id=3D"f265b4a7-5e88-4943-b68d-717a99ee1400"></p></td>
+</tr>
+<tr data-local-id=3D"f2fe0933-9d92-4660-8c8d-b4032cb1eb0b">
+<td data-local-id=3D"b2fccc23-6389-4b9e-bbc8-25df9058798a" class=3D"conflue=
+nceTd">
+<p local-id=3D"8380b610-5159-488e-9475-f53ab54959f0">
+<del>Region</del></p></td>
+<td data-local-id=3D"6127a159-ba61-4199-a87d-b0bef6e72678" class=3D"conflue=
+nceTd">
+<p local-id=3D"a0ad6c2f-81d2-430a-a902-14141ac2ea42"></p></td>
+<td data-local-id=3D"c2b27536-f2d6-4198-80c3-60c4629c2fb0" class=3D"conflue=
+nceTd">
+<p local-id=3D"e9a3b888-1796-4e43-9bbd-42f5d8b815fe">
+<del>NAM, LATAM, EMEA, APAC</del></p></td>
+<td data-local-id=3D"262c73bd-e175-4769-a13c-40a4cba57c52" class=3D"conflue=
+nceTd">
+<p local-id=3D"227cbbe5-97dd-4344-b9e5-aea2b105f37e"></p></td>
+</tr>
+<tr data-local-id=3D"cb7e3a4c-7569-4b15-94ed-a22ec4ae5f80">
+<td data-local-id=3D"c575bf38-ed62-4815-8d77-ac62ccb83a6c" class=3D"conflue=
+nceTd">
+<p local-id=3D"192d8b55-f204-4050-8a95-9a884a77469d">
+<del>Account Name</del></p></td>
+<td data-local-id=3D"10d83a94-375e-41b8-bcf7-bb85c5fa1d4b" class=3D"conflue=
+nceTd">
+<p local-id=3D"7692728b-83f8-4ed0-82e2-e16ba018443d"></p></td>
+<td data-local-id=3D"34f04af5-612e-4e71-a674-26db551f3561" class=3D"conflue=
+nceTd">
+<p local-id=3D"9919f515-acb9-4b5f-ba21-1bab0a27c4c7"></p></td>
+<td data-local-id=3D"2ecfad00-059d-4f93-882b-97f14cb4098c" class=3D"conflue=
+nceTd">
+<p local-id=3D"9984d165-1f29-4e75-a213-e396dc26adcf"></p></td>
+</tr>
+<tr data-local-id=3D"9ca1c029-6998-4d67-99af-74bd2df1c298">
+<td data-local-id=3D"0df24cf4-6fb0-47f0-b05f-d795198fa1da" class=3D"conflue=
+nceTd">
+<p local-id=3D"d3858a24-8ab0-4c99-ab6b-3df4a1a8b1cd">
+<del>Product Brand(s)</del></p></td>
+<td data-local-id=3D"158623cc-4de4-4306-84ff-61af3c69c996" class=3D"conflue=
+nceTd">
+<p local-id=3D"faa1f686-53fb-4253-b0ab-64f5ee5cc0c0"></p></td>
+<td data-local-id=3D"b86aaa69-fb0e-4d08-933b-71b350d36e86" class=3D"conflue=
+nceTd">
+<p local-id=3D"6646bee2-52c9-47ee-875d-855192c24cd3">
+<del>Automate, JAMS, AIC, Automate Schedule</del></p></td>
+<td data-local-id=3D"78e4ba10-cd11-4689-bb82-b697e1e601a0" class=3D"conflue=
+nceTd">
+<p local-id=3D"fa8de07f-9499-45d6-90d1-392403cdc80d"></p></td>
+</tr>
+<tr data-local-id=3D"867cdeea-d68d-4e72-ba83-fca73a094b50">
+<td data-local-id=3D"35380f48-48bd-4345-b3ff-6ba97b17188f" class=3D"conflue=
+nceTd">
+<p local-id=3D"b2930ee8-5d1f-4211-9522-5c9d1fff7826">
+<del>CRM Quote #</del></p></td>
+<td data-local-id=3D"d9a351ff-7b2c-4a61-921f-6c02ff96e6ab" class=3D"conflue=
+nceTd">
+<p local-id=3D"611c78de-a007-4f03-94ac-355c23f68f15"></p></td>
+<td data-local-id=3D"87005ec7-8e4a-4f0f-b212-7a1de18d983e" class=3D"conflue=
+nceTd">
+<p local-id=3D"aa540e28-68d1-45c2-ab69-b521e8ccb00d"></p></td>
+<td data-local-id=3D"169bfd20-7dc4-44c4-ab39-71e941e2b43d" class=3D"conflue=
+nceTd">
+<p local-id=3D"ecdc5d72-46ad-43f2-a0e6-28737b0395cc"></p></td>
+</tr>
+<tr data-local-id=3D"bd85df1d-e7e7-4f6a-a54d-aab681de936b">
+<td data-local-id=3D"0fa6e46d-01a0-4b4b-b7ab-fa22c8ac976e" class=3D"conflue=
+nceTd">
+<p local-id=3D"4f5710e7-13ce-46cf-801c-a395bca926ca">
+<del>ALE</del></p></td>
+<td data-local-id=3D"d320aee5-985d-46b1-9883-71ed237f5fbb" class=3D"conflue=
+nceTd">
+<p local-id=3D"aa4b0746-3d5f-4f98-b523-6bf58cf78ba0"></p></td>
+<td data-local-id=3D"240e2d55-c40d-40af-b43d-c25c5bae2e69" class=3D"conflue=
+nceTd">
+<p local-id=3D"4f1d7045-3da0-4da9-a499-f209f7d35b91"></p></td>
+<td data-local-id=3D"a609fa91-0071-4801-9801-b12312f32f99" class=3D"conflue=
+nceTd">
+<p local-id=3D"cab2ffe1-ff7b-41d3-8390-920b5a07ba0b"></p></td>
+</tr>
+<tr data-local-id=3D"940f8ba7-88fa-4dbd-accb-6ebc9f75089c">
+<td data-local-id=3D"03ad9bd6-b9c9-49f5-8823-03943ecec7f3" class=3D"conflue=
+nceTd">
+<p local-id=3D"06cfb36c-7693-43ee-8436-40fc5d21d2de">
+<del>Sales Type</del></p></td>
+<td data-local-id=3D"7f6f082f-4856-4e10-a4cb-9a142d2b1472" class=3D"conflue=
+nceTd">
+<p local-id=3D"7a39043b-3401-45ab-b097-f3640f08ad39"></p></td>
+<td data-local-id=3D"586846bb-9a44-4e76-bbc8-c7a9b3f2da6a" class=3D"conflue=
+nceTd">
+<p local-id=3D"f9fa1366-5f15-41e8-87a1-44df67999184">
+<del>Net New, New to Brand, Existing - Add on, Existing - Add New, Services=
+ Only</del></p></td>
+<td data-local-id=3D"679ea076-3b28-4050-ae98-9503e749a9c8" class=3D"conflue=
+nceTd">
+<p local-id=3D"cfb416d2-7321-48a5-b40d-e08340e7860f"></p></td>
+</tr>
+<tr data-local-id=3D"93584131-9d26-4138-8359-d37c1b3b35ae">
+<td data-local-id=3D"38a346ca-c688-4ae1-90ed-6a7435bbe898" class=3D"conflue=
+nceTd">
+<p local-id=3D"434671d6-5026-473e-a010-b511420ca9b4">
+<del>Net New Lead Source</del></p></td>
+<td data-local-id=3D"45ade2f6-43d0-4bff-bdce-8e98f5481e75" class=3D"conflue=
+nceTd">
+<p local-id=3D"6f867353-913d-4c48-beb2-56ea7734e23f"></p></td>
+<td data-local-id=3D"9e03d6f9-d835-44b4-a36b-0b099a62c334" class=3D"conflue=
+nceTd">
+<p local-id=3D"58e2368f-c99e-4f7d-9a2f-7c4523cac091"></p></td>
+<td data-local-id=3D"61091bfb-b790-4546-8f58-8e946fdd99d7" class=3D"conflue=
+nceTd">
+<p local-id=3D"e4e2a730-ef46-4d34-a366-4e9b83ccddf8"></p></td>
+</tr>
+<tr data-local-id=3D"7251d888-9c7c-44e6-921e-e491e5f34c88">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"786f18=
+1e-2495-469f-a6f2-da4bcd881438" class=3D"confluenceTd">
+<p local-id=3D"c0a19857-a7b3-4749-bf0d-fc8a5fa2c28c">
+<del>Services (NOTE: If you indicate that services are included, we will au=
+tomatically CC</del><a class=3D"external-link" href=3D"mailto:services.ops@=
+fortra.com" rel=3D"nofollow">
+<del>services.ops@fortra.com</del></a>
+<del>when this order form is submitted.&nbsp;)</del></p></td>
+</tr>
+<tr data-local-id=3D"026fb29b-3dcb-4028-a72b-37161dbab77a">
+<td data-local-id=3D"99f1eaf3-a7d6-4d65-b67b-202d8c04a45b" class=3D"conflue=
+nceTd">
+<p local-id=3D"e3d41085-2481-4dda-9753-30f9818f1501">
+<del>Are Services Included?</del></p></td>
+<td data-local-id=3D"8af7901d-fb01-4952-89df-f05bfef2c6b0" class=3D"conflue=
+nceTd">
+<p local-id=3D"ae26bf3d-62a1-4e64-b9b3-71f98f827bf7"></p></td>
+<td data-local-id=3D"710e2c27-4eb1-4f46-80f8-1938c372ea42" class=3D"conflue=
+nceTd">
+<p local-id=3D"77521593-6a03-46f1-babf-a4eab911d571">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"607a8970-843c-49c4-9d87-70da4095073b" class=3D"conflue=
+nceTd">
+<p local-id=3D"358bda42-cba0-4cd2-b87b-ac838ae29934"></p></td>
+</tr>
+<tr data-local-id=3D"74f1a52e-d6f2-4d29-960a-76722de88eb8">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"d644e5=
+47-b172-4cef-98e6-ab4feefeb9fa" class=3D"confluenceTd">
+<p local-id=3D"f27aadc3-5e93-4e33-885b-9cf504865277">
+<del>Services - Net New / New to Brand (NOTE: If you indicate that services=
+ are included, we will automatically CC</del><a class=3D"external-link" hre=
+f=3D"mailto:services.ops@fortra.com" rel=3D"nofollow">
+<del>services.ops@fortra.com</del></a>
+<del>when this order form is submitted.&nbsp;)</del></p></td>
+</tr>
+<tr data-local-id=3D"b04626c4-c48a-4133-99bd-9a8555719fe4">
+<td data-local-id=3D"a6d72123-9d02-45f5-8074-7feb63d8bffc" class=3D"conflue=
+nceTd">
+<p local-id=3D"61c52b2a-0f5b-4e93-a03d-1fa98f7521f2">
+<del>Are Services Included (Net New / New to Brand) ?</del></p></td>
+<td data-local-id=3D"78bd4edb-b249-4aa9-92ce-cc0f662db836" class=3D"conflue=
+nceTd">
+<p local-id=3D"93d08335-f0c3-4716-94eb-f21b5d55a6de"></p></td>
+<td data-local-id=3D"0bcf4ea3-dad9-43e6-86c6-d4f9e08ea8da" class=3D"conflue=
+nceTd">
+<p local-id=3D"5796de69-6a47-4349-858f-7d9e0d513a28">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"6af2fa39-904a-43e9-bb38-56139e6fa66d" class=3D"conflue=
+nceTd">
+<p local-id=3D"9f682ef3-4111-41e0-b9fa-6b6b5d19e913"></p></td>
+</tr>
+<tr data-local-id=3D"db271259-e6d0-4055-a1bb-bbce0e73b979">
+<td data-local-id=3D"08ea1f2d-0be3-47fb-a7ee-5693a24dd879" class=3D"conflue=
+nceTd">
+<p local-id=3D"b5dbf694-4061-4e8a-8b3e-a4857e26e9f6">
+<del>What Roadblocks Prevented or Delayed Services?&nbsp;</del></p></td>
+<td data-local-id=3D"bc956281-d73e-4e62-ae2c-ab324284549e" class=3D"conflue=
+nceTd">
+<p local-id=3D"52789828-2d92-41ee-84f3-51ea3a8c926c"></p></td>
+<td data-local-id=3D"d258e956-50fa-4d3e-8626-53f2c83f5538" class=3D"conflue=
+nceTd">
+<p local-id=3D"58f2c988-2cdc-4e5e-9c26-2beda37979cc"></p></td>
+<td data-local-id=3D"06380811-2b56-4a0a-b7cc-5da652350743" class=3D"conflue=
+nceTd">
+<p local-id=3D"e370052f-dcc1-4e3c-8635-0cb88c4a1ad2"></p></td>
+</tr>
+<tr data-local-id=3D"bb508804-0a95-4ca5-8982-8aaa1f6ab759">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"ad2c9b=
+7d-c697-4de2-accc-7a318c2b6124" class=3D"confluenceTd">
+<p local-id=3D"2d7ee8fb-8da8-4629-8646-6ffc5adad7e7">
+<del>Services Details</del></p></td>
+</tr>
+<tr data-local-id=3D"c8b0c1eb-8797-47fa-a99d-dda59e18d6d2">
+<td data-local-id=3D"5565fae3-0507-4a68-9657-c917eb8a6a40" class=3D"conflue=
+nceTd">
+<p local-id=3D"77c9cced-e691-4fa2-8d16-f1bb81161fb9">
+<del>Total Services Amount:&nbsp;</del></p></td>
+<td data-local-id=3D"2ce3d824-3e26-4772-8e42-8e48c24a99d8" class=3D"conflue=
+nceTd">
+<p local-id=3D"00b56dde-74b8-49f2-84df-f1802907844c"></p></td>
+<td data-local-id=3D"0faf9a74-e002-44c7-aa77-1fa4569327d9" class=3D"conflue=
+nceTd">
+<p local-id=3D"7d196722-9eb7-4a93-8033-fda1f99151cc"></p></td>
+<td data-local-id=3D"b5dd1f39-42bf-4be0-b16c-bce19e850098" class=3D"conflue=
+nceTd">
+<p local-id=3D"4ef2a4db-8941-4b75-a01b-e3ece8db5ac4"></p></td>
+</tr>
+<tr data-local-id=3D"365e4501-7ee6-4e04-9568-2be823962ffa">
+<td data-local-id=3D"44b59c2d-e2ed-4af7-83ff-2d08e79370a6" class=3D"conflue=
+nceTd">
+<p local-id=3D"ece1bf09-b6cd-4e42-9218-74602dd87689">
+<del>Project Description:&nbsp;</del></p></td>
+<td data-local-id=3D"f818408c-4b37-410f-9e8d-e2f19aaa6d52" class=3D"conflue=
+nceTd">
+<p local-id=3D"650184a4-78e0-4fc3-8c0f-9251c1d13c71"></p></td>
+<td data-local-id=3D"ebda6829-58d9-4dd2-af06-b1e723fd2562" class=3D"conflue=
+nceTd">
+<p local-id=3D"5920dc06-dcb6-4bbf-8126-2211cdbc06e8"></p></td>
+<td data-local-id=3D"43b60390-e1d4-4684-bbbb-9633ab9ef9cf" class=3D"conflue=
+nceTd">
+<p local-id=3D"20c5ad30-b743-4340-afb7-5e55a4f0502d"></p></td>
+</tr>
+<tr data-local-id=3D"3db248c9-2af9-40bf-b208-c1fbffd87826">
+<td data-local-id=3D"a89b2593-8410-4752-b518-066525892c1e" class=3D"conflue=
+nceTd">
+<p local-id=3D"32f4e3bd-e868-40f0-a995-76531dff6c35">
+<del>Main Services Contact</del></p></td>
+<td data-local-id=3D"7d7ac4f2-7427-4709-97e1-67c14fcf5c10" class=3D"conflue=
+nceTd">
+<p local-id=3D"e4d0f12c-b55d-48ee-8d44-927b16c1339a">
+<del>Full Name + Email&nbsp;</del></p></td>
+<td data-local-id=3D"e7354122-d5e3-4d43-99f5-a2441b5e5d93" class=3D"conflue=
+nceTd">
+<p local-id=3D"d4eb7827-91a1-49bd-b6e3-16fc47768f34"></p></td>
+<td data-local-id=3D"ef5ead14-dc80-4fc9-bf50-67ac9fb906f1" class=3D"conflue=
+nceTd">
+<p local-id=3D"2ef87a80-ef5c-43d2-8280-96e5245de099"></p></td>
+</tr>
+<tr data-local-id=3D"c15b006b-ec5c-4f2a-ab16-7ec7c359faa5">
+<td data-local-id=3D"43a8ca23-11a2-4097-a05b-5bc4655349c0" class=3D"conflue=
+nceTd">
+<p local-id=3D"8f1fff6d-707b-47bb-a1d3-1df61844fc06">
+<del>Link to CRM Opportunity:&nbsp;</del></p></td>
+<td data-local-id=3D"157c200d-da20-4b58-8554-3139d7136019" class=3D"conflue=
+nceTd">
+<p local-id=3D"279f44b7-6c59-4e0f-92b7-1b5233cd472a"></p></td>
+<td data-local-id=3D"b0ca55d8-b02e-441e-8c98-4ace1ea1228b" class=3D"conflue=
+nceTd">
+<p local-id=3D"e5f338b1-2a9b-4402-aad8-27720630ea50"></p></td>
+<td data-local-id=3D"33b96a07-2007-42b0-bf50-26ea0afdd398" class=3D"conflue=
+nceTd">
+<p local-id=3D"5bd1d8a6-1493-4770-91b6-26f8a9221ef5"></p></td>
+</tr>
+<tr data-local-id=3D"fbef9559-e6a6-4faf-a48c-f4847e3f50e7">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"67cb2e=
+87-45a2-4f25-bd05-31e36a17c803" class=3D"confluenceTd">
+<p local-id=3D"f0312b8b-6e02-49b4-9ae9-ff8efea671dd">
+<del>Services Details - Services Only Opp</del></p></td>
+</tr>
+<tr data-local-id=3D"9639da8e-a0e4-4d83-b809-14e3092218d4">
+<td data-local-id=3D"06bb25a2-9049-4c77-b73b-47916dac4660" class=3D"conflue=
+nceTd">
+<p local-id=3D"f2eda3e2-f3f7-403d-ad86-b7b27612334c">
+<del>Total Services Amount</del></p></td>
+<td data-local-id=3D"f124a970-d6e0-4909-8c02-64ac764cc7d1" class=3D"conflue=
+nceTd">
+<p local-id=3D"65046e72-823d-42dc-8804-5ea4600bcbeb"></p></td>
+<td data-local-id=3D"b1b8c685-f50a-4160-8637-8a4ef5a674b8" class=3D"conflue=
+nceTd">
+<p local-id=3D"de09750f-2242-42d9-84b9-cdd10248c9fe"></p></td>
+<td data-local-id=3D"4a7a4f88-7ad4-4096-b10f-8ea855d659c7" class=3D"conflue=
+nceTd">
+<p local-id=3D"c7e006da-a6f0-403a-8725-a7a56334c51c"></p></td>
+</tr>
+<tr data-local-id=3D"2e6165e2-50f1-4a8c-be7f-1efdda166298">
+<td data-local-id=3D"b48120d1-e83d-4772-ae6e-d6d18fc17bc6" class=3D"conflue=
+nceTd">
+<p local-id=3D"d35147c8-f9b8-4462-a1ef-095e985a5fc1">
+<del>Project Description</del></p></td>
+<td data-local-id=3D"b388eca3-5fb3-47d4-82f5-a8c0e50b977f" class=3D"conflue=
+nceTd">
+<p local-id=3D"89c75136-6a73-4aa3-b380-3803508a396e"></p></td>
+<td data-local-id=3D"ac51f7bc-7cb5-4ff0-b542-bafcaa8ce5ce" class=3D"conflue=
+nceTd">
+<p local-id=3D"30d258b2-da63-457b-a35d-1098692bdd65"></p></td>
+<td data-local-id=3D"f3b78661-4c1a-4627-8698-c925d8efa2be" class=3D"conflue=
+nceTd">
+<p local-id=3D"5264a2aa-db86-4812-a7ba-26acb6093200"></p></td>
+</tr>
+<tr data-local-id=3D"55aa9d65-60a5-4370-ac47-8c15d0f23ac6">
+<td data-local-id=3D"cc543718-0b0c-4dff-a026-e831ca39ce80" class=3D"conflue=
+nceTd">
+<p local-id=3D"40059e05-9cbc-432f-9380-7eb2b2569008">
+<del>Main Services Contact (Full Name + Email)</del></p></td>
+<td data-local-id=3D"d65a913d-21d7-41a3-8457-84208c9f2119" class=3D"conflue=
+nceTd">
+<p local-id=3D"0cb7bf2d-567c-4663-8965-a431e62e17e1"></p></td>
+<td data-local-id=3D"fcf5336c-1751-40bb-a672-588775a6f495" class=3D"conflue=
+nceTd">
+<p local-id=3D"d5de3306-855d-4f1a-a5f4-e112db238dbd"></p></td>
+<td data-local-id=3D"2a46d3e3-b136-45c7-b0ad-0e327185b050" class=3D"conflue=
+nceTd">
+<p local-id=3D"8f0192a5-9ecc-4f93-a0e6-2e425b007fee"></p></td>
+</tr>
+<tr data-local-id=3D"5572e3ff-62b1-45fb-8e72-8f654d64ec79">
+<td data-local-id=3D"3f682431-3b35-43d4-ac58-e90ab33a67bd" class=3D"conflue=
+nceTd">
+<p local-id=3D"550f66a0-cd21-4eb6-a1b1-a0989146846e">
+<del>Link to CRM Opportunity</del></p></td>
+<td data-local-id=3D"fc372301-f386-47aa-8f1f-5c7029c4eb57" class=3D"conflue=
+nceTd">
+<p local-id=3D"caa6f78c-3c74-464a-8a5d-178d1606b1d2"></p></td>
+<td data-local-id=3D"99e439c3-3532-4608-84d1-16dddb8acae0" class=3D"conflue=
+nceTd">
+<p local-id=3D"7c5eec33-0d90-4caf-ab8a-df09e2e9c66c"></p></td>
+<td data-local-id=3D"e0afbaa2-100f-46b4-ba7d-c04f508bde4c" class=3D"conflue=
+nceTd">
+<p local-id=3D"a581819a-82ae-415a-a573-3487c18ece96"></p></td>
+</tr>
+<tr data-local-id=3D"9ce1028f-7f94-4065-99a7-5c65d56cfa9d">
+<td data-local-id=3D"bd46e3e8-8a6b-4332-aec0-18b8652463ed" class=3D"conflue=
+nceTd">
+<p local-id=3D"311ecabe-d809-4399-b27f-b70669ccb6a4">
+<del>Note Any Special / Non-Standard Terms</del></p></td>
+<td data-local-id=3D"38e81bba-9972-45ed-b6a0-11758e255e23" class=3D"conflue=
+nceTd">
+<p local-id=3D"89ae52cd-b865-419e-98df-720eb38c04bd"></p></td>
+<td data-local-id=3D"b896a182-83bf-4f74-9dec-c7f74542825d" class=3D"conflue=
+nceTd">
+<p local-id=3D"1a49ec16-f5dc-4ab9-a48c-5b51d2b598e3"></p></td>
+<td data-local-id=3D"ee378256-a611-4d16-aa7a-425e85f12e04" class=3D"conflue=
+nceTd">
+<p local-id=3D"f3d73e5f-6d00-4e58-8179-21cfd99541e7"></p></td>
+</tr>
+<tr data-local-id=3D"e2661b17-5c87-4dff-a5ae-aac7e95ac24f">
+<td data-local-id=3D"5c5dc5bb-4547-4b7c-987a-2f635fa5de75" class=3D"conflue=
+nceTd">
+<p local-id=3D"2cd8063d-b5b3-4da4-94ce-0dbbe79f01d4">
+<del>Order Approval Method:</del></p></td>
+<td data-local-id=3D"4ae01b16-0110-46b7-8792-0489bd4c7c42" class=3D"conflue=
+nceTd">
+<p local-id=3D"f86f793c-10dc-4445-879c-732e62b34182">
+<del>You will be prompted to upload a copy of the approval document when su=
+bmitting this form.&nbsp;</del></p></td>
+<td data-local-id=3D"2522ee25-faaa-4ab3-935b-eaf1a1029bc4" class=3D"conflue=
+nceTd">
+<p local-id=3D"4517c5ac-b57c-45f5-92c4-b4e3a0d1477b">
+<del>Signed Quote, Purchase Order, Email Approval</del></p></td>
+<td data-local-id=3D"349d9449-52fc-4d4e-8874-f57389c60c7b" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b99249f-464b-45c8-bed6-cc98de3ffb06"></p></td>
+</tr>
+<tr data-local-id=3D"de8e50a8-97e5-44ad-9bd1-c1c4902f53d2">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"2d686a=
+2d-f4d1-4822-a68d-372ada70228f" class=3D"confluenceTd">
+<p local-id=3D"6d9b2e63-5f93-4cd2-b3bc-f054932db0ed">
+<del>Software Details</del></p></td>
+</tr>
+<tr data-local-id=3D"e2fc1085-22d6-4498-bcdb-ca8f8b9a0f9a">
+<td data-local-id=3D"39488a31-cf07-4399-a94d-d3f485434b90" class=3D"conflue=
+nceTd">
+<p local-id=3D"865d5171-67ea-48bb-9502-59ecf5431172">
+<del>Software Type</del></p></td>
+<td data-local-id=3D"fb22e578-5557-453e-a9e5-f661a548d38d" class=3D"conflue=
+nceTd">
+<p local-id=3D"f98a8796-08ec-4014-9feb-911fb624836b"></p></td>
+<td data-local-id=3D"a0935c35-0a1e-4654-84df-1947a7768952" class=3D"conflue=
+nceTd">
+<p local-id=3D"02c087ec-8e35-4a4d-9395-7ca125be4e9d">
+<del>Subscription, Perpetual, SaaS (AIC Cloud/Hosted)</del></p></td>
+<td data-local-id=3D"1fdaac7d-6789-4a4f-8c46-e9494b3a4e8a" class=3D"conflue=
+nceTd">
+<p local-id=3D"78c25482-5786-4034-bd54-e8cd3eebb563"></p></td>
+</tr>
+<tr data-local-id=3D"07b2cce0-c6b6-4042-ba33-cbd83d062ba1">
+<td data-local-id=3D"d0776ad3-3676-4181-838c-eb90c697f615" class=3D"conflue=
+nceTd">
+<p local-id=3D"63542a14-99e4-45f9-bce4-f6b37bdf0ad1">
+<del>Perpetual - Length of Initial Maintenance Term?&nbsp;</del></p></td>
+<td data-local-id=3D"339e16dc-cd19-4253-abb3-286abf8889d0" class=3D"conflue=
+nceTd">
+<p local-id=3D"24881847-584e-4404-959f-3c83da9d5c08"></p></td>
+<td data-local-id=3D"a750b390-ce2c-4ca7-88b2-1547a4556259" class=3D"conflue=
+nceTd">
+<p local-id=3D"73e94a0b-8975-46d9-98bb-8398fcad2c99"></p></td>
+<td data-local-id=3D"5d1c9c15-a24d-4831-b006-b4eb1c9a87bb" class=3D"conflue=
+nceTd">
+<p local-id=3D"02175328-bc27-4ba8-8701-2d03ca72a817"></p></td>
+</tr>
+<tr data-local-id=3D"09d20261-64a3-4490-9e2d-015b1bc74717">
+<td data-local-id=3D"7faa8443-6109-424d-954d-4445da4920d3" class=3D"conflue=
+nceTd">
+<p local-id=3D"7b289b8c-7f11-420f-97d3-108043b92a93">
+<del>Subscription - Length of Initial Subscription Term?</del></p></td>
+<td data-local-id=3D"0b5b5604-2056-4dcd-8c31-40bacfb32988" class=3D"conflue=
+nceTd">
+<p local-id=3D"a8626a54-f0d3-41d7-87b0-facd3cc956ec"></p></td>
+<td data-local-id=3D"53184415-767d-4e0f-9437-1eba7b330900" class=3D"conflue=
+nceTd">
+<p local-id=3D"fda3f465-d215-4c29-bc45-3304d5efef28"></p></td>
+<td data-local-id=3D"5c7f6675-bd42-4251-9bb0-fcd5f81812be" class=3D"conflue=
+nceTd">
+<p local-id=3D"bd2caa31-759b-44f8-8b50-a0749507f691"></p></td>
+</tr>
+<tr data-local-id=3D"08a1013a-0df2-4ba0-b2b0-ab07f1c884b3">
+<td data-local-id=3D"41aacd8f-9bd0-4291-ac00-84ed284bad47" class=3D"conflue=
+nceTd">
+<p local-id=3D"64a6fe33-94a2-482f-8115-091137198bd0">
+<del>SaaS - Length of Initial SaaS Term?&nbsp;</del></p></td>
+<td data-local-id=3D"8634d35e-6643-4bf3-b210-06f3a2bc3084" class=3D"conflue=
+nceTd">
+<p local-id=3D"2bb33c23-f7ac-4c27-81b6-038685d25b3c"></p></td>
+<td data-local-id=3D"8b4038f2-b6b4-408f-b008-4b3de39a248e" class=3D"conflue=
+nceTd">
+<p local-id=3D"ebd862ba-1660-4e19-96a0-f8d905fa8319"></p></td>
+<td data-local-id=3D"187fadca-d907-45a2-b5da-2ae543fd34e4" class=3D"conflue=
+nceTd">
+<p local-id=3D"71b8a927-e8ee-434d-a79d-2d0efd93badd"></p></td>
+</tr>
+<tr data-local-id=3D"bc1ff183-fcc2-457f-9ab6-27b4e25ed252">
+<td data-local-id=3D"566f4014-fcad-42f0-bc0b-924791a40e56" class=3D"conflue=
+nceTd">
+<p local-id=3D"a7c5412e-1e9c-479f-9592-5bb29ba39296">
+<del>Is the Customer Intending to Renew These Licenses?&nbsp;</del></p></td=
+>
+<td data-local-id=3D"d3a8f9ee-c928-4481-9fd1-59c4b03f8136" class=3D"conflue=
+nceTd">
+<p local-id=3D"ba3a7ea8-a896-4be7-9251-29d1bd6f398f"></p></td>
+<td data-local-id=3D"5317af61-2d47-45fe-98a0-61829dc703fa" class=3D"conflue=
+nceTd">
+<p local-id=3D"cc51338a-a40c-4d5a-a159-dba6921a05bc">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"2574bfa5-a501-4eaa-9d9a-79082c8cbd07" class=3D"conflue=
+nceTd">
+<p local-id=3D"d726295a-f4ec-46ee-a655-5f664d7d8ec7"></p></td>
+</tr>
+<tr data-local-id=3D"8646a5c7-44e5-44d4-bf1f-454c193a0650">
+<td data-local-id=3D"e7ca32cd-bfba-4690-8a80-f4ad77790269" class=3D"conflue=
+nceTd">
+<p local-id=3D"b23ebea0-fb2b-44e1-8202-4c68d8491bbb">
+<del>Did You Select the "Term Subscription" Checkbox in Experlogix?&nbsp;</=
+del></p></td>
+<td data-local-id=3D"0af03784-2b03-48d4-8207-762cefd05af0" class=3D"conflue=
+nceTd">
+<p local-id=3D"d9a49d88-74f7-4832-a1d2-19c269688eed"></p></td>
+<td data-local-id=3D"77cdeb3e-7b26-4d51-80be-b39b6701743b" class=3D"conflue=
+nceTd">
+<p local-id=3D"15a8e4a8-c29d-4ce4-b4be-7db152b1880e">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"e42c2c06-5d23-4dd9-acfe-5743d08c89d7" class=3D"conflue=
+nceTd">
+<p local-id=3D"3dc2897c-5dd3-42bd-b729-5436931f4303"></p></td>
+</tr>
+<tr data-local-id=3D"19ac1960-e2cd-4736-881f-4fbe34747171">
+<td data-local-id=3D"e492ef87-8b6d-4e4d-8ba8-339ce74147a1" class=3D"conflue=
+nceTd">
+<p local-id=3D"721b3a36-07b9-4f16-8cbf-7707673fb94a">
+<del>Please Revise Your Quote &amp; Select the "Term Subscription" Checkbox=
+ in Experlogix Before Continuing!</del></p></td>
+<td data-local-id=3D"5729d65f-62c0-44cd-a2c1-b4c1a279af2d" class=3D"conflue=
+nceTd">
+<p local-id=3D"50409e1e-31d0-442b-8fe6-8844d3175c3b"></p></td>
+<td data-local-id=3D"915f80b8-93e1-4d49-89d2-304a67ed5c5d" class=3D"conflue=
+nceTd">
+<p local-id=3D"2abe5044-01de-414e-b253-34f63fa74494">
+<del>Done</del></p></td>
+<td data-local-id=3D"35d5011c-cba8-4d0e-b434-841680fea190" class=3D"conflue=
+nceTd">
+<p local-id=3D"37fcad82-7f7c-45c4-8e44-0b57d15ac1eb"></p></td>
+</tr>
+<tr data-local-id=3D"e2979a04-9a43-42d4-b704-0028fb60bdc8">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"b43bf0=
+f9-0845-4680-9332-ab6925f13713" class=3D"confluenceTd">
+<p local-id=3D"8d154879-ba8d-4fe4-96d6-ea3ca7ece7c3">
+<del>Billing Details</del></p></td>
+</tr>
+<tr data-local-id=3D"46997660-eaaf-46ae-8505-5072807137a0">
+<td data-local-id=3D"b2ca2e18-d1a0-401e-b3ad-e8d8a7ba3699" class=3D"conflue=
+nceTd">
+<p local-id=3D"8cef2e2d-59c3-43a8-8c10-ed413b50c3b1">
+<del>Order Approval Method</del></p></td>
+<td data-local-id=3D"4dddcd27-2f2a-4d36-aab1-549824380ac1" class=3D"conflue=
+nceTd">
+<p local-id=3D"f40915a6-d23f-4bda-b845-44e6b0cea678">
+<del>You will be prompted to upload a copy of the approval document when su=
+bmitting this form.&nbsp;</del></p></td>
+<td data-local-id=3D"8e18d376-7a77-498d-bbdb-339723a6b924" class=3D"conflue=
+nceTd">
+<p local-id=3D"40038a87-be61-4091-bf88-35c4213b8940">
+<del>Signed Quote, Purchase Order, Email Approval</del></p></td>
+<td data-local-id=3D"7c10474c-f3fd-43d3-a603-41de8364a21f" class=3D"conflue=
+nceTd">
+<p local-id=3D"8736445b-4fdc-425a-b37b-70bbeddc8932"></p></td>
+</tr>
+<tr data-local-id=3D"070f1ea7-8407-4b89-8a2d-da40dbdd9857">
+<td data-local-id=3D"521752f6-0297-42f3-b3ce-39a0c6aef541" class=3D"conflue=
+nceTd">
+<p local-id=3D"f30db551-68dd-4da9-840f-2a7ba01dc798">
+<del>Tax Exempt?</del></p></td>
+<td data-local-id=3D"b43c84bc-025e-4fb1-b8b7-b8fe8e07c8c8" class=3D"conflue=
+nceTd">
+<p local-id=3D"30dc895f-f2f2-4c7b-82a7-5664a5520ea8"></p></td>
+<td data-local-id=3D"10d2cecb-c234-4c7a-8be0-3f2c9c2197c9" class=3D"conflue=
+nceTd">
+<p local-id=3D"2ba05b91-e4c2-4108-ad94-48f7aa57cc26">
+<del>Yes - Copy of Exempt Certificate Required!, No</del></p></td>
+<td data-local-id=3D"627bc8cc-1c58-421f-99f7-18a118d5afc5" class=3D"conflue=
+nceTd">
+<p local-id=3D"4ea9df26-1924-488d-bf51-64136d0eda1b"></p></td>
+</tr>
+<tr data-local-id=3D"5812bc3f-e833-42e8-8535-28c6d151a746">
+<td data-local-id=3D"a10e1d38-2f44-4c25-b657-3ec70d4a7b58" class=3D"conflue=
+nceTd">
+<p local-id=3D"c4250283-ad8a-4a31-9fe3-1ca614f327ab">
+<del>Customized SLSA or Special Terms?</del></p></td>
+<td data-local-id=3D"2d1fab68-639a-4e02-90eb-39e357b3ba9c" class=3D"conflue=
+nceTd">
+<p local-id=3D"497d6045-6ef8-4f7d-a335-0c14ed72e6b4">
+<del>Example: non-standard payment terms, payment installments, extended te=
+mp keys, etc.&nbsp;</del></p></td>
+<td data-local-id=3D"d413b89b-f45d-4738-a927-728dac2b644d" class=3D"conflue=
+nceTd">
+<p local-id=3D"1febfeec-024f-47dc-855e-36639014a983">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"dd8d4a99-1419-49ff-85ef-ed434b9c13e5" class=3D"conflue=
+nceTd">
+<p local-id=3D"561bc71a-247a-43c2-8a00-ac0f7c97f750"></p></td>
+</tr>
+<tr data-local-id=3D"eecb5b85-6f59-44a6-ae4e-e9dce2732ca6">
+<td data-local-id=3D"4a82fbce-0ebd-4e32-93ac-9f7877c8af19" class=3D"conflue=
+nceTd">
+<p local-id=3D"fce9e70c-460d-4df4-b0e9-92be216db37f">
+<del>Provide Details Regarding SLSA and/or Special Terms:&nbsp;</del></p></=
+td>
+<td data-local-id=3D"3c91feb2-c56b-4432-aa87-865e18da8dcd" class=3D"conflue=
+nceTd">
+<p local-id=3D"53b80eec-586d-465a-adbb-7dfd037f0f5d"></p></td>
+<td data-local-id=3D"af6be004-e6aa-41e1-949a-e699f5949495" class=3D"conflue=
+nceTd">
+<p local-id=3D"2bb643af-5f6b-47eb-9b4d-8d37cb0d483a"></p></td>
+<td data-local-id=3D"50f531a6-1443-4761-9b41-5da4743c6c85" class=3D"conflue=
+nceTd">
+<p local-id=3D"df8b0b56-beb3-44a5-9dbc-3a2f3c67876f"></p></td>
+</tr>
+<tr data-local-id=3D"acc9dc11-64e1-4c88-8df2-12ba39540b46">
+<td data-local-id=3D"0990c7f2-e56d-43da-9306-dd4ab5b98528" class=3D"conflue=
+nceTd">
+<p local-id=3D"3737ae20-f45e-4e36-ba14-d1f65c435313">
+<del>Is Existing Fortra Software Being Upgraded/Replaced?&nbsp;</del></p></=
+td>
+<td data-local-id=3D"427058ad-23a1-46c1-8506-0343c7d00565" class=3D"conflue=
+nceTd">
+<p local-id=3D"c79b21cf-3af6-4581-b2a1-c910731dc368">
+<del>This may be due to a swap, upgrade, or repurchase with acquisition. Th=
+is information is required for accurate ALE forecasting.</del></p></td>
+<td data-local-id=3D"8d4c808f-82ce-4a64-a71e-e6d1e8e684c1" class=3D"conflue=
+nceTd">
+<p local-id=3D"e707e9ee-9f99-4d70-bec8-6225d76bc293">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"da786f1b-e6cf-469c-ad69-ad1071c0d02b" class=3D"conflue=
+nceTd">
+<p local-id=3D"7c396b57-f57f-46dd-a378-05ee5dc5bf44"></p></td>
+</tr>
+<tr data-local-id=3D"1881b35e-dd02-4bc8-98e7-70e5ad77188e">
+<td data-local-id=3D"244323d2-abdc-44cb-a9c4-d072ea4aca5c" class=3D"conflue=
+nceTd">
+<p local-id=3D"3e059f60-61d3-4eb0-850a-eeea5569e30a">
+<del>What Existing/Legacy Software is Being Upgraded?&nbsp;What is the Tota=
+l ARR of the Existing/Legacy Software Being Replaced?&nbsp;</del></p></td>
+<td data-local-id=3D"0fe63b6a-e136-40d7-b83e-a49753c293e6" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb78114c-e9d8-4b70-ab06-c5cbd1995b16"></p></td>
+<td data-local-id=3D"d9e880fa-8b9f-418b-80e9-98826cbcb84a" class=3D"conflue=
+nceTd">
+<p local-id=3D"eafb2146-d9ca-4605-bf74-97e87644729f"></p></td>
+<td data-local-id=3D"f2e14dea-38aa-47eb-9568-a8fe03d3934d" class=3D"conflue=
+nceTd">
+<p local-id=3D"8317994a-835e-407e-abd1-3fb3c4b3505f"></p></td>
+</tr>
+<tr data-local-id=3D"2639685a-6ce5-4aa9-b502-f3cc5654c18f">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"813fb8=
+da-acc5-4c86-b818-1f74031294c7" class=3D"confluenceTd">
+<p local-id=3D"82c43dc4-8573-4dfc-9942-78f0a7c7a2bd">
+<del>Upload All Necessary Attachments (GM/MD approvals, signed SLSA, tax ex=
+empt form, signed quote, purchase order, email approval, etc.&nbsp;)</del><=
+/p></td>
+</tr>
+<tr data-local-id=3D"763b7ea3-175e-49b7-aa3c-c4b2301d57ef">
+<td data-local-id=3D"72763893-e3c8-4685-b987-d60c7b09d316" class=3D"conflue=
+nceTd">
+<p local-id=3D"53c8e8d0-b55e-4aca-8b23-23f4aa212a4d">
+<del>(Attached PDF) Attachments</del></p></td>
+<td data-local-id=3D"f74e9e94-6370-441d-a237-8f825fee74da" class=3D"conflue=
+nceTd">
+<p local-id=3D"84a8de6e-126d-4b35-ac08-1c60295d93db">
+<del>NOTE: Email messages will need to be printed to PDF before attaching.&=
+nbsp;</del></p></td>
+<td data-local-id=3D"75bf0cc8-1cb3-4c77-a7b4-e080f03a5524" class=3D"conflue=
+nceTd">
+<p local-id=3D"8f6e9dc5-08df-44ee-a7e6-a680bebd59e2"></p></td>
+<td data-local-id=3D"33009734-304c-456a-9842-18e3b3795684" class=3D"conflue=
+nceTd">
+<p local-id=3D"977a0b7b-dd08-4de1-89d7-9eed13c6bd32"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 local-id=3D"b8cc334e-e3a3-46ef-8045-f58e8b3ee5dd" id=3D"SalesOrderForm-=
+>CustomerOpsfield-MFTNewSalesOrderForm">MFT New Sales Order Form</h1>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"align-start" data-local-id=
+=3D"28aeea8c-cbed-4df6-8fb6-bcbff9def3e9" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"de12705d-bfe2-4ea6-ab2c-71f1b6c2f741">
+<th data-local-id=3D"e8d3000e-d4c7-40b2-9205-873bf1850254" class=3D"conflue=
+nceTh">
+<p local-id=3D"e6e60d39-b8ca-4bda-8c94-88701d863d11"><strong>Question</stro=
+ng></p></th>
+<th data-local-id=3D"8806d0e8-d4d1-43d6-b875-2783ad30995a" class=3D"conflue=
+nceTh">
+<p local-id=3D"34e7f6a3-6995-4334-946a-f7703d69381e"><strong>Subtext</stron=
+g></p></th>
+<th data-local-id=3D"13d8a26c-5502-4510-9562-ef9cda6742fe" class=3D"conflue=
+nceTh">
+<p local-id=3D"a9265953-9a7f-4580-8350-c94df941f719"><strong>Options</stron=
+g></p></th>
+<th data-local-id=3D"4a1a6fc8-489e-49cd-a412-7259b43427c3" class=3D"conflue=
+nceTh">
+<p local-id=3D"fe011b36-1f0f-4771-8d23-c842bc24a601"><strong>Comments</stro=
+ng></p></th>
+</tr>
+<tr data-local-id=3D"fddd1655-da03-4668-894d-fa822f48af35">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"63cdac=
+cb-cee1-42ea-a238-75d47b4c6fd8" class=3D"confluenceTd">
+<p local-id=3D"6afa5f85-4141-44eb-848e-6fe23e0ecce6">Account Information (P=
+lease fill out the below form to submit your sale to Customer Operations or=
+ Services for processing)</p></td>
+</tr>
+<tr data-local-id=3D"ba43921b-2add-4e2f-8898-3abe5c5c6400">
+<td data-local-id=3D"17bef8b4-19e6-446f-afd4-a85e3f702dd1" class=3D"conflue=
+nceTd">
+<p local-id=3D"afc34b47-9279-4216-a42a-e5b65bfeb5ac">
+<del>Account Executive/Representative Name:&nbsp;</del></p></td>
+<td data-local-id=3D"4393dfac-4e56-475f-8ba1-54f917f98c9f" class=3D"conflue=
+nceTd">
+<p local-id=3D"ddc32728-534c-4d21-8a6d-a8fc29c180b0"></p></td>
+<td data-local-id=3D"1d6134b3-789f-4f36-b3f0-d085b5fa8662" class=3D"conflue=
+nceTd">
+<p local-id=3D"6ec63657-ca92-4f78-bc87-4b1713d6ca3c"></p></td>
+<td data-local-id=3D"e9271e4e-5405-4477-9186-2884af4feb24" class=3D"conflue=
+nceTd">
+<p local-id=3D"4d289d69-8a54-4404-a027-92b9d424e533"></p></td>
+</tr>
+<tr data-local-id=3D"61037925-dc30-4b53-a860-87064f3f96f6">
+<td data-local-id=3D"9793d0e1-3e02-4c17-9890-24a5300b7e50" class=3D"conflue=
+nceTd">
+<p local-id=3D"26a1a960-123d-4039-8f3b-2d74b5df9432">
+<del>Customer Type</del></p></td>
+<td data-local-id=3D"5c9cd4ab-0b3c-4337-bd5c-c7ada66aedae" class=3D"conflue=
+nceTd">
+<p local-id=3D"24d4d3f6-88aa-4e1f-9a45-423aabac7cb8"></p></td>
+<td data-local-id=3D"bdfcb378-f8fd-4d1a-b8cf-cadae1823c62" class=3D"conflue=
+nceTd">
+<p local-id=3D"c1b54052-cadd-4acf-891a-2fd4ece3d50f">
+<del>New Customer, Existing Customer</del></p></td>
+<td data-local-id=3D"163582ce-0286-4113-b78b-b1402237ee01" class=3D"conflue=
+nceTd">
+<p local-id=3D"92484498-7ff7-45cb-91d4-29a6384396f2"></p></td>
+</tr>
+<tr data-local-id=3D"bfd046cb-deb4-4b14-8d80-de2b6824d088">
+<td data-local-id=3D"7fe64eef-eab9-45be-97e5-24e373d79a55" class=3D"conflue=
+nceTd">
+<p local-id=3D"48f9c6c4-29fb-4df4-bf44-7ac85824ac86">
+<del>Customer Name</del></p></td>
+<td data-local-id=3D"c2dfdd94-6852-4968-9139-e24bf5be3507" class=3D"conflue=
+nceTd">
+<p local-id=3D"67beb1d8-4b4e-4f47-bf01-9ee309317c1e"></p></td>
+<td data-local-id=3D"f250e7e0-403f-4c17-b120-243890f34099" class=3D"conflue=
+nceTd">
+<p local-id=3D"ed00b72f-c29c-4cdc-bd9b-951a0724af32"></p></td>
+<td data-local-id=3D"470b98c8-fcf1-4948-b5d0-05f7a9f5bad8" class=3D"conflue=
+nceTd">
+<p local-id=3D"3fb264fc-bfd2-455f-bbcd-e558f834733a"></p></td>
+</tr>
+<tr data-local-id=3D"8b110738-3da7-4237-8521-1d98785ca1a9">
+<td data-local-id=3D"48889316-535e-4625-8583-3ffcb66054c3" class=3D"conflue=
+nceTd">
+<p local-id=3D"fd8b89a0-76a2-439d-ab11-36818895dbef">
+<del>Account Number D365&nbsp; &nbsp; OR&nbsp; &nbsp; Account Link Salesfor=
+ce:</del></p></td>
+<td data-local-id=3D"654e04df-2e9a-45bf-a06c-e8f657722cc1" class=3D"conflue=
+nceTd">
+<p local-id=3D"46b18cbb-c140-49da-8713-2bed5bcb5094"></p></td>
+<td data-local-id=3D"57a45d0d-004b-4b45-87b5-b9a19446181d" class=3D"conflue=
+nceTd">
+<p local-id=3D"d9125fbe-5dd8-406f-bc31-250f7905954e"></p></td>
+<td data-local-id=3D"e6b8361a-9786-482d-90fb-243691d94d26" class=3D"conflue=
+nceTd">
+<p local-id=3D"7cdbeef6-72ea-4188-828e-271648f3e95e"></p></td>
+</tr>
+<tr data-local-id=3D"8e363d92-0ff6-443d-8613-e476bd8ba979">
+<td data-local-id=3D"8ce9ed88-a377-48c9-8a7f-f9d69e168e95" class=3D"conflue=
+nceTd">
+<p local-id=3D"0dc4f79d-72c5-4ff7-98ff-3bdc7a78628a">
+<del>Quote Number:</del></p></td>
+<td data-local-id=3D"4940fed3-8e1f-4b3c-83c7-59f914523eb6" class=3D"conflue=
+nceTd">
+<p local-id=3D"5da825d7-c86c-48bf-8a4d-2092291517e3"></p></td>
+<td data-local-id=3D"a5d72125-092f-483c-9967-a8dba952c168" class=3D"conflue=
+nceTd">
+<p local-id=3D"40351c21-a0bd-4f99-afb9-463dff590095"></p></td>
+<td data-local-id=3D"17f482fb-8cb7-411a-8386-b827c085c18c" class=3D"conflue=
+nceTd">
+<p local-id=3D"916677f6-e21c-49b3-bffc-75d1a1940612"></p></td>
+</tr>
+<tr data-local-id=3D"fad4ebfc-ef04-4d8a-904b-50586f5ffedc">
+<td data-local-id=3D"8606ee63-6e61-4345-9191-09db177511c7" class=3D"conflue=
+nceTd">
+<p local-id=3D"30d08492-c53b-4d18-b529-9cc8b66cd0c6">
+<del>Are there multiple quotes that need to stay active on this opportunity=
+? If yes, specify the quote number(s) below.</del></p></td>
+<td data-local-id=3D"973c1021-240d-46ab-8066-5a31bb046c5b" class=3D"conflue=
+nceTd">
+<p local-id=3D"8f4ae21e-1c36-4ee5-a65d-5152026b5003">
+<del>Note: Multiple quotes on one opportunity will keep the opportunity ope=
+n until all quotes are closed.&nbsp;</del></p></td>
+<td data-local-id=3D"330cd45e-29a7-434b-ab8d-ff25a056b20e" class=3D"conflue=
+nceTd">
+<p local-id=3D"9128d780-c82e-4916-9d7e-d7ecdb052a98"></p></td>
+<td data-local-id=3D"ccac39b2-29e0-4cbd-99b6-72cc64b13e82" class=3D"conflue=
+nceTd">
+<p local-id=3D"d5f3c0ce-df07-4ca3-8b37-d4059a423e80"></p></td>
+</tr>
+<tr data-local-id=3D"fb12a9d7-59b2-46ec-9b1a-29fe79ec195b">
+<td data-local-id=3D"a2faa7b9-8c4f-45b6-8557-645852b82817" class=3D"conflue=
+nceTd">
+<p local-id=3D"abe13e1f-ff1f-4a35-9a1d-46d994369684">
+<del>Purchase Order Number:</del></p></td>
+<td data-local-id=3D"5fc223fb-7b7d-48ca-a75a-f80aa2ea75eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"cd3ecced-b6d4-4c09-8bb6-4f4ab1ada777">
+<del>Please double check the amount of PO matches your quote.&nbsp;</del></=
+p></td>
+<td data-local-id=3D"d14be8a4-7d1e-4c08-8c12-b6e8bfe44d37" class=3D"conflue=
+nceTd">
+<p local-id=3D"62782c54-d39d-42b5-96fd-47690d9a7e3d"></p></td>
+<td data-local-id=3D"5103f1c6-7087-4571-8a2d-e4fa2059b3ec" class=3D"conflue=
+nceTd">
+<p local-id=3D"186d21c1-50d4-430a-b92a-a6439783b4d5"></p></td>
+</tr>
+<tr data-local-id=3D"853be7b2-641a-4af4-9330-ef060e245018">
+<td data-local-id=3D"bb5472e4-799b-4f5c-8b51-677ee060ffb3" class=3D"conflue=
+nceTd">
+<p local-id=3D"603800e0-5d80-4947-940f-d9f365b65f5a">
+<del>Invoice Contact and Email Address:&nbsp;</del></p></td>
+<td data-local-id=3D"59e97e2f-f070-40d1-ad03-14435f4925a1" class=3D"conflue=
+nceTd">
+<p local-id=3D"a81c92fc-ebe1-44ea-9f82-457ba687eed2">
+<del>Provide name and email of whom we should send the invoice.&nbsp;</del>=
+</p></td>
+<td data-local-id=3D"cc14851d-19a8-4821-a5ad-ae5251301393" class=3D"conflue=
+nceTd">
+<p local-id=3D"84005d0d-2f27-471c-8c36-ca0ee9bbf5f3"></p></td>
+<td data-local-id=3D"1764bc77-acb4-44b2-9d76-f6bccc853372" class=3D"conflue=
+nceTd">
+<p local-id=3D"e6268998-c4c2-4493-a89f-b60c4dc446e9"></p></td>
+</tr>
+<tr data-local-id=3D"64d3a0c2-64c7-453a-a8b5-7f2b04dbd568">
+<td data-local-id=3D"415c96ce-9b4d-45b5-9a01-fa0993f4700d" class=3D"conflue=
+nceTd">
+<p local-id=3D"81b8555d-d0c3-437c-89c3-15d4ac393462">
+<del>(PDF Attachement) Upload your PO, Signed Quote, Email Approvals, Tax E=
+xempt Certificate, etc. here.</del></p></td>
+<td data-local-id=3D"2b4d74f7-7447-49ef-b592-07df2636a150" class=3D"conflue=
+nceTd">
+<p local-id=3D"c6112743-7050-431f-be6e-d48164dbeb07"></p></td>
+<td data-local-id=3D"870aeff5-a9af-424c-916c-202f87213a4e" class=3D"conflue=
+nceTd">
+<p local-id=3D"f3ef7f15-2470-4b41-b189-4dfbda2bfcdf"></p></td>
+<td data-local-id=3D"d7de7ce3-8321-4ad1-b0a1-50182c096a3f" class=3D"conflue=
+nceTd">
+<p local-id=3D"46f848ea-2730-44c3-b87b-3517baf1a903"></p></td>
+</tr>
+<tr data-local-id=3D"54b266e7-24b8-48da-93c8-49298a8b19c3">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"3dac16=
+8a-5efb-43b9-b3d0-1710cfc7e32c" class=3D"confluenceTd">
+<p local-id=3D"12c64423-09e4-49f6-8f5c-6ae338d6b631">
+<del>Sales Information</del></p></td>
+</tr>
+<tr data-local-id=3D"483ec3cb-ac18-4592-a52d-bdfad4eb38c6">
+<td data-local-id=3D"e30cd4e4-6e6b-4b9e-994d-147da9530870" class=3D"conflue=
+nceTd">
+<p local-id=3D"75c888da-4691-409e-9caf-35306324c1e0">
+<del>Currency</del></p></td>
+<td data-local-id=3D"9f9cb5b6-a659-4da9-a781-99d23ddbdba0" class=3D"conflue=
+nceTd">
+<p local-id=3D"3ecf99f1-5cab-4cbe-b3c8-4c0bb569bd66"></p></td>
+<td data-local-id=3D"3d0bdcb3-f630-46bb-8d01-4c15bad1f649" class=3D"conflue=
+nceTd">
+<p local-id=3D"78d5b6a5-bb40-4ab4-a368-0f474fef400a"></p></td>
+<td data-local-id=3D"74f65228-8daa-4089-bbec-b329a31a8693" class=3D"conflue=
+nceTd">
+<p local-id=3D"8cb9089d-a8ca-495b-816e-62b1a86d5bb6"></p></td>
+</tr>
+<tr data-local-id=3D"133e04dd-6bbb-4314-9187-d6f815d8d057">
+<td data-local-id=3D"27e39e9b-5775-42bb-865d-0029c4130605" class=3D"conflue=
+nceTd">
+<p local-id=3D"d985deeb-a30f-49d9-9532-1292d2ff65fa">
+<del>Any service hours or training sold?</del></p></td>
+<td data-local-id=3D"87d83869-0b75-4cff-9a3d-3fda4734a2b0" class=3D"conflue=
+nceTd">
+<p local-id=3D"3f125ee2-5e02-4b66-8f05-ee9ca95e862f"></p></td>
+<td data-local-id=3D"d51f871b-d1de-42f4-af52-d95d131247b1" class=3D"conflue=
+nceTd">
+<p local-id=3D"c9ba1780-5a33-413f-990e-f2e0cc64a924">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"c1e841b6-9b32-4aad-9fbe-87dc410d9417" class=3D"conflue=
+nceTd">
+<p local-id=3D"0c3c75e2-5511-4143-808b-1eaea13067d0"></p></td>
+</tr>
+<tr data-local-id=3D"dbae8f77-ef9b-4316-b639-9c7e01c6b0d9">
+<td data-local-id=3D"89e5aa39-5eb4-44b9-af30-adcaa69f49a7" class=3D"conflue=
+nceTd">
+<p local-id=3D"7eb0a4f1-95ae-4674-9320-e404a7dbea38">
+<del>Services Amount</del></p></td>
+<td data-local-id=3D"c045f24e-98f4-4cae-84d1-835e45b44a84" class=3D"conflue=
+nceTd">
+<p local-id=3D"435b0aa0-b76e-4ca3-b5fa-b27b9cd36056">
+<del>How much of the sale was services?</del></p></td>
+<td data-local-id=3D"fff01554-15f6-4ba4-b417-096a469f32f3" class=3D"conflue=
+nceTd">
+<p local-id=3D"90b98c06-d681-49bd-9520-5a63478f7046"></p></td>
+<td data-local-id=3D"c5296955-ed92-4064-8529-e8c59005166b" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b5bb406-3597-4e5f-a2de-4a9f765209ea"></p></td>
+</tr>
+<tr data-local-id=3D"e98f7830-be3f-42a3-bc83-dba5b21a5957">
+<td data-local-id=3D"b1a5bdbc-fffd-4537-bc4b-d46541cf0bc2" class=3D"conflue=
+nceTd">
+<p local-id=3D"36769600-53ca-4751-bf66-88140d69dd22">
+<del>Services and Training Contacts?&nbsp;</del></p></td>
+<td data-local-id=3D"9c84a558-5c86-4548-ab57-37ab2b61cfef" class=3D"conflue=
+nceTd">
+<p local-id=3D"de5b13e2-0d3d-4514-a623-bde7257109ee">
+<del>Who should we contact to schedule? Please list two if different for Se=
+rvices and Training.&nbsp;</del></p></td>
+<td data-local-id=3D"fca2fcc3-bf46-4693-a2cb-9d0c11a92ac7" class=3D"conflue=
+nceTd">
+<p local-id=3D"46a689ec-c3e0-4776-948f-07d1a02b3628"></p></td>
+<td data-local-id=3D"1e8e986c-39ab-4906-b002-5c09a4217f15" class=3D"conflue=
+nceTd">
+<p local-id=3D"ce378945-ae1e-4e6a-b993-61302021179d"></p></td>
+</tr>
+<tr data-local-id=3D"8fb27140-f988-4c24-982c-6e4f082091ab">
+<td data-local-id=3D"9c0d28a6-b404-4c1c-b192-35f32d2ad0c7" class=3D"conflue=
+nceTd">
+<p local-id=3D"83beb4c4-2f43-4572-a235-f58180f604f6">
+<del>When are they wanting to start Services/Training?</del></p></td>
+<td data-local-id=3D"95744e68-b766-48fb-9747-abab8f8d265a" class=3D"conflue=
+nceTd">
+<p local-id=3D"fe063544-1339-435f-bd24-e34d5612f263">
+<del>Please include if they are looking for afterhours time.&nbsp;</del></p=
+></td>
+<td data-local-id=3D"d2e18a1f-65f5-4ff3-ba10-76fd6944482e" class=3D"conflue=
+nceTd">
+<p local-id=3D"c5db262c-8190-46ec-a98d-988af11f0aba"></p></td>
+<td data-local-id=3D"ce49b11c-ee2d-447c-87cf-d6c57d98ef40" class=3D"conflue=
+nceTd">
+<p local-id=3D"52bf9daf-5459-4093-a1b3-bb04c604a008"></p></td>
+</tr>
+<tr data-local-id=3D"316abd75-e215-44bb-92f6-4b811a4834a8">
+<td data-local-id=3D"f5daf02f-6321-4889-bf9e-0292ceb0b915" class=3D"conflue=
+nceTd">
+<p local-id=3D"6e8a473c-2bf5-45c1-b3b4-53e35fe98454">
+<del>Software Type</del></p></td>
+<td data-local-id=3D"a17ef593-eb0b-4402-a437-158913a0eac6" class=3D"conflue=
+nceTd">
+<p local-id=3D"c1265260-448f-4909-9015-4a912c793220"></p></td>
+<td data-local-id=3D"170d4750-dea3-49f2-8d8c-35591bb6453c" class=3D"conflue=
+nceTd">
+<p local-id=3D"2eb8583b-9503-4927-bda0-2fa5e808399b">
+<del>Perpetual, Subscription, Services Only</del></p></td>
+<td data-local-id=3D"79d37c01-1a11-4ec3-b0db-4cd350a70e5c" class=3D"conflue=
+nceTd">
+<p local-id=3D"13235da2-112e-48cd-bac7-696bed2d6145"></p></td>
+</tr>
+<tr data-local-id=3D"135c13b5-0761-4a68-ae42-f4d8d05e52ee">
+<td data-local-id=3D"1a6e40c1-a066-4656-9914-218739ef0943" class=3D"conflue=
+nceTd">
+<p local-id=3D"9245f563-b705-43e0-83b4-795cef8718f6">
+<del>What Brand Services were sold?</del></p></td>
+<td data-local-id=3D"0ca364ce-11c4-4947-a403-1fd96c4dbfd0" class=3D"conflue=
+nceTd">
+<p local-id=3D"10e0d9c3-51a5-465b-bead-9388904eb45a"></p></td>
+<td data-local-id=3D"c92e1c4b-743f-46a5-9d8a-82b49d8fa120" class=3D"conflue=
+nceTd">
+<p local-id=3D"59905188-60eb-4397-8324-aa980640829b">
+<del>Globalscape Only, FileCatalyst Only, GoAnywhere Only, Clearswift Only,=
+ RPG Toolbox Only, Suveyor/400 Only, GoAnywhere and Clearswift, GoAnywhere =
+and FileCatalyst</del></p></td>
+<td data-local-id=3D"967a5dea-0bb2-44d0-b3db-56520698deea" class=3D"conflue=
+nceTd">
+<p local-id=3D"7bf1c1de-ffc9-4dc3-83ca-954adfa8da64"></p></td>
+</tr>
+<tr data-local-id=3D"95bb021d-f8bd-493e-aa6e-c53374ee6014">
+<td data-local-id=3D"75eb7cc5-a9da-4cc2-b9a6-96c32fdfc939" class=3D"conflue=
+nceTd">
+<p local-id=3D"f5eb30c0-81d7-44b1-9ca0-54382896b4a5">
+<del>Is this a term subscription?</del></p></td>
+<td data-local-id=3D"f57b498a-f374-478d-8776-f51e53aca6e4" class=3D"conflue=
+nceTd">
+<p local-id=3D"d4649d99-6c37-4b01-8340-f320daaf5be6">
+<del>The customer will not be renewing after this purchased term.</del></p>=
+</td>
+<td data-local-id=3D"13393f4e-d811-457e-9658-9d5ae5c0a1be" class=3D"conflue=
+nceTd">
+<p local-id=3D"815a4004-ed77-408a-9369-892e4aac36b2">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"de4c34cb-ad41-4171-9801-65aac63335cb" class=3D"conflue=
+nceTd">
+<p local-id=3D"c7784561-b788-45cc-8b43-1372e93e0d11"></p></td>
+</tr>
+<tr data-local-id=3D"6b3626f6-1e49-4c8a-a73b-88c2792bb2b3">
+<td data-local-id=3D"512347e6-4c56-4fbb-8c63-56b16b928078" class=3D"conflue=
+nceTd">
+<p local-id=3D"6d212cd7-4619-4140-b846-97f222b6190b">
+<del>Maintenance/Subscription Start Date?</del></p></td>
+<td data-local-id=3D"5fabf8cb-06c8-4954-a94b-97fa04297aed" class=3D"conflue=
+nceTd">
+<p local-id=3D"8412f938-104d-439b-9323-87fdb142c29c">
+<del>Must be the first day of the month.&nbsp;</del></p></td>
+<td data-local-id=3D"cb0e4da0-bea7-4f83-b782-e3f978aedff1" class=3D"conflue=
+nceTd">
+<p local-id=3D"dbf574f1-1904-456e-b0f0-8d644b9548d8"></p></td>
+<td data-local-id=3D"c89a8308-cafa-44ed-8cf1-bab71630346e" class=3D"conflue=
+nceTd">
+<p local-id=3D"6323a103-53f3-4f55-a90c-c7f6dc543ef0"></p></td>
+</tr>
+<tr data-local-id=3D"f8852ddc-b046-461d-adbb-8b72a7e2c836">
+<td data-local-id=3D"aafa9708-f440-4631-81a0-83fdb494e9e8" class=3D"conflue=
+nceTd">
+<p local-id=3D"4ee3d16d-aecd-49b7-bb14-4bf162d5bfa0">
+<del>Number of Months Sold (Maintenance/Subscription):</del></p></td>
+<td data-local-id=3D"d94e8b5f-edc9-4492-8976-afb2c3d9da87" class=3D"conflue=
+nceTd">
+<p local-id=3D"aba15e66-fbcd-4e2b-a2ab-ae37ded841db">
+<del>Enter number of months quoted.</del></p></td>
+<td data-local-id=3D"207073b8-4e5c-45cc-be10-e27279f63066" class=3D"conflue=
+nceTd">
+<p local-id=3D"2c507368-4724-4f6b-bb85-662e2253a7c9"></p></td>
+<td data-local-id=3D"0f6c4413-d35d-4462-b54e-18ee0f1b12e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"65f0c7da-57d4-475c-bde6-331a89b0af8b"></p></td>
+</tr>
+<tr data-local-id=3D"bfb9ff49-9156-4417-ba4b-1641a085c50d">
+<td data-local-id=3D"eaf56770-9e0a-4cdc-8631-ab207a508c9e" class=3D"conflue=
+nceTd">
+<p local-id=3D"02b04e54-e76b-47b5-ba42-da8705c037f4">
+<del>ALE Total:&nbsp;</del></p></td>
+<td data-local-id=3D"ab43df24-13da-44a0-9967-1f77e37e0cb1" class=3D"conflue=
+nceTd">
+<p local-id=3D"4c0e4ce6-93fe-4996-9c6c-bee1c458a2f7"></p></td>
+<td data-local-id=3D"2b68ed97-0fa5-469b-93ec-10742a61afab" class=3D"conflue=
+nceTd">
+<p local-id=3D"3f596a92-0b7e-477f-9d3b-82cf9c7b329d"></p></td>
+<td data-local-id=3D"5f1cf4b9-45eb-4d0c-b3d9-e5da6fb3286d" class=3D"conflue=
+nceTd">
+<p local-id=3D"d2bc9f06-8931-40f3-b90c-fadcd44f8b32"></p></td>
+</tr>
+<tr data-local-id=3D"6801b7f2-8f5f-49eb-94f8-355b2939913b">
+<td data-local-id=3D"c0c4779e-d4b1-4e40-a985-ece0b49fb7fd" class=3D"conflue=
+nceTd">
+<p local-id=3D"1882296b-f666-4ad3-902a-3b0ec27ac3e5">
+<del>Is this a Multi-Year Contract Annually Paid (MYCAP)?</del></p></td>
+<td data-local-id=3D"2b36317c-3fba-4ec7-b872-86782203c52b" class=3D"conflue=
+nceTd">
+<p local-id=3D"b918e2a2-1f7f-461a-8a28-a7c8247e6fbd"></p></td>
+<td data-local-id=3D"0a757c37-bdd7-4c44-841f-f57a0a3ee08b" class=3D"conflue=
+nceTd">
+<p local-id=3D"6eba5bfd-38e0-4268-9d6c-54a0fdf412a5">
+<del>Yes (requires Deal Desk approval), No</del></p></td>
+<td data-local-id=3D"39d0e314-c7bc-4ada-9135-b2b22b1b6378" class=3D"conflue=
+nceTd">
+<p local-id=3D"03a5c586-974e-4a64-8eba-622ef6f627ec"></p></td>
+</tr>
+<tr data-local-id=3D"31bc1539-a72e-474d-a1c7-802344a0dbc5">
+<td data-local-id=3D"96ef80ba-dc34-4dcb-af63-0bcd39f0f5dd" class=3D"conflue=
+nceTd">
+<p local-id=3D"a10189bb-f254-43a2-a0a3-4266f780f54f">
+<del>MYCAP Number of Years</del></p></td>
+<td data-local-id=3D"24bc066d-971e-44ec-b9b7-9be11a8daf4a" class=3D"conflue=
+nceTd">
+<p local-id=3D"bb2376c3-bdd3-4564-a63a-a4bf43fa37a1"></p></td>
+<td data-local-id=3D"c4f2e173-d930-48a6-afed-96e1082fb4e7" class=3D"conflue=
+nceTd">
+<p local-id=3D"1bf6c036-d764-4185-9f39-b2ba476cd58c"></p></td>
+<td data-local-id=3D"d08179fc-a5b0-48c7-8027-645a306a8f5a" class=3D"conflue=
+nceTd">
+<p local-id=3D"6764b954-f9cc-455a-b86b-4543102eaf3a"></p></td>
+</tr>
+<tr data-local-id=3D"1ce0e063-45b1-4d40-bc88-9ff6d35292d2">
+<td data-local-id=3D"a014d808-da0b-4a59-ad24-ed326160ed37" class=3D"conflue=
+nceTd">
+<p local-id=3D"4a761f88-4d16-43aa-80a4-a863f91c7eef">
+<del>MYCAP Capped Annual Increase (percentage)</del></p></td>
+<td data-local-id=3D"5a27b979-5b29-4480-a847-0db4737e31b2" class=3D"conflue=
+nceTd">
+<p local-id=3D"18e57461-a621-4b4b-a5d1-0608c8ab3c9d"></p></td>
+<td data-local-id=3D"457430bd-ad2e-486e-8634-9e7ae8f4d7eb" class=3D"conflue=
+nceTd">
+<p local-id=3D"bd5586f9-d0ef-4190-bc90-993ae200993d"></p></td>
+<td data-local-id=3D"95ba6e63-b912-48b3-a59e-1057f5d18602" class=3D"conflue=
+nceTd">
+<p local-id=3D"cb90d6ca-6e61-4e38-9fc7-1ee28e62a478"></p></td>
+</tr>
+<tr data-local-id=3D"0d57f7c4-3a5a-43bb-95b0-cd7946144f5f">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"1f7042=
+bc-823e-463d-aaf5-d74d8104cc9b" class=3D"confluenceTd">
+<p local-id=3D"331d25c3-21fa-4f96-b8fb-b3aff57ae546">License Key Informatio=
+n</p></td>
+</tr>
+<tr data-local-id=3D"4d49be30-1cd6-4323-92bf-7eca3139d930">
+<td data-local-id=3D"20fd5f99-a986-4a85-b27d-1ef9b4d62219" class=3D"conflue=
+nceTd">
+<p local-id=3D"3f964200-570f-4d15-810c-1ed46014d117">
+<del>License Key Contact and Email Address:</del></p></td>
+<td data-local-id=3D"391dcdda-bf07-404b-b684-de50a2d72ff0" class=3D"conflue=
+nceTd">
+<p local-id=3D"3231961e-781b-470c-8764-1398bb77584f">
+<del>Please list the contact name and email that we should send keys to.&nb=
+sp;</del></p></td>
+<td data-local-id=3D"67659821-24c4-4301-ba9c-d9dc2c3caae2" class=3D"conflue=
+nceTd">
+<p local-id=3D"4267d510-e72f-4cc7-8b2f-b71eda48a4b3"></p></td>
+<td data-local-id=3D"91e7878a-6c72-4c60-ad1c-48f32595c098" class=3D"conflue=
+nceTd">
+<p local-id=3D"41459b70-7d77-4fd1-9139-f6de9ff50735"></p></td>
+</tr>
+<tr data-local-id=3D"0137a51f-63d4-4eac-b9bd-673c41e12d67">
+<td data-local-id=3D"0fa7c676-56b9-4764-a4a6-57bd88f8ecdd" class=3D"conflue=
+nceTd">
+<p local-id=3D"932fbdf8-9992-4076-ba68-0fd464b67f2b">
+<del>Key Type</del></p></td>
+<td data-local-id=3D"a808313a-d002-4af4-a0b0-205a11657e14" class=3D"conflue=
+nceTd">
+<p local-id=3D"764d50d4-cae6-4cdd-8fb0-6b72ff3e3b0e">
+<del>What type of key should be sent to the customer at time of invoice?</d=
+el></p></td>
+<td data-local-id=3D"a2433be1-87c7-4e4c-b5a8-e56814cae24a" class=3D"conflue=
+nceTd">
+<p local-id=3D"8d3b1cfd-86d5-4443-82d4-c004e7b5f0f6">
+<del>Temp (45 Days), Permanent (Special Agreement)</del></p></td>
+<td data-local-id=3D"0d134694-7343-44f3-bf97-7217445ed19f" class=3D"conflue=
+nceTd">
+<p local-id=3D"88da193e-1086-4735-9ef0-b125340faef3"></p></td>
+</tr>
+<tr data-local-id=3D"c45634fd-0915-4764-a166-88d971aa723b">
+<td data-local-id=3D"d90d248f-4e9a-426f-aed9-0f6c03bc0327" class=3D"conflue=
+nceTd">
+<p local-id=3D"4dd154e5-3039-42bd-88fd-09ec7e45c775">On Premise or Cloud De=
+ployment?</p></td>
+<td data-local-id=3D"158fc96b-1a32-4181-8e42-51b4ccf5e580" class=3D"conflue=
+nceTd">
+<p local-id=3D"003bd7d3-b4a6-4f65-8ce3-eb8b2277fdc6">Cloud Deployment =3D G=
+oAnywhere Online License will be provided</p></td>
+<td data-local-id=3D"be6f8072-8eee-4a7e-a6ee-3a46f977cacf" class=3D"conflue=
+nceTd">
+<p local-id=3D"343b97aa-da2c-4735-bc78-b5be032da74a">On Premise, Cloud Depl=
+oyment, Hosted by Fortra</p></td>
+<td data-local-id=3D"61938dd5-ca7d-43b7-b9cc-b9e146f791b3" class=3D"conflue=
+nceTd">
+<p local-id=3D"36ede288-e180-4ebc-8ecf-dd4487edc6c3"></p></td>
+</tr>
+<tr data-local-id=3D"7f409a74-8317-4cab-9eca-1eeea6b77af1">
+<td data-local-id=3D"8b0b0822-8088-4e31-b7ae-cf7489b6dd78" class=3D"conflue=
+nceTd">
+<p local-id=3D"e34f9328-fbc0-4e79-b1db-93c4f1b9ace6">
+<del>Is this a Partner Sale?</del></p></td>
+<td data-local-id=3D"73a12e38-cf55-4559-9c3f-40c3e6286be4" class=3D"conflue=
+nceTd">
+<p local-id=3D"75f3fcaf-84ea-4f0a-acee-47a0eed6788f"></p></td>
+<td data-local-id=3D"9e0006e0-4ab6-44ef-866f-3d8e3b1acd75" class=3D"conflue=
+nceTd">
+<p local-id=3D"01d4c72d-9af8-4e02-9091-1524ad3474f2">
+<del>Yes, No</del></p></td>
+<td data-local-id=3D"e52ec391-4a68-4ccd-bc1b-f63d00684478" class=3D"conflue=
+nceTd">
+<p local-id=3D"a5dcce6a-2af6-4ee9-8159-ded0176123c3"></p></td>
+</tr>
+<tr data-local-id=3D"66699817-8c65-4a15-84d9-1cc8bca9f7b9">
+<td data-local-id=3D"d8cff668-76bf-4d3d-805e-7ab212e57079" class=3D"conflue=
+nceTd">
+<p local-id=3D"0dba234b-5fdc-4cbf-8d6b-cc9abbac222c">
+<del>Partner Company Name (Reseller/Referral/Purchasing Agent):</del></p></=
+td>
+<td data-local-id=3D"28a0826f-cf6b-42f3-b9c2-d43faed30fb5" class=3D"conflue=
+nceTd">
+<p local-id=3D"355b5628-1aa2-4bb8-aa5e-87aeaf485128"></p></td>
+<td data-local-id=3D"30b26f98-8328-4d2c-af77-07a7827f2c47" class=3D"conflue=
+nceTd">
+<p local-id=3D"af01f4f8-36ed-4704-8f43-2505d1691111"></p></td>
+<td data-local-id=3D"1b961a67-9109-4cd3-bd9a-383c632f6a30" class=3D"conflue=
+nceTd">
+<p local-id=3D"4078cb4b-f6cd-4630-8c64-12cd53a0560d"></p></td>
+</tr>
+<tr data-local-id=3D"8ab24c40-7cd0-4c34-bfe0-bdc779c4e1b4">
+<td data-local-id=3D"5429b0da-bd3b-42eb-b7fd-c36768590dca" class=3D"conflue=
+nceTd">
+<p local-id=3D"fec4a162-c651-4d91-888d-31f28de7969c">
+<del>Partner Contact and Email Address:</del></p></td>
+<td data-local-id=3D"ae64b6ba-21ac-4992-8eb9-718f06ee906d" class=3D"conflue=
+nceTd">
+<p local-id=3D"84acd55c-362a-400e-bf71-5c1268b99c04"></p></td>
+<td data-local-id=3D"7f05b154-30f5-4621-972a-12f67ceb56b2" class=3D"conflue=
+nceTd">
+<p local-id=3D"c8c295a1-58e1-458e-adfe-02ec0df92e27"></p></td>
+<td data-local-id=3D"90532b01-f5ae-4fb8-b5d3-7290c67e298e" class=3D"conflue=
+nceTd">
+<p local-id=3D"0cbde76a-7ee4-4744-8201-513886a081a5"></p></td>
+</tr>
+<tr data-local-id=3D"9b78e7be-b920-4e47-8acc-e7d188b96c11">
+<td data-local-id=3D"46b1cda2-5d6d-4fc3-bd32-0659b6cbb5ce" class=3D"conflue=
+nceTd">
+<p local-id=3D"e2388e2b-8542-444f-93bc-b3df34f94859">
+<del>Partner Margin:</del></p></td>
+<td data-local-id=3D"707ffc4b-45b3-4d85-a1dc-7c0fc2cd887a" class=3D"conflue=
+nceTd">
+<p local-id=3D"88827802-239f-419d-9c2f-9d180f904307">
+<del>% Discount or If Referral what $ is paid out after the sale?</del></p>=
+</td>
+<td data-local-id=3D"2eee349a-619d-45d0-825c-0079413184e9" class=3D"conflue=
+nceTd">
+<p local-id=3D"ea5d8a49-4b15-4cd9-b859-7538bb95c4d8"></p></td>
+<td data-local-id=3D"c3549173-1456-4ecb-a842-386f05893d31" class=3D"conflue=
+nceTd">
+<p local-id=3D"38c6a989-66a6-499e-9585-5c6b8b3c1447"></p></td>
+</tr>
+<tr data-local-id=3D"d6cdc41b-9737-4a7a-8a56-38b44d4c914e">
+<td data-local-id=3D"fa405319-cfa4-431a-968f-768f3a83d360" class=3D"conflue=
+nceTd">
+<p local-id=3D"3f970096-7e9b-48ca-a47a-9ad831362026">
+<del>Single Brand or Multiple Brand Sale?&nbsp;</del></p></td>
+<td data-local-id=3D"70412505-942b-4377-95c2-d8aaaa4e9eb4" class=3D"conflue=
+nceTd">
+<p local-id=3D"e61b52e7-a819-468c-a9cd-2b9d91570646"></p></td>
+<td data-local-id=3D"c90b2fd1-bb88-47ca-9b69-1d4f70366b83" class=3D"conflue=
+nceTd">
+<p local-id=3D"9a0dccbc-c097-4ad2-9f29-02ce1eec4231">
+<del>Single Brand, Multiple Brands on one quote</del></p></td>
+<td data-local-id=3D"3202746d-3638-4839-b27e-8efc68f60275" class=3D"conflue=
+nceTd">
+<p local-id=3D"2055382f-bf5a-4171-9057-0cc7d39193e9"></p></td>
+</tr>
+<tr data-local-id=3D"d09c43ec-6563-4dfd-8d1b-0f9ae978520a">
+<td data-local-id=3D"46dc4692-3cb4-4f80-9ace-a88934d778bb" class=3D"conflue=
+nceTd">
+<p local-id=3D"e14cac03-6f9d-467b-b7df-052e4e63cda8">
+<del>What Single Product/Brand was sold?</del></p></td>
+<td data-local-id=3D"e45f7ec5-1062-4a02-a0f1-4e9a6fe93bcf" class=3D"conflue=
+nceTd">
+<p local-id=3D"0b527614-8ff9-406e-917e-2be2644c53a5">
+<del>If multiple please go back one question and change your answer.&nbsp;<=
+/del></p></td>
+<td data-local-id=3D"01216f6b-ef8a-46b8-bbad-d9839c5cd50a" class=3D"conflue=
+nceTd">
+<p local-id=3D"bd9f4db0-f74b-4616-bb22-0cb61b2a1772">
+<del>Globalscape Only, FileCatalyst Only, GoAnywhere Only, Clearswift Only,=
+ RPG Toolbox Only, Suveyor/400 Only</del></p></td>
+<td data-local-id=3D"3221ee46-4363-4332-81aa-c1a5d2635b5e" class=3D"conflue=
+nceTd">
+<p local-id=3D"66d999a0-97bd-4fdd-9dc4-29f507b5e3a8"></p></td>
+</tr>
+<tr data-local-id=3D"3699261b-5f67-4324-9b9f-6a89eb24c05c">
+<td data-local-id=3D"0834ebc7-6373-4f44-8a22-f62e46dd55e0" class=3D"conflue=
+nceTd">
+<p local-id=3D"261808a1-b2dd-4ae8-8887-804c2a6c35a2">
+<del>What Multi Products/Brands were sold?</del></p></td>
+<td data-local-id=3D"3460ebcc-a5b3-4f50-adeb-d64d37982fbd" class=3D"conflue=
+nceTd">
+<p local-id=3D"1e04790f-c887-4a16-8262-46740b4aa607"></p></td>
+<td data-local-id=3D"6b719445-abd9-4f58-9bcd-2a390db1c3b1" class=3D"conflue=
+nceTd">
+<p local-id=3D"9a9a68d1-f5d2-4cc7-ab62-d365907631f8">
+<del>GoAnywhere and Clearswift, GoAnywhere and FileCatalyst</del></p></td>
+<td data-local-id=3D"e92dcaa8-d8ad-485c-b1d4-7e098d1632ea" class=3D"conflue=
+nceTd">
+<p local-id=3D"5f6aff5c-c4a4-46dc-99b9-5d49962a6465"></p></td>
+</tr>
+<tr data-local-id=3D"fc91ba51-44df-45c7-aea0-19334966dd90">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"7a66ec=
+68-ae38-4408-9c1e-75b6936d1917" class=3D"confluenceTd">
+<p local-id=3D"6611384a-db46-43ba-b323-e4e0d0b4cc40">GoAnywhere Sale Inform=
+ation</p></td>
+</tr>
+<tr data-local-id=3D"194f6acc-a04c-4ded-a4ae-3615b93d059b">
+<td data-local-id=3D"4f9885b4-d552-4a09-b83e-b5e6ffdd4d92" class=3D"conflue=
+nceTd">
+<p local-id=3D"febd3579-642e-4870-a2f4-b398c4459eaf">Operating System</p></=
+td>
+<td data-local-id=3D"c7c1cd68-7253-4c5b-be4e-152898761194" class=3D"conflue=
+nceTd">
+<p local-id=3D"c12af16a-005b-4b7c-9b4e-f7762a6465a2"></p></td>
+<td data-local-id=3D"b77f3f27-b4a2-46c6-b534-d254fef24b5d" class=3D"conflue=
+nceTd">
+<p local-id=3D"b26bd5da-102d-4a6a-81a5-4836c05aa8ae">Windows, Linux, IBM i,=
+ Mac</p></td>
+<td data-local-id=3D"3a3a5826-c9e4-427d-b75b-4f58b0bdf282" class=3D"conflue=
+nceTd">
+<p local-id=3D"89e96f8b-271f-4bfb-9e86-06364e6ef6bc"></p></td>
+</tr>
+<tr data-local-id=3D"7d3c592a-7830-4065-a1a0-210f6594c869">
+<td data-local-id=3D"fc2d16bd-9eb7-45c7-8bcf-b66d26dba9a1" class=3D"conflue=
+nceTd">
+<p local-id=3D"65f3c7f3-68b7-404c-9989-12931dad2939">Did the customer own o=
+r look at any competing solutions?</p></td>
+<td data-local-id=3D"9179d40a-a262-46e0-97f6-af71140b7499" class=3D"conflue=
+nceTd">
+<p local-id=3D"f1a08115-4574-4c76-b84f-55f5f9b24880"></p></td>
+<td data-local-id=3D"e8b2ee1e-ef69-49ac-b5d7-f45a35a312a4" class=3D"conflue=
+nceTd">
+<p local-id=3D"8690b766-9e12-4c91-a716-154405d7b8b3">MoveIt, Axway, IBM, Ac=
+celion, None, Using PC tools/manual scripts, Accelion Kitworks</p></td>
+<td data-local-id=3D"a735097b-3078-4c3d-9979-eda5390d910f" class=3D"conflue=
+nceTd">
+<p local-id=3D"63cfe8dc-b019-48da-91e7-33ee4be057d4"></p></td>
+</tr>
+<tr data-local-id=3D"2bab1c74-c229-464f-afd6-528844db3806">
+<td data-local-id=3D"8c6d41c6-aa0c-4531-b492-fe50ad090aea" class=3D"conflue=
+nceTd">
+<p local-id=3D"0f559579-e493-452c-bee3-fbeaf8202bb9">Is this MFTaaS?</p></t=
+d>
+<td data-local-id=3D"bda0cc2e-0bb3-496b-b3d7-aba01e78b76d" class=3D"conflue=
+nceTd">
+<p local-id=3D"74033154-6522-493e-9822-4f6089ab2d7b"></p></td>
+<td data-local-id=3D"f6505e70-f9c1-4ea0-b27c-3c3b0c413df6" class=3D"conflue=
+nceTd">
+<p local-id=3D"e1a13e4f-b4b1-4d0c-bc2a-aff4ef23a7c1">Yes, No</p></td>
+<td data-local-id=3D"e3a23d98-6993-4afb-a5e9-33d4be5a1008" class=3D"conflue=
+nceTd">
+<p local-id=3D"6c628471-01ae-469d-b4ff-7d4a9fb7963a"></p></td>
+</tr>
+<tr data-local-id=3D"c0d491b8-6591-484d-bef9-4952b93080f2">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"9eb5ae=
+82-69c3-459d-8998-1f7af27bd72b" class=3D"confluenceTd">
+<p local-id=3D"36d5d369-a073-445f-9757-059341291a29">GoAnywhere &amp; FileC=
+atalyst Sale Information</p></td>
+</tr>
+<tr data-local-id=3D"b04062d7-e212-4d62-bfea-bd1ecb6339c5">
+<td data-local-id=3D"72b6eed6-3eb4-4e4e-81af-6a294d0beed4" class=3D"conflue=
+nceTd">
+<p local-id=3D"102c1dee-d89b-4365-b7e9-422492b1bbcc">FileCatalyst Request S=
+tring (s):</p></td>
+<td data-local-id=3D"1477f51b-2782-4b48-9000-b5b9e475cd62" class=3D"conflue=
+nceTd">
+<p local-id=3D"ea0c8a01-d32b-466e-864f-ac73925ecd91"></p></td>
+<td data-local-id=3D"3d95b8d2-8cbe-47f9-b51a-d137e2fd34fb" class=3D"conflue=
+nceTd">
+<p local-id=3D"e0ec1480-3047-4d3d-8153-c9cbeb2e9a95"></p></td>
+<td data-local-id=3D"2fe1b1e4-f028-4a44-bd87-a09b854c8c4f" class=3D"conflue=
+nceTd">
+<p local-id=3D"7850663a-dd61-4392-a585-de5676bc6bbd"></p></td>
+</tr>
+<tr data-local-id=3D"9761bc9f-8c30-49fe-93b6-1ce8b604b1ea">
+<td data-local-id=3D"0b928985-41ac-4b3d-9b0b-d799dd6d55f6" class=3D"conflue=
+nceTd">
+<p local-id=3D"27804c4b-39e7-40fc-8807-548d980bbafb">Operating System</p></=
+td>
+<td data-local-id=3D"197dc339-615c-460e-a0f7-049e55ebfb7e" class=3D"conflue=
+nceTd">
+<p local-id=3D"13155b62-a3ab-496e-a45e-833327dd4584"></p></td>
+<td data-local-id=3D"a70e11eb-57c9-46d1-ba47-ca06be80f65e" class=3D"conflue=
+nceTd">
+<p local-id=3D"b2ae035a-576a-41c6-9553-198af133e07b">Windows, Linux, IBM i,=
+ Mac</p></td>
+<td data-local-id=3D"9dd5304d-1f8e-4e26-a74f-77b63885446d" class=3D"conflue=
+nceTd">
+<p local-id=3D"d890aa00-50c4-4e7a-8571-bc27ca4e8e53"></p></td>
+</tr>
+<tr data-local-id=3D"8c1a3e36-6f79-45e9-857e-78874297a115">
+<td data-local-id=3D"c7d983bc-f188-464b-9ddd-dbd9f58f5718" class=3D"conflue=
+nceTd">
+<p local-id=3D"99d9d452-bb5c-4305-8220-a3de041233cb">Did the customer own o=
+r look at any competing solutions?</p></td>
+<td data-local-id=3D"42d008f0-20ee-4f38-a085-2d19ac13c904" class=3D"conflue=
+nceTd">
+<p local-id=3D"0fa166b4-e4e7-4f8d-9cf4-3002a238fff5"></p></td>
+<td data-local-id=3D"9066c5f1-4d3b-4f9c-bdbe-026e30f78d1f" class=3D"conflue=
+nceTd">
+<p local-id=3D"7bc9db57-6643-42cd-94fe-0296170cc215">MoveIt, Axway, IBM, Ac=
+celion, None, Using PC tools/manual scripts</p></td>
+<td data-local-id=3D"686dfde4-cbd0-4b3c-8b33-61051be8fc8d" class=3D"conflue=
+nceTd">
+<p local-id=3D"31966c90-58ad-4d07-932d-b341ca0695ce"></p></td>
+</tr>
+<tr data-local-id=3D"20c76f29-99d9-468f-8211-401572fa8fef">
+<td data-local-id=3D"bfd59c26-1571-428b-a7d9-a3d62cca3d16" class=3D"conflue=
+nceTd">
+<p local-id=3D"0ed9541f-78db-46e7-acdb-83f88d6ffcc1">Is this MFTaaS?</p></t=
+d>
+<td data-local-id=3D"e6ebd86a-0e98-4164-9adf-31675b841f8a" class=3D"conflue=
+nceTd">
+<p local-id=3D"9e53e85a-3c14-4089-9197-cb0ba237626b"></p></td>
+<td data-local-id=3D"de915ace-dc27-4226-b7f4-75caac4d54fd" class=3D"conflue=
+nceTd">
+<p local-id=3D"bc1258ad-5b0e-44b5-8d8e-d69cfe07798e">Yes, No</p></td>
+<td data-local-id=3D"05c97aa5-f19f-4662-a9d5-b11c1e06f282" class=3D"conflue=
+nceTd">
+<p local-id=3D"97947d26-c763-4f64-a8bc-91b9d0cbd775"></p></td>
+</tr>
+<tr data-local-id=3D"701cd6d8-4640-4a85-8d23-bb9ce0a37f2f">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"699f1a=
+09-cd89-4433-a45b-ef3ca0541a7b" class=3D"confluenceTd">
+<p local-id=3D"a2a2acb6-5f02-4b12-9634-2c413605b8eb">GoAnywhere and Clearsw=
+ift Sale Information</p></td>
+</tr>
+<tr data-local-id=3D"2a6d80b2-7b24-4bc3-a37d-f29ea6338417">
+<td data-local-id=3D"af8e9f58-c987-4d84-8eec-2dcc8caafb59" class=3D"conflue=
+nceTd">
+<p local-id=3D"3b63bf02-c4fc-4308-9a78-95b9123c93fd">End user contact and E=
+mail address:</p></td>
+<td data-local-id=3D"ac4761f4-6e87-4802-88de-c38bd5a1ecb3" class=3D"conflue=
+nceTd">
+<p local-id=3D"f3d813fa-4b6e-4638-9aa3-af978ab92f1e">Please list the primar=
+y end user name and email address.&nbsp;</p></td>
+<td data-local-id=3D"4bbcdb3c-1893-494c-aca0-2183cce76bb7" class=3D"conflue=
+nceTd">
+<p local-id=3D"65fd09d6-7072-4d35-b7b6-5a71782bb21e"></p></td>
+<td data-local-id=3D"21412910-0940-4b5a-9e9b-39a5d5933e9b" class=3D"conflue=
+nceTd">
+<p local-id=3D"5d236234-3dc5-4f3c-ae7c-3055d4cd8055"></p></td>
+</tr>
+<tr data-local-id=3D"ab37c282-c414-4153-81c9-04a4463ec118">
+<td data-local-id=3D"5590959d-1ff4-4117-8cd4-b5f494f210c6" class=3D"conflue=
+nceTd">
+<p local-id=3D"d83f4149-f316-4754-94be-f8bf66b86726">Clearswift Product</p>=
+</td>
+<td data-local-id=3D"1d4d876a-becd-484c-bb45-dab671da99c9" class=3D"conflue=
+nceTd">
+<p local-id=3D"67fcf43a-f9a4-4206-8e54-395aace96faa"></p></td>
+<td data-local-id=3D"462435e6-f352-43f5-93d1-139e671e8bdd" class=3D"conflue=
+nceTd">
+<p local-id=3D"fb8e836f-7f85-4f77-b149-c8d6c5aff1de">SECURE Web Gateway, SE=
+CURE Email Gateway, SECURE ICAP Gateway, Other</p></td>
+<td data-local-id=3D"a0a7aca5-8a58-4d23-be60-4cb30b5df42c" class=3D"conflue=
+nceTd">
+<p local-id=3D"7be2f630-0425-48bd-bf65-825e6d1300a4"></p></td>
+</tr>
+<tr data-local-id=3D"4455e414-b7e4-4b59-8fcb-e1032f706593">
+<td data-local-id=3D"89f8b191-6aea-42cc-b86e-e53b1e990b93" class=3D"conflue=
+nceTd">
+<p local-id=3D"a5ed512c-f934-4f8a-9a34-40332ee1a7ef">Clearswift Number of u=
+sers:</p></td>
+<td data-local-id=3D"805492f6-15ae-422b-bcd2-835d69c18452" class=3D"conflue=
+nceTd">
+<p local-id=3D"af2a75fc-f46f-483e-94e6-fc4053489cae"></p></td>
+<td data-local-id=3D"283882e2-2ecf-46ac-8f2b-68c6c386b031" class=3D"conflue=
+nceTd">
+<p local-id=3D"037c17cb-cdf0-48b8-aec8-7565415e7d19"></p></td>
+<td data-local-id=3D"bd212877-0d07-4609-a8a6-978fcecb8a1a" class=3D"conflue=
+nceTd">
+<p local-id=3D"5bcb678e-b4ef-4c20-8784-b5a989456efb"></p></td>
+</tr>
+<tr data-local-id=3D"ea5c21c8-b022-4b16-9958-746e34fa605c">
+<td data-local-id=3D"a6ba9a0e-2ef9-4c3e-9c9d-134a40543a69" class=3D"conflue=
+nceTd">
+<p local-id=3D"fbee3572-6830-4d50-9d4e-ad9c60330ab5">Clearswift Number of i=
+nstances:</p></td>
+<td data-local-id=3D"9feba70b-f84a-4854-bb26-52385f9cecd7" class=3D"conflue=
+nceTd">
+<p local-id=3D"8e5b82cc-b76a-459b-a03d-6ba1fdec3fc2"></p></td>
+<td data-local-id=3D"b9e0e730-d089-43df-b4c9-39c5dda36810" class=3D"conflue=
+nceTd">
+<p local-id=3D"ef4b5d56-42f4-4d29-a97b-e329f6340c6b"></p></td>
+<td data-local-id=3D"16f2ad68-43f8-4e51-9c8f-d974f6064929" class=3D"conflue=
+nceTd">
+<p local-id=3D"2f1cdbe5-b6dd-4b5d-a038-812a14e47777"></p></td>
+</tr>
+<tr data-local-id=3D"c608923b-ff24-4a52-8191-8448492e1acf">
+<td data-local-id=3D"c6a7aed9-6e4f-4ced-8695-9288ff08de55" class=3D"conflue=
+nceTd">
+<p local-id=3D"2b68a2ab-8c90-4fe3-8ee5-83cc7d7c746d">Operating System</p></=
+td>
+<td data-local-id=3D"7a81baae-4c11-41bd-b4fc-8d0f6fbbec42" class=3D"conflue=
+nceTd">
+<p local-id=3D"704e5029-ba31-4e09-bc76-9e7a8bc066e9"></p></td>
+<td data-local-id=3D"6029bb7f-b55a-434c-9373-90ec75e4c852" class=3D"conflue=
+nceTd">
+<p local-id=3D"fb02c81d-1f96-46e8-9518-f260e6ebb58c">Windows, Linux, IBM i,=
+ Mac</p></td>
+<td data-local-id=3D"0fb95bec-a29e-4ff5-a063-b3f109c1c6ba" class=3D"conflue=
+nceTd">
+<p local-id=3D"3d299b6d-2c94-44d9-a94b-e33dca8b3bab"></p></td>
+</tr>
+<tr data-local-id=3D"092a9762-038c-4dde-9fab-ffbb91064c5c">
+<td data-local-id=3D"e4e25670-645c-4684-b050-4ca2bce30fd5" class=3D"conflue=
+nceTd">
+<p local-id=3D"d5895b09-c90f-4fbc-88f5-4750ecaca57e">Did the customer own o=
+r look at any competing solutions?</p></td>
+<td data-local-id=3D"cedea3d6-13e9-4d63-90f8-cc6b6e72a05e" class=3D"conflue=
+nceTd">
+<p local-id=3D"f2f9ab5a-3234-4f43-a25b-96c337eb8f2f"></p></td>
+<td data-local-id=3D"d503110b-5340-4a6f-aafb-0a2493ca54bc" class=3D"conflue=
+nceTd">
+<p local-id=3D"99c4aa16-90c6-473c-aa45-1e302c723c30">MoveIt, Axway, IBM, Ac=
+celion, None, Using PC tools/manual scripts</p></td>
+<td data-local-id=3D"d60374f8-3e02-4492-afe5-4df73914ee50" class=3D"conflue=
+nceTd">
+<p local-id=3D"76ba9589-1afc-4ccc-a1c2-f79a473c3968"></p></td>
+</tr>
+<tr data-local-id=3D"1bc35aba-c509-48b4-9afc-24b2aba7f55c">
+<td data-local-id=3D"d535e0fc-4ae5-434a-b50a-dc99d0342bda" class=3D"conflue=
+nceTd">
+<p local-id=3D"16cba30a-c44f-4eba-818f-505e15154e6b">Is this MFTaaS?</p></t=
+d>
+<td data-local-id=3D"1a5c8967-c79b-4c0c-8c72-604a56e84167" class=3D"conflue=
+nceTd">
+<p local-id=3D"0ffe77e5-f837-416e-81d1-6a480505b3c7"></p></td>
+<td data-local-id=3D"c77565bc-fc43-4414-bc06-e9069e7f190a" class=3D"conflue=
+nceTd">
+<p local-id=3D"8ac95f81-642b-4e56-b430-72825a05abdf">Yes, No</p></td>
+<td data-local-id=3D"5a5b286f-3409-447e-872d-9d93c00ff692" class=3D"conflue=
+nceTd">
+<p local-id=3D"270c0ad5-9b24-4ae0-88ca-2bf3b9090a7e"></p></td>
+</tr>
+<tr data-local-id=3D"57f12516-60a4-4d91-8654-4e29dfd05abf">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"a166a5=
+36-0c2b-4506-a21f-d25e134eb0be" class=3D"confluenceTd">
+<p local-id=3D"fcec71b0-8786-4bf1-8c89-c09f431a6cd9">MFTaaS Information</p>=
+</td>
+</tr>
+<tr data-local-id=3D"5b38c40d-2816-4986-aacb-ff55bfd94675">
+<td data-local-id=3D"22a20517-5149-4675-9211-e525dbd65f0a" class=3D"conflue=
+nceTd">
+<p local-id=3D"00ae441c-26e5-44c8-8760-cafb24a8eee9">Tier</p></td>
+<td data-local-id=3D"70ea5c1e-7675-4b2e-91fe-41db7f8ec754" class=3D"conflue=
+nceTd">
+<p local-id=3D"0f5fd33a-e37b-44ca-80db-635c71b3e6c5"></p></td>
+<td data-local-id=3D"114cdb81-0666-44ed-88e0-db7e9d3dd4ce" class=3D"conflue=
+nceTd">
+<p local-id=3D"c3ec34ea-ac28-45d3-a5ff-99271ff4471d">1,2,3,</p></td>
+<td data-local-id=3D"2a4af53d-63d9-4c01-a476-c67d2a63173d" class=3D"conflue=
+nceTd">
+<p local-id=3D"b56d4838-911c-4463-ba5a-3ee2798dde00"></p></td>
+</tr>
+<tr data-local-id=3D"1b870e1b-add0-487d-a10c-d6008307ca40">
+<td data-local-id=3D"7ca77f4b-9cb7-4ae5-a78a-089811f47c3f" class=3D"conflue=
+nceTd">
+<p local-id=3D"f914cebb-24e6-4b71-a243-76c01e3ba0dd">Region</p></td>
+<td data-local-id=3D"55d94db1-727c-45ab-a2ee-c669ab348f77" class=3D"conflue=
+nceTd">
+<p local-id=3D"9016355f-b917-49d0-9f6a-bd2ef4a9ecfc"></p></td>
+<td data-local-id=3D"99c5c60d-428f-4e90-8676-e91af0b55124" class=3D"conflue=
+nceTd">
+<p local-id=3D"6a04cf22-b669-48ce-bffc-24546556b773">N. Virginia (US), Oreg=
+on (US), Seoul (Asia Pacific), Sinagpore (Asia Pacific), Sydney (Asia Pacif=
+ic), Central (Canada), Frankfurt (Europe), Ireland (Europe) London (Europe)=
+ Paris (Europe), Stockholm (Europe), Bahrain (Middle East)</p></td>
+<td data-local-id=3D"8cd623fb-884c-4ac7-a6e2-2896c49b751e" class=3D"conflue=
+nceTd">
+<p local-id=3D"c154f7bb-3e12-4b45-8f7e-707234a1234f"></p></td>
+</tr>
+<tr data-local-id=3D"a0870d00-1493-4b2f-99da-ff2f6e5616af">
+<td data-local-id=3D"5c5c06e4-02a4-43b8-bc3c-bd4a336e8e21" class=3D"conflue=
+nceTd">
+<p local-id=3D"a3337189-5224-478f-ad33-8c3f6bc25d8f">What time zone should =
+be used?</p></td>
+<td data-local-id=3D"bd47e9d4-440d-48f0-8f60-806d05bdf6e1" class=3D"conflue=
+nceTd">
+<p local-id=3D"c0d750df-92aa-4061-affd-586f4d34d18d"></p></td>
+<td data-local-id=3D"8e209074-0e15-4991-ab88-9e1a84d83c7b" class=3D"conflue=
+nceTd">
+<p local-id=3D"3a82e6f5-7e38-4686-a369-ba8f7f8a3c79"></p></td>
+<td data-local-id=3D"f943b0a8-1346-45c7-9113-820e2103c977" class=3D"conflue=
+nceTd">
+<p local-id=3D"e8b13c39-a32d-48e1-b66c-d3af542856bf"></p></td>
+</tr>
+<tr data-local-id=3D"a67053fb-83d4-43e8-bf5a-54013024b743">
+<td data-local-id=3D"bdb2f5e2-2f39-40eb-878e-4c5b193522f6" class=3D"conflue=
+nceTd">
+<p local-id=3D"1df78b3b-ff1e-4fb4-82b7-9a9c763d6b22">What ports does the cu=
+stomer want to use?</p></td>
+<td data-local-id=3D"42d31d40-438a-4986-9b81-6304edb86aba" class=3D"conflue=
+nceTd">
+<p local-id=3D"13631ece-05ed-43a4-8268-e148b1877755"></p></td>
+<td data-local-id=3D"f3d36422-2865-49ea-a317-1e9a4324913b" class=3D"conflue=
+nceTd">
+<p local-id=3D"b636c2f0-1af8-48a7-aa65-ac80d53b9e37"></p></td>
+<td data-local-id=3D"e17170ce-216d-4234-a636-6f41b89532bb" class=3D"conflue=
+nceTd">
+<p local-id=3D"eb61592d-8e21-4d43-8d4e-712254c81375"></p></td>
+</tr>
+<tr data-local-id=3D"cf536653-9f28-40af-b772-f42a50a32fed">
+<td data-local-id=3D"abbfe03e-bf23-458d-9e14-38a992294f01" class=3D"conflue=
+nceTd">
+<p local-id=3D"71bd5c89-d421-4070-bd1a-ffc8945edc3b">List the IP Addresses =
+that need to be white listed for this environment.</p></td>
+<td data-local-id=3D"36a83cc5-9485-40fa-9d4b-9a621ade2022" class=3D"conflue=
+nceTd">
+<p local-id=3D"c2b5b759-beea-45dc-a8f5-67b1630fca94">If you do not have thi=
+s information, email Customer Operations once you obtain it. The environmen=
+t cannot be access by the customer without this information.</p></td>
+<td data-local-id=3D"b21c5b87-9d72-42b7-8353-ee55bc7aabfa" class=3D"conflue=
+nceTd">
+<p local-id=3D"e8caabfc-1042-4f0d-b7bc-a3ee5e3de4d1"></p></td>
+<td data-local-id=3D"b46b6dae-eaf6-4b3f-80ce-73d4f7399aca" class=3D"conflue=
+nceTd">
+<p local-id=3D"d1f738ae-20b3-431e-9057-17be72fd2ee6"></p></td>
+</tr>
+<tr data-local-id=3D"80d6eab4-a077-42ef-9f7a-f38240d0abed">
+<td data-local-id=3D"b36a0a6e-bb4a-4e34-a55d-0e4950688e91" class=3D"conflue=
+nceTd">
+<p local-id=3D"f7e4c2ef-98f8-4516-ba5d-90d2d33e34a9">What domain name does =
+the customer want to use?</p></td>
+<td data-local-id=3D"b022b7dc-711c-428b-ad98-c1e39c5f3d56" class=3D"conflue=
+nceTd">
+<p local-id=3D"e6025503-4256-4381-b12d-51d48497eba3"></p></td>
+<td data-local-id=3D"c78aa2ba-e339-4bd8-b9ba-a9d536df68d5" class=3D"conflue=
+nceTd">
+<p local-id=3D"a8d25890-ef47-425d-9262-9240f2439e1f"></p></td>
+<td data-local-id=3D"dc2c5bec-439c-4d68-af33-4e3af4ec21c6" class=3D"conflue=
+nceTd">
+<p local-id=3D"930d3f00-e6e7-4587-955d-db80a93dd21b"></p></td>
+</tr>
+<tr data-local-id=3D"9f291a54-d309-4601-a2b6-5876fb2cd24e">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"dfd97b=
+3f-1017-4ce1-8994-f7e5f6a85b37" class=3D"confluenceTd">
+<p local-id=3D"64d5706d-4191-486d-bc22-e3a27cb21c38">FileCatalyst Sale Info=
+rmation&nbsp;</p></td>
+</tr>
+<tr data-local-id=3D"2fb652c8-20d1-4533-89b6-d5b7163a5a43">
+<td data-local-id=3D"09f37c69-b789-4a2b-98b0-c0da09703e1c" class=3D"conflue=
+nceTd">
+<p local-id=3D"ad900469-4117-4cec-bdf7-88d295fced0a">Request String (s):</p=
+></td>
+<td data-local-id=3D"69828cfd-ab73-4b39-84f7-da30857f48c5" class=3D"conflue=
+nceTd">
+<p local-id=3D"5fc6bb76-0b06-41dc-bd2b-69b85b9f6cb1"></p></td>
+<td data-local-id=3D"dc98464b-8515-4dd3-a179-f71e7ecfddf3" class=3D"conflue=
+nceTd">
+<p local-id=3D"a093d842-fa95-49ba-bcf1-712845622cf0"></p></td>
+<td data-local-id=3D"e2cde17f-f76c-4b87-89af-3086ef18b541" class=3D"conflue=
+nceTd">
+<p local-id=3D"cc4ea6ab-96e7-47a4-9eba-c73c289a62ac"></p></td>
+</tr>
+<tr data-local-id=3D"fadbb47e-2afb-4a58-a1ee-41bc94b42237">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"b44cad=
+5d-d81e-4e16-ad35-69ae1860afd0" class=3D"confluenceTd">
+<p local-id=3D"946b9bb3-a06e-476b-8ce2-1f52be839b76">Globalscape Sale Infor=
+mation</p></td>
+</tr>
+<tr data-local-id=3D"318290ef-e331-409f-8f29-baff21c0655e">
+<td data-local-id=3D"4da1ad5e-ba90-461a-aaf3-f86d2ccb78c8" class=3D"conflue=
+nceTd">
+<p local-id=3D"6b171409-cf20-4e64-a29e-3dc9f11a3b25">Is this an Arcus Sale?=
+</p></td>
+<td data-local-id=3D"24a9e2dc-1ce5-4ae2-8ced-8bc977378438" class=3D"conflue=
+nceTd">
+<p local-id=3D"3c6e690d-b8ae-4611-8745-26739a409b38"></p></td>
+<td data-local-id=3D"06270a8b-0bf3-4255-9039-1e9513612b86" class=3D"conflue=
+nceTd">
+<p local-id=3D"e6d12634-b924-48a5-aaea-ef8e8c79bccc">Arcus, EFT, No</p></td=
+>
+<td data-local-id=3D"d51bcd83-6ff7-40bc-9d42-b1a3f6272d5a" class=3D"conflue=
+nceTd">
+<p local-id=3D"948a077e-6ed6-490a-b13c-124455b792bf"></p></td>
+</tr>
+<tr data-local-id=3D"2c8330ed-f307-427d-a5eb-778e48efe1be">
+<td data-highlight-colour=3D"#f4f5f7" colspan=3D"4" data-local-id=3D"65e8a4=
+ef-3790-4898-9bed-e413f6ce53aa" class=3D"confluenceTd">
+<p local-id=3D"f1c8873b-83f2-40b2-bb70-0ce8aeabb89b">Clearswift Sale Inform=
+ation</p></td>
+</tr>
+<tr data-local-id=3D"617968ac-0be3-4f07-ba69-91ec7eaf2ae0">
+<td data-local-id=3D"0fdc62d2-6f5b-4fc3-b38e-eb187ab6d1db" class=3D"conflue=
+nceTd">
+<p local-id=3D"9c61e1d5-767b-46da-8514-40b03eecc4c3">End user contact and E=
+mail address:</p></td>
+<td data-local-id=3D"36302e1d-26ab-48e9-a9ff-3373a2d8dfdd" class=3D"conflue=
+nceTd">
+<p local-id=3D"db8c3cf6-a974-4b8a-bec3-36b928e618c5">Please list the primar=
+y end user name and email address.&nbsp;</p></td>
+<td data-local-id=3D"63ddec75-9ae6-460d-b062-e3ca331c12d5" class=3D"conflue=
+nceTd">
+<p local-id=3D"e3b089b9-1e1d-413a-aa47-484226b24fbf"></p></td>
+<td data-local-id=3D"333483c8-39d9-4ac2-bbf9-949a22e141b0" class=3D"conflue=
+nceTd">
+<p local-id=3D"092931ad-dbcb-498a-8b42-9878800bb5ba"></p></td>
+</tr>
+<tr data-local-id=3D"4feba50d-67d5-4874-bb81-85244c202d8b">
+<td data-local-id=3D"87ef43fc-de94-4a63-912c-2de1c819bd7d" class=3D"conflue=
+nceTd">
+<p local-id=3D"e280e79e-d0f6-493f-a6ca-b21d161ae4e6">Product</p></td>
+<td data-local-id=3D"dba809ce-9c2b-4800-b962-385b481a8994" class=3D"conflue=
+nceTd">
+<p local-id=3D"d664efe3-ea32-423a-83c2-8acc153f4867"></p></td>
+<td data-local-id=3D"fa308c62-b86c-47e4-a187-d6e3c73a7722" class=3D"conflue=
+nceTd">
+<p local-id=3D"563eb7b4-fc9e-4c7f-b7e5-b8f346fa3d26">SECURE Web Gateway, SE=
+CURE Email Gateway, SECURE ICAP Gateway, Other</p></td>
+<td data-local-id=3D"99c49121-2b44-4ab4-8a53-3a33e83730a5" class=3D"conflue=
+nceTd">
+<p local-id=3D"0674b24a-d09d-4917-a584-ca08a5f3100d"></p></td>
+</tr>
+<tr data-local-id=3D"dae2cff8-bb26-4dda-83ad-ddcbbfa163f8">
+<td data-local-id=3D"d608a33c-1b5f-4a60-8252-720e472ae488" class=3D"conflue=
+nceTd">
+<p local-id=3D"5bb16a9c-b7f2-44af-a7c5-e851d115585e">Number of users:</p></=
+td>
+<td data-local-id=3D"aa7e3ed0-1c8b-4293-90c4-7ac4549d1ca7" class=3D"conflue=
+nceTd">
+<p local-id=3D"0586c45c-c012-40d9-afa2-0dbb94359793"></p></td>
+<td data-local-id=3D"0be10d9c-050c-4a97-b9b5-de75b732c7ef" class=3D"conflue=
+nceTd">
+<p local-id=3D"6d01060b-220e-424d-b7e1-0d75860d9106"></p></td>
+<td data-local-id=3D"04608fd3-642a-4dff-a398-a00f269107d0" class=3D"conflue=
+nceTd">
+<p local-id=3D"f0142cbc-829d-40af-8364-d5fe5242c403"></p></td>
+</tr>
+<tr data-local-id=3D"011ad701-32c0-42c0-92b4-5906b25447db">
+<td data-local-id=3D"4c9fc5ed-993e-4aad-b334-8a7c619985a7" class=3D"conflue=
+nceTd">
+<p local-id=3D"166ea6ea-e60a-42a1-8d95-4a185eac733e">Number of instances:</=
+p></td>
+<td data-local-id=3D"7204211c-4f3e-4a40-a399-01ee520cd117" class=3D"conflue=
+nceTd">
+<p local-id=3D"cfbb657b-7e0c-4bd1-9c9c-8773f9c3d844"></p></td>
+<td data-local-id=3D"c1216af3-ad0f-4e4b-bdea-941eb04266d6" class=3D"conflue=
+nceTd">
+<p local-id=3D"1b8cf890-19a5-41ce-a892-2e102747b298"></p></td>
+<td data-local-id=3D"bad7b09c-0be9-42ca-93eb-6a9786124dc0" class=3D"conflue=
+nceTd">
+<p local-id=3D"2f6e19de-a98a-415e-adba-769e82cf9fd6"></p></td>
+</tr>
+<tr data-local-id=3D"8f69e054-eef6-4725-b5bb-b7842a1e883d">
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"43ac6396-864f-4953-8=
+09a-46376390153b" class=3D"confluenceTd">
+<p local-id=3D"cd224e4d-4161-42cc-a034-1eca0607021c">Final Section</p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"7ed12cc6-4feb-4714-9=
+514-9bc94788ee80" class=3D"confluenceTd">
+<p local-id=3D"eca586aa-f69c-4ff3-9c6c-2d748d239c49"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"53d161cf-6e82-4491-9=
+be4-80f0ef532058" class=3D"confluenceTd">
+<p local-id=3D"b2c39459-2403-4725-a92e-7eb3d3d1e8ef"></p></td>
+<td data-highlight-colour=3D"#f4f5f7" data-local-id=3D"db0d1e66-e354-4346-9=
+710-41f3617ed3b0" class=3D"confluenceTd">
+<p local-id=3D"456ac665-1d68-4156-8f60-d49d9ad8580a"></p></td>
+</tr>
+<tr data-local-id=3D"3706a883-51d9-48c6-9af5-402968c02021">
+<td data-local-id=3D"1465b898-01a0-48bd-a1e1-950254af5d26" class=3D"conflue=
+nceTd">
+<p local-id=3D"c2e0b028-9fb7-42c6-a9eb-1d8c172cbf6b">Customer's Use Case?</=
+p></td>
+<td data-local-id=3D"1d5e3242-aef7-4798-97a7-145bca46640b" class=3D"conflue=
+nceTd">
+<p local-id=3D"f986839b-5a70-4bf9-996f-19afd930b19e"></p></td>
+<td data-local-id=3D"61d5f4b1-5fb4-490a-9eb8-89813c3c698a" class=3D"conflue=
+nceTd">
+<p local-id=3D"b0284ee6-edd6-4d75-a2a8-d96e274f9d43"></p></td>
+<td data-local-id=3D"30d056f5-ed02-40e5-99c5-438857771111" class=3D"conflue=
+nceTd">
+<p local-id=3D"f18a3b2e-4604-4c61-afd5-07b14e9dc910"></p></td>
+</tr>
+<tr data-local-id=3D"0c9f9203-01d9-4830-b3d2-d5d056386700">
+<td data-local-id=3D"3bf623db-8d3f-4523-bb49-3acce120d46e" class=3D"conflue=
+nceTd">
+<p local-id=3D"d5f224c9-0ae6-495a-b482-3e8b78a2593a">What is the lead sourc=
+e?</p></td>
+<td data-local-id=3D"62d5a595-dcc1-40fd-95d9-77b684def77f" class=3D"conflue=
+nceTd">
+<p local-id=3D"fbc2b1c3-0192-49b8-bd31-618d3fedb0cb"></p></td>
+<td data-local-id=3D"45c2c9e6-54ea-4381-aeb8-1c87b573e771" class=3D"conflue=
+nceTd">
+<p local-id=3D"7a0676e5-8e7c-42d3-81d4-c01e21981552"></p></td>
+<td data-local-id=3D"ebdef2e9-67d1-4de7-b986-16aacb143764" class=3D"conflue=
+nceTd">
+<p local-id=3D"0f95825a-c35d-4e26-a629-77922c63e105"></p></td>
+</tr>
+<tr data-local-id=3D"3463595b-2629-4762-9d8a-9894d2aa66b3">
+<td data-local-id=3D"4146569d-b0b7-448e-b395-06ddeaaa9dcd" class=3D"conflue=
+nceTd">
+<p local-id=3D"1f3d4f33-5c38-4da9-a996-3028d826aa62">Additional Notes for o=
+rder?</p></td>
+<td data-local-id=3D"7dc10457-48ca-42c9-a7e0-de6449389919" class=3D"conflue=
+nceTd">
+<p local-id=3D"028fbdcc-c812-470e-a7b3-1edde8f706f0">Include any specific n=
+otes for Customer Operations.</p></td>
+<td data-local-id=3D"d17918f7-0a01-427f-9b5f-b93fe367b634" class=3D"conflue=
+nceTd">
+<p local-id=3D"567a5414-af71-4f56-aa0a-5de6d158b2cd"></p></td>
+<td data-local-id=3D"c18c022e-b862-4283-a8d4-4f2000e47485" class=3D"conflue=
+nceTd">
+<p local-id=3D"9a6f76a8-77c7-4207-bc5f-ec417a748270"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"7f87340e-0256-434a-b925-178d0453b53d"></p>
+<p local-id=3D"4a679ef3-28c2-4df0-ab10-b6ae008da1d1"></p>
+<h2 local-id=3D"6704ae3b-b21b-485c-8cfc-524010247ce1" id=3D"SalesOrderForm-=
+>CustomerOpsfield-Hybrid"><strong>Hybrid</strong></h2>
+<p local-id=3D"6d84496c-ddc0-44c1-8881-09ce07b06e12">? Need Example</p>
+    </div>
+</body>
+</html>
+------=_Part_2_397054502.1780419123818--

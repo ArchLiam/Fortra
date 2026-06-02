@@ -1,0 +1,774 @@
+Date: Tue, 2 Jun 2026 16:52:37 +0000 (UTC)
+Message-ID: <561363943.9.1780419157431@a63564de668b>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_8_723168242.1780419157431"
+
+------=_Part_8_723168242.1780419157431
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Partner Pricing V2: Business Requirements</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Partner Pricing V2: Business Requirements</h1>
+    <div class=3D"Section1">
+        <div class=3D"contentLayout2">
+<style>[data-colorid=3Dll6s7ko8z2]{color:#77ecc2} html[data-color-mode=3Dda=
+rk] [data-colorid=3Dll6s7ko8z2]{color:#13885e}</style>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #006A56;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #006A56;">
+<p local-id=3D"9c2e9f0b69c6"><span class=3D"legacy-color-text-inverse">Summ=
+ary of Salesforce configuration and runtime changes needed to support Partn=
+er Pricing V2, including pricing-model fields, context updates, data setup,=
+ and cutover steps.</span></p>
+</div>
+</div>
+<p local-id=3D"bd8adfd5234a"><span class=3D"status-macro aui-lozenge aui-lo=
+zenge-visual-refresh aui-lozenge-complete">BUSINESS REQUIREMENTS</span> <sp=
+an class=3D"status-macro aui-lozenge aui-lozenge-visual-refresh">LAST MODIF=
+IED: 04/24/2026</span></p>
+<h2 local-id=3D"ad4b023a96b6" id=3D"PartnerPricingV2:BusinessRequirements-S=
+ummary">Summary</h2>
+<p local-id=3D"31f5a0f79b36">Partner Pricing V2 introduces two changes to t=
+he existing partner pricing design.</p>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout two-equal" data-layout=3D"two-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #11719C;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #11719C;">
+<h3 local-id=3D"717636428fc8" id=3D"PartnerPricingV2:BusinessRequirements-L=
+ine-LevelModelSelection"><span class=3D"legacy-color-text-inverse">Line-Lev=
+el Model Selection</span></h3>
+<p local-id=3D"0c6305477dbc"><span class=3D"legacy-color-text-inverse">The =
+quote still selects the overall partner pricing model family. V2 then choos=
+es the exact partner pricing model record for each quote line by using the =
+line's product hierarchy.</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #11719C;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #11719C;">
+<h3 local-id=3D"b189676628b3" id=3D"PartnerPricingV2:BusinessRequirements-D=
+eal-Type-SpecificDiscounts"><span class=3D"legacy-color-text-inverse">Deal-=
+Type-Specific Discounts</span></h3>
+<p local-id=3D"b4be6ac2b70a"><span class=3D"legacy-color-text-inverse">When=
+ the quote deal type is </span><em><strong><span data-colorid=3D"ll6s7ko8z2=
+">Fortra Originated</span></strong></em><span class=3D"legacy-color-text-in=
+verse">, V2 uses a separate Non-Originating percentage field set. All other=
+ deal types continue to use the standard percentage fields.</span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h2 local-id=3D"636e92ffe59d" id=3D"PartnerPricingV2:BusinessRequirements-O=
+bjectChanges">Object Changes</h2>
+<div class=3D"panel" style=3D"background-color: #E3E3E3;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #E3E3E3;">
+<p local-id=3D"d06f1dfec017">The <code>Partner_Pricing_Model__c</code> obje=
+ct must support hierarchy-based model selection and the additional discount=
+ field set used for Fortra-originated deals.</p>
+</div>
+</div>
+<h3 local-id=3D"e3a2be6f64c4" id=3D"PartnerPricingV2:BusinessRequirements-P=
+artnerPricingModelFields">Partner Pricing Model Fields</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"9=
+314fc3d916e" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"45af2eba2ca0">
+<th data-local-id=3D"9eb4dcd83247" class=3D"confluenceTh">
+<p local-id=3D"715ccb9960f7">Field Group</p></th>
+<th data-local-id=3D"25ae5658e9b8" class=3D"confluenceTh">
+<p local-id=3D"dae74c7f5a18">Fields</p></th>
+<th data-local-id=3D"6c42c2de9561" class=3D"confluenceTh">
+<p local-id=3D"0e1d4775fc13">How They Are Used</p></th>
+</tr>
+<tr data-local-id=3D"3ad814f325c6">
+<td data-local-id=3D"6f6e04393e5b" class=3D"confluenceTd">
+<p local-id=3D"7412731f2354"><strong>Hierarchy fields</strong></p></td>
+<td data-local-id=3D"f0037cc5a835" class=3D"confluenceTd">
+<p local-id=3D"6042e4d3b508"><code>Unit__c</code></p>
+<p local-id=3D"54db4b628a34"><code>Solution_Group__c</code></p>
+<p local-id=3D"4c2b2cfc3db5"><code>Solution_Category__c</code></p></td>
+<td data-local-id=3D"16a82190fed2" class=3D"confluenceTd">
+<p local-id=3D"6aee20df21f8">These fields allow one partner pricing model r=
+ecord to apply at a specific product hierarchy level.</p>
+<p local-id=3D"b687105a04a7">They are intended to represent one hierarchy l=
+evel per record, not a combined three-field key.</p></td>
+</tr>
+<tr data-local-id=3D"40ffbc7ab79e">
+<td data-local-id=3D"b3a42a3f9046" class=3D"confluenceTd">
+<p local-id=3D"36acd4a60d98"><strong>Non-Originating discount fields</stron=
+g></p></td>
+<td data-local-id=3D"27f9b73d2c43" class=3D"confluenceTd">
+<p local-id=3D"d2b9656ff72f"><code>Non_Orig_Software_Pct__c</code></p>
+<p local-id=3D"bdc4be4d34d2"><code>Non_Orig_Subscription_Pct__c</code></p>
+<p local-id=3D"84f1ff6da28d"><code>Non_Orig_New_Maint_Pct__c</code></p>
+<p local-id=3D"7c8afb65e864"><code>Non_Orig_Ren_Maint_Pct__c</code></p>
+<p local-id=3D"995e7c0d070c"><code>Non_Orig_Services_Pct__c</code></p></td>
+<td data-local-id=3D"467710f968e7" class=3D"confluenceTd">
+<p local-id=3D"0a9879b71011">These fields mirror the existing standard perc=
+entage fields.</p>
+<p local-id=3D"7463dad6946a">They are used only when <code>Deal_Type__c</co=
+de> is <code>Fortra Originated</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"28b42dce0074" id=3D"PartnerPricingV2:BusinessRequirements-E=
+xpectedHierarchyPattern">Expected Hierarchy Pattern</h3>
+<ol start=3D"1" local-id=3D"f86ec442b590">
+<li local-id=3D"deb24b131659">
+<p local-id=3D"74666d334db7"><strong>Most specific rule:</strong> populate =
+<code>Solution_Category__c</code> only.</p></li>
+<li local-id=3D"0b423ee51ee7">
+<p local-id=3D"f72fefcf1ffd"><strong>Mid-level rule:</strong> populate <cod=
+e>Solution_Group__c</code> only.</p></li>
+<li local-id=3D"c4c0011e32b9">
+<p local-id=3D"f70fc6d9a076"><strong>Broad rule:</strong> populate <code>Un=
+it__c</code> only.</p></li>
+<li local-id=3D"da08c8f8cdd9">
+<p local-id=3D"ef7452a9ed78"><strong>Fallback rule:</strong> leave all thre=
+e hierarchy fields blank.</p></li>
+</ol>
+<h2 local-id=3D"dd62647c65b9" id=3D"PartnerPricingV2:BusinessRequirements-C=
+ontextChanges">Context Changes</h2>
+<div class=3D"panel" style=3D"background-color: #EBDBC1;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #EBDBC1;">
+<p local-id=3D"e205a4632eba">The V2 prehook reads hierarchy values directly=
+ from Revenue Cloud context. The quote-pricing context must therefore expos=
+e the required quote header and quote-line values.</p>
+</div>
+</div>
+<h3 local-id=3D"cef2c9f7f4ec" id=3D"PartnerPricingV2:BusinessRequirements-R=
+equiredContextAttributesandSourceValues">Required Context Attributes and So=
+urce Values</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"c=
+d6de53855a4" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"94f389e3815b">
+<th data-local-id=3D"496ff49e85d9" class=3D"confluenceTh">
+<p local-id=3D"1628588e6f51">Context Node</p></th>
+<th data-local-id=3D"c4e9a0a2e854" class=3D"confluenceTh">
+<p local-id=3D"a2046463931c">Required Attribute</p></th>
+<th data-local-id=3D"e76a069ad4b9" class=3D"confluenceTh">
+<p local-id=3D"75a47aa99c81">Source Value</p></th>
+</tr>
+<tr data-local-id=3D"05cf5bfda975">
+<td data-local-id=3D"c6a04511be24" class=3D"confluenceTd">
+<p local-id=3D"e9763e645757"><code>SalesTransaction</code></p></td>
+<td data-local-id=3D"4fb39f97db92" class=3D"confluenceTd">
+<p local-id=3D"826ee44d0774"><code>Partner_Pricing_Model__c</code></p></td>
+<td data-local-id=3D"18f4933e063b" class=3D"confluenceTd">
+<p local-id=3D"9a4e8d0e2d24"><code>Quote.Partner_Pricing_Model__c</code></p=
+></td>
+</tr>
+<tr data-local-id=3D"b96674fe4b82">
+<td data-local-id=3D"4bbd84d74930" class=3D"confluenceTd">
+<p local-id=3D"d1638ddd1722"><code>SalesTransaction</code></p></td>
+<td data-local-id=3D"275d51b90242" class=3D"confluenceTd">
+<p local-id=3D"7a980f85c49d"><code>Deal_Type__c</code></p></td>
+<td data-local-id=3D"b48221723f0a" class=3D"confluenceTd">
+<p local-id=3D"19c56455d524"><code>Quote.Deal_Type__c</code></p></td>
+</tr>
+<tr data-local-id=3D"83f589ac48d7">
+<td data-local-id=3D"8657561fee0c" class=3D"confluenceTd">
+<p local-id=3D"ffd3891b7ca7"><code>SalesTransaction</code></p></td>
+<td data-local-id=3D"397e0a5ef92b" class=3D"confluenceTd">
+<p local-id=3D"89f5b27e99df"><code>Billing_Partner__c</code></p></td>
+<td data-local-id=3D"d23957c8144a" class=3D"confluenceTd">
+<p local-id=3D"645b819bf622"><code>Quote.Billing_Partner__c</code></p></td>
+</tr>
+<tr data-local-id=3D"0f0bc172b441">
+<td data-local-id=3D"6fecc71a63d4" class=3D"confluenceTd">
+<p local-id=3D"bf247dcb5935"><code>SalesTransaction</code></p></td>
+<td data-local-id=3D"893d3601972e" class=3D"confluenceTd">
+<p local-id=3D"bdbbfa760ce6"><code>Reseller__c</code></p></td>
+<td data-local-id=3D"0073f0b1bbff" class=3D"confluenceTd">
+<p local-id=3D"a2c209263b6e"><code>Quote.Reseller__c</code></p></td>
+</tr>
+<tr data-local-id=3D"5c08cada7a51">
+<td data-local-id=3D"fcf04ed1c9a7" class=3D"confluenceTd">
+<p local-id=3D"d6bffd261b3a"><code>SalesTransaction</code></p></td>
+<td data-local-id=3D"93d013d70cac" class=3D"confluenceTd">
+<p local-id=3D"3894256cbfa8"><code>Distributor__c</code></p></td>
+<td data-local-id=3D"9cd8dd4ac95c" class=3D"confluenceTd">
+<p local-id=3D"936a87874e96"><code>Quote.Distributor__c</code></p></td>
+</tr>
+<tr data-local-id=3D"abe51c816b00">
+<td data-local-id=3D"80a2168f32bd" class=3D"confluenceTd">
+<p local-id=3D"e9617498ed3a"><code>SalesTransaction</code></p></td>
+<td data-local-id=3D"8249e095576c" class=3D"confluenceTd">
+<p local-id=3D"65a68f764add"><code>Referral_Partner__c</code></p></td>
+<td data-local-id=3D"d5aff82365bb" class=3D"confluenceTd">
+<p local-id=3D"d68642a6b096"><code>Quote.Referral_Partner__c</code></p></td=
+>
+</tr>
+<tr data-local-id=3D"18a010a01030">
+<td data-local-id=3D"e233cfa0f3df" class=3D"confluenceTd">
+<p local-id=3D"ff2009f974a5"><code>SalesTransactionItem</code></p></td>
+<td data-local-id=3D"9d8f7c2d186e" class=3D"confluenceTd">
+<p local-id=3D"da003c0f3074"><code>Fortra_Product_Type__c</code></p></td>
+<td data-local-id=3D"e3f1020b9694" class=3D"confluenceTd">
+<p local-id=3D"39102ace1e8a"><code>QuoteLineItem.Fortra_Product_Type__c</co=
+de></p></td>
+</tr>
+<tr data-local-id=3D"1982a7bfb13c">
+<td data-local-id=3D"5e0e812f241b" class=3D"confluenceTd">
+<p local-id=3D"85a96a78dbba"><code>SalesTransactionItem</code></p></td>
+<td data-local-id=3D"9dd08000d055" class=3D"confluenceTd">
+<p local-id=3D"76d1d3bc70c6"><code>Unit__c</code></p></td>
+<td data-local-id=3D"e3c69afc1cce" class=3D"confluenceTd">
+<p local-id=3D"671c42b1530f"><code>QuoteLineItem.Product2.Unit__c</code></p=
+></td>
+</tr>
+<tr data-local-id=3D"f978a651bfb8">
+<td data-local-id=3D"094b4da20a4b" class=3D"confluenceTd">
+<p local-id=3D"5d5df27cc765"><code>SalesTransactionItem</code></p></td>
+<td data-local-id=3D"33255f980866" class=3D"confluenceTd">
+<p local-id=3D"522cbc797f11"><code>Solution_Group__c</code></p></td>
+<td data-local-id=3D"01d91b3d9063" class=3D"confluenceTd">
+<p local-id=3D"44c70625cbdf"><code>QuoteLineItem.Product2.Solution_Group__c=
+</code></p></td>
+</tr>
+<tr data-local-id=3D"bf4eeb57efe1">
+<td data-local-id=3D"dceadd0f6a21" class=3D"confluenceTd">
+<p local-id=3D"0fea3daa6157"><code>SalesTransactionItem</code></p></td>
+<td data-local-id=3D"086ece47030c" class=3D"confluenceTd">
+<p local-id=3D"0e596952300b"><code>Solution_Category__c</code></p></td>
+<td data-local-id=3D"b92653c2500c" class=3D"confluenceTd">
+<p local-id=3D"298526b8b85c"><code>QuoteLineItem.Product2.Solution_Category=
+__c</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p local-id=3D"a4deebbd34e1">Update <code>QuoteEntitiesMapping</code> so ea=
+ch context attribute is populated from the source value listed above.</p>
+<h2 local-id=3D"fbb056a64564" id=3D"PartnerPricingV2:BusinessRequirements-D=
+ataSetup">Data Setup</h2>
+<p local-id=3D"54772e67467f">Partner pricing model records must be maintain=
+ed consistently so the V2 logic can choose the intended model for each line=
+.</p>
+<h3 local-id=3D"1dd2eb9aeb07" id=3D"PartnerPricingV2:BusinessRequirements-P=
+artnerPricingModelDataRules">Partner Pricing Model Data Rules</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"8=
+6e9974f72e9" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"373f9fbe0821">
+<th data-local-id=3D"5cd0889df273" class=3D"confluenceTh">
+<p local-id=3D"f3e43fdc12d9">Rule</p></th>
+<th data-local-id=3D"4b3d92ab737d" class=3D"confluenceTh">
+<p local-id=3D"d858011523a5">Expected Setup</p></th>
+</tr>
+<tr data-local-id=3D"0cd74a4d8860">
+<td data-local-id=3D"e9796c36c32c" class=3D"confluenceTd">
+<p local-id=3D"b7aa222db907"><strong>Model type</strong></p></td>
+<td data-local-id=3D"1bc0853124d1" class=3D"confluenceTd">
+<p local-id=3D"a4414719e897"><code>Model_Type__c</code> must distinguish <c=
+ode>Discount</code> from <code>Guaranteed Margin</code>.</p></td>
+</tr>
+<tr data-local-id=3D"9175a6217049">
+<td data-local-id=3D"8257cae08855" class=3D"confluenceTd">
+<p local-id=3D"3df4c293407d"><strong>Hierarchy level</strong></p></td>
+<td data-local-id=3D"03a53276cbf0" class=3D"confluenceTd">
+<p local-id=3D"f0c04f28d5e5">Normally populate only one hierarchy field on =
+each partner pricing model record. Use <code>Solution_Category__c</code>, <=
+code>Solution_Group__c</code>, or <code>Unit__c</code> based on how specifi=
+c the pricing rule should be.</p></td>
+</tr>
+<tr data-local-id=3D"75e1661b6ab8">
+<td data-local-id=3D"c6470f2c3f38" class=3D"confluenceTd">
+<p local-id=3D"3b9854e1a651"><strong>Fallback</strong></p></td>
+<td data-local-id=3D"0d4d0d1e0307" class=3D"confluenceTd">
+<p local-id=3D"fd7de24f27cf">Leave <code>Unit__c</code>, <code>Solution_Gro=
+up__c</code>, and <code>Solution_Category__c</code> blank on fallback model=
+ records.</p></td>
+</tr>
+<tr data-local-id=3D"55f749bc3316">
+<td data-local-id=3D"5412996f6d21" class=3D"confluenceTd">
+<p local-id=3D"8276989f67e9"><strong>Validity</strong></p></td>
+<td data-local-id=3D"d3faf4cdc9e8" class=3D"confluenceTd">
+<p local-id=3D"f41d1d0b1b64">V2 ignores inactive records, future-dated reco=
+rds, and expired records.</p></td>
+</tr>
+<tr data-local-id=3D"68aea235781c">
+<td data-local-id=3D"83af6733e2a7" class=3D"confluenceTd">
+<p local-id=3D"3f57e5fcdd94"><strong>Duplicates</strong></p></td>
+<td data-local-id=3D"00566478a964" class=3D"confluenceTd">
+<p local-id=3D"9190dda37835">The intended design is one valid model per par=
+tner, model type, and hierarchy level. If duplicates exist, V2 selects the =
+newest created matching record.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 local-id=3D"57ff1b0f76b0" id=3D"PartnerPricingV2:BusinessRequirements-R=
+untimeBehavior">Runtime Behavior</h2>
+<ol start=3D"1" local-id=3D"d4317420d0b0">
+<li local-id=3D"0c1eacbe7355">
+<p local-id=3D"2a7bbf5125e0">Read the quote's selected <code>Partner_Pricin=
+g_Model__c</code>.</p></li>
+<li local-id=3D"42bf5836523d">
+<p local-id=3D"22983a2f9d43">Read the quote's <code>Deal_Type__c</code>.</p=
+></li>
+<li local-id=3D"beaa21900c62">
+<p local-id=3D"054270fda3b1">Load valid candidate partner pricing model rec=
+ords for the participating partner accounts.</p></li>
+<li local-id=3D"056b0ecb7e30">
+<p local-id=3D"333345e3995e">For each quote line, use <code>Unit__c</code>,=
+ <code>Solution_Group__c</code>, and <code>Solution_Category__c</code> from=
+ <code>SalesTransactionItem</code> to select the best matching model record=
+.</p></li>
+<li local-id=3D"8bab27e68976">
+<p local-id=3D"94d53a0eb3b5">Choose either the standard percentage fields o=
+r the <code>Non_Orig_*</code> percentage fields based on deal type.</p></li=
+>
+<li local-id=3D"face5269cde3">
+<p local-id=3D"5f85f8c352f7">Calculate the partner-adjusted price and write=
+ the result back to the pricing context.</p></li>
+<li local-id=3D"13de294a1ce4">
+<p local-id=3D"ceddda0f400b">Continue pricing without error when a partner =
+has no applicable model for a line.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout two-equal" data-layout=3D"two-equal">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 local-id=3D"f1d5255c24ea" id=3D"PartnerPricingV2:BusinessRequirements-D=
+iscountModel">Discount Model</h3>
+<p local-id=3D"23f954560202">Only the billing partner's selected model cont=
+ributes a percentage. If no model is found, the line receives no partner di=
+scount.</p>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<div class=3D"panel" style=3D"background-color: #70A59A;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #70A59A;">
+<h3 local-id=3D"328ac3443a7e" id=3D"PartnerPricingV2:BusinessRequirements-G=
+uaranteedMarginModel">Guaranteed Margin Model</h3>
+<p local-id=3D"2cf27f718796">Each participating partner can contribute a po=
+sitive margin. Missing partner models contribute 0 percent.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=3D"columnLayout fixed-width" data-layout=3D"fixed-width">
+<div class=3D"cell normal" data-type=3D"normal">
+<div class=3D"innerCell">
+<h2 local-id=3D"dfad53d919ec" id=3D"PartnerPricingV2:BusinessRequirements-A=
+ctivation">Activation</h2>
+<div class=3D"panel" style=3D"background-color: #EBDBC1;border-width: 1px;"=
+>
+<div class=3D"panelContent" style=3D"background-color: #EBDBC1;">
+<p local-id=3D"d4ff12da6544"><strong>Required cutover step</strong></p>
+<p local-id=3D"852d7a6764db">In DP2, partner pricing is executed from the r=
+egional pricing prehook. The DP2 cutover is a one-line Apex change in that =
+chain.</p>
+</div>
+</div>
+<h3 local-id=3D"c7a3cd60f5cb" id=3D"PartnerPricingV2:BusinessRequirements-D=
+P2CutoverDetail">DP2 Cutover Detail</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"c=
+0020cdb112b" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"d6e1e8773b30">
+<th data-local-id=3D"f3b5a237ce81" class=3D"confluenceTh">
+<p local-id=3D"2691d741477c">Area</p></th>
+<th data-local-id=3D"3dc89ce066ba" class=3D"confluenceTh">
+<p local-id=3D"6825b0c980d8">DP2 Cutover Detail</p></th>
+<th data-local-id=3D"030a263c788d" class=3D"confluenceTh">
+<p local-id=3D"f59b59f4ef5f">Required Change</p></th>
+</tr>
+<tr data-local-id=3D"4db9968a5c61">
+<td data-local-id=3D"a249d76ee3d9" class=3D"confluenceTd">
+<p local-id=3D"78ebb95700d5">Regional pricing chain</p></td>
+<td data-local-id=3D"72b3ed797627" class=3D"confluenceTd">
+<p local-id=3D"c97b4fd3b22e">File: <code>src/classes/RegionalServicesPricin=
+gPrehook.cls</code></p>
+<p local-id=3D"d4c89a28f50c">Method: <code>executePartnerPricing(RevSignali=
+ng.TransactionRequest request)</code></p></td>
+<td data-local-id=3D"b654ecaab0dc" class=3D"confluenceTd">
+<p local-id=3D"3fb84f56d991">Replace <code>PartnerPricingPrehook partnerHoo=
+k =3D new PartnerPricingPrehook();</code> with <code>PartnerPricingPrehookV=
+2 partnerHook =3D new PartnerPricingPrehookV2();</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 local-id=3D"870b501fa2bd" id=3D"PartnerPricingV2:BusinessRequirements-D=
+P2CodeChange">DP2 Code Change</h3>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">// Befo=
+re
+PartnerPricingPrehook partnerHook =3D new PartnerPricingPrehook();
+
+// After
+PartnerPricingPrehookV2 partnerHook =3D new PartnerPricingPrehookV2();</pre=
+>
+</div>
+</div>
+<h2 local-id=3D"cb14ba3310a7" id=3D"PartnerPricingV2:BusinessRequirements-V=
+alidation">Validation</h2>
+<h3 local-id=3D"8b59b80e2bbf" id=3D"PartnerPricingV2:BusinessRequirements-R=
+eleaseChecklist">Release Checklist</h3>
+<ul class=3D"inline-task-list" data-inline-tasks-content-id=3D"2843213986">
+<li data-inline-task-id=3D"1"><span class=3D"placeholder-inline-tasks">Conf=
+irm all new fields exist on <code>Partner_Pricing_Model__c</code>.</span></=
+li>
+<li data-inline-task-id=3D"2"><span class=3D"placeholder-inline-tasks">Conf=
+irm the quote-pricing context definition contains the required <code>SalesT=
+ransactionItem</code> attributes.</span></li>
+<li data-inline-task-id=3D"3"><span class=3D"placeholder-inline-tasks">Conf=
+irm context mapping populates <code>Fortra_Product_Type__c</code>, <code>Un=
+it__c</code>, <code>Solution_Group__c</code>, and <code>Solution_Category__=
+c</code> correctly.</span></li>
+<li data-inline-task-id=3D"4"><span class=3D"placeholder-inline-tasks">Conf=
+irm <code>Deal_Type__c</code> is available on <code>SalesTransaction</code>=
+.</span></li>
+<li data-inline-task-id=3D"5"><span class=3D"placeholder-inline-tasks">Conf=
+irm partner pricing model records are populated with the intended hierarchy=
+ level and discount fields.</span></li>
+<li data-inline-task-id=3D"6"><span class=3D"placeholder-inline-tasks">Conf=
+irm the cutover plan routes runtime pricing to V2.</span></li>
+</ul>
+<h3 local-id=3D"b764f18be0dd" id=3D"PartnerPricingV2:BusinessRequirements-R=
+ecommendedUATScenarios">Recommended UAT Scenarios</h3>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"default" data-local-id=3D"4=
+e63649dde1f" class=3D"confluenceTable">
+<tbody>
+<tr data-local-id=3D"356fbe8a86a6">
+<th data-local-id=3D"d3a82c73e0be" class=3D"confluenceTh">
+<p local-id=3D"f97e7e54a6c6">Scenario</p></th>
+<th data-local-id=3D"59f1bb8868b3" class=3D"confluenceTh">
+<p local-id=3D"0f39f0dc9837">Expected Result</p></th>
+</tr>
+<tr data-local-id=3D"affd727ceea2">
+<td data-local-id=3D"a2b41777f69d" class=3D"confluenceTd">
+<p local-id=3D"ba2772242ed1">Discount model with a Solution Category match<=
+/p></td>
+<td data-local-id=3D"529fcb26ee95" class=3D"confluenceTd">
+<p local-id=3D"04326c828083">The category-level model is selected for the q=
+uote line.</p></td>
+</tr>
+<tr data-local-id=3D"40a3251ad78f">
+<td data-local-id=3D"f47f99907111" class=3D"confluenceTd">
+<p local-id=3D"0cc3dc90d77a">Discount model with no category match but a So=
+lution Group match</p></td>
+<td data-local-id=3D"d6db7f3b8725" class=3D"confluenceTd">
+<p local-id=3D"892927fc8bfa">The group-level model is selected.</p></td>
+</tr>
+<tr data-local-id=3D"1c70535c18d3">
+<td data-local-id=3D"1416b744b2cc" class=3D"confluenceTd">
+<p local-id=3D"6c691b3b5d3f">Discount model with no category or group match=
+ but a Unit match</p></td>
+<td data-local-id=3D"d097bfd028c6" class=3D"confluenceTd">
+<p local-id=3D"f3ea757112e8">The unit-level model is selected.</p></td>
+</tr>
+<tr data-local-id=3D"eff858263e6e">
+<td data-local-id=3D"a894a061fc3a" class=3D"confluenceTd">
+<p local-id=3D"254ec701f5b7">Discount model with only a blank fallback mode=
+l</p></td>
+<td data-local-id=3D"bb51f1f057f6" class=3D"confluenceTd">
+<p local-id=3D"4dac6b76d05c">The blank fallback model is selected.</p></td>
+</tr>
+<tr data-local-id=3D"199d3060874a">
+<td data-local-id=3D"0814b158d9d4" class=3D"confluenceTd">
+<p local-id=3D"ab395ee145df">Discount model with no applicable model</p></t=
+d>
+<td data-local-id=3D"1f60e00ab948" class=3D"confluenceTd">
+<p local-id=3D"65b5f5193e27">No partner discount is applied and pricing con=
+tinues.</p></td>
+</tr>
+<tr data-local-id=3D"1db84a6577c6">
+<td data-local-id=3D"87d2b40ce4f3" class=3D"confluenceTd">
+<p local-id=3D"16a2a6670efd">Fortra-originated deal</p></td>
+<td data-local-id=3D"95753bb901a6" class=3D"confluenceTd">
+<p local-id=3D"764b6766ccb1">V2 uses the applicable <code>Non_Orig_*</code>=
+ percentage field.</p></td>
+</tr>
+<tr data-local-id=3D"0fd720b315a0">
+<td data-local-id=3D"147f17c150ae" class=3D"confluenceTd">
+<p local-id=3D"c12e7d4b8623">Non-Fortra-originated deal</p></td>
+<td data-local-id=3D"e15b870d5c45" class=3D"confluenceTd">
+<p local-id=3D"e208f3b0a9c2">V2 uses the standard percentage field.</p></td=
+>
+</tr>
+<tr data-local-id=3D"a8cbf28484f3">
+<td data-local-id=3D"eb68b1942b55" class=3D"confluenceTd">
+<p local-id=3D"8d7b668de0fa">Guaranteed Margin with multiple partner roles<=
+/p></td>
+<td data-local-id=3D"4ae504c5879a" class=3D"confluenceTd">
+<p local-id=3D"6ebb72f1162d">Valid partner percentages are added together, =
+and missing partner models contribute 0 percent.</p></td>
+</tr>
+<tr data-local-id=3D"c18da4d49bac">
+<td data-local-id=3D"1a432d80bab1" class=3D"confluenceTd">
+<p local-id=3D"ecdfaa695350">Expired or future-dated model</p></td>
+<td data-local-id=3D"c509f6139c13" class=3D"confluenceTd">
+<p local-id=3D"e7a4df1db162">The model is ignored during candidate selectio=
+n.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div>
+</body>
+</html>
+------=_Part_8_723168242.1780419157431--
