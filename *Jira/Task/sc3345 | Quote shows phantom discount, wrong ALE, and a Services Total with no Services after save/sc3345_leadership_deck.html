@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SC-3345 — Leadership Briefing</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  :root{
+    --bg:#0a0f1f; --bg2:#111a35; --card:#16213f; --line:#243156;
+    --text:#f8fafc; --muted:#9fb0cc; --dim:#6b7da3;
+    --red:#ff4d6d; --amber:#ffb020; --green:#22d3a7; --blue:#48b9ff; --purple:#b18cff;
+    --shadow:0 18px 50px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:radial-gradient(1200px 700px at 80% -10%, #1b2banner 0, transparent 60%),
+               radial-gradient(900px 600px at 0% 110%, #16224a 0, transparent 55%), var(--bg);
+    color:var(--text); font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; overflow:hidden;
+  }
+  #root{height:100vh}
+  .deck{height:100vh;display:flex;flex-direction:column}
+  /* progress */
+  .prog{height:6px;background:var(--bg2)}
+  .prog > i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));transition:width .35s ease}
+  /* slide area */
+  .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:3.2vw 4vw;position:relative;min-height:0}
+  .slide{width:100%;max-width:1180px;animation:in .4s ease}
+  @keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .kicker{display:inline-flex;align-items:center;gap:.5rem;font-weight:800;letter-spacing:.14em;
+    text-transform:uppercase;font-size:.78rem;padding:.42rem .8rem;border-radius:999px;
+    background:var(--card);border:1px solid var(--line)}
+  .kicker .dot{width:.6rem;height:.6rem;border-radius:50%}
+  h1{font-size:clamp(2.2rem,5.4vw,4rem);line-height:1.04;font-weight:850;letter-spacing:-.02em;margin:.9rem 0}
+  h2{font-size:clamp(1.7rem,3.6vw,2.8rem);line-height:1.08;font-weight:840;letter-spacing:-.015em;margin:.7rem 0 1.3rem}
+  .sub{font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--muted);max-width:60ch}
+  .grid{display:grid;gap:1.1rem}
+  .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:linear-gradient(180deg,var(--card),#121c39);border:1px solid var(--line);
+    border-radius:18px;padding:1.4rem 1.5rem;box-shadow:var(--shadow)}
+  .card .lab{font-size:.82rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  .stat{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:880;letter-spacing:-.02em;margin:.25rem 0}
+  .note{color:var(--muted);font-size:1rem}
+  .accL{border-left:6px solid var(--line)}
+  ul.big{list-style:none;display:flex;flex-direction:column;gap:.95rem}
+  ul.big li{display:flex;gap:.85rem;font-size:clamp(1.05rem,1.9vw,1.45rem);align-items:flex-start}
+  ul.big li .mk{flex:0 0 auto;width:1.7rem;height:1.7rem;border-radius:8px;display:grid;place-items:center;
+    font-weight:900;font-size:.95rem;margin-top:.15rem}
+  .steps{display:flex;flex-direction:column;gap:1rem}
+  .step{display:flex;gap:1rem;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:1.05rem 1.2rem}
+  .step .num{flex:0 0 auto;width:2.5rem;height:2.5rem;border-radius:12px;display:grid;place-items:center;
+    font-weight:900;font-size:1.15rem;color:#06120e;background:var(--green)}
+  .step b{font-size:1.18rem}
+  .pill{display:inline-block;padding:.2rem .6rem;border-radius:999px;font-weight:800;font-size:.74rem;
+    letter-spacing:.06em;text-transform:uppercase}
+  .versions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:.4rem}
+  .ver{padding:.7rem 1rem;border-radius:12px;border:1px solid var(--line);background:var(--card);
+    font-weight:800;min-width:74px;text-align:center;position:relative}
+  .ver small{display:block;font-weight:700;font-size:.7rem;color:var(--dim);letter-spacing:.04em}
+  .ver.dead{opacity:.5}
+  .ver.active{border-color:var(--green);background:rgba(34,211,167,.12);box-shadow:0 0 0 2px rgba(34,211,167,.25)}
+  .ver.v7{border-color:var(--amber);background:rgba(255,176,32,.10)}
+  .rec{color:var(--green);font-weight:800}
+  .closing{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:820;line-height:1.25;letter-spacing:-.01em}
+  .hl-red{color:var(--red)} .hl-grn{color:var(--green)} .hl-amb{color:var(--amber)} .hl-blu{color:var(--blue)} .hl-pur{color:var(--purple)}
+  /* footer */
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 1.4rem;
+    background:var(--bg2);border-top:1px solid var(--line);font-size:.92rem;color:var(--muted)}
+  .foot .mid{display:flex;gap:.4rem;align-items:center}
+  .foot b{color:var(--text)}
+  .dots{display:flex;gap:.4rem}
+  .dots i{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.2s}
+  .dots i.on{background:var(--blue);transform:scale(1.25)}
+  .nav{display:flex;gap:.5rem}
+  .nav button{background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:10px;
+    width:40px;height:40px;font-size:1.1rem;cursor:pointer}
+  .nav button:hover{border-color:var(--blue)}
+  .hint{font-size:.8rem;color:var(--dim)}
+  /* notes drawer */
+  .notes{position:fixed;left:0;right:0;bottom:0;background:#070b18;border-top:2px solid var(--blue);
+    padding:1.1rem 1.6rem;max-height:42vh;overflow:auto;box-shadow:0 -16px 40px rgba(0,0,0,.5)}
+  .notes h4{color:var(--blue);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem}
+  .notes p{color:#dbe6fb;font-size:1.05rem;line-height:1.6;max-width:90ch}
+  .tag{position:absolute;top:3.2vw;right:4vw;font-size:.78rem;color:var(--dim);letter-spacing:.1em}
+  @media (max-width:760px){.g3,.g2{grid-template-columns:1fr}}
+  /* print: one slide per page */
+  @media print{
+    body{overflow:visible;background:#fff;color:#0a0f1f}
+    .deck{display:block;height:auto}
+    .prog,.foot,.nav,.dots,.notes,.hint,.tag{display:none!important}
+    .stage{display:block;padding:0}
+    .slide{page-break-after:always;max-width:100%;padding:6vw 5vw;animation:none}
+    .card,.step,.ver{box-shadow:none}
+    h1,h2,.stat,.closing{color:#0a0f1f}
+    .sub,.note,.foot{color:#33415c}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useCallback} = React;
+
+const C = {red:'var(--red)',amber:'var(--amber)',green:'var(--green)',blue:'var(--blue)',purple:'var(--purple)'};
+
+const SLIDES = [
+  /* 0 — TITLE */
+  {kicker:'Critical · Sales Cloud / Revenue Cloud (RLM) · UAT', accent:'red', layout:'title',
+   title:'Quote Pricing Defect', titleHi:'Findings & the Fix',
+   sub:'SC-3345 — incorrect discount, ALE, and totals on saved quotes. Root cause confirmed, fix scoped, two decisions needed.',
+   notes:"This is a quick walkthrough of a critical pricing issue Wren reported on quotes. Up front: we've found the exact root cause, it's a configuration problem in our pricing engine — not data entry, not code — and we have a clear, low-risk fix. I need two business decisions from this group to finish it."},
+
+  /* 1 — WHAT THE USER SAW (stats) */
+  {kicker:'What the user saw', accent:'red', layout:'stats',
+   title:'One saved quote. No discount applied. Multiple money fields wrong.',
+   stats:[
+     {lab:'Discount shown',val:'−11,271%',note:'should be 0% — nothing was discounted',color:'red'},
+     {lab:'ALE (annualized license)',val:'$46',note:'far below the real subscription value',color:'amber'},
+     {lab:'Total Services',val:'$500',note:'… on a quote with NO services',color:'amber'},
+   ],
+   notes:"Wren saved a normal quote, applied no discount, and it came back with a giant fake discount, an ALE that's clearly too low, and a $500 services total even though there are no services on the quote. Several customer-facing numbers were wrong at once. That's why it's Critical."},
+
+  /* 2 — WHY IT MATTERS */
+  {kicker:'Why it matters · scope', accent:'amber', layout:'bullets',
+   title:'Customer-facing numbers — caught early, in UAT',
+   bullets:[
+     {t:'These drive the quote PDF, approval thresholds, and ALE / ARR reporting',c:'amber',m:'!'},
+     {t:'Triggers on configuration-priced products (priced by config, not a flat list price)',c:'amber',m:'!'},
+     {t:'Found in UAT on a test quote — no confirmed customer impact yet',c:'green',m:'✓'},
+     {t:'Open action: confirm whether Production runs this same pricing version',c:'blue',m:'→'},
+   ],
+   notes:"Two things to calibrate risk. First, this isn't cosmetic — these fields drive the quote the customer sees, approvals, and our annualized-revenue reporting. Second, on scope: we caught it in UAT on a test quote, so no confirmed customer impact today. But it lives in the pricing engine config, so any quote using configuration-priced products would show these wrong numbers. The open item is confirming whether Production runs this same version — that's on my list."},
+
+  /* 3 — ROOT CAUSE */
+  {kicker:'Root cause — in plain English', accent:'blue', layout:'rootcause',
+   title:'A measuring-stick mismatch, plus a leftover never cleared',
+   notes:"Here's the whole thing. Our configuration-priced products price ABOVE their stored list price. The engine measures 'subtotal' and 'discount' against list, but the real total against the actual configured price. Those bases don't match, so the gap shows up as a massive negative discount, and ALE inherits the wrong base. The $500 services is separate and simpler: when a quote has no services, the engine never resets that field to zero, so an old leftover value sticks around. Both are config issues we control."},
+
+  /* 4 — KEY INSIGHT (versions) */
+  {kicker:'The key insight', accent:'purple', layout:'versions',
+   title:"We've iterated — but never at the layer where this breaks",
+   notes:"Most important slide. We have seven versions of this pricing procedure; only V6 is live. The newest, V7, was built but never turned on — and its total-and-discount logic is identical to the live version. So switching to V7 would NOT fix this; it'd carry the same bug forward. The earlier iterations were real improvements, but they targeted line-level pricing, not the header totals where this bug lives. The payoff: we've now pinpointed the exact three settings that are wrong."},
+
+  /* 5 — THE FIX */
+  {kicker:'The fix — configuration only, no code', accent:'green', layout:'steps',
+   title:'Build one corrected version (V8) — three targeted changes',
+   steps:[
+     {b:'Measure Subtotal on the same basis as the total',d:'Fixes the fake discount AND the ALE in one move.'},
+     {b:'Reset category totals to zero on every calculation',d:'Kills the phantom $500 Services leftover.'},
+     {b:'Treat a price uplift as $0 discount — not a negative discount',d:'A markup is not a discount.'},
+   ],
+   extra:'Plus: turn on the engine’s built-in “initialize values” safety setting · test on the repro quote · then activate.',
+   notes:"The fix is config, not code. We build one new corrected version from V7 so we keep the recent improvements, and make three targeted changes: measure subtotal on the same basis as the total — that single change fixes both the fake discount and the ALE; reset category totals to zero every calculation so leftovers can't linger; and stop treating an uplift as a negative discount. We also flip on a built-in safety setting as a backstop, re-test on Wren's exact quote, and confirm every field reads right before activating."},
+
+  /* 6 — DECISIONS */
+  {kicker:'Decisions we need from you', accent:'blue', layout:'decisions',
+   title:'Two calls about what the numbers should mean',
+   decisions:[
+     {q:'Subtotal & ALE basis',a:'Show the net / real price customers pay, or the stored list price?',rec:'Recommend: NET — it matches every other total on the quote.'},
+     {q:'“Discount” when price is above list',a:'When a configured price is above list, show the discount as $0, or surface the uplift separately?',rec:'Recommend: $0 — an uplift is not a discount.'},
+   ],
+   notes:"Two decisions are genuinely yours, because they're about what the numbers should MEAN. One: should Subtotal and ALE reflect the net price the customer actually pays, or the stored list price? My recommendation is net, because every other total is already net. Two: when a configured product prices above list, should the discount simply show zero — my recommendation — or do you want that uplift surfaced explicitly? Give me those two answers and the fix is fully specified."},
+
+  /* 7 — PLAN / RISK / ASK */
+  {kicker:'Plan · risk · the ask', accent:'green', layout:'plan',
+   title:'Low risk, reversible, and code-free',
+   cards:[
+     {lab:'Risk',val:'Low–Medium',note:'UAT first · instantly reversible to current version · no code, no data migration',color:'green'},
+     {lab:'Watch-outs',val:'2',note:'Safety setting is org-wide → broader regression · confirm Orders use the same engine',color:'amber'},
+     {lab:'Sequence',val:'5 steps',note:'Decisions → build V8 → test + regression → activate in UAT → confirm prod exposure',color:'blue'},
+   ],
+   ask:'Ask today: approve the 2 decisions + go-ahead to build and test. (Turning it on live is a separate, quick sign-off once proven.)',
+   notes:"Risk is low to medium. Everything in UAT first, fully reversible — we can revert to the current live version instantly — no code or data migration. Two watch-outs: the safety setting is org-wide, so we'll run a broader regression; and we'll confirm whether Orders use this same engine. The sequence: get the two decisions today, build the corrected version, test on Wren's quote plus regression, activate in UAT, confirm prod exposure. The ask today is approval on the two decisions and go-ahead to build and test."},
+
+  /* 8 — CLOSING */
+  {kicker:'Summary', accent:'green', layout:'closing',
+   title:'',
+   closing:'Customer-facing pricing numbers are wrong because of a configuration mismatch in our pricing engine. We know the exact three settings to change. The fix is reversible and code-free. I need two business decisions to finish it.',
+   notes:"To summarize: customer-facing pricing numbers are wrong because of a configuration mismatch, we know the exact three settings to change, the fix is reversible and code-free, and I need two business decisions to finish it. Questions?"},
+
+  /* 9 — APPENDIX */
+  {kicker:'Appendix — technical Q&A backup', accent:'purple', layout:'qa',
+   title:'If leadership presses on detail',
+   qa:[
+     {q:'What exactly is the mismatch?',a:'Subtotal aggregates the LIST base ($46) while the total and category totals aggregate NET ($5,231). The standard Discount % = 1 − Total/Subtotal = 1 − 5231/46 = −11,271%. ALE is a formula field = Subtotal, so it inherits the $46.'},
+     {q:'Why the $500 Services?',a:'Category totals are conditional aggregates with no reset, and the “Initialize values” setting is OFF. With no services lines, the field is never rewritten, so a prior $500 persists.'},
+     {q:'Why won’t activating V7 fix it?',a:'V7’s totals/discount logic is byte-identical to live V6. Its only real changes are line-level pricing. All 7 versions share the same three header-total defects.'},
+     {q:'How confident are we?',a:'Every wrong (and still-correct) value on the repro quote reconciles exactly to the live config’s arithmetic. Verified against live UAT metadata by a multi-agent review.'},
+   ],
+   notes:"Pull from these only if asked. The arithmetic reconciles exactly, which is why confidence is high."},
+];
+
+function Title(s){return (
+  <div>
+    <h1>{s.title}<br/><span style={{color:C[s.accent]}}>{s.titleHi}</span></h1>
+    <p className="sub" style={{marginTop:'1.2rem'}}>{s.sub}</p>
+    <div style={{marginTop:'2rem',display:'flex',gap:'1rem',flexWrap:'wrap'}}>
+      <span className="kicker"><i className="dot" style={{background:C.green}}></i>Root cause: confirmed</span>
+      <span className="kicker"><i className="dot" style={{background:C.green}}></i>Fix: config only · reversible</span>
+      <span className="kicker"><i className="dot" style={{background:C.amber}}></i>Needs: 2 decisions</span>
+    </div>
+  </div>
+);}
+
+function Stats(s){return (<div>
+  <h2>{s.title}</h2>
+  <div className="grid g3">
+    {s.stats.map((x,i)=>(
+      <div className="card accL" key={i} style={{borderLeftColor:C[x.color]}}>
+        <div className="lab">{x.lab}</div>
+        <div className="stat" style={{color:C[x.color]}}>{x.val}</div>
+        <div className="note">{x.note}</div>
+      </div>
+    ))}
+  </div>
+</div>);}
+
+function Bullets(s){return (<div>
+  <h2>{s.title}</h2>
+  <ul className="big">
+    {s.bullets.map((b,i)=>(
+      <li key={i}>
+        <span className="mk" style={{background:C[b.c],color:'#06120e'}}>{b.m}</span>
+        <span>{b.t}</span>
+      </li>
+    ))}
+  </ul>
+</div>);}
+
+function RootCause(s){return (<div>
+  <h2>{s.title}</h2>
+  <div className="grid g2">
+    <div className="card accL" style={{borderLeftColor:C.red}}>
+      <div className="lab">What the engine measures discount against</div>
+      <div className="stat hl-red">LIST &middot; $46</div>
+      <div className="note">Subtotal &amp; ALE are pinned to the stored list price.</div>
+    </div>
+    <div className="card accL" style={{borderLeftColor:C.blue}}>
+      <div className="lab">What the real total uses</div>
+      <div className="stat hl-blu">NET &middot; $5,231</div>
+      <div className="note">Configuration-priced products price above list.</div>
+    </div>
+  </div>
+  <div className="card" style={{marginTop:'1.1rem',borderLeft:'6px solid '+C.amber}}>
+    <b style={{fontSize:'1.15rem'}}>The gap between the two is reported as a giant fake discount</b>
+    <div className="note" style={{marginTop:'.3rem'}}>… and ALE inherits the wrong (list) base. Separately, the <b>$500 Services</b> is an old value the engine never reset to zero.</div>
+  </div>
+</div>);}
+
+function Versions(s){
+  const vers=[
+    {n:'V1',st:'inactive'},{n:'V2',st:'inactive',lab:'deprecated'},{n:'V3',st:'inactive'},
+    {n:'V4',st:'inactive'},{n:'V5',st:'inactive'},{n:'V6',st:'active',lab:'LIVE'},{n:'V7',st:'v7',lab:'built · off'}
+  ];
+  return (<div>
+    <h2>{s.title}</h2>
+    <div className="versions">
+      {vers.map((v,i)=>(
+        <div key={i} className={'ver '+(v.st==='active'?'active':v.st==='v7'?'v7':'dead')}>
+          {v.n}<small>{v.lab||'inactive'}</small>
+        </div>
+      ))}
+    </div>
+    <ul className="big" style={{marginTop:'1.6rem'}}>
+      <li><span className="mk" style={{background:C.green,color:'#06120e'}}>✓</span><span><b>V6 is the only live version.</b></span></li>
+      <li><span className="mk" style={{background:C.amber,color:'#06120e'}}>!</span><span><b className="hl-amb">V7 was built but never activated</b> — and its totals logic is identical to V6.</span></li>
+      <li><span className="mk" style={{background:C.red,color:'#06120e'}}>✕</span><span>So <b className="hl-red">activating V7 would not fix this.</b> Past iterations changed line-level pricing; the header math was never the target.</span></li>
+      <li><span className="mk" style={{background:C.blue,color:'#06120e'}}>→</span><span>We now know <b>exactly</b> the 3 settings to change.</span></li>
+    </ul>
+  </div>);
+}
+
+function Steps(s){return (<div>
+  <h2>{s.title}</h2>
+  <div className="steps">
+    {s.steps.map((x,i)=>(
+      <div className="step" key={i}>
+        <div className="num">{i+1}</div>
+        <div><b>{x.b}</b><div className="note" style={{marginTop:'.2rem'}}>{x.d}</div></div>
+      </div>
+    ))}
+  </div>
+  <div className="note" style={{marginTop:'1.1rem',fontSize:'1.05rem'}}>{s.extra}</div>
+</div>);}
+
+function Decisions(s){return (<div>
+  <h2>{s.title}</h2>
+  <div className="grid g2">
+    {s.decisions.map((d,i)=>(
+      <div className="card accL" key={i} style={{borderLeftColor:C.blue}}>
+        <span className="pill" style={{background:'rgba(72,185,255,.18)',color:C.blue}}>Decision {i+1}</span>
+        <div style={{fontSize:'1.3rem',fontWeight:800,margin:'.6rem 0 .4rem'}}>{d.q}</div>
+        <div className="note">{d.a}</div>
+        <div className="rec" style={{marginTop:'.8rem'}}>★ {d.rec}</div>
+      </div>
+    ))}
+  </div>
+</div>);}
+
+function Plan(s){return (<div>
+  <h2>{s.title}</h2>
+  <div className="grid g3">
+    {s.cards.map((x,i)=>(
+      <div className="card accL" key={i} style={{borderLeftColor:C[x.color]}}>
+        <div className="lab">{x.lab}</div>
+        <div className="stat" style={{color:C[x.color],fontSize:'2rem'}}>{x.val}</div>
+        <div className="note">{x.note}</div>
+      </div>
+    ))}
+  </div>
+  <div className="card" style={{marginTop:'1.1rem',borderLeft:'6px solid '+C.green}}>
+    <b style={{fontSize:'1.15rem'}}>{s.ask}</b>
+  </div>
+</div>);}
+
+function Closing(s){return (<div>
+  <div className="closing">{s.closing}</div>
+  <div style={{marginTop:'2rem',fontSize:'1.4rem',fontWeight:800,color:C.green}}>Questions?</div>
+</div>);}
+
+function QA(s){return (<div>
+  <h2>{s.title}</h2>
+  <div className="grid g2">
+    {s.qa.map((x,i)=>(
+      <div className="card" key={i}>
+        <div style={{fontWeight:800,color:C.blue,fontSize:'1.05rem',marginBottom:'.4rem'}}>{x.q}</div>
+        <div className="note" style={{fontSize:'.98rem'}}>{x.a}</div>
+      </div>
+    ))}
+  </div>
+</div>);}
+
+function render(s){
+  switch(s.layout){
+    case 'title':return Title(s);
+    case 'stats':return Stats(s);
+    case 'bullets':return Bullets(s);
+    case 'rootcause':return RootCause(s);
+    case 'versions':return Versions(s);
+    case 'steps':return Steps(s);
+    case 'decisions':return Decisions(s);
+    case 'plan':return Plan(s);
+    case 'closing':return Closing(s);
+    case 'qa':return QA(s);
+    default:return <h2>{s.title}</h2>;
+  }
+}
+
+function Deck(){
+  const [i,setI]=useState(0);
+  const [notes,setNotes]=useState(false);
+  const n=SLIDES.length;
+  const go=useCallback(d=>setI(p=>Math.max(0,Math.min(n-1,p+d))),[n]);
+  useEffect(()=>{
+    const h=e=>{
+      if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(1);}
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(-1);}
+      else if(e.key==='Home')setI(0); else if(e.key==='End')setI(n-1);
+      else if(e.key==='n'||e.key==='N')setNotes(v=>!v);
+      else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+    };
+    window.addEventListener('keydown',h);return()=>window.removeEventListener('keydown',h);
+  },[go,n]);
+  const s=SLIDES[i];
+  return (
+    <div className="deck">
+      <div className="prog"><i style={{width:((i+1)/n*100)+'%'}}></i></div>
+      <div className="stage">
+        <div className="tag">SC-3345 · CONFIDENTIAL</div>
+        <div className="slide" key={i}>
+          <span className="kicker"><i className="dot" style={{background:C[s.accent]}}></i>{s.kicker}</span>
+          <div style={{marginTop:'1rem'}}>{render(s)}</div>
+        </div>
+      </div>
+      <div className="foot">
+        <div><b>SC-3345</b> &nbsp;Quote Pricing Defect &mdash; Leadership Briefing</div>
+        <div className="dots">
+          {SLIDES.map((_,k)=><i key={k} className={k===i?'on':''} onClick={()=>setI(k)}></i>)}
+        </div>
+        <div style={{display:'flex',alignItems:'center',gap:'1rem'}}>
+          <span className="hint">← → move · N notes · F full</span>
+          <span><b>{i+1}</b> / {n}</span>
+          <span className="nav"><button onClick={()=>go(-1)}>‹</button><button onClick={()=>go(1)}>›</button></span>
+        </div>
+      </div>
+      {notes && (
+        <div className="notes">
+          <h4>Speaker notes — slide {i+1}</h4>
+          <p>{s.notes}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<Deck/>);
+</script>
+</body>
+</html>
