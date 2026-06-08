@@ -1,5 +1,36 @@
 # SC-3171 — Update Inquiry Close Reason value "Customer - Non-Sales Inquiry" → "Non-Sales Inquiry"
 
+## ✅ RESOLUTION (2026-06-05, FortraUAT) — close deadlock fixed
+The Inquiry close/reason interlock is resolved in **UAT** by three changes (the value rename was
+already done). End state on `Lead.Close_Reason__c`:
+1. **`Prevent_Close_Reason_When_Not_Closed` (OR→AND tautology)** — fixed earlier (Liam Jeong, 2026-06-04).
+2. **Field dependency removed** — `Close_Reason__c` made an **independent picklist** (controlling field
+   `Status` cleared in the UI by Liam Jeong, 2026-06-05). This was the actual cause of the *grayed-out*
+   Close Reason field: while dependent, all 7 values were `validFor` **Closed only** (`validFor='BAAA'`),
+   so on a record at Working the dropdown had zero selectable values. (A VR can't gray a field — only a
+   dependent picklist can.) Now values are always selectable.
+3. **`Prevent_Close_Reason_When_Not_Closed` keeps the `Working` exception** (final live formula):
+   ```
+   AND( ISCHANGED(Close_Reason__c), AND(TEXT(Status) != 'Closed', TEXT(Status) != 'Working') )
+   ```
+   Close Reason editable at **Working or Closed**; blocked at New/Pending/Assigned/Qualified.
+   `Require_Closed_Reason` (unchanged) still forces a reason when Status=Closed.
+
+   ⚠️ **Why the `Working` exception is mandatory (learned the hard way 2026-06-05).** I first tightened
+   this to `TEXT(Status) != 'Closed'` (deploy `0AfWC00000GCBo50AH`) thinking the Path sets Status=Closed
+   and the reason in one atomic save. **It does not.** The Lightning **Path Key-Fields inline save
+   commits the Close Reason while the record is still at `Working`** (status only flips to Closed on a
+   separate "Mark as Current Status" step). So the strict rule fired `ISCHANGED && Status!='Closed'`
+   on that Working save → reproduced the exact deadlock (Adam/Liam saw both VR toasts). **Reverted**
+   (deploy `0AfWC00000GCCiX0AX`) to restore the `Working` allowance. Takeaway: a VR governing a Path
+   key field must permit the **pre-close status the Path saves from (Working)**, not just `Closed`.
+
+**Only deployed to UAT.** dp2 / fulltemp / prod still carry the pre-fix dependency + VR state and need
+their own ack'd changes to propagate. Deploy artifacts + live-verify evidence in
+[`../../../Data/sc3171/`](../../../Data/sc3171/) (`deploy-vr-0605/`, `research/recheck-0605/`).
+Note: `deploy 0AfWC00000GCCiX0AX` returned a cosmetic CLI error (`Missing message
+metadata.transfer:Finalizing`) but **succeeded** — verified by re-pulling the live formula.
+
 ## Details
 - **Type:** Sub-task
 - **Status:** In Progress
