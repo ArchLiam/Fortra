@@ -7,6 +7,10 @@
  * Split Types:
  * - "Order Line Only": Order lines split, Hardware SHARED, Partitions CLONED
  * - "Order Line and Hardware": Order lines split, Hardware CLONED, Partitions CLONED
+ *
+ * Bulk-safe: any number of Orders passed in one invocable call are processed together with a
+ * fixed SOQL/DML budget (queries use IN :orderIds, each phase DMLs once across all orders).
+ * No SOQL or DML runs inside a loop.
  */
 public with sharing class PowerOrderSplittingService {
 
@@ -24,9 +28,25 @@ public with sharing class PowerOrderSplittingService {
     )
     public static List<SplitResult> splitPowerOrderLines(List<SplitRequest> requests) {
         List<SplitResult> results = new List<SplitResult>();
+        Map<Id, SplitResult> resultByOrderId = new Map<Id, SplitResult>();
+        Set<Id> orderIds = new Set<Id>();
+
         for (SplitRequest request : requests) {
-            results.add(processOrder(request.orderId));
+            SplitResult result = new SplitResult();
+            results.add(result);
+            if (request.orderId == null) {
+                result.success = false;
+                result.errorMessage = 'Order ID is required';
+                continue;
+            }
+            orderIds.add(request.orderId);
+            resultByOrderId.put(request.orderId, result);
         }
+
+        if (!orderIds.isEmpty()) {
+            processOrders(orderIds, resultByOrderId);
+        }
+
         return results;
     }
 
@@ -60,43 +80,43 @@ public with sharing class PowerOrderSplittingService {
         }
     }
 
+    /**
+     * @description Backward-compatible single-order entry point. Delegates to the bulk path so
+     * existing callers and tests keep working while the invocable stays bulk-safe.
+     */
     public static SplitResult processOrder(Id orderId) {
-        SplitResult result = new SplitResult();
+        SplitRequest request = new SplitRequest();
+        request.orderId = orderId;
+        return splitPowerOrderLines(new List<SplitRequest>{ request })[0];
+    }
 
-        if (orderId == null) {
-            result.success = false;
-            result.errorMessage = 'Order ID is required';
-            return result;
-        }
-
-        // Debug logging + capture ValidationResult so we can restore it after splitting.
-        // Order.ValidationResult is the platform's RC activation gate. ANY DML on OrderItems
-        // (insert, update, delete) flips it from null -> 'TransactionIncomplete', which then
-        // blocks Order activation with the misleading "prices aren't updated" error. We clear
-        // it back to null at the end of processing if it was null when we started.
-        Order ord = [SELECT Id, Status, OrderNumber, ValidationResult FROM Order WHERE Id = :orderId LIMIT 1];
-        String preValidationResult = ord.ValidationResult;
-        System.debug('PowerOrderSplittingService: Order ' + ord.OrderNumber + ' Status=' + ord.Status + ' preValidationResult=' + preValidationResult);
-
-        List<OrderItem> allItems = [SELECT Id, Product2.Name, Product2.Solution_Group__c, Quantity FROM OrderItem WHERE OrderId = :orderId];
-        System.debug('PowerOrderSplittingService: Total OrderItems found: ' + allItems.size());
-        for (OrderItem oi : allItems) {
-            System.debug('PowerOrderSplittingService: Item=' + oi.Product2.Name + ' SolGroup=' + oi.Product2.Solution_Group__c + ' Qty=' + oi.Quantity);
+    /**
+     * @description Bulk Power-line splitting across many Orders in one transaction. Preserves the
+     * per-order phase logic and index lockstep; only the SOQL/DML are batched across orders.
+     * Order.ValidationResult (the RC activation gate) is captured per order and restored to null
+     * for any order we actually split that was clean beforehand.
+     */
+    private static void processOrders(Set<Id> orderIds, Map<Id, SplitResult> resultByOrderId) {
+        // Capture pre-existing ValidationResult per order (RC activation gate). ANY OrderItem DML
+        // flips a null ValidationResult to 'TransactionIncomplete', blocking activation with the
+        // misleading "prices aren't updated" error; we restore null at the end for orders we split.
+        Map<Id, String> preValidationResultByOrder = new Map<Id, String>();
+        for (Order ord : [SELECT Id, OrderNumber, ValidationResult FROM Order WHERE Id IN :orderIds]) {
+            preValidationResultByOrder.put(ord.Id, ord.ValidationResult);
         }
 
         Savepoint sp = Database.setSavepoint();
 
         try {
-            // Query qualifying order items with ALL accessible fields
-            List<OrderItem> itemsToSplit = queryOrderItemsToSplit(orderId);
+            // Qualifying order items across all orders, with ALL accessible fields, deterministically ordered.
+            List<OrderItem> itemsToSplit = queryOrderItemsToSplit(orderIds);
             System.debug('PowerOrderSplittingService: Qualifying items to split: ' + itemsToSplit.size());
 
             if (itemsToSplit.isEmpty()) {
-                System.debug('PowerOrderSplittingService: No items qualify for splitting - returning success');
-                return result;
+                return;
             }
 
-            // Collect related record IDs
+            // Collect related record IDs across all orders
             Set<Id> partitionIds = new Set<Id>();
             Set<Id> hardwareIds = new Set<Id>();
             for (OrderItem oi : itemsToSplit) {
@@ -113,12 +133,11 @@ public with sharing class PowerOrderSplittingService {
 
             // Phase 1: Build clone OrderItems in memory (qty-1 clones per original).
             // The original OrderItem is KEPT and updated in place to count as the first slot.
-            // This avoids INSERT+DELETE which invalidates Order.CalculationStatus and blocks
-            // RC activation with "prices aren't updated".
             List<OrderItem> newItems = new List<OrderItem>();
             List<Hardware__c> newHardwareRecords = new List<Hardware__c>();
 
             for (OrderItem original : itemsToSplit) {
+                SplitResult result = resultByOrderId.get(original.OrderId);
                 Integer qty = Integer.valueOf(original.Quantity);
                 String splitType = original.Product2.Power_Split_Type__c;
                 if (String.isBlank(splitType)) {
@@ -126,7 +145,6 @@ public with sharing class PowerOrderSplittingService {
                 }
                 Boolean cloneHw = (splitType == SPLIT_TYPE_ORDER_LINE_AND_HARDWARE);
 
-                // Calculate distributed amounts (per-line allocation)
                 Decimal manualDiscountPer = original.Manual_Discount__c != null ?
                     original.Manual_Discount__c / qty : null;
                 Decimal displacedARRPer = original.Displaced_ARR__c != null ?
@@ -144,8 +162,6 @@ public with sharing class PowerOrderSplittingService {
                     splitItem.Is_Split_Line__c = true;
                     splitItem.Original_Order_Item__c = original.Id;
 
-                    // Hardware: Order Line Only -> clone keeps original Hardware__c (shared).
-                    // Order Line and Hardware -> clone gets cloned Hardware__c (assigned in Phase 3).
                     if (cloneHw && original.Hardware__c != null) {
                         splitItem.Hardware__c = null;
                     }
@@ -157,16 +173,20 @@ public with sharing class PowerOrderSplittingService {
                 if (cloneHw && origHw != null) {
                     for (Integer i = 1; i < qty; i++) {
                         newHardwareRecords.add(cloneHardwareRecord(origHw, i));
+                        if (result != null) {
+                            result.hardwareCloned++;
+                        }
                     }
                 }
 
-                result.linesCreated += (qty - 1);
+                if (result != null) {
+                    result.linesCreated += (qty - 1);
+                }
             }
 
-            // Phase 2: Insert cloned hardware
+            // Phase 2: Insert cloned hardware (all orders)
             if (!newHardwareRecords.isEmpty()) {
                 insert newHardwareRecords;
-                result.hardwareCloned = newHardwareRecords.size();
             }
 
             // Phase 3: Assign cloned hardware IDs to clone OrderItems (slots 1..qty-1)
@@ -189,14 +209,13 @@ public with sharing class PowerOrderSplittingService {
                 }
             }
 
-            // Phase 4: Insert clone OrderItems
+            // Phase 4: Insert clone OrderItems (all orders)
             if (!newItems.isEmpty()) {
                 insert newItems;
                 System.debug('PowerOrderSplittingService: Inserted ' + newItems.size() + ' new OrderItems');
             }
 
-            // Phase 5: Update originals in place (Quantity=1, distribute Manual_Discount/Displaced_ARR,
-            // mark Is_Split_Line=false, leave Original_Order_Item blank). Replaces the prior delete.
+            // Phase 5: Update originals in place (Quantity=1, distribute amounts, unmark split)
             List<OrderItem> originalsToUpdate = new List<OrderItem>();
             for (OrderItem original : itemsToSplit) {
                 Integer qty = Integer.valueOf(original.Quantity);
@@ -217,15 +236,13 @@ public with sharing class PowerOrderSplittingService {
             }
             if (!originalsToUpdate.isEmpty()) {
                 update originalsToUpdate;
-                System.debug('PowerOrderSplittingService: Updated ' + originalsToUpdate.size() + ' original OrderItems in place');
             }
 
             // Phase 6: Create cloned partitions (one per clone slot 1..qty-1).
-            // The original partition is kept and referenced by the original OrderItem, which we did
-            // not touch in Phase 5 for Partition_Record__c.
             List<Partition__c> newPartitions = new List<Partition__c>();
             hwIdx = 0;
             for (OrderItem original : itemsToSplit) {
+                SplitResult result = resultByOrderId.get(original.OrderId);
                 Integer qty = Integer.valueOf(original.Quantity);
                 String splitType = original.Product2.Power_Split_Type__c;
                 if (String.isBlank(splitType)) {
@@ -245,13 +262,15 @@ public with sharing class PowerOrderSplittingService {
                             hwIdForPartition = original.Hardware__c;
                         }
                         newPartitions.add(clonePartitionRecord(origPartition, hwIdForPartition, i));
+                        if (result != null) {
+                            result.partitionsCloned++;
+                        }
                     }
                 }
             }
 
             if (!newPartitions.isEmpty()) {
                 insert newPartitions;
-                result.partitionsCloned = newPartitions.size();
             }
 
             // Phase 7: Update clone OrderItems with their cloned partition references
@@ -277,34 +296,42 @@ public with sharing class PowerOrderSplittingService {
                 update itemsToUpdatePartition;
             }
 
-            // Phase 8: Restore Order.ValidationResult to null if it was null at the start.
-            // The platform sets it to 'TransactionIncomplete' as a side effect of any OrderItem
-            // DML, which then blocks activation. Only clear if (a) we actually split something
-            // and (b) the order was healthy before we touched it — never mask a pre-existing
-            // validation issue that was set by some other process.
-            if (result.linesCreated > 0 && preValidationResult == null) {
-                update new Order(Id = orderId, ValidationResult = null);
-                System.debug('PowerOrderSplittingService: Cleared Order.ValidationResult back to null');
+            // Phase 8: Restore Order.ValidationResult to null for each order we actually split
+            // that was clean beforehand (never mask a pre-existing validation issue).
+            List<Order> ordersToClear = new List<Order>();
+            for (Id orderId : orderIds) {
+                SplitResult result = resultByOrderId.get(orderId);
+                if (result != null && result.linesCreated > 0 && preValidationResultByOrder.get(orderId) == null) {
+                    ordersToClear.add(new Order(Id = orderId, ValidationResult = null));
+                }
+            }
+            if (!ordersToClear.isEmpty()) {
+                update ordersToClear;
+                System.debug('PowerOrderSplittingService: Cleared Order.ValidationResult on ' + ordersToClear.size() + ' order(s)');
             }
 
         } catch (Exception e) {
             Database.rollback(sp);
-            result.success = false;
-            result.errorMessage = e.getMessage() + ' at line ' + e.getLineNumber();
-            System.debug('PowerOrderSplittingService ERROR: ' + result.errorMessage);
-            result.linesCreated = 0;
-            result.hardwareCloned = 0;
-            result.partitionsCloned = 0;
+            String msg = e.getMessage() + ' at line ' + e.getLineNumber();
+            for (Id orderId : orderIds) {
+                SplitResult result = resultByOrderId.get(orderId);
+                if (result != null) {
+                    result.success = false;
+                    result.errorMessage = msg;
+                    result.linesCreated = 0;
+                    result.hardwareCloned = 0;
+                    result.partitionsCloned = 0;
+                }
+            }
+            System.debug('PowerOrderSplittingService ERROR: ' + msg);
         }
-
-        return result;
     }
 
     /**
-     * @description Query order items to split using dynamic SOQL with ALL accessible fields.
-     * This ensures that createFullClone() copies every attribute to the split items.
+     * @description Query order items to split (across many orders) using dynamic SOQL with ALL
+     * accessible fields, so createFullClone() copies every attribute to the split items.
      */
-    private static List<OrderItem> queryOrderItemsToSplit(Id orderId) {
+    private static List<OrderItem> queryOrderItemsToSplit(Set<Id> orderIds) {
         Map<String, Schema.SObjectField> fieldMap = getOrderItemFieldMap();
         List<String> queryFields = new List<String>();
         for (String fieldName : fieldMap.keySet()) {
@@ -322,16 +349,16 @@ public with sharing class PowerOrderSplittingService {
         String solGroup = SOLUTION_GROUP_POWER;
         String soql = 'SELECT ' + String.join(queryFields, ', ')
             + ' FROM OrderItem'
-            + ' WHERE OrderId = :orderId'
+            + ' WHERE OrderId IN :orderIds'
             + ' AND Product2.Solution_Group__c = :solGroup'
-            + ' AND Quantity > 1';
+            + ' AND Quantity > 1'
+            + ' ORDER BY OrderId, Id';
 
         return Database.query(soql);
     }
 
     /**
      * @description Create a full clone of an OrderItem, copying all createable fields.
-     * Uses Schema describe to ensure every writable field is carried over.
      */
     private static OrderItem createFullClone(OrderItem original) {
         OrderItem clone = new OrderItem();

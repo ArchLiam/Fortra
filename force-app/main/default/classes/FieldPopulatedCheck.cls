@@ -1,3 +1,10 @@
+// =====================================================================================
+// ⚠️ DEPRECATED (SC-3366, 2026-06-08) — SUPERSEDED BY OrderSubmissionValidator.
+// The order-submission validation was rewired (Fortra_Order_Submission_Check v13) to call the
+// bulk, constant-SOQL OrderSubmissionValidator instead of this per-field action. This class is
+// NO LONGER CALLED by the active flow; retained only for obsolete flow versions / history.
+// Do NOT use in new work.
+// =====================================================================================
 /**
  * FieldPopulatedCheck
  *
@@ -71,8 +78,8 @@ public with sharing class FieldPopulatedCheck {
     // ─────────────────────────────────────────────────────────────
 
     @InvocableMethod(
-        label='Check If Field Is Populated'
-        description='Checks whether a field has a value on any SObject. Returns isPopulated (Boolean) and fieldValue (Text).'
+        label='[DEPRECATED] Check If Field Is Populated'
+        description='[DEPRECATED — SC-3366] Superseded by OrderSubmissionValidator. Do not use.'
         category='Utilities'
     )
     public static List<ActionResult> checkFieldPopulated(List<ActionRequest> requests) {
