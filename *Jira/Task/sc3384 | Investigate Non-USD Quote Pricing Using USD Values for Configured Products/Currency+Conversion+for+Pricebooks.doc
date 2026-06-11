@@ -1,0 +1,547 @@
+Date: Thu, 11 Jun 2026 16:15:59 +0000 (UTC)
+Message-ID: <1237503194.55.1781194559718@fd08962b6a46>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_54_1135024942.1781194559718"
+
+------=_Part_54_1135024942.1781194559718
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Currency Conversion for Pricebooks</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font: var(--ds-font-body-small, Arial, Helvetica, FreeSans, sans-se=
+rif);
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        page-break-after: avoid;
+    }
+
+    pre {
+        font: var(--ds-font-code, Monaco, "Courier New", monospace);
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Currency Conversion for Pricebooks</h1>
+    <div class=3D"Section1">
+        <div class=3D"panel" style=3D"background-color: #EAE6FF;border-colo=
+r: #998DD9;border-width: 1px;">
+<div class=3D"panelContent" style=3D"background-color: #EAE6FF;">
+<p>Fortra Review Complete 10.10.2025</p>
+</div>
+</div>
+<p><span style=3D"background-color: rgb(254,222,200);">Bulk adding products=
+ with automation - will discuss more in a meeting</span></p>
+<p><span style=3D"background-color: rgb(254,222,200);">Updates to the table=
+.. how will that update the pricebooks? - Update product price flow?</span>=
+The currency table itself has been implemented as a custom metadata type. &=
+nbsp;This provide you a table (like a typically SF object) to simply update=
+ the values. &nbsp;I can demo this to you next week.</p>
+<h1 id=3D"CurrencyConversionforPricebooks-PricebookCurrencyConversions:">Pr=
+icebook Currency Conversions:</h1>
+<ul>
+<li>
+<p>Fortra Annual Review will be done by finance and will be utilized for th=
+is and ARR for compensation. With option of some quarterly to adjust.</p></=
+li>
+<li>
+<p>Using the rates below not current Exchange rates.</p></li>
+<li>
+<p>Round up to the nearest $5.</p></li>
+</ul>
+<div class=3D"table-wrap">
+<table data-table-width=3D"1800" data-layout=3D"center" data-local-id=3D"6b=
+da125e-42a8-4cb2-906f-a6c22c1ccb2f" class=3D"confluenceTable">
+<colgroup>
+<col style=3D"width: 369.0px;">
+<col style=3D"width: 1430.0px;">
+</colgroup>
+<tbody>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>Currency</strong></p></td>
+<td data-highlight-colour=3D"#fffae6" class=3D"confluenceTd">
+<p>Dec 2024 ARR Rate Calculation</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>USD:</strong> United States Dollar</p></td>
+<td class=3D"confluenceTd">
+<p>1</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>ARS:</strong> Argentine Peso</p></td>
+<td data-highlight-colour=3D"#ffffff" class=3D"confluenceTd">
+<p>666.6667</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>AUD:</strong> Australian Dollar</p></td>
+<td class=3D"confluenceTd">
+<p>1.5385</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>CAD:</strong> Canadian Dollar</p></td>
+<td class=3D"confluenceTd">
+<p>1.3889</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>CHF:</strong> Swiss Franc</p></td>
+<td class=3D"confluenceTd">
+<p>0.8850</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>EUR:</strong> Euro</p></td>
+<td class=3D"confluenceTd">
+<p>0.9346</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>GBP:</strong> British Pound Sterling</p></td>
+<td class=3D"confluenceTd">
+<p>0.7874</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>ILS: </strong>Israeli New Shekel</p></td>
+<td class=3D"confluenceTd">
+<p>3.6251</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>JPY:</strong> Japanese Yen</p></td>
+<td class=3D"confluenceTd">
+<p>149.2537</p></td>
+</tr>
+<tr>
+<td class=3D"confluenceTd">
+<p><strong>NZD:</strong> New Zealand Dollar</p></td>
+<td class=3D"confluenceTd">
+<p>1.6667</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p></p>
+<h1 id=3D"CurrencyConversionforPricebooks-SalesforceCurrencyConversionPlan:=
+">Salesforce Currency Conversion Plan:</h1>
+<p>Marc=E2=80=99s original write up link: <a class=3D"external-link" data-c=
+ard-appearance=3D"inline" href=3D"https://helpsystemsllc.sharepoint.com/:w:=
+/r/sites/PROJ-LoBOperationalReadinessTransformation/_layouts/15/Doc.aspx?so=
+urcedoc=3D%7B2781373B-1ACD-4C7A-AE86-422649B7FB38%7D&amp;file=3DFortra%20Re=
+vised%20Multi-Currency%20Approach%20Summary.docx&amp;fromShare=3Dtrue&amp;a=
+ction=3Ddefault&amp;mobileredirect=3Dtrue" rel=3D"nofollow">https://helpsys=
+temsllc.sharepoint.com/:w:/r/sites/PROJ-LoBOperationalReadinessTransformati=
+on/_layouts/15/Doc.aspx?sourcedoc=3D%7B2781373B-1ACD-4C7A-AE86-422649B7FB38=
+%7D&amp;file=3DFortra%20Revised%20Multi-Currency%20Approach%20Summary.docx&=
+amp;fromShare=3Dtrue&amp;action=3Ddefault&amp;mobileredirect=3Dtrue</a></p>
+<p>Salesforce Documentation: <a class=3D"external-link" href=3D"https://hel=
+psystemsllc.sharepoint.com/:b:/r/sites/DEPT-BusinessSystems2/Shared%20Docum=
+ents/BSI%20Hub/Currency%20Conversion%20in%20Salesforce%20AutoFX_User_Guide_=
+v1_3.pdf?csf=3D1&amp;web=3D1&amp;e=3Dy3FO0o" rel=3D"nofollow">Currency Conv=
+ersion in Salesforce AutoFX_User_Guide_v1_3.pdf</a></p>
+<p><strong>Multi-Currency Implementation Recommendation</strong>&nbsp;</p>
+<p><strong>Executive Summary</strong>&nbsp;</p>
+<p>Based on extensive research and analysis of Salesforce Revenue Cloud cap=
+abilities, we can confirm the workability and integrity of Fortra=E2=80=99s=
+ desired approach: Single Currency Per Transaction with Native Multi-Curren=
+cy Support. This approach aligns with Revenue Cloud's native architecture w=
+hile meeting Fortra's requirements for USD-based pricing formulas and multi=
+-currency profitability calculations.&nbsp;</p>
+<p>This solution allows Fortra to maintain USD as the basis for profitabili=
+ty calculations while presenting and transacting in customer currencies, wi=
+th automatic flow through the entire Revenue Cloud lifecycle from Quote to =
+Asset to Invoice.&nbsp;</p>
+<p><strong>Single Currency Per Transaction Approach</strong>&nbsp;</p>
+<p><strong>Core Architecture</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Enable Salesforce Multi-Currency with USD as the corporate currency.&nbs=
+p;</p></li>
+<li>
+<p>Store all transactions in the customer's preferred currency (EUR, GBP, C=
+AD, etc.) as additional price book entries for each product in relevant pri=
+ce books.&nbsp;</p></li>
+<li>
+<p>Use native Revenue Cloud currency fields that automatically flow through=
+ the quote-to-cash lifecycle.&nbsp;</p></li>
+<li>
+<p>During Quoting, prices in the selected Quote currency will be pulled fro=
+m the selected price book and used for product pricing and Quote and Quote =
+Line related calculations.&nbsp;</p></li>
+<li>
+<p>Leverage Salesforce's built-in currency conversion for reporting and pro=
+fitability analysis.&nbsp;</p></li>
+</ul>
+<p><strong>How USD-Based Pricing Formulas Work in This Approach</strong>&nb=
+sp;</p>
+<p>The USD-based pricing formulas that Fortra requires are applied at the p=
+roduct/pricebook level, NOT during the quoting process. This is a critical =
+distinction that ensures clean data flow through Revenue Cloud:&nbsp;</p>
+<p><strong>Product Setup Phase:</strong><code>&nbsp;</code></p>
+<ul>
+<li>
+<p>Define master price in USD <code>&nbsp;</code></p></li>
+<li>
+<p>Create pricebook entries for each currency using Fortra=E2=80=99s conver=
+sion formulas<code>&nbsp;</code></p></li>
+<li>
+<p>Example: USD $1,000 =E2=86=92 EUR =E2=82=AC920, GBP =C2=A3840, CAD $1,35=
+0<code>&nbsp;</code></p></li>
+<li>
+<p>These converted prices are stored as static values in pricebook entries&=
+nbsp;</p></li>
+</ul>
+<p><strong>Quoting Phase:</strong><code>&nbsp;</code></p>
+<ul>
+<li>
+<p>Quote inherits currency from Opportunity (e.g., EUR)<code>&nbsp;</code><=
+/p></li>
+<li>
+<p>Revenue Cloud automatically selects the EUR pricebook entries<code>&nbsp=
+;</code></p></li>
+<li>
+<p>The =E2=82=AC920 price is used directly - NO conversion happens at quote=
+ time<code>&nbsp;</code></p></li>
+<li>
+<p>This EUR value is stored in native fields and flows through the entire l=
+ifecycle&nbsp;</p></li>
+</ul>
+<ol start=3D"1">
+<li>
+<p><strong>Pricebook Entry Management</strong>&nbsp;</p></li>
+</ol>
+<p>On an ongoing basis, pricebook entries for additional currencies will be=
+ populated using one of two methods:&nbsp;</p>
+<ul>
+<li>
+<p><strong>Automated Method</strong>: The "Create New Products" flow will a=
+pply USD-based prices to formulas provided by Fortra for each currency to a=
+utomatically generate pricebook entries for each supported currency. The co=
+nversion from USD master price to local currency happens at this point, not=
+ during quoting&nbsp;<span style=3D"background-color: rgb(254,222,200);">(W=
+hat about bulk add products?)</span></p></li>
+<li>
+<p><strong>Manual Method</strong>: Pricebook entries can also be manually c=
+reated and updated for each currency&nbsp;</p></li>
+</ul>
+<ol start=3D"2">
+<li>
+<p><strong>Quote Creation Process</strong>&nbsp;</p></li>
+</ol>
+<ul>
+<li>
+<p>Quote inherits currency from the Opportunity (customer's preferred curre=
+ncy)&nbsp;</p></li>
+<li>
+<p>Revenue Cloud automatically selects pricebook entries matching the Quote=
+ currency&nbsp;</p></li>
+<li>
+<p>The currency-specific price from the pricebook entry is used directly (n=
+o conversion at quote time)&nbsp;</p></li>
+<li>
+<p>These values are stored in native Revenue Cloud fields and flow through =
+the entire lifecycle&nbsp;</p></li>
+<li>
+<p>Currency is locked after Quote creation to maintain pricing integrity&nb=
+sp;</p></li>
+<li>
+<p>If the Sales Representative desires to switch the currency for a Quote, =
+a new opportunity in the desired currency will need to be created, and a ne=
+w Quote for that Opportunity will need to be created.&nbsp; The new Quote w=
+ill inherit the new Opportunities currency.&nbsp;</p></li>
+</ul>
+<ol start=3D"3">
+<li>
+<p><strong>Lifecycle Flow</strong>&nbsp;</p></li>
+</ol>
+<p>The native Revenue Cloud fields will automatically flow through the enti=
+re lifecycle:&nbsp;</p>
+<ul>
+<li>
+<p>Quote (EUR) =E2=86=92 Order (EUR) =E2=86=92 Asset (EUR) =E2=86=92 Invoic=
+e (EUR)&nbsp;</p></li>
+<li>
+<p>All native currency fields maintain the customer's currency throughout&n=
+bsp;</p></li>
+<li>
+<p>No custom field cascade required&nbsp;</p></li>
+<li>
+<p>Asset-based ordering (amendments, renewals) works seamlessly&nbsp;</p></=
+li>
+<li>
+<p>Revenue recognition maintains transaction-time values&nbsp;</p></li>
+</ul>
+<ol start=3D"4">
+<li>
+<p><strong>Profitability Calculations</strong>&nbsp;</p></li>
+</ol>
+<ul>
+<li>
+<p>Revenue tracked in customer currency using native fields&nbsp;</p></li>
+<li>
+<p>Profitability calculations use CURRENCYRATE() function to convert custom=
+er currency total to USD corporate currency&nbsp;</p></li>
+<li>
+<p>Net profitability displayed in USD (via conversion)&nbsp;</p></li>
+<li>
+<p>Executive dashboards and reports show all values normalized to USD for c=
+omparison&nbsp;</p></li>
+</ul>
+<p><strong>Key Benefits of This Approach</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Works with Revenue Cloud's native architecture - no fighting the platfor=
+m&nbsp;</p></li>
+<li>
+<p>Values flow automatically through the entire quote-to-cash lifecycle&nbs=
+p;</p></li>
+<li>
+<p>No cascade of custom fields required across Quote, Order, Asset, and Inv=
+oice objects&nbsp;</p></li>
+<li>
+<p>Asset-based ordering remains fully functional for amendments and renewal=
+s&nbsp;</p></li>
+<li>
+<p>Historical exchange rates preserved at transaction time&nbsp;</p></li>
+<li>
+<p>Compliant with ASC 606 revenue recognition requirements&nbsp;</p></li>
+<li>
+<p>Simplified maintenance - no custom field synchronization needed&nbsp;</p=
+></li>
+<li>
+<p>Native reporting capabilities work without modification&nbsp;</p></li>
+<li>
+<p>Performance optimized - no formula field calculations at runtime&nbsp;</=
+p></li>
+</ul>
+<p><strong>Critical Considerations</strong>&nbsp;</p>
+<ul>
+<li>
+<p>Once multi-currency is enabled in Salesforce, it cannot be disabled&nbsp=
+;</p></li>
+<li>
+<p>Exchange rates must be maintained regularly in Salesforce setup&nbsp;</p=
+></li>
+<li>
+<p>All users will see currency ISO codes (EUR, GBP, etc.) before amounts<co=
+de>&nbsp;</code><br>
+&nbsp;</p></li>
+</ul>
+<p></p>
+<p></p>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_54_1135024942.1781194559718--
