@@ -1,0 +1,1034 @@
+{
+  "name": "Linking_2_Engagement_D365",
+  "description": "",
+  "version": "1.0",
+  "culture": "en-US",
+  "modifiedTime": "2024-12-10T19:14:47.3214299+00:00",
+  "ppdf:outputFileFormat": "Csv",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": false,
+    "queriesMetadata": {
+      "Merge_Engagement": {
+        "queryId": "f248083a-7d19-4bc4-85df-fb90b54f47c6",
+        "queryName": "Merge_Engagement",
+        "queryGroupId": "9181632f-039c-4cae-8cfc-0ded078330ad",
+        "loadEnabled": true
+      },
+      "Merge_Engagement_Task": {
+        "queryId": "c27f7669-b2c1-4f59-95e3-0a28a1f58045",
+        "queryName": "Merge_Engagement_Task",
+        "queryGroupId": "9181632f-039c-4cae-8cfc-0ded078330ad",
+        "loadEnabled": true
+      },
+      "Merge_CTR": {
+        "queryId": "65a9806d-e84d-4720-98ba-287642e83d85",
+        "queryName": "Merge_CTR",
+        "queryGroupId": "9181632f-039c-4cae-8cfc-0ded078330ad",
+        "loadEnabled": true
+      },
+      "ENG_D365": {
+        "queryId": "82a3d9ee-ab93-4fe0-b1e7-f456d08a5061",
+        "queryName": "ENG_D365",
+        "queryGroupId": "8b6411d9-9e9f-4d71-a73d-29b07fc63236",
+        "loadEnabled": true
+      },
+      "ENG_Append_Activity": {
+        "queryId": "f3a828ed-7ad4-4d35-98d3-10df5707d0f4",
+        "queryName": "ENG_Append_Activity",
+        "queryGroupId": "8b6411d9-9e9f-4d71-a73d-29b07fc63236",
+        "loadEnabled": true
+      },
+      "ENG_D365_Counts": {
+        "queryId": "5a55ba17-bbb7-4d07-bce8-733ccb19eee8",
+        "queryName": "ENG_D365_Counts",
+        "queryGroupId": "8b6411d9-9e9f-4d71-a73d-29b07fc63236",
+        "loadEnabled": true
+      },
+      "Source_Engagement": {
+        "queryId": "ee1b5b6d-e05c-4c3a-9a4b-a8e3778e2f9a",
+        "queryName": "Source_Engagement",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      },
+      "Source_Engagement_Task": {
+        "queryId": "5ef84e35-7ecf-4792-8e99-929b61757412",
+        "queryName": "Source_Engagement_Task",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      },
+      "Source_systemusers": {
+        "queryId": "77aeebc3-7cac-48f1-9d93-e10e61779ee4",
+        "queryName": "Source_systemusers",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      },
+      "Source_hs_productbrands": {
+        "queryId": "be89a94b-99c9-4ee9-9ffb-478ef59532bb",
+        "queryName": "Source_hs_productbrands",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      },
+      "Source_Cross_Team_Requests": {
+        "queryId": "28a25d9b-d649-4d85-b3c2-e676f87f13b7",
+        "queryName": "Source_Cross_Team_Requests",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      },
+      "CS_Brand_Account": {
+        "queryId": "fafd36ef-acbf-4f2f-976e-3cedf71d1cac",
+        "queryName": "CS_Brand_Account",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      },
+      "CS_Accounts": {
+        "queryId": "5fb118dd-939d-4a28-b3f8-71b88dbe933e",
+        "queryName": "CS_Accounts",
+        "queryGroupId": "0c8bade6-1662-42e5-8f4a-ccac898bc5e0",
+        "loadEnabled": true
+      }
+    },
+    "document": "section Section1;\r\nshared Merge_Engagement = let\r\n    Source = Table.NestedJoin(Source_Engagement, {\"hs_csmid\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"hs_csmid\"}),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Removed columns\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_systemusers\", {{\"fullname\", \"CSM\"}}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns\", {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Merged queries\", {\"hs_productbrand\"}),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Removed columns 1\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Expanded Source_hs_productbrands\", {{\"hs_productbrandname\", \"Product Brand\"}})\r\nin\r\n    #\"Renamed columns 1\";\r\nshared Merge_Engagement_Task = let\r\n    Source = Table.NestedJoin(Source_Engagement_Task, {\"hs_engagementid\"}, Merge_Engagement, {\"hs_engagementid\"}, \"Source_Engagement\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_Engagement\" = Table.ExpandTableColumn(Source, \"Source_Engagement\", {\"hs_account\", \"hs_brandaccount\", \"hs_completedpoints\",  \"hs_engagementtype_display\",  \"Product Brand\", \"CSM\"}, {\"hs_account\", \"hs_brandaccount\", \"hs_completedpoints\", \"hs_engagementtype_display\",  \"Product Brand\", \"CSM\"}),\r\n    #\"Replaced value\" = Table.ReplaceValue(#\"Expanded Source_Engagement\", \"\", null, Replacer.ReplaceValue, {\"hs_brandaccount\"}),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Replaced value\", each ([hs_account] <> null) and ([hs_brandaccount] <> null and [hs_brandaccount] <> \"\")),\r\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Filtered rows 1\", {\"hs_brandaccount\"}, CS_Brand_Account, {\"hs_brandaccountid\"}, \"CS_Brand_Account\", JoinKind.LeftOuter),\r\n    #\"Expanded CS_Brand_Account\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"CS_Brand_Account\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Expanded CS_Brand_Account\", \"AccId_Brand_Lookup\", each Text.Combine({[hs_account], [Product Brand]}, \"\"), type text),\r\n    #\"Inserted merged column 1\" = Table.AddColumn(#\"Inserted merged column\", \"BrandAccId_Prod_Lookup\", each Text.Combine({[hs_brandaccount], [Product Brand]}, \"\"), type text),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Inserted merged column 1\", {\"ownerid\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_systemusers\", {{\"fullname\", \"Activity Owner\"}, {\"hs_engagementtype_display\", \"Activity Category\"}}),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Renamed columns\", {\"ownerid\"}),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns 1\", {{\"hs_actualenddate\", type date}, {\"hs_actualstartdate\", type date}}),\r\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Changed column type\", {{\"hs_actualenddate\", \"Activity Completed\"}, {\"hs_actualstartdate\", \"Activity Date\"}, {\"hs_engagementtaskid\", \"Activity Id\"}})\r\nin\r\n    #\"Renamed columns 2\";\r\nshared Merge_CTR = let\r\n    Source = Table.NestedJoin(Source_Cross_Team_Requests, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"hs_productbrand\"}),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Removed columns\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"Product Brand\"}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Expanded Source_hs_productbrands\", each ([Product Brand] <> null)),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Filtered rows\", \"AccId_Brand_Lookup_temp\", each Text.Combine({[regardingobjectid], [Product Brand]}, \"\"), type text),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Inserted merged column\", {\"AccId_Brand_Lookup_temp\"}, CS_Brand_Account, {\"BrandAccId_Prod_Lookup\"}, \"CS_Brand_Account\", JoinKind.LeftOuter),\r\n    #\"Expanded CS_Brand_Account 3\" = Table.ExpandTableColumn(#\"Merged queries\", \"CS_Brand_Account\", {\"hs_account\"}, {\"hs_account\"}),\r\n    #\"Inserted merged column 1\" = Table.AddColumn(#\"Expanded CS_Brand_Account 3\", \"AccId_Brand_Lookup_temp2\", each Text.Combine({[hs_account], [Product Brand]}, \"\"), type text),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Inserted merged column 1\", \"AccId_Brand_Lookup\", each if [hs_account] = null then [AccId_Brand_Lookup_temp] else [AccId_Brand_Lookup_temp2]),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"AccId_Brand_Lookup\", type text}}),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Changed column type\", {\"AccId_Brand_Lookup_temp2\", \"AccId_Brand_Lookup_temp\"}),\r\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Removed columns 1\", {\"AccId_Brand_Lookup\"}, CS_Brand_Account, {\"AccId_Prod_Lookup\"}, \"CS_Brand_Account\", JoinKind.LeftOuter),\r\n    #\"Expanded CS_Brand_Account\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"CS_Brand_Account\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Expanded CS_Brand_Account\", each ([Account Number] <> null)),\r\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Filtered rows 1\", {\"regardingobjectid\"}),\r\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Removed columns 2\", {\"owninguser\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Removed columns 3\" = Table.RemoveColumns(#\"Merged queries 2\", {\"owninguser\"}),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Removed columns 3\", \"Source_systemusers\", {\"fullname\"}, {\"Activity Owner\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_systemusers\", {{\"createdon\", \"Activity Date\"}})\r\nin\r\n    #\"Renamed columns\";\r\nshared ENG_D365 = let\r\n    Source = Merge_Engagement_Task\r\nin\r\n    Source;\r\nshared ENG_Append_Activity = let\r\n    Source = Table.Combine({Merge_Engagement_Task, Merge_CTR}),\r\n    #\"Choose columns\" = Table.SelectColumns(Source, {\"Activity Completed\", \"Activity Date\", \"Activity Id\", \"Activity Description\", \"Activity Status\", \"Activity Subject\", \"Activity Type\", \"Activity Link\", \"Activity Category\", \"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Activity Owner\", \"Activity Started\", \"Activity Priority\"})\r\nin\r\n    #\"Choose columns\";\r\nshared ENG_D365_Counts = let\r\n    Source = Merge_Engagement_Task,\r\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(Source, \"Start Month\", each Date.ToText([Activity Date], \"yyyy-MM\")), {{\"Start Month\", type text}}),\r\n    #\"Grouped rows\" = Table.Group(#\"Added custom\", {\"BrandAccId_Prod_Lookup\", \"Activity Category\", \"Activity Status\", \"Start Month\"}, {{\"Count\", each List.Count(List.Distinct([Activity Id])), Int64.Type}, {\"Points\", each List.Sum([hs_completedpoints]), type nullable number}})\r\nin\r\n    #\"Grouped rows\";\r\nshared Source_Engagement = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Engagement\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Source_Engagement_Task = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Engagement_Task\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Source_systemusers = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_systemusers\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Source_hs_productbrands = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_hs_productbrands\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Source_Cross_Team_Requests = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Cross_Team_Requests\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared CS_Brand_Account = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"cf70f665-a62b-4f79-a644-67b08e899da2\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"CS_Brand_Account\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared CS_Accounts = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"cf70f665-a62b-4f79-a644-67b08e899da2\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"CS_Accounts\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\n",
+    "connectionOverrides": [
+      {
+        "path": "PowerPlatformDataflows",
+        "kind": "PowerPlatformDataflows",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"PowerPlatformDataflows\",\"path\":\"PowerPlatformDataflows\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[{\"id\":\"0c8bade6-1662-42e5-8f4a-ccac898bc5e0\",\"name\":\"Source Data\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"9181632f-039c-4cae-8cfc-0ded078330ad\",\"name\":\"Transformed Data\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"8b6411d9-9e9f-4d71-a73d-29b07fc63236\",\"name\":\"Report Tables\",\"description\":\"\",\"parentId\":null,\"order\":1}]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "Merge_Engagement",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Merge_Engagement.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_completedpoints",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_engagementid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_engagementtype_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_name",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Merge_Engagement_Task",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Merge_Engagement_Task.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_engagementid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_completedpoints",
+          "dataType": "int64"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Merge_CTR",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Merge_CTR.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Started",
+          "dataType": "date"
+        },
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Priority",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Uncharged Budget",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_teammember_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_timetrackinghourly",
+          "dataType": "double"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "ENG_D365",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "ENG_D365.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_engagementid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_completedpoints",
+          "dataType": "int64"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "ENG_Append_Activity",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "ENG_Append_Activity.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Started",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Priority",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "ENG_D365_Counts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "ENG_D365_Counts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Start Month",
+          "dataType": "string"
+        },
+        {
+          "name": "Count",
+          "dataType": "int64"
+        },
+        {
+          "name": "Points",
+          "dataType": "double"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Engagement",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Engagement.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_completedpoints",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_csmid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_engagementid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_engagementtype_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_name",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Engagement_Task",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Engagement_Task.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_actualenddate",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "hs_actualstartdate",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "hs_engagementid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_engagementtaskid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "ownerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_systemusers",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_systemusers.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "fullname",
+          "dataType": "string"
+        },
+        {
+          "name": "systemuserid",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_hs_productbrands",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_hs_productbrands.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_productbrandid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrandname",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Cross_Team_Requests",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Cross_Team_Requests.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Started",
+          "dataType": "date"
+        },
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "createdon",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Priority",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Uncharged Budget",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_teammember_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_timetrackinghourly",
+          "dataType": "double"
+        },
+        {
+          "name": "owninguser",
+          "dataType": "string"
+        },
+        {
+          "name": "regardingobjectid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Brand_Account",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Brand_Account.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_arratrisk_state",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Last Updated",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Brand Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Updated By",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "ReferenceID",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedon",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Accounts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "#Brand Sub Accounts",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedon",
+          "dataType": "dateTime"
+        }
+      ]
+    }
+  ]
+}

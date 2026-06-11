@@ -1,0 +1,117 @@
+
+===== SHEET: Partner Roles (17r x 5c) =====
+	Partner Type	Role in Ecosystem	Primary Sales Behavior	Salesforce Account Structure Implication
+	Distributor Value-Added Distributor (VAD)	Sells to resellers (not end customers), manages pricing and inventory	Aggregates demand, registers deals, manages fulfillment, supports resellers	Parent account with child reseller accounts (multi-tier hierarchy)
+	Reseller Value-Added Reseller (VAR)	Sells directly to end customers	Registers and owns deals, quotes, manages opportunities, closes sales	Partner account with full opportunity, quote, and lead access; Ability to link to Distributor account
+	Managed Service Provider (MSP) Managed Security Service Provider (MSSP)	Offers ongoing services (monitoring, support, renewals) around your product	Manages renewals, upsells, handles service delivery, may co-sell with you	Partner account with linked customer records, subscriptions, and service data
+	Systems Integrator (SI) Global System Integrator (GSI)	Implements, configures, or customizes your product as part of a larger project	Co-sells, submits referrals, manages delivery projects, supports technical validation	Partner account with implementation/project tracking, referral submission
+	Referral Partner	Identifies potential customers and refers them to you	Submits leads only, receives commission on closed deals	Simplified partner account with lead/referral submission and payout tracking
+	Technology Alliance	Strategic partner offering co-marketing, integrations, and co-selling (e.g., AWS)	Co-develops or co-markets solutions, influences deals, participates in joint campaigns	Strategic partner account with joint solution, influence tracking, campaign linkage
+	Purchasing Agent	Represents customer during the procurement process but does not influence product use	Places orders or manages contract execution on behalf of the customer	Linked to customer account; limited opportunity access; tracks PO, contract status
+	Use Case to Support for Certain Key Regional Distributors (International)
+	Partner Type	Role in Ecosystem	Primary Sales Behavior	Salesforce Account Structure Implication
+	Distributor (International)	Sells to resellers, not end users	Registers deals, manages customer opportunities, manages pricing and inventory, reseller support	Partner account with full opportunity, quote, and lead access; Parent account with child reseller accounts (multi-tier hierarchy)
+	Reseller (Indirect only)	Sells directly to end customers	works through Distributors only to manage opportunities, receive quotes	Partner account linked to Distributor account
+	Note: Partners may be multiple Partner Types
+
+===== SHEET: Partner Requirements (16r x 10c) =====
+	Requirement	Description	Distributor	Reseller	MSP	Systems Integrator	Referral Partner	Technology Alliance	Purchasing Agent
+	Partner Account & Contact Setup	Creating and managing partner company records (accounts) and their key contacts in Salesforce to enable relationship tracking and communications.	Required	Required	Required	Required	Required	Required	Required
+	Partner Portal Access	Providing partners with a secure login to access a dedicated portal where they can view deals, submit leads, register deals, and access resources.	Full	Full	Full	Full	Limited	Limited	No Access
+	Deal Registration	A process where partners submit or register potential deals/opportunities to protect their sales efforts, avoid channel conflicts, and secure exclusive selling rights.	Required	Required	Optional	For Co-sell	Not Applicable	Not Applicable	Not Applicable
+	Opportunity Management	Partners' ability to create, update, and track sales opportunities within Salesforce, including stages, forecasting, and collaboration.	Need Options to View/Support Only or Allow Full Access	Full Access	Service-Only	View/Influence Only	Not Applicable	Influenced Only	Not Applicable
+	Lead Submission Form	A standardized form or interface for partners to submit new sales leads directly into Salesforce for qualification and follow-up.	Not Applicable	Not Applicable	Not Applicable	Not Applicable	Required	Not Applicable	Not Applicable
+	Lead Distribution / Routing	Manual assignment of incoming leads to the appropriate sales reps, partners, or teams based on predefined rules (e.g., territory, partner specialization).	Need Option	Need Option	Need Option	Not Applicable	Not Applicable	Not Applicable	Not Applicable
+	Lead/Opportunity Attribution	Capturing and assigning credit to the correct partner or channel source responsible for generating or influencing a lead or opportunity, important for commissions and reporting.	Required	Required	Required	Required	Required	Required	Not Applicable
+	Pricing Access	Allowing partners to view and/or apply pricing information, including special discounts, partner-specific pricing tiers, or promotions within Salesforce.	Required	Need Option (Direct and Indirect Resellers)	Yes	Limited	Not Applicable	Optional	Not Applicable
+	Multi-Tier Partner Mapping	Structuring and managing hierarchical relationships between partners (e.g., distributor > reseller > end customer) to track sales, credits, and visibility across tiers.	Required	Need Option (Direct and Indirect Resellers)	Not Applicable	Not Applicable	Not Applicable	Not Applicable	Not Applicable
+	Support Case Management	Enabling partners to submit, track, and manage customer support cases or issues within Salesforce, often integrated with customer service teams.	Based on Contract/Partner Agreement	Based on Contract/Partner Agreement	Required	Not Applicable	Not Applicable	Not Applicable	Not Applicable
+	Certification Tracking	Monitoring partners' completion of required training, certifications, or qualifications necessary for sales, implementation, or support activities.	Required	Required	Required	Based on Contract/Partner Agreement	Not Applicable	Based on Contract/Partner Agreement	Not Applicable
+	Attribution/Influencer Tagging in Deals	Tagging partners as influencers or contributors on deals/opportunities to properly acknowledge their role even if they are not the primary owner.	Not Applicable	Not Applicable	Not Applicable	Required	Required	Required	Not Applicable
+	Training / Sales Enablement Access	Providing partners with access to training materials, product information, sales tools, and enablement resources to improve their selling capabilities.	Required	Required	Required	Required	Limited	Required	Not Applicable
+	Commission Payments from Fortra	The system or process through which Fortra tracks, calculates, and disburses commission payments to partners based on their sales performance.	Not Applicable	Not Applicable	Not Applicable	If Referral Involved	Required	Not Applicable	Not Applicable
+
+===== SHEET: Fields to Add (59r x 8c) =====
+ACE Conector - Wren has a list of fields
+Opportunity
+Field Name	Type	Additional	Visible in Partner Portal? (as Read-Only)	Category
+Deal Registration ID	Text	read-only. Record ID Number for internal and external use to track registered deals via the partner portal. Begin ID number with "D"	Yes	Deal Registration
+Partner Portal Deal Registration?	Picklist	Yes/No	Yes
+Partner Deal Status	Picklist	Registered, Approved, Rejected, Closed	Yes
+Deal Registration - Date Approved	Date	Read-only. Maps to date of when field, 'Partner Deal Status' is changed to 'Approved'	Yes
+Deal Registration - Expiration Date	Date	Default date to 120 days after Date Deal Registration was Approved	Yes
+Number of Deal Registration Extensions	Number	Default field value as '0.' Read-only. A quantity of '1' is added to the field for every time the field 'Deal Registration - Expiration Date' is changed by Fortra.	Yes
+Deal Registration Notes	Text	completed by Partner within the partner portal deal registration form. Read-only for Fortra sales team.	No
+MDF Request ID	Picklist	Partner Portal - can see list of MDF Approved requests assocated to their SFDC Account. (SFDC - needs to be editable by sales and marketing teams)
+Partner Marketing Involvement	Picklist	Yes/No	Yes	Partner Marketing
+Preferred Partner(s) of Customer	Lookup: Partner Accounts	Multi-Select	No	Partner Involvement/ Contribution
+Deal Origin	Picklist	Channel Originated; Fortra Originated	Yes
+Partner Involvement Start Date	Date	Tracks when partner became involved in the deal.  For deals registered by the partner, default start date to date deal registration is approved	No
+Primary Partner?	Picklist	Yes/No	No
+Partner Influencers	Lookup: Partner Accounts. Restrict to Alliance and System Integrator Partner Types	Multi-Select	No
+Partner Contribution	Picklist	Partner Adding Value; Partner Pass Through	No
+Partner Contribution Notes	Text Box		No
+Account (Partner)
+Field Name	Type	Additional
+Job Title (Existing Field)	Drop Down	Add more drop downs to support partner roles - Solutions Engineer - Implementation Consultant - Vendor Management - Channel Sales Director - Business Development Manager - Strategic Alliances Manager - Partner Marketing Manager - Territory Sales Manager - Technical Support - Product Manager - Account Manager
+Contacts
+Field Name	Type	Additional
+Required to Complete Partner Certifications	Drop Down	Yes/No
+Number of Partner Certifications Completed:	Number text box
+Fields to Support AWS - Accounts, Opportunity and Contacts
+Field Name	Type	Additional	Where it lives
+			Customer Account	Partner Account	Logo Account (Parent Account)	Opportunity	Contact
+AWS Account Numbers	multi-valued text field	Will always be a 12 numberical digit number. Can be multiple account numbers  (Note of future state - this will apply to other alliance partnerships like Microsoft Azure)	Yes	Yes	Yes (roll up)
+AWS Account Numbers	Picklist tied to numbers within Partner or Customer Account (Logo account), ability to add new in Opportunity and populate on parent account	ex: selling into Bowing - has 6 different divisions that have multiple AWS account numbers.				Yes (search from Accounts)
+Preffered Selling Verticals	Drop down			Yes
+Does Customer use AWS Marketplace?	drop down yes/no	question to ask Customer	Yes - add to master excel
+Tracking Environment (see screenshot)		Public cloud, SaaS, Data center	Yes			Yes (roll up from Account)
+AWS MP Type (marketplace)	Drop down or check box	None; Direct, Channel, Disti		Yes
+Is AWS Partner?				Yes
+Is DSOR Partner?				Yes
+Is CPPO Partner?				Yes
+Partner Contact Type	Drop down	Partner Alliance Contact Type Partner Marketing Contact Type Partner AWS Lead Contact Type Partner Sales Lead Contact Type Partner SE Lead Contact Type Partner Account Exec Contact Type Partner SE Contact Type					Yes (for contacts associated with a Partner account)
+All of the fields from the current CRM D365 integration		AWS Contact information should map to ACE Opportunity Account Team with relevant role name, othert fields are opportunity details - can use titles from row above this one in SFDC				Yes
+Additional ACE CRM fields: AWS Marketplace Engagement Score	Empty, Low, Medium, High - maps from ACE - not editable by Fortra	Part of the ACE CRM API guide				Yes
+Additional ACE CRM fields: AWS Stage	Not editable by Fortra, text field representing AWS field value	From ACE CRM API Guide
+
+===== SHEET: Opp-Fields to Add (18r x 6c) =====
+Field Name	Field API	Type	Yes - Quote	Fortra Notes	Fortra Notes
+			Should be on Quote?		Category
+Deal Registration ID	NEW	Text (read-only)	False	Read-Only within Opportunity; Maps from Partner Portal	Deal Registration
+Partner Deal Status	NEW	Picklist	False	Registered, Approved, Rejected, Closed	Deal Registration
+Deal Registration - Date Approved	NEW	Date	False		Deal Registration
+Deal Registration - Expiration Date	NEW	Date	False	default to 120 days after Deal Registration - Approved date	Deal Registration
+Partner Portal Deal Registration	NEW	Picklist	False	Yes, No	Deal Registration
+Number of Deal Registration Extensions	NEW	Text	False	Default field value as '0.' Read-only. A quantity of '1' is added to the field for every time the field 'Deal Registration - Expiration Date' is changed by Fortra.	Deal Registration
+MDF Request ID	NEW	Lookup	False	Associated to MDF request form submitted within partner portal. MDF request IDs are associated to partner's account	Partner Marketing
+Partner Marketing Involvement?	NEW	Picklist	False	Yes, No	Partner Marketing
+Preferred Partner(s) of Customer	NEW	Lookup	False	Lookup Partner accounts. Multi-select
+Customer AWS Account Number(s)	NEW	Lookup	TBD	Lookup tied to AWS account numbers tracked within Customer Account (or Logo account), ability to add new in Opportunity and populate on parent account	AWS
+Does Customer Use AWS Marketplace?	NEW	Picklist (read-only)	False	Yes, No (read-only within opportunity). Field maps from Customer's Account	AWS
+AWS Marketplace Engagement Score	NEW	Picklist (read-only)	False	This is part of the ACE CRM API guide. Empty, Low, Medium, High - maps from ACE - not editable by Fortra	AWS
+AWS Sales Stage	NEW	text (read-only)	False	(Additional ACE CRM field) This is from the ACE CRM API guide. Not editable by Fortra, text field representing AWS field value	AWS
+Sales Activities Completed by Partner	NEW	Multiselect	False	This field is completed by the Partner upon registering a new deal from the partner portal. Values to be finalized. - Initialized discussions with customer - Customer has shown interest in solution - Conducted Demo - Agreed on solution to business problem	Deal Registration
+Deal Registration Notes	NEW	Text	False	completed by Partner within the partner portal deal registration form. Read-only for Fortra sales team.	Deal Registration
+
+===== SHEET: Account-Fields to Add (29r x 17c) =====
+Field Name	Field API	Type	Fortra Notes	Fortra Notes			working sessions
+				Category	Logo Sign Off				Customer Sign Off				Partner Sign Off
+					Logo	Required	Label & Usage	Accuracy	Customer	Required	Label & Usage	Accuracy	Partner	Required	Label & Usage	Accuracy
+MDF Request ID	NEW	Lookup	Associated to MDF request form submitted within partner portal. MDF request IDs are associated to partner's account	Partner Marketing	False	False	NA		False	False	NA		True	False
+Preferred Partner(s) of Customer	NEW	Lookup	Lookup Partner accounts. Multi-select				NA		True						NA
+AWS Account Number(s)	NEW	Multi-valued Text Field	Will always be a 12 numberical digit number. Can be multiple account numbers  (Note of future state - this will apply to other alliance partnerships like Microsoft Azure)	AWS	True		Roll up		True				True
+Does Customer Use AWS Marketplace?	NEW	Picklist (read-only)	Yes, No (read-only within opportunity). Field maps from Customer's Account	AWS					True						NA
+Is AWS Partner?	NEW	Picklist	Yes, No	AWS							NA		True
+Is DSOR Partner?	NEW	Picklist	Yes, No	AWS							NA		True
+Is CPPO Partner?	NEW	Picklist	Yes, No	AWS							NA		True
+AWS Marketplace Type	NEW	Picklist	None, Direct, Channel, Distributor	AWS					True						NA
+Preferred Selling Vehicles	NEW	Picklist (multi-select)	selections from Partner accounts to roll up to Logo account		True						NA		True
+
+===== SHEET: Contact-Fields to Add (26r x 17c) =====
+	ww														working sessions
+										Config Status	System Required	Source	Migration Status	Sign Off
+	Field Name	Field API	Type	OOTB/Custom	Description/Usage	Help Text (Hover in Salesforce)	Fortra Feedback- Comments and Questions	Data Owner	Data Steward					Required	Label & Usage	Accuracy
+								Tanya Hague and Nick Scott - Logo and Customer; Heather Honn - Partner accounts	Nick Scott and Greg Schweitzer - Logo and Customer; Heather Honn - Partner accounts					False
+
+===== SHEET: screenshots (1r x 1c) =====

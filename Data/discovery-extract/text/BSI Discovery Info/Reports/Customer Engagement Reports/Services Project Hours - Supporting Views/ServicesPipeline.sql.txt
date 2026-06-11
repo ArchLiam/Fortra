@@ -1,0 +1,219 @@
+USE [HSWarehouse]
+GO
+
+/****** Object:  View [dbo].[ServicesPipeline]    Script Date: 2025-06-10 11:34:12 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+--/****** Object:  View [dbo].[ServicesPipeline]    Script Date: 5/13/2021 5:33:37 PM ******/
+--SET ANSI_NULLS ON
+--GO
+--SET QUOTED_IDENTIFIER ON
+--GO
+
+CREATE VIEW [dbo].[ServicesPipeline]
+AS
+     SELECT hs_productbrand AS [Brand ID], 
+            u.fullname AS [RSM], 
+            u.systemuserid AS [RSMId], 
+            NULL AS [Project Owner], 
+            NULL AS [Project Manager], 
+            o.name, 
+            a.name AS [Account],
+            CASE
+                WHEN hs_productbrand = '655E48CC-F38D-E911-80FB-0050569F6BB1'
+                     AND (hs_totalservices_base = 0
+                          OR hs_totalservices_base IS NULL)
+                THEN 15000
+                ELSE hs_totalservices_base
+            END AS hs_totalservices_base, 
+            estimatedvalue_base, 
+            statuscode_displayname.value AS [Opp Status], 
+            hs_confidencepercentage_displayname.value AS hs_confidencepercentage_displayname, 
+            CONVERT(DATE, COALESCE(estimatedclosedate, o.createdon)) AS Date, 
+            hs_salesstages_displayname.value AS hs_salesstages_displayname, 
+            NULL AS [Project Budget Hours], 
+            NULL AS [Project Rate], 
+            c.hs_countryname AS [Account Country], 
+            'Opp' AS [Type]
+     FROM crmprod.dbo.opportunity o
+          LEFT JOIN hswarehouse.dbo.stringmap statuscode_displayname ON statuscode = statuscode_displayname.[attribute value]
+                                                                        AND statuscode_displayname.[object type code] = 'opportunity'
+                                                                        AND statuscode_displayname.[attribute name] = 'statuscode'
+                                                                        AND statuscode_displayname.langid = 1033
+          LEFT JOIN hswarehouse.dbo.stringmap hs_confidencepercentage_displayname ON hs_confidencepercentage = hs_confidencepercentage_displayname.[attribute value]
+                                                                                     AND hs_confidencepercentage_displayname.[object type code] = 'opportunity'
+                                                                                     AND hs_confidencepercentage_displayname.[attribute name] = 'hs_confidencepercentage'
+                                                                                     AND hs_confidencepercentage_displayname.langid = 1033
+          LEFT JOIN hswarehouse.dbo.stringmap hs_salesstages_displayname ON hs_salesstages = hs_salesstages_displayname.[attribute value]
+                                                                            AND hs_salesstages_displayname.[object type code] = 'opportunity'
+                                                                            AND hs_salesstages_displayname.[attribute name] = 'hs_salesstages'
+                                                                            AND hs_salesstages_displayname.langid = 1033
+          LEFT JOIN crmprod.dbo.systemuser u ON o.ownerid = u.systemuserid
+          LEFT JOIN crmprod.dbo.account a ON a.accountid = o.customerid
+          LEFT JOIN crmprod.dbo.hs_country c ON COALESCE(a.hs_country_picklist2, hs_country_picklist1) = c.hs_countryoptionsetvalue
+     WHERE(o.hs_totalservices_base <> 0
+           --AND o.SCRIBE_DELETEDON IS NULL
+           AND o.statecode = 0)
+          OR (--o.SCRIBE_DELETEDON IS NULL AND 
+          o.statecode = 0
+          AND o.hs_productbrand IN('524BE826-BF17-E611-80D6-0050569F6BB1', '655E48CC-F38D-E911-80FB-0050569F6BB1'))
+     --WHERE        (o.hs_totalservices_base <> 0) /*AND (o.SCRIBE_DELETEDON IS NULL)*/ AND (o.statecode = 0) /*OR
+     --                         (o.SCRIBE_DELETEDON IS NULL)*/ AND (o.statecode = 0) AND (o.hs_productbrand IN ('524BE826-BF17-E611-80D6-0050569F6BB1', '655E48CC-F38D-E911-80FB-0050569F6BB1'))
+     UNION
+     SELECT p.hs_productbrand, 
+            rsm.fullname, 
+            rsm.systemuserid, 
+            po.fullname, 
+            pm.fullname, 
+            hs_projectname, 
+            a.name, 
+            hs_BudgetHours_Decimal * hs_projecthourlyrate_base, 
+            COALESCE(estimatedvalue_base, hs_BudgetHours_Decimal * hs_projecthourlyrate_base), 
+            NULL, 
+            NULL, 
+            CONVERT(DATE, p.createdon), 
+            NULL, 
+            hs_BudgetHours_Decimal as hs_projectbudgethours, 
+            hs_projecthourlyrate_base, 
+            c.hs_countryname AS [Account Country],
+            CASE
+                WHEN p.statuscode = 717710006
+                THEN 'SOW'
+                WHEN p.statuscode = 717710004
+                THEN 'Pre-Sales'
+            END
+     FROM crmprod.dbo.hs_projects p
+          LEFT JOIN crmprod.dbo.opportunity o ON p.hs_opportunity = o.opportunityid
+          LEFT JOIN crmprod.dbo.systemuser rsm ON rsm.systemuserid = p.hs_rsm
+          LEFT JOIN crmprod.dbo.systemuser po ON po.systemuserid = p.ownerid
+          LEFT JOIN crmprod.dbo.systemuser pm ON pm.systemuserid = p.hs_projectmanagerprojectlead
+          LEFT JOIN crmprod.dbo.account a ON p.hs_account = a.accountid
+          LEFT JOIN crmprod.dbo.hs_country c ON COALESCE(a.hs_country_picklist2, a.hs_country_picklist1) = c.hs_countryoptionsetvalue
+     WHERE p.statuscode IN(717710006, 717710004)
+          AND p.statecode = 0
+          AND hs_billableproject = 1
+          AND (p.hs_opportunity IS NULL
+               OR p.hs_opportunity NOT IN
+     (
+         SELECT opportunityid
+         FROM crmprod.dbo.opportunity o
+              LEFT JOIN crmprod.dbo.systemuser u ON o.ownerid = u.systemuserid
+              LEFT JOIN crmprod.dbo.account a ON a.accountid = o.customerid
+              LEFT JOIN crmprod.dbo.hs_country c ON COALESCE(a.hs_country_picklist2, hs_country_picklist1) = c.hs_countryoptionsetvalue
+         WHERE(o.hs_totalservices_base <> 0
+               --AND o.SCRIBE_DELETEDON IS NULL
+               AND o.statecode = 0)
+              OR (--o.SCRIBE_DELETEDON IS NULL AND 
+              o.statecode = 0
+              AND o.hs_productbrand IN('524BE826-BF17-E611-80D6-0050569F6BB1', '655E48CC-F38D-E911-80FB-0050569F6BB1'))
+     ));
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'ServicesPipeline'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'ServicesPipeline'
+GO
+

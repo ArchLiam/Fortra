@@ -1,0 +1,1179 @@
+{
+  "name": "Linking_2_CustomerVoice_D365",
+  "description": "",
+  "version": "1.0",
+  "culture": "en-US",
+  "modifiedTime": "2025-01-08T18:44:48.0180197+00:00",
+  "ppdf:outputFileFormat": "Csv",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": false,
+    "queriesMetadata": {
+      "Merge_D365_nps": {
+        "queryId": "e5a839ab-3218-427c-83ac-a94e932f163c",
+        "queryName": "Merge_D365_nps",
+        "queryGroupId": "ed44d049-83ce-4a32-b6f8-da0e38f07623"
+      },
+      "Update_CV_nps": {
+        "queryId": "233c19a2-c5e3-4962-8fd1-edd9daa06c1a",
+        "queryName": "Update_CV_nps",
+        "queryGroupId": "ed44d049-83ce-4a32-b6f8-da0e38f07623",
+        "loadEnabled": true
+      },
+      "Filter_CV_NPS_Comments": {
+        "queryId": "8e04186f-b07f-40ce-870d-ff1cea6f6d0c",
+        "queryName": "Filter_CV_NPS_Comments",
+        "queryGroupId": "ed44d049-83ce-4a32-b6f8-da0e38f07623",
+        "loadEnabled": true
+      },
+      "CV_NPS": {
+        "queryId": "47051583-c716-43bf-8743-da3c292ede5f",
+        "queryName": "CV_NPS",
+        "queryGroupId": "d6a43254-853e-4f7f-a876-7cbec049ac9e",
+        "loadEnabled": true
+      },
+      "Merge_D365_pro": {
+        "queryId": "f132b55c-013b-4a01-aa72-c9d892add40a",
+        "queryName": "Merge_D365_pro",
+        "queryGroupId": "13817a08-9608-413a-b653-0dbced4c30be"
+      },
+      "Update_CV_Pro": {
+        "queryId": "5a26782a-44c6-4aff-aac8-147d24605a93",
+        "queryName": "Update_CV_Pro",
+        "queryGroupId": "13817a08-9608-413a-b653-0dbced4c30be",
+        "loadEnabled": true
+      },
+      "Filter_CV_Pro_Comments": {
+        "queryId": "1eadaa8d-61fe-4a64-a3a1-30e1e6e789b4",
+        "queryName": "Filter_CV_Pro_Comments",
+        "queryGroupId": "13817a08-9608-413a-b653-0dbced4c30be",
+        "loadEnabled": true
+      },
+      "CV_Pro_Services": {
+        "queryId": "87d6198e-8edb-4ce2-b25b-6537a52c237b",
+        "queryName": "CV_Pro_Services",
+        "queryGroupId": "d6a43254-853e-4f7f-a876-7cbec049ac9e",
+        "loadEnabled": true
+      },
+      "CV_Support": {
+        "queryId": "33b3809c-30dd-4522-8ec0-1aa81e18401d",
+        "queryName": "CV_Support",
+        "queryGroupId": "d6a43254-853e-4f7f-a876-7cbec049ac9e",
+        "loadEnabled": true
+      },
+      "CV_Append_Activity": {
+        "queryId": "891e9712-65ef-4ea1-aa25-eb63e1e8dfa3",
+        "queryName": "CV_Append_Activity",
+        "queryGroupId": "d6a43254-853e-4f7f-a876-7cbec049ac9e",
+        "loadEnabled": true
+      },
+      "CV_All_Comments": {
+        "queryId": "7de386a3-da17-4ee6-9d61-b33964b64eb4",
+        "queryName": "CV_All_Comments",
+        "queryGroupId": "d6a43254-853e-4f7f-a876-7cbec049ac9e",
+        "loadEnabled": true
+      },
+      "Merge_D365_supp": {
+        "queryId": "6c83977c-9785-4123-ae82-3040f25dc4c0",
+        "queryName": "Merge_D365_supp",
+        "queryGroupId": "32cdfe1c-6c47-45c9-a7fe-89b82ac0f0f0"
+      },
+      "Update_CV_supp": {
+        "queryId": "11ed0da7-28c4-4f4e-aef6-14ff0d236f1c",
+        "queryName": "Update_CV_supp",
+        "queryGroupId": "32cdfe1c-6c47-45c9-a7fe-89b82ac0f0f0",
+        "loadEnabled": true
+      },
+      "Filter_CV_Supp_Comments": {
+        "queryId": "e2f7e5de-b4fa-4117-95dc-26a0af529d71",
+        "queryName": "Filter_CV_Supp_Comments",
+        "queryGroupId": "32cdfe1c-6c47-45c9-a7fe-89b82ac0f0f0",
+        "loadEnabled": true
+      },
+      "Merge_Response_pro": {
+        "queryId": "ffb5f460-7b37-498b-8033-32255de861e2",
+        "queryName": "Merge_Response_pro",
+        "queryGroupId": "dd457f22-e028-47f7-a941-c8e3f55ae995"
+      },
+      "Source_Contacts": {
+        "queryId": "2b25fcb5-d64b-4a19-b0d9-511496007566",
+        "queryName": "Source_Contacts",
+        "queryGroupId": "a7d1a097-de38-49c9-ba32-a9e6a9e61dfa"
+      },
+      "Accounts": {
+        "queryId": "94f11b6a-46d9-4724-a1e0-548b41b26f55",
+        "queryName": "Accounts",
+        "queryGroupId": "a7d1a097-de38-49c9-ba32-a9e6a9e61dfa"
+      },
+      "Transformed_Projects": {
+        "queryId": "95283828-2eae-4a46-8d11-6f0b95a4804d",
+        "queryName": "Transformed_Projects",
+        "queryGroupId": "a7d1a097-de38-49c9-ba32-a9e6a9e61dfa"
+      },
+      "Case_D365": {
+        "queryId": "46639b31-a7be-4e6e-b250-592aa306e91b",
+        "queryName": "Case_D365",
+        "queryGroupId": "a7d1a097-de38-49c9-ba32-a9e6a9e61dfa"
+      },
+      "Merge_Response_nps": {
+        "queryId": "e72b017a-b635-4c9f-9c67-2d3dc75f5904",
+        "queryName": "Merge_Response_nps",
+        "queryGroupId": "dd457f22-e028-47f7-a941-c8e3f55ae995"
+      },
+      "Merge_Response_supp": {
+        "queryId": "759d576a-9d50-4099-9a69-bc9eeb2f889e",
+        "queryName": "Merge_Response_supp",
+        "queryGroupId": "dd457f22-e028-47f7-a941-c8e3f55ae995"
+      }
+    },
+    "document": "section Section1;\r\nshared Merge_D365_nps = let\r\n    Source = Merge_Response_nps,\r\n    #\"Merged Queries\" = Table.NestedJoin(Source, {\"D365_Reference\"}, Source_Contacts, {\"contactid\"}, \"Source_Contacts\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_Contacts\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Source_Contacts\", { \"parentcustomerid\"}, {\"parentcustomerid\"}),\r\n    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded Source_Contacts\",{\"D365_Reference\"}),\r\n    #\"Merged Queries1\" = Table.NestedJoin(#\"Removed Columns\", {\"parentcustomerid\"}, Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_Accounts\" = Table.ExpandTableColumn(#\"Merged Queries1\", \"Source_Accounts\", {\"Account Number\", \"Account Name\"}, { \"Account Number\", \"Account Name\"}),\r\n    #\"Filtered Rows\" = Table.SelectRows(#\"Expanded Source_Accounts\", each ([Account Number] <> null)),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Filtered Rows\", \"AccId_Brand_Lookup\", each Text.Combine({[parentcustomerid], [Product Brand]}, \"\"), type text),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Inserted merged column\", \"Sentiment\", each if [Response.msfp_sentiment_display] = null then null else if [Response.msfp_sentiment_display] = \"Negative\" then 3 else if [Response.msfp_sentiment_display] = \"Neutral\" then 2 else if [Response.msfp_sentiment_display] = \"Positive\" then 1 else null),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Sentiment\", Int64.Type}})\r\nin\r\n    #\"Changed column type\";\r\nshared Update_CV_nps = let\r\n    Source = Merge_D365_nps,\r\n    #\"Renamed Columns\" = Table.RenameColumns(Source,{{\"msfp_invitestatus_display\", \"Activity Status\"}, {\"msfp_invitesentdate\", \"Activity Date\"}, {\"msfp_subject\", \"Activity Subject\"}, {\"Response.URL-Survey\", \"Activity Link\"}, {\"msfp_respondent\", \"Activity Owner\"}, {\"Response.msfp_submitdate\", \"Activity Completed\"}, {\"activityid\", \"Activity Id\"}}),\r\n    #\"Inserted Merged Column\" = Table.AddColumn(#\"Renamed Columns\", \"Activity Description\", each Text.Combine({[Response.msfp_sentiment_display], [#\"How likely are you to recommend Fortra to a friend or colleague?\"], [#\"What is the primary reason for the score you just gave us?\"]}, \": \"), type text),\r\n    #\"Removed Other Columns\" = Table.SelectColumns(#\"Inserted Merged Column\", {\"Activity Id\", \"Activity Date\", \"Activity Status\", \"Activity Owner\", \"Activity Subject\", \"Product Brand\", \"Activity Completed\", \"Activity Link\", \"Activity Category\", \"Activity Type\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Sentiment\", \"Activity Description\"})\r\nin\r\n    #\"Removed Other Columns\";\r\nshared Filter_CV_NPS_Comments = let\r\n    Source = Merge_D365_nps,\r\n    #\"Removed Other Columns\" = Table.SelectColumns(Source, {\"activityid\", \"msfp_respondent\", \"Product Brand\", \"Response.activityid\", \"Response.msfp_sentiment_display\", \"Response.msfp_submitdate\", \"Response.URL-Survey\", \"What is the primary reason for the score you just gave us?\", \"How likely are you to recommend Fortra to a friend or colleague?\", \"Activity Category\", \"Activity Type\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Sentiment\"}),\r\n    #\"Replaced value\" = Table.ReplaceValue(#\"Removed Other Columns\", \"\", null, Replacer.ReplaceValue, {\"What is the primary reason for the score you just gave us?\"}),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Replaced value\", each ([#\"What is the primary reason for the score you just gave us?\"] <> null))\r\nin\r\n    #\"Filtered rows 1\";\r\nshared CV_NPS = let\r\n    Source = Merge_D365_nps\r\nin\r\n    Source;\r\nshared Merge_D365_pro = let\r\n    Source = Merge_Response_pro,\r\n    #\"Renamed columns\" = Table.RenameColumns(Source, {{\"Project Number\", \"Project Number_temp\"}}),\r\n    #\"Merged Queries\" = Table.NestedJoin(#\"Renamed columns\", {\"D365_Reference\"}, Transformed_Projects, {\"Id\"}, \"Transformed_Projects\", JoinKind.LeftOuter),\r\n    #\"Expanded Transformed_Projects\" = Table.ExpandTableColumn(#\"Merged Queries\", \"Transformed_Projects\", {\"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Project Number\"}, {\"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Project Number\"}),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Expanded Transformed_Projects\", {{\"Project Number\", \"Project Number_temp2\"}}),\r\n    #\"Inserted conditional column 1\" = Table.AddColumn(#\"Renamed columns 1\", \"Project Number\", each if [Project Number_temp2] <> null then [Project Number_temp2] else [Project Number_temp]),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Inserted conditional column 1\", {\"Project Number_temp2\", \"Project Number_temp\"}),\r\n    #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Removed columns 1\", {{\"Project Number\", type text}}),\r\n    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed column type 1\",{\"D365_Reference\"}),\r\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed Columns\", \"Activity Type\", each \"Customer Voice\"), {{\"Activity Type\", type text}}),\r\n    #\"Added custom 1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Added custom\", \"Activity Category\", each \"Project Survey\"), {{\"Activity Category\", type text}}),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Added custom 1\",\"Sentiment\", each if [Please rate your satisfaction with the overall experience of your Fortra Service] = null then null else if [Please rate your satisfaction with the overall experience of your Fortra Service] >= 9 then 1 else if [Please rate your satisfaction with the overall experience of your Fortra Service] >= 7 then 2 else if [Please rate your satisfaction with the overall experience of your Fortra Service] < 7 then 3 else null),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Sentiment\", Int64.Type}})\r\nin\r\n    #\"Changed column type\";\r\nshared Update_CV_Pro = let\r\n    Source = Merge_D365_pro,\r\n    #\"Renamed Columns\" = Table.RenameColumns(Source,{{\"msfp_invitestatus_display\", \"Activity Status\"}, {\"msfp_invitesentdate\", \"Activity Date\"}, {\"msfp_subject\", \"Activity Subject\"}, {\"Response.URL-Survey\", \"Activity Link\"}, {\"msfp_respondent\", \"Activity Owner\"}, {\"Response.msfp_submitdate\", \"Activity Completed\"}, {\"activityid\", \"Activity Id\"}}),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Renamed Columns\", { {\"Please rate your satisfaction with the overall experience of your Fortra Service\", type text}}),\r\n    #\"Inserted Merged Column\" = Table.AddColumn(#\"Changed column type\", \"Activity Description\", each if [#\"What can we do to improve your experience?\"]=null and [#\"What are we doing particularly well?\"]=null then\r\n    \"CSAT: \" & [Please rate your satisfaction with the overall experience of your Fortra Service]\r\n    else if [#\"What can we do to improve your experience?\"]= null then\r\n    \"CSAT: \" & [Please rate your satisfaction with the overall experience of your Fortra Service] & \" | Comments: \" & [#\"What are we doing particularly well?\"]\r\n    else if [#\"What are we doing particularly well?\"] = null then\r\n    \"CSAT: \" & [Please rate your satisfaction with the overall experience of your Fortra Service] & \" | Comments: \" &  [#\"What can we do to improve your experience?\"]\r\n    else\r\n    \"CSAT: \" & [Please rate your satisfaction with the overall experience of your Fortra Service] & \" | Comments: \" & [#\"What are we doing particularly well?\"] & \" / \" & [#\"What can we do to improve your experience?\"]),\r\n    #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted Merged Column\", {{\"Activity Description\", type text}, {\"Please rate your satisfaction with the overall experience of your Fortra Service\", Int64.Type}}),\r\n    #\"Removed other columns\" = Table.SelectColumns(#\"Changed column type 1\", {\"Activity Id\", \"Activity Date\", \"Activity Status\", \"Activity Owner\", \"Activity Subject\", \"Product Brand\", \"Activity Completed\", \"Activity Link\", \"Activity Category\", \"Activity Type\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Sentiment\", \"Activity Description\"})\r\nin\r\n    #\"Removed other columns\";\r\nshared Filter_CV_Pro_Comments = let\r\n    Source = Merge_D365_pro,\r\n    #\"Removed Other Columns\" = Table.SelectColumns(Source, {\"activityid\", \"msfp_respondent\", \"Response.activityid\", \"Response.msfp_submitdate\", \"Response.URL-Survey\", \"Please rate your satisfaction with the overall experience of your Fortra Service\", \"What are we doing particularly well?\", \"What can we do to improve your experience?\", \"ROI\", \"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Activity Type\", \"Activity Category\", \"Sentiment\"}),\r\n    #\"Replaced value\" = Table.ReplaceValue(#\"Removed Other Columns\", \"\", null, Replacer.ReplaceValue, {\"What are we doing particularly well?\", \"What can we do to improve your experience?\"}),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Replaced value\",  \"Comments\", each if [#\"What are we doing particularly well?\"] <> null then \"Yes\" else if [#\"What can we do to improve your experience?\"] <> null then \"Yes\" else \"No\"),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Inserted conditional column\", each ([Comments] = \"Yes\")),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows 1\", {\"Comments\"})\r\nin\r\n    #\"Removed columns\";\r\nshared CV_Pro_Services = let\r\n    Source = Merge_D365_pro\r\nin\r\n    Source;\r\nshared CV_Support = let\r\n    Source = Merge_D365_supp,\r\n    #\"Inserted conditional column\" = Table.AddColumn(Source, \"Satisfied-Product\", each if [Response.msfp_submitdate] = null then null else if [#\"How would you rate your experience with the Fortra Products?\"] = \"Satisfied\" then 1 else 0),\r\n    #\"Inserted conditional column 1\" = Table.AddColumn(#\"Inserted conditional column\", \"Dissatisfied-Product\", each if [Response.msfp_submitdate] = null then null else if [#\"How would you rate your experience with the Fortra Products?\"] = \"Dissatisfied\" then 1 else 0),\r\n    #\"Inserted conditional column 2\" = Table.AddColumn(#\"Inserted conditional column 1\", \"Satisfied-Case\", each if [Response.msfp_submitdate] = null then null else if [#\"How would you rate the Support you received for {{CaseNumber}}?\"] = \"Satisfied\" then 1 else 0),\r\n    #\"Inserted conditional column 3\" = Table.AddColumn(#\"Inserted conditional column 2\", \"Dissatisfied-Case\", each if [Response.msfp_submitdate] = null then null else if [#\"How would you rate the Support you received for {{CaseNumber}}?\"] = \"Dissatisfied\" then 1 else 0),\r\n    #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted conditional column 3\", {{\"Dissatisfied-Case\", Percentage.Type}, {\"Satisfied-Case\", Percentage.Type}, {\"Dissatisfied-Product\", Percentage.Type}, {\"Satisfied-Product\", Percentage.Type}})\r\nin\r\n    #\"Changed column type 1\";\r\nshared CV_Append_Activity = let\r\n    Source = Table.Combine({Update_CV_nps, Update_CV_Pro, Update_CV_supp}),\r\n    #\"Transform columns\" = Table.TransformColumnTypes(Source, {{\"Activity Completed\", type text}}),\r\n    #\"Replace errors\" = Table.ReplaceErrorValues(#\"Transform columns\", {{\"Activity Completed\", null}})\r\nin\r\n    #\"Replace errors\";\r\nshared CV_All_Comments = let\r\n    Source = Table.Combine({Filter_CV_NPS_Comments, Filter_CV_Pro_Comments, Filter_CV_Supp_Comments}),\r\n    #\"Transform columns\" = Table.TransformColumnTypes(Source, {{\"Response.msfp_submitdate\", type text}}),\r\n    #\"Replace errors\" = Table.ReplaceErrorValues(#\"Transform columns\", {{\"Response.msfp_submitdate\", null}})\r\nin\r\n    #\"Replace errors\";\r\nshared Merge_D365_supp = let\r\n    Source = Merge_Response_supp,\r\n    #\"Uppercased text\" = Table.TransformColumns(Source, {{\"D365_Reference\", each Text.Upper(_), type nullable text}}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Uppercased text\", {\"D365_Reference\"}, Case_D365, {\"Ticket Id\"}, \"Case_D365\", JoinKind.LeftOuter),\r\n    #\"Expanded Case_D365\" = Table.ExpandTableColumn(#\"Merged queries\", \"Case_D365\", {\"Product Brand\", \"URL-Case\", \"Account Number\", \"Account Name\", \"AccId_Prod_Lookup\"}, {\"Product Brand\", \"URL-Case\", \"Account Number\", \"Account Name\", \"AccId_Prod_Lookup\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Case_D365\", {{\"AccId_Prod_Lookup\", \"AccId_Brand_Lookup\"}}),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Renamed columns\", {\"D365_Reference\"}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Removed columns\", each [Account Number] <> null and [Account Number] <> \"\"),\r\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Filtered rows\", \"Activity Category\", each \"Support Survey\"), {{\"Activity Category\", type text}}),\r\n    #\"Added custom 1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Added custom\", \"Activity Type\", each \"Customer Voice\"), {{\"Activity Type\", type text}}),\r\n    #\"Replaced value\" = Table.ReplaceValue(#\"Added custom 1\", \"\", null, Replacer.ReplaceValue, {\"How would you rate your experience with the Fortra Products?\", \"Please share any other comments:\", \"How would you rate the Support you received for {{CaseNumber}}?\"}),\r\n    #\"Added custom 3\" = Table.TransformColumnTypes(Table.AddColumn(#\"Replaced value\", \"Sentiment\", each if [#\"How would you rate your experience with the Fortra Products?\"]=\"Satisfied\" and\r\n    [#\"How would you rate the Support you received for {{CaseNumber}}?\"] = \"Satisfied\" then 1\r\n    else if [#\"How would you rate your experience with the Fortra Products?\"] = \"Dissatisfied\" and [#\"How would you rate the Support you received for {{CaseNumber}}?\"] = \"Dissatisfied\" then 3\r\n    else if [#\"How would you rate your experience with the Fortra Products?\"] = null and [#\"How would you rate the Support you received for {{CaseNumber}}?\"]= null then null\r\n    else 2), {{\"Sentiment\", Int64.Type}})\r\nin\r\n    #\"Added custom 3\";\r\nshared Update_CV_supp = let\r\n    Source = Merge_D365_supp,\r\n    #\"Renamed columns\" = Table.RenameColumns(Source, {{\"msfp_invitestatus_display\", \"Activity Status\"}, {\"msfp_invitesentdate\", \"Activity Date\"}, {\"msfp_subject\", \"Activity Subject\"}, {\"Response.URL-Survey\", \"Activity Link\"}, {\"msfp_respondent\", \"Activity Owner\"}, {\"Response.msfp_submitdate\", \"Activity Completed\"}, {\"activityid\", \"Activity Id\"}}),\r\n    #\"Added custom 3\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns\", \"Activity Description\", each if [#\"Please share any other comments:\"]=null then \"Product: \" & [#\"How would you rate your experience with the Fortra Products?\"] & \" | Case: \" & [#\"How would you rate the Support you received for {{CaseNumber}}?\"]\r\n    else\r\n    \"Product: \" & [#\"How would you rate your experience with the Fortra Products?\"] & \" | Case: \" & [#\"How would you rate the Support you received for {{CaseNumber}}?\"] & \" | Comments: \" & [#\"Please share any other comments:\"]), {{\"Activity Description\", type text}}),\r\n    #\"Replaced value\" = Table.ReplaceValue(#\"Added custom 3\", \"Product:  | Case:  | Comments:\", \"\", Replacer.ReplaceText, {\"Activity Description\"}),\r\n    #\"Removed other columns\" = Table.SelectColumns(#\"Replaced value\", {\"Activity Id\", \"Activity Date\", \"Activity Status\", \"Activity Owner\", \"Activity Subject\", \"Activity Completed\", \"Activity Link\", \"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Activity Category\", \"Activity Type\", \"Activity Description\", \"Sentiment\"})\r\nin\r\n    #\"Removed other columns\";\r\nshared Filter_CV_Supp_Comments = let\r\n    Source = Merge_D365_supp,\r\n    #\"Removed Other Columns\" = Table.SelectColumns(Source, {\"activityid\", \"msfp_respondent\", \"Response.activityid\", \"Response.msfp_submitdate\", \"Response.URL-Survey\", \"How would you rate your experience with the Fortra Products?\", \"Please share any other comments:\", \"How would you rate the Support you received for {{CaseNumber}}?\", \"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Activity Category\", \"Activity Type\", \"Sentiment\"}),\r\n    #\"Filtered rows 2\" = Table.SelectRows(#\"Removed Other Columns\", each [#\"Please share any other comments:\"] <> null)\r\nin\r\n    #\"Filtered rows 2\";\r\nshared Merge_Response_pro = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"7be73a01-3ae5-4f96-921a-912a8cba5ebe\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Merge_Response_Pro\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Source_Contacts = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Contacts\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Accounts = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Accounts\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Transformed_Projects = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"d0538da6-a2ce-4a23-b492-db8661d5cec8\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Transformed_Projects\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Case_D365 = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n    #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"fc19734a-d73b-438f-8bac-8959da37a636\"]}[Data],\r\n    #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Case_D365\", version = \"\"]}[Data]\r\nin\r\n    #\"Navigation 4\";\r\nshared Merge_Response_nps = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    Workspaces = Source{[Id = \"Workspaces\"]}[Data],\r\n    Workspace = Workspaces{[workspaceId=\"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    Dataflow = Workspace{[dataflowId=\"83468185-e260-44ed-86cd-58c959297798\"]}[Data],\r\n    Entity = Dataflow{[entity=\"Merge_Response_nps\"]}[Data]\r\nin\r\n    Entity;\r\nshared Merge_Response_supp = let\r\n    Source = PowerPlatform.Dataflows(),\r\n    Workspaces = Source{[Id = \"Workspaces\"]}[Data],\r\n    Workspace = Workspaces{[workspaceId=\"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n    Dataflow = Workspace{[dataflowId=\"83468185-e260-44ed-86cd-58c959297798\"]}[Data],\r\n    Entity = Dataflow{[entity=\"Merge_Response_Supp\"]}[Data]\r\nin\r\n    Entity;\r\n",
+    "connectionOverrides": [
+      {
+        "path": "CustomerInsights",
+        "kind": "CustomerInsights",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"CustomerInsights\",\"path\":\"CustomerInsights\"}",
+        "audience": null
+      },
+      {
+        "path": "https://org5ade7db4.crm.dynamics.com/",
+        "kind": "Cds",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"Cds\",\"path\":\"https://org5ade7db4.crm.dynamics.com/\"}",
+        "audience": null
+      },
+      {
+        "path": "https://hsprod.crm.dynamics.com/",
+        "kind": "Cds",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"Cds\",\"path\":\"https://hsprod.crm.dynamics.com/\"}",
+        "audience": null
+      },
+      {
+        "path": "PowerPlatformDataflows",
+        "kind": "PowerPlatformDataflows",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"PowerPlatformDataflows\",\"path\":\"PowerPlatformDataflows\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[{\"id\":\"ed44d049-83ce-4a32-b6f8-da0e38f07623\",\"name\":\"NPS\",\"description\":\"\",\"parentId\":null,\"order\":3},{\"id\":\"a7d1a097-de38-49c9-ba32-a9e6a9e61dfa\",\"name\":\"Linked Tables-D365\",\"description\":\"\",\"parentId\":null,\"order\":1},{\"id\":\"d6a43254-853e-4f7f-a876-7cbec049ac9e\",\"name\":\"Report Tables\",\"description\":\"\",\"parentId\":null,\"order\":5},{\"id\":\"dd457f22-e028-47f7-a941-c8e3f55ae995\",\"name\":\"Linked Tables-CV\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"13817a08-9608-413a-b653-0dbced4c30be\",\"name\":\"Pro Services\",\"description\":\"\",\"parentId\":null,\"order\":4},{\"id\":\"32cdfe1c-6c47-45c9-a7fe-89b82ac0f0f0\",\"name\":\"Support\",\"description\":\"\",\"parentId\":null,\"order\":2}]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "Update_CV_nps",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Update_CV_nps.csv"
+      },
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:44.9326793+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/Update_CV_nps.csv?snapshot=2025-06-10T12%3A06%3A44.5728072Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Filter_CV_NPS_Comments",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Filter_CV_NPS_Comments.csv"
+      },
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_sentiment_display",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "date"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "What is the primary reason for the score you just gave us?",
+          "dataType": "string"
+        },
+        {
+          "name": "How likely are you to recommend Fortra to a friend or colleague?",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:44.7451784+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/Filter_CV_NPS_Comments.csv?snapshot=2025-06-10T12%3A06%3A44.6524569Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CV_NPS",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CV_NPS.csv"
+      },
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_invitesentdate",
+          "dataType": "date"
+        },
+        {
+          "name": "msfp_invitestatus_display",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.hs_npstag_display",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_sentiment_display",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "date"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "What is the primary reason for the score you just gave us?",
+          "dataType": "string"
+        },
+        {
+          "name": "How likely are you to recommend Fortra to a friend or colleague?",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "parentcustomerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:53.0110502+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/CV_NPS.csv?snapshot=2025-06-10T12%3A06%3A53.0057338Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Update_CV_Pro",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Update_CV_Pro.csv"
+      },
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:31.9479126+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/Update_CV_Pro.csv?snapshot=2025-06-10T12%3A06%3A31.4395445Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Filter_CV_Pro_Comments",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Filter_CV_Pro_Comments.csv"
+      },
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "date"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "Please rate your satisfaction with the overall experience of your Fortra Service",
+          "dataType": "int64"
+        },
+        {
+          "name": "What are we doing particularly well?",
+          "dataType": "string"
+        },
+        {
+          "name": "What can we do to improve your experience?",
+          "dataType": "string"
+        },
+        {
+          "name": "ROI",
+          "dataType": "int64"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:33.8229701+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/Filter_CV_Pro_Comments.csv?snapshot=2025-06-10T12%3A06%3A33.6179674Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CV_Pro_Services",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CV_Pro_Services.csv"
+      },
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_invitesentdate",
+          "dataType": "date"
+        },
+        {
+          "name": "msfp_invitestatus_display",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.hs_excludesurvey",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "date"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "Guidance and Communication",
+          "dataType": "int64"
+        },
+        {
+          "name": "Technical Expertise & Support",
+          "dataType": "int64"
+        },
+        {
+          "name": "Which percentage best describes the value (return on investment) you have receiv",
+          "dataType": "string"
+        },
+        {
+          "name": "Please rate your satisfaction with the overall experience of your Fortra Service",
+          "dataType": "int64"
+        },
+        {
+          "name": "What are we doing particularly well?",
+          "dataType": "string"
+        },
+        {
+          "name": "What can we do to improve your experience?",
+          "dataType": "string"
+        },
+        {
+          "name": "ROI",
+          "dataType": "int64"
+        },
+        {
+          "name": "Response Notes",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:31.1666434+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/CV_Pro_Services.csv?snapshot=2025-06-10T12%3A06%3A31.1607697Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CV_Support",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CV_Support.csv"
+      },
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_invitesentdate",
+          "dataType": "date"
+        },
+        {
+          "name": "msfp_invitestatus_display",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "date"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "How would you rate your experience with the Fortra Products?",
+          "dataType": "string"
+        },
+        {
+          "name": "Please share any other comments:",
+          "dataType": "string"
+        },
+        {
+          "name": "How would you rate the Support you received for {{CaseNumber}}?",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Case",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        },
+        {
+          "name": "Satisfied-Product",
+          "dataType": "double"
+        },
+        {
+          "name": "Dissatisfied-Product",
+          "dataType": "double"
+        },
+        {
+          "name": "Satisfied-Case",
+          "dataType": "double"
+        },
+        {
+          "name": "Dissatisfied-Case",
+          "dataType": "double"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:42.1044733+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/CV_Support.csv?snapshot=2025-06-10T12%3A06%3A42.0708065Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CV_Append_Activity",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CV_Append_Activity.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:47.9640189+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/CV_Append_Activity.csv?snapshot=2025-06-10T12%3A06%3A47.9658906Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CV_All_Comments",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CV_All_Comments.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_sentiment_display",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "What is the primary reason for the score you just gave us?",
+          "dataType": "string"
+        },
+        {
+          "name": "How likely are you to recommend Fortra to a friend or colleague?",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        },
+        {
+          "name": "Please rate your satisfaction with the overall experience of your Fortra Service",
+          "dataType": "int64"
+        },
+        {
+          "name": "What are we doing particularly well?",
+          "dataType": "string"
+        },
+        {
+          "name": "What can we do to improve your experience?",
+          "dataType": "string"
+        },
+        {
+          "name": "ROI",
+          "dataType": "int64"
+        },
+        {
+          "name": "How would you rate your experience with the Fortra Products?",
+          "dataType": "string"
+        },
+        {
+          "name": "Please share any other comments:",
+          "dataType": "string"
+        },
+        {
+          "name": "How would you rate the Support you received for {{CaseNumber}}?",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:45.8233346+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/CV_All_Comments.csv?snapshot=2025-06-10T12%3A06%3A45.8153444Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Update_CV_supp",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Update_CV_supp.csv"
+      },
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:44.9483084+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/Update_CV_supp.csv?snapshot=2025-06-10T12%3A06%3A43.7882561Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Filter_CV_Supp_Comments",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Filter_CV_Supp_Comments.csv"
+      },
+      "attributes": [
+        {
+          "name": "activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "msfp_respondent",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.activityid",
+          "dataType": "string"
+        },
+        {
+          "name": "Response.msfp_submitdate",
+          "dataType": "date"
+        },
+        {
+          "name": "Response.URL-Survey",
+          "dataType": "string"
+        },
+        {
+          "name": "How would you rate your experience with the Fortra Products?",
+          "dataType": "string"
+        },
+        {
+          "name": "Please share any other comments:",
+          "dataType": "string"
+        },
+        {
+          "name": "How would you rate the Support you received for {{CaseNumber}}?",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2025-06-10T12:06:41.8544578+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/be424c88-0ee9-4bf0-9ed3-e83672a4b302/Filter_CV_Supp_Comments.csv?snapshot=2025-06-10T12%3A06%3A41.6018680Z"
+        }
+      ]
+    }
+  ]
+}

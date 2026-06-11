@@ -1,0 +1,22 @@
+Mktg Lead Flow Requirements - Salesforce
+Streamlined process for routing and follow up on leads and contacts who take action
+Flexible lead routing and assignment to support multiple sales teams and business units including the channel team
+Ability to attribute opportunities and leads to channel partners when needed
+Ability for multiple salespeople to "work" the same lead or contact
+Have single records for leads, contacts, accounts (meaning – let's not have duplicates if we can avoid that)
+Every touchpoint is tracked with a campaign response (campaign member)
+Higher intent leads, such as PCTAs, are prioritized higher than other lower intent leads for sales to take quick action
+Ability to see prospecting effort and activity at the account level for leads, contacts, and opportunities
+Lead data automatically syncs from HubSpot to Salesforce and enriched with third-party data (D&B and/or 6sense) for use in assignment and prospecting
+Ability to track SLAs for all marketing activities assigned to sales for outreach (time to first touch, # of touchpoints, types of touchpoints/cadences used)
+Have simple lead and prospecting stages to track a lead’s lifecycle stage (open, SAL, etc)
+Ability for sales teams to see HubSpot profile and interactions (i.e., marketing emails received, page views, form submissions, workflows, etc) via the integration “iframe” across objects in the lead flow
+Show full picture of attribution across all solution groups
+Historically, we’ve had lead attribution at a brand level (i.e. for Cobalt Strike, this was their originating source, for Digital Guardian, this was their originating source, etc). We need to get away from individual brand journey and towards “Fortra journey” (i.e. maybe they first came in on the Cobalt Strike website but over time, they expressed interest in all these other Cyber products).
+We’d still want to see what activity resulted in the opportunity being created. IOW, maybe a year ago, they first expressed interest in Cobalt Strike by filling out the quote form. Now one year later, they are interested in Digital Guardian and filled out a demo form. Digital Guardian demo would be the source/origination of the new opp. Is this out of the box?
+Architect the lead flow so it can be used natively by integrations that support our GTM execution and reporting
+Ability to categorize leads, contacts, opportunities and invoices into PCTA types – demo, quote, trial, scan, contact us, on-demand demo, other
+Ability to categorize leads by type
+Inbound (leads that have taken action and require follow up)
+Marketing Suspect (leads that do not require follow up and will be suppressed from email lists – example is a tradeshow attendee list)
+Sales Prospecting (leads/contacts that have not taken action, but sales is actively prospecting)

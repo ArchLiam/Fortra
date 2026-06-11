@@ -1,0 +1,69 @@
+Partner KPI Metrics
+Notes:
+ALE is an internal metric only. ALE is not used with partners & will not be a visible revenue metric in the partner portal.
+Total Amount Invoiced & ARR are revenue metrics used with partners
+Lead, Opportunity & Pipeline Reports
+Approved Deal Registrations
+D365 fields in Lead record
+Partner lead status reason = approved
+Lead is qualified & converted into an opportunity
+Assumption: All time as opposed to a specific timeframe.  Recommend a time line filter.  And default to most recent on top.
+Rejected Deal Registrations
+D365 fields in Lead record
+Partner lead status reason = disqualified
+Lead record is closed as lost
+Approved or Rejected Deal Registration Volume (by creation date)
+Approved Deal Registrations – date partner lead is created
+D365 fields in Lead record
+Partner lead status reason = approved
+Lead is qualified & converted into an opportunity
+Rejected Deal Registrations – date partner lead is created
+D365 fields in Lead record
+Partner lead status reason = disqualified
+Lead record is closed as lost
+Closed-won deals count and value
+Volume = # of opportunities
+Opportunity is closed-won (quote is ordered & invoiced)
+Value = total amount invoiced
+Total deal registration pipeline value – partner registers deal from partner portal
+D365 fields
+Partner lead status reason = approved
+Lead is qualified & converted into an opportunity
+Opportunity record is active
+Average Closed-Won deal cycle time
+Measured by creation date of Opportunity to date opportunity is closed-won.
+number of deals registered this quarter
+Invoice Reports
+Metrics by partner (for Distributor deals, we need to also track metrics for the indirect reseller buying through distribution – Note we are currently unable to track this in D365)
+Incremental Revenue Closed-Won Through Partner Deal Registration (Channel-Originated deals)
+Opportunities that include new license sales (ALE is greater than 1).
+Opportunities that are initially deal registered by the partner in the partner portal.
+Deal is converted from lead to opportunity. Opportunity is closed-won (quote is ordered & invoiced)
+D365 fields
+Lead Source = Partner (lead source in D365 is named as partner deal registration)
+Partner lead status reason = approved
+Source Campaign Activity = begins with “Partner Portal Deal Registration”
+Deal Origin = Channel-Originated
+ALE by partner, by brand, by region, by country. Comparison with previous years
+Invoice Volume (by invoice date)
+Quantity of Invoices where partner is listed as the billable partner
+Includes invoices that are paid or in-progress (not cancelled or rebilled)
+Closed deals by origin (Fortra originated vs Channel originated). Volume and ALE, Total Amount
+Volume = # of opportunities
+Invoice is posted
+Opportunities that include new license sales (ALE is greater than 1).
+Opportunity is closed-won (quote is ordered & invoiced)
+D365 fields
+Deal Origin = Channel-Originated or Fortra-Originated
+MDF Form Reports
+MDF requests – approved & declined
+This is not tracked in D365 today.
+In SFDC
+Partner contact submits MDF form in partner portal
+Fortra partner marketing team is notified of new MDF request in SFDC
+Fortra partner marketing team approves or declines the request.
+On-Hold
+(ON HOLD - Finance) Annual Reoccurring Revenue
+(ON HOLD - Finance) Gross Retention %
+(ON HOLD – Finance) Billings
+(ON HOLD – BSI/Coastal to confirm if Docebo is integrated with SFDC in phase 1) Completed Partner Certifications

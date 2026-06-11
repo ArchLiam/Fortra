@@ -1,0 +1,108 @@
+
+===== SHEET: hs_hardware attributes (106r x 12c) =====
+LogicalName	SchemaName	DisplayName	AttributeType	Description	EntityLogicalName	IsAuditEnabled	IsCustomAttribute	IsLogical	IsPrimaryId	IsPrimaryName	RequiredLevel
+createdby	CreatedBy	Created By	Lookup	Unique identifier of the user who created the record.	hs_hardware	False	False	False	False	False	None
+createdbyname	CreatedByName	N/A	String	N/A	hs_hardware	False	False	True	False	False	None
+createdbyyominame	CreatedByYomiName	N/A	String	N/A	hs_hardware	False	False	True	False	False	SystemRequired
+createdon	CreatedOn	Created On	DateTime	Date and time when the record was created.	hs_hardware	False	False	False	False	False	None
+createdonbehalfby	CreatedOnBehalfBy	Created By (Delegate)	Lookup	Unique identifier of the delegate user who created the record.	hs_hardware	False	False	False	False	False	None
+createdonbehalfbyname	CreatedOnBehalfByName	N/A	String	N/A	hs_hardware	False	False	True	False	False	None
+createdonbehalfbyyominame	CreatedOnBehalfByYomiName	N/A	String	N/A	hs_hardware	False	False	True	False	False	SystemRequired
+hs_account	hs_account	Account	Lookup		hs_hardware	True	True	False	False	False	ApplicationRequired
+hs_accountname	hs_accountName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_accountyominame	hs_accountYomiName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_brandaccount	hs_BrandAccount	Brand Account	Lookup		hs_hardware	True	True	False	False	False	None
+hs_brandaccountname	hs_BrandAccountName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_clustered	hs_clustered	Clustered	Boolean		hs_hardware	True	True	False	False	False	None
+hs_clusteredname	hs_clusteredName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_computerdescription	hs_computerdescription	Computer Description	String		hs_hardware	True	True	False	False	False	None
+hs_computerid	hs_computerid	Computer ID (Legacy)	String		hs_hardware	True	True	False	False	False	None
+hs_computernumber	hs_computernumber	Computer Number	Integer		hs_hardware	True	True	False	False	False	None
+hs_cpw	hs_cpw	CPW	Double		hs_hardware	True	True	False	False	False	None
+hs_createdby	hs_createdby	Created By	Lookup		hs_hardware	True	True	False	False	False	None
+hs_createdbyname	hs_createdbyName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_createdbyyominame	hs_createdbyYomiName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_entitlement	hs_entitlement	Entitlement	Lookup		hs_hardware	True	True	False	False	False	None
+hs_entitlementname	hs_entitlementName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_featurecode	hs_featurecode	Master Feature Code	Lookup		hs_hardware	True	True	False	False	False	None
+hs_featurecodename	hs_featurecodeName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_featurecodenumber	hs_featurecodenumber	Feature Code	String		hs_hardware	True	True	False	False	False	None
+hs_groupnumberlist	hs_groupnumberlist	Group Number List	Picklist		hs_hardware	True	True	False	False	False	None
+hs_groupnumberlistname	hs_groupnumberlistName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_groupnumbers	hs_groupnumbers	Group Number	String		hs_hardware	True	True	False	False	False	None
+hs_hardwareid	hs_hardwareId	Hardware	Uniqueidentifier	Unique identifier for entity instances	hs_hardware	False	False	False	True	False	SystemRequired
+hs_hardwareidnumber	hs_hardwareidnumber	Hardware ID	String		hs_hardware	True	True	False	False	False	Recommended
+hs_hardwarename	hs_hardwarename	System/Server Name/Computer Descript.	String	The name of the custom entity.	hs_hardware	True	True	False	False	True	None
+hs_hardwaretype	hs_hardwaretype	Hardware Type	Boolean		hs_hardware	True	True	False	False	False	None
+hs_hardwaretypename	hs_hardwaretypeName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_hostname	hs_hostname	Hostname	String		hs_hardware	True	True	False	False	False	None
+hs_hostoperatingsystem	hs_hostoperatingsystem	Host Operating System	Picklist		hs_hardware	True	True	False	False	False	None
+hs_hostoperatingsystemname	hs_hostoperatingsystemName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_importmappingacctnumber	hs_ImportMappingAcctNumber	ImportMappingAcctNumber	String		hs_hardware	True	True	False	False	False	None
+hs_invoice	hs_invoice	Invoice	Lookup		hs_hardware	True	True	False	False	False	None
+hs_invoicename	hs_invoiceName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_lpardescription	hs_lpardescription	LPAR Description	String		hs_hardware	True	True	False	False	False	None
+hs_mcpsystemtype	hs_mcpsystemtype	MCP System Type	Picklist		hs_hardware	True	True	False	False	False	None
+hs_mcpsystemtypename	hs_mcpsystemtypeName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_migrationchange	hs_migrationchange	Migration Change	Boolean	Indicates whether the CRM message executing was triggered by a migration process. If it is true custom plugins are disabled for the message. Intended usage is data migration steps will set it to true.	hs_hardware	True	True	False	False	False	None
+hs_migrationchangename	hs_migrationchangeName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_model	hs_model	Model	Lookup		hs_hardware	True	True	False	False	False	None
+hs_modelname	hs_modelName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_numberofprocessors	hs_numberofprocessors	# of Processors	Integer		hs_hardware	True	True	False	False	False	None
+hs_order	hs_order	Order	Lookup		hs_hardware	True	True	False	False	False	None
+hs_ordername	hs_orderName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_os2200systemtype	hs_os2200systemtype	OS2200 System Type	Picklist		hs_hardware	True	True	False	False	False	None
+hs_os2200systemtypename	hs_os2200systemtypeName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_parenthardware	hs_parenthardware	Parent Hardware	Lookup		hs_hardware	True	True	False	False	False	None
+hs_parenthardwarename	hs_parenthardwareName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_pgroup	hs_pgroup	P Group	String		hs_hardware	True	True	False	False	False	None
+hs_pgrouplist	hs_pgrouplist	P Group List	Picklist		hs_hardware	True	True	False	False	False	None
+hs_pgrouplistname	hs_pgrouplistName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_product	hs_product	Product	Lookup		hs_hardware	True	True	False	False	False	None
+hs_productbrand	hs_ProductBrand	Product Brand	Lookup		hs_hardware	True	True	False	False	False	None
+hs_productbrandname	hs_ProductBrandName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_productname	hs_productName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_quoteid	hs_quoteid	Quote	Lookup	Unique identifier for Quote associated with Hardware.	hs_hardware	False	True	False	False	False	None
+hs_quoteidname	hs_quoteidName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_serialnumber	hs_serialnumber	Serial Number	String		hs_hardware	True	True	False	False	False	None
+hs_serverlocationtype	hs_ServerLocationType	Server Location Type	Picklist	Add a new field below “Server Location Type” on the Hardware Form View with dropdown options.	hs_hardware	True	True	False	False	False	None
+hs_serverlocationtypename	hs_serverlocationtypeName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_servertype	hs_servertype	Server Type	Picklist		hs_hardware	True	True	False	False	False	ApplicationRequired
+hs_servertypename	hs_servertypeName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_shipto_countryid	hs_shipto_countryId	Ship To Country	Lookup	Country for the ship-to address	hs_hardware	False	True	False	False	False	None
+hs_shipto_countryidname	hs_shipto_countryIdName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_shipto_stateprovinceid	hs_shipto_stateprovinceid	Ship To State/Province	Lookup		hs_hardware	True	True	False	False	False	None
+hs_shipto_stateprovinceidname	hs_shipto_stateprovinceidName	N/A	String	N/A	hs_hardware	True	True	True	False	False	None
+hs_shiptoaddress1	hs_shiptoaddress1	Ship To Address - Address 1	String		hs_hardware	True	True	False	False	False	None
+hs_shiptoaddress2	hs_shiptoaddress2	Ship To Address - Address 2	String		hs_hardware	True	True	False	False	False	None
+hs_shiptoaddress3	hs_shiptoaddress3	Ship To Address - Address 3	String		hs_hardware	True	True	False	False	False	None
+hs_shiptoaddresscity	hs_shiptoaddresscity	Ship To Address - City	String		hs_hardware	True	True	False	False	False	None
+hs_shiptoaddresscountry	hs_shiptoaddresscountry	(OBSOLETE) Ship To Address - Country	Picklist		hs_hardware	True	True	False	False	False	None
+hs_shiptoaddresscountryname	hs_shiptoaddresscountryName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_shiptoaddressstateprovince	hs_shiptoaddressstateprovince	(OBSOLETE) Ship To Address - State / Province	Picklist		hs_hardware	True	True	False	False	False	None
+hs_shiptoaddressstateprovincename	hs_shiptoaddressstateprovinceName	N/A	Virtual	N/A	hs_hardware	False	True	True	False	False	None
+hs_shiptoaddresszipcode	hs_shiptoaddresszipcode	Ship To Address - Zip Code	String		hs_hardware	True	True	False	False	False	None
+importsequencenumber	ImportSequenceNumber	Import Sequence Number	Integer	Sequence number of the import that created this record.	hs_hardware	True	False	False	False	False	None
+modifiedby	ModifiedBy	Modified By	Lookup	Unique identifier of the user who modified the record.	hs_hardware	False	False	False	False	False	None
+modifiedbyname	ModifiedByName	N/A	String	N/A	hs_hardware	False	False	True	False	False	None
+modifiedbyyominame	ModifiedByYomiName	N/A	String	N/A	hs_hardware	False	False	True	False	False	SystemRequired
+modifiedon	ModifiedOn	Modified On	DateTime	Date and time when the record was modified.	hs_hardware	False	False	False	False	False	None
+modifiedonbehalfby	ModifiedOnBehalfBy	Modified By (Delegate)	Lookup	Unique identifier of the delegate user who modified the record.	hs_hardware	False	False	False	False	False	None
+modifiedonbehalfbyname	ModifiedOnBehalfByName	N/A	String	N/A	hs_hardware	False	False	True	False	False	None
+modifiedonbehalfbyyominame	ModifiedOnBehalfByYomiName	N/A	String	N/A	hs_hardware	False	False	True	False	False	SystemRequired
+overriddencreatedon	OverriddenCreatedOn	Record Created On	DateTime	Date and time that the record was migrated.	hs_hardware	True	False	False	False	False	None
+ownerid	OwnerId	Owner	Owner	Owner Id	hs_hardware	True	False	False	False	False	SystemRequired
+owneridname	OwnerIdName	N/A	String	Name of the owner	hs_hardware	False	False	True	False	False	SystemRequired
+owneridtype	OwnerIdType	N/A	EntityName	Owner Id Type	hs_hardware	True	False	False	False	False	SystemRequired
+owneridyominame	OwnerIdYomiName	N/A	String	Yomi name of the owner	hs_hardware	False	False	True	False	False	SystemRequired
+owningbusinessunit	OwningBusinessUnit	Owning Business Unit	Lookup	Unique identifier for the business unit that owns the record	hs_hardware	True	False	False	False	False	None
+owningbusinessunitname	OwningBusinessUnitName	N/A	String	N/A	hs_hardware	True	False	True	False	False	None
+owningteam	OwningTeam	Owning Team	Lookup	Unique identifier for the team that owns the record.	hs_hardware	False	False	True	False	False	None
+owninguser	OwningUser	Owning User	Lookup	Unique identifier for the user that owns the record.	hs_hardware	False	False	True	False	False	None
+statecode	statecode	Status	State	Status of the Hardware	hs_hardware	True	False	False	False	False	SystemRequired
+statecodename	statecodeName	N/A	Virtual	N/A	hs_hardware	False	False	True	False	False	None
+statuscode	statuscode	Status Reason	Status	Reason for the status of the Hardware	hs_hardware	True	False	False	False	False	None
+statuscodename	statuscodeName	N/A	Virtual	N/A	hs_hardware	False	False	True	False	False	None
+timezoneruleversionnumber	TimeZoneRuleVersionNumber	Time Zone Rule Version Number	Integer	For internal use only.	hs_hardware	False	False	False	False	False	None
+utcconversiontimezonecode	UTCConversionTimeZoneCode	UTC Conversion Time Zone Code	Integer	Time zone code that was in use when the record was created.	hs_hardware	False	False	False	False	False	None
+versionnumber	VersionNumber	Version Number	BigInt	Version Number	hs_hardware	False	False	False	False	False	None

@@ -1,0 +1,997 @@
+{
+  "name": "Linking_1_D365_Projects",
+  "ppdf:dataflowId": "d0538da6-a2ce-4a23-b492-db8661d5cec8",
+  "ppdf:owner": {
+    "tenantId": "ca81e23b-3509-45ee-a998-3e346acf274d",
+    "userId": "a87082d1-a409-4857-bf7d-086629a120c3"
+  },
+  "ppdf:fastCopy": true,
+  "version": "1.0",
+  "culture": "en-US",
+  "modifiedTime": "2025-01-23T13:32:06.5576857+00:00",
+  "ppdf:outputFileFormat": "Parquet",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": true,
+    "queriesMetadata": {
+      "Accounts": {
+        "queryId": "ce9ceec2-197e-4b02-94d4-f1ba412291f6",
+        "queryName": "Accounts",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_hs_productbrands": {
+        "queryId": "6acbd2f6-85ea-4e26-89c3-d120ee3c088c",
+        "queryName": "Source_hs_productbrands",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_Opportunity": {
+        "queryId": "437a3952-efe2-4a06-befa-b997ef209558",
+        "queryName": "Source_Opportunity",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_systemusers": {
+        "queryId": "c15dbb54-62f5-4702-8e34-f66bbc5e56b3",
+        "queryName": "Source_systemusers",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_Projects": {
+        "queryId": "d3baad4b-0b81-4fd0-9f5e-dbae542a5725",
+        "queryName": "Source_Projects",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_projecttaskses": {
+        "queryId": "21adf14c-eb76-408e-8956-0ab51f264e54",
+        "queryName": "Source_projecttaskses",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_projecthourses": {
+        "queryId": "a7fb4382-9855-49b7-888e-bf9d40500d7d",
+        "queryName": "Source_projecthourses",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_Project_Team": {
+        "queryId": "9b9a7312-a478-485d-8a1e-18cff0a0a480",
+        "queryName": "Source_Project_Team",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_Cross_Team_Requests": {
+        "queryId": "b5e7b018-b379-4f13-a886-decfa4e33889",
+        "queryName": "Source_Cross_Team_Requests",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Source_External_Project_Resources": {
+        "queryId": "6c742f39-8bb3-4767-b1d3-a78bcf91ea0d",
+        "queryName": "Source_External_Project_Resources",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Region Mapping": {
+        "queryId": "c4f8f4c9-9d23-4202-a0ec-a19fc0a001d1",
+        "queryName": "Region Mapping",
+        "queryGroupId": "f6ca0337-76f7-4c0c-930e-663ea20333b3"
+      },
+      "Risk & Issue - Active Projects": {
+        "queryId": "0eb9c3f6-82c5-4e24-85bf-aeb17f1ad11a",
+        "queryName": "Risk & Issue - Active Projects",
+        "queryGroupId": "f6ca0337-76f7-4c0c-930e-663ea20333b3"
+      },
+      "Escalated_Risk": {
+        "queryId": "e3ed1132-d09e-4caf-9b5f-5c6e53f703e8",
+        "queryName": "Escalated_Risk",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "Ref_Child_Projects": {
+        "queryId": "5fefa0cb-b239-45fe-bed1-7d0b00ed2c7e",
+        "queryName": "Ref_Child_Projects",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "Merge_Project_Team": {
+        "queryId": "51fc6914-1806-4d21-baad-4b22e177c8e7",
+        "queryName": "Merge_Project_Team",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "Transformed_Projects": {
+        "queryId": "2a1675b7-86b8-4df2-b85d-50d57086a8b1",
+        "queryName": "Transformed_Projects",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677",
+        "loadEnabled": true
+      },
+      "Update_Projects": {
+        "queryId": "554fe753-121f-47f6-9528-ce9868ef9c11",
+        "queryName": "Update_Projects",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "Update_Projects_TTBV": {
+        "queryId": "a771ca83-9358-436c-8176-1b8b10c8bb88",
+        "queryName": "Update_Projects_TTBV",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "Update_Projects_KickOff": {
+        "queryId": "2911ce8a-4005-4c5a-baee-3d6d52122fac",
+        "queryName": "Update_Projects_KickOff",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "Update_Projects_Complete": {
+        "queryId": "dcb9cb7a-ed88-4887-88cf-bb44c9c716e6",
+        "queryName": "Update_Projects_Complete",
+        "queryGroupId": "0a157c3f-16da-4b66-9d6e-53f722996677"
+      },
+      "REF_Solution_Group": {
+        "queryId": "2045940a-24ec-4a00-8589-f0a1c6129d64",
+        "queryName": "REF_Solution_Group",
+        "queryGroupId": "cdfbfd6a-ddb1-4709-bac5-04a605bac609",
+        "loadEnabled": true
+      },
+      "Project_D365_Activity_Append": {
+        "queryId": "80e4c841-aa91-4e1c-b304-080aa84444bd",
+        "queryName": "Project_D365_Activity_Append",
+        "queryGroupId": "cdfbfd6a-ddb1-4709-bac5-04a605bac609",
+        "loadEnabled": true
+      },
+      "Temp_hours_internal": {
+        "queryId": "c09c3623-94e7-4b6d-8e79-1c9750f6d0bd",
+        "queryName": "Temp_hours_internal",
+        "queryGroupId": "ffc98eab-9dd0-4383-961c-3a56e627b4a2"
+      },
+      "Transformed_Hours": {
+        "queryId": "086b30ca-981f-4c0c-bba2-cff9be948757",
+        "queryName": "Transformed_Hours",
+        "queryGroupId": "ffc98eab-9dd0-4383-961c-3a56e627b4a2",
+        "loadEnabled": true
+      },
+      "Transformed_CTRs": {
+        "queryId": "b74fc742-4250-4de1-aff1-0dc70f1a515e",
+        "queryName": "Transformed_CTRs",
+        "queryGroupId": "060cb3d7-7223-43c8-80a2-3401e548bc73",
+        "loadEnabled": true
+      },
+      "Merged_Opportunity": {
+        "queryId": "ccb4d5f9-376f-402b-9445-5a5d9a3c16dc",
+        "queryName": "Merged_Opportunity",
+        "queryGroupId": "090576dd-03d2-4fdd-99a9-58cd3ca45bc0"
+      },
+      "Transformed_Opportunity": {
+        "queryId": "a4f90fcb-14ee-4b90-a950-158be71199e0",
+        "queryName": "Transformed_Opportunity",
+        "queryGroupId": "090576dd-03d2-4fdd-99a9-58cd3ca45bc0",
+        "loadEnabled": true
+      },
+      "Solution Structure": {
+        "queryId": "1c9b4735-a7df-4b52-8810-6adbbdc0364b",
+        "queryName": "Solution Structure",
+        "queryGroupId": "67b5294f-98eb-4999-9b1a-8a26b901b021"
+      },
+      "Manual-add_products": {
+        "queryId": "f2fdb619-d489-42a7-b5a2-e05774da5e0a",
+        "queryName": "Manual-add_products",
+        "queryGroupId": "f6ca0337-76f7-4c0c-930e-663ea20333b3"
+      }
+    },
+    "document": "section Section1;\r\nshared Accounts = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Accounts\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_hs_productbrands = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_hs_productbrands\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Opportunity = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Opportunity\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_systemusers = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_systemusers\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Projects = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Projects\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_projecttaskses = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_projecttaskses\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_projecthourses = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_projecthourses\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Project_Team = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Project_Team\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Cross_Team_Requests = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Cross_Team_Requests\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_External_Project_Resources = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_External_Project_Resources\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Region Mapping\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"1b31bc55-8c4d-4aa1-8c26-df2583b079dc\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"5de8793b-99e1-4c20-8f1c-031c13279c5f\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Region Mapping\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Risk & Issue - Active Projects\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"db01a80b-011a-4105-9fcb-9371188e720a\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"53f6ed60-dabc-459e-a42a-47b65a7b7105\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Risk & Issue - Active Projects\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Escalated_Risk = let\n    Source = #\"Risk & Issue - Active Projects\",\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"Max Escalation Type\", \"Project Number\", \"Risk/Issue Status\", \"Escalate to Management\", \"Escalation Type\"}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Removed other columns\", each ([Escalate to Management] = true) and ([#\"Risk/Issue Status\"] <> \"3. Closed\")),\n    #\"Merged queries\" = Table.NestedJoin(#\"Filtered rows\", {\"Project Number\"}, Source_Projects, {\"Project Number\"}, \"Source_Projects\", JoinKind.Inner),\n    #\"Expanded Source_Projects\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_Projects\", {\"Project Status\"}, {\"Project Status\"}),\n    #\"Grouped rows\" = Table.Group(#\"Expanded Source_Projects\", {\"Project Number\"}, {{\"Count\", each Table.RowCount(_), Int64.Type}}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Grouped rows\", {{\"Count\", \"Escalated Open Risks\"}})\nin\n    #\"Renamed columns\";\r\nshared Ref_Child_Projects = let\n    Source = Source_Projects,\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"hs_parentproject\"}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Removed other columns\", each ([hs_parentproject] <> \"\")),\n    #\"Grouped rows\" = Table.Group(#\"Filtered rows\", {\"hs_parentproject\"}, {{\"Count\", each Table.RowCount(_), Int64.Type}}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Grouped rows\", {{\"Count\", \"Child Projects\"}})\nin\n    #\"Renamed columns\";\r\nshared Merge_Project_Team = let\n    Source = Table.NestedJoin(Source_Project_Team, {\"ownerid\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(Source, \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Expanded Source_systemusers\", \"Custom\", each Text.FromBinary(\r\nText.ToBinary(\r\n[fullname], \r\n28597 )\r\n)), {{\"Custom\", type text}}),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Added custom\", {\"ownerid\", \"fullname\"}),\n    #\"Pivoted column\" = Table.Pivot(Table.TransformColumnTypes(#\"Removed columns\", {{\"hs_role_display\", type text}}), List.Distinct(Table.TransformColumnTypes(#\"Removed columns\", {{\"hs_role_display\", type text}})[hs_role_display]), \"hs_role_display\", \"Custom\")\nin\n    #\"Pivoted column\";\r\nshared Transformed_Projects = let\n    Source = Table.NestedJoin(Source_Projects, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(Source, \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_hs_productbrands\", {{\"hs_productbrandname\", \"Product Brand\"}}),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Renamed columns\", {\"hs_productbrand\"}),\n    #\"Merged queries\" = Table.NestedJoin(#\"Removed columns\", {\"hs_account\"}, Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.LeftOuter),\n    #\"Expanded Source_Accounts 1\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_Accounts\", {\"Account Number\", \"Account Temperature\", \"CSAT Score\", \"Survey Last Sent\", \"Account Name\", \"Account Region\", \"URL-Account\"}, {\"Account Number\", \"Account Temperature\", \"CSAT Score\", \"Survey Last Sent\", \"Account Name\", \"Account Region\", \"URL-Account\"}),\r\n  #\"Changed column type 2\" = Table.TransformColumnTypes(#\"Expanded Source_Accounts 1\", {{\"Survey Last Sent\", type date}}),\r\n  #\"Replaced value 1\" = Table.ReplaceValue(#\"Changed column type 2\", null, null, Replacer.ReplaceValue, {\"Survey Last Sent\"}),\n    #\"Inserted merged column\" = Table.AddColumn(#\"Replaced value 1\", \"AccId_Brand_Lookup\", each Text.Combine({[hs_account], [Product Brand]}, \"\"), type text),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Inserted merged column\", {\"hs_account\"}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Removed columns 1\", {\"hs_projectmanagerprojectlead\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Expanded Source_systemusers\", {{\"fullname\", \"Project Owner\"}}),\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Renamed columns 1\", {\"hs_projectmanagerprojectlead\", \"hs_rsm\", \"ownerid\"}),\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Removed columns 2\", {\"Id\"}, Merge_Project_Team, {\"hs_projects\"}, \"Merge_Project_Team\", JoinKind.LeftOuter),\n    #\"Expanded Merge_Project_Team\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Merge_Project_Team\", {\"Consultant\", \"Project Manager\", \"Services Coordinator\"}, {\"Consultant\", \"Project Manager\", \"Services Coordinator\"}),\n    #\"Removed columns 3\" = Table.RemoveColumns(#\"Expanded Merge_Project_Team\", {\"createdon\"}),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns 3\", {{\"% Value Achieved\", Percentage.Type}}),\n    #\"Merged queries 3\" = Table.NestedJoin(#\"Changed column type\", {\"hs_parentproject\"}, Source_Projects, {\"Id\"}, \"Source_Projects\", JoinKind.LeftOuter),\n    #\"Expanded Source_Projects\" = Table.ExpandTableColumn(#\"Merged queries 3\", \"Source_Projects\", {\"Project Name\", \"Project Number\", \"Project Status\"}, {\"Project Name.1\", \"Project Number.1\", \"Project Status.1\"}),\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Expanded Source_Projects\", {{\"Project Name.1\", \"Parent Project Name\"}, {\"Project Number.1\", \"Parent Project Number\"}, {\"Project Status.1\", \"Parent Project Status\"}}),\n    #\"Merged queries 4\" = Table.NestedJoin(#\"Renamed columns 2\", {\"Id\"}, Ref_Child_Projects, {\"hs_parentproject\"}, \"Ref_Child_Projects\", JoinKind.LeftOuter),\n    #\"Expanded Ref_Child_Projects\" = Table.ExpandTableColumn(#\"Merged queries 4\", \"Ref_Child_Projects\", {\"Child Projects\"}, {\"Child Projects\"}),\n    #\"Renamed columns 3\" = Table.RenameColumns(#\"Expanded Ref_Child_Projects\", {{\"Child Projects\", \"# Child Projects\"}}),\n    #\"Removed columns 4\" = Table.RemoveColumns(#\"Renamed columns 3\", {\"hs_parentproject\"}),\n    #\"Merged queries 5\" = Table.NestedJoin(#\"Removed columns 4\", {\"hs_opportunity\"}, Transformed_Opportunity, {\"Opportunity Id\"}, \"Transformed_Opportunity\", JoinKind.LeftOuter),\r\n  #\"Expanded Transformed_Opportunity 1\" = Table.ExpandTableColumn(#\"Merged queries 5\", \"Transformed_Opportunity\", {\"Opportunity Close Date\", \"Opportunity Probability\", \"Opportunity Name\", \"Opportunity Id\", \"Forecast Status\", \"Opportunity Stage\", \"Services Value USD\", \"Opportunity Number\", \"URL-OTY\", \"Opportunity Brand - Product\", \"Opportunity Brand - Solution\", \"Opportunity Brand - Group\", \"Opportunity Region\"}, {\"Opportunity Close Date\", \"Opportunity Probability\", \"Opportunity Name\", \"Opportunity Id\", \"Forecast Status\", \"Opportunity Stage\", \"Services Value USD\", \"Opportunity Number\", \"URL-OTY\", \"Opportunity Brand - Product\", \"Opportunity Brand - Solution\", \"Opportunity Brand - Group\", \"Opportunity Region\"}),\n    #\"Merged queries 7\" = Table.NestedJoin(#\"Expanded Transformed_Opportunity 1\", {\"Id\"}, Source_External_Project_Resources, {\"hs_project\"}, \"Source_External_Project_Resources\", JoinKind.LeftOuter),\n    #\"Expanded Source_External_Project_Resources\" = Table.ExpandTableColumn(#\"Merged queries 7\", \"Source_External_Project_Resources\", {\"Project Completion Report\", \"Project Completion Email\", \"Team Value Report\"}, {\"Project Completion Report\", \"Project Completion Email\", \"Team Value Report\"}),\n    #\"Renamed columns 4\" = Table.RenameColumns(#\"Expanded Source_External_Project_Resources\", {{\"Project Completion Email\", \"Project - Completion Email\"}, {\"Project Completion Report\", \"Project - Completion Report\"}, {\"Team Value Report\", \"Customber Onboarding Report\"}}),\n    #\"Merged queries 8\" = Table.NestedJoin(#\"Renamed columns 4\", {\"Project Number\"}, Escalated_Risk, {\"Project Number\"}, \"Escalated_Risk\", JoinKind.LeftOuter),\n    #\"Expanded Escalated_Risk\" = Table.ExpandTableColumn(#\"Merged queries 8\", \"Escalated_Risk\", {\"Escalated Open Risks\"}, {\"Escalated Open Risks\"}),\n    #\"Replaced value\" = Table.ReplaceValue(#\"Expanded Escalated_Risk\", \"\", null, Replacer.ReplaceValue, {\"Project Status\"}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Replaced value\", \"Count-Projects_Open\", each if [Project Status] = null then 0 else if Text.Contains([Project Status], \"Closed\") then 0 else if Text.Contains([Project Status], \"Complete\") then 0 else if Text.Contains([Project Status], \"Completed\") then 0 else 1),\n    #\"Inserted conditional column 1\" = Table.AddColumn(#\"Inserted conditional column\", \"Count-Projects_Closed\", each if [Project Status] = null then 0 else if Text.Contains([Project Status], \"Closed\") then 1 else if Text.Contains([Project Status], \"Complete\") then 1 else if Text.Contains([Project Status], \"Completed\") then 1 else 0),\n    #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted conditional column 1\", {{\"Count-Projects_Open\", Int64.Type}, {\"Count-Projects_Closed\", Int64.Type}})\nin\n    #\"Changed column type 1\";\r\nshared Update_Projects = let\n    Source = Transformed_Projects,\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"Actual End Date\", \"Actual Start Date\", \"Basic Value Achieved\", \"Basic Value Definition\", \"Project Name\", \"Id\", \"Project Manager Notes\", \"Project Status\", \"URL-PROJECT\", \"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Project Manager\", \"Consultant\"}),\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed other columns\", \"Activity Type\", each \"Project Milestone\"), {{\"Activity Type\", type text}}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Added custom\", {{\"Project Status\", \"Activity Status\"}, {\"Actual Start Date\", \"Activity Started\"}, {\"Project Name\", \"Activity Subject\"}, {\"URL-PROJECT\", \"Activity Link\"}, {\"Id\", \"Activity Id\"}, {\"Actual End Date\", \"Activity Completed\"}}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Renamed columns\", each [Activity Status] <> \"Closed-Cancelled\"),\n    #\"Remove columns\" = Table.RemoveColumns(#\"Filtered rows\", Table.ColumnsOfType(#\"Filtered rows\", {type table, type record, type list, type nullable binary, type binary, type function}))\nin\n    #\"Remove columns\";\r\nshared Update_Projects_TTBV = let\n    Source = Update_Projects,\n    #\"Filtered rows\" = Table.SelectRows(Source, each [Basic Value Achieved] <> null and [Basic Value Achieved] <> \"\"),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Filtered rows\", {\"Project Manager Notes\"}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns 1\", {{\"Basic Value Definition\", \"Activity Description\"}, {\"Basic Value Achieved\", \"Activity Date\"}, {\"Consultant\", \"Activity Owner\"}}),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Renamed columns\", {\"Project Manager\"}),\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed columns\", \"Activity Category\", each \"Basic Value Achieved\"), {{\"Activity Category\", type text}})\nin\n    #\"Added custom\";\r\nshared Update_Projects_KickOff = let\n    Source = Update_Projects,\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"Basic Value Achieved\", \"Basic Value Definition\", \"Project Manager Notes\"}),\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Removed columns\", each [Activity Started] <> null and [Activity Started] <> \"\"),\n    #\"Duplicated column\" = Table.DuplicateColumn(#\"Filtered rows 1\", \"Activity Started\", \"Activity Started - Copy\"),\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Duplicated column\", {{\"Activity Started - Copy\", \"Activity Date\"}}),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Renamed columns 1\", {\"Consultant\"}),\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Removed columns 1\", {{\"Project Manager\", \"Activity Owner\"}}),\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns 2\", \"Activity Category\", each \"Project Kick Off\"), {{\"Activity Category\", type text}}),\n    #\"Remove columns\" = Table.RemoveColumns(#\"Added custom\", Table.ColumnsOfType(#\"Added custom\", {type table, type record, type list, type nullable binary, type binary, type function}))\nin\n    #\"Remove columns\";\r\nshared Update_Projects_Complete = let\n    Source = Update_Projects,\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"Basic Value Achieved\", \"Basic Value Definition\"}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Removed columns\", each [Activity Status] = \"Closed-Completed\" or [Activity Status] = \"Closed-Expired\" or [Activity Status] = \"Closed-NSR Admin Only\"),\n    #\"Duplicated column\" = Table.DuplicateColumn(#\"Filtered rows\", \"Activity Completed\", \"Activity Date\"),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Duplicated column\", {\"Consultant\"}),\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Removed columns 1\", {{\"Project Manager\", \"Activity Owner\"}}),\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns 2\", \"Activity Category\", each \"Project Complete\"), {{\"Activity Category\", type text}}),\n    #\"Remove columns\" = Table.RemoveColumns(#\"Added custom\", Table.ColumnsOfType(#\"Added custom\", {type table, type record, type list, type nullable binary, type binary, type function}))\nin\n    #\"Remove columns\";\r\nshared REF_Solution_Group = let\n    Source = Source_hs_productbrands,\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"hs_productbrandname\"}),\r\n  #\"Appended query\" = Table.Combine({#\"Removed other columns\", #\"Manual-add_products\"}),\n    #\"Removed duplicates\" = Table.Distinct(#\"Appended query\", {\"hs_productbrandname\"}),\n  #\"Merged queries\" = Table.NestedJoin(#\"Removed duplicates\", {\"hs_productbrandname\"}, #\"Solution Structure\", {\"Brand\"}, \"Solution Structure\", JoinKind.LeftOuter),\n  #\"Expanded Solution Structure\" = Table.ExpandTableColumn(#\"Merged queries\", \"Solution Structure\", {\"Solution\", \"Group\"}, {\"Solution\", \"Group\"})\nin\n    #\"Expanded Solution Structure\";\r\nshared Project_D365_Activity_Append = let\n    Source = Table.Combine({Update_Projects_Complete, Update_Projects_KickOff, Update_Projects_TTBV}),\n    #\"Choose columns\" = Table.SelectColumns(Source, {\"Activity Completed\", \"Activity Started\", \"Activity Subject\", \"Activity Id\", \"Activity Status\", \"Activity Link\", \"Product Brand\", \"Account Number\", \"Account Name\", \"AccId_Brand_Lookup\", \"Activity Owner\", \"Activity Type\", \"Activity Date\", \"Activity Category\", \"Activity Description\"}),\n    #\"Remove columns\" = Table.RemoveColumns(#\"Choose columns\", Table.ColumnsOfType(#\"Choose columns\", {type table, type record, type list, type nullable binary, type binary, type function}))\nin\n    #\"Remove columns\";\r\nshared Temp_hours_internal = let\n    Source = Source_projecthourses,\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"hs_projecttask\", \"hs_project\", \"Hours Description\", \"Activity Item Reference\"}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Removed other columns\", each [hs_project] = \"d5691c81-5a9f-ee11-be37-0022480ae284\" or [hs_project] = \"2d1f197f-b230-ef11-8409-000d3a5c8ef2\" or [hs_project] = \"159a816a-9930-ef11-840a-0022480a403f\" or [hs_project] = \"fb4df8fb-b7c3-ef11-b8e9-6045bd05c933\"),\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Filtered rows\", each [hs_projecttask] = \"67267c99-5a9f-ee11-be37-0022480ae284\" or [hs_projecttask] = \"a55cb9f1-b030-ef11-8409-002248042d66\" or [hs_projecttask] = \"66c15442-c3c3-ef11-b8e9-6045bd05c933\"),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows 1\", {\"hs_projecttask\", \"hs_project\"}),\n    #\"Uppercased text\" = Table.TransformColumns(#\"Removed columns\", {{\"Hours Description\", each Text.Upper(_), type nullable text}}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Uppercased text\", \"General Administration Category\", each if Text.StartsWith([Hours Description], \"INTERNAL MEETING\") then \"Internal Meetings\" else if Text.StartsWith([Hours Description], \"ADMIN\") then \"Administration\" else if Text.StartsWith([Hours Description], \"INDIVIDUAL DEV\") then \"Individual Development\" else if Text.StartsWith([Hours Description], \"AFTER HOURS/WEEKDAY TRAVEL\") then \"After Hours Travel\" else if Text.Contains([Hours Description], \"GENERAL ADMIN\") then \"Administration\" else if Text.Contains([Hours Description], \"INTERNAL CALLS\") then \"Internal Meetings\" else \"Other\"),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"General Administration Category\", type text}})\nin\n    #\"Changed column type\";\r\nshared Transformed_Hours = let\n    Source = Table.NestedJoin(Source_projecthourses, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"hs_productbrand\", \"timezoneruleversionnumber\", \"utcconversiontimezonecode\"}),\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Removed columns\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_hs_productbrands\", {{\"hs_productbrandname\", \"Product Brand\"}}),\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns\", {\"createdby\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Merged queries\", {\"createdby\"}),\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Removed columns 1\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Expanded Source_systemusers\", {{\"fullname\", \"Created By\"}}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Renamed columns 1\", {\"ownerid\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Merged queries 1\", {\"ownerid\"}),\n    #\"Expanded Source_systemusers 1\" = Table.ExpandTableColumn(#\"Removed columns 2\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Expanded Source_systemusers 1\", {{\"fullname\", \"Resource Name\"}}),\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Renamed columns 2\", {\"hs_account\"}, Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.LeftOuter),\n    #\"Removed columns 3\" = Table.RemoveColumns(#\"Merged queries 2\", {\"hs_account\"}),\n    #\"Expanded Source_Accounts\" = Table.ExpandTableColumn(#\"Removed columns 3\", \"Source_Accounts\", {\"Account Name\"}, {\"Account Name\"}),\n    #\"Merged queries 3\" = Table.NestedJoin(#\"Expanded Source_Accounts\", {\"hs_projecttask\"}, Source_projecttaskses, {\"hs_projecttasksid\"}, \"Source_projecttaskses\", JoinKind.LeftOuter),\n    #\"Removed columns 4\" = Table.RemoveColumns(#\"Merged queries 3\", {\"hs_projecttask\"}),\n    #\"Expanded Source_projecttaskses\" = Table.ExpandTableColumn(#\"Removed columns 4\", \"Source_projecttaskses\", {\"Project Task Name\"}, {\"Project Task Name\"}),\r\n  #\"Removed DG FTO Tasks\" = Table.SelectRows(#\"Expanded Source_projecttaskses\", each [Project Task Name] <> \"DO NOT USE (WAS PTO)\" and [Project Task Name] <> \"2024 Public Holiday\"),\n    #\"Trimmed text\" = Table.TransformColumns(#\"Removed DG FTO Tasks\", {{\"Project Task Name\", each Text.Trim(_), type nullable text}}),\n    #\"Merged queries 4\" = Table.NestedJoin(#\"Trimmed text\", {\"hs_project\"}, Transformed_Projects, {\"Id\"}, \"Transformed_Projects\", JoinKind.LeftOuter),\n    #\"Removed columns 5\" = Table.RemoveColumns(#\"Merged queries 4\", {\"hs_project\"}),\n    #\"Expanded Transformed_Projects\" = Table.ExpandTableColumn(#\"Removed columns 5\", \"Transformed_Projects\", {\"Id\", \"Billable Project Flag\", \"Project Name\", \"Project Number\",\"Project Type\", \"Revenue Type\", \"Project Status\", \"URL-PROJECT\", \"Budget Hours\", \"Cross Team Request Id\", \"hs_opportunity\"}, {\"Project Id\", \"Billable Project Flag\", \"Project Name\", \"Project Number\",\"Project Type\", \"Revenue Type\", \"Project Status\", \"URL-PROJECT\", \"Budget Hours\", \"Cross Team Request Id\", \"hs_opportunity\"}),\r\n  #\"Replaced the DG Internal Project Name\" = Table.ReplaceValue(#\"Expanded Transformed_Projects\", \"DG: Fortra - DP PS INTERNAL: 2024 Non-Billable Services\", \"INTERNAL: 2024 Non-Billable Services\", Replacer.ReplaceText, {\"Project Name\"}),\n    #\"Merged queries 5\" = Table.NestedJoin(#\"Replaced the DG Internal Project Name\", {\"Activity Item Reference\"}, Temp_hours_internal, {\"Activity Item Reference\"}, \"Temp_hours_internal\", JoinKind.LeftOuter),\n    #\"Expanded Temp_hours_internal\" = Table.ExpandTableColumn(#\"Merged queries 5\", \"Temp_hours_internal\", {\"General Administration Category\"}, {\"General Administration Category\"}),\r\n  #\"Replaced value\" = Table.ReplaceValue(#\"Expanded Temp_hours_internal\", \"\", null, Replacer.ReplaceValue, {\"Cross Team Request Id\"}),\r\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Replaced value\", \"Custom\", each Text.FromBinary(\r\nText.ToBinary(\r\n[Resource Name], \r\n28597\r\n)\r\n)), {{\"Custom\", type text}}),\r\n  #\"Removed columns 6\" = Table.RemoveColumns(#\"Added custom\", {\"Resource Name\"}),\r\n  #\"Renamed columns 3\" = Table.RenameColumns(#\"Removed columns 6\", {{\"Custom\", \"Resource Name\"}})\nin\n    #\"Renamed columns 3\";\r\nshared Transformed_CTRs = let\n    Source = Table.NestedJoin(Source_Cross_Team_Requests, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"hs_productbrand\"}),\n    #\"Expanded REF_hs_productbrands\" = Table.ExpandTableColumn(#\"Removed columns\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded REF_hs_productbrands\", {{\"hs_productbrandname\", \"Product Brand\"}}),\r\n  #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns\", {\"regardingobjectid\"}, Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.LeftOuter),\r\n  #\"Expanded Source_Accounts\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_Accounts\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\r\n  #\"Merged queries 1\" = Table.NestedJoin(#\"Expanded Source_Accounts\", {\"Activity Id\"}, Transformed_Projects, {\"Cross Team Request Id\"}, \"Transformed_Projects\", JoinKind.LeftOuter),\r\n  #\"Expanded Transformed_Projects\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Transformed_Projects\", {\"Project Name\", \"Project Number\"}, {\"Project Name\", \"Project Number\"})\nin\n    #\"Expanded Transformed_Projects\";\r\nshared Merged_Opportunity = let\n    Source = Table.NestedJoin(Source_Opportunity, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\n    #\"Removed columns\" = Table.RemoveColumns(Source, {\"hs_productbrand\"}),\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Removed columns\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"Product Brand\"}),\r\n  #\"Merged queries 3\" = Table.NestedJoin(#\"Expanded Source_hs_productbrands\", {\"Product Brand\"}, REF_Solution_Group, {\"hs_productbrandname\"}, \"REF_Solution_Group\", JoinKind.LeftOuter),\r\n  #\"Expanded REF_Solution_Group\" = Table.ExpandTableColumn(#\"Merged queries 3\", \"REF_Solution_Group\", {\"Solution\", \"Group\"}, {\"Opportunity Brand - Solution\", \"Opportunity Brand - Group\"}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Expanded REF_Solution_Group\", {{\"Product Brand\", \"Opportunity Brand - Product\"}}),\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns\", {\"ownerid\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_systemusers\", {\"fullname\"}, {\"Account Executive\"}),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Expanded Source_systemusers\", {\"ownerid\"}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Removed columns 1\", {\"hs_accountspecialistid\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Expanded Source_systemusers 1\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Source_systemusers\", {\"fullname\"}, {\"Account Specialist\"}),\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Expanded Source_systemusers 1\", {\"hs_accountspecialistid\"}),\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Removed columns 2\", {\"hs_countryregion_display\"}, #\"Region Mapping\", {\"Country\"}, \"Region Mapping\", JoinKind.LeftOuter),\n    #\"Expanded Region_Mapping\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Region Mapping\", {\"Region\"}, {\"Region\"}),\n    #\"Replaced value\" = Table.ReplaceValue(#\"Expanded Region_Mapping\", \"\", null, Replacer.ReplaceValue, {\"hs_countryregion_display\"}),\r\n  #\"Replaced value 1\" = Table.ReplaceValue(#\"Replaced value\", \"\", null, Replacer.ReplaceValue, {\"Region\"}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Replaced value 1\", \"Opportunity Region\", each if [hs_countryregion_display] = null then \"Not Defined\" else if [Region] = null then \"Other\" else [Region]),\r\n  #\"Replaced errors\" = Table.ReplaceErrorValues(#\"Inserted conditional column\", {{\"Opportunity Region\", null}}),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Replaced errors\", {{\"Opportunity Region\", type text}}),\n    #\"Removed columns 3\" = Table.RemoveColumns(#\"Changed column type\", {\"hs_countryregion_display\", \"Region\"})\nin\n    #\"Removed columns 3\";\r\nshared Transformed_Opportunity = let\n    Source = Table.NestedJoin(Merged_Opportunity, {\"customerid\"}, Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.LeftOuter),\n    #\"Expanded Source_Accounts\" = Table.ExpandTableColumn(Source, \"Source_Accounts\", {\"Account Number\", \"Account Temperature\", \"CSAT Score\", \"Survey Last Sent\", \"Account Name\", \"Account Region\", \"URL-Account\"}, {\"Account Number\", \"Account Temperature\", \"CSAT Score\", \"Survey Last Sent\", \"Account Name\", \"Account Region\", \"URL-Account\"}),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Expanded Source_Accounts\", {\"customerid\"}),\r\n  #\"Replaced value\" = Table.ReplaceValue(#\"Removed columns\", \"\", null, Replacer.ReplaceValue, {\"Opportunity Stage\"}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Replaced value\", \"Count-OTY_Pipeline\", each if [Opportunity Stage] = \"Won\" then 0 else 1),\n    #\"Inserted conditional column 1\" = Table.AddColumn(#\"Inserted conditional column\", \"Count-OTY_Won\", each if [Opportunity Stage] = \"Won\" then 1 else 0),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column 1\", {{\"Count-OTY_Pipeline\", Int64.Type}, {\"Count-OTY_Won\", Int64.Type}})\nin\n    #\"Changed column type\";\r\nshared #\"Solution Structure\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Solution Structure\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Manual-add_products\" = let\r\n  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WCinKLCjPLEpVitWJVnLMSS0qUfDJT89MBvPdc/KTEnOCkxMLgPKxAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [hs_productbrandname = _t])\r\nin\r\n  Source;\r\n",
+    "connectionOverrides": [
+      {
+        "path": "PowerPlatformDataflows",
+        "kind": "PowerPlatformDataflows",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"PowerPlatformDataflows\",\"path\":\"PowerPlatformDataflows\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[{\"Id\":\"67b5294f-98eb-4999-9b1a-8a26b901b021\",\"Name\":\"Source Data_Premium\",\"Description\":\"\",\"ParentId\":null,\"Order\":0},{\"Id\":\"f6ca0337-76f7-4c0c-930e-663ea20333b3\",\"Name\":\"Source Data_Other\",\"Description\":\"\",\"ParentId\":null,\"Order\":1},{\"Id\":\"0a157c3f-16da-4b66-9d6e-53f722996677\",\"Name\":\"Projects\",\"Description\":\"\",\"ParentId\":null,\"Order\":2},{\"Id\":\"ffc98eab-9dd0-4383-961c-3a56e627b4a2\",\"Name\":\"Hours\",\"Description\":\"\",\"ParentId\":null,\"Order\":3},{\"Id\":\"090576dd-03d2-4fdd-99a9-58cd3ca45bc0\",\"Name\":\"Opportunity\",\"Description\":\"\",\"ParentId\":null,\"Order\":4},{\"Id\":\"060cb3d7-7223-43c8-80a2-3401e548bc73\",\"Name\":\"CTR\",\"Description\":\"\",\"ParentId\":null,\"Order\":5},{\"Id\":\"cdfbfd6a-ddb1-4709-bac5-04a605bac609\",\"Name\":\"Report Tables\",\"Description\":\"\",\"ParentId\":null,\"Order\":6}]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Projects",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Projects.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Actual End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Actual Amount",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Actual Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Basic Value Achieved",
+          "dataType": "date"
+        },
+        {
+          "name": "Basic Value Definition",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Billable Time",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Billable Project Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Actual Hours",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Budget Amount",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Budget Hours",
+          "dataType": "decimal"
+        },
+        {
+          "name": "% Value Achieved",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Cross Team Request Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Reason Code",
+          "dataType": "string"
+        },
+        {
+          "name": "Expected End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Expected Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Expiration Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "hs_opportunity",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Hourly Rate",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Hours Remaining",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Project Hours Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_quoteid",
+          "dataType": "string"
+        },
+        {
+          "name": "Revenue Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_totalbillabletime",
+          "dataType": "double"
+        },
+        {
+          "name": "Total Entered Time",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Total Non-Billable Time",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Project Manager Notes",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Budget Remaining",
+          "dataType": "double"
+        },
+        {
+          "name": "Hours Not Entered",
+          "dataType": "double"
+        },
+        {
+          "name": "URL-PROJECT",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Risk Level",
+          "dataType": "int64"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "date"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Consultant",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Manager",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Coordinator",
+          "dataType": "string"
+        },
+        {
+          "name": "Parent Project Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Parent Project Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Parent Project Status",
+          "dataType": "string"
+        },
+        {
+          "name": "# Child Projects",
+          "dataType": "int64"
+        },
+        {
+          "name": "Opportunity Close Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Opportunity Probability",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Opportunity Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Forecast Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Stage",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Value USD",
+          "dataType": "double"
+        },
+        {
+          "name": "Opportunity Number",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-OTY",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Brand - Product",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Brand - Solution",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Brand - Group",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Region",
+          "dataType": "string"
+        },
+        {
+          "name": "Project - Completion Report",
+          "dataType": "string"
+        },
+        {
+          "name": "Project - Completion Email",
+          "dataType": "string"
+        },
+        {
+          "name": "Customber Onboarding Report",
+          "dataType": "string"
+        },
+        {
+          "name": "Escalated Open Risks",
+          "dataType": "int64"
+        },
+        {
+          "name": "Count-Projects_Open",
+          "dataType": "int64"
+        },
+        {
+          "name": "Count-Projects_Closed",
+          "dataType": "int64"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "REF_Solution_Group",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "REF_Solution_Group.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_productbrandname",
+          "dataType": "string"
+        },
+        {
+          "name": "Solution",
+          "dataType": "string"
+        },
+        {
+          "name": "Group",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Project_D365_Activity_Append",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Project_D365_Activity_Append.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Started",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Hours",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Hours.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Item Reference",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_acecomments",
+          "dataType": "string"
+        },
+        {
+          "name": "Non Billable Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Billable Hours Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Date Services Performed",
+          "dataType": "date"
+        },
+        {
+          "name": "Forecasted Hours Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Hours Logged",
+          "dataType": "double"
+        },
+        {
+          "name": "Project Hourly Rate",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Service Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "statuscode_display",
+          "dataType": "string"
+        },
+        {
+          "name": "Hours Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Unique Identifier",
+          "dataType": "string"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Hours",
+          "dataType": "string"
+        },
+        {
+          "name": "Created on Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Created By",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Task Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Billable Project Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Project Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Revenue Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Status",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-PROJECT",
+          "dataType": "string"
+        },
+        {
+          "name": "Budget Hours",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Cross Team Request Id",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_opportunity",
+          "dataType": "string"
+        },
+        {
+          "name": "General Administration Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Resource Name",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_CTRs",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_CTRs.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Started",
+          "dataType": "date"
+        },
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "createdon",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Priority",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Uncharged Budget",
+          "dataType": "decimal"
+        },
+        {
+          "name": "hs_teammember_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_timetrackinghourly",
+          "dataType": "decimal"
+        },
+        {
+          "name": "owninguser",
+          "dataType": "string"
+        },
+        {
+          "name": "regardingobjectid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Number",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Opportunity",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Opportunity.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Opportunity Close Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Estimated Close Date",
+          "dataType": "date"
+        },
+        {
+          "name": "estimatedvalue_base",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Opportunity Probability",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Opportunity Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Forecast Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Stage",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Value USD",
+          "dataType": "double"
+        },
+        {
+          "name": "Opportunity Number",
+          "dataType": "string"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-OTY",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Brand - Product",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Brand - Solution",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Brand - Group",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Executive",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Specialist",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Region",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        },
+        {
+          "name": "Count-OTY_Pipeline",
+          "dataType": "int64"
+        },
+        {
+          "name": "Count-OTY_Won",
+          "dataType": "int64"
+        }
+      ]
+    }
+  ]
+}

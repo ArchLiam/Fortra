@@ -1,0 +1,42 @@
+
+===== SHEET: OpportunityLineItem (40r x 21c) =====
+Still in Use	BSI Notes	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+Yes	ALE per opp line is used for forecast/pipeline reporting	ALE_Amount__c	ALE Amount	currency	0	18	2	No	No	No		SBQQ__QuoteLine__r.Quote_Line_ALE__c					No	No	No	Yes
+No	Added because of a limiation with forumual fields so ALE_Amount__could not be used.  Only one instance of this value is needed	ALE__c	ALE	currency	0	18	2	No	No	No							No	No	No	Yes
+No		CanUseQuantitySchedule	Quantity Scheduling Enabled	boolean	0	0	0	Yes	No	No	False						No	No	No	No
+No		CanUseRevenueSchedule	Revenue Scheduling Enabled	boolean	0	0	0	Yes	No	No	False						No	No	No	No
+Yes		Description	Line Description	string	255	0	0	No	No	No							No	No	No	No
+No		HasQuantitySchedule	Has Quantity Schedule	boolean	0	0	0	Yes	No	No	False						No	No	No	No
+No		HasRevenueSchedule	Has Revenue Schedule	boolean	0	0	0	Yes	No	No	False						No	No	No	No
+No		HasSchedule	Has Schedule	boolean	0	0	0	Yes	No	No	False						No	No	No	No
+Yes		ListPrice	List Price	currency	0	18	2	No	No	No							No	No	No	No
+Yes		Name	Opportunity Product Name	string	376	0	0	No	No	No							No	No	No	No
+Yes		OpportunityId	Opportunity ID	reference	18	0	0	Yes	No	No				Opportunity	Opportunity		No	No	No	No
+Yes		PricebookEntryId	Price Book Entry ID	reference	18	0	0	No	No	No				PricebookEntry	PricebookEntry		No	No	No	No
+Yes		Product2Id	Product ID	reference	18	0	0	No	No	No				Product2	Product2		No	No	No	No
+Yes	These fields are used for reporting on pipeline by different grouping of products.  I don't think these exact fields will be needed as they are today. But we need to be able to take values, like ALE, and report them summarized by various levels or product rollup.	ProductCategory__c	ProductCategory	string	100	0	0	No	No	No							No	No	No	Yes
+No		ProductCode	Product Code	string	255	0	0	No	No	No							No	No	No	No
+Yes		ProductCode__c	ProductCode	string	1300	0	0	No	No	No		IF(ISBLANK( PricebookEntryId ), "", PricebookEntry.Product2.ProductCode  )					No	No	No	Yes
+Yes	These fields are used for reporting on pipeline by different grouping of products.  I don't think these exact fields will be needed as they are today. But we need to be able to take values, like ALE, and report them summarized by various levels or product rollup.	ProductSubCategory__c	Product SubCategory	string	1300	0	0	No	No	No		IF(ISBLANK( PricebookEntryId ), "",   TEXT(PricebookEntry.Product2.SubCategory__c) )					No	No	No	Yes
+Yes	These fields are used for reporting on pipeline by different grouping of products.  I don't think these exact fields will be needed as they are today. But we need to be able to take values, like ALE, and report them summarized by various levels or product rollup.	Product_Family__c	Product Family	string	100	0	0	No	No	No							No	No	No	Yes
+Yes		Quantity	Quantity	double	0	12	2	Yes	No	No							No	No	No	No
+No		Record__c	Record	double	0	18	0	No	No	No		1					No	No	No	Yes
+Yes	These are used by Salesforce (Steelbrick CPQ). I assume similar things exist in RCA, but these are only needed of RCA needs them.	SBQQ__ParentID__c	Parent ID	string	18	0	0	No	No	No			ID of the opportunity product that came from this product's bundle.				No	No	No	Yes
+Yes	These are used by Salesforce (Steelbrick CPQ). I assume similar things exist in RCA, but these are only needed of RCA needs them.	SBQQ__QuoteLine__c	Quote Line	reference	18	0	0	No	No	No				SBQQ__QuoteLine__c	SBQQ__QuoteLine__r		No	No	No	Yes
+Yes	These are used by Salesforce (Steelbrick CPQ). I assume similar things exist in RCA, but these are only needed of RCA needs them.	SBQQ__SubscriptionType__c	Subscription Type	picklist	255	0	0	No	No	No			Indicates the subscription type to determine contract's pricing.			Renewable, One-time, Renewable/Evergreen, Evergreen	No	No	No	Yes
+Yes	Serial number is populated on Renewal opps in Globalscape to map each product back to the license that was originally purchased. If a customer downsized, they need to know which license key specifically should not be renewed so that the right license key stops working.	Serial_Number__c	Serial Number	string	20	0	0	No	No	No							No	No	No	Yes
+Yes		ServiceDate	Date	date	0	0	0	No	No	No							No	No	No	No
+Yes		SortOrder	Sort Order	int	0	0	0	No	No	No							No	No	No	No
+Yes		TotalPrice	Total Price	currency	0	18	2	No	No	No							No	No	No	No
+Yes		UnitPrice	Sales Price	currency	0	18	2	No	No	No							No	No	No	No
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__End_Date__c	End Date	date	0	0	0	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__From_Contract_Item_Id__c	From Contract Item Id	string	255	0	0	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__Item_Category__c	Item Category	string	255	0	0	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__List_Rate__c	List Rate	currency	0	18	3	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__NetSuite_Item_Id_Import__c	NetSuite Item Id [Import]	string	255	0	0	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__NetSuite_Item_Key_Id__c	NetSuite Item Key Id	string	255	0	0	No	No	Yes							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__Pushed_From_NetSuite__c	Pushed From NetSuite	boolean	0	0	0	Yes	No	No	False						No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__Start_Date__c	Start Date	date	0	0	0	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__Term_Contract_Pricing_Type__c	Term / Contract Pricing Type	string	255	0	0	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__Terms__c	Contract Term	double	0	18	3	No	No	No							No	No	No	Yes
+No	There was a project to move to NetSuite, but was cancelled when Globalscape was acquired by Fortra	netsuite_conn__User_Entered_Sales_Price__c	User Entered Sales Price	currency	0	18	2	No	No	No							No	No	No	Yes

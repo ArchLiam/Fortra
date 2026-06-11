@@ -1,0 +1,2921 @@
+{
+  "name": "Linking_1_D365_OLD",
+  "description": "move all accounts off to accounts.  Create cases only flow.",
+  "version": "1.0",
+  "culture": "en-US",
+  "modifiedTime": "2024-12-11T10:57:43.7065969+00:00",
+  "ppdf:outputFileFormat": "Csv",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": false,
+    "queriesMetadata": {
+      "Merge_Incident_Resolution": {
+        "queryId": "54cbee3b-2153-4275-aef5-b076fe12ddc8",
+        "queryName": "Merge_Incident_Resolution",
+        "queryGroupId": "bc8db110-8168-4fed-a811-e94a194f9219",
+        "loadEnabled": true
+      },
+      "Temp_Format_Accounts": {
+        "queryId": "59861c78-4cf5-4fec-b1bc-069d876ba72a",
+        "queryName": "Temp_Format_Accounts",
+        "queryGroupId": "bc8db110-8168-4fed-a811-e94a194f9219",
+        "loadEnabled": true
+      },
+      "Merge_Incident_Account_ID": {
+        "queryId": "cfcae463-ae0e-42f0-8cab-592ee5e3d4c2",
+        "queryName": "Merge_Incident_Account_ID",
+        "queryGroupId": "bc8db110-8168-4fed-a811-e94a194f9219",
+        "loadEnabled": true
+      },
+      "Filtered_Accounts": {
+        "queryId": "fbc098a9-d7e8-4324-8c5a-640fa71946da",
+        "queryName": "Filtered_Accounts",
+        "queryGroupId": "02913a72-5e74-4534-88cc-71f9f7eeda75",
+        "loadEnabled": true
+      },
+      "Filtered_Brand_Account": {
+        "queryId": "e514ba36-8523-4aff-bace-fa3ee1f62cd4",
+        "queryName": "Filtered_Brand_Account",
+        "queryGroupId": "02913a72-5e74-4534-88cc-71f9f7eeda75",
+        "loadEnabled": true
+      },
+      "System_Products": {
+        "queryId": "b8434587-83ba-42de-a176-7091c137e2ec",
+        "queryName": "System_Products",
+        "queryGroupId": "02913a72-5e74-4534-88cc-71f9f7eeda75",
+        "loadEnabled": true
+      },
+      "Transformed_System_Products_ID": {
+        "queryId": "30dfd567-a370-47e6-bcb7-f68811780b7f",
+        "queryName": "Transformed_System_Products_ID",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Transformed_Brand_Team": {
+        "queryId": "d35438cf-10aa-4c81-8a46-53a32b79b8ba",
+        "queryName": "Transformed_Brand_Team",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Temp_Updated_System_Product": {
+        "queryId": "ea4e1941-7994-4f8b-bc13-cdeaec638252",
+        "queryName": "Temp_Updated_System_Product",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Append_Brand_Account_ID": {
+        "queryId": "b7cfebd7-a0b9-4ffb-b2b3-e6aa080194f8",
+        "queryName": "Append_Brand_Account_ID",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Append_No_Brand_Account_ID": {
+        "queryId": "f01a6a3e-08a2-4776-a60a-34f2a79e8429",
+        "queryName": "Append_No_Brand_Account_ID",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Case_D365": {
+        "queryId": "c7a86aeb-154e-40ec-9978-98223dfe2466",
+        "queryName": "Case_D365",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "Case_D365_Counts": {
+        "queryId": "a335677c-1cbb-4d61-817a-a5eed205d67a",
+        "queryName": "Case_D365_Counts",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "Case_D365_Activity_Append": {
+        "queryId": "46272478-e9e1-49d3-9292-620b959466e0",
+        "queryName": "Case_D365_Activity_Append",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "CS_Selling_Team": {
+        "queryId": "96223ea5-b292-4e8a-9814-313e8de95ea7",
+        "queryName": "CS_Selling_Team",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "CS_Accounts": {
+        "queryId": "68e0b697-6bf9-4b0c-a32e-d26d9a9e845d",
+        "queryName": "CS_Accounts",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "CS_Brand_Account": {
+        "queryId": "f15c155d-3406-4fb4-b2b1-395c6557e879",
+        "queryName": "CS_Brand_Account",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "CS_System_Products": {
+        "queryId": "444526f1-9889-4bf2-938e-cccd9030a1ac",
+        "queryName": "CS_System_Products",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "Temp_D365": {
+        "queryId": "d6ba956a-5735-47b8-8444-86bbb9ee9740",
+        "queryName": "Temp_D365",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "Transformed_Accounts": {
+        "queryId": "075b8b84-2d4b-4df4-9749-cbae31b011a1",
+        "queryName": "Transformed_Accounts",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Transformed_Account_Team_ID": {
+        "queryId": "92b7c2a5-865d-4258-9474-8ed5c1e9206f",
+        "queryName": "Transformed_Account_Team_ID",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Updated_Account_Team": {
+        "queryId": "a78aafdf-8ab0-491d-a0d3-2e848167eaa8",
+        "queryName": "Updated_Account_Team",
+        "queryGroupId": "f32d4d3c-3b04-45d1-8975-9d874a847e5b",
+        "loadEnabled": true
+      },
+      "Merge_Temp": {
+        "queryId": "64aebb01-2273-471a-a910-f89b3d653990",
+        "queryName": "Merge_Temp",
+        "queryGroupId": "d4e0bfc0-ab91-4389-a650-b893c7485e5b",
+        "loadEnabled": true
+      },
+      "Temp_D365_Activity_Append": {
+        "queryId": "b6dddb5f-f246-4bbc-a142-46654515faf4",
+        "queryName": "Temp_D365_Activity_Append",
+        "queryGroupId": "504b429a-8aa5-4640-b392-dfaa9bf68ee0",
+        "loadEnabled": true
+      },
+      "Source_Accounts": {
+        "queryId": "451851e6-8b0c-4f99-908c-82ea70667cf5",
+        "queryName": "Source_Accounts",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_Brand_Account": {
+        "queryId": "e600cba4-a90e-4be2-a1d0-e7a8d3e98db4",
+        "queryName": "Source_Brand_Account",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_Brand_Team": {
+        "queryId": "0b173c88-bac1-43b1-8920-ca439af96ffe",
+        "queryName": "Source_Brand_Team",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_System_Products": {
+        "queryId": "a29c4715-4af3-4768-b1c8-21b03b6aae65",
+        "queryName": "Source_System_Products",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_hs_productbrands": {
+        "queryId": "598b2b21-d219-46fa-b8d1-03fd1bc51eb2",
+        "queryName": "Source_hs_productbrands",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_systemusers": {
+        "queryId": "18a705e5-27e8-45dc-8fb8-ae17f6082bf2",
+        "queryName": "Source_systemusers",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_incident": {
+        "queryId": "39a5e4b9-1906-4879-9d0e-506ce6841621",
+        "queryName": "Source_incident",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_incidentresolution": {
+        "queryId": "64b25f5c-d165-47f3-aa77-fb39615fd294",
+        "queryName": "Source_incidentresolution",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_Selling_Team": {
+        "queryId": "1858f155-1197-430c-98d1-846feb80a7f5",
+        "queryName": "Source_Selling_Team",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      },
+      "Source_Temperature_Risk_Audit": {
+        "queryId": "9960f26c-d95c-49fa-b404-87bb1b6e1271",
+        "queryName": "Source_Temperature_Risk_Audit",
+        "queryGroupId": "76cafc82-d556-4896-bb6e-55cd90079a08",
+        "loadEnabled": true
+      }
+    },
+    "document": "section Section1;\r\nshared Merge_Incident_Resolution = let\r\n    Source = Table.NestedJoin(Source_incident, {\"incidentid\"}, Source_incidentresolution, {\"incidentid\"}, \"Source_incidentresolution\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_incidentresolution\" = Table.ExpandTableColumn(Source, \"Source_incidentresolution\", {\"actualend\"}, {\"actualend\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_incidentresolution\", {{\"actualend\", \"Resolution Date\"}})\r\nin\r\n    #\"Renamed columns\";\r\nshared Temp_Format_Accounts = let\r\n    Source = Source_Accounts,\r\n    #\"Duplicated column\" = Table.DuplicateColumn(Source, \"accountid\", \"accountid - Copy\"),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Duplicated column\", {{\"accountid - Copy\", \"accountid - Case\"}}),\r\n    #\"Uppercased text 1\" = Table.TransformColumns(#\"Renamed columns\", {{\"accountid - Case\", each Text.Upper(_), type nullable text}}),\r\n    #\"Removed other columns\" = Table.SelectColumns(#\"Uppercased text 1\", {\"accountid\", \"Account Number\", \"Account Name\", \"accountid - Case\"})\r\nin\r\n    #\"Removed other columns\";\r\nshared Merge_Incident_Account_ID = let\r\n    Source = Table.NestedJoin(Merge_Incident_Resolution, {\"hs_parentaccount\"}, Temp_Format_Accounts, {\"accountid - Case\"}, \"Temp_Format_Accounts\", JoinKind.Inner),\r\n    #\"Expanded Temp_Format_Accounts 1\" = Table.ExpandTableColumn(Source, \"Temp_Format_Accounts\", {\"accountid\", \"Account Number\", \"Account Name\"}, {\"accountid\", \"Account Number\", \"Account Name\"}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Expanded Temp_Format_Accounts 1\", each [Resolution Date] > #date(2023, 1, 1) or [Resolution Date] = null),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Filtered rows\", each [Account Number] <> null),\r\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Filtered rows 1\",  \"Activity Type\", each \"Case\"), {{\"Activity Type\", type text}}),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Added custom\", \"Activity Date\", each if [Resolution Date] = null then [Created Date] else [Resolution Date]),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Activity Date\", type date}}),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Changed column type\", {{\"hs_casetypename\", \"Case Type\"}, {\"description\", \"Description\"}, {\"title\", \"Subject\"}, {\"incidentid\", \"Ticket Id\"}, {\"severitycodename\", \"Severity\"}}),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Renamed columns 1\", \"AccId_Prod_Lookup\", each Text.Combine({[accountid], [Product Brand]}, \"\"), type text)\r\nin\r\n    #\"Inserted merged column\";\r\nshared Filtered_Accounts = let\r\n    Source = Source_Accounts,\r\n    #\"Filtered rows\" = Table.SelectRows(Source, each ([Total Current ARR] <> null and [Total Current ARR] <> 0)),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Filtered rows\", each [accountid] <> null and [accountid] <> \"\")\r\nin\r\n    #\"Filtered rows 1\";\r\nshared Filtered_Brand_Account = let\r\n    Source = Source_Brand_Account,\r\n    #\"Filtered rows 1\" = Table.SelectRows(Source, each ([Brand ARR] <> null and [Brand ARR] <> 0))\r\nin\r\n    #\"Filtered rows 1\";\r\nshared System_Products = let\r\n    Source = Table.NestedJoin(Source_System_Products, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Filtered rows\" = Table.SelectRows(Source, each ([Billing Code] <> \"N\")),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Filtered rows\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_hs_productbrands\", {{\"hs_productbrandname\", \"Account Product Brand\"}}),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Renamed columns\", {\"hs_productbrand\"})\r\nin\r\n    #\"Removed columns\";\r\nshared Transformed_System_Products_ID = let\r\n    Source = Table.NestedJoin(Source_System_Products, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Filtered rows 2\" = Table.SelectRows(Source, each ([Billing Code] <> \"N\")),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Filtered rows 2\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_hs_productbrands\", {{\"hs_productbrandname\", \"Account Product Brand\"}}),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Renamed columns\", {\"hs_productbrand\"}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Removed columns\", {\"hs_account\"}, Filtered_Accounts, {\"accountid\"}, \"Filtered_Accounts\", JoinKind.LeftOuter),\r\n    #\"Expanded Filtered_Accounts\" = Table.ExpandTableColumn(#\"Merged queries\", \"Filtered_Accounts\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Expanded Filtered_Accounts\", each ([Account Number] <> null)),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Filtered rows\", \"ReferenceID\", each if [hs_brandaccount] = \"\" then [hs_account] else [hs_brandaccount]),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"ReferenceID\", type text}}),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Changed column type\", \"BrandAccId_Prod_Lookup\", each Text.Combine({[ReferenceID], [Account Product Brand]}, \"\"), type text)\r\nin\r\n    #\"Inserted merged column\";\r\nshared Transformed_Brand_Team = let\r\n    Source = Table.NestedJoin(Source_Brand_Team, {\"hs_assignedisr\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(Source, \"Source_systemusers\", {\"fullname\"}, {\"Assigned ISR\"}),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Expanded Source_systemusers\", {\"hs_assignedisr\"}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Removed columns\", {\"hs_clientsuccessmgr\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 1\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_systemusers\", {\"fullname\"}, {\"CSM\"}),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Expanded Source_systemusers 1\", {\"hs_clientsuccessmgr\"}),\r\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Removed columns 1\", {\"hs_renewalowner\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 2\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Source_systemusers\", {\"fullname\"}, {\"Renewal Owner\"}),\r\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Expanded Source_systemusers 2\", {\"hs_renewalowner\"}),\r\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Removed columns 2\", {\"hs_servicesdeliveryuser\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 3\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Source_systemusers\", {\"fullname\"}, {\"Service Delivery\"}),\r\n    #\"Removed columns 4\" = Table.RemoveColumns(#\"Expanded Source_systemusers 3\", {\"hs_servicesdeliveryuser\"}),\r\n    #\"Merged queries 3\" = Table.NestedJoin(#\"Removed columns 4\", {\"hs_strategicae\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 4\" = Table.ExpandTableColumn(#\"Merged queries 3\", \"Source_systemusers\", {\"fullname\"}, {\"Strategic AE\"}),\r\n    #\"Removed columns 3\" = Table.RemoveColumns(#\"Expanded Source_systemusers 4\", {\"hs_strategicae\"}),\r\n    #\"Merged queries 4\" = Table.NestedJoin(#\"Removed columns 3\", {\"hs_tam\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 5\" = Table.ExpandTableColumn(#\"Merged queries 4\", \"Source_systemusers\", {\"fullname\"}, {\"TAM\"}),\r\n    #\"Removed columns 5\" = Table.RemoveColumns(#\"Expanded Source_systemusers 5\", {\"hs_tam\"}),\r\n    #\"Merged queries 5\" = Table.NestedJoin(#\"Removed columns 5\", {\"hs_accountexecutive\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 6\" = Table.ExpandTableColumn(#\"Merged queries 5\", \"Source_systemusers\", {\"fullname\"}, {\"Enterprise AE\"}),\r\n    #\"Removed columns 6\" = Table.RemoveColumns(#\"Expanded Source_systemusers 6\", {\"hs_accountexecutive\"}),\r\n    #\"Merged queries 6\" = Table.NestedJoin(#\"Removed columns 6\", {\"hs_datamanagerspecialist\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers 7\" = Table.ExpandTableColumn(#\"Merged queries 6\", \"Source_systemusers\", {\"fullname\"}, {\"Data Manager Specialist\"}),\r\n    #\"Removed columns 7\" = Table.RemoveColumns(#\"Expanded Source_systemusers 7\", {\"hs_datamanagerspecialist\", \"hs_soctriageanalyst\", \"hs_cybersecurityanalyst\", \"hs_bdr\", \"hs_analyst\"}),\r\n    #\"Removed duplicates\" = Table.Distinct(#\"Removed columns 7\", {\"hs_brandaccountid\"})\r\nin\r\n    #\"Removed duplicates\";\r\nshared Temp_Updated_System_Product = let\r\n    Source = System_Products,\r\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"hs_account\", \"Annual Recurring Revenue\", \"Account Product Brand\"}),\r\n    #\"Grouped rows\" = Table.Group(#\"Removed other columns\", {\"hs_account\", \"Account Product Brand\"}, {{\"Brand ARR\", each List.Sum([Annual Recurring Revenue]), type nullable number}})\r\nin\r\n    #\"Grouped rows\";\r\nshared Append_Brand_Account_ID = let\r\n    Source = Table.NestedJoin(Source_Brand_Account, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Filtered rows 1\" = Table.SelectRows(Source, each ([Brand ARR] <> null and [Brand ARR] <> 0)),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Filtered rows 1\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Expanded Source_hs_productbrands\", {\"hs_productbrand\"}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Removed columns\", {\"hs_account\"}, Source_Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_Accounts\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_Accounts\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Expanded Source_Accounts\", {{\"hs_productbrandname\", \"Account Product Brand\"}}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Renamed columns\", each [Account Number] <> null),\r\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Filtered rows\", {\"hs_temperatureupdatedby\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Expanded Source_systemusers\", {\"hs_temperatureupdatedby\"}),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Removed columns 1\", {{\"fullname\", \"Brand Temperature Updated By\"}}),\r\n    #\"Duplicated column\" = Table.DuplicateColumn(#\"Renamed columns 1\", \"hs_brandaccountid\", \"ReferenceID\"),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Duplicated column\", \"BrandAccId_Prod_Lookup\", each Text.Combine({[ReferenceID], [Account Product Brand]}, \"\"), type text),\r\n    #\"Inserted merged column 1\" = Table.AddColumn(#\"Inserted merged column\", \"AccId_Prod_Lookup\", each Text.Combine({[hs_account], [Account Product Brand]}, \"\"), type text),\r\n    #\"Choose columns\" = Table.SelectColumns(#\"Inserted merged column 1\", {\"hs_account\", \"Brand ARR\", \"Brand ARR at Risk\", \"hs_brandaccountid\", \"Brand ARR Risk\", \"Brand Relationship Type\", \"Brand Temperature\", \"Brand Temperature Reason\", \"URL-BrandAccount\", \"Account Product Brand\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\", \"AccId_Prod_Lookup\"}),\r\n    #\"Removed errors\" = Table.RemoveRowsWithErrors(#\"Choose columns\"),\r\n    #\"Replaced value\" = Table.ReplaceValue(#\"Removed errors\", 0, null, Replacer.ReplaceValue, {\"Brand ARR at Risk\"}),\r\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Replaced value\", {\"hs_brandaccountid\"}, Transformed_Brand_Team, {\"hs_brandaccountid\"}, \"Transformed_Brand_Team\", JoinKind.LeftOuter),\r\n    #\"Expanded Transformed_Brand_Team\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Transformed_Brand_Team\", {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"}, {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"})\r\nin\r\n    #\"Expanded Transformed_Brand_Team\";\r\nshared Append_No_Brand_Account_ID = let\r\n    Source = Table.NestedJoin(Filtered_Accounts, {\"accountid\"}, Filtered_Brand_Account, {\"hs_account\"}, \"Source_Brand_Account\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_Brand_Account\" = Table.ExpandTableColumn(Source, \"Source_Brand_Account\", {\"hs_account\", \"hs_brandaccountid\"}, {\"hs_account\", \"hs_brandaccountid\"}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Expanded Source_Brand_Account\", each ([hs_brandaccountid] = null) and ([Total Current ARR] <> null and [Total Current ARR] <> 0)),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows\", {\"Relationship Type\", \"Company Size\", \"hs_enterpriseae\", \"Industry\", \"Last Survey Recipient\", \"#Brand Sub Accounts\", \"CSAT Score\", \"Survey Last Sent\", \"Account Region\", \"hs_account\", \"hs_brandaccountid\", \"Total Current ARR\", \"Account ARR at Risk\", \"Account ARR Risk\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"accountid\", \"hs_account\"}}),\r\n    #\"Duplicated column\" = Table.DuplicateColumn(#\"Renamed columns\", \"hs_account\", \"hs_account - Copy\"),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Duplicated column\", {{\"hs_account - Copy\", \"hs_brandaccountid\"}, {\"Account Temperature\", \"Brand Temperature\"}, {\"URL-Account\", \"URL-BrandAccount\"}}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns 1\", {\"hs_account\"}, Temp_Updated_System_Product, {\"hs_account\"}, \"Merge_System_Products\", JoinKind.LeftOuter),\r\n    #\"Expanded Merge_System_Products\" = Table.ExpandTableColumn(#\"Merged queries\", \"Merge_System_Products\", {\"Account Product Brand\",  \"Brand ARR\"}, {\"Account Product Brand\",  \"Brand ARR\"}),\r\n    #\"Filtered rows 2\" = Table.SelectRows(#\"Expanded Merge_System_Products\", each ([Account Product Brand] <> null)),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Filtered rows 2\", \"BrandAccId_Prod_Lookup\", each Text.Combine({[hs_brandaccountid], [Account Product Brand]}, \"\"), type text),\r\n    #\"Duplicated column 1\" = Table.DuplicateColumn(#\"Inserted merged column\", \"BrandAccId_Prod_Lookup\", \"BrandAccId_Prod_Lookup - Copy\"),\r\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Duplicated column 1\", {{\"BrandAccId_Prod_Lookup - Copy\", \"AccId_Prod_Lookup\"}}),\r\n    #\"Removed errors\" = Table.RemoveRowsWithErrors(#\"Renamed columns 2\"),\r\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed errors\", \"Brand ARR at Risk\", each null), {{\"Brand ARR at Risk\", type number}}),\r\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Added custom\", {\"AccId_Prod_Lookup\"}, Updated_Account_Team, {\"AccId_Prod_Lookup\"}, \"Updated_Account_Team\", JoinKind.LeftOuter),\r\n    #\"Expanded Updated_Account_Team\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Updated_Account_Team\", {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"}, {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"})\r\nin\r\n    #\"Expanded Updated_Account_Team\";\r\nshared Case_D365 = let\r\n    Source = Merge_Incident_Account_ID\r\nin\r\n    Source;\r\nshared Case_D365_Counts = let\r\n    Source = Merge_Incident_Account_ID,\r\n    #\"Removed Other Columns\" = Table.SelectColumns(Source, {\"Created Date\", \"State\", \"Is Escalated\", \"Case Type\", \"hs_parentaccount\", \"Product Brand\", \"Account Number\", \"AccId_Prod_Lookup\"}),\r\n    #\"Added Custom\" = Table.AddColumn(#\"Removed Other Columns\", \"Created This Quarter\", each if Date.IsInCurrentQuarter([Created Date]) then 1 else 0),\r\n    #\"Added Conditional Column2\" = Table.AddColumn(#\"Added Custom\", \"Escalated\", each if [State] <> \"Active\" then 0 else if [Is Escalated] = true then 1 else 0),\r\n    #\"Added Conditional Column\" = Table.AddColumn(#\"Added Conditional Column2\", \"Open Cases\", each if [State] = \"Active\" then 1 else 0),\r\n    #\"Added Conditional Column1\" = Table.AddColumn(#\"Added Conditional Column\", \"Feature Requests\", each if [State] = \"Resolved\" then 0 else if [Case Type] = \"Feature Request\" then 1 else 0),\r\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Added Conditional Column1\",{{\"Created This Quarter\", Int64.Type}, {\"Escalated\", Int64.Type}, {\"Open Cases\", Int64.Type}, {\"Feature Requests\", Int64.Type}}),\r\n    #\"Grouped Rows\" = Table.Group(#\"Changed Type\", {\"AccId_Prod_Lookup\", \"Account Number\"}, {{\"Cases Created this Quarter\", each List.Sum([Created This Quarter]), type nullable number}, {\"Count of Open Cases\", each List.Sum([Open Cases]), type nullable number}, {\"Count of Feature Requests\", each List.Sum([Feature Requests]), type nullable number}, {\"Count of Escalated Cases\", each List.Sum([Escalated]), type nullable number}})\r\nin\r\n    #\"Grouped Rows\";\r\nshared Case_D365_Activity_Append = let\r\n    Source = Merge_Incident_Account_ID,\r\n    #\"Removed Other Columns\" = Table.SelectColumns(Source, {\"Ticket Id\", \"Created Date\", \"Subject\", \"Description\", \"Status\", \"Ticket Contact\", \"Case Type\", \"Product Brand\", \"URL-Case\", \"Resolution Date\", \"Account Number\", \"Account Name\", \"Activity Type\", \"Activity Date\", \"AccId_Prod_Lookup\"}),\r\n    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Other Columns\",{{\"URL-Case\", \"Activity Link\"}, {\"Ticket Contact\", \"Activity Owner\"}, {\"Status\", \"Activity Status\"}, {\"Description\", \"Activity Description\"}, {\"Subject\", \"Activity Subject\"}, {\"Created Date\", \"Activity Started\"}, {\"Ticket Id\", \"Activity Id\"}, {\"Case Type\", \"Activity Category\"}, {\"Resolution Date\", \"Activity Completed\"}})\r\nin\r\n    #\"Renamed Columns\";\r\nshared CS_Selling_Team = let\r\n    Source = Transformed_Account_Team_ID\r\nin\r\n    Source;\r\nshared CS_Accounts = let\r\n    Source = Transformed_Accounts,\r\n    #\"Removed duplicates\" = Table.Distinct(Source, {\"Account Number\"})\r\nin\r\n    #\"Removed duplicates\";\r\nshared CS_Brand_Account = let\r\n    Source = Table.Combine({Append_Brand_Account_ID, Append_No_Brand_Account_ID})\r\nin\r\n    Source;\r\nshared CS_System_Products = let\r\n    Source = Transformed_System_Products_ID\r\nin\r\n    Source;\r\nshared Temp_D365 = let\r\n    Source = Merge_Temp\r\nin\r\n    Source;\r\nshared Transformed_Accounts = let\r\n    Source = Source_Accounts,\r\n    #\"Filtered rows\" = Table.SelectRows(Source, each ([Total Current ARR] <> null and [Total Current ARR] <> 0)),\r\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Filtered rows\", each [accountid] <> null and [accountid] <> \"\"),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Filtered rows 1\", {\"hs_enterpriseae\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Expanded Source_systemusers\", {{\"fullname\", \"Enterprise AE\"}}),\r\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Renamed columns 1\", {\"hs_enterpriseae\"})\r\nin\r\n    #\"Removed columns 2\";\r\nshared Transformed_Account_Team_ID = let\r\n    Source = Table.NestedJoin(Source_Selling_Team, {\"hs_account\"}, Source_Accounts, {\"accountid\"}, \"Source_Accounts\", JoinKind.Inner),\r\n    #\"Expanded Source_Accounts\" = Table.ExpandTableColumn(Source, \"Source_Accounts\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Expanded Source_Accounts\", {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Expanded Source_hs_productbrands\", {\"hs_productbrand\"}),\r\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Removed columns 1\", {\"hs_user\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Expanded Source_systemusers\", {\"hs_team_membersid\", \"hs_user\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns 2\", {{\"hs_role_display\", \"Selling Team Role\"}, {\"fullname\", \"Name\"}, {\"hs_productbrandname\", \"Product Brand Name\"}}),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Renamed columns\", \"AccId_Prod_Lookup\", each Text.Combine({[hs_account], [Product Brand Name]}, \"\"), type text)\r\nin\r\n    #\"Inserted merged column\";\r\nshared Updated_Account_Team = let\r\n    Source = Transformed_Account_Team_ID,\r\n    #\"Removed duplicates\" = Table.Distinct(Source, {\"AccId_Prod_Lookup\", \"Selling Team Role\"}),\r\n    #\"Pivoted column\" = Table.Pivot(#\"Removed duplicates\", List.Distinct(#\"Removed duplicates\"[#\"Selling Team Role\"]), \"Selling Team Role\", \"Name\")\r\nin\r\n    #\"Pivoted column\";\r\nshared Merge_Temp = let\r\n    Source = Table.NestedJoin(Source_Temperature_Risk_Audit, {\"hs_productbrand\"}, Source_hs_productbrands, {\"hs_productbrandid\"}, \"Source_hs_productbrands\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_hs_productbrands\" = Table.ExpandTableColumn(Source, \"Source_hs_productbrands\", {\"hs_productbrandname\"}, {\"hs_productbrandname\"}),\r\n    #\"Removed columns\" = Table.RemoveColumns(#\"Expanded Source_hs_productbrands\", {\"hs_productbrand\"}),\r\n    #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"hs_productbrandname\", \"Product Brand\"}}),\r\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns\", {\"createdby\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\r\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\r\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Expanded Source_systemusers\", {\"createdby\"}),\r\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Removed columns 1\", {{\"fullname\", \"Activity Owner\"}}),\r\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Renamed columns 1\", {\"hs_brandaccount\"}, CS_Brand_Account, {\"hs_brandaccountid\"}, \"CS_Brand_Account\", JoinKind.LeftOuter),\r\n    #\"Expanded CS_Brand_Account\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"CS_Brand_Account\", {\"hs_account\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\"}, {\"hs_account.1\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\"}),\r\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Expanded CS_Brand_Account\", {\"hs_account\"}),\r\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Removed columns 2\", {{\"hs_account.1\", \"hs_account\"}}),\r\n    #\"Inserted merged column\" = Table.AddColumn(#\"Renamed columns 2\", \"AccId_Brand_Lookup\", each Text.Combine({[hs_account], [Product Brand]}, \"\"), type text),\r\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Inserted merged column\", \"Activity Link\", each \"https://hsprod.crm.dynamics.com/main.aspx?appid=51e516b1-c8ac-4a2a-abaa-cf4469010a9e&forceUCI=1&pagetype=entityrecord&etn=hs_temperatureriskaudit&id=\" & [Activity Id]), {{\"Activity Link\", type text}}),\r\n    #\"Filtered rows\" = Table.SelectRows(#\"Added custom\", each [hs_account] <> \"\")\r\nin\r\n    #\"Filtered rows\";\r\nshared Temp_D365_Activity_Append = let\r\n    Source = Merge_Temp,\r\n    #\"Replaced value\" = Table.ReplaceValue(Source, \"\", null, Replacer.ReplaceValue, {\"Risk Level\"}),\r\n    #\"Replaced value 1\" = Table.ReplaceValue(#\"Replaced value\", \"\", null, Replacer.ReplaceValue, {\"Temperature Reason\", \"Temperature\"}),\r\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Replaced value 1\", \"Activity Subject\", each if [Risk Level] <> null then [Risk Level] else if [Temperature] <> null then [Temperature] else if [Temperature Reason] <> null then [Temperature Reason] else \"Temperature Note Update\"),\r\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Activity Subject\", type text}}),\r\n    #\"Inserted conditional column 1\" = Table.AddColumn(#\"Changed column type\", \"Sentiment\", each if Text.Contains([Activity Subject], \"Low\") then 4 else if Text.Contains([Activity Subject], \"Medium\") then 5 else if Text.Contains([Activity Subject], \"High\") then 6 else if Text.Contains([Activity Subject], \"Green\") then 7 else if Text.Contains([Activity Subject], \"Yellow\") then 8 else if Text.Contains([Activity Subject], \"Red\") then 9 else if Text.Contains([Activity Subject], \"Notified Lost\") then 10 else 0),\r\n    #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted conditional column 1\", {{\"Sentiment\", Int64.Type}}),\r\n    #\"Choose columns\" = Table.SelectColumns(#\"Changed column type 1\", {\"Activity Date\", \"hs_brandaccount\", \"Activity Id\", \"Activity Description\", \"Activity Category\", \"Activity Type\", \"Activity Completed\", \"Product Brand\", \"Activity Owner\", \"hs_account\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\", \"AccId_Brand_Lookup\", \"Activity Link\", \"Activity Subject\", \"Sentiment\"})\r\nin\r\n    #\"Choose columns\";\r\nshared Source_Accounts = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Accounts\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Brand_Account = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Brand_Account\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Brand_Team = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Brand_Team\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_System_Products = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_System_Products\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_hs_productbrands = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_hs_productbrands\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_systemusers = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_systemusers\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_incident = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_incident\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_incidentresolution = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_incidentresolution\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Selling_Team = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Selling_Team\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Source_Temperature_Risk_Audit = let\r\n  Source = PowerPlatform.Dataflows(),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Temperature_Risk_Audit\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\n",
+    "connectionOverrides": [
+      {
+        "path": "PowerPlatformDataflows",
+        "kind": "PowerPlatformDataflows",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"PowerPlatformDataflows\",\"path\":\"PowerPlatformDataflows\"}",
+        "audience": null
+      },
+      {
+        "path": "https://hsprod.crm.dynamics.com/",
+        "kind": "Cds",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"Cds\",\"path\":\"https://hsprod.crm.dynamics.com/\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[{\"id\":\"76cafc82-d556-4896-bb6e-55cd90079a08\",\"name\":\"Linked Data\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"8bca13c1-90e5-444d-8cda-44f6b1b7a574\",\"name\":\"Merged Tables\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"504b429a-8aa5-4640-b392-dfaa9bf68ee0\",\"name\":\"Report Tables\",\"description\":\"\",\"parentId\":null,\"order\":0},{\"id\":\"bc8db110-8168-4fed-a811-e94a194f9219\",\"name\":\"Cases\",\"description\":\"\",\"parentId\":\"8bca13c1-90e5-444d-8cda-44f6b1b7a574\",\"order\":0},{\"id\":\"f32d4d3c-3b04-45d1-8975-9d874a847e5b\",\"name\":\"Accounts CSM\",\"description\":\"\",\"parentId\":\"8bca13c1-90e5-444d-8cda-44f6b1b7a574\",\"order\":1},{\"id\":\"02913a72-5e74-4534-88cc-71f9f7eeda75\",\"name\":\"Reference For Append\",\"description\":\"\",\"parentId\":\"f32d4d3c-3b04-45d1-8975-9d874a847e5b\",\"order\":0},{\"id\":\"d4e0bfc0-ab91-4389-a650-b893c7485e5b\",\"name\":\"Temperature\",\"description\":\"\",\"parentId\":\"8bca13c1-90e5-444d-8cda-44f6b1b7a574\",\"order\":3}]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "Merge_Incident_Resolution",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Merge_Incident_Resolution.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "incidentid",
+          "dataType": "string"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "date"
+        },
+        {
+          "name": "title",
+          "dataType": "string"
+        },
+        {
+          "name": "description",
+          "dataType": "string"
+        },
+        {
+          "name": "severitycodename",
+          "dataType": "string"
+        },
+        {
+          "name": "State",
+          "dataType": "string"
+        },
+        {
+          "name": "Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Ticket Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Is Escalated",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Escalated Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Ticket Contact",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_casetypename",
+          "dataType": "string"
+        },
+        {
+          "name": "#Escalations",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_parentaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_softclosedate",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Escalation Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Case",
+          "dataType": "string"
+        },
+        {
+          "name": "Resolution Date",
+          "dataType": "date"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:05:24.6042313+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Merge_Incident_Resolution.csv?snapshot=2024-12-09T15%3A04%3A52.7306048Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Temp_Format_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Temp_Format_Accounts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "accountid - Case",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:08.5344852+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Temp_Format_Accounts.csv?snapshot=2024-12-09T15%3A02%3A57.2669401Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Merge_Incident_Account_ID",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Merge_Incident_Account_ID.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Ticket Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Severity",
+          "dataType": "string"
+        },
+        {
+          "name": "State",
+          "dataType": "string"
+        },
+        {
+          "name": "Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Ticket Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Is Escalated",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Escalated Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Ticket Contact",
+          "dataType": "string"
+        },
+        {
+          "name": "Case Type",
+          "dataType": "string"
+        },
+        {
+          "name": "#Escalations",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_parentaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_softclosedate",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Escalation Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Case",
+          "dataType": "string"
+        },
+        {
+          "name": "Resolution Date",
+          "dataType": "date"
+        },
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:05:46.9185615+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Merge_Incident_Account_ID.csv?snapshot=2024-12-09T15%3A05%3A37.1434556Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Filtered_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Filtered_Accounts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_enterpriseae",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "#Brand Sub Accounts",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:55.8938168+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Filtered_Accounts.csv?snapshot=2024-12-09T15%3A02%3A54.3069449Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Filtered_Brand_Account",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Filtered_Brand_Account.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_arratrisk_state",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Last Updated",
+          "dataType": "date"
+        },
+        {
+          "name": "Brand Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_temperatureupdatedby",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:22.3486259+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Filtered_Brand_Account.csv?snapshot=2024-12-09T15%3A04%3A21.6601260Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "System_Products",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "System_Products.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Annual Recurring Revenue",
+          "dataType": "double"
+        },
+        {
+          "name": "At Risk Maintenance",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Note",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Billing Code",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Contract End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Contract Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Maintenance End Date",
+          "dataType": "string"
+        },
+        {
+          "name": "Maintenance Start Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Product",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:05.8313427+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/System_Products.csv?snapshot=2024-12-09T15%3A03%3A02.3316861Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_System_Products_ID",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_System_Products_ID.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Annual Recurring Revenue",
+          "dataType": "double"
+        },
+        {
+          "name": "At Risk Maintenance",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Note",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Billing Code",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Contract End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Contract Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Maintenance End Date",
+          "dataType": "string"
+        },
+        {
+          "name": "Maintenance Start Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Product",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "ReferenceID",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:19.9095652+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Transformed_System_Products_ID.csv?snapshot=2024-12-09T15%3A03%3A15.3226054Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Brand_Team",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Brand_Team.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:39.8937682+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Transformed_Brand_Team.csv?snapshot=2024-12-09T15%3A02%3A39.5209130Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Temp_Updated_System_Product",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Temp_Updated_System_Product.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:09.6907328+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Temp_Updated_System_Product.csv?snapshot=2024-12-09T15%3A03%3A09.2313695Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Append_Brand_Account_ID",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Append_Brand_Account_ID.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:22.7080366+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Append_Brand_Account_ID.csv?snapshot=2024-12-09T15%3A04%3A21.4799171Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Append_No_Brand_Account_ID",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Append_No_Brand_Account_ID.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:26.3177568+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Append_No_Brand_Account_ID.csv?snapshot=2024-12-09T15%3A04%3A25.6376502Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Case_D365",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Case_D365.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Ticket Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Severity",
+          "dataType": "string"
+        },
+        {
+          "name": "State",
+          "dataType": "string"
+        },
+        {
+          "name": "Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Ticket Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Is Escalated",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Escalated Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Ticket Contact",
+          "dataType": "string"
+        },
+        {
+          "name": "Case Type",
+          "dataType": "string"
+        },
+        {
+          "name": "#Escalations",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_parentaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_softclosedate",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Escalation Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Case",
+          "dataType": "string"
+        },
+        {
+          "name": "Resolution Date",
+          "dataType": "date"
+        },
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:06:10.998555+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Case_D365.csv?snapshot=2024-12-09T15%3A06%3A01.3839440Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Case_D365_Counts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Case_D365_Counts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Cases Created this Quarter",
+          "dataType": "double"
+        },
+        {
+          "name": "Count of Open Cases",
+          "dataType": "double"
+        },
+        {
+          "name": "Count of Feature Requests",
+          "dataType": "double"
+        },
+        {
+          "name": "Count of Escalated Cases",
+          "dataType": "double"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:05:51.3250262+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Case_D365_Counts.csv?snapshot=2024-12-09T15%3A05%3A51.3350967Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Case_D365_Activity_Append",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Case_D365_Activity_Append.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Started",
+          "dataType": "date"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:06:00.1382235+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Case_D365_Activity_Append.csv?snapshot=2024-12-09T15%3A06%3A00.1463807Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Selling_Team",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Selling_Team.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Selling Team Role",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:01.581352+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/CS_Selling_Team.csv?snapshot=2024-12-09T15%3A03%3A01.5859622Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Accounts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "#Brand Sub Accounts",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:00.3313605+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/CS_Accounts.csv?snapshot=2024-12-09T15%3A03%3A00.3105658Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Brand_Account",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Brand_Account.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:30.9743845+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/CS_Brand_Account.csv?snapshot=2024-12-09T15%3A04%3A29.3573048Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_System_Products",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_System_Products.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Annual Recurring Revenue",
+          "dataType": "double"
+        },
+        {
+          "name": "At Risk Maintenance",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Note",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Billing Code",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Contract End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Contract Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Maintenance End Date",
+          "dataType": "string"
+        },
+        {
+          "name": "Maintenance Start Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Product",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "ReferenceID",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:35.6128954+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/CS_System_Products.csv?snapshot=2024-12-09T15%3A03%3A35.6293797Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Temp_D365",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Temp_D365.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Risk Level",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:40.9125116+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Temp_D365.csv?snapshot=2024-12-09T15%3A04%3A40.9344352Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Accounts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "#Brand Sub Accounts",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:54.5500602+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Transformed_Accounts.csv?snapshot=2024-12-09T15%3A02%3A53.2416251Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Account_Team_ID",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Account_Team_ID.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Selling Team Role",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:56.1750791+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Transformed_Account_Team_ID.csv?snapshot=2024-12-09T15%3A02%3A54.8356218Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Updated_Account_Team",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Updated_Account_Team.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand Name",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:02.4563461+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Updated_Account_Team.csv?snapshot=2024-12-09T15%3A03%3A01.7134008Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Merge_Temp",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Merge_Temp.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Risk Level",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:38.0998524+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Merge_Temp.csv?snapshot=2024-12-09T15%3A04%3A36.6203916Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Temp_D365_Activity_Append",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Temp_D365_Activity_Append.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:41.8969391+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Temp_D365_Activity_Append.csv?snapshot=2024-12-09T15%3A04%3A41.9161221Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Accounts.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_enterpriseae",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "#Brand Sub Accounts",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:47.1125861+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_Accounts.csv?snapshot=2024-12-09T15%3A02%3A38.6248498Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Brand_Account",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Brand_Account.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_arratrisk_state",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Last Updated",
+          "dataType": "date"
+        },
+        {
+          "name": "Brand Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_temperatureupdatedby",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:16.0669699+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_Brand_Account.csv?snapshot=2024-12-09T15%3A03%3A48.9528389Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Brand_Team",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Brand_Team.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_accountexecutive",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_analyst",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_assignedisr",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_bdr",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_clientsuccessmgr",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_cybersecurityanalyst",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_datamanagerspecialist",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_renewalowner",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_servicesdeliveryuser",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_soctriageanalyst",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_strategicae",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_tam",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:31.9404452+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_Brand_Team.csv?snapshot=2024-12-09T15%3A02%3A31.3060072Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_System_Products",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_System_Products.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Annual Recurring Revenue",
+          "dataType": "double"
+        },
+        {
+          "name": "At Risk Maintenance",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Note",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Billing Code",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Contract End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Contract Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Maintenance End Date",
+          "dataType": "string"
+        },
+        {
+          "name": "Maintenance Start Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Product",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:48.9094505+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_System_Products.csv?snapshot=2024-12-09T15%3A02%3A43.4675708Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_hs_productbrands",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_hs_productbrands.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_productbrandid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrandname",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:30.8623033+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_hs_productbrands.csv?snapshot=2024-12-09T15%3A02%3A30.5015445Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_systemusers",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_systemusers.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "fullname",
+          "dataType": "string"
+        },
+        {
+          "name": "systemuserid",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:35.8467927+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_systemusers.csv?snapshot=2024-12-09T15%3A02%3A35.5951627Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_incident",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_incident.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "incidentid",
+          "dataType": "string"
+        },
+        {
+          "name": "Created Date",
+          "dataType": "date"
+        },
+        {
+          "name": "title",
+          "dataType": "string"
+        },
+        {
+          "name": "description",
+          "dataType": "string"
+        },
+        {
+          "name": "severitycodename",
+          "dataType": "string"
+        },
+        {
+          "name": "State",
+          "dataType": "string"
+        },
+        {
+          "name": "Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Ticket Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Is Escalated",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Escalated Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Ticket Contact",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_casetypename",
+          "dataType": "string"
+        },
+        {
+          "name": "#Escalations",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_parentaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_softclosedate",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Escalation Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Case",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:04:13.691855+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_incident.csv?snapshot=2024-12-09T15%3A03%3A33.3713009Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_incidentresolution",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_incidentresolution.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "actualend",
+          "dataType": "date"
+        },
+        {
+          "name": "statuscodename",
+          "dataType": "string"
+        },
+        {
+          "name": "incidentid",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:03:23.8627214+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_incidentresolution.csv?snapshot=2024-12-09T15%3A03%3A10.0179135Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Selling_Team",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Selling_Team.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_role_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_team_membersid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_user",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:35.0655213+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_Selling_Team.csv?snapshot=2024-12-09T15%3A02%3A33.9792612Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Source_Temperature_Risk_Audit",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Source_Temperature_Risk_Audit.csv"
+      },
+      "annotations": [
+        {
+          "name": "pbi:ConnectorType",
+          "value": "PowerPlatformDataflowsConnector"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Risk Level",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "date"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "FullRefreshPolicyPartition",
+          "refreshTime": "2024-12-09T15:02:33.0967224+00:00",
+          "location": "https://wabincusfpcdsa.blob.core.windows.net:443/c87fbb16-967f-4369-aeb2-7fd6b74a1788/Source_Temperature_Risk_Audit.csv?snapshot=2024-12-09T15%3A02%3A31.3876485Z"
+        }
+      ]
+    }
+  ]
+}

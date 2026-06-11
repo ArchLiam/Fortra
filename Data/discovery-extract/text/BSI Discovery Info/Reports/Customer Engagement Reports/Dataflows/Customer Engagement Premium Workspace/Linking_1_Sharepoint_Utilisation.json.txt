@@ -1,0 +1,741 @@
+{
+  "name": "Linking_1_Sharepoint_Utilisation",
+  "ppdf:dataflowId": "9ecdc2fd-33bf-4454-9b77-be11279e72cc",
+  "ppdf:owner": {
+    "tenantId": "ca81e23b-3509-45ee-a998-3e346acf274d",
+    "userId": "a87082d1-a409-4857-bf7d-086629a120c3"
+  },
+  "ppdf:fastCopy": true,
+  "version": "1.0",
+  "culture": "en-US",
+  "modifiedTime": "2025-01-08T13:18:29.7603224+00:00",
+  "ppdf:outputFileFormat": "Parquet",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": true,
+    "queriesMetadata": {
+      "ADP_Consultant List": {
+        "queryId": "6ee2a34a-4bc6-4103-882d-b7eef27100d9",
+        "queryName": "ADP_Consultant List",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a"
+      },
+      "Work Calendars_Company Holidays": {
+        "queryId": "d9fdf861-18cd-48a1-9ae5-c7d415abac3a",
+        "queryName": "Work Calendars_Company Holidays",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a",
+        "loadEnabled": true
+      },
+      "Work Calendars_Weekly Hours": {
+        "queryId": "1df057c2-3fd0-47ae-9cd8-c9bb5427b016",
+        "queryName": "Work Calendars_Weekly Hours",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a",
+        "loadEnabled": true
+      },
+      "Monthly ADP Report": {
+        "queryId": "ab16b070-2e19-4bf6-8dd6-73878fd7c4b7",
+        "queryName": "Monthly ADP Report",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a"
+      },
+      "Time Off Report": {
+        "queryId": "99a3f7c5-7718-4bd7-9212-7c04d8e13c86",
+        "queryName": "Time Off Report",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a"
+      },
+      "Transformed_Weekly_Hours": {
+        "queryId": "faf2d5c7-6032-482d-9695-65888528a4d7",
+        "queryName": "Transformed_Weekly_Hours",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d",
+        "loadEnabled": true
+      },
+      "Merged_ADP": {
+        "queryId": "2b2efa13-d40e-4824-9d84-392addc7df11",
+        "queryName": "Merged_ADP",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d"
+      },
+      "Merge_ADP_2": {
+        "queryId": "4320059c-784a-474f-9dd2-c7a97d0d4852",
+        "queryName": "Merge_ADP_2",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d"
+      },
+      "Merge_Missing_Weekly_Hours": {
+        "queryId": "2491dc04-ad1c-4ed4-9b4d-3af64f7d8280",
+        "queryName": "Merge_Missing_Weekly_Hours",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d"
+      },
+      "Transformed_ADP": {
+        "queryId": "af412597-5610-487b-87e0-ea379a8e4de5",
+        "queryName": "Transformed_ADP",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d",
+        "loadEnabled": true
+      },
+      "Transformed_ADP_2_with_manager": {
+        "queryId": "37bba18a-237f-44d4-b1e9-786d29fd6b49",
+        "queryName": "Transformed_ADP_2_with_manager",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d",
+        "loadEnabled": true
+      },
+      "Calendar_Hours": {
+        "queryId": "33dcf8d9-d044-47b5-9465-f3223dfa1178",
+        "queryName": "Calendar_Hours",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d",
+        "loadEnabled": true
+      },
+      "Transformed_FTO": {
+        "queryId": "3dcb7c44-96e3-4011-8006-c98fef13ccb5",
+        "queryName": "Transformed_FTO",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d",
+        "loadEnabled": true
+      },
+      "Append_FTO": {
+        "queryId": "dff383ca-02c0-4c35-878a-94b213ad9b90",
+        "queryName": "Append_FTO",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d"
+      },
+      "Time Off Report_2025": {
+        "queryId": "e02a175b-a260-436b-86d1-b223beae50ca",
+        "queryName": "Time Off Report_2025",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a"
+      },
+      "Transformed_FTO_new": {
+        "queryId": "9e3eb0a3-a016-4c86-8888-e5671d35b57e",
+        "queryName": "Transformed_FTO_new",
+        "queryGroupId": "227bb5c4-f216-4a0c-b244-46f84250f80d",
+        "loadEnabled": true
+      },
+      "Time Off Report_2024": {
+        "queryId": "33079bd6-097f-4287-8274-28fbd8f3bd66",
+        "queryName": "Time Off Report_2024",
+        "queryGroupId": "71436bc7-801c-4dcc-8d99-ac137a40338a"
+      }
+    },
+    "document": "section Section1;\r\nshared #\"ADP_Consultant List\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"ADP_Consultant List\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Work Calendars_Company Holidays\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Work Calendars_Company Holidays\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Work Calendars_Weekly Hours\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Work Calendars_Weekly Hours\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Monthly ADP Report\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Monthly ADP Report\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared #\"Time Off Report\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Time Off Report\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Transformed_Weekly_Hours = let\n    Source = #\"Work Calendars_Weekly Hours\",\n    #\"Unpivoted other columns\" = Table.UnpivotOtherColumns(Source, {\"Country\"}, \"Attribute\", \"Value\"),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Unpivoted other columns\", {\"Country\"}),\n    #\"Replaced Value\" = Table.ReplaceValue(#\"Removed columns\",\"UK\",\"UNITED KINGDOM\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value1\" = Table.ReplaceValue(#\"Replaced Value\",\"USA\",\"UNITED STATES\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value2\" = Table.ReplaceValue(#\"Replaced Value1\",\"ARG\",\"ARGENTINA\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value3\" = Table.ReplaceValue(#\"Replaced Value2\",\"AUS\",\"AUSTRALIA\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value4\" = Table.ReplaceValue(#\"Replaced Value3\",\"CAN\",\"CANADA\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value5\" = Table.ReplaceValue(#\"Replaced Value4\",\"FRA\",\"FRANCE\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value6\" = Table.ReplaceValue(#\"Replaced Value5\",\"IND\",\"INDIA\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value7\" = Table.ReplaceValue(#\"Replaced Value6\",\"SPA\",\"SPAIN\",Replacer.ReplaceValue,{\"Attribute\", \"Value\"}),\n    #\"Replaced Value8\" = Table.ReplaceValue(#\"Replaced Value7\",\"ARM\",\"ARMENIA\",Replacer.ReplaceText,{\"Attribute\"}),\n    #\"Replaced Value9\" = Table.ReplaceValue(#\"Replaced Value8\",\"SAU\",\"SAUDI ARABIA\",Replacer.ReplaceText,{\"Attribute\"}),\n    #\"Replaced Value10\" = Table.ReplaceValue(#\"Replaced Value9\",\"SIN\",\"SINGAPORE\",Replacer.ReplaceText,{\"Attribute\"}),\n    #\"Replaced Value11\" = Table.ReplaceValue(#\"Replaced Value10\",\"MEX\",\"MEXICO\",Replacer.ReplaceText,{\"Attribute\"}),\n    #\"Replaced Value12\" = Table.ReplaceValue(#\"Replaced Value11\",\"POR\",\"PORTUGAL\",Replacer.ReplaceValue,{\"Attribute\"}),\r\n  #\"Replaced value 1\" = Table.ReplaceValue(#\"Replaced Value12\", \"COL\", \"COLOMBIA\", Replacer.ReplaceText, {\"Attribute\"}),\r\n  #\"Replaced value 2\" = Table.ReplaceValue(#\"Replaced value 1\", \"AND\", \"ANDORRA\", Replacer.ReplaceText, {\"Attribute\"}),\r\n  #\"Replaced value 3\" = Table.ReplaceValue(#\"Replaced value 2\", \"GER\", \"GERMANY\", Replacer.ReplaceText, {\"Attribute\"}),\r\n  #\"Replaced value 4\" = Table.ReplaceValue(#\"Replaced value 3\", \"PHI\", \"PHILIPPINES\", Replacer.ReplaceText, {\"Attribute\"}),\n    #\"Renamed Columns\" = Table.RenameColumns(#\"Replaced value 4\",{{\"Attribute\", \"Country\"}, {\"Value\", \"Weekly Hours\"}}),\n    #\"Changed Type\" = Table.TransformColumnTypes(#\"Renamed Columns\",{{\"Weekly Hours\", type number}})\nin\n    #\"Changed Type\";\r\nshared Merged_ADP = let\n    Source = #\"Monthly ADP Report\",\r\n  #\"Filtered rows\" = Table.SelectRows(Source, each [Termination Date] >= #date(2024, 1, 1) or [Termination Date] = null),\n    #\"Replaced value\" = Table.ReplaceValue(#\"Filtered rows\", \"Pablo Alvarez Montenegro\", \"Sebastian Alvarez Montenegro\", Replacer.ReplaceText, {\"Reports To Name\"}),\r\n  #\"Replaced value 1\" = Table.ReplaceValue(#\"Replaced value\", \"Jacob Griffin\", \"Jake Griffin\", Replacer.ReplaceText, {\"Reports To Name\"}),\n    #\"Merged queries\" = Table.NestedJoin(#\"Replaced value 1\", {\"Payroll Name\"}, #\"ADP_Consultant List\", {\"Payroll Name\"}, \"ADP_Consultant List\", JoinKind.LeftOuter),\n    #\"Expanded ADP_Consultant List\" = Table.ExpandTableColumn(#\"Merged queries\", \"ADP_Consultant List\", {\"Consultant\", \"Services Delivery\"}, {\"Consultant\", \"Services Delivery\"})\nin\n    #\"Expanded ADP_Consultant List\";\r\nshared Merge_ADP_2 = let\n    Source = Table.NestedJoin(Merged_ADP, {\"Reports To Name\"}, #\"Monthly ADP Report\", {\"Resource Name\"}, \"Monthly ADP Report\", JoinKind.LeftOuter),\n    #\"Expanded Monthly ADP Report\" = Table.ExpandTableColumn(Source, \"Monthly ADP Report\", {\"Preferred Name\"}, {\"Preferred Name.1\"}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Expanded Monthly ADP Report\",  \"Reports To Name_1\", each if [Preferred Name.1] = null then [Reports To Name] else [Preferred Name.1]),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Inserted conditional column\", {\"Preferred Name.1\", \"Reports To Name\"}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"Reports To Name_1\", \"Reports To Name\"}}),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Renamed columns\", {{\"Reports To Name\", type text}})\nin\n    #\"Changed column type\";\r\nshared Merge_Missing_Weekly_Hours = let\r\n  Source = Table.NestedJoin(Merge_ADP_2, {\"Worked In Country\"}, Transformed_Weekly_Hours, {\"Country\"}, \"Transformed_Weekly_Hours\", JoinKind.LeftOuter),\r\n  #\"Expanded Transformed_Weekly_Hours\" = Table.ExpandTableColumn(Source, \"Transformed_Weekly_Hours\", {\"Weekly Hours\"}, {\"Weekly Hours\"}),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Expanded Transformed_Weekly_Hours\", \"Hours\", each if [Scheduled Hours] = null then [Weekly Hours] else [Scheduled Hours]),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Hours\", type number}}),\r\n  #\"Replaced value\" = Table.ReplaceValue(#\"Changed column type\", null, 40, Replacer.ReplaceValue, {\"Hours\"}),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Replaced value\", {\"Scheduled Hours\", \"Hours Period\", \"Weekly Hours\"}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"Hours\", \"Weekly Hours\"}})\r\nin\r\n  #\"Renamed columns\";\r\nshared Transformed_ADP = let\n    Source = Merge_Missing_Weekly_Hours,\n    #\"Merged queries\" = Table.NestedJoin(Source, {\"Reports To Name\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2\" = Table.ExpandTableColumn(#\"Merged queries\", \"Merge_ADP_2\", {\"STOP\", \"Reports To Name\"}, {\"STOP.1\", \"Reports To Name.1\"}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Expanded Merge_ADP_2\", {\"Reports To Name.1\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2 1\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Merge_ADP_2\", {\"STOP\", \"Reports To Name\"}, {\"STOP.2\", \"Reports To Name.2\"}),\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Expanded Merge_ADP_2 1\", {\"Reports To Name.1\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2 2\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Merge_ADP_2\", {\"STOP\", \"Reports To Name\"}, {\"STOP.3\", \"Reports To Name.3\"}),\n    #\"Merged queries 3\" = Table.NestedJoin(#\"Expanded Merge_ADP_2 2\", {\"Reports To Name.3\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2 3\" = Table.ExpandTableColumn(#\"Merged queries 3\", \"Merge_ADP_2\", {\"STOP\", \"Reports To Name\"}, {\"STOP.4\", \"Reports To Name.4\"}),\n  #\"Changed column type 2\" = Table.TransformColumnTypes(#\"Expanded Merge_ADP_2 3\", {{\"STOP.4\", Int64.Type}, {\"STOP.3\", Int64.Type}, {\"STOP.2\", Int64.Type}, {\"STOP.1\", Int64.Type}, {\"STOP\", Int64.Type}}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Changed column type 2\", \"Reports To Manager\", each if [STOP] = 1 then [Reports To Name] else if [STOP.1] = 1 then [Reports To Name.1] else if [STOP.2] = 1 then [Reports To Name.2] else if [STOP.3] = 1 then [Reports To Name.3] else if [STOP.4] = 1 then [Reports To Name.4] else [Reports To Name]),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Inserted conditional column\", {\"Reports To Name.4\", \"STOP.4\", \"Reports To Name.3\", \"STOP.3\", \"Reports To Name.2\", \"STOP.2\", \"Reports To Name.1\", \"STOP.1\", \"STOP\"}),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns\", {{\"Reports To Manager\", type text}}),\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Changed column type\", \"Custom\", each Text.FromBinary(\nText.ToBinary(\n[Resource Name], \n28597\n)\n)), {{\"Custom\", type text}}),\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Added custom\", {\"Resource Name\"}),\n  #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns 1\", {{\"Custom\", \"Resource Name\"}}),\n  #\"Added custom 1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns\", \"Custom\", each Text.FromBinary(\nText.ToBinary(\n[Preferred Name], \n28597\n)\n)), {{\"Custom\", type text}}),\n  #\"Removed columns 2\" = Table.RemoveColumns(#\"Added custom 1\", {\"Preferred Name\"}),\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Removed columns 2\", {{\"Custom\", \"Preferred Name\"}}),\n  #\"Inserted conditional column 1\" = Table.AddColumn(#\"Renamed columns 1\", \"PM Group\", each if [Preferred Name] = \"Georgina Palmer-Stevens\" then \"1. PMO\" else if [Preferred Name] = \"Andrew Gittins\" then \"1. PMO\" else if [Preferred Name] = \"Ankita Chopra\" then \"1. PMO\" else if [Preferred Name] = \"Armando Grajal\" then \"1. PMO\" else if [Preferred Name] = \"Athira Nair\" then \"1. PMO\" else if [Preferred Name] = \"Bob Brodbeck\" then \"1. PMO\" else if [Preferred Name] = \"Celine Quiang\" then \"1. PMO\" else if [Preferred Name] = \"Claude Poux\" then \"1. PMO\" else if [Preferred Name] = \"Clint Hansen\" then \"1. PMO\" else if [Preferred Name] = \"Colin Campbell\" then \"1. PMO\" else if [Preferred Name] = \"Cori Davies\" then \"1. PMO\" else if [Preferred Name] = \"Dennis Scheil\" then \"1. PMO\" else if [Preferred Name] = \"Drew Westerman\" then \"1. PMO\" else if [Preferred Name] = \"Dyfed Lloyd\" then \"1. PMO\" else if [Preferred Name] = \"Georgina Stevens-Palmer\" then \"1. PMO\" else if [Preferred Name] = \"Greg Rook\" then \"1. PMO\" else if [Preferred Name] = \"Hareen Narendra\" then \"1. PMO\" else if [Preferred Name] = \"Jake Griffin\" then \"1. PMO\" else if [Preferred Name] = \"Joanna Mika Kucharska\" then \"1. PMO\" else if [Preferred Name] = \"Kelly Taylor\" then \"1. PMO\" else if [Preferred Name] = \"Lauren Franke\" then \"1. PMO\" else if [Preferred Name] = \"Luke Henry\" then \"1. PMO\" else if [Preferred Name] = \"Mauro Gacitua\" then \"1. PMO\" else if [Preferred Name] = \"Michael Creamer\" then \"1. PMO\" else if [Preferred Name] = \"Nicolas Morales\" then \"1. PMO\" else if [Preferred Name] = \"Rebecca Tinant\" then \"1. PMO\" else if [Preferred Name] = \"Robert Keizer\" then \"1. PMO\" else if [Preferred Name] = \"Sean Taylor\" then \"1. PMO\" else if [Preferred Name] = \"Sujana Amatya\" then \"1. PMO\" else if [Preferred Name] = \"Thomas Frew\" then \"1. PMO\" else if [Preferred Name] = \"Kristi Schulte\" then \"2. CEOps\" else if [Preferred Name] = \"Mari Osmundson\" then \"2. CEOps\" else if [Preferred Name] = \"Joyce Hendrickson\" then \"2. CEOps\" else if [Preferred Name] = \"Diana Ruybal\" then \"2. CEOps\" else if [Preferred Name] = \"Gina Parshall\" then \"2. CEOps\" else if [Preferred Name] = \"Amanda Feldt-Latham\" then \"2. CEOps\" else if [Preferred Name] = \"Cristina Pajuelo Jurado\" then \"2. CEOps\" else if [Preferred Name] = \"Elise Maynard\" then \"2. CEOps\" else if [Preferred Name] = \"Peggy Engelking\" then \"2. CEOps\" else \"3. Services (Other)\"),\n  #\"Changed column type 3\" = Table.TransformColumnTypes(#\"Inserted conditional column 1\", {{\"PM Group\", type text}})\nin\n    #\"Changed column type 3\";\r\nshared Transformed_ADP_2_with_manager = let\n    Source = Merge_Missing_Weekly_Hours,\n    #\"Merged queries\" = Table.NestedJoin(Source, {\"Reports To Name\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2\" = Table.ExpandTableColumn(#\"Merged queries\", \"Merge_ADP_2\", {\"STOP-Manager\", \"Reports To Name\", \"STOP-Lead\"}, {\"STOP-Manager.1\", \"Reports To Name.1\", \"STOP-Lead.1\"}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Expanded Merge_ADP_2\", {\"Reports To Name.1\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2 1\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Merge_ADP_2\", {\"STOP-Manager\", \"Reports To Name\", \"STOP-Lead\"}, {\"STOP-Manager.2\", \"Reports To Name.2\", \"STOP-Lead.2\"}),\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Expanded Merge_ADP_2 1\", {\"Reports To Name.1\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2 2\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Merge_ADP_2\", {\"STOP-Manager\", \"Reports To Name\", \"STOP-Lead\"}, {\"STOP-Manager.3\", \"Reports To Name.3\", \"STOP-Lead.3\"}),\n    #\"Merged queries 3\" = Table.NestedJoin(#\"Expanded Merge_ADP_2 2\", {\"Reports To Name.3\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n    #\"Expanded Merge_ADP_2 3\" = Table.ExpandTableColumn(#\"Merged queries 3\", \"Merge_ADP_2\", {\"STOP-Manager\", \"Reports To Name\", \"STOP-Lead\"}, {\"STOP-Manager.4\", \"Reports To Name.4\", \"STOP-Lead.4\"}),\n  #\"Changed column type 2\" = Table.TransformColumnTypes(#\"Expanded Merge_ADP_2 3\", {{\"STOP-Manager.4\", Int64.Type}, {\"STOP-Manager.3\", Int64.Type}, {\"STOP-Manager.2\", Int64.Type}, {\"STOP-Manager.1\", Int64.Type}, {\"STOP-Manager\", Int64.Type}}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Changed column type 2\", \"Reports To Manager\", each if [#\"STOP-Manager\"] = 1 then [Reports To Name] else if [#\"STOP-Manager.1\"] = 1 then [Reports To Name.1] else if [#\"STOP-Manager.2\"] = 1 then [Reports To Name.2] else if [#\"STOP-Manager.3\"] = 1 then [Reports To Name.3] else if [#\"STOP-Manager.4\"] = 1 then [Reports To Name.4] else [Reports To Name]),\r\n  #\"Inserted conditional column 2\" = Table.AddColumn(#\"Inserted conditional column\", \"Reports To Dept Lead\", each if [#\"STOP-Lead\"] = 1 then [Reports To Name] else if [#\"STOP-Lead.1\"] = 1 then [Reports To Name.1] else if [#\"STOP-Lead.2\"] = 1 then [Reports To Name.2] else if [#\"STOP-Lead.3\"] = 1 then [Reports To Name.3] else if [#\"STOP-Lead.4\"] = 1 then [Reports To Name.4] else [Reports To Name]),\r\n  #\"Removed columns 3\" = Table.RemoveColumns(#\"Inserted conditional column 2\", {\"STOP-Manager.4\", \"Reports To Name.3\", \"STOP-Manager.3\", \"Reports To Name.2\", \"STOP-Manager.2\", \"Reports To Name.1\", \"STOP-Manager.1\", \"STOP-Manager\", \"STOP\", \"Reports To Name.4\", \"STOP-Lead.4\", \"STOP-Lead.3\", \"STOP-Lead.2\", \"STOP-Lead.1\", \"STOP-Lead\"}),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns 3\", {{\"Reports To Manager\", type text}, {\"Reports To Dept Lead\", type text}}),\r\n  #\"Merged queries 4\" = Table.NestedJoin(#\"Changed column type\", {\"Reports To Name\"}, Merge_ADP_2, {\"Preferred Name\"}, \"Merge_ADP_2\", JoinKind.LeftOuter),\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Merged queries 4\", \"Custom\", each Text.FromBinary(\nText.ToBinary(\n[Resource Name], \n28597\n)\n)), {{\"Custom\", type text}}),\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Added custom\", {\"Resource Name\"}),\n  #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns 1\", {{\"Custom\", \"Resource Name\"}}),\n  #\"Added custom 1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns\", \"Custom\", each Text.FromBinary(\nText.ToBinary(\n[Preferred Name], \n28597\n)\n)), {{\"Custom\", type text}}),\n  #\"Removed columns 2\" = Table.RemoveColumns(#\"Added custom 1\", {\"Preferred Name\"}),\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Removed columns 2\", {{\"Custom\", \"Preferred Name\"}}),\n  #\"Inserted conditional column 1\" = Table.AddColumn(#\"Renamed columns 1\", \"PM Group\", each if [Preferred Name] = \"Georgina Palmer-Stevens\" then \"1. PMO\" else if [Preferred Name] = \"Andrew Gittins\" then \"1. PMO\" else if [Preferred Name] = \"Ankita Chopra\" then \"1. PMO\" else if [Preferred Name] = \"Armando Grajal\" then \"1. PMO\" else if [Preferred Name] = \"Athira Nair\" then \"1. PMO\" else if [Preferred Name] = \"Bob Brodbeck\" then \"1. PMO\" else if [Preferred Name] = \"Celine Quiang\" then \"1. PMO\" else if [Preferred Name] = \"Claude Poux\" then \"1. PMO\" else if [Preferred Name] = \"Clint Hansen\" then \"1. PMO\" else if [Preferred Name] = \"Colin Campbell\" then \"1. PMO\" else if [Preferred Name] = \"Cori Davies\" then \"1. PMO\" else if [Preferred Name] = \"Dennis Scheil\" then \"1. PMO\" else if [Preferred Name] = \"Drew Westerman\" then \"1. PMO\" else if [Preferred Name] = \"Dyfed Lloyd\" then \"1. PMO\" else if [Preferred Name] = \"Georgina Stevens-Palmer\" then \"1. PMO\" else if [Preferred Name] = \"Greg Rook\" then \"1. PMO\" else if [Preferred Name] = \"Hareen Narendra\" then \"1. PMO\" else if [Preferred Name] = \"Jake Griffin\" then \"1. PMO\" else if [Preferred Name] = \"Joanna Mika Kucharska\" then \"1. PMO\" else if [Preferred Name] = \"Kelly Taylor\" then \"1. PMO\" else if [Preferred Name] = \"Lauren Franke\" then \"1. PMO\" else if [Preferred Name] = \"Luke Henry\" then \"1. PMO\" else if [Preferred Name] = \"Mauro Gacitua\" then \"1. PMO\" else if [Preferred Name] = \"Michael Creamer\" then \"1. PMO\" else if [Preferred Name] = \"Nicolas Morales\" then \"1. PMO\" else if [Preferred Name] = \"Rebecca Tinant\" then \"1. PMO\" else if [Preferred Name] = \"Robert Keizer\" then \"1. PMO\" else if [Preferred Name] = \"Sean Taylor\" then \"1. PMO\" else if [Preferred Name] = \"Sujana Amatya\" then \"1. PMO\" else if [Preferred Name] = \"Thomas Frew\" then \"1. PMO\" else if [Preferred Name] = \"Kristi Schulte\" then \"2. CEOps\" else if [Preferred Name] = \"Mari Osmundson\" then \"2. CEOps\" else if [Preferred Name] = \"Joyce Hendrickson\" then \"2. CEOps\" else if [Preferred Name] = \"Diana Ruybal\" then \"2. CEOps\" else if [Preferred Name] = \"Gina Parshall\" then \"2. CEOps\" else if [Preferred Name] = \"Amanda Feldt-Latham\" then \"2. CEOps\" else if [Preferred Name] = \"Cristina Pajuelo Jurado\" then \"2. CEOps\" else if [Preferred Name] = \"Elise Maynard\" then \"2. CEOps\" else if [Preferred Name] = \"Peggy Engelking\" then \"2. CEOps\" else \"3. Services (Other)\"),\n  #\"Changed column type 3\" = Table.TransformColumnTypes(#\"Inserted conditional column 1\", {{\"PM Group\", type text}}),\r\n  #\"From Value\" = Table.FromValue(#\"Changed column type 3\"),\r\n  #\"Remove Columns\" = Table.RemoveColumns(#\"From Value\", Table.ColumnsOfType(#\"From Value\", {type table, type record, type list, type nullable binary, type binary, type function}))\nin\n    #\"Remove Columns\";\r\nshared Calendar_Hours = let\n    Source = Transformed_ADP,\n    #\"Removed Other Columns\" = Table.SelectColumns(Source,{\"Resource Name\", \"Worked In Country\", \"Weekly Hours\", \"Hire Date\", \"Termination Date\"}),\n    #\"Added Custom1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed Other Columns\", \"End Date_temp\", each Date.AddDays( DateTime.LocalNow(), 365)), {{\"End Date_temp\", type date}}),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Added Custom1\", \"End Date\", each if [Termination Date] = null then [End Date_temp] else [Termination Date]),\r\n  #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"End Date\", type date}}),\r\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Changed column type 1\", {\"End Date_temp\", \"Termination Date\"}),\n    #\"Added Conditional Column\" = Table.AddColumn(#\"Removed columns 1\", \"Start Date\", each if [Hire Date] < #date(2024, 1, 1) then #date(2024, 1, 1) else [Hire Date]),\n    #\"Changed Type1\" = Table.TransformColumnTypes(#\"Added Conditional Column\",{{\"Start Date\", type date}}),\n    #\"Removed Columns1\" = Table.RemoveColumns(#\"Changed Type1\",{\"Hire Date\"}),\n    #\"Added Custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed Columns1\", \"System\", each \"Calendar\"), {{\"System\", type text}}),\n    #\"Inserted Division\" = Table.AddColumn(#\"Added Custom\", \"Daily Hours\", each [Weekly Hours] / 5, type number),\n    #\"Added Custom2\" = Table.AddColumn(#\"Inserted Division\", \"Date Services Performed\", each List.Dates([Start Date], Duration.Days([End Date] - [Start Date]), #duration(1,0,0,0))),\n    #\"Expanded Date Services Performed\" = Table.ExpandListColumn(#\"Added Custom2\", \"Date Services Performed\"),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Expanded Date Services Performed\", {{\"Date Services Performed\", type date}})\nin\n    #\"Changed column type\";\r\nshared Transformed_FTO = let\n    Source = Table.NestedJoin(#\"Time Off Report\", {\"Payroll Name\"}, Transformed_ADP, {\"Payroll Name\"}, \"ADP_Report_Individual\", JoinKind.LeftOuter),\n    #\"Expanded ADP_Report_Individual\" = Table.ExpandTableColumn(Source, \"ADP_Report_Individual\", {\"Job Title Description\", \"Business Unit Description\", \"Worked In Country\", \"Preferred Name\", \"Consultant\", \"Services Delivery\",\"Reports To Name\", \"Reports To Manager\"}, {\"Job Title Description\", \"Business Unit Description\", \"Worked In Country\", \"Preferred Name\", \"Consultant\", \"Services Delivery\",\"Reports To Name\", \"Reports To Manager\"}),\n    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded ADP_Report_Individual\",{\"Payroll Name\"}),\n    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"Preferred Name\", \"Resource Name\"}}),\n    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Unique Identifier\"}),\n    #\"Added Custom\" = Table.AddColumn(#\"Removed Duplicates\", \"Project Name\", each \"N/A - FTO\")\nin\n    #\"Added Custom\";\r\nshared Append_FTO = let\r\n  Source = Table.Combine({#\"Time Off Report_2025\", #\"Time Off Report_2024\"})\r\nin\r\n  Source;\r\nshared #\"Time Off Report_2025\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Time Off Report_2025\", version = \"\"]}[Data]\r\nin\r\n  #\"Navigation 4\";\r\nshared Transformed_FTO_new = let\n    Source = Table.NestedJoin(#\"Append_FTO\", {\"Payroll Name\"}, Transformed_ADP_2_with_manager, {\"Payroll Name\"}, \"ADP_Report_Individual\", JoinKind.LeftOuter),\n    #\"Expanded ADP_Report_Individual\" = Table.ExpandTableColumn(Source, \"ADP_Report_Individual\", {\"Job Title Description\", \"Business Unit Description\", \"Worked In Country\", \"Preferred Name\", \"Consultant\", \"Services Delivery\",\"Reports To Name\", \"Reports To Manager\", \"Reports To Dept Lead\", \"Weekly Hours\"}, {\"Job Title Description\", \"Business Unit Description\", \"Worked In Country\", \"Preferred Name\", \"Consultant\", \"Services Delivery\",\"Reports To Name\", \"Reports To Manager\", \"Reports To Dept Lead\", \"Weekly Hours\"}),\n    #\"Removed Columns\" = Table.RemoveColumns(#\"Expanded ADP_Report_Individual\",{\"Payroll Name\"}),\n    #\"Renamed Columns\" = Table.RenameColumns(#\"Removed Columns\",{{\"Preferred Name\", \"Resource Name\"}}),\n    #\"Removed Duplicates\" = Table.Distinct(#\"Renamed Columns\", {\"Unique Identifier\"}),\r\n  #\"Divided column\" = Table.TransformColumns(#\"Removed Duplicates\", {{\"Weekly Hours\", each _ / 5, type number}}),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Divided column\", {{\"Weekly Hours\", \"Daily Hours\"}}),\r\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns 1\", \"FTO_1\", each [Amount] * [Daily Hours]), {{\"FTO_1\", type number}}),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Added custom\", \"FTO\", each if [#\"DAYS/HOURS\"] = \"Days\" then [FTO_1] else [Amount]),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"FTO\", type number}}),\r\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Changed column type\", {\"DAYS/HOURS\", \"Amount\", \"Daily Hours\", \"FTO_1\"}),\r\n  #\"Grouped rows\" = Table.Group(#\"Removed columns 1\", {\"Resource Name\", \"Date Services Performed\"}, {{\"Logged Hours\", each List.Sum([FTO]), type nullable number}, {\"Expand\", each _, type nullable table[#\"Date Services Performed\" = nullable date, System = nullable text, #\"Service Activity Type\" = nullable text, #\"Project Name\" = nullable text, #\"Unique Identifier\" = nullable text, #\"Job Title Description\" = nullable text, #\"Business Unit Description\" = nullable text, #\"Worked In Country\" = nullable text, #\"Resource Name\" = nullable text, Consultant = nullable text, #\"Services Delivery\" = nullable text, #\"Reports To Name\" = nullable text, #\"Reports To Manager\" = nullable text, #\"Reports To Dept Lead\" = nullable text, FTO = nullable number]}}),\r\n  #\"Expanded Expand 1\" = Table.ExpandTableColumn(#\"Grouped rows\", \"Expand\", {\"System\", \"Service Activity Type\", \"Project Name\", \"Unique Identifier\", \"Job Title Description\", \"Business Unit Description\", \"Worked In Country\", \"Consultant\", \"Services Delivery\", \"Reports To Name\", \"Reports To Manager\", \"Reports To Dept Lead\"}, {\"System\", \"Service Activity Type\", \"Project Name\", \"Unique Identifier\", \"Job Title Description\", \"Business Unit Description\", \"Worked In Country\", \"Consultant\", \"Services Delivery\", \"Reports To Name\", \"Reports To Manager\", \"Reports To Dept Lead\"}),\r\n  #\"Removed duplicates 1\" = Table.Distinct(#\"Expanded Expand 1\", {\"Resource Name\", \"Date Services Performed\"})\nin\n    #\"Removed duplicates 1\";\r\nshared #\"Time Off Report_2024\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a716c567-c73b-47fc-8745-14800f1a06b6\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Time Off Report_2024\", version = \"\"]}[Data],\r\n  #\"Added suffix\" = Table.TransformColumns(#\"Navigation 4\", {{\"Unique Identifier\", each _ & \"_2024\", type text}})\r\nin\r\n  #\"Added suffix\";\r\n",
+    "connectionOverrides": [
+      {
+        "path": "PowerPlatformDataflows",
+        "kind": "PowerPlatformDataflows",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"PowerPlatformDataflows\",\"path\":\"PowerPlatformDataflows\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[{\"Id\":\"71436bc7-801c-4dcc-8d99-ac137a40338a\",\"Name\":\"Source Data\",\"Description\":\"\",\"ParentId\":null,\"Order\":0},{\"Id\":\"227bb5c4-f216-4a0c-b244-46f84250f80d\",\"Name\":\"Merged Data\",\"Description\":\"\",\"ParentId\":null,\"Order\":1}]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "Work Calendars_Company Holidays",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Work%20Calendars_Company%20Holidays.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Date",
+          "dataType": "date"
+        },
+        {
+          "name": "UK",
+          "dataType": "double"
+        },
+        {
+          "name": "USA",
+          "dataType": "double"
+        },
+        {
+          "name": "ARG",
+          "dataType": "double"
+        },
+        {
+          "name": "AUS",
+          "dataType": "double"
+        },
+        {
+          "name": "CAN",
+          "dataType": "double"
+        },
+        {
+          "name": "FRA",
+          "dataType": "double"
+        },
+        {
+          "name": "IND",
+          "dataType": "double"
+        },
+        {
+          "name": "SPA",
+          "dataType": "double"
+        },
+        {
+          "name": "ARM",
+          "dataType": "double"
+        },
+        {
+          "name": "SAU",
+          "dataType": "double"
+        },
+        {
+          "name": "SIN",
+          "dataType": "double"
+        },
+        {
+          "name": "MEX",
+          "dataType": "double"
+        },
+        {
+          "name": "POR",
+          "dataType": "double"
+        },
+        {
+          "name": "COL",
+          "dataType": "double"
+        },
+        {
+          "name": "GER",
+          "dataType": "double"
+        },
+        {
+          "name": "AND",
+          "dataType": "double"
+        },
+        {
+          "name": "PHI",
+          "dataType": "double"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Work Calendars_Weekly Hours",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Work%20Calendars_Weekly%20Hours.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Country",
+          "dataType": "string"
+        },
+        {
+          "name": "UK",
+          "dataType": "double"
+        },
+        {
+          "name": "USA",
+          "dataType": "double"
+        },
+        {
+          "name": "ARG",
+          "dataType": "double"
+        },
+        {
+          "name": "AUS",
+          "dataType": "double"
+        },
+        {
+          "name": "CAN",
+          "dataType": "double"
+        },
+        {
+          "name": "FRA",
+          "dataType": "double"
+        },
+        {
+          "name": "IND",
+          "dataType": "double"
+        },
+        {
+          "name": "SPA",
+          "dataType": "double"
+        },
+        {
+          "name": "ARM",
+          "dataType": "double"
+        },
+        {
+          "name": "SAU",
+          "dataType": "double"
+        },
+        {
+          "name": "SIN",
+          "dataType": "double"
+        },
+        {
+          "name": "MEX",
+          "dataType": "double"
+        },
+        {
+          "name": "POR",
+          "dataType": "double"
+        },
+        {
+          "name": "COL",
+          "dataType": "double"
+        },
+        {
+          "name": "GER",
+          "dataType": "double"
+        },
+        {
+          "name": "AND",
+          "dataType": "double"
+        },
+        {
+          "name": "PHI",
+          "dataType": "double"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_Weekly_Hours",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_Weekly_Hours.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Country",
+          "dataType": "string"
+        },
+        {
+          "name": "Weekly Hours",
+          "dataType": "double"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_ADP",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_ADP.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Payroll Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Position Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Job Title Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Home Department Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Business Unit Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Worked In Country",
+          "dataType": "string"
+        },
+        {
+          "name": "Hire Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Position Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Termination Date",
+          "dataType": "date"
+        },
+        {
+          "name": "STOP-Manager",
+          "dataType": "int64"
+        },
+        {
+          "name": "STOP-Lead",
+          "dataType": "int64"
+        },
+        {
+          "name": "Consultant",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Weekly Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "Reports To Manager",
+          "dataType": "string"
+        },
+        {
+          "name": "Resource Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Preferred Name",
+          "dataType": "string"
+        },
+        {
+          "name": "PM Group",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_ADP_2_with_manager",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_ADP_2_with_manager.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Payroll Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Position Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Job Title Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Home Department Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Business Unit Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Worked In Country",
+          "dataType": "string"
+        },
+        {
+          "name": "Hire Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Position Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Termination Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Consultant",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Weekly Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "Reports To Manager",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Dept Lead",
+          "dataType": "string"
+        },
+        {
+          "name": "Resource Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Preferred Name",
+          "dataType": "string"
+        },
+        {
+          "name": "PM Group",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Calendar_Hours",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Calendar_Hours.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Resource Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Worked In Country",
+          "dataType": "string"
+        },
+        {
+          "name": "Weekly Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "Daily Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "Date Services Performed",
+          "dataType": "date"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_FTO",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_FTO.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[{\"columns\":[\"Unique Identifier\"]}]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Date Services Performed",
+          "dataType": "date"
+        },
+        {
+          "name": "Hours Logged",
+          "dataType": "double"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Unique Identifier",
+          "dataType": "string"
+        },
+        {
+          "name": "Job Title Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Business Unit Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Worked In Country",
+          "dataType": "string"
+        },
+        {
+          "name": "Resource Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Consultant",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Manager",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Name",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Transformed_FTO_new",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Transformed_FTO_new.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[{\"columns\":[\"Resource Name\",\"Date Services Performed\"]}]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Resource Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Date Services Performed",
+          "dataType": "date"
+        },
+        {
+          "name": "Logged Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Unique Identifier",
+          "dataType": "string"
+        },
+        {
+          "name": "Job Title Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Business Unit Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Worked In Country",
+          "dataType": "string"
+        },
+        {
+          "name": "Consultant",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Manager",
+          "dataType": "string"
+        },
+        {
+          "name": "Reports To Dept Lead",
+          "dataType": "string"
+        }
+      ]
+    }
+  ]
+}

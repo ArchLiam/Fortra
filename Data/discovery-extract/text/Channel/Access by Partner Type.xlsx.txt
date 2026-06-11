@@ -1,0 +1,38 @@
+
+===== SHEET: Sheet1 (10r x 7c) =====
+Instructions: Goal of this spreadsheet is to understand where there is an expected difference in portal functionality based upon Partner Type.  For initial release, expectation is not a lot of differences.  Use this sheet to indicate which roles should have what functionality.	Training (Docebo) Yes/No	Content Yes/No	Deal Reg (Yes or No) *(See Notes tab)	MDF Requests  (Yes/No)	Partner Administration Tasks  (Yes/No)	Dashboards / Metrics   (Yes/No)
+Distributor	Yes	Yes	Yes	Yes	Yes	Yes
+Reseller	Yes	Yes	Yes	Yes	Yes	Yes
+MSP	Yes	Yes	Yes	No	Yes	Yes
+System Integrator	Yes	Yes	Yes	No	Yes	Yes
+Referral Partner	Yes	Yes	Yes	No	Yes	Yes
+Technology Alliance	Yes	Yes	Yes	Yes	Yes	Yes
+Purchasing Agent - No access at All	No	No	No	No	No	No
+Distributor-International (Use this row only if different from row 2)	Yes	Yes	Yes	Yes	Yes	Yes
+Reseller (Indirect only)	Yes	Yes	Yes	No	Yes	Yes
+
+===== SHEET: Sheet2 (9r x 1c) =====
+Distributor
+Reseller
+MSP
+System Integrator
+Referral Partner
+Technology Alliance
+Purchasing Agent - No access at All
+Distributor-International (Use this row only if different from row 2)
+Reseller (Indirect only)
+
+===== SHEET: Special Notes  (51r x 2c) =====
+Special Notes
+Training General and Training by Roles:  Sales, Service Delivery, Solution Engineering, Marketing, .  Future show training by role.  Track a field on the contact level that would tie to these 3 Certification types.  Vision pick one of these values on the partner portal and save to the contact record.  On Portal - Profile  " I am completeing the following certifications types" Multi Selection list (multiple checkbox. with the 4 values above.  Required on the partner portal.   May edit in thee portal later.   See as a field on the CRM Contact screen.  No automation or rules. Just want to see and report. - Contract Record Field Name:  Partner Certification Types .  Maybe 3 fields 1.) At Registration on Partner Portal, 2.) Edit later on the PArtner Portal 3.) CRM Contact record -Editable.
+1. For Deal Reg, fields need to vary.  If  partner type is x, then show or don't show these fields:
+Partner Type	Field Variations on Deal Reg Form (Heather to Review this one)
+Distributor	Reseller Company Name is Required.
+Reseller	Distributor Company is Optional
+MSP	Reseller Company Name and Distrubtor Company Name are both Optional
+System Integrator	Reseller Company Name and Distrubtor Company Name are both Optional
+Referral Partner	Hide Reseller and Distriburor Compay Name
+Technology Alliance	Reseller Company Name and Distrubtor Company Name are both Optional
+Purchasing Agent - No access at All	n/a
+Distributor-International (Use this row only if different from row 2)	Reseller Company Name is Required.
+Reseller (Indirect only)	Distributor  Company Name is Required.

@@ -1,0 +1,712 @@
+{
+  "name": "Linking_1_D365_Accounts",
+  "ppdf:dataflowId": "cf70f665-a62b-4f79-a644-67b08e899da2",
+  "ppdf:owner": {
+    "tenantId": "ca81e23b-3509-45ee-a998-3e346acf274d",
+    "userId": "a87082d1-a409-4857-bf7d-086629a120c3"
+  },
+  "ppdf:fastCopy": true,
+  "version": "1.0",
+  "culture": "en-US",
+  "modifiedTime": "2024-12-24T10:15:15.6058994+00:00",
+  "ppdf:outputFileFormat": "Parquet",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": true,
+    "queriesMetadata": {
+      "Accounts": {
+        "queryId": "4369cdc4-4a65-4651-b06b-cb2b2eedb925",
+        "queryName": "Accounts",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "Brand Accounts": {
+        "queryId": "58283b70-e5f6-4c89-b19c-93ffba1cd4e6",
+        "queryName": "Brand Accounts",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "Brand_Team": {
+        "queryId": "8128f4c9-86a3-4623-bf0a-43332e45f270",
+        "queryName": "Brand_Team",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "System Products": {
+        "queryId": "989fbee8-2a12-4aa1-9918-e966286cf8fb",
+        "queryName": "System Products",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "Source_Selling_Team": {
+        "queryId": "e3b4b155-cdd7-4e82-ade3-1dba3ba63e0d",
+        "queryName": "Source_Selling_Team",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "Source_Temperature_Risk_Audit": {
+        "queryId": "4f215f4f-e649-49a6-84db-925d4298951e",
+        "queryName": "Source_Temperature_Risk_Audit",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "Filtered_Accounts": {
+        "queryId": "260ae11e-cb4f-470a-938d-2cea3dd5c40f",
+        "queryName": "Filtered_Accounts",
+        "queryGroupId": "cb8c3d1d-d414-4157-a901-362542e3a41d"
+      },
+      "Filtered_Brand_Account": {
+        "queryId": "7e75dcea-f8c1-48a8-9409-55849c29331f",
+        "queryName": "Filtered_Brand_Account",
+        "queryGroupId": "cb8c3d1d-d414-4157-a901-362542e3a41d"
+      },
+      "Temp_Updated_System_Product": {
+        "queryId": "6309bc4f-d033-423d-a583-08c7f5173d51",
+        "queryName": "Temp_Updated_System_Product",
+        "queryGroupId": "9dc118d3-e1a9-4f6f-b110-1bcdf17a1513"
+      },
+      "Append_Brand_Account": {
+        "queryId": "c85beb47-63fa-49dc-a11a-7272e60d3d33",
+        "queryName": "Append_Brand_Account",
+        "queryGroupId": "9dc118d3-e1a9-4f6f-b110-1bcdf17a1513"
+      },
+      "Append_No_Brand_Account_ID": {
+        "queryId": "9fcf7640-8e7d-4b98-8abe-9b1ad90b486b",
+        "queryName": "Append_No_Brand_Account_ID",
+        "queryGroupId": "9dc118d3-e1a9-4f6f-b110-1bcdf17a1513"
+      },
+      "Transformed_Accounts": {
+        "queryId": "1b71a9be-5ee1-471e-a367-9375b0537c2b",
+        "queryName": "Transformed_Accounts",
+        "queryGroupId": "9dc118d3-e1a9-4f6f-b110-1bcdf17a1513"
+      },
+      "Source_systemusers": {
+        "queryId": "bf2966c2-ceb6-4825-8384-3b3c0e6ec1aa",
+        "queryName": "Source_systemusers",
+        "queryGroupId": "a2b9959e-c0d8-4673-8ad5-a4ed14f28b15"
+      },
+      "Merge_Temp": {
+        "queryId": "73b6ff41-6973-47d8-87ed-0c176dc8ad2e",
+        "queryName": "Merge_Temp",
+        "queryGroupId": "8149498c-2fb0-4a39-9848-fd3e7e2aa0be"
+      },
+      "CS_Selling_Team": {
+        "queryId": "6fd94eef-e5bc-4468-84bc-6eff02cecabb",
+        "queryName": "CS_Selling_Team",
+        "queryGroupId": "85ffbc78-ad6e-46e3-9fb7-719b93b74bb9",
+        "loadEnabled": true
+      },
+      "CS_Accounts": {
+        "queryId": "b3a2867b-b753-43a5-b628-4bb5ad74aca1",
+        "queryName": "CS_Accounts",
+        "queryGroupId": "85ffbc78-ad6e-46e3-9fb7-719b93b74bb9",
+        "loadEnabled": true
+      },
+      "CS_Brand_Account": {
+        "queryId": "5acdd934-1a24-4b11-841b-7f9b8e5abaa5",
+        "queryName": "CS_Brand_Account",
+        "queryGroupId": "85ffbc78-ad6e-46e3-9fb7-719b93b74bb9",
+        "loadEnabled": true
+      },
+      "CS_System_Products": {
+        "queryId": "04d1d7da-a4e3-41d5-8a81-d0b788c2a099",
+        "queryName": "CS_System_Products",
+        "queryGroupId": "85ffbc78-ad6e-46e3-9fb7-719b93b74bb9",
+        "loadEnabled": true
+      },
+      "Temp_D365": {
+        "queryId": "0b54dd36-32b5-49ae-b86d-a54a6262ed85",
+        "queryName": "Temp_D365",
+        "queryGroupId": "85ffbc78-ad6e-46e3-9fb7-719b93b74bb9",
+        "loadEnabled": true
+      },
+      "Temp_D365_Activity_Append": {
+        "queryId": "a4b62252-7677-44a3-997e-431d872369c4",
+        "queryName": "Temp_D365_Activity_Append",
+        "queryGroupId": "85ffbc78-ad6e-46e3-9fb7-719b93b74bb9",
+        "loadEnabled": true
+      }
+    },
+    "document": "section Section1;\r\nshared Accounts = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Accounts\", version = \"\"]}[Data],\r\n  #\"Uppercased text\" = Table.TransformColumns(#\"Navigation 4\", {{\"accountid\", each Text.Upper(_), type nullable text}})\r\nin\r\n  #\"Uppercased text\";\r\nshared #\"Brand Accounts\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Brand Accounts\", version = \"\"]}[Data],\r\n  #\"Uppercased text\" = Table.TransformColumns(#\"Navigation 4\", {{\"hs_account\", each Text.Upper(_), type nullable text}}),\r\n  #\"Uppercased text 1\" = Table.TransformColumns(#\"Uppercased text\", {{\"hs_brandaccountid\", each Text.Upper(_), type nullable text}}),\r\n  #\"Uppercased text 2\" = Table.TransformColumns(#\"Uppercased text 1\", {{\"ReferenceID\", each Text.Upper(_), type nullable text}})\r\nin\r\n  #\"Uppercased text 2\";\r\nshared Brand_Team = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Brand_Team\", version = \"\"]}[Data],\r\n  #\"Uppercased text\" = Table.TransformColumns(#\"Navigation 4\", {{\"hs_brandaccountid\", each Text.Upper(_), type nullable text}})\r\nin\r\n  #\"Uppercased text\";\r\nshared #\"System Products\" = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"System Products\", version = \"\"]}[Data],\r\n  #\"Uppercased text\" = Table.TransformColumns(#\"Navigation 4\", {{\"hs_account\", each Text.Upper(_), type nullable text}}),\r\n  #\"Uppercased text 1\" = Table.TransformColumns(#\"Uppercased text\", {{\"ReferenceID\", each Text.Upper(_), type nullable text}})\r\nin\r\n  #\"Uppercased text 1\";\r\nshared Source_Selling_Team = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Selling_team\", version = \"\"]}[Data],\r\n  #\"Uppercased text\" = Table.TransformColumns(#\"Navigation 4\", {{\"hs_account\", each Text.Upper(_), type nullable text}})\r\nin\r\n  #\"Uppercased text\";\r\nshared Source_Temperature_Risk_Audit = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a1d60fa1-a9bb-4bd2-ac5f-f0279989e982\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_Temperature_Risk_Audit\", version = \"\"]}[Data],\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Navigation 4\", {{\"Activity Owner\", \"createdby\"}}),\r\n  #\"Sorted rows\" = Table.Sort(#\"Renamed columns\", {{\"hs_account\", Order.Descending}})\r\nin\r\n  #\"Sorted rows\";\r\nshared Filtered_Accounts = let\n    Source = Accounts,\n    #\"Filtered rows\" = Table.SelectRows(Source, each ([Total Current ARR] <> null and [Total Current ARR] <> 0)),\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Filtered rows\", each [accountid] <> null and [accountid] <> \"\")\nin\n    #\"Filtered rows 1\";\r\nshared Filtered_Brand_Account = let\n    Source = #\"Brand Accounts\",\n    #\"Filtered rows 1\" = Table.SelectRows(Source, each ([Brand ARR] <> null and [Brand ARR] <> 0))\nin\n    #\"Filtered rows 1\";\r\nshared Temp_Updated_System_Product = let\n    Source = #\"System Products\",\n    #\"Removed other columns\" = Table.SelectColumns(Source, {\"hs_account\", \"Annual Recurring Revenue\", \"Account Product Brand\"}),\n    #\"Grouped rows\" = Table.Group(#\"Removed other columns\", {\"hs_account\", \"Account Product Brand\"}, {{\"Brand ARR\", each List.Sum([Annual Recurring Revenue]), type nullable number}})\nin\n    #\"Grouped rows\";\r\nshared Append_Brand_Account = let\n    Source = #\"Brand Accounts\",\n    #\"Filtered rows 1\" = Table.SelectRows(Source, each ([Brand ARR] <> null and [Brand ARR] <> 0)),\n    #\"Filtered rows\" = Table.SelectRows(#\"Filtered rows 1\", each [Account Number] <> null),\n    #\"Removed errors\" = Table.RemoveRowsWithErrors(#\"Filtered rows\"),\n    #\"Replaced value\" = Table.ReplaceValue(#\"Removed errors\", 0, null, Replacer.ReplaceValue, {\"Brand ARR at Risk\"}),\n    #\"Merged queries 2\" = Table.NestedJoin(#\"Replaced value\", {\"hs_brandaccountid\"}, Brand_Team, {\"hs_brandaccountid\"}, \"Brand_Team\", JoinKind.LeftOuter),\n    #\"Expanded Transformed_Brand_Team\" = Table.ExpandTableColumn(#\"Merged queries 2\", \"Brand_Team\", {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"}, {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"})\nin\n    #\"Expanded Transformed_Brand_Team\";\r\nshared Append_No_Brand_Account_ID = let\n    Source = Table.NestedJoin(Filtered_Accounts, {\"accountid\"}, Filtered_Brand_Account, {\"hs_account\"}, \"Filtered_Brand_Account\", JoinKind.LeftOuter),\n    #\"Expanded Source_Brand_Account\" = Table.ExpandTableColumn(Source, \"Filtered_Brand_Account\", {\"hs_account\", \"hs_brandaccountid\"}, {\"hs_account\", \"hs_brandaccountid\"}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Expanded Source_Brand_Account\", each ([hs_brandaccountid] = null) and ([Total Current ARR] <> null and [Total Current ARR] <> 0)),\n    #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows\", {\"Relationship Type\", \"Company Size\", \"Industry\", \"Last Survey Recipient\", \"#Brand Sub Accounts\", \"CSAT Score\", \"Survey Last Sent\", \"Account Region\", \"hs_account\", \"hs_brandaccountid\", \"Total Current ARR\", \"Account ARR at Risk\", \"Account ARR Risk\", \"Enterprise AE\"}),\n    #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"accountid\", \"hs_account\"}}),\n    #\"Duplicated column\" = Table.DuplicateColumn(#\"Renamed columns\", \"hs_account\", \"hs_account - Copy\"),\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Duplicated column\", {{\"hs_account - Copy\", \"hs_brandaccountid\"}, {\"Account Temperature\", \"Brand Temperature\"}, {\"URL-Account\", \"URL-BrandAccount\"}}),\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns 1\", {\"hs_account\"}, Temp_Updated_System_Product, {\"hs_account\"}, \"Merge_System_Products\", JoinKind.LeftOuter),\n    #\"Expanded Merge_System_Products\" = Table.ExpandTableColumn(#\"Merged queries\", \"Merge_System_Products\", {\"Account Product Brand\",  \"Brand ARR\"}, {\"Account Product Brand\",  \"Brand ARR\"}),\n    #\"Filtered rows 2\" = Table.SelectRows(#\"Expanded Merge_System_Products\", each ([Account Product Brand] <> null)),\n    #\"Inserted merged column\" = Table.AddColumn(#\"Filtered rows 2\", \"BrandAccId_Prod_Lookup\", each Text.Combine({[hs_brandaccountid], [Account Product Brand]}, \"\"), type text),\n    #\"Duplicated column 1\" = Table.DuplicateColumn(#\"Inserted merged column\", \"BrandAccId_Prod_Lookup\", \"BrandAccId_Prod_Lookup - Copy\"),\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Duplicated column 1\", {{\"BrandAccId_Prod_Lookup - Copy\", \"AccId_Prod_Lookup\"}}),\n    #\"Removed errors\" = Table.RemoveRowsWithErrors(#\"Renamed columns 2\"),\n    #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed errors\", \"Brand ARR at Risk\", each null), {{\"Brand ARR at Risk\", type number}}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Added custom\", {\"AccId_Prod_Lookup\"}, Source_Selling_Team, {\"AccId_Prod_Lookup\"}, \"Updated_Account_Team\", JoinKind.LeftOuter),\n    #\"Expanded Updated_Account_Team\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"Updated_Account_Team\", {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"}, {\"Assigned ISR\", \"CSM\", \"Renewal Owner\", \"Service Delivery\", \"Strategic AE\", \"TAM\", \"Enterprise AE\", \"Data Manager Specialist\"})\nin\n    #\"Expanded Updated_Account_Team\";\r\nshared Transformed_Accounts = let\n    Source = Accounts,\n    #\"Filtered rows\" = Table.SelectRows(Source, each ([Total Current ARR] <> null and [Total Current ARR] <> 0)),\n    #\"Filtered rows 1\" = Table.SelectRows(#\"Filtered rows\", each [accountid] <> null and [accountid] <> \"\")\nin\n    #\"Filtered rows 1\";\r\nshared Source_systemusers = let\r\n  Source = PowerPlatform.Dataflows([]),\r\n  #\"Navigation 1\" = Source{[Id = \"Workspaces\"]}[Data],\r\n  #\"Navigation 2\" = #\"Navigation 1\"{[workspaceId = \"0aeb26be-09b5-40bf-9441-adff4cd7e85c\"]}[Data],\r\n  #\"Navigation 3\" = #\"Navigation 2\"{[dataflowId = \"a23db998-a35e-487b-a9b2-78b91617d990\"]}[Data],\r\n  #\"Navigation 4\" = #\"Navigation 3\"{[entity = \"Source_systemusers\", version = \"\"]}[Data],\r\n  #\"Uppercased text\" = Table.TransformColumns(#\"Navigation 4\", {{\"systemuserid\", each Text.Upper(_), type nullable text}})\r\nin\r\n  #\"Uppercased text\";\r\nshared Merge_Temp = let\n    Source = Source_Temperature_Risk_Audit,\r\n  #\"Renamed columns 3\" = Table.RenameColumns(Source, {{\"Activity ID\", \"Activity Id\"}, {\"Product Brand Name\", \"Product Brand\"}}),\n    #\"Merged queries\" = Table.NestedJoin(#\"Renamed columns 3\", {\"createdby\"}, Source_systemusers, {\"systemuserid\"}, \"Source_systemusers\", JoinKind.LeftOuter),\n    #\"Expanded Source_systemusers\" = Table.ExpandTableColumn(#\"Merged queries\", \"Source_systemusers\", {\"fullname\"}, {\"fullname\"}),\n    #\"Removed columns 1\" = Table.RemoveColumns(#\"Expanded Source_systemusers\", {\"createdby\"}),\n    #\"Renamed columns 1\" = Table.RenameColumns(#\"Removed columns 1\", {{\"fullname\", \"Activity Owner\"}}),\n    #\"Merged queries 1\" = Table.NestedJoin(#\"Renamed columns 1\", {\"hs_brandaccount\"}, CS_Brand_Account, {\"hs_brandaccountid\"}, \"CS_Brand_Account\", JoinKind.LeftOuter),\n    #\"Expanded CS_Brand_Account\" = Table.ExpandTableColumn(#\"Merged queries 1\", \"CS_Brand_Account\", {\"hs_account\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\"}, {\"hs_account.1\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\"}),\n    #\"Removed columns 2\" = Table.RemoveColumns(#\"Expanded CS_Brand_Account\", {\"hs_account\"}),\n    #\"Renamed columns 2\" = Table.RenameColumns(#\"Removed columns 2\", {{\"hs_account.1\", \"hs_account\"}}),\n    #\"Inserted merged column\" = Table.AddColumn(#\"Renamed columns 2\", \"AccId_Brand_Lookup2\", each Text.Combine({[hs_account], [Product Brand]}, \"\"), type text),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Inserted merged column\", \"AccId_Brand_Lookup3\", each if [hs_account] = null then [AccId_Brand_Lookup] else [AccId_Brand_Lookup2]),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Inserted conditional column\", {\"AccId_Brand_Lookup2\", \"AccId_Brand_Lookup\"}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns\", {{\"AccId_Brand_Lookup3\", type text}}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Changed column type\", {{\"AccId_Brand_Lookup3\", \"AccId_Brand_Lookup\"}}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Renamed columns\", each [AccId_Brand_Lookup] <> \"\")\nin\n    #\"Filtered rows\";\r\nshared CS_Selling_Team = let\n    Source = Source_Selling_Team\nin\n    Source;\r\nshared CS_Accounts = let\n    Source = Transformed_Accounts,\n    #\"Removed duplicates\" = Table.Distinct(Source, {\"Account Number\"})\nin\n    #\"Removed duplicates\";\r\nshared CS_Brand_Account = let\n    Source = Table.Combine({Append_Brand_Account, Append_No_Brand_Account_ID})\nin\n    Source;\r\nshared CS_System_Products = let\n    Source = Table.NestedJoin(#\"System Products\", {\"hs_account\"}, Filtered_Accounts, {\"accountid\"}, \"Filtered_Accounts\", JoinKind.LeftOuter),\n    #\"Expanded Filtered_Accounts\" = Table.ExpandTableColumn(Source, \"Filtered_Accounts\", {\"Account Number\", \"Account Name\"}, {\"Account Number\", \"Account Name\"}),\n    #\"Filtered rows\" = Table.SelectRows(#\"Expanded Filtered_Accounts\", each ([Account Number] <> null))\nin\n    #\"Filtered rows\";\r\nshared Temp_D365 = let\n    Source = Merge_Temp\nin\n    Source;\r\nshared Temp_D365_Activity_Append = let\n    Source = Merge_Temp,\n    #\"Replaced value\" = Table.ReplaceValue(Source, \"\", null, Replacer.ReplaceValue, {\"Risk Level\"}),\n    #\"Replaced value 1\" = Table.ReplaceValue(#\"Replaced value\", \"\", null, Replacer.ReplaceValue, {\"Temperature Reason\", \"Temperature\"}),\n    #\"Inserted conditional column\" = Table.AddColumn(#\"Replaced value 1\", \"Activity Subject\", each if [Risk Level] <> null then [Risk Level] else if [Temperature] <> null then [Temperature] else if [Temperature Reason] <> null then [Temperature Reason] else \"Temperature Note Update\"),\n    #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Activity Subject\", type text}}),\n    #\"Inserted conditional column 1\" = Table.AddColumn(#\"Changed column type\", \"Sentiment\", each if Text.Contains([Activity Subject], \"Low\") then 4 else if Text.Contains([Activity Subject], \"Medium\") then 5 else if Text.Contains([Activity Subject], \"High\") then 6 else if Text.Contains([Activity Subject], \"Green\") then 7 else if Text.Contains([Activity Subject], \"Yellow\") then 8 else if Text.Contains([Activity Subject], \"Red\") then 9 else if Text.Contains([Activity Subject], \"Notified Lost\") then 10 else 0),\n    #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted conditional column 1\", {{\"Sentiment\", Int64.Type}}),\n    #\"Choose columns\" = Table.SelectColumns(#\"Changed column type 1\", {\"Activity Date\", \"hs_brandaccount\", \"Activity Id\", \"Activity Description\", \"Activity Category\", \"Activity Type\", \"Activity Completed\", \"Product Brand\", \"Activity Owner\", \"hs_account\", \"Account Number\", \"Account Name\", \"BrandAccId_Prod_Lookup\", \"AccId_Brand_Lookup\", \"Activity Link\", \"Activity Subject\", \"Sentiment\"})\nin\n    #\"Choose columns\";\r\n",
+    "connectionOverrides": [
+      {
+        "path": "PowerPlatformDataflows",
+        "kind": "PowerPlatformDataflows",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"PowerPlatformDataflows\",\"path\":\"PowerPlatformDataflows\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[{\"Id\":\"a2b9959e-c0d8-4673-8ad5-a4ed14f28b15\",\"Name\":\"Source Data\",\"Description\":\"\",\"ParentId\":null,\"Order\":0},{\"Id\":\"9dc118d3-e1a9-4f6f-b110-1bcdf17a1513\",\"Name\":\"Merged Tables\",\"Description\":\"\",\"ParentId\":null,\"Order\":1},{\"Id\":\"cb8c3d1d-d414-4157-a901-362542e3a41d\",\"Name\":\"Reference for Append\",\"Description\":\"\",\"ParentId\":\"9dc118d3-e1a9-4f6f-b110-1bcdf17a1513\",\"Order\":0},{\"Id\":\"8149498c-2fb0-4a39-9848-fd3e7e2aa0be\",\"Name\":\"Temperature\",\"Description\":\"\",\"ParentId\":null,\"Order\":0},{\"Id\":\"85ffbc78-ad6e-46e3-9fb7-719b93b74bb9\",\"Name\":\"Report Tables\",\"Description\":\"\",\"ParentId\":null,\"Order\":1}]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Selling_Team",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Selling_Team.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Accounts.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[{\"columns\":[\"Account Number\"]}]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "decimal"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "#Brand Sub Accounts",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedon",
+          "dataType": "dateTime"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_Brand_Account",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_Brand_Account.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_arratrisk_state",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Last Updated",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Brand Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Updated By",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "ReferenceID",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedon",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Assigned ISR",
+          "dataType": "string"
+        },
+        {
+          "name": "CSM",
+          "dataType": "string"
+        },
+        {
+          "name": "Renewal Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Delivery",
+          "dataType": "string"
+        },
+        {
+          "name": "Strategic AE",
+          "dataType": "string"
+        },
+        {
+          "name": "TAM",
+          "dataType": "string"
+        },
+        {
+          "name": "Enterprise AE",
+          "dataType": "string"
+        },
+        {
+          "name": "Data Manager Specialist",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "CS_System_Products",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "CS_System_Products.parquet"
+      },
+      "annotations": [
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Annual Recurring Revenue",
+          "dataType": "decimal"
+        },
+        {
+          "name": "At Risk Maintenance",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Note",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Billing Code",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Contract End Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Contract Start Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Maintenance End Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Maintenance Start Date",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Account Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Product",
+          "dataType": "string"
+        },
+        {
+          "name": "ReferenceID",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "modifiedon",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Temp_D365",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Temp_D365.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_temperatureriskauditid",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Risk Level",
+          "dataType": "string"
+        },
+        {
+          "name": "Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Temp_D365_Activity_Append",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Temp_D365_Activity_Append.parquet"
+      },
+      "annotations": [
+        {
+          "name": "pbi:EntityTypeDisplayHint",
+          "value": "CalculatedEntity"
+        },
+        {
+          "name": "ppdf:entityKeys",
+          "value": "[]"
+        }
+      ],
+      "attributes": [
+        {
+          "name": "Activity Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Description",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Category",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Completed",
+          "dataType": "dateTime"
+        },
+        {
+          "name": "Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Owner",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "BrandAccId_Prod_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "AccId_Brand_Lookup",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Link",
+          "dataType": "string"
+        },
+        {
+          "name": "Activity Subject",
+          "dataType": "string"
+        },
+        {
+          "name": "Sentiment",
+          "dataType": "int64"
+        }
+      ]
+    }
+  ]
+}

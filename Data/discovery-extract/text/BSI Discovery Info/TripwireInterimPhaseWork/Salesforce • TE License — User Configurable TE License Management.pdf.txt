@@ -1,0 +1,351 @@
+Salesforce • TE License — User Configurable TE License Management
+
+
+ July 13, 2023 - Keith Irwin
+
+
+I’d like to port the current Tripwire Portal TE Licensing implementation to use a new API available on the new
+version of the TE Licensing server. It’ll prevent a lot of future maintenance costs and it’ll make that particular
+end-user feature a lot easier (and faster) to use.
+
+The following document works out a justification for why I think porting to the new API is a good idea, then
+how the current system works from the operations side, how it works for customer-users, and, finally, what
+implementation details we need to account for in the effort. For a greater understanding of how a TE license
+file is actually generated, see the LAC Licensing document. In that document I cover how Asset records are
+queried to produce the feature list for a given console license. This system uses Configured Product records
+to do the same thing.
+
+
+Rationale
+When something goes wrong with Tripwire Enterprise licensing, the complaint goes to Customer Ops or
+Salesforce Admins because that’s where all the licensing information originates, and, for the most part, where
+the errors are seen by customers via the Tripwire Community Center (TCC). However, the Tripwire Enterprise
+(TE) Licensing Server is a standalone server that isn’t really owned by anyone, and when it nominally is (R&D),
+it’s always a low priority until a crisis comes along at which point a new set of people (from middle managers
+on down) have to re-discover how the system works. [1]
+
+I’d like to move as much of the infrastructure and automation as possible to Salesforce so that Customer Ops
+and Salesforce Admins can fix issues without trawling the company to find out who knows what. This is, first,
+good for customers as issues are addressed promptly. It’s good for Customer Ops because they know who to
+contact when something goes wrong: Business Systems Support. It’s also good for the Business Systems
+Support team because it allows them to fix the system running on infrastructure they have access to. Finally,
+when it comes time to move the Tripwire product business off of Salesforce, we will have a full understanding
+of the requirements (with example implementation details) available to hand. We do not want to have to
+update the License Server to make queries against D365. [2] Rather, we want D365 (or a future portal
+technology) to be able to use the Licensing Server unchanged via a simple HTTP/JSON request/response
+transaction.
+
+What this document covers is how the TE Licensing System works and what we need to know to re-implement
+the TCC user interface to bring all the Licensing Server functionality back home to Salesforce.
+
+In short, this consists of:
+
+    Running license info gathering queries within Salesforce, not the license server.
+    Speeding up the super slow TE Licensing page on TCC.
+    Making sure that Customer Ops can use a variant of the new TCC functionality when they (rarely) need to.
+
+
+
+
+                                                          1
+The big change is that instead of sending user and console IDs to the server and having the server lookup
+values in Salesforce, we instead look up everything the license generator needs to know to make a license and
+send that to the licensing server which then returns a certificate. No need for the server to query Salesforce,
+or store the certificate in Salesforce, or email it to the end user. The server becomes a simple X.509 certificate
+generator. [3] When we receive the license back from the server, we can email it, save it to the Salesforce
+database or allow the customer to download it immediately.
+
+But you’re not changing anything, you’re just moving things around!
+
+Exactly. We’re moving the kitchen utensils to the kitchen rather than storing them in the shed out back behind
+the spiderwebs and 19th century shovels. We’re moving the Salesforce parts to Salesforce and leaving the
+license generation part to the server. This makes things way, way faster for the customer, and easier to
+maintain for Admins. The fact that nothing else changes is a feature.
+
+
+
+    1.   This happens more often than you might think due to the fact that lists of Rule/Policy files and software updates have
+         to published with a new version of the server every month, that is, if anyone remembers to do it. Moving client
+         interaction to Salesforce would remove this need because Salesforce already knows about software and policy file
+         downloads. ❡
+   2.    Nor do we want to force D365 to handle product downloads. ❡
+   3.    We can't generate X.509 certificates on Salesforce itself in the way that TE needs them, otherwise we could move the
+         entire apparatus in house, so to speak. ❡
+
+
+Tripwire Enterprise
+The Tripwire Enterprise product is server software meant to be installed on-premise in a customer’s data
+center. The console manages a database and receives change sets (via Rules) from agents (or agent proxies)
+running on distant servers (i.e., nodes). It uses these change sets to determine if a given software
+configuration needs to change (policy) [4], or if a file has unexpectedly changed via tampering. This is where
+the “tripwire” metaphor comes in. Users can create new baselines for acceptable changes or alert security for
+changes clearly violating company policy or exploiting vulnerabilities.
+
+The interesting part as far as licenses are concerned are the monitored nodes (i.e., servers, network devices,
+databases, directory services). The TE console itself requires a license, but each node monitored by an agent
+also needs a license. When we sell TE, we sell the console software, of course, but also the rights to monitor a
+quantity of a particular type of node.
+
+Because the TE console itself isn’t scalable beyond a few thousand nodes, we sell many consoles to an
+organization and allow them to distribute the capabilities they need among them. For example, they might use
+a console for monitoring databases and a few servers in an accounting division, and use another console for
+monitoring virtual machines run by a cloud-based development division. Customers can buy a number of
+“database” licenses and distribute them (like placing bets in roulette) as desired. Most of them in the
+accounting division, but maybe just a couple over in the R&D division.
+
+
+
+   4.    For example, the software can tell you if common accounts still use default passwords. ❡
+
+
+
+
+                                                               2
+General Patterns
+When we close or renew a sale with a customer, we add new Asset records to their Account in Salesforce.
+Asset records are complicated in the Tripwire domain because they can represent a traditional product (i.e., a
+Tripwire Enterprise console or an additional installable add-on), but they can also represent an unlocked
+capability within a licensed TE console.
+
+For example, a software download oriented Asset record:
+
+   Tripwire Enterprise Console
+
+And the capability based Asset records:
+
+   TE Database monitoring capability (100)
+   TE File System monitoring capability (900)
+   TE Directory Services monitoring capability (100)
+
+The first Asset represents the TE console itself, while the next three represent capabilities. The associated
+number represents the number of nodes (servers, network devices, etc) the customer can monitor under the
+conditions of that capability. The interesting part here is that if the customer has 2 consoles, they scan split
+the nodes for Database monitoring (say) between the two of them, with 75 going to one, and 25 going to the
+other. These kinds of splits are taken into account when licenses are generated and we give users the ability
+to re-distribute capabilities whenever they want.
+
+Customer Ops sets all this up for a customer. When the deal goes through, they also set up a parallel system
+which represents (and enabled) actual license generation, consisting of:
+
+   an Issued Product object for each non-console Asset, with the number of licenses the user can divvy up.
+   The above example would generate three Issued Product records.
+   A Configuration object for each TE console license. Given the example above, they’d generate one
+   Configuration object which would contain a nickname for the console, and a network name, a link to the
+   console Asset record, and so on.
+   A Configured Product object linking each console (Configuration record) to Asset/Product (Issued
+   Product records) with an assigned license number that’s less than or equal to the number of licenses
+   available. The Configured Product is what records how the licenses are divided up among consoles.
+
+After all this is done, customer-users can go to the TCC, a portal, to download licenses, or to re-distribute
+which consoles get how much of which capabilities, then generate and download the results.
+
+The generated license files are tied to a console by its hostname, product version, and a list of feature tags +
+quantity matching the products they’ve purchased. See the LAC Licensing document for more details.
+
+
+Customer User Portal Interactions
+When you access the TE Licensing menu item on the TCC, you’ll get a page with the following:
+
+   A list of consoles (Configuration records).
+
+
+
+
+                                                         3
+   And a list of products with license counts (Issued Product records).
+
+When you click one of the consoles, you’ll get a popup showing the license details, a chance to update the
+nickname or hostname, and a chance to generate a license file.
+
+When you click one of the products, you’ll see how many licenses have been assigned, how many are
+unassigned, and get a chance to distribute, or re-distribute the licenses to the consoles listed at the top of the
+page.
+
+Viewing a console’s configuration
+
+When you pick a console:
+
+   You can change the nickname and save it right there.
+   You can see and change the hostname, select a product version and then generate a certificate, which will
+   get emailed to you as well as provide you a link to its location on the TCC if you want to download it
+   directly.
+   You can see the list of each “product license” available to the customer and the number of licenses,
+   including a blank if no licenses for that product are assigned to that console.
+
+You don’t redistribute license numbers when focussed on a specific license. Instead, you have to click on a
+product and work from there.
+
+Editing License Assignments
+
+There’s an edit button next to each product, as well as assigned vs unassigned quantities letting you know
+before you click what you have to work with.
+
+   When you click the edit button, you’re shown a page what lets you click a “From” console and a “To”
+   console and a slider indicating how many of the “From” licenses you’d like to move.
+   If there are unassigned licenses, a console like box appears that lets you choose “Unassigned” as either
+   the From console or the To console.
+   When you move the slider to represent the quantities, you can see the values on the effect consoles
+   update as well.
+
+When you hit apply, the license (as defined in Salesforce) is updated. You can then click on the console on the
+page to get a detail view, and from there click “generate” to create an updated license file.
+
+Warning and Caveat
+
+All this does is re-arrange assignments in the database. The number of licenses is conserved in the sense that
+you can’t add more than you have to any one console.
+
+
+
+
+                                                        4
+However, what’s in the database are only templates for generating a license and the license itself if it was
+generated at least once. Whether or not a customer user actually downloaded or deployed the license is not
+recorded. What is actually loaded into a TE console is what actually matters. You can move all FIM to one
+console, generate a license and deploy it. Then move all the FIM licenses to another console (leaving the
+original empty), and deploy that license. You can double and triple your licensed capabilities by cheating in
+that way. In fact, customers can purchase one console and a quantity of licenses, then replicate it all over their
+data centers. While this violates their contract with Tripwire, there’s nothing in our current system that can
+stop them. The on-prem Tripwire Enterprise server does not call home to verify license quantities.
+
+What do you query for console specific licensing details?
+
+Select all the Issued Products and all the Configured Products for a given Configuration (Console). List all the
+configured products with quantities. Then list all the issued products not found in the Configure Products list
+with a “blank” for quantity, and grayed out.
+
+Note: I’m not sure listing unused features in a license is necessary or helpful. Maybe? If not, just query
+Configured Products and that’s all you need.
+
+What do you update on the database side when the user makes changes?
+
+I suspect that the triggers on the Configuration, Configured Product and Issued Product records are for
+balancing things when Customer Ops makes changes to Asset records and/or Issued Products and/or
+Configurations (consoles). They are not part of the TCC user interface.
+
+   When moving licenses from one Console to another, each of those consoles have the same Issued
+   Product. You’re moving 23 database licenses from one console to another. A separate interaction is
+   required to move 10 file system licenses. The scope of the interaction is a single Configured Product
+   record (creating, updating or deleting).
+   When moving licenses to a Console that doesn’t already have that type of license, you’ll have to create a
+   new Configured Product record to link the Product and Console together with the new quantity.
+   When removing all the licenses for a specific product from a console, you can remove the Configured
+   Product associated with the console as there is no longer a link between it and a licensed capability.
+   When your remove licenses from a console, decrement the assigned licenses in the Configured Product
+   record.
+   When your add licenses to a console, increment the assigned licenses in the Configured Product record.
+
+We don’t have to touch the Issued Product records for each console when moving licenses because the
+number of assigned licenses (recorded in the Issued Product) doesn’t change.
+
+You do need to update the Issued Product when working with unassigned licenses:
+
+   When adding an unassigned license to a console, increment the Configured Product’s assigned license,
+   and increment the Issued Products assigned licenses.
+   When removing licenses from a console to the unassigned bucket, decrement the Configured Product’s
+   assigned licenses, and decrement the associated Issued Product’s assigned licenses.
+
+
+
+
+                                                         5
+For these last two cases, an Issued Product’s “available licenses” is a formula field consisting of Total Licenses
+minus Assigned licenses, so all you have to do us update the Assigned Licenses value on an Issued Product
+for proper accounting.
+
+
+Notes on Database Records
+
+Configured Product (Configured_Product__c) — Link Console and Product
+   Object documentation:
+
+    Enables a many-to-many relationship between Configurations and Configured Products (sic) [Issued
+    Products] to represent the assignment of an issued product to a specific configuration.
+
+   Notes:
+
+    Configuration
+    A Configuration represents a console and an Issued Product represents a purchased product (through
+    an Asset record which links a Product to an Account).
+
+
+    Trigger
+    If the assigned licenses = 0, the configured product is deleted. Then the trigger makes sure that if just
+    one console is linked to one issued product, that console gets all the licenses available from the issued
+    product.
+
+
+Configuration (Configuration__C) — Console
+   Object documentation:
+
+    Represents a console (to which issued products can be assigned)
+
+   Notes:
+
+    Trigger
+    You can’t delete the console if there’s still an Asset that represents the purchase of a console license
+    (not features, but the console itself).
+
+
+    Guess
+    When you delete a “console” type of Asset, a trigger will delete this console configuration, too. This
+    would presumably delete the Configured Product (via cascade?), which would in turn cause the Issued
+    Product values to get re-calculated (licenses becoming available, etc).
+
+   I didn’t look to see if there were any other sorts of automation, such as process builders, workflows, flows
+   or validations. Whatever the case is, these can remain in place when porting a new UI on top of the
+   customer portal.
+
+Issued Product Object (Issued_Object__c) — Product
+
+
+
+
+                                                        6
+   Object documentation:
+
+    Represents the total quantity (or pool) for a given product that a customer has rights to based on
+    purchases over time
+
+   Notes:
+
+    Total License Quantity → Number (10, 2)
+    The summed quantity across all assets associated with this issued product. Total quantity of licenses
+    ore nodes available to the customer for a given product. Maintained by AssetRollup.
+
+
+    Assigned Licenses → Number (10, 2)
+    Number of licenses currently assigned to a configuration. This field is maintained by
+    ConfiguredProductRollUp.
+
+
+    Issued Product Count → Formula = 1
+    Seems to assert that the IP represents one product. Not documentation on the field definition.
+
+
+    Available Licenses → Formula = Total License Quantity - Assigned Licenses
+    The number of licenses currently assigned to a configuration. Excludes evaluation records.
+
+
+    Triggers — The code is hard to read, but seems to say something like:
+        Will delete Issued Product if it is no longer associated with an Asset.
+        Will delete Issued Product if it has a total license quantity of 0
+        If an Issued Product has a total license quantity decrease, update the related configured product (if
+        there’s just one) to match.
+
+
+
+Database Conclusions
+Most of the automation surrounding these TE License objects support the kinds of updates the Customer
+Operations team makes when updating the total licenses a customer has purchased, rather than just re-
+distributing them. When portal users re-distribute licenses from one console to another, the portal will update
+Issued Product assigned license values if licenses are removed from any console and it’ll create, update or
+delete Configured Product links depending on how the user wants to add, update or remove product licenses
+from individual consoles. I think this is straightforward and only seems complicated because of the generic
+names of the objects.
+
+
+
+
+                                                         7
+

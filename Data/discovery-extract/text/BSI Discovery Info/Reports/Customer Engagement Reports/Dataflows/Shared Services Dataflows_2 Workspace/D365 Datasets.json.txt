@@ -1,0 +1,925 @@
+{
+  "name": "D365 Datasets",
+  "description": "",
+  "version": "1.0",
+  "culture": "en-GB",
+  "modifiedTime": "2025-03-28T14:20:57.6944616+00:00",
+  "ppdf:outputFileFormat": "csv",
+  "pbi:mashup": {
+    "fastCombine": false,
+    "allowNativeQueries": false,
+    "skipAutomaticHeaderAndTypeDetection": false,
+    "queriesMetadata": {
+      "Accounts": {
+        "queryId": "2702f9b1-fed9-4229-97cc-f7ca47576938",
+        "queryName": "Accounts",
+        "loadEnabled": true
+      },
+      "Brand_Account": {
+        "queryId": "bce4956d-1e6d-4124-bd42-a02977263d65",
+        "queryName": "Brand_Account",
+        "loadEnabled": true
+      },
+      "System_Products": {
+        "queryId": "bf993a49-cc64-4aeb-8393-ea2c29e1256a",
+        "queryName": "System_Products",
+        "loadEnabled": true
+      },
+      "hs_projects": {
+        "queryId": "b7548028-1437-4ecf-831b-fd841cddae5c",
+        "queryName": "hs_projects",
+        "loadEnabled": true
+      },
+      "hs_productbrands": {
+        "queryId": "b67b2ef9-4849-409f-8065-780a77c0bee7",
+        "queryName": "hs_productbrands",
+        "loadEnabled": true
+      },
+      "systemusers": {
+        "queryId": "fbee0d7c-72ea-4a0e-9885-9f2aa30fd89d",
+        "queryName": "systemusers",
+        "loadEnabled": true
+      },
+      "hs_projecttaskses": {
+        "queryId": "63ab7f18-e639-48b2-aec2-e2b314bb56eb",
+        "queryName": "hs_projecttaskses",
+        "loadEnabled": true
+      },
+      "hs_projecthourses": {
+        "queryId": "f7066bbf-3f07-4ee7-a9b2-cf8b1da574e8",
+        "queryName": "hs_projecthourses",
+        "loadEnabled": true
+      },
+      "Opportunity": {
+        "queryId": "ee74681a-b4ef-4f3d-873b-323852b0aca6",
+        "queryName": "Opportunity",
+        "loadEnabled": true
+      },
+      "salesorders": {
+        "queryId": "f28685d8-1c05-4608-a571-103377b9509a",
+        "queryName": "salesorders",
+        "loadEnabled": true
+      },
+      "hs_projects_AL_OTY_Lookup": {
+        "queryId": "fd870e36-b070-4143-b4c6-160dd34cc249",
+        "queryName": "hs_projects_AL_OTY_Lookup",
+        "loadEnabled": true
+      }
+    },
+    "document": "section Section1;\r\nshared Accounts = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"accounts\"]}[Data],\r\n  #\"Removed other columns\" = Table.SelectColumns(#\"Navigation 1\", {\"accountid\", \"accountnumber\", \"customertypecode_display\", \"hs_accountarr_base\", \"hs_accountarratrisk_base\", \"hs_accountarrrisk_display\", \"hs_accounttemperature_display\", \"hs_assets_display\", \"hs_companysize_display\", \"hs_enterpriseae\", \"hs_industry_display\", \"hs_lastsurveyrecipient\", \"hs_professionalservicessatisfactionscore\", \"hs_shiptocontinent_display\", \"hs_surveylastsent\", \"hs_vatnumber\", \"name\", \"statuscode_display\"}),\r\n  #\"Filtered rows 1\" = Table.SelectRows(#\"Removed other columns\", each ([statuscode_display] <> \"Inactive\") ),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows 1\", {\"statuscode_display\"}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"name\", \"Account Name\"}, {\"accountnumber\", \"Account Number\"}, {\"hs_vatnumber\", \"Account VAT Number\"}, {\"hs_companysize_display\", \"Company Size\"}, {\"hs_assets_display\", \"Assets\"}, {\"customertypecode_display\", \"Relationship Type\"}, {\"hs_industry_display\", \"Industry\"}, {\"hs_accountarrrisk_display\", \"Account ARR Risk\"}, {\"hs_accountarr_base\", \"Total Current ARR\"}, {\"hs_accounttemperature_display\", \"Account Temperature\"}, {\"hs_accountarratrisk_base\", \"Account ARR at Risk\"}, {\"hs_surveylastsent\", \"Survey Last Sent\"}, {\"hs_professionalservicessatisfactionscore\", \"CSAT Score\"}, {\"hs_lastsurveyrecipient\", \"Last Survey Recipient\"}}),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Renamed columns\", \"Account Region\", each if [hs_shiptocontinent_display] = \"Africa\" then \"EMEA\" else if [hs_shiptocontinent_display] = \"Asia\" then \"APAC\" else if [hs_shiptocontinent_display] = \"Oceania\" then \"APAC\" else if [hs_shiptocontinent_display] = \"Europe\" then \"EMEA\" else if [hs_shiptocontinent_display] = \"Middle East\" then \"EMEA\" else if [hs_shiptocontinent_display] = \"Afria\" then \"EMEA\" else if [hs_shiptocontinent_display] = \"Caribbean\" then \"LATAM\" else if [hs_shiptocontinent_display] = \"South America\" then \"LATAM\" else if [hs_shiptocontinent_display] = \"North America\" then \"NORAM\" else [hs_shiptocontinent_display]),\r\n  #\"Replaced value\" = Table.ReplaceValue(#\"Inserted conditional column\", \"Unknown\", \"\", Replacer.ReplaceValue, {\"Account Region\"}),\r\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Replaced value\", {\"hs_shiptocontinent_display\"}),\r\n  #\"Removed duplicates\" = Table.Distinct(#\"Removed columns 1\", {\"accountid\"}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed duplicates\", {{\"Account Region\", type text}}),\r\n  #\"Added custom\" = Table.AddColumn(#\"Changed column type\", \"URL-Account\", each \"https://hsprod.crm.dynamics.com/main.aspx?appid=51e516b1-c8ac-4a2a-abaa-cf4469010a9e&forceUCI=1&newWindow=true&pagetype=entityrecord&etn=account&id=\" & [accountid]),\r\n  #\"Transform columns\" = Table.TransformColumnTypes(#\"Added custom\", {{\"URL-Account\", type text}}),\r\n  #\"Replace errors\" = Table.ReplaceErrorValues(#\"Transform columns\", {{\"URL-Account\", null}}),\r\n  #\"Extracted text after delimiter\" = Table.TransformColumns(#\"Replace errors\", {{\"Account ARR Risk\", each Text.AfterDelimiter(_, \" \", 0), type text}}),\r\n  #\"Extracted text after delimiter 1\" = Table.TransformColumns(#\"Extracted text after delimiter\", {{\"Account Temperature\", each Text.AfterDelimiter(_, \" \", 0), type text}})\r\nin\r\n  #\"Extracted text after delimiter 1\";\r\nshared Brand_Account = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_brandaccounts\"]}[Data],\r\n  #\"Choose columns\" = Table.SelectColumns(#\"Navigation 1\", {\"hs_account\", \"hs_arr_base\", \"hs_arratrisk_base\", \"hs_arratrisk_state\", \"hs_brandaccountid\", \"hs_brandarrrisk2_display\", \"hs_customertypecode_display\", \"hs_productbrand\", \"hs_temperature_display\", \"hs_temperaturelastupdated\", \"hs_temperaturenote\", \"hs_temperaturereason_display\", \"hs_temperatureupdatedby\", \"statuscode_display\"}),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Choose columns\", {{\"hs_brandarrrisk2_display\", \"hs_brandarrrisk_display\"}}),\r\n  #\"Filtered rows 1\" = Table.SelectRows(#\"Renamed columns 1\", each [statuscode_display] <> \"Inactive\"),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows 1\", {\"statuscode_display\"}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Removed columns\", {{\"hs_temperaturelastupdated\", type date}}),\r\n  #\"Extracted text after delimiter\" = Table.TransformColumns(#\"Changed column type\", {{\"hs_brandarrrisk_display\", each Text.AfterDelimiter(_, \" \", 0), type text}}),\r\n  #\"Extracted text after delimiter 1\" = Table.TransformColumns(#\"Extracted text after delimiter\", {{\"hs_temperature_display\", each Text.AfterDelimiter(_, \" \", 0), type text}}),\r\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Extracted text after delimiter 1\", \"URL-BrandAccount\", each \"https://hsprod.crm.dynamics.com/main.aspx?appid=51e516b1-c8ac-4a2a-abaa-cf4469010a9e&forceUCI=1&newWindow=true&pagetype=entityrecord&etn=hs_brandaccount&id=\" & [hs_brandaccountid]), {{\"URL-BrandAccount\", type text}}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Added custom\", {{\"hs_temperature_display\", \"Brand Temperature\"}, {\"hs_customertypecode_display\", \"Brand Relationship Type\"}, {\"hs_temperaturenote\", \"Brand Temperature Note\"}, {\"hs_temperaturelastupdated\", \"Brand Temperature Last Updated\"}, {\"hs_temperaturereason_display\", \"Brand Temperature Reason\"}, {\"hs_arratrisk_base\", \"Brand ARR at Risk\"}, {\"hs_arr_base\", \"Brand ARR\"}, {\"hs_brandarrrisk_display\", \"Brand ARR Risk\"}})\r\nin\r\n  #\"Renamed columns\";\r\nshared System_Products = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_systemproductses\"]}[Data],\r\n  #\"Choose columns\" = Table.SelectColumns(#\"Navigation 1\", {\"hs_account\", \"hs_annualrecurringrevenue_base\", \"hs_atrisk_maintenance_display\", \"hs_atrisknote\", \"hs_atriskreason_display\", \"hs_billingcode_display\", \"hs_brandaccount\", \"hs_contractenddate\", \"hs_contractstartdate\", \"hs_maintenanceenddate\", \"hs_maintenancestartdate\", \"hs_productbrand\", \"hs_systemproductname\"}),\r\n  #\"Extracted text after delimiter\" = Table.TransformColumns(#\"Choose columns\", {{\"hs_atrisk_maintenance_display\", each Text.AfterDelimiter(_, \" \", 0), type text}}),\r\n  #\"Extracted first characters\" = Table.TransformColumns(#\"Extracted text after delimiter\", {{\"hs_maintenanceenddate\", each Text.Start(_, 10), type text}}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Extracted first characters\", {{\"hs_contractenddate\", \"Contract End Date\"}, {\"hs_contractstartdate\", \"Contract Start Date\"}, {\"hs_maintenancestartdate\", \"Maintenance Start Date\"}, {\"hs_maintenanceenddate\", \"Maintenance End Date\"}, {\"hs_billingcode_display\", \"Billing Code\"}, {\"hs_atrisknote\", \"At Risk Note\"}, {\"hs_atriskreason_display\", \"At Risk Reason\"}, {\"hs_annualrecurringrevenue_base\", \"Annual Recurring Revenue\"}, {\"hs_atrisk_maintenance_display\", \"At Risk Maintenance\"}, {\"hs_systemproductname\", \"Product\"}})\r\nin\r\n  #\"Renamed columns\";\r\nshared hs_projects = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_projectses\"]}[Data],\r\n  #\"Removed other columns\" = Table.SelectColumns(#\"Navigation 1\", {\"createdon\", \"hs_account\", \"hs_actualenddate\", \"hs_actualprojectamount_calc_base\", \"hs_actualstartdate\", \"hs_basic_value_achieved\", \"hs_basic_value_definition\", \"hs_billablehours_rollup\", \"hs_billableproject\", \"hs_billedhours_rollup\", \"hs_budgetamount_calc_base\", \"hs_budgethours_decimal\", \"hs_confidencepercentage_display\", \"hs_delayedstartreasons_display\", \"hs_expectedenddate\", \"hs_expectedstartdate\", \"hs_opportunity\", \"hs_parentproject\", \"hs_productbrand\", \"hs_projecthourlyrate_base\", \"hs_projecthoursremainingincludesforecast\", \"hs_projecthourstype_display\", \"hs_projectmanagerprojectlead\", \"hs_projectname\", \"hs_projectnumber\", \"hs_projectrisklevel_display\", \"hs_projectsid\", \"hs_projecttype_display\", \"hs_rsm\", \"hs_servicedeliverymanager\", \"hs_totalbillabletime\", \"hs_totalenteredtime_calc\", \"hs_totalnonbillabletime_rollup\", \"new_projectmanagernotes\", \"ownerid\", \"statuscode_display\"}),\r\n  #\"Calculated date\" = Table.TransformColumns(#\"Removed other columns\", {{\"hs_basic_value_achieved\", each DateTime.Date(_), type nullable date}}),\r\n  #\"Calculated date 1\" = Table.TransformColumns(#\"Calculated date\", {{\"hs_actualstartdate\", each DateTime.Date(_), type nullable date}, {\"hs_actualenddate\", each DateTime.Date(_), type nullable date}}),\r\n  #\"Calculated date 2\" = Table.TransformColumns(#\"Calculated date 1\", {{\"hs_expectedstartdate\", each DateTime.Date(_), type nullable date}, {\"hs_expectedenddate\", each DateTime.Date(_), type nullable date}}),\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Calculated date 2\", each [statuscode_display] <> \"Abandoned\" and [statuscode_display] <> \"Cancelled\" and [statuscode_display] <> \"Cancelled - Lost\" and [statuscode_display] <> \"Lost\" and [statuscode_display] <> \"Inactive\"),\r\n  #\"Inserted conditional column 1\" = Table.AddColumn(#\"Filtered rows\", \"Custom\", each if [hs_actualenddate] = null then \"keep\" else if [hs_actualenddate] >= #date(2023, 1, 1) then \"keep\" else \"loose\"),\r\n  #\"Filtered rows 1\" = Table.SelectRows(#\"Inserted conditional column 1\", each ([Custom] = \"keep\")),\r\n  #\"Inserted conditional column 2\" = Table.AddColumn(#\"Filtered rows 1\", \"Filter\", each if [hs_productbrand] <> \"793f1549-1b0c-ed11-82e5-00224827a0b1\" then \"Keep\" else if Text.Contains([hs_projectname], \"NB System Products\") then \"Loose\" else \"Keep\"),\r\n  #\"Replaced value\" = Table.ReplaceValue(#\"Inserted conditional column 2\", \"INTERNAL: 2024 Non-Billable Services (Do Not Change This Name)\", \"INTERNAL: 2024 Non-Billable Services\", Replacer.ReplaceText, {\"hs_projectname\"}),\r\n  #\"Filtered rows 2\" = Table.SelectRows(#\"Replaced value\", each [Filter] <> \"Loose\"),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows 2\", {\"Custom\", \"Filter\"}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Removed columns\", {{\"statuscode_display\", \"Project Status\"}, {\"hs_projectname\", \"Project Name\"}, {\"hs_actualenddate\", \"Actual End Date\"}, {\"hs_actualstartdate\", \"Actual Start Date\"}, {\"hs_expectedenddate\", \"Expected End Date\"}, {\"hs_expectedstartdate\", \"Expected Start Date\"}, {\"hs_projecthourstype_display\", \"Project Hours Type\"}, {\"hs_projectnumber\", \"Project Number\"}, {\"hs_budgetamount_calc_base\", \"Budget Amount\"}, {\"hs_projecttype_display\", \"Project Type\"}, {\"new_projectmanagernotes\", \"Project Manager Notes\"}, {\"hs_budgethours_decimal\", \"Budget Hours\"}, {\"hs_projectsid\", \"Id\"}, {\"hs_billedhours_rollup\", \"Actual Hours\"}, {\"hs_projecthoursremainingincludesforecast\", \"Hours Remaining\"}, {\"hs_totalenteredtime_calc\", \"Total Entered Time\"}, {\"hs_totalnonbillabletime_rollup\", \"Total Non-Billable Time\"}, {\"hs_billablehours_rollup\", \"Total Billable Time\"}, {\"hs_actualprojectamount_calc_base\", \"Actual Amount\"}, {\"hs_projectrisklevel_display\", \"Project Risk\"}, {\"hs_confidencepercentage_display\", \"% Value Achieved\"}, {\"hs_basic_value_achieved\", \"Basic Value Achieved\"}, {\"hs_basic_value_definition\", \"Basic Value Definition\"}, {\"hs_delayedstartreasons_display\", \"Reason Code\"}, {\"hs_projecthourlyrate_base\", \"Project Hourly Rate\"}}),\r\n  #\"Added custom 4\" = Table.TransformColumnTypes(Table.AddColumn(#\"Renamed columns\", \"Budget Remaining\", each [Hours Remaining] * [Project Hourly Rate]), {{\"Budget Remaining\", type number}}),\r\n  #\"Changed column type 4\" = Table.TransformColumnTypes(#\"Added custom 4\", {{\"Basic Value Achieved\", type date}}),\r\n  #\"Changed column type 2\" = Table.TransformColumnTypes(#\"Changed column type 4\", {{\"% Value Achieved\", Percentage.Type}}),\r\n  #\"Divided column\" = Table.TransformColumns(#\"Changed column type 2\", {{\"% Value Achieved\", each _ / 100, type number}}),\r\n  #\"Added custom\" = Table.AddColumn(#\"Divided column\", \"Hours Not Entered\", each [Budget Hours] - [Total Billable Time], type number),\r\n  #\"Added custom 1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Added custom\", \"URL-PROJECT\", each \"https://hsprod.crm.dynamics.com/CRMReports/viewer/drillopen.aspx?ID={\" & [Id] & \"}&LogicalName=hs_projects\"), {{\"URL-PROJECT\", type text}}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Added custom 1\", {{\"Project Risk\", type text}}),\r\n  #\"Split column by delimiter\" = Table.SplitColumn(#\"Changed column type\", \"Project Risk\", Splitter.SplitTextByEachDelimiter({\" \"}, QuoteStyle.Csv), {\"Project Risk.1\", \"Project Risk\"}),\r\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Split column by delimiter\", {\"Project Risk.1\"}),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Removed columns 1\",\"Project Risk Level\", each if [Project Risk] = \"Green\" then 1 else if [Project Risk] = \"Red\" then 3 else if [Project Risk] = \"Yellow\" then 2 else 0),\r\n  #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Project Risk Level\", Int64.Type}, {\"createdon\", type date}, {\"Actual End Date\", type date}, {\"Actual Start Date\", type date}, {\"Expected End Date\", type date}, {\"Expected Start Date\", type date}}),\r\n  #\"Added custom 2\" = Table.TransformColumnTypes(Table.AddColumn(#\"Changed column type 1\", \"System\", each \"D365\"), {{\"System\", type text}}),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Added custom 2\", {{\"hs_billableproject\", \"Billable Project Flag\"}}),\r\n  #\"Added prefix\" = Table.TransformColumns(#\"Renamed columns 1\", {{\"Project Number\", each \"PN-\" & _, type text}})\r\nin\r\n  #\"Added prefix\";\r\nshared hs_productbrands = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_productbrands\"]}[Data],\r\n  #\"Removed other columns\" = Table.SelectColumns(#\"Navigation 1\", {\"hs_productbrandid\", \"hs_productbrandname\"}),\r\n  #\"Removed duplicates\" = Table.Distinct(#\"Removed other columns\", {\"hs_productbrandid\"})\r\nin\r\n  #\"Removed duplicates\";\r\nshared systemusers = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"systemusers\"]}[Data],\r\n  #\"Choose columns\" = Table.SelectColumns(#\"Navigation 1\", { \"fullname\",\"systemuserid\"}),\r\n  #\"Removed duplicates\" = Table.Distinct(#\"Choose columns\", {\"systemuserid\"})\r\nin\r\n  #\"Removed duplicates\";\r\nshared hs_projecttaskses = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_projecttaskses\"]}[Data],\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Navigation 1\", each ([hs_projecttaskstatus_display] <> \"Cancelled\" and [hs_projecttaskstatus_display] <> \"Complete\")),\r\n  #\"Removed other columns\" = Table.SelectColumns(#\"Filtered rows\", {\"createdby\", \"createdon\", \"hs_actualhours\", \"hs_project\", \"hs_projecttaskname\", \"hs_projecttasksid\", \"hs_projecttaskstatus_display\", \"ownerid\", \"statecode_display\", \"statuscode_display\"}),\r\n  #\"Filtered rows 1\" = Table.SelectRows(#\"Removed other columns\", each ([statuscode_display] = \"Active\")),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Filtered rows 1\", {\"statuscode_display\", \"statecode_display\"}),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Removed columns\", {{\"hs_projecttaskstatus_display\", \"Task Status\"}}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Renamed columns 1\", {{\"createdon\", type date}}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Changed column type\", {{\"hs_projecttaskname\", \"Project Task Name\"}}),\r\n  #\"Added custom\" = Table.AddColumn(#\"Renamed columns\", \"Task-URL\", each \"https://hsprod.crm.dynamics.com/main.aspx?appid=51e516b1-c8ac-4a2a-abaa-cf4469010a9e&forceUCI=1&newWindow=true&pagetype=entityrecord&etn=hs_projecttasks&id=\" & [hs_projecttasksid]),\r\n  #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Added custom\", {{\"Task-URL\", type text}})\r\nin\r\n  #\"Changed column type 1\";\r\nshared hs_projecthourses = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_projecthourses\"]}[Data],\r\n  #\"Choose columns\" = Table.SelectColumns(#\"Navigation 1\", {\"activityid\", \"createdby\", \"createdon\", \"hs_account\", \"hs_acecomments\", \"hs_acenonbillabletype_display\", \"hs_billablehours\", \"hs_dateservicesperformed\", \"hs_forecastedhours\", \"hs_numberofhours\", \"hs_productbrand\", \"hs_project\", \"hs_projecttask\", \"hs_serviceactivitytype_display\", \"ownerid\", \"subject\", \"timezoneruleversionnumber\", \"utcconversiontimezonecode\"}),\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Choose columns\", each [hs_dateservicesperformed] >= #datetimezone(2022, 12, 29, 0, 0, 0, 0, 0)),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Filtered rows\", {{\"createdon\", \"Created on Date\"}, {\"hs_billablehours\", \"Billable Hours Flag\"}, {\"hs_dateservicesperformed\", \"Date Services Performed\"}, {\"hs_forecastedhours\", \"Forecasted Hours Flag\"}, {\"hs_numberofhours\", \"Hours Logged\"}, {\"hs_serviceactivitytype_display\", \"Service Activity Type\"}, {\"subject\", \"Hours Description\"}, {\"hs_acenonbillabletype_display\", \"Non Billable Type\"}}),\r\n  #\"Duplicated column\" = Table.DuplicateColumn(#\"Renamed columns\", \"activityid\", \"activityid - Copy\"),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Duplicated column\", {{\"activityid - Copy\", \"Unique Identifier\"}, {\"activityid\", \"Activity Item Reference\"}}),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Renamed columns 1\", {{\"Date Services Performed\", type date}}),\r\n  #\"Added custom\" = Table.AddColumn(#\"Changed column type\", \"System\", each \"D365\"),\r\n  #\"Transform columns\" = Table.TransformColumnTypes(#\"Added custom\", {{\"System\", type text}}),\r\n  #\"Replace errors\" = Table.ReplaceErrorValues(#\"Transform columns\", {{\"System\", null}}),\r\n  #\"Added custom 1\" = Table.AddColumn(#\"Replace errors\", \"URL-Hours\", each \"https://hsprod.crm.dynamics.com/main.aspx?appid=51e516b1-c8ac-4a2a-abaa-cf4469010a9e&pagetype=entityrecord&etn=hs_projecthours&id=\" & [Activity Item Reference]),\r\n  #\"Transform columns 1\" = Table.TransformColumnTypes(#\"Added custom 1\", {{\"URL-Hours\", type text}}),\r\n  #\"Replace errors 1\" = Table.ReplaceErrorValues(#\"Transform columns 1\", {{\"URL-Hours\", null}}),\r\n  Custom = Table.TransformColumns(#\"Replace errors 1\",{\"Created on Date\", each _ - #duration(0,5,0,0)}),\r\n  #\"Changed column type 2\" = Table.TransformColumnTypes(Custom, {{\"Created on Date\", type datetime}}),\r\n  #\"Edited Created on Date\" = Table.AddColumn(#\"Changed column type 2\", \"Custom (2)\", each if [Unique Identifier] = \"f70f016c-38f0-ed11-8849-0022480ae5f6\" then #datetime(2023, 4, 30, 20, 14, 29) else if [Activity Item Reference] = \"fc2f637d-99c0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"f2976a51-99c0-ee11-9079-6045bd0a75ef\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"ecd5afb3-a1c0-ee11-9079-0022480ae873\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"db4d4b18-9dc0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"b926b9cb-9cc0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"b5832e12-a2c0-ee11-9079-0022480ae873\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"987716fb-9fc0-ee11-9078-0022480ae5f6\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"907ffc27-a3c0-ee11-9079-0022480ae873\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"8a96a296-9bc0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"77a1a691-9cc0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"6bab11b7-98c0-ee11-9079-6045bd0a75ef\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"6a3e883e-9ac0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"4fada601-a3c0-ee11-9079-0022480ae873\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"49f18c86-a3c0-ee11-9079-0022480ae873\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"46757294-a2c0-ee11-9079-0022480ae873\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"186c35a3-9bc0-ee11-9079-0022480ae351\" then #datetime(2024, 1, 31, 18, 0, 0) else if [Activity Item Reference] = \"07affa92-9fc0-ee11-9078-0022480ae5f6\" then #datetime(2024, 1, 31, 18, 0, 0) else [Created on Date]),\r\n  #\"Changed column type 1\" = Table.TransformColumnTypes(#\"Edited Created on Date\", {{\"Custom (2)\", type datetimezone}}),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Changed column type 1\", {\"Created on Date\"}),\r\n  #\"Renamed columns 2\" = Table.RenameColumns(#\"Removed columns\", {{\"Custom (2)\", \"Created on Date\"}})\r\nin\r\n  #\"Renamed columns 2\";\r\nshared Opportunity = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"opportunities\"]}[Data],\r\n  #\"Removed other columns\" = Table.SelectColumns(#\"Navigation 1\", {\"actualclosedate\", \"customerid\", \"estimatedclosedate\", \"estimatedvalue_base\", \"hs_accountspecialistid\", \"hs_confidencepercentage_display\", \"hs_countryregion_display\", \"hs_estservicesrevenue_base\", \"hs_forecaststatus_display\", \"hs_productbrand\", \"hs_salesstages_display\", \"hs_totalservices_base\", \"name\", \"opportunityid\", \"ownerid\", \"statuscode_display\"}),\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Removed other columns\", each [statuscode_display] = \"Accepted\" or [statuscode_display] = \"Delivered\" or [statuscode_display] = \"In Progress\" or [statuscode_display] = \"Won\"),\r\n  #\"Inserted conditional column\" = Table.AddColumn(#\"Filtered rows\", \"Opportunity Stage\", each if [statuscode_display] = \"Won\" then \"Won\" else [hs_salesstages_display]),\r\n  #\"Changed column type\" = Table.TransformColumnTypes(#\"Inserted conditional column\", {{\"Opportunity Stage\", type text}}),\r\n  #\"Filtered rows 1\" = Table.SelectRows(#\"Changed column type\", each ([Opportunity Stage] <> \"Pre-Qualified\")),\r\n  #\"Changed column type 4\" = Table.TransformColumnTypes(#\"Filtered rows 1\", {{\"hs_confidencepercentage_display\", Percentage.Type}}),\r\n  #\"Removed columns\" = Table.RemoveColumns(#\"Changed column type 4\", {\"hs_salesstages_display\", \"statuscode_display\"}),\r\n  #\"Renamed columns 2\" = Table.RenameColumns(#\"Removed columns\", {{\"hs_confidencepercentage_display\", \"Opportunity Probability\"}}),\r\n  #\"Removed columns 1\" = Table.RemoveColumns(#\"Renamed columns 2\", {\"hs_forecaststatus_display\"}),\r\n  #\"Removed duplicates\" = Table.Distinct(#\"Removed columns 1\", {\"opportunityid\"}),\r\n  #\"Inserted conditional column 1\" = Table.AddColumn(#\"Removed duplicates\", \"Services Value USD\", each if [hs_totalservices_base] <> null then [hs_totalservices_base] else [hs_estservicesrevenue_base]),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Inserted conditional column 1\", {{\"name\", \"Opportunity Name\"}}),\r\n  #\"Removed columns 3\" = Table.RemoveColumns(#\"Renamed columns\", {\"hs_estservicesrevenue_base\", \"hs_totalservices_base\"}),\r\n  #\"Inserted conditional column 2\" = Table.AddColumn(#\"Removed columns 3\", \"Opportunity Close Date\", each if [actualclosedate] = null then [estimatedclosedate] else [actualclosedate]),\r\n  #\"Changed column type 2\" = Table.TransformColumnTypes(#\"Inserted conditional column 2\", {{\"Opportunity Close Date\", type date}, {\"Services Value USD\", type number}}),\r\n  #\"Removed columns 2\" = Table.RemoveColumns(#\"Changed column type 2\", {\"actualclosedate\", \"estimatedclosedate\"}),\r\n  #\"Added custom\" = Table.TransformColumnTypes(Table.AddColumn(#\"Removed columns 2\", \"Opportunity Number\", each \"N/A-D365\"), {{\"Opportunity Number\", type text}}),\r\n  #\"Transform columns\" = Table.TransformColumnTypes(#\"Added custom\", {{\"Opportunity Number\", type text}}),\r\n  #\"Replace errors\" = Table.ReplaceErrorValues(#\"Transform columns\", {{\"Opportunity Number\", null}}),\r\n  #\"Added custom 1\" = Table.TransformColumnTypes(Table.AddColumn(#\"Replace errors\", \"System\", each \"D365\"), {{\"System\", type text}}),\r\n  #\"Added custom 2\" = Table.AddColumn(#\"Added custom 1\", \"URL-OTY\", each \"https://hsprod.crm.dynamics.com/main.aspx?appid=51e516b1-c8ac-4a2a-abaa-cf4469010a9e&pagetype=entityrecord&etn=opportunity&id=\" & [opportunityid]),\r\n  #\"Changed column type 3\" = Table.TransformColumnTypes(#\"Added custom 2\", {{\"URL-OTY\", type text}}),\r\n  #\"Replace errors 1\" = Table.ReplaceErrorValues(#\"Changed column type 3\", {{\"System\", null}, {\"URL-OTY\", null}}),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Replace errors 1\", {{\"opportunityid\", \"Opportunity Id\"}})\r\nin\r\n  #\"Renamed columns 1\";\r\nshared salesorders = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"salesorders\"]}[Data],\r\n  #\"Choose columns\" = Table.SelectColumns(#\"Navigation 1\", {\"accountid\", \"createdby\", \"createdon\", \"customerid\", \"datefulfilled\", \"description\", \"hs_customersuccessmanager\", \"hs_ponumber\", \"hs_primaryproductbrand\", \"hs_resellerpartner\", \"hs_rsm\", \"hs_serviceexpirationmonths\", \"hs_totalservices_base\", \"name\", \"opportunityid\", \"ordernumber\", \"quoteid\", \"salesorderid\", \"statecode_display\", \"statuscode\", \"statuscode_display\", \"totallineitemamount_base\"}),\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Choose columns\", each ([statecode_display] <> \"Canceled\")),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Filtered rows\", {{\"statecode_display\", \"Status\"}, {\"statuscode_display\", \"Status Reason\"}, {\"createdon\", \"Created\"}, {\"datefulfilled\", \"Fulfilled Date\"}, {\"hs_primaryproductbrand\", \"Primary Product Brand\"}, {\"hs_rsm\", \"RSM\"}, {\"hs_totalservices_base\", \"Total Services USD\"}, {\"name\", \"Order Name\"}, {\"totallineitemamount_base\", \"Total Order USD\"}, {\"hs_ponumber\", \"PO Number\"}})\r\nin\r\n  #\"Renamed columns\";\r\nshared hs_projects_AL_OTY_Lookup = let\r\n  Source = Cds.Entities(\"https://hsprod.crm.dynamics.com/\", [ReorderColumns = null, UseFormattedValue = true]),\r\n  Navigation = Source{[Group = \"entities\"]}[Data],\r\n  #\"Navigation 1\" = Navigation{[EntitySetName = \"hs_projectses\"]}[Data],\r\n  #\"Choose columns\" = Table.SelectColumns(#\"Navigation 1\", {\"hs_projectname\", \"hs_projectnumber\"}),\r\n  #\"Filtered rows\" = Table.SelectRows(#\"Choose columns\", each Text.Contains([hs_projectname], \"OTY-\")),\r\n  #\"Extracted text between delimiters\" = Table.TransformColumns(#\"Filtered rows\", {{\"hs_projectname\", each Text.BetweenDelimiters(_, \"OTY-\", \" \", 0, 0), type text}}),\r\n  #\"Added prefix 1\" = Table.TransformColumns(#\"Extracted text between delimiters\", {{\"hs_projectname\", each \"OTY-\" & _, type text}}),\r\n  #\"Renamed columns\" = Table.RenameColumns(#\"Added prefix 1\", {{\"hs_projectname\", \"Opportunity Number\"}}),\r\n  #\"Added prefix\" = Table.TransformColumns(#\"Renamed columns\", {{\"hs_projectnumber\", each \"PN-\" & _, type text}}),\r\n  #\"Renamed columns 1\" = Table.RenameColumns(#\"Added prefix\", {{\"hs_projectnumber\", \"D365 Project Number\"}}),\r\n  #\"Filtered rows 1\" = Table.SelectRows(#\"Renamed columns 1\", each [Opportunity Number] <> null and [Opportunity Number] <> \"\")\r\nin\r\n  #\"Filtered rows 1\";\r\n",
+    "connectionOverrides": [
+      {
+        "path": "https://hsprod.crm.dynamics.com/",
+        "kind": "Cds",
+        "provider": "CdsA",
+        "authenticationKind": null,
+        "environmentName": null,
+        "apiName": null,
+        "connectionName": "{\"kind\":\"Cds\",\"path\":\"https://hsprod.crm.dynamics.com/\"}",
+        "audience": null
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "name": "pbi:QueryGroups",
+      "value": "[]"
+    }
+  ],
+  "entities": [
+    {
+      "$type": "LocalEntity",
+      "name": "Accounts",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Accounts.csv"
+      },
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Current ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "Account ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Assets",
+          "dataType": "string"
+        },
+        {
+          "name": "Company Size",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_enterpriseae",
+          "dataType": "string"
+        },
+        {
+          "name": "Industry",
+          "dataType": "string"
+        },
+        {
+          "name": "Last Survey Recipient",
+          "dataType": "string"
+        },
+        {
+          "name": "CSAT Score",
+          "dataType": "int64"
+        },
+        {
+          "name": "Survey Last Sent",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "Account VAT Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Account Region",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Account",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:06:37.6121634+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/Accounts.csv?snapshot=2025-06-10T14%3A06%3A37.6706077Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Brand_Account",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Brand_Account.csv"
+      },
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR",
+          "dataType": "double"
+        },
+        {
+          "name": "Brand ARR at Risk",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_arratrisk_state",
+          "dataType": "int64"
+        },
+        {
+          "name": "hs_brandaccountid",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand ARR Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Relationship Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Last Updated",
+          "dataType": "date"
+        },
+        {
+          "name": "Brand Temperature Note",
+          "dataType": "string"
+        },
+        {
+          "name": "Brand Temperature Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_temperatureupdatedby",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-BrandAccount",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:47:18.6925651+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/Brand_Account.csv?snapshot=2025-06-10T14%3A47%3A18.7369521Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "System_Products",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "System_Products.csv"
+      },
+      "attributes": [
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Annual Recurring Revenue",
+          "dataType": "double"
+        },
+        {
+          "name": "At Risk Maintenance",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Note",
+          "dataType": "string"
+        },
+        {
+          "name": "At Risk Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Billing Code",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_brandaccount",
+          "dataType": "string"
+        },
+        {
+          "name": "Contract End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Contract Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Maintenance End Date",
+          "dataType": "string"
+        },
+        {
+          "name": "Maintenance Start Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Product",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:52:26.2448164+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/System_Products.csv?snapshot=2025-06-10T14%3A52%3A26.2922537Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "hs_projects",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "hs_projects.csv"
+      },
+      "attributes": [
+        {
+          "name": "createdon",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "Actual End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Actual Amount",
+          "dataType": "double"
+        },
+        {
+          "name": "Actual Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Basic Value Achieved",
+          "dataType": "date"
+        },
+        {
+          "name": "Basic Value Definition",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Billable Time",
+          "dataType": "double"
+        },
+        {
+          "name": "Billable Project Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Actual Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "Budget Amount",
+          "dataType": "double"
+        },
+        {
+          "name": "Budget Hours",
+          "dataType": "double"
+        },
+        {
+          "name": "% Value Achieved",
+          "dataType": "double"
+        },
+        {
+          "name": "Reason Code",
+          "dataType": "string"
+        },
+        {
+          "name": "Expected End Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Expected Start Date",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_opportunity",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_parentproject",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Hourly Rate",
+          "dataType": "double"
+        },
+        {
+          "name": "Hours Remaining",
+          "dataType": "double"
+        },
+        {
+          "name": "Project Hours Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_projectmanagerprojectlead",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Risk",
+          "dataType": "string"
+        },
+        {
+          "name": "Id",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Type",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_rsm",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_servicedeliverymanager",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_totalbillabletime",
+          "dataType": "double"
+        },
+        {
+          "name": "Total Entered Time",
+          "dataType": "double"
+        },
+        {
+          "name": "Total Non-Billable Time",
+          "dataType": "double"
+        },
+        {
+          "name": "Project Manager Notes",
+          "dataType": "string"
+        },
+        {
+          "name": "ownerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Status",
+          "dataType": "string"
+        },
+        {
+          "name": "Budget Remaining",
+          "dataType": "double"
+        },
+        {
+          "name": "Hours Not Entered",
+          "dataType": "double"
+        },
+        {
+          "name": "URL-PROJECT",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Risk Level",
+          "dataType": "int64"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:53:30.5628128+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/hs_projects.csv?snapshot=2025-06-10T14%3A53%3A30.6229406Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "hs_productbrands",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "hs_productbrands.csv"
+      },
+      "attributes": [
+        {
+          "name": "hs_productbrandid",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrandname",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:54:03.5184511+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/hs_productbrands.csv?snapshot=2025-06-10T14%3A54%3A03.5713661Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "systemusers",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "systemusers.csv"
+      },
+      "attributes": [
+        {
+          "name": "fullname",
+          "dataType": "string"
+        },
+        {
+          "name": "systemuserid",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:54:39.2456999+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/systemusers.csv?snapshot=2025-06-10T14%3A54%3A39.3045780Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "hs_projecttaskses",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "hs_projecttaskses.csv"
+      },
+      "attributes": [
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "createdon",
+          "dataType": "date"
+        },
+        {
+          "name": "hs_actualhours",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_project",
+          "dataType": "string"
+        },
+        {
+          "name": "Project Task Name",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_projecttasksid",
+          "dataType": "string"
+        },
+        {
+          "name": "Task Status",
+          "dataType": "string"
+        },
+        {
+          "name": "ownerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Task-URL",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T14:55:41.7465838+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/hs_projecttaskses.csv?snapshot=2025-06-10T14%3A55%3A41.8023451Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "hs_projecthourses",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "hs_projecthourses.csv"
+      },
+      "attributes": [
+        {
+          "name": "Activity Item Reference",
+          "dataType": "string"
+        },
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_account",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_acecomments",
+          "dataType": "string"
+        },
+        {
+          "name": "Non Billable Type",
+          "dataType": "string"
+        },
+        {
+          "name": "Billable Hours Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Date Services Performed",
+          "dataType": "date"
+        },
+        {
+          "name": "Forecasted Hours Flag",
+          "dataType": "boolean"
+        },
+        {
+          "name": "Hours Logged",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_project",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_projecttask",
+          "dataType": "string"
+        },
+        {
+          "name": "Service Activity Type",
+          "dataType": "string"
+        },
+        {
+          "name": "ownerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Hours Description",
+          "dataType": "string"
+        },
+        {
+          "name": "timezoneruleversionnumber",
+          "dataType": "int64"
+        },
+        {
+          "name": "utcconversiontimezonecode",
+          "dataType": "int64"
+        },
+        {
+          "name": "Unique Identifier",
+          "dataType": "string"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-Hours",
+          "dataType": "string"
+        },
+        {
+          "name": "Created on Date",
+          "dataType": "dateTimeOffset"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T15:01:16.1054241+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/hs_projecthourses.csv?snapshot=2025-06-10T15%3A01%3A16.1371992Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "Opportunity",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "Opportunity.csv"
+      },
+      "attributes": [
+        {
+          "name": "customerid",
+          "dataType": "string"
+        },
+        {
+          "name": "estimatedvalue_base",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_accountspecialistid",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Probability",
+          "dataType": "double"
+        },
+        {
+          "name": "hs_countryregion_display",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_productbrand",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Name",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Id",
+          "dataType": "string"
+        },
+        {
+          "name": "ownerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Opportunity Stage",
+          "dataType": "string"
+        },
+        {
+          "name": "Services Value USD",
+          "dataType": "double"
+        },
+        {
+          "name": "Opportunity Close Date",
+          "dataType": "date"
+        },
+        {
+          "name": "Opportunity Number",
+          "dataType": "string"
+        },
+        {
+          "name": "System",
+          "dataType": "string"
+        },
+        {
+          "name": "URL-OTY",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T15:06:53.2772061+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/Opportunity.csv?snapshot=2025-06-10T15%3A06%3A53.3275035Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "salesorders",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "salesorders.csv"
+      },
+      "attributes": [
+        {
+          "name": "accountid",
+          "dataType": "string"
+        },
+        {
+          "name": "createdby",
+          "dataType": "string"
+        },
+        {
+          "name": "Created",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "customerid",
+          "dataType": "string"
+        },
+        {
+          "name": "Fulfilled Date",
+          "dataType": "dateTimeOffset"
+        },
+        {
+          "name": "description",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_customersuccessmanager",
+          "dataType": "string"
+        },
+        {
+          "name": "PO Number",
+          "dataType": "string"
+        },
+        {
+          "name": "Primary Product Brand",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_resellerpartner",
+          "dataType": "string"
+        },
+        {
+          "name": "RSM",
+          "dataType": "string"
+        },
+        {
+          "name": "hs_serviceexpirationmonths",
+          "dataType": "int64"
+        },
+        {
+          "name": "Total Services USD",
+          "dataType": "double"
+        },
+        {
+          "name": "Order Name",
+          "dataType": "string"
+        },
+        {
+          "name": "opportunityid",
+          "dataType": "string"
+        },
+        {
+          "name": "ordernumber",
+          "dataType": "string"
+        },
+        {
+          "name": "quoteid",
+          "dataType": "string"
+        },
+        {
+          "name": "salesorderid",
+          "dataType": "string"
+        },
+        {
+          "name": "Status",
+          "dataType": "string"
+        },
+        {
+          "name": "statuscode",
+          "dataType": "int64"
+        },
+        {
+          "name": "Status Reason",
+          "dataType": "string"
+        },
+        {
+          "name": "Total Order USD",
+          "dataType": "double"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T15:11:59.3101831+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/salesorders.csv?snapshot=2025-06-10T15%3A11%3A59.3416353Z"
+        }
+      ]
+    },
+    {
+      "$type": "LocalEntity",
+      "name": "hs_projects_AL_OTY_Lookup",
+      "description": "",
+      "pbi:refreshPolicy": {
+        "$type": "FullRefreshPolicy",
+        "location": "hs_projects_AL_OTY_Lookup.csv"
+      },
+      "attributes": [
+        {
+          "name": "Opportunity Number",
+          "dataType": "string"
+        },
+        {
+          "name": "D365 Project Number",
+          "dataType": "string"
+        }
+      ],
+      "partitions": [
+        {
+          "name": "Part001",
+          "refreshTime": "2025-06-10T15:12:31.3360489+00:00",
+          "location": "https://wabincusfpcdsap1.blob.core.windows.net:443/2542e6cf-8320-4225-995d-473741786e38/hs_projects_AL_OTY_Lookup.csv?snapshot=2025-06-10T15%3A12%3A31.4019623Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,356 @@
+Salesforce • TE License — LAC Research Notes
+
+
+ July 11th, 2023 — Keith Irwin
+
+
+This document covers the legacy asset-based Tripwire Enterprise (TE) licensing scheme still in use in the
+Tripwire Salesforce organization. The current standard TE licensing system is discussed elsewhere. The main
+focus here is to give you enough knowledge to implement the TE Licensing Server on Salesforce
+infrastructure, or at least everything except the non-portable X.509 certificate generation.
+
+
+Terms
+The following terms might be helpful if you’re not a Tripwire native:
+
+    MSP — Managed Service Providers
+    TE — Tripwire Enterprise
+    TE console — The on-premise software hub for the TE monitoring system
+    TCC — Tripwire Customer Center
+    LAC — License Authorization Code
+    TFS — Tripwire for Servers (TE precursor)
+
+All of these are related to the Tripwire Enterprise (on-premise) product business.
+
+
+Disclaimer about TFS
+Although Fortra still supports customers who use Tripwire for Servers (TFS) and although the current License
+Server can be used to download TFS and generate licenses for it, I don’t think it’s a concern you need to
+account for going forward. If you do, then you can add “product family” to the list of fields you collect from
+each Asset to distinguish its concerns from those of TE. The thing I’ve heard is that if someone needs
+something related to TFS, they should contact Tripwire Product Support. If the Assets grouped into a Console
+have a product family of TFS, use the “old” certificate designation when generating a license, provide TFS files
+for download (no content), and use “4.8” for the license version.
+
+
+The Old License System
+LAC is short for License Authorization Code, but it also stands for the old way of managing TE licenses within
+Salesforce, a system that requires the Customer Ops team (née Order Admin) to manage the allocation of
+product capabilities and license quantities (and hostnames) for each licensed TE console. It requires
+customers to request changes through the Customer Ops team rather than make the changes using the TCC
+self-serve system.
+
+In the new system, the Customer Ops team generates Issued Product objects which mirror the Assets. Issued
+Products can be used in the self-service system (described in a different document) without affecting Asset
+records, which must remain as-is for proper revenue recognition.
+
+
+
+
+                                                         1
+None of this matters all that much. I just find it interesting.
+
+
+Database Implementation Details
+Presenting licensed features, or generating licenses, is all about wrangling groups of Asset records for a given
+account, so it’s useful to know what fields you need to pay attention to outside of things like display names.
+
+In the LAC system, every Asset record (type = ‘lic’) has the following custom fields:
+
+    LAC
+    A randomly generated string users can use to download software or generate a license.
+    Evaluation Days
+    The number of days an evaluation license is good for.
+    Type
+    The asset’s type. We’re only interested in type = ‘lic’.
+    Config ID
+    An identifier indicating which console the Asset’s licenses are assigned to.
+    Hostname
+    The host name of the console, which must match the host on which TE is deployed for the license to work.
+    Product Code
+    The partially semantic code indicating what kind of product we have (perpetual, time-limited or eval).
+    Quantity
+    The number of licenses available for the product this license represents.
+    Support Start Date
+    The support contract start date.
+    Usage End Date
+    The support contract end date.
+    Product Reference
+    The product capability the customer bought (e.g, TE for File Systems), as well as the feature codes the TE
+    software can map to licensed capabilities.
+
+The license Asset records for a given customer (Account) are a flat list. If you group by Config ID (or LAC or
+hostname), then you’ll get a picture of the licenses granted for each Tripwire Console. The Config ID
+represents a TE console.
+
+The LAC also represents a TE console, but it’s meant to be sent to customers as a kind of synthetic login
+identity to grant them access to the TE License Server for downloading software and generating licenses. It
+only grants access to the TE License Server when the support contract is active (i.e., within the support start
+to usage end date range).
+
+Each Asset record in a group (by Config ID) should have the same Support Start Date, Usage End Date, LAC
+and hostname. However, each one will have a different Quantity, Product Code or Product Reference. For
+example, a given TE console might have licenses for File System, Database System or VMWare ESX System
+monitoring capabilities. Same hostname, different licensed capabilities, different quantity per license.
+
+
+
+                                                           2
+Downloading Software and Content with a LAC
+When customers want to download TE consoles, agents, non-paid integrations, documentation or content,
+they can use a LAC to access the TE License Server.
+
+
+ Commercial Licenses
+
+ For Perpetual or Time-Limited Commercial licenses, the LAC will grant access to the TE License Server if the
+ current date is within the Support Start and Usage End Date range (inclusive). If not, the LAC is considered
+ “expired”. (This does not mean a TE License is expired, just access to the License Website.)
+
+
+ Eval Licenses
+
+ For an Evaluation license, the LAC will grant access for 10 days starting at the Support Start Date. After that,
+ it’s considered expired, even if the Usage End Date is in the far future. In other words, Eval Licenses are only
+ valid for the first 10 days after they were issued, regardless of the Usage End Date.
+
+ May 04, 2024 — This was recently changed. Evaluation licenses are usable on the LAC website up until the
+ day they expire.
+
+
+
+Generating Licenses with a LAC
+When customers want to generate a new license file for a console, they can access the TE License Server
+using the LAC they received from Customer Ops. As long as they have a current Support Contract (date range
+from Support Start to Usage End Date), they can get in. If the LAC represents an Eval license, it’ll expire 10
+days after the Support Start Date. (May 04, 2024 — Eval licenses now work the same way.)
+
+
+ Perpetual Commercial License
+
+ The user can choose a software version, then generate a license which will expire in 100 years (or after
+ 36500 days) from the date they generated the license.
+
+
+ Time-Limited Commercial and Eval License
+
+ The user can choose a software version, then generate license which will expire on the Usage End Date.
+
+
+ Eval License
+
+ If today’s date is within 10 days of the Support Start Date, the user can generate a license that will expire on
+ the Usage End Date. May 04, 2024 Users can generate an Eval license up to the day it expires (for
+ whatever good that will do them).
+
+
+
+
+                                                         3
+Note that the date a license expires isn’t necessarily related to when the LAC expires. For example, if you
+generate an Eval license within the first 10 days the LAC was created, the resulting license will last until the
+Usage End Date, which might be in 90 days or 900 days. The user of the Eval LAC won’t be able to log in
+anymore after 10 days, but the TE license they generated is still good.
+
+The same thing applies to perpetual licenses. If such a license was generated when the customer did have a
+support contract, it’ll last for 100 years even if they stop paying for Tripwire Enterprise support and updates.
+
+
+How licenses are generated based on LAC
+This section is a general outline of how you can query and manipulate Salesforce Assets to put together the
+information you need to generate a license. This is the logic used on the current TE License Server, but it’s
+also what you’ll need to do if you want to do this on the client side so that you can send a JSON doc to the TE
+License Server /generate2 endpoint and get a TE license file back.
+
+Overview
+
+To generate a TE license, first make sure that the assets matching the LAC have a Support Start Date in the
+past and a Usage End Date in the future, and is within10 days of the Support Start Date if you’re generating an
+Eval license.
+
+You need the following information:
+
+    The expiration in days (starting from when the license was generated)
+    The TE Console host name (example: twapp01 (do not include domain)).
+    The TE Console version (example: “9.0.0”).
+    The signing cert name (“current” for TE)
+    A list of features and quantities (example: (“FSI” 35) (“TWRouter” 5) … )
+
+Your first step is to query all the Asset records that match the user’s LAC and group them by the Config ID.
+Each group represents a TE console, and also comprises the source data you’ll need to generate a license to
+enable the console’s capabilities.
+
+License Type
+
+Find out which kind of license you have:
+
+    Extract at least one product code from the group of assets you’ve collected.
+    If the product code starts with E, you have an Evaluation license.
+    If the product code starts with UsgCfg , you have a Commercial Time Limited license.
+    Otherwise, you have a Commercial Perpetual license
+
+All subsequent calculations depend, more or less, on which type of license you’re working with, and the type
+of license you’re working with has to be guessed based on the initial letters of the Product Code field in the
+group of Asset records assigned to a TE console.
+
+
+
+
+                                                         4
+Number of Days
+
+To find out the number of days until the license expires, consider the following:
+
+    If the license is perpetual, use 36500, and skip the rest.
+    Otherwise, calculate the number of days between Today and the Usage End Date
+
+The number of days is always between today and the Usage End Date, except for Perpetual licenses, which
+are always 36500.
+
+Features
+
+Each product the Customer buys has a number of feature “tags” associated with it that are understood by a
+TE Console when they’re found in the license file. You have to scan all the Asset records and their associated
+Product records, extract the feature “tags” into a table, then total the license quantity for each Asset that has
+that particular feature. That’s a mouthful, so let me see if I can explain it in a couple of ways.
+
+Features are found by following the path from Asset.Product.Feature__c.
+
+For example, the first Asset with a quantity of 100 and a feature list of “FSI,TWRouter” would result in the
+following table:
+
+    Table: { “FSI” → 100, “TWRouter” → 100 }
+
+The next asset, with a quantity of 50, and a feature list of “TWRouter,TWRouter-Policy”, would augment the
+table like this:
+
+    Table: { “FSI” → 100, “TWRouter” → 150, “TWRouter-Policy” → 50 }
+
+Keep going until the whole table is built up. (See the illustration below.)
+
+The TE License consists of a single X.509 cert for each of the features. A TE License file comprises all the
+X.509 certs concatenated into a single text file.
+
+Hostname
+
+Pick the first hostname in the Asset records grouped by the LAC. All the assets should have the same
+hostname, so pick the first one. If there is no hostname on the Asset records, you can allow the user to supply
+one and then update the Assets. Once they’ve done this, they cannot change the hostname except by going
+through Support.
+
+TE Version
+
+The user must supply the product version, such as “9.0.0” or “8.6.0”, for TE.
+
+Once all these facts are gathered up, you can send a JSON based request to the /generate2 link on the new
+license server. The response will be a single text license file you can store into the Salesforce database.
+
+Illustration for Feature Calculation
+
+
+
+
+                                                          5
+The image below is a representation of a TE console with a section for Asset records, and another section for
+the Feature tags extracted from the Asset record.
+
+
+
+
+Here’s how you interpret the above representation:
+
+   The product codes don’t start with an E or UsgCfg , so it’s perpetual. (Product codes are shown in blue
+   beneath each asset.)
+   The hostname is ziocimm11 . Note that there is no domain name. The TE Console itself has to know it’s
+   running on this machine — nothing else needs to know it.
+   The support contract ends in 21 days, at which point a user can’t use the LAC to log in any more. However,
+   any licenses generated within that time frame are good forever.
+
+
+
+
+                                                      6
+   The 3 License Assets represent the products the customer bought. Note the blue product codes (no E or
+   UsgCfg codes), and the features in gray (FSI, FSI-Policy, FSI-Remediation).
+
+   The 3 Features section is a pivot on the Asset’s feature tags, totaling quantity, so each feature gets a
+   quantity of 9 (4 + 5). Add the license quantity to the feature tag each time it appears on an Asset record.
+   The first asset, “Tripwire Enterprise Console - JA - License (TE)”, represents the console itself. The other
+   two assets represent unlocked capabilities (File System monitoring) on that console.
+
+To repeat, because the license represented above is perpetual, it will never expire. However, the customer’s
+support contract for this console is not perpetual and will expire in 21 days. While the license they generate
+will last forever, they won’t be able to use this LAC with the License Server after July 31.
+
+
+Downloads
+Customers in possession of an unexpired LAC can download Tripwire software and content. Content are the
+rules and policies you can use to configure TE with checks for the latest configuration best practices and
+known vulnerabilities. Software consists of the Tripwire Enterprise console, TE and Axon agents, extras and
+documentation. No paid apps.
+
+What downloads a customer can access depends on the license type.
+
+
+ Eval Licenses
+
+     All downloads
+     Only content with “Sampler” in the filename.
+
+
+
+ Commercial Time Limited or Perpetual
+
+     All downloads
+     All content
+
+
+
+ Software Download Categories
+
+     Console
+     TE Agents
+     TE Agent Updaters
+     Axon Agents
+     Axon Agent Updaters
+     Extras
+     Documents
+
+
+Content should be searchable and filterable in the same way it is on the TCC, by type, platform, framework.
+
+
+
+
+                                                         7
+Web Application
+The following points are a few things I noticed when trying out the existing (May 04, 2024: now mostly retired)
+TE License Service.
+
+   When you access the site, you put in a LAC and an email address. Once in, these are stored in your
+   session so that when you generate a license, the system uses the email address and LAC you typed in.
+   A link like (https://secure.tripwire.com/license/?lac=45303135333937AKlSRX) will pre-populate the LAC
+   into the “login” form, but doesn’t automatically do anything else. You’re always given the opportunity to
+   type in an email address before accessing any of the other features.
+   The application provides buttons to Generate a License, Download Software or Download Policies, but it
+   also provides a bulleted list (with links) to do the same thing, and a “next” button to take you to the first
+   option, Generate a License.
+   The Generate License button lists the products with quantity and an expiration date if Eval or Time-
+   Limited, but doesn’t list one if it’s a Commercial Perpetual license. It also allows you to choose a TE
+   product version before clicking the generate button.
+   When you generate a license, it’s emailed to the address you provided at “login”, but it is not stored in
+   Salesforce.
+   The downloads work as they do on TCC: each download uses an access token then times out after 30
+   minutes. The files are on our CDN.
+
+Is there room for improvement? Maybe. Certainly we should make it look more like the current TCC and add
+highlights matching Fortra’s branding. Aside from that, we might be able to condense the UI to a single page,
+with license details on top, a tabbed-view of downloads on the bottom, and a direct download for the license
+(in addition to email). (May 04, 2024: The new site has three pages linked together with a lac=<lac> query
+string parameter.)
+
+
+
+
+                                                        8
+

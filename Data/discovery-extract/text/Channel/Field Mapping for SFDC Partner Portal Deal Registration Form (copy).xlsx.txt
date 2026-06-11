@@ -1,0 +1,404 @@
+
+===== SHEET: SFDC Partner Portal DR Form (1000r x 29c) =====
+Partner Deal Registration Form: SFDC Partner Portal							SFDC Partner Portal
+Field Name (Partner Portal Deal Registration Form)	SFDC "Fortra - Field Level Excel" [tab: Opportunity]			APIs to be confirmed by BS Team			Deal Registration Form			Opportunity Management
+Field Name (Partner Deal Registration)	Included in SFDC Opportunity excel?	Field Name	Dynamics Field Name	Dynamics Field API	Type	Notes	Field in DR Form?	Required in DR Form?		Visible in Portal?	Read-Only in Portal?	In Current D365 Partner Portal DR Form?	Additional
+Customer Company Name	UNKNOWN	UNKNOWN	Company Name	companyname	Text		True	True		True	True	True
+Customer Website URL	UNKNOWN	UNKNOWN	Website		Text		True	True		True	True
+Customer Contact First Name	UNKNOWN	UNKNOWN	Fist Name	firstname	Text		True	True		True	True	True
+Customer Contact Last Name	UNKNOWN	UNKNOWN	Last Name	lastname	Text		True	True		True	True	True
+Customer Contact Job Title	UNKNOWN	UNKNOWN	Job Title		Picklist		True	True		True	True	True
+Customer Contact Email	UNKNOWN	UNKNOWN	Email	emailaddress1	Text		True	True		True	True	True
+Customer Contact Phone	UNKNOWN	UNKNOWN	Business Phone		Text		True	True		True	True	True
+Address 1	True	Address	DETAILS - Address - Street Line 1		Text		True	False		True	True	True
+Address 2	UNKNOWN	UNKNOWN	DETAILS - Address - Street Line 2		Text		True	False		True	True	True
+City	True	City	DETAILS - Address - City		Text		True	False		True	True	True
+Country	True	Country	Country/Region		Picklist		True	True		True	True	True
+State/Province	True	State/Province	State/Province		Picklist	required field for the following Countries: US, Canada, Germany, United Kingdom	True	True		True	True	True
+Zip/Postal Code	True	Zip/Postal Code	ZIP/Postal Code AND DETAILS - Address - Zip/Postal Code		Text		True	False		True	True	True
+Reseller Company Name	True	Reseller	NEW		Look Up	Required for Distributor partners only - Look up by resellers associated to Distributors account in SFDC	True	True		True	True	True
+Distributor Company Name	True	Distributor	NEW		Look Up	Required for Reseller partners only - Look up by Distributors associated to Reseller's account in SFDC	True	True		True	True	True	What field within the Partner's account will determine which resellers must select a distributor within the DR form?
+Product Brand	True	Product Brand	Product Brand		Picklist		True	True		False	True	True
+Bundle of Interest	UNKNOWN	UNKNOWN				is this products of interest?	True	False		False	False	False
+Is this an existing customer of your company?	True	Existing Customer of Partner?	Existing Customer of Partner		Picklist	Yes, No	True	True		True	True
+Sales Activities - Choose sales activities that have happened with the end-customer	True	Sales Activities - Choose sales activities that have happened with the end-customer	NEW		Picklist (multiple selection)	*Initialized discussions with customer *Customer has shown interest in solution *Conducted Demo *Agreed on solution to business problem	True	True		True	True	False
+Project Timeline	True	Project Timeline	Project Timeline		Picklist	*0-3 months *3-6 months *6-12 months *12+ months *Unknown (create as new option in picklist)	True	True		True	True	False
+Budget Allocated?	True	Budget Allocated?	Budget Allocated?		Picklist	*Yes *No *Unsure	True	True		True	True	False
+Customer opportunity is part of an RFP?	True	RFP	NEW		Checkbox		True	False		True	True	False
+Who will be responsible for implementing the solution?	True	Who will be responsible for implementing the solution?	NEW		Checkbox	*We (the registering partner) will implement the solution  *A third-party implementation partner will be used  *The customer will handle implementation internally  *Not yet determined	True	True		True	True	False
+Additional Notes:	True	Partner Deal Registration Notes:	NEW				True	False		True	True	False
+MDF Funding Code	True	Partner MDF Activity ID	NEW		Look Up		True	False		True	True	False
+Campaign Type	UNKNOWN	UNKNOWN	Source Campaign Activity		Lookup	link source campaign activities to partner account	True	False		True	True
+Fortra Partner Marketing Involvement?	True	Fortra Partner Marketing Involvement?	NEW		Picklist	Yes, No, Unsure	True	True		True	True	False
+NA	UNKNOWN	UNKNOWN	Partner Contact	hs_partnercontact	Look Up	mapped based on registering partner's contact record (D365 Contact Record)	False	False		True	False	True
+NA	UNKNOWN	UNKNOWN	Owner			Fortra AE (set value)	False	False		True	True
+NA	UNKNOWN	UNKNOWN	Status		single select	Open (set value)	False	False		True	True
+NA	UNKNOWN	UNKNOWN	Lead Type		drop down single	Inbound (set value)	False	False		False	False
+NA	UNKNOWN	UNKNOWN	Topic		Free form	Selling Partner's Account Name	False	False		False	False
+NA	UNKNOWN	UNKNOWN	Status Code			New (set value, unless duplicate lead is found "Duplicate")	False	False		False	False
+NA	True	Lead Source	Lead Source		Picklist	Partner Deal Registration (set value - locked from editing)	False	False		True	True	False
+NA	True	Partner Deal Status	Partner Deal Status		Picklist	Registered, Approved, Rejected, Closed	False	False		True	True
+NA	True	Deal Origin	Deal Origin		Picklist	*Channel Originated *Fortra Originated	False	False		True	True
+NA	True	Channel Account Manager	Channel Account Manager		Look Up	Auto-populated by Channel Account Manager Territory Rules (Product Brand --> Country --> State/Province)	False	False		True	True
+NA	UNKNOWN	UNKNOWN	Territory		Picklist	Set by Country/Region	False	False		False	False
+NA	True	True	Sales Stage		Picklist		False	False		True	True
+
+===== SHEET: D365 Partner Portal DR Form (996r x 23c) =====
+Partner Deal Registration Form: Fortra D365 Partner Portal
+Field Name (Partner Portal Deal Registration Form)		APIs to be confirmed by BS Team	Field type within website DR form
+Field Name (Partner Deal Registration)	Dynamics Field Name	Dynamics Field API	Type	Notes	Required
+Company Name	Company Name	companyname	Text	Customer Company Name	True
+First Name	Fist Name	firstname	Text	Customer Contact First Name	True
+Last Name	Last Name	lastname	Text	Customer Contact Last Name	True
+Job Title	Job Title		Picklist	Customer Contact Job Title	True
+Email	Email	emailaddress1	Text	Customer Contact Email	True
+Phone	Business Phone		Text	Customer Contact Phone	True
+Address 1	DETAILS - Address - Street Line 1		Text	Customer Address 1	False
+Address 2	DETAILS - Address - Street Line 2		Text	Customer Address 2	False
+City	DETAILS - Address - City		Text	Customer City	False
+Country	Country/Region		Picklist	Customer Country	True
+State/Province	State/Province		Picklist	Customer State/Province (required field for the following Countries: US, Canada, Germany, United Kingdom)	True
+Zip/Postal Code	ZIP/Postal Code AND DETAILS - Address - Zip/Postal Code		Text	Customer Zip/Postal Code (required field when United Kingdom is Country)	True
+Product Brand	Product Brand		Picklist		True
+Description, Comments, Questions	Description (new line)		Long Text		False
+For Distributors Only: List Reseller involved in deal	Description (new line)		Text		False
+For Resellers Only: If working with a Fortra Distributor, please list Distributor's company name	Description (new line)		Text		False
+NA	Selling Partner		Look Up	mapped based on registering partner contact's company account information (D365 Account). Added to Associated Partners Grid	True
+NA	Selling Partner		Picklist	Within Associated Partners Grid. Set value is 'Yes'	False
+NA	Billable Partner		Picklist	Within Associated Partners Grid. Set value is 'Yes'	False
+NA	Partner Contact	hs_partnercontact	Look Up	mapped based on registering partner's contact record (D365 Contact Record)	True
+NA	Owner			Partner Sales (set value)	True
+NA	Status		single select	Open (set value)	True
+NA	Lead Type		drop down single	Inbound (set value)	True
+NA	Topic		Free form	Selling Partner's Account Name	True
+NA	Status Code			New (set value, unless duplicate lead is found "Duplicate")	True
+NA	Partner Recruitment		Picklist	No (set value)	True
+NA	Partner Deal Registration		Picklist	Yes (set value)	True
+NA	Partner Lead Status Reason		Picklist	In Progress (set value)	True
+NA	Lead Source		Picklist	Partner (set value)	True
+NA	Source Campaign Activity		Picklist	Each SCA corresponds to the Product Brand selecte by the partner "[Product Brand] - Partner Deal Registration"	True
+NA	Deal Origin		Picklist	Channel Originated (set value)	True
+NA	Website		Text		True
+NA	Channel Account Manager		Look Up	Auto-populated by Channel Account Manager Territory Rules (Product Brand --> Country --> State/Province)	True
+NA	Territory		Picklist	Within DETAILS section. Set by Country/Region	True
+
+===== SHEET: Partner Owned DR_website form (1009r x 25c) =====
+Deal Reg: Fortra Deal Registration Website Form -> Dynamics Lead
+what additional fields need to be updated when a new lead is created in D365?
+		APIs to be confirmed by BS Team	Field type within website DR form		Will this be a required field within the website DR form?
+Website Deal Registration Form Field Name	Dynamics Field Name	Dynamics API	Type	Value	Required	D365 Mapping Notes
+Partner Information
+Partner Company Name	Partner Account	hs_partneraccount	Free form		Yes	no free form field within Lead form
+Partner Contact's First Name			Free form		Yes	no field within Lead form
+Partner Contact's Last Name			Free form		Yes	no field within Lead form
+Partner Contact's Email	Partner Contact	hs_partnercontact	Free form		Yes	no free form field within Lead form
+Partner Contact's Phone			Free form		Yes	no field within Lead form
+If Distributor, please include Reseller's information below:
+Reseller Company Name			Free form		No	no field within Lead form
+Reseller Company Address			Free form		No	no field within Lead form
+Customer Information
+Company Name	Company Name	companyname	Free form		Yes
+Industry	Industry		drop down single		Yes
+First Name	Fist Name	firstname	Free form		Yes
+Last Name	Last Name	lastname	Free form		Yes
+Title	Job Title 2	hs_jobtitle2	Free form		Yes
+Email	Email	emailaddress1	Free form		Yes
+Street Address			Free form		Yes	no field within Lead form
+City			Free form		Yes
+Country	Country/Region		drop down single		Yes
+State/Province	State/Province		drop down single		For US/CAN
+Zip Code	ZIP/Postal Code		Free form		No
+Opportunity Details
+Use case/pain points			Free form		Yes	map to description?
+Has budget been established?	Budget Allocated?		drop down single	Yes/No	Yes
+Product Brand	Product Brand		drop down single		Yes
+Products(s)						TBD - no field within Lead form
+Project Timeline	Project Timeline		drop down single		Yes
+Is This an Existing Customer of Your Company?	Existing Customer of Partner		drop down single	Yes/No	Yes
+Solution Group(Drop Down)			drop down single			TBD
+Additional Info			Free form			TBD
+
+===== SHEET: Copy - Partner Owned Deal Reg (1009r x 26c) =====
+Deal Reg: Fortra Deal Registration Website Form -> Dynamics Lead
+what additional fields need to be updated when a new lead is created in D365?
+			APIs to be confirmed by BS Team	Field type within website DR form		Will this be a required field within the website DR form?
+Website Deal Registration Form Field Name	HubSpot	Dynamics Field Name	Dynamics API	Type	Value	Required	D365 Mapping Notes
+Partner Information
+Partner Company Name		Partner Account	hs_partneraccount	Free form		Yes	no free form field within Lead form
+Partner Contact's First Name				Free form		Yes	no field within Lead form
+Partner Contact's Last Name				Free form		Yes	no field within Lead form
+Partner Contact's Email		Partner Contact	hs_partnercontact	Free form		Yes	no free form field within Lead form
+Partner Contact's Phone				Free form		Yes	no field within Lead form
+If Distributor, please include Reseller's information below:
+Reseller Company Name				Free form		No	no field within Lead form
+Reseller Company Address				Free form		No	no field within Lead form
+Customer Information
+Company Name		Company Name	companyname	Free form		Yes
+Industry		Industry		drop down single		Yes
+First Name		Fist Name	firstname	Free form		Yes
+Last Name		Last Name	lastname	Free form		Yes
+Title		Job Title 2	hs_jobtitle2	Free form		Yes
+Email		Email	emailaddress1	Free form		Yes
+Street Address				Free form		Yes	no field within Lead form
+City				Free form		Yes
+Country		Country/Region		drop down single		Yes
+State/Province		State/Province		drop down single		For US/CAN
+Zip Code		ZIP/Postal Code		Free form		No
+Opportunity Details
+Use case/pain points				Free form		Yes	map to description?
+Has budget been established?		Budget Allocated?		drop down single	Yes/No	Yes
+Product Brand		Product Brand		drop down single		Yes
+Products(s)							TBD - no field within Lead form
+Project Timeline		Project Timeline		drop down single		Yes
+Is This an Existing Customer of Your Company?		Existing Customer of Partner		drop down single	Yes/No	Yes
+Solution Group(Drop Down)				drop down single			TBD
+Additional Info				Free form			TBD
+
+===== SHEET: Dropdown Values (1002r x 48c) =====
+Partner Lead Status Reason	hs_partnerleadstatusreason		Status			Job Title			Country - Contact			Time Zone			Country - Deal Reg			Field Name			Project Timeline			Budget Allocated			Allbound Partner Portal Access - Contact		company_size (Drop Down) - Lead			Solution Group(Drop Down) - Lead				Industry(Drop Down)-Lead			Product Brand Entity Name	hs_productbrands	State/Province					Sales Stages	hs_salesstages
+Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value		Value Name	API Value	Value Name	API Value		Value Name	GUID	Production GUID	Shared with Allbound?	Value Name	API Value		Value		hs_stateprovince			Campaigns
+						search	replace								replace	search											Allbound Partner Portal Access	hs_allboundpartnerportalaccess	Company Size	hs_companysize		PRODUCTS OF INTEREST	Products_of_Interest	spot checked 4/10 JP	modified 4/10 JP	Industry	hs_industry		hs_productbrandid	787275a7-946e-e511-80cd-0050568460e4	hs_stateprovince_picklist	hs_stateprovince_picklist				Pre-Qualified	717710000
+In Progress	717710000		Active			Procurement	717710017		Afghanistan						Afghanistan	717710083		Afghanistan	717710083		0-3 months	717710001		Yes	717710000								These are the values			search	replace		hs_productbrandname	Fortra	search	replace		Strategic Partner: MDFs - id=9e5c61a9-52cc-ee11-9079-6045bd029a89		Sales Qualified	717710001
+Approved	717710001		Pending			Systems Administration	717710005		Akrotiri						Akrotiri	717710231		Akrotiri	717710231		3-6 months	717710002		No	717710001				search	replace						Agriculture	1		hs_brand	Fortra	Aberdeenshire	717710121		Strategic Partners: Joint Marketing Campaigns - id=e2e0d0af-52cc-ee11-9079-6045bd029a89		Evaluating	717710002
+Disqualified	717710002		Inactive			Security Director	717710014		Albania						Albania	717710000		Albania	717710000		6-12 months	717710003		Unsure	717710002				None	717710000						Automotive	717710000				Alabama	717710000		Strategic Partners: Deal Registration - id=0ce1d0af-52cc-ee11-9079-6045bd029a89		Pricing & Approval	717710003
+						Security Consultant	717710015		Algeria						Algeria	717710001		Algeria	717710001		12+ months	717710004							Less than 250	717710001	SF	Data Protection - Unknown	7ff91262-b4a5-ee11-be37-6045bd02961f		Y	Broadcasting	717710001				Alaska	717710001				Closing	717710004
+						Security Administration	717710004		American Samoa						American Samoa	717710002		American Samoa	717710002										250-499	717710002	SF	Data Protection - Digital Guardian	e0c91dbd-6daa-ee11-be37-6045bd029179		Y	Construction	22				Alberta	717710050
+						Sales/Marketing	717710009		Andorra						Andorra	717710003		Andorra	717710003										500-999	717710003	SF	Data Protection - Data Classification	143f31ca-6daa-ee11-be37-6045bd029179	143f31ca-6daa-ee11-be37-6045bd029179	Y	Consulting	2				Angus	717710122
+						Programmer/Developer	717710007		Angola						Angola	717710004		Angola	717710004										1,000-4,999	717710004	SF	Data Protection - Vera	353595dd-6daa-ee11-be37-6045bd029179		Y	Defense	19				Antrim	717710176
+						Other IT Staff	717710006		Anguilla						Anguilla	717710211		Anguilla	717710211										5,000-9,999	717710005	D | missing	Managed File Transfer (MFT) - GoAnywhere	034d2aea-6daa-ee11-be37-6045bd029179		Y	Distribution	3				Argyll & Bute	717710176
+						Network Administration	717710003		Antigua and Barbuda						Antigua and Barbuda	717710224		Antigua and Barbuda	717710224										10,000 or more	717710006	SF	Secure File Transfer (SFT) - Globalscape	ba047ff6-6daa-ee11-be37-6045bd029179		Y	Education	4				Arizona	717710002
+						IT Management	717710001		Argentina						Argentina	717710005		Argentina	717710005												SF	Managed Services - Alert Logic	9aa43c03-6eaa-ee11-be37-6045bd029179		Y	Energy/Utilities	5				Arkansas	717710003
+						Finance	717710013		Armenia						Armenia	717710006		Armenia	717710006												SF	Managed Services - Alert Logic-MDR	17384c0f-6eaa-ee11-be37-6045bd029179		Y	Engineering	717710002				Armagh	717710177
+						Database Administration	717710002		Aruba						Aruba	717710232		Aruba	717710232												SF	Managed Services - Alert Logic-XDR	d94fe11b-6eaa-ee11-be37-6045bd029179	d94fe11b-6eaa-ee11-be37-6045bd029179	Y	Entertainment	717710007				Ayrshire	717710124
+						Consultant	717710012		Australia						Australia	717710007		Australia	717710007												SF	Managed Services - Alert Logic-WAF	6bf7e427-6eaa-ee11-be37-6045bd029179		Y	Environmental	717710003				Baden-Württemberg	717710185
+						C-Level	717710000		Austria						Austria	717710008		Austria	717710008												D | ???	Infrastructure Protection - Unknown	1a8a1334-6eaa-ee11-be37-6045bd029179	1a8a1334-6eaa-ee11-be37-6045bd029179	Y	Financial	6				Banffshire	717710125
+						Business User	717710010		Azerbaijan						Azerbaijan	717710009		Azerbaijan	717710009												D | mapped	Infrastructure Protection - Core Security	d421305f-6eaa-ee11-be37-6045bd029179		Y	Financial - Banks	717710008				Bath and North East Somerset	717710073
+						Auditor	717710008		Bahamas						Bahamas	717710010		Bahamas	717710010												D | mapped	Infrastructure Protection - Cobalt Strike	33ac6165-6eaa-ee11-be37-6045bd029ee9		Y	Financial - Credit Union	717710009				Bayern	717710186
+						Other	717710011		Bahrain						Bahrain	717710011		Bahrain	717710011												D | mapped	Infrastructure Protection - Outflank	a972c271-6eaa-ee11-be37-6045bd029ee9		Y	Financial - Other Services	717710010				Bedfordshire	717710074
+						Accounts Payable	717710016		Bangladesh						Bangladesh	717710012		Bangladesh	717710012												D | mapped	Infrastructure Protection - Digital Defense	5cc4ee7d-6eaa-ee11-be37-6045bd029ee9		Y	Food	717710004				Berkshire	717710075
+									Barbados						Barbados	717710210		Barbados	717710210												D | mapped	Infrastructure Protection - Beyond Security	393d418a-6eaa-ee11-be37-6045bd029ee9		Y	Gaming	7				Berlin	717710187
+									Belarus						Belarus	717710013		Belarus	717710013												D | ???	Automation - Unknown	d3a0dd96-6eaa-ee11-be37-6045bd029ee9		Y	Government	8				Berwickshire	717710126
+									Belgium						Belgium	717710014		Belgium	717710014												D | mapped	Automation - Automate	9a5b549d-6eaa-ee11-be37-6045bd029ee9		Y	Healthcare	9				Blaenau Gwent	717710154
+									Belize						Belize	717710221		Belize	717710221												D | mapped	Automation - JAMS	00d687a9-6eaa-ee11-be37-6045bd029ee9		Y	Hospitality	10				Borders	717710127
+									Benin						Benin	717710015		Benin	717710015												D | mapped	Digital Risk & Email Protection (DREP) - Unknown	1b3280af-6eaa-ee11-be37-6045bd029ee9		Y	Insurance	11				Brandenburg	717710188
+									Bermuda						Bermuda	717710235		Bermuda	717710235												D | mapped	Digital Risk & Email Protection (DREP) - PhishLabs	26bb75bb-6eaa-ee11-be37-6045bd029ee9	26bb75bb-6eaa-ee11-be37-6045bd029ee9	Y	Legal Services	717710005				Bremen	717710189
+									Bhutan						Bhutan	717710016		Bhutan	717710016												D | mapped	Digital Risk & Email Protection (DREP) - Clearswift	5f8579c7-6eaa-ee11-be37-6045bd029ee9		Y	Manufacturing	12				Bridgend	717710155
+									Bolivia						Bolivia	717710220		Bolivia	717710220												D | mapped	Digital Risk & Email Protection (DREP) - Agari	197e28da-6eaa-ee11-be37-6045bd029ee9		Y	Marketing/Advertising	21				Bristol	717710076
+									Bosnia and Herzegovina						Bosnia and Herzegovina	717710017		Bosnia and Herzegovina	717710017												D | mapped	Digital Risk & Email Protection (DREP) - Terranova	59af95e0-6eaa-ee11-be37-6045bd029ee9		Y	Mining	20				British Columbia	717710051
+									Botswana						Botswana	717710018		Botswana	717710018												SF	File Integrity Monitoring (FIM) - Tripwire	6da0a0ec-6eaa-ee11-be37-6045bd029ee9		Y	Non-Profit	13				Buckinghamshire	717710077
+									Bouvet Island						Bouvet Island	717710019		Bouvet Island	717710019												D | mapped	Hybrid & Power - Unknown	6f5e9bf2-6eaa-ee11-be37-6045bd029ee9		Y	Real Estate	717710006				Caerphilly	717710156
+									Brazil						Brazil	717710020		Brazil	717710020												D | mapped	Hybrid & Power - Systems Management	4989dffe-6eaa-ee11-be37-6045bd029ee9		Y	Retail	15				Caithness	717710128
+									British Indian Ocean Territory						British Indian Ocean Territory	717710021		British Indian Ocean Territory	717710021												D | mapped	Hybrid & Power - PowertechX	d9a8fb04-6faa-ee11-be37-6045bd029ee9		Y	Services	23				California	717710004
+									Brunei Darussalam						Brunei Darussalam	717710022		Brunei Darussalam	717710022												D | mapped	Hybrid & Power - Cybersecurity	d3bd6a11-6faa-ee11-be37-6045bd029ee9		Y	Technology	16				Cambridgeshire	717710078
+									Bulgaria						Bulgaria	717710023		Bulgaria	717710023												D | mapped	Hybrid & Power - Business Intelligence	86b4bd17-6faa-ee11-be37-6045bd029ee9	86b4bd17-6faa-ee11-be37-6045bd029ee9	Y	Telecommunications	17				Cardiff	717710157
+									Burkina Faso						Burkina Faso	717710024		Burkina Faso	717710024												D | mapped	Hybrid & Power - IGA	d498bf1d-6faa-ee11-be37-6045bd029ee9		Y	Transportation	18				Carmarthenshire	717710158
+									Burundi						Burundi	717710025		Burundi	717710025												D | mapped	Hybrid & Power - BoKS	bb86462a-6faa-ee11-be37-6045bd029ee9		Y	Other	14				Ceredigion	717710159
+									Cambodia						Cambodia	717710026		Cambodia	717710026												D | mapped	Hybrid & Power - Document Management	d57e5b30-6faa-ee11-be37-6045bd029ee9		Y						Cheshire	717710079
+									Cameroon						Cameroon	717710027		Cameroon	717710027												D | ??	Hybrid & Power - Capacity Management	c960d7da-8ae7-ee11-904d-6045bd029a89		Y						Clackmannanshire	717710129
+									Canada						Canada	717710028		Canada	717710028													Removed	Removed								Colorado	717710005
+									Cape Verde						Cape Verde	717710029		Cape Verde	717710029																						Connecticut	717710006
+									Cayman Islands						Cayman Islands	717710209		Cayman Islands	717710209																						Conwy	717710160
+									Central African Republic						Central African Republic	717710030		Central African Republic	717710030																						Cornwall	717710080
+									Chad						Chad	717710031		Chad	717710031																						County Durham	717710081
+									Chile						Chile	717710032		Chile	717710032																						Cumbria	717710082
+									China						China	717710033		China	717710033																						Delaware	717710007
+									Christmas Island						Christmas Island	717710034		Christmas Island	717710034																						Denbighshire	717710161
+									Cocos (Keeling) Islands						Cocos (Keeling) Islands	717710035		Cocos (Keeling) Islands	717710035																						Derbyshire	717710083
+									Colombia						Colombia	717710036		Colombia	717710036																						Devon	717710084
+									Comoros						Comoros	717710037		Comoros	717710037																						Dorset	717710085
+									Congo						Congo	717710038		Congo	717710038																						Down	717710178
+									Congo, Democratic Republic						Congo, Democratic Republic	717710039		Congo, Democratic Republic	717710039																						Dumfries & Galloway	717710130
+									Cook Islands						Cook Islands	717710040		Cook Islands	717710040																						Dunbartonshire	717710131
+									Costa Rica						Costa Rica	717710041		Costa Rica	717710041																						East Ayrshire	717710132
+									Cote d'Ivoire						Cote d'Ivoire	717710042		Cote d'Ivoire	717710042																						East Dunbartonshire	717710133
+									Croatia						Croatia	717710043		Croatia	717710043																						East Lothian	717710134
+									Cuba						Curaçao	717710238		Curaçao	717710238																						East Renfrewshire	717710135
+									Curaçao						Cyprus	717710044		Cyprus	717710044																						East Riding of Yorkshire	717710086
+									Cyprus						Czech Republic	717710045		Czech Republic	717710045																						East Sussex	717710087
+									Czech Republic						Dehkelia	717710239		Dehkelia	717710239																						Essex	717710088
+									Dehkelia						Denmark	717710046		Denmark	717710046																						Fermanagh	717710179
+									Denmark						Djibouti	717710047		Djibouti	717710047																						Fife	717710136
+									Djibouti						Dominica	717710218		Dominica	717710218																						Flintshire	717710162
+									Dominica						Dominican Republic	717710048		Dominican Republic	717710048																						Florida	717710008
+									Dominican Republic						East Timor	717710197		East Timor	717710197																						Georgia	717710009
+									East Timor						Ecuador	717710049		Ecuador	717710049																						Gloucestershire	717710089
+									Ecuador						Egypt	717710050		Egypt	717710050																						Greater London (London)	717710090
+									Egypt						El Salvador	717710212		El Salvador	717710212																						Greater Manchester	717710091
+									El Salvador						Equatorial Guinea	717710051		Equatorial Guinea	717710051																						Guernsey	717710182
+									Equatorial Guinea						Eritrea	717710052		Eritrea	717710052																						Gwynedd	717710163
+									Eritrea						Estonia	717710053		Estonia	717710053																						Hamburg	717710190
+									Estonia						Ethiopia	717710054		Ethiopia	717710054																						Hampshire	717710092
+									Ethiopia						Falkland Islands	717710240		Falkland Islands	717710240																						Hawaii	717710010
+									Falkland Islands						Faroe Islands	717710055		Faroe Islands	717710055																						Herefordshire	717710093
+									Faroe Islands						Fiji Islands	717710056		Fiji Islands	717710056																						Hertfordshire	717710094
+									Fiji Islands						Finland	717710057		Finland	717710057																						Hessen	717710191
+									Finland						France	717710058		France	717710058																						Highland	717710137
+									France						French Polynesia	717710059		French Polynesia	717710059																						Idaho	717710011
+									French Polynesia						Gabon	717710060		Gabon	717710060																						Illinois	717710012
+									Gabon						Gambia	717710061		Gambia	717710061																						Indiana	717710013
+									Gambia						Georgia	717710062		Georgia	717710062																						Inverclyde	717710138
+									Georgia						Germany	717710063		Germany	717710063																						Iowa	717710064
+									Germany						Ghana	717710064		Ghana	717710064																						Isle of Anglesey	717710164
+									Ghana						Gibraltar	717710065		Gibraltar	717710065																						Isle of Man	717710184
+									Gibraltar						Greece	717710066		Greece	717710066																						Isle of Wight	717710095
+									Greece						Greenland	717710067		Greenland	717710067																						Jersey	717710183
+									Greenland						Grenada	717710217		Grenada	717710217																						Kansas	717710014
+									Grenada						Guadeloupe	717710242		Guadeloupe	717710242																						Kent	717710096
+									Guadeloupe						Guam	717710068		Guam	717710068																						Kentucky	717710015
+									Guam						Guatemala	717710069		Guatemala	717710069																						Kincardineshire	717710139
+									Guatemala						Guernsey	717710243		Guernsey	717710243																						Lanarkshire	717710140
+									Guernsey						Guinea	717710070		Guinea	717710070																						Lancashire	717710097
+									Guinea						Guinea-Bissau	717710071		Guinea-Bissau	717710071																						Leicestershire	717710098
+									Guinea-Bissau						Guyana	717710216		Guyana	717710216																						Lincolnshire	717710099
+									Guyana						Haiti	717710215		Haiti	717710215																						Londonderry	717710180
+									Haiti						Honduras	717710073		Honduras	717710073																						Louisiana	717710016
+									Honduras						Hong Kong	717710207		Hong Kong	717710207																						Maine	717710017
+									Hong Kong						Hungary	717710074		Hungary	717710074																						Manitoba	717710052
+									Hungary						Iceland	717710075		Iceland	717710075																						Maryland	717710018
+									Iceland						India	717710076		India	717710076																						Massachusetts	717710019
+									India						Indonesia	717710077		Indonesia	717710077																						Mecklenburg-Vorpommern	717710192
+									Indonesia						Iraq	717710079		Iraq	717710079																						Merseyside	717710100
+									Iran						Ireland	717710080		Ireland	717710080																						Merthyr Tydfil	717710165
+									Iraq						Israel	717710081		Israel	717710081																						Michigan	717710020
+									Ireland						Italy	717710082		Italy	717710082																						Midlothian	717710141
+									Israel						Jamaica	717710084		Jamaica	717710084																						Minnesota	717710021
+									Italy						Japan	717710086		Japan	717710086																						Mississippi	717710022
+									Jamaica						Jersey	717710248		Jersey	717710248																						Missouri	717710023
+									Japan						Jordan	717710087		Jordan	717710087																						Monmouthshire	717710166
+									Jersey						Kazakhstan	717710088		Kazakhstan	717710088																						Montana	717710024
+									Jordan						Kenya	717710089		Kenya	717710089																						Moray	717710142
+									Kazakhstan						Kiribati	717710090		Kiribati	717710090																						Neath Port Talbot	717710167
+									Kenya						Kosovo	717710228		Kosovo	717710228																						Nebraska	717710025
+									Kiribati						Kuwait	717710092		Kuwait	717710092																						Nevada	717710026
+									Kosovo						Kyrgyzstan	717710093		Kyrgyzstan	717710093																						New Brunswick	717710053
+									Kuwait						Laos	717710229		Laos	717710229																						New Hampshire	717710027
+									Kyrgyzstan						Latvia	717710095		Latvia	717710095																						New Jersey	717710028
+									Laos						Lebanon	717710096		Lebanon	717710096																						New Mexico	717710029
+									Latvia						Lesotho	717710097		Lesotho	717710097																						New South Wales	717710068
+									Lebanon						Liberia	717710098		Liberia	717710098																						New York	717710030
+									Lesotho						Libya	717710099		Libya	717710099																						Newfoundland & Labrador	717710054
+									Liberia						Liechtenstein	717710100		Liechtenstein	717710100																						Newport	717710168
+									Libya						Lithuania	717710101		Lithuania	717710101																						Niedersachsen	717710193
+									Liechtenstein						Luxembourg	717710102		Luxembourg	717710102																						Nordrhein-Westfalen	717710194
+									Lithuania						Macau	717710198		Macau	717710198																						Norfolk	717710101
+									Luxembourg						Macedonia	717710103		Macedonia	717710103																						North Ayrshire	717710143
+									Macau						Madagascar	717710104		Madagascar	717710104																						North Carolina	717710031
+									Macedonia						Malawi	717710105		Malawi	717710105																						North Dakota	717710032
+									Madagascar						Malaysia	717710106		Malaysia	717710106																						North Lanarkshire	717710144
+									Malawi						Maldives	717710107		Maldives	717710107																						North Yorkshire	717710102
+									Malaysia						Mali	717710108		Mali	717710108																						Northamptonshire	717710103
+									Maldives						Malta	717710109		Malta	717710109																						Northumberland	717710104
+									Mali						Marshall Islands	717710202		Marshall Islands	717710202																						Northwest Territories	717710055
+									Malta						Martinique	717710249		Martinique	717710249																						Nottinghamshire	717710105
+									Marshall Islands						Mauritania	717710110		Mauritania	717710110																						Nova Scotia	717710056
+									Martinique						Mauritius	717710111		Mauritius	717710111																						Nunavut	717710057
+									Mauritania						Mayotte	717710112		Mayotte	717710112																						Ohio	717710033
+									Mauritius						Mexico	717710113		Mexico	717710113																						Oklahoma	717710034
+									Mayotte						Micronesia	717710114		Micronesia	717710114																						Ontario	717710058
+									Mexico						Moldova	717710115		Moldova	717710115																						Oregon	717710035
+									Micronesia						Monaco	717710116		Monaco	717710116																						Orkney	717710145
+									Moldova						Mongolia	717710117		Mongolia	717710117																						Other	717710063
+									Monaco						Montenegro	717710118		Montenegro	717710118																						Oxfordshire	717710106
+									Mongolia						Montserrat	717710233		Montserrat	717710233																						Pembrokeshire	717710169
+									Montenegro						Morocco	717710119		Morocco	717710119																						Pennsylvania	717710036
+									Montserrat						Mozambique	717710120		Mozambique	717710120																						Perth & Kinross	717710146
+									Morocco						Myanmar	717710121		Myanmar	717710121																						Powy	717710170
+									Mozambique						Namibia	717710122		Namibia	717710122																						Prince Edward Island	717710059
+									Myanmar						Nauru	717710123		Nauru	717710123																						Puerto Rico	717710047
+									Namibia						Nepal	717710124		Nepal	717710124																						Quebec	717710060
+									Nauru						Netherlands	717710125		Netherlands	717710125																						Queensland	717710067
+									Nepal						New Caledonia	717710126		New Caledonia	717710126																						Renfrewshire	717710147
+									Netherlands						New Zealand	717710127		New Zealand	717710127																						Rheinland-Pfalz	717710195
+									New Caledonia						Nicaragua	717710128		Nicaragua	717710128																						Rhode Island	717710037
+									New Zealand						Niger	717710129		Niger	717710129																						Rhondda Cynon Taff	717710171
+									Nicaragua						Nigeria	717710130		Nigeria	717710130																						Rutland	717710107
+									Niger						Norfolk Island	717710132		Norfolk Island	717710132																						Saarland	717710196
+									Nigeria						Northern Mariana Island	717710133		Northern Mariana Island	717710133																						Sachsen	717710197
+									Norfolk Island						Norway	717710134		Norway	717710134																						Sachsen-Anhalt	717710198
+									North Korea						Oman	717710135		Oman	717710135																						Saskatchewan	717710061
+									Northern Mariana Island						Other	717710094		Other	717710094																						Schleswig-Holstein	717710199
+									Norway						Pacific Islands Trust Tr	717710136		Pacific Islands Trust Tr	717710136																						Shetland	717710148
+									Oman						Pakistan	717710137		Pakistan	717710137																						Shropshire	717710108
+									Other						Palau	717710138		Palau	717710138																						Somerset	717710109
+									Pacific Islands Trust Tr						Palestine	717710139		Palestine	717710139																						South Australia	717710069
+									Pakistan						Panama	717710140		Panama	717710140																						South Ayrshire	717710201
+									Palau						Papua New Guinea	717710141		Papua New Guinea	717710141																						South Carolina	717710038
+									Palestine						Paraguay	717710142		Paraguay	717710142																						South Dakota	717710065
+									Panama						Peru	717710143		Peru	717710143																						South Lanarkshire	717710149
+									Papua New Guinea						Philippines	717710144		Philippines	717710144																						South Yorkshire	717710110
+									Paraguay						Poland	717710145		Poland	717710145																						Staffordshire	717710111
+									Peru						Portugal	717710146		Portugal	717710146																						Stirlingshire	717710150
+									Philippines						Puerto Rico	717710085		Puerto Rico	717710085																						Suffolk	717710112
+									Poland						Qatar	717710147		Qatar	717710147																						Surrey	717710113
+									Portugal						Reunion	717710148		Reunion	717710148																						Swansea	717710172
+									Puerto Rico						Romania	717710149		Romania	717710149																						Tasmania	717710070
+									Qatar						Russian Federation	717710150		Russian Federation	717710150																						Tennessee	717710039
+									Reunion						Rwanda	717710151		Rwanda	717710151																						Texas	717710040
+									Romania						Saint Helena	717710236		Saint Helena	717710236																						Thüringen	717710200
+									Russian Federation						Saint Kitts and Nevis	717710214		Saint Kitts and Nevis	717710214																						Torfaen	717710173
+									Rwanda						Saint Lucia	717710208		Saint Lucia	717710208																						Tyne & Wear	717710114
+									Saint Helena						Saint Martin	717710237		Saint Martin	717710237																						Tyrone	717710181
+									Saint Kitts and Nevis						Saint Pierre and Miquelon	717710244		Saint Pierre and Miquelon	717710244																						Utah	717710041
+									Saint Lucia						Saint Vincent and the Grenadines	717710206		Saint Vincent and the Grenadines	717710206																						Vale of Glamorgan	717710174
+									Saint Martin						Samoa	717710152		Samoa	717710152																						Vermont	717710042
+									Saint Pierre and Miquelon						San Marino	717710153		San Marino	717710153																						Victoria	717710071
+									Saint Vincent and the Grenadines						Sao Tome and Principe	717710154		Sao Tome and Principe	717710154																						Virgin Islands	717710066
+									Samoa						Saudi Arabia	717710155		Saudi Arabia	717710155																						Virginia	717710043
+									San Marino						Senegal	717710156		Senegal	717710156																						Warwickshire	717710115
+									Sao Tome and Principe						Serbia	717710157		Serbia	717710157																						Washington	717710045
+									Saudi Arabia						Seychelles	717710158		Seychelles	717710158																						Washington DC	717710046
+									Senegal						Sierra Leone	717710159		Sierra Leone	717710159																						West Dunbartonshire	717710151
+									Serbia						Singapore	717710160		Singapore	717710160																						West Lothian	717710152
+									Seychelles						Sint Maarten	717710241		Sint Maarten	717710241																						West Midlands	717710116
+									Sierra Leone						Slovakia	717710161		Slovakia	717710161																						West Sussex	717710117
+									Singapore						Slovenia	717710162		Slovenia	717710162																						West Virginia	717710044
+									Sint Maarten						Solomon Islands	717710163		Solomon Islands	717710163																						West Yorkshire	717710118
+									Slovakia						Somalia	717710164		Somalia	717710164																						Western Australia	717710072
+									Slovenia						South Africa	717710165		South Africa	717710165																						Western Isles	717710153
+									Solomon Islands						South Korea	717710199		South Korea	717710199																						Wiltshire	717710119
+									Somalia						South Sudan	717710205		South Sudan	717710205																						Wisconsin	717710048
+									South Africa						Spain	717710166		Spain	717710166																						Worcestershire	717710120
+									South Korea						Spain (Canary Islands)	717710250		Spain (Canary Islands)	717710250																						Wrexham	717710175
+									South Sudan						Sri Lanka	717710167		Sri Lanka	717710167																						Wyoming	717710049
+									Spain						Sudan	717710204		Sudan	717710204																						Yukon	717710062
+									Spain (Canary Islands)						Suriname	717710213		Suriname	717710213
+									Sri Lanka						Svalbard	717710168		Svalbard	717710168
+									Sudan						Swaziland	717710169		Swaziland	717710169
+									Suriname						Sweden	717710170		Sweden	717710170
+									Svalbard						Switzerland	717710171		Switzerland	717710171
+									Swaziland						Taiwan	717710201		Taiwan	717710201
+									Sweden						Tajikistan	717710172		Tajikistan	717710172
+									Switzerland						Tanzania	717710173		Tanzania	717710173
+									Syria						Thailand	717710174		Thailand	717710174
+									Taiwan						Timor-Leste	717710230		Timor-Leste	717710230
+									Tajikistan						Togo	717710175		Togo	717710175
+									Tanzania						Tokelau	717710203		Tokelau	717710203
+									Thailand						Tonga	717710176		Tonga	717710176
+									Timor-Leste						Trinidad and Tobago	717710222		Trinidad and Tobago	717710222
+									Togo						Tunisia	717710177		Tunisia	717710177
+									Tokelau						Turkey	717710178		Turkey	717710178
+									Tonga						Turkmenistan	717710179		Turkmenistan	717710179
+									Trinidad and Tobago						Turks and Caicos Islands	717710245		Turks and Caicos Islands	717710245
+									Tunisia						Tuvalu	717710180		Tuvalu	717710180
+									Turkey						Uganda	717710181		Uganda	717710181
+									Turkmenistan						Ukraine	717710182		Ukraine	717710182
+									Turks and Caicos Islands						United Arab Emirates	717710183		United Arab Emirates	717710183
+									Tuvalu						United Kingdom	717710184		United Kingdom	717710184
+									Uganda						United States	717710185		United States	717710185
+									Ukraine						Uruguay	717710186		Uruguay	717710186
+									United Arab Emirates						Uzbekistan	717710187		Uzbekistan	717710187
+									United Kingdom						Vanuatu	717710188		Vanuatu	717710188
+									United States						Vatican	717710189		Vatican	717710189
+									Uruguay						Venezuela	717710190		Venezuela	717710190
+									Uzbekistan						Vietnam	717710191		Vietnam	717710191
+									Vanuatu						Virgin Islands, British	717710072		Virgin Islands, British	717710072
+									Vatican						Virgin Islands, U.S.	717710223		Virgin Islands, U.S.	717710223
+									Venezuela						Wallis & Futuna Islands	717710192		Wallis & Futuna Islands	717710192
+									Vietnam						Western Sahara	717710193		Western Sahara	717710193
+									Virgin Islands, British						Yemen	717710194		Yemen	717710194
+									Virgin Islands, U.S.						Zambia	717710195		Zambia	717710195
+									Wallis & Futuna Islands						Zimbabwe	717710196		Zimbabwe	717710196
+									Western Sahara
+									Yemen
+									Zambia
+									Zimbabwe

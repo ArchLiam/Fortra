@@ -1,0 +1,302 @@
+USE [HSWarehouse]
+GO
+
+/****** Object:  View [dbo].[ServicesProjectHours]    Script Date: 2025-06-10 11:26:46 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+
+
+
+--6/14/2023       -Muddasser Md Adding Exchange Rate,Native Hourly rate, Native Currency Type
+--7/17/23         -Muddasser Md adding BillingCountryID,ShippingCountryID col.
+--2024-09-27 nwendt adding in Billied Date where existing in favor of services performed date
+--exclude all forecasts
+--2025-01-21 Bngunyi Pulling Product Brand from Projects instead of Project Hours.
+
+CREATE VIEW [dbo].[ServicesProjectHours]
+AS
+     SELECT   h.hs_numberofhours AS Hours,
+              CASE
+                  WHEN e.hs_rate IS NULL
+                  THEN p.hs_projecthourlyrate_base
+                  ELSE p.hs_projecthourlyrate * e.hs_rate
+              END AS [Hourly Rate],
+
+			  			  CASE 
+				  WHEN e.hs_rate IS NULL
+				  THEN h.exchangerate
+				  ELSE e.hs_rate 
+				  END AS [Exchange Rate],
+
+				  CASE WHEN P.hs_projecthourlyrate IS NULL
+				  THEN P.hs_projecthourlyrate_base/e.hs_rate
+				  ELSE  P.hs_projecthourlyrate END as [Native Hourly Rate],
+
+				  CASE WHEN h.transactioncurrencyidname IS NULL
+				  THEN P.transactioncurrencyidname
+				  ELSE h.transactioncurrencyidname END  as [Native Currency Type],
+
+
+
+							   
+              h.hs_numberofhours * (CASE
+                                        WHEN e.hs_rate IS NULL
+                                        THEN p.hs_projecthourlyrate_base
+                                        ELSE p.hs_projecthourlyrate * e.hs_rate
+                                    END) AS Revenue,
+              CASE
+                  WHEN h.hs_billablehours = 1
+                       AND p.hs_billableproject = 1
+                  THEN 'Yes'
+                  ELSE 'No'
+              END AS [Billable?],
+              a.name AS Account,           
+			  convert(date,dbo.fn_ConvertToCentralTime(isnull(h.hs_billeddate, h.hs_dateservicesperformed)))AS [Date],
+			  convert(date,dbo.fn_ConvertToCentralTime(h.hs_billeddate)) as BilledDate,
+			  dbo.fn_ConvertToCentralTime(h.createdon) as HoursCreated,
+			  dbo.fn_ConvertToCentralTime(hs_dateservicesperformed) as DateServicePerformed,
+			  CASE
+                  WHEN format(h.createdon,'yyyy-MM') > format(h.hs_dateservicesperformed,'yyyy-MM') 
+                  THEN 1
+                  ELSE 0
+              END
+			  AS LateEntry,
+              p.hs_projectname AS Project,
+              h.subject,
+              h.ownerid,
+			  owneridname.fullname as owneridname,
+              p.hs_productbrand AS BrandID,
+              hs_projecttaskname.hs_projecttaskname AS ProjectTask,--
+              hs_serviceactivitytype_displayname.value as  ServiceType,
+              hs_projecttype_displayname.value  AS ProjectType,
+              hs_projecthourstype_displayname.value as HoursType,
+              CASE
+                  WHEN h.hs_forecastedhours = 1
+                  THEN 'Yes'
+                  ELSE 'No'
+              END AS ForecastedHours,
+			  p.hs_projectnumber as [Project Number],
+              p.hs_projecttype,
+              p.hs_projectsid,
+              h.hs_forecastedhours,
+              p.hs_BudgetHours_Decimal as hs_projectbudgethours,
+              c.hs_countryname AS [Account Country],
+              hs_projectmanagerprojectleadname.fullname as hs_projectmanagerprojectleadname,
+              hs_acenonbillabletype_displayname.value as hs_acenonbillabletype_displayname,
+              h.hs_acenonbillabletype,
+              p.hs_rsm,
+              h.hs_acecomments,
+              CASE
+                  WHEN p.hs_generatedbyservices = 1
+                  THEN 'Yes'
+                  ELSE 'No'
+              END AS GeneratedByServices,
+			  isnull(uc.[Consultant?],'No') as [Consultant?],
+			  a.hs_country_picklist1 as BillingCountryID,
+			  a.hs_country_picklist2 as ShippingCountryID
+     FROM     CRMPROD.dbo.hs_projecthours AS h
+	 left join dim_user_consultant uc on h.ownerid = uc.ID
+	 left join hswarehouse.dbo.stringmap hs_serviceactivitytype_displayname  on hs_serviceactivitytype = hs_serviceactivitytype_displayname.[attribute value]  and hs_serviceactivitytype_displayname.[object type code] = 'hs_projecthours' and hs_serviceactivitytype_displayname.[attribute name] = 'hs_serviceactivitytype' and hs_serviceactivitytype_displayname.langid = 1033
+	 left join hswarehouse.dbo.stringmap hs_acenonbillabletype_displayname  on hs_acenonbillabletype = hs_acenonbillabletype_displayname.[attribute value]  and hs_acenonbillabletype_displayname.[object type code] = 'hs_projecthours' and hs_acenonbillabletype_displayname.[attribute name] = 'hs_acenonbillabletype' and hs_acenonbillabletype_displayname.langid = 1033
+              LEFT OUTER JOIN CRMPROD.dbo.hs_projects AS p ON h.hs_project = p.id
+			  left join crmprod.dbo.systemuser owneridname on h.ownerid = owneridname.systemuserid
+			  left join crmprod.dbo.systemuser hs_projectmanagerprojectleadname on p.hs_projectmanagerprojectlead = hs_projectmanagerprojectleadname.systemuserid
+			  left join hswarehouse.dbo.stringmap hs_projecttype_displayname  on hs_projecttype = hs_projecttype_displayname.[attribute value]  and hs_projecttype_displayname.[object type code] = 'hs_projects' and hs_projecttype_displayname.[attribute name] = 'hs_projecttype' and hs_projecttype_displayname.langid = 1033
+			  left join hswarehouse.dbo.stringmap hs_projecthourstype_displayname  on hs_projecthourstype = hs_projecthourstype_displayname.[attribute value]  and hs_projecthourstype_displayname.[object type code] = 'hs_projects' and hs_projecthourstype_displayname.[attribute name] = 'hs_projecthourstype' and hs_projecthourstype_displayname.langid = 1033
+			  left join crmprod.dbo.hs_projecttasks hs_projecttaskname on h.hs_projecttask = hs_projecttaskname.Id
+              LEFT OUTER JOIN CRMPROD.dbo.account AS a ON a.id = p.hs_account
+              LEFT OUTER JOIN CRMPROD.dbo.hs_country AS c ON COALESCE(a.hs_country_picklist2,a.hs_country_picklist1) = c.hs_countryoptionsetvalue
+              LEFT OUTER JOIN
+     (
+		 SELECT CONVERT(DATE,hs_enddate) AS EndDate,
+       hs_rate,
+       hs_currencyone
+FROM   CRMPROD.dbo.hs_exchangerates er
+       INNER JOIN crmprod.dbo.transactioncurrency tc ON er.hs_currencytwo = tc.transactioncurrencyid
+	   where  tc.currencyname = 'US Dollar'
+     ) AS e ON e.hs_currencyone = p.transactioncurrencyid
+               AND CONVERT(DATE,e.EndDate) = CONVERT(DATE,EOMONTH(h.hs_dateservicesperformed))
+WHERE
+	 
+	 
+                  h.hs_dateservicesperformed >=case when datepart(mm,getdate()) <= 3 THEN 
+	 dateadd(month,-3,DATEADD(yy, DATEDIFF(yy,0,getdate())-5, 0))
+	 ELSE 
+	 DATEADD(yy, DATEDIFF(yy,0,getdate())-5, 0)
+	 END
+	 and 
+	 CASE
+                  WHEN DATEDIFF(month,h.createdon,h.hs_dateservicesperformed) >= 0
+                  THEN h.hs_dateservicesperformed
+                  ELSE h.createdon
+              END < 
+case when datepart(mm,getdate()) >= 10
+THEN
+dateadd(month,3,DATEADD(yy, DATEDIFF(yy,0,getdate()) + 1, 0))
+ELSE
+DATEADD(yy, DATEDIFF(yy,0,getdate()) + 1, 0)  End
+
+
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[41] 4[20] 2[24] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "h"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 316
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "p"
+            Begin Extent = 
+               Top = 138
+               Left = 38
+               Bottom = 268
+               Right = 344
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "a"
+            Begin Extent = 
+               Top = 6
+               Left = 564
+               Bottom = 136
+               Right = 892
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "c"
+            Begin Extent = 
+               Top = 6
+               Left = 930
+               Bottom = 136
+               Right = 1184
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "e"
+            Begin Extent = 
+               Top = 6
+               Left = 354
+               Bottom = 119
+               Right = 526
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'ServicesProjectHours'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'ServicesProjectHours'
+GO
+

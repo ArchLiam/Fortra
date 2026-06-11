@@ -1,0 +1,71 @@
+[Meeting Agenda] At this meeting we’d like to review any billing scenario where having a partners on the deal influences the process
+If the partner is the billing entity, what variations need to be made in quoting, invoicing, discounts, renewals, and anything else.
+What are all the different billing scenarios that need to be accounted for?
+Partner receives bill instead of Customer
+Partner is involved but Customer receives bill
+Partner bills from different legal entities for different customers
+There is both a Distributor and a Reseller and they both get a part of the deal.
+Most Common Partnership Types: Distributor, Reseller and MSP/MSSPs
+1. Distributor
+Role: Distributes Fortra’s software licenses between the Fortra and resellers.
+Billing Model:
+Fortra invoices the distributor
+Distributor invoices the reseller
+End customer is not billed directly by Fortra
+CRM Attribution:
+Distributor = Bill-To Partner
+Reseller = Sell-To / Channel Partner
+End Customer = End User / Customer of Record
+2. Reseller (Value-Added Reseller - VAR)
+Role: Sells software licenses directly to the end customer, may also provide some implementation or support services.
+Billing Model:
+Fortra invoices the reseller
+Reseller invoices the end customer
+No direct financial transaction between Fortra and end customer
+CRM Attribution:
+Reseller = Bill-To and Sell-To Partner
+End Customer = End User / Customer of Record
+Use Case Example:
+A VAR sells a bundled software and services package to an enterprise customer, handling billing and support locally.
+3. Managed Service Provider (MSP)
+Role: Delivers software as part of a broader managed service (e.g., security monitoring, hosting, IT management).
+Billing Model:
+Fortra invoices the MSP
+Need to support the following billing cadences (NOTE: this aligns to standard business practices when working with this partnership type – Fortra is rebuilding its MSSP Program for 2026.)
+Monthly, Quarterly, Annual
+Usage-based billing
+MSP packages and bills the end customer as part of a service bundle
+Fortra typically will not know the end customer. Fortra has no engagement or interaction with the end customer.
+CRM Attribution:
+MSP = Customer of Record (when they are providing service on behalf of the end customer)
+End Customer = Optional/Linked Account (not directly transacting)
+In most cases, Fortra will not know the end customer
+Use Case Example:
+An MSP buys software licenses and includes them in a fully managed endpoint protection service offered to SMB clients.
+Referral Partnerships (least common partnerships – following scenarios may exist)
+1. Referral Partner
+Role: Identifies and refers a sales opportunity to the Fortra; not involved in billing or service delivery.
+Billing Model:
+Fortra invoices the end customer directly
+Referral partner is paid a commission % or referral fee by the Fortra
+Commission is paid to Referral partner 45 days after payment is received from the end customer to Fortra.
+CRM Attribution:
+Referral Partner = Influencer / Referral Source (not in billing hierarchy)
+End Customer = Bill-To and Customer of Record
+Use Case Example:
+A consulting firm refers a client to the software company and is paid a flat referral fee if the deal closes.
+1.2 Deal Involving Distributor + Referral Partner
+Scenario: A global systems integrator (Referral Partner) recommends your software to a large enterprise customer but does not transact. The customer prefers to buy through their existing procurement channel—via a Reseller, who purchases licenses through an authorized Distributor.
+🧾 Billing Flow
+Vendor invoices the Distributor
+Distributor invoices the Reseller
+Reseller invoices the End Customer
+Vendor pays referral fee to the Referral Partner (tracked outside the billing chain)
+Referral fee is a commission % of the sale. This is paid 45 days after Fortra receives payment from the Distributor.
+1.3 Deal Involving Reseller + Referral Partner
+Scenario: A global systems integrator (Referral Partner) recommends your software to a large enterprise customer but does not transact. The customer prefers to buy through their existing procurement channel—via a Reseller.
+🧾 Billing Flow
+Vendor invoices the Reseller
+Reseller invoices the End Customer
+Vendor pays referral fee to the Referral Partner (tracked outside the billing chain)
+Referral fee is a commission % of the sale. This is paid 45 days after Fortra receives payment from the Reseller.

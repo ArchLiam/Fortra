@@ -1,0 +1,826 @@
+[QUERY]
+&lt;fetch&gt;
+					&lt;entity name="quotedetail" &gt;
+					&lt;attribute name="quotedetailid" /&gt;
+					&lt;attribute name="productid" /&gt;
+					&lt;attribute name="hs_producttype" /&gt;
+					&lt;attribute name="quoteid" /&gt;
+					&lt;attribute name="hs_productbrand" /&gt;
+					&lt;attribute name="hs_subscriptionrenewal" /&gt;
+					&lt;filter&gt;
+					&lt;condition attribute="quoteid" operator="eq" value="@QuoteID"/&gt;
+					&lt;/filter&gt;
+					&lt;link-entity name="hs_productbrand" from="hs_productbrandid" to="hs_productbrand" alias="b" &gt;
+					&lt;attribute name="hs_productbrandname" /&gt;
+					&lt;/link-entity&gt;
+					&lt;link-entity name="product" from="productid" to="productid" alias="qd" &gt;
+					&lt;attribute name="name" /&gt;
+					&lt;attribute name="hs_productbrand" /&gt;
+					&lt;attribute name="productnumber" /&gt;
+					&lt;attribute name="hs_producttype" /&gt;
+					&lt;attribute name="hs_reportproductname" /&gt;
+					&lt;attribute name="hs_productbrandname" /&gt;
+					&lt;link-entity name="hs_producttranslation" from="hs_productid" to="productid" link-type="outer" alias="PTranslate" &gt;
+					&lt;attribute name="hs_productdescription" /&gt;
+					&lt;filter&gt;
+					&lt;condition attribute="hs_language" operator="eq" value="@Language" /&gt;
+					&lt;/filter&gt;
+					&lt;/link-entity&gt;
+					&lt;/link-entity&gt;
+					&lt;/entity&gt;
+					&lt;/fetch&gt;
+
+[QUERY]
+&lt;fetch mapping="logical" version="1.0"&gt;
+					&lt;entity name="quote" enableprefiltering="1"&gt;
+					&lt;attribute name="createdon"/&gt;
+					&lt;attribute name="hs_buyercontact"/&gt;
+					&lt;attribute name="transactioncurrencyid"/&gt;
+					&lt;attribute name="hs_reseller"/&gt;
+					&lt;attribute name="hs_resellername"/&gt;
+					&lt;attribute name="hs_purchasingagentaccount"/&gt;
+					&lt;attribute name="hs_purchasingagentaccountname"/&gt;
+					&lt;attribute name="quotenumber"/&gt;
+					&lt;attribute name="quoteid"/&gt;
+					&lt;attribute name="hs_nettermsinteger"/&gt;
+					&lt;attribute name="totalamount"/&gt;
+					&lt;attribute name="totaldiscountamount"/&gt;
+					&lt;attribute name="hs_purchasingagentcontactname"/&gt;
+					&lt;attribute name="effectiveto"/&gt;
+					&lt;attribute name="hs_purchasingagentcontact"/&gt;
+					&lt;attribute name="hs_billtocontact"/&gt;
+					&lt;attribute name="hs_billtocontactname"/&gt;
+					&lt;attribute name="hs_buyercontactname"/&gt;
+					&lt;attribute name="shipto_name"/&gt;
+					&lt;attribute name="shipto_line1"/&gt;
+					&lt;attribute name="shipto_line2"/&gt;
+					&lt;attribute name="shipto_line3"/&gt;
+					&lt;attribute name="shipto_city"/&gt;
+					&lt;attribute name="shipto_postalcode"/&gt;
+					&lt;attribute name="billto_name"/&gt;
+					&lt;attribute name="billto_line1"/&gt;
+					&lt;attribute name="billto_line2"/&gt;
+					&lt;attribute name="billto_line3"/&gt;
+					&lt;attribute name="billto_city"/&gt;
+					&lt;attribute name="billto_postalcode"/&gt;
+					&lt;attribute name="hs_showhidediscounts"/&gt;
+					&lt;attribute name="hs_showhidews"/&gt;
+					&lt;attribute name="hs_showhideproductnumber"/&gt;
+					&lt;attribute name="statecode"/&gt;
+					&lt;attribute name="hs_renewalmaintenancequote"/&gt;
+					&lt;attribute name="hs_managerapprovalneeded"/&gt;
+					&lt;attribute name="hs_managerapproved"/&gt;
+					&lt;attribute name="hs_serviceexpirationmonths"/&gt;
+					&lt;attribute name="hs_legalentity"/&gt;
+					&lt;attribute name="hs_language"/&gt;
+					&lt;attribute name="hs_shipto_stateprovinceid"/&gt;
+					&lt;attribute name="hs_billto_stateprovinceid"/&gt;
+					&lt;attribute name="hs_shipto_countryid"/&gt;
+					&lt;attribute name="hs_billto_countryid"/&gt;
+					&lt;link-entity name="account" from="accountid" to="customerid" alias="a" link-type="inner"&gt;
+					&lt;attribute name="accountnumber"/&gt;
+					&lt;attribute name="hs_accountinvoicename"/&gt;
+					&lt;attribute name="name"/&gt;
+					&lt;attribute name="address1_line1"/&gt;
+					&lt;attribute name="hs_locationid"/&gt;
+					&lt;attribute name="fax"/&gt;
+					&lt;/link-entity&gt;
+					&lt;link-entity name="transactioncurrency" from="transactioncurrencyid" to="transactioncurrencyid" alias="tc" link-type="inner"&gt;
+					&lt;attribute name="isocurrencycode"/&gt;
+					&lt;/link-entity&gt;
+					&lt;link-entity name="contact" from="contactid" to="hs_buyercontact" alias="c" link-type="outer"&gt;
+					&lt;attribute name="telephone1"/&gt;
+					&lt;attribute name="emailaddress1"/&gt;
+					&lt;attribute name="fullname"/&gt;
+					&lt;/link-entity&gt;
+					&lt;link-entity name="contact" from="contactid" to="hs_billtocontact" alias="cbilling" link-type="outer"&gt;
+					&lt;attribute name="telephone1"/&gt;
+					&lt;attribute name="emailaddress1"/&gt;
+					&lt;/link-entity&gt;
+					&lt;link-entity name="contact" from="contactid" to="hs_purchasingagentcontact" alias="cpurchase" link-type="outer"&gt;
+					&lt;attribute name="telephone1"/&gt;
+					&lt;attribute name="emailaddress1"/&gt;
+					&lt;/link-entity&gt;
+					&lt;link-entity name="systemuser" from="systemuserid" to="owninguser" alias="owner"&gt;
+					&lt;attribute name="internalemailaddress"/&gt;
+					&lt;attribute name="address1_telephone1"/&gt;
+					&lt;attribute name="fullname"/&gt;
+					&lt;/link-entity&gt;
+					&lt;/entity&gt;
+					&lt;/fetch&gt;
+
+[QUERY]
+&lt;fetch&gt;
+					&lt;entity name="hs_translation" &gt;
+					&lt;attribute name="hs_value" alias="VALUE" /&gt;
+					&lt;attribute name="hs_key" alias="KEY" /&gt;
+					&lt;filter&gt;
+					&lt;condition attribute="hs_optionsetid" operator="eq" value="@Language" /&gt;
+					&lt;/filter&gt;
+					&lt;/entity&gt;
+					&lt;/fetch&gt;
+
+[QUERY]
+&lt;fetch&gt;
+					&lt;entity name="hs_hsbankaccounts" &gt;
+					&lt;attribute name="hs_taxlabel" /&gt;
+					&lt;attribute name="hs_taxidphonewebsite" /&gt;
+					&lt;attribute name="hs_registeredaddress" /&gt;
+					&lt;attribute name="hs_currency" /&gt;
+					&lt;filter&gt;
+					&lt;condition attribute="hs_legalentity" operator="eq" value="@BankId" /&gt;
+					&lt;/filter&gt;
+					&lt;link-entity name="transactioncurrency" from="transactioncurrencyid" to="hs_currency" alias="Currency" &gt;
+					&lt;attribute name="isocurrencycode" /&gt;
+					&lt;attribute name="currencyname" /&gt;
+					&lt;filter&gt;
+					&lt;condition attribute="transactioncurrencyid" operator="eq" value="@CurrencyID" /&gt;
+					&lt;/filter&gt;
+					&lt;/link-entity&gt;
+					&lt;/entity&gt;
+					&lt;/fetch&gt;
+
+[QUERY]
+&lt;fetch mapping="logical" version="1.0"&gt;
+	&lt;entity name="quote" alias="q" &gt;
+		&lt;attribute name="quoteid" /&gt;
+		&lt;attribute name="hs_showhidediscounts" /&gt;
+			&lt;filter&gt;
+				&lt;condition attribute="quoteid" operator="eq" value="@QuoteID" /&gt;
+			&lt;/filter&gt;		
+		&lt;link-entity name="quotedetail" from="quoteid" to="quoteid" link-type="inner" alias="id" &gt;
+			&lt;attribute name="productid" /&gt;
+			&lt;attribute name="productidname" /&gt;
+			&lt;attribute name="priceperunit" /&gt;
+			&lt;attribute name="quantity" /&gt;
+			&lt;attribute name="baseamount" /&gt;
+			&lt;attribute name="manualdiscountamount" /&gt;
+			&lt;attribute name="extendedamount" /&gt;
+			&lt;attribute name="hs_hardwareid" /&gt;
+			&lt;attribute name="hs_productformaintenance" /&gt;
+			&lt;attribute name="hs_hwcproductid" /&gt;
+			&lt;attribute name="tax" /&gt;
+			&lt;link-entity name="product" from="productid" to="productid" link-type="inner" alias="p" &gt;
+				&lt;!--&lt;attribute name="hs_producttypename" /&gt;--&gt;
+				&lt;attribute name="hs_producttype" /&gt;
+				&lt;attribute name="productnumber" /&gt;
+				&lt;attribute name="name" /&gt;
+			&lt;/link-entity&gt;
+			 &lt;link-entity name="transactioncurrency" from="transactioncurrencyid" to="transactioncurrencyid" link-type="inner" alias="tc" &gt;
+			 	&lt;attribute name="isocurrencycode" /&gt;
+			 &lt;/link-entity&gt;
+		&lt;/link-entity&gt;
+	&lt;/entity&gt;
+&lt;/fetch&gt;
+
+[FIELDS] AccountName, BillToName, BillingInfoName, Currency_currencyname, Currency_isocurrencycode, DisplayAmount, FinalAmount, HasAM, HasCore, HasDescription, HasIM, HasLinoma, HasLinomaServices, HasLinomaTraining, HasRJS, HasSB, HasServices, HideDiscount, ItemAmount, KEY, Language, Legal, NetTerms, PTranslate_hs_productdescription, RenewalQuote, ReportingGroup, Sequence, ShowCobaltStrikeText, ShowCoreEULA, ShowHideDiscounts, ShowInvalidQuote, SoftNewMaint, Subscription, TranslationKey, VALUE, a_accountnumber, a_address1_line1, a_fax, a_hs_accountinvoicename, a_hs_locationid, a_name, b_hs_productbrandname, billto_city, billto_line1, billto_line2, billto_line3, billto_name, billto_postalcode, c_emailaddress1, c_fullname, c_telephone1, cbilling_emailaddress1, cbilling_telephone1, cpurchase_emailaddress1, cpurchase_telephone1, createdon, createdonValue, effectiveto, effectivetoValue, hs_billto_countryid, hs_billto_countryidEntityName, hs_billto_countryidValue, hs_billto_stateprovinceid, hs_billto_stateprovinceidEntityName, hs_billto_stateprovinceidValue, hs_billtocontact, hs_billtocontactEntityName, hs_billtocontactValue, hs_billtocontactname, hs_buyercontact, hs_buyercontactEntityName, hs_buyercontactValue, hs_buyercontactname, hs_currency, hs_currencyEntityName, hs_currencyValue, hs_language, hs_languageValue, hs_legalentity, hs_legalentityEntityName, hs_legalentityValue, hs_legalentityValueNoNull, hs_managerapprovalneeded, hs_managerapprovalneededValue, hs_managerapproved, hs_managerapprovedValue, hs_nettermsinteger, hs_nettermsintegerValue, hs_productbrand, hs_productbrandEntityName, hs_productbrandValue, hs_producttype, hs_producttypeValue, hs_purchasingagentaccount, hs_purchasingagentaccountEntityName, hs_purchasingagentaccountValue, hs_purchasingagentaccountname, hs_purchasingagentcontact, hs_purchasingagentcontactEntityName, hs_purchasingagentcontactValue, hs_purchasingagentcontactname, hs_registeredaddress, hs_renewalmaintenancequote, hs_renewalmaintenancequoteValue, hs_reseller, hs_resellerEntityName, hs_resellerValue, hs_resellername, hs_serviceexpirationmonths, hs_serviceexpirationmonthsValue, hs_shipto_countryid, hs_shipto_countryidEntityName, hs_shipto_countryidValue, hs_shipto_stateprovinceid, hs_shipto_stateprovinceidEntityName, hs_shipto_stateprovinceidValue, hs_showhidediscounts, hs_showhidediscountsValue, hs_showhideproductnumber, hs_showhideproductnumberValue, hs_showhidews, hs_showhidewsValue, hs_subscriptionrenewal, hs_subscriptionrenewalValue, hs_taxidphonewebsite, hs_taxlabel, id_baseamount, id_baseamountValue, id_extendedamount, id_extendedamountValue, id_hs_hardwareid, id_hs_hwcproductid, id_hs_productformaintenance, id_hs_productformaintenanceEntityName, id_hs_productformaintenanceValue, id_manualdiscountamount, id_manualdiscountamountValue, id_priceperunit, id_priceperunitValue, id_productid, id_productidEntityName, id_productidValue, id_productidname, id_quantity, id_quantityValue, id_tax, id_taxValue, int_manualdiscount, owner_address1_telephone1, owner_fullname, owner_internalemailaddress, p_hs_producttype, p_hs_producttypeValue, p_name, p_productnumber, productid, productidEntityName, productidValue, qd_hs_productbrand, qd_hs_productbrandEntityName, qd_hs_productbrandValue, qd_hs_productbrandname, qd_hs_producttype, qd_hs_producttypeValue, qd_hs_reportproductname, qd_name, qd_productnumber, quotedetailid, quoteid, quoteidEntityName, quoteidValue, quotenumber, shipto_city, shipto_line1, shipto_line2, shipto_line3, shipto_name, shipto_postalcode, statecode, statecodeValue, tc_isocurrencycode, totalamount, totalamountValue, totaldiscountamount, totaldiscountamountValue, transactioncurrencyid, transactioncurrencyidEntityName, transactioncurrencyidValue
+
+[TEXT NODES]
+MSCRMFETCH
+https://crm15uat.helpsystems.com/HSCRM15UAT
+None
+CRM
+=Parameters!QuoteID.Value
+=Parameters!Language.Value
+<fetch>
+					<entity name="quotedetail" >
+					<attribute name="quotedetailid" />
+					<attribute name="productid" />
+					<attribute name="hs_producttype" />
+					<attribute name="quoteid" />
+					<attribute name="hs_productbrand" />
+					<attribute name="hs_subscriptionrenewal" />
+					<filter>
+					<condition attribute="quoteid" operator="eq" value="@QuoteID"/>
+					</filter>
+					<link-entity name="hs_productbrand" from="hs_productbrandid" to="hs_productbrand" alias="b" >
+					<attribute name="hs_productbrandname" />
+					</link-entity>
+					<link-entity name="product" from="productid" to="productid" alias="qd" >
+					<attribute name="name" />
+					<attribute name="hs_productbrand" />
+					<attribute name="productnumber" />
+					<attribute name="hs_producttype" />
+					<attribute name="hs_reportproductname" />
+					<attribute name="hs_productbrandname" />
+					<link-entity name="hs_producttranslation" from="hs_productid" to="productid" link-type="outer" alias="PTranslate" >
+					<attribute name="hs_productdescription" />
+					<filter>
+					<condition attribute="hs_language" operator="eq" value="@Language" />
+					</filter>
+					</link-entity>
+					</link-entity>
+					</entity>
+					</fetch>
+quotedetailid
+System.String
+productid
+System.String
+productidValue
+System.Guid
+productidEntityName
+System.String
+hs_producttype
+System.String
+qd_hs_producttype
+System.String
+hs_producttypeValue
+System.Int32
+qd_hs_producttypeValue
+System.Int32
+quoteid
+System.String
+quoteidValue
+System.Guid
+quoteidEntityName
+System.String
+hs_productbrand
+System.String
+hs_subscriptionrenewal
+System.String
+qd_hs_productbrand
+System.String
+hs_subscriptionrenewalValue
+System.Boolean
+qd_hs_productbrandValue
+System.Guid
+hs_productbrandValue
+System.Guid
+qd_hs_productbrandEntityName
+System.String
+hs_productbrandEntityName
+System.String
+b_hs_productbrandname
+System.String
+qd_name
+System.String
+qd_productnumber
+System.String
+qd_hs_reportproductname
+System.String
+qd_hs_productbrandname
+System.String
+=IIF(Fields!qd_hs_producttypeValue.Value = "717710001"
+						OR Fields!qd_hs_producttypeValue.Value = "717710000"
+						OR Fields!qd_hs_producttypeValue.Value = "717710003",
+						1,
+						0
+						)
+PTranslate_hs_productdescription
+System.String
+=IIF(
+						Fields!qd_hs_producttypeValue.Value = "717710004",
+						1,
+						0
+						)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "InterMapper",
+						1,
+						0
+						)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "AutoMate",
+						1,
+						0
+						)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "Skybot",
+						1,
+						0
+						)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "Core CTS" OR Fields!qd_hs_productbrandname.Value = "Core IGA" OR Fields!qd_hs_productbrandname.Value = "Core SCS",
+						1,
+						0
+						)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "RJS",
+						1,
+						0
+						)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "Core CTS" OR Fields!qd_hs_productbrandname.Value = "Core IGA" ,
+						1,
+						0
+						)
+=iif(iif(isnothing(Fields!PTranslate_hs_productdescription.Value),0,len(trim(Fields!PTranslate_hs_productdescription.Value)))>0,1,0)
+=iif(Fields!qd_hs_producttypeValue.Value = 717710002,1,0)
+=iif(Fields!b_hs_productbrandname.Value = "Linoma",1,0)
+=iif(Fields!qd_hs_productbrand.Value = "Linoma" and Fields!hs_producttypeValue.Value = 717710002,1,0)
+=iif(left(Fields!qd_name.Value,19) = "GoAnywhere Training",1,0)
+=iif(Fields!hs_subscriptionrenewalValue.Value = True,1,0)
+=IIF(
+						Fields!qd_hs_productbrandname.Value = "Cobalt Strike" OR Fields!qd_hs_productbrandname.Value = "Core CTS" OR Fields!qd_hs_productbrandname.Value = "Outflank",	1,	0	)
+CRM
+=Parameters!CRM_quote.Value
+<fetch mapping="logical" version="1.0">
+					<entity name="quote" enableprefiltering="1">
+					<attribute name="createdon"/>
+					<attribute name="hs_buyercontact"/>
+					<attribute name="transactioncurrencyid"/>
+					<attribute name="hs_reseller"/>
+					<attribute name="hs_resellername"/>
+					<attribute name="hs_purchasingagentaccount"/>
+					<attribute name="hs_purchasingagentaccountname"/>
+					<attribute name="quotenumber"/>
+					<attribute name="quoteid"/>
+					<attribute name="hs_nettermsinteger"/>
+					<attribute name="totalamount"/>
+					<attribute name="totaldiscountamount"/>
+					<attribute name="hs_purchasingagentcontactname"/>
+					<attribute name="effectiveto"/>
+					<attribute name="hs_purchasingagentcontact"/>
+					<attribute name="hs_billtocontact"/>
+					<attribute name="hs_billtocontactname"/>
+					<attribute name="hs_buyercontactname"/>
+					<attribute name="shipto_name"/>
+					<attribute name="shipto_line1"/>
+					<attribute name="shipto_line2"/>
+					<attribute name="shipto_line3"/>
+					<attribute name="shipto_city"/>
+					<attribute name="shipto_postalcode"/>
+					<attribute name="billto_name"/>
+					<attribute name="billto_line1"/>
+					<attribute name="billto_line2"/>
+					<attribute name="billto_line3"/>
+					<attribute name="billto_city"/>
+					<attribute name="billto_postalcode"/>
+					<attribute name="hs_showhidediscounts"/>
+					<attribute name="hs_showhidews"/>
+					<attribute name="hs_showhideproductnumber"/>
+					<attribute name="statecode"/>
+					<attribute name="hs_renewalmaintenancequote"/>
+					<attribute name="hs_managerapprovalneeded"/>
+					<attribute name="hs_managerapproved"/>
+					<attribute name="hs_serviceexpirationmonths"/>
+					<attribute name="hs_legalentity"/>
+					<attribute name="hs_language"/>
+					<attribute name="hs_shipto_stateprovinceid"/>
+					<attribute name="hs_billto_stateprovinceid"/>
+					<attribute name="hs_shipto_countryid"/>
+					<attribute name="hs_billto_countryid"/>
+					<link-entity name="account" from="accountid" to="customerid" alias="a" link-type="inner">
+					<attribute name="accountnumber"/>
+					<attribute name="hs_accountinvoicename"/>
+					<attribute name="name"/>
+					<attribute name="address1_line1"/>
+					<attribute name="hs_locationid"/>
+					<attribute name="fax"/>
+					</link-entity>
+					<link-entity name="transactioncurrency" from="transactioncurrencyid" to="transactioncurrencyid" alias="tc" link-type="inner">
+					<attribute name="isocurrencycode"/>
+					</link-entity>
+					<link-entity name="contact" from="contactid" to="hs_buyercontact" alias="c" link-type="outer">
+					<attribute name="telephone1"/>
+					<attribute name="emailaddress1"/>
+					<attribute name="fullname"/>
+					</link-entity>
+					<link-entity name="contact" from="contactid" to="hs_billtocontact" alias="cbilling" link-type="outer">
+					<attribute name="telephone1"/>
+					<attribute name="emailaddress1"/>
+					</link-entity>
+					<link-entity name="contact" from="contactid" to="hs_purchasingagentcontact" alias="cpurchase" link-type="outer">
+					<attribute name="telephone1"/>
+					<attribute name="emailaddress1"/>
+					</link-entity>
+					<link-entity name="systemuser" from="systemuserid" to="owninguser" alias="owner">
+					<attribute name="internalemailaddress"/>
+					<attribute name="address1_telephone1"/>
+					<attribute name="fullname"/>
+					</link-entity>
+					</entity>
+					</fetch>
+true
+createdon
+System.String
+createdonValue
+System.DateTime
+hs_buyercontact
+System.String
+transactioncurrencyid
+System.String
+hs_buyercontactValue
+System.Guid
+hs_reseller
+System.String
+hs_buyercontactEntityName
+System.String
+transactioncurrencyidValue
+System.Guid
+quotenumber
+System.String
+transactioncurrencyidEntityName
+System.String
+hs_resellerValue
+System.Guid
+quoteid
+System.String
+hs_resellerEntityName
+System.String
+hs_resellername
+System.String
+hs_purchasingagentaccount
+System.String
+hs_purchasingagentaccountValue
+System.Guid
+hs_purchasingagentaccountEntityName
+System.String
+hs_purchasingagentaccountname
+System.String
+hs_nettermsinteger
+System.String
+hs_nettermsintegerValue
+System.Int32
+totalamount
+System.String
+totalamountValue
+System.Decimal
+totaldiscountamount
+System.String
+totaldiscountamountValue
+System.Decimal
+hs_purchasingagentcontactname
+System.String
+effectiveto
+System.String
+effectivetoValue
+System.DateTime
+hs_purchasingagentcontact
+System.String
+hs_purchasingagentcontactValue
+System.Guid
+hs_purchasingagentcontactEntityName
+System.String
+hs_billtocontact
+System.String
+hs_billtocontactValue
+System.Guid
+hs_billtocontactEntityName
+System.String
+hs_billtocontactname
+System.String
+hs_buyercontactname
+System.String
+shipto_name
+System.String
+shipto_line1
+System.String
+shipto_line2
+System.String
+shipto_line3
+System.String
+shipto_city
+System.String
+shipto_postalcode
+System.String
+billto_name
+System.String
+billto_line1
+System.String
+billto_line2
+System.String
+billto_line3
+System.String
+billto_city
+System.String
+billto_postalcode
+System.String
+hs_showhidediscounts
+System.String
+hs_showhidediscountsValue
+System.Boolean
+hs_showhidews
+System.String
+hs_showhidewsValue
+System.Boolean
+hs_showhideproductnumber
+System.String
+statecode
+System.String
+hs_showhideproductnumberValue
+System.Boolean
+statecodeValue
+System.Int32
+hs_renewalmaintenancequote
+System.String
+hs_renewalmaintenancequoteValue
+System.Boolean
+hs_managerapprovalneeded
+System.String
+hs_managerapprovalneededValue
+System.Boolean
+hs_managerapproved
+System.String
+hs_managerapprovedValue
+System.Boolean
+hs_serviceexpirationmonths
+System.String
+hs_serviceexpirationmonthsValue
+System.Int32
+hs_legalentity
+System.String
+hs_legalentityValue
+System.Guid
+hs_legalentityEntityName
+System.String
+hs_language
+System.String
+hs_languageValue
+System.Int32
+hs_shipto_stateprovinceid
+System.String
+a_accountnumber
+System.String
+hs_shipto_stateprovinceidValue
+System.Guid
+a_hs_accountinvoicename
+System.String
+a_name
+System.String
+hs_shipto_stateprovinceidEntityName
+System.String
+a_address1_line1
+System.String
+hs_billto_stateprovinceid
+System.String
+a_hs_locationid
+System.String
+hs_billto_stateprovinceidValue
+System.Guid
+a_fax
+System.String
+hs_billto_stateprovinceidEntityName
+System.String
+tc_isocurrencycode
+System.String
+hs_shipto_countryid
+System.String
+hs_shipto_countryidValue
+System.Guid
+c_telephone1
+System.String
+c_emailaddress1
+System.String
+hs_shipto_countryidEntityName
+System.String
+hs_billto_countryid
+System.String
+c_fullname
+System.String
+cbilling_telephone1
+System.String
+hs_billto_countryidValue
+System.Guid
+hs_billto_countryidEntityName
+System.String
+cbilling_emailaddress1
+System.String
+cpurchase_telephone1
+System.String
+cpurchase_emailaddress1
+System.String
+owner_internalemailaddress
+System.String
+=iif(isnothing(Fields!hs_languageValue.Value),717710000,Fields!hs_languageValue.Value)
+=iif(isnothing(Fields!hs_legalentityValue.Value),"DDFB4089-BE25-E511-80C4-005056840EFE",Fields!hs_legalentityValue.Value)
+owner_address1_telephone1
+System.String
+=iif(Fields!hs_nettermsinteger.Value = "0","Due Upon Reciept", Fields!hs_nettermsinteger.Value)
+owner_fullname
+System.String
+=iif(isnothing(Fields!hs_purchasingagentcontactValue.Value),
+						iif(isnothing(Fields!hs_billtocontactValue.Value),Fields!c_fullname.Value,
+						Fields!hs_billtocontact.Value),Fields!hs_purchasingagentcontact.Value)
+=iif(isnothing(Fields!hs_reseller.Value)
+						,iif(isnothing(Fields!hs_purchasingagentaccount.Value)
+						,iif(isnothing(Fields!a_hs_accountinvoicename.Value)
+						,Fields!a_name.Value
+						,Fields!a_hs_accountinvoicename.Value)
+						,Fields!hs_purchasingagentaccount.Value)
+						,Fields!hs_reseller.Value)
+=iif(iif(isnothing(Fields!totaldiscountamountValue.Value),0,Fields!totaldiscountamountValue.Value)=0 or Fields!hs_showhidediscountsValue.Value = false,true,false)
+=iif(Fields!hs_renewalmaintenancequoteValue.Value = true 
+	, 0
+	,iif(Fields!hs_managerapprovalneededValue.Value = TRUE and Fields!hs_managerapprovedValue.Value = TRUE and (Fields!statecodeValue.Value = 1 or Fields!statecodeValue.Value = 2)
+		, 0
+		, iif(Fields!hs_managerapprovalneededValue.Value = 0 and (Fields!statecodeValue.Value = 1 or Fields!statecodeValue.Value = 2), 0,1)
+		)	
+)
+=iif(isnothing(Fields!a_hs_accountinvoicename.Value),Fields!a_name.Value,Fields!a_hs_accountinvoicename.Value)
+=iif(isnothing(Fields!hs_legalentityValue.Value),"00000000-0000-0000-0000-000000000000",Fields!hs_legalentityValue.Value)
+CRM
+=Parameters!Language.Value
+<fetch>
+					<entity name="hs_translation" >
+					<attribute name="hs_value" alias="VALUE" />
+					<attribute name="hs_key" alias="KEY" />
+					<filter>
+					<condition attribute="hs_optionsetid" operator="eq" value="@Language" />
+					</filter>
+					</entity>
+					</fetch>
+VALUE
+System.String
+KEY
+System.String
+CRM
+=Parameters!BankId.Value
+=Parameters!CurrencyID.Value
+<fetch>
+					<entity name="hs_hsbankaccounts" >
+					<attribute name="hs_taxlabel" />
+					<attribute name="hs_taxidphonewebsite" />
+					<attribute name="hs_registeredaddress" />
+					<attribute name="hs_currency" />
+					<filter>
+					<condition attribute="hs_legalentity" operator="eq" value="@BankId" />
+					</filter>
+					<link-entity name="transactioncurrency" from="transactioncurrencyid" to="hs_currency" alias="Currency" >
+					<attribute name="isocurrencycode" />
+					<attribute name="currencyname" />
+					<filter>
+					<condition attribute="transactioncurrencyid" operator="eq" value="@CurrencyID" />
+					</filter>
+					</link-entity>
+					</entity>
+					</fetch>
+hs_taxlabel
+System.String
+hs_taxidphonewebsite
+System.String
+hs_registeredaddress
+System.String
+hs_currency
+System.String
+hs_currencyValue
+System.Guid
+hs_currencyEntityName
+System.String
+Currency_isocurrencycode
+System.String
+Currency_currencyname
+System.String
+CRM
+=Parameters!QuoteID.Value
+<fetch mapping="logical" version="1.0">
+	<entity name="quote" alias="q" >
+		<attribute name="quoteid" />
+		<attribute name="hs_showhidediscounts" />
+			<filter>
+				<condition attribute="quoteid" operator="eq" value="@QuoteID" />
+			</filter>		
+		<link-entity name="quotedetail" from="quoteid" to="quoteid" link-type="inner" alias="id" >
+			<attribute name="productid" />
+			<attribute name="productidname" />
+			<attribute name="priceperunit" />
+			<attribute name="quantity" />
+			<attribute name="baseamount" />
+			<attribute name="manualdiscountamount" />
+			<attribute name="extendedamount" />
+			<attribute name="hs_hardwareid" />
+			<attribute name="hs_productformaintenance" />
+			<attribute name="hs_hwcproductid" />
+			<attribute name="tax" />
+			<link-entity name="product" from="productid" to="productid" link-type="inner" alias="p" >
+				<!--<attribute name="hs_producttypename" />-->
+				<attribute name="hs_producttype" />
+				<attribute name="productnumber" />
+				<attribute name="name" />
+			</link-entity>
+			 <link-entity name="transactioncurrency" from="transactioncurrencyid" to="transactioncurrencyid" link-type="inner" alias="tc" >
+			 	<attribute name="isocurrencycode" />
+			 </link-entity>
+		</link-entity>
+	</entity>
+</fetch>
+quoteid
+System.String
+hs_showhidediscounts
+System.String
+hs_showhidediscountsValue
+System.Boolean
+id_productid
+System.String
+id_productidValue
+System.Guid
+id_productidEntityName
+System.String
+id_productidname
+System.String
+id_priceperunit
+System.String
+id_priceperunitValue
+System.Decimal
+id_quantity
+System.String
+id_quantityValue
+System.Decimal
+id_baseamount
+System.String
+id_baseamountValue
+System.Decimal
+id_manualdiscountamount
+System.String
+id_manualdiscountamountValue
+System.Decimal
+id_extendedamount
+System.String
+id_extendedamountValue
+System.Decimal
+id_hs_hardwareid
+System.String
+id_hs_productformaintenance
+System.String
+id_hs_productformaintenanceValue
+System.Guid
+id_hs_productformaintenanceEntityName
+System.String
+id_hs_hwcproductid
+System.String
+id_tax
+System.String
+id_taxValue
+System.Decimal
+p_hs_producttype
+System.String
+p_hs_producttypeValue
+System.Int32
+p_productnumber
+System.String
+p_name
+System.String
+tc_isocurrencycode
+System.String
+=Switch(
+				  (cStr(Fields!p_hs_producttypeValue.Value) = "717710000" AND NOT IsNothing(Fields!id_hs_hwcproductid.Value)), "HARDWARECHANGE"
+				  ,(Fields!p_hs_producttype.Value = "Renewal Maintenance"), "RENEWALMAINT"
+				  ,(Fields!p_hs_producttype.Value = "Software"), "NEWSOFTWARE"
+				  ,(Fields!p_hs_producttype.Value = "New Maintenance"), "NEWMAINTENANCE"
+				  ,(Fields!p_hs_producttype.Value = "Subscription"), "SUBSCRIPTIONS"
+				  ,(Fields!p_hs_producttype.Value = "License Upgrade Fee"), "HARDWARECHANGE"
+				  ,true, UCase( Fields!p_hs_producttype.Value)
+				  )
+=IIF(IsNothing(Fields!id_priceperunitValue.Value), 0, Fields!id_priceperunitValue.Value) * Fields!id_quantityValue.Value
+=IIF(IsNothing(Fields!id_baseamountValue.Value), 0, Fields!id_baseamountValue.Value) - IIF(IsNothing(Fields!int_manualdiscount.Value), 0, Fields!int_manualdiscount.Value)
+=iif(IsNothing(IIF(IsNothing(Fields!id_priceperunitValue.Value), 0, Fields!id_priceperunitValue.Value) * Fields!id_quantityValue.Value), 0, (IIF(IsNothing(Fields!id_priceperunitValue.Value), 0, Fields!id_priceperunitValue.Value) * Fields!id_quantityValue.Value))
+=Switch(
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710000" AND NOT IsNothing(Fields!id_hs_hwcproductid.Value), "Change Fee"
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710001" , "Software"
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710002" , "Services"
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710003" , "License Upgrade Fee"
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710004" , "Subscription"
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710005" , "Renewal Maintenance"
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttype.Value) = "717710006" , "Other"
+					  ,
+					  true, "Other"
+					  )
+=Switch(
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710000" , 2
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710001" , 1
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710002" , 6
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710003" , 5
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710004" , 3
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710005" , 4
+					  ,
+					  IsNothing(Fields!p_hs_producttype.Value) AND cStr(Fields!p_hs_producttypeValue.Value) = "717710006" , 9
+					  ,
+					  true, 9
+					  )
+=IIF(IsNothing(Fields!hs_showhidediscountsValue.Value), 1, cInt(Fields!hs_showhidediscountsValue.Value))
+=cInt(Fields!id_manualdiscountamountValue.Value)
+1.07693in
+1.83269in
+1.72801in
+1.42387in
+1.70805in
+0.2in
+true
+=Lookup("DATE", Fields!KEY.Value, Fields!VALUE.Value, "dsTranslation") &": " & CStr(Day(Fields!createdon.Value)) & "-" & Left(MonthName(Month(Fields!createdon.Value)),3) & "-" & Right(CStr(Year(Fields!createdon.Value)),2)
+Calibri
+Solid
+true
+=Lookup("ACCOUNTNUMBER", Fields!KEY.Value, Fields!VALUE.Value, "dsTranslation") &": " & Fields!AccountName.Value & " (" & Fields!a_accountnumber.Value & ")"
+Calibri
+Solid
+true
+=Lookup("QUOTENUMBER", Fields!KEY.Value, Fields!VALUE.Value, "dsTranslation") &": " & Fields!quotenumber.Value
+Calibri
+Solid
+true
+=Lookup("NETTERMS", Fields!KEY.Value, Fields!VALUE.Value, "dsTranslation") &": " & Fields!NetTerms.Value & " " & Lookup("DAYS", Fields!KEY.Value, Fields!VALUE.Value, "dsTranslation")
+Calibri
+Solid
+true
+=Lookup("EXPIRATIONDATE", Fields!KEY.Value, Fields!VALUE.Value, "dsTranslation") &": " & CStr(Day(Fields!effectivetoValue.Value)) & "-" & Left(MonthName(Month(Fields!effectivetoValue.Value)),3) & "-" & Right(CStr(Year(Fields!effectivetoValue.Value)),2)
+Calibri

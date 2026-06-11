@@ -1,0 +1,19 @@
+Attribution Questions from Marketing
+What is the out of the box attribution functionality in Salesforce?
+Is it typically first touch? Last touch?
+Knowing what our new processes will be, what recommendations does Coastal have? What are best practices?
+Will there be any multi-touch attribution capabilities?
+Do we use Data Cloud for this?
+In D365, there’s a campaign code on all campaign activities that we use in “tracking urls” to ensure leads/opps generated from activities are attributed correctly.  Example: 
+
+?code=cmp-0000016344&ls=717710006&utm_source=hubspot&utm_medium=email&utm_campaign=cs-cyberdefense-eblasts
+How will this work in SFDC?
+Using codes on forms like this allows us to have a default campaign association as well as dynamically insert them via url parameters into the hidden property so can attribute visits and form submissions to the right source campaign
+I know in SFDC we can set different campaign member statuses that can be unique to the campaign and certain ones are considered as “responded”. What’s best practice here? Do we need to talk through how we’ll do this?
+How can we ensure attribution works properly when opportunities can also be created manually by reps?
+We’ve historically not leveraged utm parameters much for CRM attribution (more so used for web reporting in GA4). What are best practices for using utm parameters within SFDC and Data Cloud?
+How can we track the full buyer journey (at both a contact and account level) if a buyer engages with multiple channels before converting?
+Would also be great to understand # of touchpoints and what channels influence different sales stages.
+Ex: On avg, a buyer has 8 touchpoints between Lead + Opp
+Ex: PPC is most influential at the top of funnel vs bottom
+How can we distinguish between marketing-sourced and marketing-influenced pipeline and ALE in reporting?

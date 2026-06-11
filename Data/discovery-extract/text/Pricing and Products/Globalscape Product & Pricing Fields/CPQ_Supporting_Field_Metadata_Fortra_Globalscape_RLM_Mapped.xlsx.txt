@@ -1,0 +1,316 @@
+
+===== SHEET: Favorite (4r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Favorite Name	string	80	0	0	No	No	No							Yes	Yes	No	No
+No	SBQQ__Description__c	Description	textarea	255	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__OwnerName__c	Owner Name	string	1300	0	0	No	No	No		Owner:User.FirstName + " " +  Owner:User.LastName					No	No	No	Yes
+
+===== SHEET: FavoriteProduct (10r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Favorite Product Name	string	80	0	0	No	No	No							Yes	Yes	No	No
+No	SBQQ__ConfigurationAttributes__c	Configuration Attributes	textarea	131072	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__DiscountSchedule__c	Discount Schedule	reference	18	0	0	No	No	No				SBQQ__DiscountSchedule__c	SBQQ__DiscountSchedule__r		Yes	Yes	No	Yes
+No	SBQQ__DynamicOptionId__c	Dynamic Option ID	string	40	0	0	No	No	No			Identifies feature and dynamic option for this line.				Yes	Yes	No	Yes
+No	SBQQ__Favorite__c	Favorite	reference	18	0	0	Yes	No	No				SBQQ__Favorite__c	SBQQ__Favorite__r		Yes	No	No	Yes
+No	SBQQ__ProductOption__c	Product Option	reference	18	0	0	No	No	No				SBQQ__ProductOption__c	SBQQ__ProductOption__r		Yes	Yes	No	Yes
+No	SBQQ__Product__c	Product	reference	18	0	0	No	No	No				Product2	SBQQ__Product__r		Yes	Yes	No	Yes
+No	SBQQ__Quantity__c	Quantity	double	0	12	2	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__RequiredBy__c	Required By	reference	18	0	0	No	No	No				SBQQ__FavoriteProduct__c	SBQQ__RequiredBy__r		Yes	Yes	No	Yes
+
+===== SHEET: ImportFormat (6r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Import Format #	string	80	0	0	Yes	No	No							No	No	No	No
+No	SBQQ__Active__c	Active	boolean	0	0	0	Yes	No	No	False		Select the checkbox to make the input format available for use.				Yes	Yes	No	Yes
+No	SBQQ__ImportFormatName__c	Import Format Name	string	255	0	0	Yes	No	No			Enter a meaningful name that describes the input format.				Yes	Yes	No	Yes
+No	SBQQ__TargetObject__c	Target Object	picklist	255	0	0	No	No	No	Quote Line		Target Object to be imported.			Quote Line	Yes	Yes	No	Yes
+No	SBQQ__UniqueKeyCount__c	# Unique Key	double	0	18	0	No	No	No			A count of the unique Keys within the Import Format.				No	No	No	Yes
+
+===== SHEET: ImportColumn (6r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Column Name	string	80	0	0	No	No	No							Yes	Yes	No	No
+No	SBQQ__ColumnIndex__c	Column Index	double	0	5	0	Yes	No	No			Enter a numeric index value that represents the location of the column. Column index must start from 1.				Yes	Yes	No	Yes
+No	SBQQ__FieldName__c	Field Name	picklist	255	0	0	No	No	No			Enter the API Name.			Discount (%), Discount (Amt), Partner Discount, Product Code, Quantity, List Price	Yes	Yes	No	Yes
+No	SBQQ__ImportFormat__c	Import Format	reference	18	0	0	Yes	No	No			Select the format in which your records will be imported.	SBQQ__ImportFormat__c	SBQQ__ImportFormat__r		Yes	No	No	Yes
+No	SBQQ__Key__c	Key	boolean	0	0	0	Yes	No	No	False		Select if this column should be a unique key column.				Yes	Yes	No	Yes
+
+===== SHEET: Localization (19r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Localization Number	string	80	0	0	Yes	No	No							No	No	No	No
+No	SBQQ__APIName__c	API Name	string	255	0	0	No	No	No			The API Name of this content.				Yes	Yes	No	Yes
+No	SBQQ__Description__c	Description	string	255	0	0	No	No	No			To describe where the text is located				Yes	Yes	No	Yes
+No	SBQQ__Label__c	Label	string	255	0	0	No	No	No			This action’s label in the UI.				Yes	Yes	No	Yes
+No	SBQQ__Language__c	Language	string	255	0	0	No	No	No			The language code for this translation.				Yes	Yes	No	Yes
+No	SBQQ__LineColumn__c	Line Column	reference	18	0	0	No	No	No			The line column related to this content.	SBQQ__LineColumn__c	SBQQ__LineColumn__r		Yes	Yes	No	Yes
+No	SBQQ__LongTextArea__c	Long Text Area	textarea	32768	0	0	No	No	No			This field stores translations for Long Text fields.				Yes	Yes	No	Yes
+No	SBQQ__PriceDimension__c	Price Dimension	reference	18	0	0	No	No	No			The Dimension related to this content.	SBQQ__Dimension__c	SBQQ__PriceDimension__r		Yes	Yes	No	Yes
+No	SBQQ__ProductFeature__c	Product Feature	reference	18	0	0	No	No	No			The product feature related to this content.	SBQQ__ProductFeature__c	SBQQ__ProductFeature__r		Yes	Yes	No	Yes
+No	SBQQ__ProductOption__c	Product Option	reference	18	0	0	No	No	No			The product option that generated this line.	SBQQ__ProductOption__c	SBQQ__ProductOption__r		Yes	Yes	No	Yes
+No	SBQQ__Product__c	Product	reference	18	0	0	No	No	No			The product related to this content.	Product2	SBQQ__Product__r		Yes	Yes	No	Yes
+No	SBQQ__QuoteTemplate__c	Quote Template	reference	18	0	0	No	No	No			The template to use for this content.	SBQQ__QuoteTemplate__c	SBQQ__QuoteTemplate__r		Yes	Yes	No	Yes
+No	SBQQ__QuoteTerm__c	Quote Term	reference	18	0	0	No	No	No			The parent term for this term.	SBQQ__QuoteTerm__c	SBQQ__QuoteTerm__r		Yes	Yes	No	Yes
+No	SBQQ__RichTextArea__c	Rich Text Area	textarea	32768	0	0	No	No	No			This field stores translations for Rich Text fields.				Yes	Yes	No	Yes
+No	SBQQ__TemplateContent__c	Template Content	reference	18	0	0	No	No	No			The template content to use for this content.	SBQQ__TemplateContent__c	SBQQ__TemplateContent__r		Yes	Yes	No	Yes
+No	SBQQ__TextArea__c	Text Area	textarea	255	0	0	No	No	No			This field stores translations for Text Area fields.				Yes	Yes	No	Yes
+No	SBQQ__Text__c	Text	string	255	0	0	No	No	No			This field stores translations for Text fields.				Yes	Yes	No	Yes
+No	SBQQ__UserDefined__c	User Defined	boolean	0	0	0	Yes	No	No	False		To indicate whether this field is user-defined or not.				Yes	Yes	No	Yes
+
+===== SHEET: LookupData (12r x 21c) =====
+Still in Use	BSI Notes	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	Name	Lookup Data	string	80	0	0	Yes	No	No							No	No	No	No
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	Option_Name__c	Option Name	string	100	0	0	No	No	No							Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	OptionalSKU__c	Optional SKU	reference	18	0	0	No	No	No				Product2	OptionalSKU__r		Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	Product_Code__c	Product Code	string	100	0	0	No	No	No							Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	SBQQ__Category__c	Category	string	255	0	0	No	No	No							Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	SBQQ__Message__c	Message	textarea	255	0	0	No	No	No							Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	SBQQ__Product__c	Product	reference	18	0	0	No	No	No			For use with Product Selection Rules, represents the Product to which the Product Action applies.	Product2	SBQQ__Product__r		Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	SBQQ__Required__c	Required	boolean	0	0	0	Yes	No	No	False		For Product Selection Rules, indicates that the action is required.				Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	SBQQ__Type__c	Type	picklist	255	0	0	No	No	No			For use with Product Selection Rules, specifies the type of action to be performed on the Product.			Add, Remove, Enable, Disable, Enable & Add, Disable & Remove, Show, Hide, Show & Add, Hide & Remove, Default Filter, Optional Filter	Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	SBQQ__Value__c	Value	string	255	0	0	No	No	No							Yes	Yes	No	Yes
+Yes	The majority of Product Rules in Globalscape use the LookupData table to add/remove products	Support_Type__c	Support Type	string	50	0	0	No	No	No							Yes	Yes	No	Yes
+
+===== SHEET: SolutionGroup (3r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Group Name	string	80	0	0	No	No	No							Yes	Yes	No	No
+No	SBQQ__Description__c	Description	textarea	5000	0	0	No	No	No			Enter a description for this SolutionGroup.				Yes	Yes	No	Yes
+
+===== SHEET: Theme (233r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Theme Name	string	80	0	0	No	No	No							Yes	Yes	No	No
+No	SBQQ__AccentIconDisabledFontColor__c	Icon Disabled Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__AccentIconFontColor__c	Icon Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__AccentIconHoverFontColor__c	Icon Hover Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__BadgeBackgroundColor__c	Badge Background Color	string	23	0	0	No	No	No			Background color of badges				Yes	Yes	No	Yes
+No	SBQQ__BadgeBorderColor__c	Badge Border Color	string	23	0	0	No	No	No			Border color of badges				Yes	Yes	No	Yes
+No	SBQQ__BadgeBorderStyle__c	Badge Border Style	picklist	255	0	0	No	No	No	solid		Border style of badges (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__BadgeBorderWidth__c	Badge Border Width	string	10	0	0	No	No	No			Border width of badges				Yes	Yes	No	Yes
+No	SBQQ__BadgeFontColor__c	Badge Font Color	string	23	0	0	No	No	No			Font color of badges				Yes	Yes	No	Yes
+No	SBQQ__BadgeFontFamily__c	Badge Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of badges			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__BadgeFontSize__c	Badge Font Size	string	10	0	0	No	No	No			Font size of badges				Yes	Yes	No	Yes
+No	SBQQ__BrandButtonBorderColor__c	Brand Button Border Color	string	23	0	0	No	No	No			Border color of brand buttons				Yes	Yes	No	Yes
+No	SBQQ__BrandButtonDisabledFontColor__c	Brand Button Disabled Font Color	string	23	0	0	No	No	No			Font color of disabled brand buttons				Yes	Yes	No	Yes
+No	SBQQ__BrandButtonFontFamily__c	Brand Button Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family for brand buttons			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__BrandButtonHoverFontColor__c	Brand Button Hover Font Color	string	23	0	0	No	No	No			Hover font color of brand buttons				Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderBgColor__c	Bundle Layout Header Color	string	23	0	0	No	No	No			Background color of the header displaying the bundle name				Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderColor__c	Bundle Layout Header Font Color	string	23	0	0	No	No	No			Font color of the header displaying the bundle name				Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderFontFamily__c	Bundle Layout Header Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of the header displaying the bundle name			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderFontSize__c	Bundle Layout Header Font Size	string	10	0	0	No	No	No			Font size of the header displaying the bundle name				Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderFontStyle__c	Bundle Layout Header Font Style	picklist	255	0	0	No	No	No	normal		Font style of the header displaying the bundle name (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderFontWeight__c	Bundle Layout Header Font Weight	picklist	255	0	0	No	No	No	300		Font weight of the header displaying the bundle name (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__BundleLayoutHeaderTextDecoration__c	Bundle Layout Header Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in the header displaying the bundle name (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__CheckboxBackgroundColorChecked__c	Checkbox Background Color Checked	string	23	0	0	No	No	No			Background color of checked checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CheckboxBackgroundColorUnchecked__c	Checkbox Background Color Unchecked	string	23	0	0	No	No	No			Background color of unchecked checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CheckboxBorderColor__c	Checkbox Border Color	string	23	0	0	No	No	No			Border color of checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CheckboxBorderRadius__c	Checkbox Border Radius	string	10	0	0	No	No	No			Border radius of checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CheckboxBorderStyle__c	Checkbox Border Style	picklist	255	0	0	No	No	No	solid		Border style of checkboxes			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__CheckboxBorderWidth__c	Checkbox Border Width	string	10	0	0	No	No	No			Border width of checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CheckboxCheckMarkColor__c	Checkbox Checkmark Color	string	23	0	0	No	No	No			Checkmark color of checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CheckboxSize__c	Checkbox Size	string	10	0	0	No	No	No			Size of checkboxes				Yes	Yes	No	Yes
+No	SBQQ__CompiledCSS__c	Hidden Values	textarea	30000	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__ComponentRowFontColor__c	Component Row Font Color	string	23	0	0	No	No	No			Font color of component rows in quote line editor				Yes	Yes	No	Yes
+No	SBQQ__ComponentRowFontStyle__c	Component Row Font Style	picklist	255	0	0	No	No	No	normal		Font style of component rows in quote line editor (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__ComponentRowFontWeight__c	Component Row Font Weight	picklist	255	0	0	No	No	No	400		Font weight of component rows in quote line editor (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__ComponentRowTextDecoration__c	Component Row Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text of component rows in quote line editor (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__ConfigurationAttributeLabelColor__c	Configuration Attribute Label Color	string	23	0	0	No	No	No			Label color for configuration attributes				Yes	Yes	No	Yes
+No	SBQQ__ConfiguratorCustomActionBorderColor__c	Config Custom Action Border Color	string	23	0	0	No	No	No			Border color of configurator custom actions				Yes	Yes	No	Yes
+No	SBQQ__ConfiguratorCustomActionColor__c	Config Custom Action Background Color	string	23	0	0	No	No	No			Background color of configurator custom actions				Yes	Yes	No	Yes
+No	SBQQ__ConfiguratorCustomActionFontColor__c	Config Custom Action Font Color	string	23	0	0	No	No	No			Font color of configurator custom actions				Yes	Yes	No	Yes
+No	SBQQ__ConfiguratorCustomActionHoverColor__c	Config Custom Action Hover Color	string	23	0	0	No	No	No			Hover color of configurator custom actions				Yes	Yes	No	Yes
+No	SBQQ__ConfiguratorCustomActionHoverFontColor__c	Config Custom Action Hover Font Color	string	23	0	0	No	No	No			Hover font color of configurator custom actions				Yes	Yes	No	Yes
+No	SBQQ__DetailColor__c	Filter Drawer Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__DialogBackgroundColor__c	Dialog Background Color	string	23	0	0	No	No	No			Background color of pop-up modals				Yes	Yes	No	Yes
+No	SBQQ__DialogBorderRadius__c	Dialog Border Radius	string	10	0	0	No	No	No			Border radius of pop-up modal				Yes	Yes	No	Yes
+No	SBQQ__DialogCloseColor__c	Dialog Close Color	string	23	0	0	No	No	No			Color of pop-up modals on close				Yes	Yes	No	Yes
+No	SBQQ__DialogFontFamily__c	Dialog Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of pop-up modals			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__DialogFooterBorderColor__c	Dialog Footer Border Color	string	23	0	0	No	No	No			Border color of pop-up modal footer				Yes	Yes	No	Yes
+No	SBQQ__DialogFooterBorderStyle__c	Dialog Footer Border Style	picklist	255	0	0	No	No	No	solid		Border style of pop-up modal footer (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__DialogFooterBorderWidth__c	Dialog Footer Border Width	string	10	0	0	No	No	No			Border width of pop-up modal footer				Yes	Yes	No	Yes
+No	SBQQ__DialogFooterColor__c	Dialog Footer Color	string	23	0	0	No	No	No			Background color of pop-up modal footer				Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderBorderColor__c	Dialog Header Border Color	string	23	0	0	No	No	No			Border color of pop-up modal header				Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderBorderStyle__c	Dialog Header Border Style	picklist	255	0	0	No	No	No	solid		Border style of pop-up modal header (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderBorderWidth__c	Dialog Header Border Width	string	10	0	0	No	No	No			Border width of pop-up modal header				Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderPaddingBottom__c	Dialog Header Bottom Padding	string	10	0	0	No	No	No			Bottom padding of pop-up modal header				Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderPaddingLeft__c	Dialog Header Left Padding	string	10	0	0	No	No	No			Left padding of pop-up modal header				Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderPaddingRight__c	Dialog Header Right Padding	string	10	0	0	No	No	No			Right padding of pop-up modal header				Yes	Yes	No	Yes
+No	SBQQ__DialogHeaderPaddingTop__c	Dialog Header Top Padding	string	10	0	0	No	No	No			Top padding of pop-up modal header				Yes	Yes	No	Yes
+No	SBQQ__DialogMaskColor__c	Dialog Mask Color	string	23	0	0	No	No	No			Color of pop-up modal masks				Yes	Yes	No	Yes
+No	SBQQ__DocumentId__c	Legacy Document ID	string	18	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsColor__c	Feature Instructions Font Color	string	23	0	0	No	No	No			Font color of additional instructions displayed under feature name				Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsFontFamily__c	Feature Instructions Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family additional instructions displayed under feature name			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsFontSize__c	Feature Instructions Font Size	string	10	0	0	No	No	No			Font size of additional instructions displayed under feature name				Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsFontStyle__c	Feature Instructions Font Style	picklist	255	0	0	No	No	No	normal		Font style of additional instructions displayed under feature name (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsFontWeight__c	Feature Instructions Font Weight	picklist	255	0	0	No	No	No	300		Font weight of additional instructions displayed under feature name (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsPaddingBottom__c	Feature Instructions Bottom Padding	string	10	0	0	No	No	No			Bottom padding of additional instructions displayed under feature name				Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsPaddingLeft__c	Feature Instructions Left Padding	string	10	0	0	No	No	No			Left padding of additional instructions displayed under feature name				Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsPaddingRight__c	Feature Instructions Right Padding	string	10	0	0	No	No	No			Right padding of additional instructions displayed under feature name				Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsPaddingTop__c	Feature Instructions Top Padding	string	10	0	0	No	No	No			Top padding of additional instructions displayed under feature name				Yes	Yes	No	Yes
+No	SBQQ__FeatureInstructionsTextDecoration__c	Feature Instructions Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in additional instructions displayed under feature name (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__FieldEditableIconColor__c	Field Editable Icon Color	string	23	0	0	No	No	No			Color of icon displayed next to a field indicating if its editable or not				Yes	Yes	No	Yes
+No	SBQQ__FieldEditedColor__c	Edited Field Icon and Font Color	string	23	0	0	No	No	No			Color of icon displayed next to a field that has been edited / Font color of edited fields				Yes	Yes	No	Yes
+No	SBQQ__FilterDrawerFontColor__c	Filter Drawer Font Color	string	23	0	0	No	No	No			Font color of filter side panels				Yes	Yes	No	Yes
+No	SBQQ__GeneralBorderColor__c	General Border Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GeneralColor__c	General Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GeneralFontColor__c	General Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GeneralFontFamily__c	General Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Default font family			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__GroupBorderColor__c	Group Border Color	string	23	0	0	No	No	No			Border color of quote line groups and features				Yes	Yes	No	Yes
+No	SBQQ__GroupBorderWidth__c	Group Border Width	string	10	0	0	No	No	No			Border width of quote line groups and features				Yes	Yes	No	Yes
+No	SBQQ__GroupButtonBorderColor__c	Standard Button Border Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GroupButtonColor__c	Standard Button Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GroupButtonDisabledFontColor__c	Standard Button Disabled Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GroupButtonFontColor__c	Standard Button Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GroupButtonHoverColor__c	Standard Button Hover Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GroupButtonHoverFontColor__c	Standard Button Hover Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderBackgroundColor__c	Group Header Color	string	23	0	0	No	No	No			Background color of quote line group and feature headers				Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderBorderBottomColor__c	Group Header Border Bottom Color	string	23	0	0	No	No	No			Bottom border color of quote line group and feature headers				Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderBorderBottomWidth__c	Group Header Border Bottom Width	string	10	0	0	No	No	No			Bottom border width of quote line group and feature headers				Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderFontColor__c	Group Header Font Color	string	23	0	0	No	No	No			Font color of quote line group and feature headers				Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderFontFamily__c	Group Header Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of quote line group and feature headers			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderFontSize__c	Group Header Font Size	string	10	0	0	No	No	No			Font size of quote line group and feature headers				Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderFontStyle__c	Group Header Font Style	picklist	255	0	0	No	No	No	normal		Font style of quote line group and feature headers (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderFontWeight__c	Group Header Font Weight	picklist	255	0	0	No	No	No	200		Font weight of quote line group and feature headers (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__GroupHeaderTextDecoration__c	Group Header Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in quote line group and feature headers (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__HeaderBackgroundImagePosition__c	Header Background Image Position	string	15	0	0	No	No	No			Position of page header background image (Click the icon for additional information)				Yes	Yes	No	Yes
+No	SBQQ__HeaderBackgroundImageRepeat__c	Header Background Image Repeat	picklist	255	0	0	No	No	No	no-repeat		Sets if/how page header background image should be repeated (Click the icon for additional information)			repeat, repeat-x, repeat-y, no-repeat, initial, inherit	Yes	Yes	No	Yes
+No	SBQQ__HeaderBackgroundImageSize__c	Header Background Image Size	string	15	0	0	No	No	No			Size of page header background image (Click the icon for additional information)				Yes	Yes	No	Yes
+No	SBQQ__HeaderBackgroundImageUrl__c	Header Background Image Url	url	255	0	0	No	No	No			Url for page header background image				Yes	Yes	No	Yes
+No	SBQQ__HeaderBorderColor__c	Header Border Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__HeaderBorderStyle__c	Header Border Style	picklist	255	0	0	No	No	No	solid		Border style of page header (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__HeaderBorderWidth__c	Header Border Width	string	10	0	0	No	No	No			Border width of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderColor__c	Header Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__HeaderFontColor__c	Header Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__HeaderFontFamily__c	Header Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of page header			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__HeaderFontSize__c	Header Font Size	string	10	0	0	No	No	No			Font size of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderFontStyle__c	Header Font Style	picklist	255	0	0	No	No	No	normal		Font style of page header (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__HeaderFontWeight__c	Header Font Weight	picklist	255	0	0	No	No	No	300		Font weight of page header text (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__HeaderIconColor__c	Header Icon Color	string	23	0	0	No	No	No			Color of page header icon				Yes	Yes	No	Yes
+No	SBQQ__HeaderIconFontSize__c	Header Icon Font Size	string	10	0	0	No	No	No			Font size of page header icon				Yes	Yes	No	Yes
+No	SBQQ__HeaderMinHeight__c	Header Minimum Height	string	10	0	0	No	No	No			Minimum height of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderPaddingBottom__c	Header Bottom Padding	string	10	0	0	No	No	No			Bottom padding of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderPaddingLeft__c	Header Left Padding	string	10	0	0	No	No	No			Left padding of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderPaddingRight__c	Header Right Padding	string	10	0	0	No	No	No			Right padding of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderPaddingTop__c	Header Top Padding	string	10	0	0	No	No	No			Top padding of page header				Yes	Yes	No	Yes
+No	SBQQ__HeaderSecondaryFontColor__c	Header Secondary Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__HeaderSecondaryFontFamily__c	Header Secondary Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of page sub-header			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__HeaderSecondaryFontSize__c	Header Secondary Font Size	string	10	0	0	No	No	No			Font size of page sub-header				Yes	Yes	No	Yes
+No	SBQQ__HeaderSecondaryFontStyle__c	Header Secondary Font Style	picklist	255	0	0	No	No	No	normal		Font style of page sub-header (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__HeaderSecondaryFontWeight__c	Header Secondary Font Weight	picklist	255	0	0	No	No	No	400		Font weight of page sub-header (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__HeaderSecondaryTextDecoration__c	Header Secondary Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in page sub-header (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__HeaderTextDecoration__c	Header Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in page header (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__HideIcons__c	Hide Icons on Page Headers	boolean	0	0	0	Yes	No	No	False		If checked, will hide the icon square located on the left side of custom page headers.				Yes	Yes	No	Yes
+No	SBQQ__HyperlinkActiveColor__c	Hyperlink Active Color	string	23	0	0	No	No	No			Color of active links				Yes	Yes	No	Yes
+No	SBQQ__HyperlinkColor__c	Hyperlink Color	string	23	0	0	No	No	No			Color of links				Yes	Yes	No	Yes
+No	SBQQ__HyperlinkDisabledColor__c	Hyperlink Disabled Color	string	23	0	0	No	No	No			Color of disabled links				Yes	Yes	No	Yes
+No	SBQQ__HyperlinkHoverColor__c	Hyperlink Hover Color	string	23	0	0	No	No	No			Hover color of links				Yes	Yes	No	Yes
+No	SBQQ__IconDisabledColor__c	Icon Disabled Color	string	23	0	0	No	No	No			Color of disabled icons				Yes	Yes	No	Yes
+No	SBQQ__IconFontColor__c	Icon Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__IconHoverColor__c	Icon Hover Color	string	23	0	0	No	No	No			Hover color of icons				Yes	Yes	No	Yes
+No	SBQQ__IconMobileCopyBackgroundColor__c	Mobile Copy Icon Background Color	string	23	0	0	No	No	No			Background color of copy mobile icon				Yes	Yes	No	Yes
+No	SBQQ__IconMobileDeleteBackgroundColor__c	Mobile Delete Icon Background Color	string	23	0	0	No	No	No			Background color of delete mobile icon				Yes	Yes	No	Yes
+No	SBQQ__IconMobileLineActionColor__c	Mobile Line Action Icon Color	string	23	0	0	No	No	No			Color of mobile line action icons				Yes	Yes	No	Yes
+No	SBQQ__IconMobileStarBackgroundColor__c	Mobile Star Icon Background Color	string	23	0	0	No	No	No			Background color of star mobile icon				Yes	Yes	No	Yes
+No	SBQQ__IconMobileStarFillColor__c	Mobile Star Icon Fill Color	string	23	0	0	No	No	No			Fill color of star mobile icon				Yes	Yes	No	Yes
+No	SBQQ__IconMobileWandBackgroundColor__c	Mobile Wand Icon Background Color	string	23	0	0	No	No	No			Background color of wand mobile icon				Yes	Yes	No	Yes
+No	SBQQ__IconPageLoadingColor__c	Page Loading Icon Color	string	23	0	0	No	No	No			Color of page loading icon				Yes	Yes	No	Yes
+No	SBQQ__InputOutlineColor__c	Input Outline Color	string	23	0	0	No	No	No			Outline color of input forms on focus				Yes	Yes	No	Yes
+No	SBQQ__InputOutlineWidth__c	Input Outline Width	string	10	0	0	No	No	No			Outline width of input forms on focus				Yes	Yes	No	Yes
+No	SBQQ__LoadingMaskColor__c	Loading Mask Color	string	23	0	0	No	No	No			Color of loading mask when navigating to a new page				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerColor__c	Navigation Drawer Color	string	23	0	0	No	No	No			Background color of navigation side panels				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerFontColor__c	Navigation Drawer Font Color	string	23	0	0	No	No	No			Font color of navigation side panels				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerHeaderColor__c	Navigation Drawer Header Color	string	23	0	0	No	No	No			Background color of navigation side panel headers				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerHeaderFontColor__c	Navigation Drawer Header Font Color	string	23	0	0	No	No	No			Font color of navigation side panel headers				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerRowColor__c	Navigation Drawer Row Color	string	23	0	0	No	No	No			Background color of rows in navigation side panels				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerRowHoverColor__c	Navigation Drawer Row Hover Color	string	23	0	0	No	No	No			Background color of hovered rows in navigation side panels				Yes	Yes	No	Yes
+No	SBQQ__NavigationDrawerRowSelectedColor__c	Navigation Drawer Row Selected Color	string	23	0	0	No	No	No			Background color of selected row in navigation side panels				Yes	Yes	No	Yes
+No	SBQQ__ParentLineRowFontColor__c	Parent Line Row Font Color	string	23	0	0	No	No	No			Font color of parent line rows in quote line editor				Yes	Yes	No	Yes
+No	SBQQ__ParentLineRowFontStyle__c	Parent Line Row Font Style	picklist	255	0	0	No	No	No	normal		Font style of parent line rows in quote line editor (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__ParentLineRowFontWeight__c	Parent Line Row Font Weight	picklist	255	0	0	No	No	No	400		Font weight of parent line rows in quote line editor (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__ParentLineRowTextDecoration__c	Parent Line Row Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text of parent line rows in quote line editor (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__PrimaryButtonColor__c	Brand Button Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__PrimaryButtonFontColor__c	Brand Button Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__PrimaryButtonHoverColor__c	Brand Button Hover Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__RadioButtonColorChecked__c	Radio Button Color Checked	string	23	0	0	No	No	No			Color of selected radio button				Yes	Yes	No	Yes
+No	SBQQ__RadioButtonColorUnchecked__c	Radio Button Color Unchecked	string	23	0	0	No	No	No			Color of unselected radio button				Yes	Yes	No	Yes
+No	SBQQ__SecondaryFontColor__c	Secondary Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__SecondaryHeaderColor__c	Secondary Header Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__SelectBackgroundColor__c	Picklist Background Color	string	23	0	0	No	No	No			Background color of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectBorderColor__c	Picklist Border Color	string	23	0	0	No	No	No			Border color of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectBorderRadius__c	Picklist Border Radius	string	10	0	0	No	No	No			Border radius of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectBorderStyle__c	Picklist Border Style	picklist	255	0	0	No	No	No	solid		Border style of drop-down menus			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__SelectBorderWidth__c	Picklist Border Width	string	10	0	0	No	No	No			Border width of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectContractHideSkipActionOnAddOn__c	Hide Skip Action (Add-on Workflow)	boolean	0	0	0	Yes	No	No	False		If checked, will hide the Skip action button on the contract selector page for add-on workflow				Yes	Yes	No	Yes
+No	SBQQ__SelectContractHideSkipActionOnAmend__c	Hide Skip Action (Amend Workflow)	boolean	0	0	0	Yes	No	No	False		If checked, will hide the Skip action button on the contract selector page for amend workflow				Yes	Yes	No	Yes
+No	SBQQ__SelectHeight__c	Picklist Border Height	string	10	0	0	No	No	No			Height of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectPaddingBottom__c	Picklist Bottom Padding	string	10	0	0	No	No	No			Bottom padding of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectPaddingLeft__c	Picklist Left Padding	string	10	0	0	No	No	No			Left padding of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectPaddingRight__c	Picklist Right Padding	string	10	0	0	No	No	No			Right padding of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__SelectPaddingTop__c	Picklist Top Padding	string	10	0	0	No	No	No			Top padding of drop-down menus				Yes	Yes	No	Yes
+No	SBQQ__StandaloneProductRowFontColor__c	Standalone Product Row Font Color	string	23	0	0	No	No	No			Font color of standalone product rows in quote line editor				Yes	Yes	No	Yes
+No	SBQQ__StandaloneProductRowFontStyle__c	Standalone Product Row Font Style	picklist	255	0	0	No	No	No	normal		Font style of standalone product rows in quote line editor (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__StandaloneProductRowFontWeight__c	Standalone Product Row Font Weight	picklist	255	0	0	No	No	No	400		Font weight of standalone product rows in quote line editor (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__StandaloneProductRowTextDecoration__c	Standalone Product Row Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in standalone product rows in quote line editor (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__StandardButtonBorderRadius__c	Standard Button Border Radius	string	10	0	0	No	No	No			Border radius of standard buttons (Click the icon for additional information)				Yes	Yes	No	Yes
+No	SBQQ__StandardButtonDisabledBackgroundColor__c	Standard Button Disabled Color	string	23	0	0	No	No	No			Background color of disabled standard buttons				Yes	Yes	No	Yes
+No	SBQQ__StandardButtonFontFamily__c	Standard Button Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family for standard buttons			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__StandardButtonFontSize__c	Standard Button Font Size	string	23	0	0	No	No	No			Font size of standard buttons				Yes	Yes	No	Yes
+No	SBQQ__StandardButtonFontWeight__c	Standard Button Font Weight	picklist	255	0	0	No	No	No	400		Font weight of standard buttons (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__StandardButtonPaddingBottom__c	Standard Button Bottom Padding	string	23	0	0	No	No	No			Bottom padding of standard buttons				Yes	Yes	No	Yes
+No	SBQQ__StandardButtonPaddingLeft__c	Standard Button Left Padding	string	23	0	0	No	No	No			Left padding of standard buttons				Yes	Yes	No	Yes
+No	SBQQ__StandardButtonPaddingRight__c	Standard Button Right Padding	string	23	0	0	No	No	No			Right padding of standard buttons				Yes	Yes	No	Yes
+No	SBQQ__StandardButtonPaddingTop__c	Standard Button Top Padding	string	23	0	0	No	No	No			Top padding of standard buttons				Yes	Yes	No	Yes
+No	SBQQ__TabColor__c	Tab Color	string	23	0	0	No	No	No			Color of tabs				Yes	Yes	No	Yes
+No	SBQQ__TabFontFamily__c	Tab Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of tabs			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__TabHoverColor__c	Tab Hover Color	string	23	0	0	No	No	No			Hover color of tabs				Yes	Yes	No	Yes
+No	SBQQ__TabSelectedColor__c	Tab Selected Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__TableCellPaddingBottom__c	Table Cell Bottom Padding	string	10	0	0	No	No	No			Bottom padding of table cell				Yes	Yes	No	Yes
+No	SBQQ__TableCellPaddingLeft__c	Table Cell Left Padding	string	10	0	0	No	No	No			Left padding of table cell				Yes	Yes	No	Yes
+No	SBQQ__TableCellPaddingRight__c	Table Cell Right Padding	string	10	0	0	No	No	No			Right padding of table cell				Yes	Yes	No	Yes
+No	SBQQ__TableCellPaddingTop__c	Table Cell Top Padding	string	10	0	0	No	No	No			Top padding of table cell				Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowBackgroundColor__c	Grouped Row Color	string	23	0	0	No	No	No			Background color of collapsible rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowBorderBottomColor__c	Grouped Row Border Bottom Color	string	23	0	0	No	No	No			Bottom border color of collapsible rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowBorderBottomStyle__c	Grouped Row Border Bottom Style	picklist	255	0	0	No	No	No	solid		Bottom border style of collapsible rows in a table (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowBorderBottomWidth__c	Grouped Row Border Bottom Width	string	10	0	0	No	No	No			Bottom border width of collapsible rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowLineHeight__c	Grouped Row Line Height	string	10	0	0	No	No	No			Line height of collapsible rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowPaddingBottom__c	Grouped Row Padding Bottom	string	10	0	0	No	No	No			Bottom padding of collapsible rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableGroupedRowPaddingTop__c	Grouped Row Padding Top	string	10	0	0	No	No	No			Top padding of collapsible rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableHeaderBackgroundColor__c	Table Header Color	string	23	0	0	No	No	No			Background color of table header				Yes	Yes	No	Yes
+No	SBQQ__TableHeaderBorderBottomColor__c	Table Header Border Bottom Color	string	23	0	0	No	No	No			Bottom border color of table header				Yes	Yes	No	Yes
+No	SBQQ__TableHeaderBorderBottomStyle__c	Table Header Border Bottom Style	picklist	255	0	0	No	No	No	solid		Bottom border style of table header (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__TableHeaderBorderBottomWidth__c	Table Header Border Bottom Width	string	10	0	0	No	No	No			Bottom border width of table header				Yes	Yes	No	Yes
+No	SBQQ__TableHeaderCellHeight__c	Table Header Cell Height	string	10	0	0	No	No	No			Height of table header cell				Yes	Yes	No	Yes
+No	SBQQ__TableHeaderFontColor__c	Table Header Font Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__TableHeaderFontFamily__c	Table Header Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font family of table header			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__TableHeaderFontSize__c	Table Header Font Size	string	10	0	0	No	No	No			Font size of table header				Yes	Yes	No	Yes
+No	SBQQ__TableHeaderFontStyle__c	Table Header Font Style	picklist	255	0	0	No	No	No	normal		Font style of table header (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__TableHeaderFontWeight__c	Table Header Font Weight	picklist	255	0	0	No	No	No	400		Font weight of table header			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__TableHeaderTextDecoration__c	Table Header Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text in table header			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__TableRowBackgroundColor__c	Table Row Background Color	string	23	0	0	No	No	No			Background color of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowBorderBottomColor__c	Table Row Border Bottom Color	string	23	0	0	No	No	No			Bottom border color of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowBorderBottomStyle__c	Table Row Border Bottom Style	picklist	255	0	0	No	No	No	solid		Bottom border style of rows in a table (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__TableRowBorderBottomWidth__c	Table Row Border Bottom Width	string	10	0	0	No	No	No			Bottom border width of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowFontColor__c	Table Row Font Color	string	23	0	0	No	No	No			Font color of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowFontFamily__c	Table Row Font Family	picklist	255	0	0	No	No	No	Salesforce Sans		Font familiy of rows in a table			Salesforce Sans, Times, Courier, Helvetica, Dosis, Droid Sans, Droid Serif, Merriweather, Myriad Pro, Montserrat, Open Sans, PT Sans, PT Serif, Roboto, Roboto Light, Titillium Web, Noto Sans JP, Noto Sans KR, Noto Sans SC, Soto Sans TC	Yes	Yes	No	Yes
+No	SBQQ__TableRowFontSize__c	Table Row Font Size	string	10	0	0	No	No	No			Font size of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowFontStyle__c	Table Row Font Style	picklist	255	0	0	No	No	No	normal		Font style of rows in a table (Click the icon for additional information)			normal, italic, oblique	Yes	Yes	No	Yes
+No	SBQQ__TableRowFontWeight__c	Table Row Font Weight	picklist	255	0	0	No	No	No	400		Font weight of rows in a table (Click the icon for additional information)			normal, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900	Yes	Yes	No	Yes
+No	SBQQ__TableRowHoverColor__c	Table Row Hover Color	string	23	0	0	No	No	No							Yes	Yes	No	Yes
+No	SBQQ__TableRowLineHeight__c	Table Row Line Height	string	10	0	0	No	No	No			Height of rows in a table (Click the icon for additional information)				Yes	Yes	No	Yes
+No	SBQQ__TableRowPaddingBottom__c	Table Row Padding Bottom	string	10	0	0	No	No	No			Bottom padding of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowPaddingTop__c	Table Row Padding Top	string	10	0	0	No	No	No			Top padding of rows in a table				Yes	Yes	No	Yes
+No	SBQQ__TableRowTextDecoration__c	Table Row Text Decoration	picklist	255	0	0	No	No	No	none		Decoration added to text of rows in a table (Click the icon for additional information)			none, underline, overline, line-through	Yes	Yes	No	Yes
+No	SBQQ__TextboxBackgroundColor__c	Textbox Background Color	string	23	0	0	No	No	No			Background color of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxBorderColor__c	Textbox Border Color	string	23	0	0	No	No	No			Border color of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxBorderRadius__c	Textbox Border Radius	string	10	0	0	No	No	No			Border radius of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxBorderStyle__c	Textbox Border Style	picklist	255	0	0	No	No	No	solid		Border style of textboxes (Click the icon for additional information)			none, hidden, dotted, dashed, solid, double, grove, ridge, inset, outset	Yes	Yes	No	Yes
+No	SBQQ__TextboxBorderWidth__c	Textbox Border Width	string	10	0	0	No	No	No			Border width of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxHeight__c	Textbox Border Height	string	10	0	0	No	No	No			Height of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxPaddingBottom__c	Textbox Bottom Padding	string	10	0	0	No	No	No			Bottom padding of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxPaddingLeft__c	Textbox Left Padding	string	10	0	0	No	No	No			Left padding of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxPaddingRight__c	Textbox Right Padding	string	10	0	0	No	No	No			Right padding of textboxes				Yes	Yes	No	Yes
+No	SBQQ__TextboxPaddingTop__c	Textbox Top Padding	string	10	0	0	No	No	No			Top padding of textboxes				Yes	Yes	No	Yes
+No	SBQQ__UI2DocumentId__c	Document ID	string	18	0	0	No	No	No							Yes	Yes	No	Yes
+
+===== SHEET: UpgradeSource (5r x 20c) =====
+Still in Use	API Name	Label	Type	Length	Precision	Scale	Required	Unique	External ID	Default Value	Formula	Help Text	Reference To	Relationship Name	Picklist Values	Createable	Updateable	Deprecated	Custom
+No	Name	Source Name	string	80	0	0	No	No	No							Yes	Yes	No	No
+No	SBQQ__SourceProduct__c	Source Product	reference	18	0	0	No	No	No			Specify product to upgrade from.	Product2	SBQQ__SourceProduct__r		Yes	Yes	No	Yes
+No	SBQQ__UpgradeConversionRate__c	Upgrade Conversion Rate	string	100	0	0	No	No	No			Specify a ratio for quantity conversion from Upgrade Source to Upgrade Product. e.g. "5:1" indicates that 5 units of Upgrade Source convert to 1 unit of Upgrade Product. If blank, no Upgrade Conversion Rate is enforced.				Yes	Yes	No	Yes
+No	SBQQ__UpgradeProduct__c	Upgrade Product	reference	18	0	0	No	No	No			Specify the product to upgrade to.	Product2	SBQQ__UpgradeProduct__r		Yes	Yes	No	Yes

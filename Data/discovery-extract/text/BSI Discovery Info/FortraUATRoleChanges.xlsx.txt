@@ -1,0 +1,215 @@
+
+===== SHEET: Role Hierarchy (92r x 2c) =====
+nnn	Level
+System Admin	0
+Executive Leadership Team	1
+CX ELT	2
+CSM (Customer Success Manager)	3
+CSM Mgr (Customer Success Manager)	3
+CX	3
+Cyber Customer Operations (Renewal)	4
+CX Executive Ops	3
+Customer Operations (Orders)	3
+Cyber Customer Operations (Renewal) Mgr	3
+Cyber Managed Solution Services	3
+Cyber Services Leadership w/ Full PS cloud	3
+Professional Services Managers	3
+Services Leadership	3
+Consultant	4
+Services Coordinator	4
+Tech Managed Solution Services	4
+Tech Customer Operations Leadership	3
+Tech Customer Operations (Orders/Keys)	4
+Tech Customer Operations (Renewal)	4
+Technical Support Leadership	3
+Technical Support	4
+Technical Support - Elevated	4
+Cyber Product Management	2
+Marketing Operations Admin	2
+Marketing Operations	3
+Cyber Channel Marketing	4
+Cyber Marketing User	4
+Tech Channel Marketing	4
+Tech Marketing User	4
+Sales ELT	2
+Sales Executive Ops	3
+Sales Operations	4
+Cyber ELT	5
+Cyber Sales	6
+Americas Manager	7
+Central Manager	8
+Central AE	9
+North Manager	8
+Northeast Manager	8
+North AE	9
+Northeast AE	9
+South Manager	8
+Southeast Manager	8
+South AE	9
+Southeast AE	9
+West Manager	8
+West AE	9
+Cyber BD Leadership	7
+Cyber BDR/ISR	8
+Cyber Channel Leadership	7
+Cyber Channel Director	8
+Cyber Channel Account Managers	9
+Cyber Channel Program & Ops	8
+EMEA/APAC Manager	7
+APAC Manager	8
+APAC AE	9
+EMEA East Manager	8
+EMEA East AE	9
+EMEA West Manager	8
+EMEA West AE	9
+MEFDACH Manager	8
+MEFDACH AE	9
+UK Manager	8
+UK AE	9
+Offensive Security Manager	7
+Offensive Security AE	8
+Strategic Verticals Manager	7
+FinServ Manager	8
+FinServ AE	9
+Public Sector Manager	8
+Public Sector AE	9
+Strategic Accounts Manager	8
+LATAM Manager	9
+LATAM AE	10
+Strategic AE	9
+Tech ELT	5
+Tech Sales	6
+Automation Manager	7
+Automation AE	8
+MFT Manager	7
+MFT AE	8
+Power Manager	7
+Power AE	8
+Tech CX ELT (Reports to Executive Leadership Team)	7
+Tech Channel Leadership	7
+Tech Channel Manager/Director	8
+Tech Channel Account Managers	9
+Tech Customer Experience (CX) Organization	7
+Tech Sales Executive Ops	7
+Tech Product Management	2
+
+===== SHEET: Roles (93r x 2c) =====
+Parent Role	Role
+Cyber Sales	Americas Manager
+APAC Manager	APAC AE
+EMEA/APAC Manager	APAC Manager
+Automation Manager	Automation AE
+Tech Sales	Automation Manager
+Central Manager	Central AE
+Americas Manager	Central Manager
+CX ELT	CSM (Customer Success Manager)
+CX ELT	CSM Mgr (Customer Success Manager)
+CX ELT	Customer Operations (Orders)
+CX ELT	CX
+Executive Leadership Team	CX ELT
+CX ELT	CX Executive Ops
+Cyber BD Leadership	Cyber BDR/ISR
+Cyber Sales	Cyber BD Leadership
+Cyber Channel Director	Cyber Channel Account Managers
+Cyber Channel Leadership	Cyber Channel Director
+Cyber Sales	Cyber Channel Leadership
+Marketing Operations	Cyber Channel Marketing
+Cyber Channel Leadership	Cyber Channel Program & Ops
+Services Leadership	Consultant
+CX	Cyber Customer Operations (Renewal)
+CX ELT	Cyber Customer Operations (Renewal) Mgr
+CX ELT	Cyber Managed Solution Services
+Marketing Operations	Cyber Marketing User
+Executive Leadership Team	Cyber Product Management
+Cyber ELT	Cyber Sales
+Sales Operations	Cyber ELT
+Services Leadership	Services Coordinator
+CX ELT	Services Leadership
+CX ELT	Cyber Services Leadership w/ Full PS cloud
+Cyber Sales	EMEA/APAC Manager
+EMEA East Manager	EMEA East AE
+EMEA/APAC Manager	EMEA East Manager
+EMEA West Manager	EMEA West AE
+EMEA/APAC Manager	EMEA West Manager
+System Admin	Executive Leadership Team
+System Admin	fadmi Partner Person Account
+FinServ Manager	FinServ AE
+Strategic Verticals Manager	FinServ Manager
+LATAM Manager	LATAM AE
+Strategic Accounts Manager	LATAM Manager
+Marketing Operations Admin	Marketing Operations
+Executive Leadership Team	Marketing Operations Admin
+MEFDACH Manager	MEFDACH AE
+EMEA/APAC Manager	MEFDACH Manager
+MFT Manager	MFT AE
+Tech Sales	MFT Manager
+Northeast Manager	Northeast AE
+Americas Manager	Northeast Manager
+Northeast Manager	North AE
+Americas Manager	North Manager
+Offensive Security Manager	Offensive Security AE
+Cyber Sales	Offensive Security Manager
+Power Manager	Power AE
+Tech Sales	Power Manager
+CX ELT	Professional Services Managers
+Public Sector Manager	Public Sector AE
+Strategic Verticals Manager	Public Sector Manager
+Executive Leadership Team	Sales ELT
+Sales ELT	Sales Executive Ops
+Sales Executive Ops	Sales Operations
+Southeast Manager	Southeast AE
+Americas Manager	Southeast Manager
+Southeast Manager	South AE
+Americas Manager	South Manager
+Strategic Verticals Manager	Strategic Accounts Manager
+Strategic Accounts Manager	Strategic AE
+Cyber Sales	Strategic Verticals Manager
+	System Admin
+Technical Support Leadership	Technical Support
+Technical Support Leadership	Technical Support - Elevated
+CX ELT	Technical Support Leadership
+Tech Channel Manager/Director	Tech Channel Account Managers
+Tech Sales	Tech Channel Leadership
+Tech Channel Leadership	Tech Channel Manager/Director
+Marketing Operations	Tech Channel Marketing
+Tech Sales	Tech Customer Experience (CX) Organization
+CX ELT	Tech Customer Operations Leadership
+Tech Customer Operations Leadership	Tech Customer Operations (Orders/Keys)
+Tech Customer Operations Leadership	Tech Customer Operations (Renewal)
+Tech Sales	Tech CX ELT (Reports to Executive Leadership Team)
+Services Leadership	Tech Managed Solution Services
+Marketing Operations	Tech Marketing User
+Executive Leadership Team	Tech Product Management
+Tech ELT	Tech Sales
+Sales Operations	Tech ELT
+Tech Sales	Tech Sales Executive Ops
+UK Manager	UK AE
+EMEA/APAC Manager	UK Manager
+West Manager	West AE
+Americas Manager	West Manager
+
+===== SHEET: Changes Made (24r x 2c) =====
+Currently Assigned Role	New Roles to Replace it with
+Cyber Sales ELT	Cyber ELT
+Cyber Sales Operations	Sales Operations
+Cyber Services Leadership w/ Full PS cloud	Services Leadership
+Tech Sales  ELT	Tech ELT
+Tech Sales Operation	Sales Operations
+Cyber Excecutive Ops	Sales Executive Ops
+Tech Executive Op	Sales Executive Ops
+Cyber CX ELT	CX ELT
+Tech CX ELT	CX ELT
+Cyber CSM (Customer Success Manager)	CSM (Customer Success Manager)
+Cyber CSM Mgr (Customer Success Manager)	CSM Mgr (Customer Success Manager)
+Cyber Customer Operations (Orders)	Customer Operations (Orders)
+Cyber CX Excecutive Ops	CX Excecutive Ops
+Cyber Professional Services Manager	Professional Services Mananger
+Tech Professions Services Manager	Professional Services Mananger
+Cyber Technical Support Leadership	Technical Support Leadership
+Tech Technical Support Leadership	Technical Support Leadership
+Cyber Marketing Operations	Marketing Operations
+Tech Marketing Operations	Marketing Operations
+Cyber Marketing Operations Admin	Marketing Operations Admin
+Tech Marketing Operations Admin	Marketing Operations Admin
+Cyber CX	CX
+Tech CX	CX
