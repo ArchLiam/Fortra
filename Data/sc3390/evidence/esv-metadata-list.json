@@ -1,0 +1,16 @@
+{
+  "name": "sf:INVALID_TYPE",
+  "message": "INVALID_TYPE: Unknown type:ExpressionSetVersion",
+  "exitCode": 1,
+  "context": "ListMetadata",
+  "data": {
+    "errorCode": "sf:INVALID_TYPE",
+    "message": "INVALID_TYPE: Unknown type:ExpressionSetVersion"
+  },
+  "stack": "sf:INVALID_TYPE: INVALID_TYPE: Unknown type:ExpressionSetVersion\n    at SfCommandError.from (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-org/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:39:16)\n    at ListMetadata.catch (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-org/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:316:47)\n    at ListMetadata._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:306:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1",
+  "cause": "sf:INVALID_TYPE: INVALID_TYPE: Unknown type:ExpressionSetVersion\n    at SOAP.getError (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:290:56)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:127:33\n    at async SOAP.invoke (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/soap.js:190:21)\n    at async MetadataApi._invoke (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/api/metadata.js:73:21)\n    at async ListMetadata.run (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-org/lib/commands/org/list/metadata.js:50:28)\n    at async ListMetadata._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:302:22)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1 {\n  data: {\n    errorCode: 'sf:INVALID_TYPE',\n    message: 'INVALID_TYPE: Unknown type:ExpressionSetVersion'\n  },\n  errorCode: 'sf:INVALID_TYPE'\n}",
+  "warnings": [],
+  "code": "1",
+  "status": 1,
+  "commandName": "ListMetadata"
+}

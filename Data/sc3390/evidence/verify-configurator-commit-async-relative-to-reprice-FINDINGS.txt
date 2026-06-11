@@ -1,0 +1,95 @@
+SC-3390 ADVERSARIAL VERIFICATION
+CANDIDATE: [configurator-commit-async-relative-to-reprice]
+"Configurator QLIA save and the Update-Price reprice are SEPARATE (async-relative) transactions;
+ the first reprice snapshots a context built from PERSISTED QLIA before the configurator's
+ attribute-save commits."
+VERDICT: REFUTED (as the lag MECHANISM). The reprice does not snapshot persisted QLIA, and the
+         edit+reprice+persist occur in ONE synchronous transaction (price-then-persist).
+Date: 2026-06-11 | Org: FortraUAT (read-only)
+
+==============================================================================================
+DECISIVE EVIDENCE (against the candidate)
+==============================================================================================
+
+[1] THE REPRICE READS A TRANSIENT IN-MEMORY CONTEXT, NOT PERSISTED QLIA.
+    place log 07LWC00000OqoxN2AR (log-place-04-34-13.txt):
+      - request.ctxInstanceId = "0000000s272q18g00251..." (line 637, 662). The leading
+        "0000000..." is the platform's EPHEMERAL runtime context id, NOT a persisted SObject id
+        (persisted ids are 0Q0.../0QL...). All three prehooks (Hardware, RegionalServices,
+        AttributeVolume) read this SAME transient context across the whole reprice.
+      - AttributeVolumePricingPrehook reads Attribute_Volume ONLY via
+        industriesContext.queryTags(contextId, 'SalesTransactionItemAttribute') against that
+        transient context (cls line 129, 686). It issues ZERO SOQL against persisted
+        QuoteLineItemAttribute for Unit Volume.
+      - The only QLIA SOQL in the whole place txn (line 15513: "SELECT QuoteLineItemId FROM
+        QuoteLineItemAttribute WHERE ...AttributePicklistValueId...") is inside the
+        COLAUpliftPrehook chain (stmt [1106]), an existence check unrelated to tier matching.
+    => The candidate's premise ("reprice hydrates its snapshot from the persisted QLIA") is
+       FALSE. The snapshot is hydrated by the platform from the place REQUEST PAYLOAD (the live
+       UI edit) at the start of the call, before any Apex prehook runs.
+
+[2] EDIT + REPRICE + PERSIST ARE ONE SYNCHRONOUS TRANSACTION (price-then-persist).
+    Same place txn, code-unit ordering:
+      - "Get context price ...:0Q0WC000003671t0AA" runs ALL prehooks, ending with
+        Context.IndustriesContext.updateContextAttributes (line 23370) -> writes priced values
+        BACK to the transient context.
+      - ONLY AFTER that (lines 23505-26206): Flow:Quote -> QuoteTrigger BeforeUpdate ->
+        Flow:QuoteLineItem -> QuoteLineItemTrigger BeforeUpdate = the PERSIST of priced results
+        to QLI/Quote.
+    aura log 07LWC00000OqL... (log-aura-12-45-03.txt) shows the identical shape in one /aura
+    request: "Get context price ...bc56ff:0Q0WC0000037muD0AQ" (pricing) FINISHED at line 17621,
+    THEN Flow:QuoteLineItem + QuoteLineItemTrigger BeforeUpdate (lines 17828-19010).
+    => There is no separate prior "configurator save" transaction whose commit the reprice
+       races. The order is PRICE first (reading the live edit), PERSIST after. A
+       "context-build precedes the QLIA commit" window cannot exist because the QLIA persist
+       happens LATER in the SAME txn, downstream of the price computation that consumed the edit.
+
+[3] NO SEPARATE CONFIGURATOR-SAVE API CALL EXISTS IN THE OP STREAM.
+    PricingApiExecution + ApexLog stream (2026-06-11): every reprice = a single
+    /connect/core-pricing/price-contexts/ (UI) -> /connect/rev/sales-transaction/actions/place
+    Api txn, each trailed ~4s later by an async QueueableHandler (the COLA MyCAP tail that only
+    writes Quote.Mycap__c). There is NO intervening non-pricing persist/upsert call between an
+    edit and the reprice. The side-panel edit is carried INLINE in the place request, not
+    flushed by a distinct save transaction.
+    flexipage Quote_Record_Page: transactionLineTable enableSidepanel=true is just the managed
+    side-panel UI; it does not introduce a separate persist op visible in the logs.
+
+[4] DISCRIMINATOR vs CANDIDATE #1 POINTS AWAY FROM THIS CANDIDATE.
+    The candidate explicitly distinguishes itself from #1 by asserting the lag "would occur even
+    if the attribute were price-impacting" (commit timing, not the flag).
+    LIVE: ProductAttributeDefinition for AttributeDefinitionId 0tjWC0000000tqvYAA (Unit Volume)
+    = IsPriceImpacting=False on ALL 26 tiered products (GROUP BY query, count=26).
+    The IsPriceImpacting=false flag is precisely the platform mechanism that suppresses an
+    automatic same-cycle reprice on the new value -> the lag is flag-driven (candidate #1's
+    territory), NOT async-commit-timing of a separate save (this candidate's territory).
+
+==============================================================================================
+WHAT THE CANDIDATE GOT RIGHT (so not a clean "this is nonsense")
+==============================================================================================
+- This codebase genuinely has a documented one-cycle-stale-then-converge pricing-timing class
+  (quoteLineFlexPanel.js updateRecord -> sleep(2000) -> repriceQuote; COLAUpliftPrehook cls
+  1144-1150 "IsCOLAOverridden__c flag only set by trigger AFTER pricing write-back"; SC-3308
+  activate-before-reprice). The "click twice" symptom plausibly belongs to that family.
+- BUT the SPECIFIC mechanism this candidate proposes -- a separate async configurator-save
+  transaction the reprice snapshot races -- is contradicted by the architecture: reprice reads
+  the transient request context (not persisted QLIA), and persist happens AFTER pricing in the
+  SAME txn.
+
+==============================================================================================
+RESIDUAL UNCERTAINTY (why not 100%)
+==============================================================================================
+- The two large captured logs (place 04:34, aura 12:45) BOTH returned "No eligible line items
+  (Has_Attribute_Adjustment__c = true)" -- i.e. neither is a captured trace of the actual
+  tiered-pricing bug repro. The architectural facts (transient-context read, price-then-persist
+  ordering) are read off the managed pipeline and are repro-independent, so the REFUTATION of
+  the candidate's persisted-QLIA-snapshot premise holds. But a DEFINITIVE confirm of the TRUE
+  driver (candidate #1 IsPriceImpacting exclusion vs. a side-panel "edit not yet flushed into the
+  place payload on first click" variant) needs a captured 2-click trace on a Has_Attribute_
+  Adjustment=true line with a boundary-crossing Unit Volume edit. That requires a live DML repro
+  (editing a quote) = REQUIRES AUTHORIZATION; not performed (read-only constraint).
+- A narrow surviving variant of THIS candidate would be: the side panel does not include the
+  just-typed Unit Volume in the FIRST place request payload (UI-side staleness), so the first
+  place context is built from the OLD value even though it is request-sourced not persisted-
+  sourced. That is a UI/payload-assembly timing bug, NOT the "QLIA-commit-race" this candidate
+  describes, and it collapses into the IsPriceImpacting=false (#1) explanation for WHY the new
+  value isn't in the first payload. Cannot be distinguished without the 2-click repro trace.

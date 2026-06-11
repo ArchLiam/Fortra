@@ -1,0 +1,7 @@
+SC-3390 — Fix (a) generalization confirmed on a 2nd product: SEAW (live FINEST trace, 2026-06-11 ~20:45Z)
+Product HRM-HRM-RSL-SEAW, tier key Feature Options='End Users - All Topics' (different ladder from CLSAAS). Instant Pricing OFF.
+After full 26-PAD rollout + Sync Pricing Data:
+  20:45:21  Unit Quantity 499, Update Prices -> [280] Attribute_Volume: 499 -> [305] MATCH Volume=499 BasePrice=5200 (400-499 tier)
+  20:45:40  changed to 500, FIRST/ONLY click  -> [280] Attribute_Volume: 500 -> [305] MATCH Volume=500 BasePrice=6000 (500-749 tier)  <== FIXED on 1st click
+Also: SEAW with Unit Quantity BLANK -> [283] RESET to list price, NO error (null-path regression OK with flag=true).
+Logs: Data/sc3390/logs/seaw_499_204521.log, seaw_500_204540.log, seaw_203822.log

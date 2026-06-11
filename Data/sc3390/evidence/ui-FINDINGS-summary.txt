@@ -1,0 +1,50 @@
+SC-3390 — "Update Price" UI mechanism findings (read-only investigation, FortraUAT)
+======================================================================================
+
+1. NO CUSTOM "Update Price" BUTTON EXISTS.
+   - grep across force-app + "Org Data/_src" for update price/reprice/recalculate found
+     only: header-discount panel (quoteLineFlexPanel), quote clone modal, bulk date/price
+     update flows, and migration tools. None is the per-line "Update Price" button.
+   - No custom QuickAction named Update Price on Quote or QuoteLineItem. Quote QuickActions:
+     Submit_Approval, Change_Currency, SendEmail, Generate_Document, Import_Quote_Line,
+     Convert_Quote_to_Order.
+
+2. HOST UI = STANDARD MANAGED RLM (Revenue Lifecycle Management) Quote Line Editor.
+   - FlexiPage Quote_Record_Page uses managed components:
+       runtime_revenue_foundation:transactionLineTable   <- THE line editor ("TLE"). The
+           "Update Price" / "Reprice" button lives HERE (managed, not custom).
+       runtime_revenue_foundation:transactionSummary
+       runtime_revenue_foundation:progressIndicator      <- async pricing progress indicator
+     transactionLineTable config: enableQuickAdd=true, enableSidepanel=true; displayFields
+     include QuoteLineItem.Quantity, ListPrice, NetUnitPrice, Base_Price__c.
+   - Retrieved page: Data/sc3390/evidence/ui-flexipages/unpackaged/flexipages/Quote_Record_Page.flexipage
+
+3. "Update Price" ACTION = managed RLM Connect REST pricing call.
+   - PricingApiExecution rows show every reprice POSTs to:
+       /connect/core-pricing/price-contexts/   (ApiType=Pricing)
+   - That endpoint BUILDS A PRICING CONTEXT SNAPSHOT (tags: SalesTransactionItem +
+     SalesTransactionItemAttribute) then runs ExpressionSet Rev_Mgmt_Default_Pricing_Procedure
+     V9, which invokes the prehook AttributeVolumePricingPrehook.
+   - Observed a Failure immediately after a run of Successes (14:46:19) = consistent with
+     rapid repeat clicks.
+
+4. TIER MATCHING IS DRIVEN BY THE "Attribute_Volume" ATTRIBUTE, NOT Quantity.
+   - Attribute_Volume = managed AttributeDefinition 0tjWC0000000tqvYAA, label "Unit Volume",
+     DataType Number. Stored on QuoteLineItemAttribute child records (configurator-entered).
+   - LIVE DATA PROOF: Unit Volume values are INDEPENDENT of Quantity. Sampled lines all have
+     Quantity=1 while Unit Volume is mostly null with one =100. The rep sets Unit Volume in
+     the Product Configurator side panel; tiered pricing range-matches THAT value.
+   - The prehook reads Attribute_Volume from the CONTEXT SNAPSHOT via
+     industriesContext.queryTags('SalesTransactionItemAttribute'), NOT from the live
+     QuoteLineItem.Quantity field nor the persisted QLIA record. It writes back to the same
+     context via updateContextAttributes. On null/no-match volume it RESETS to ListPrice.
+
+5. LAG MECHANISM (the crux):
+   The prehook prices off the values present in the pricing-context snapshot that the
+   managed price-contexts endpoint assembled at the START of the run. If the configurator
+   attribute commit (the Quantity / Unit Volume edit -> QuoteLineItemAttribute /
+   SalesTransactionItemAttribute) has not been fully flushed into the context that the FIRST
+   "Update Price" snapshots, the prehook range-matches the OLD volume -> OLD tier price. By
+   the SECOND click the prior commit has settled, the new context snapshot carries the new
+   volume -> correct tier. This is the same one-cycle stale-context disease documented for
+   this codebase (quoteLineFlexPanel sleep(2000); SC-3308 activate-before-reprice race).

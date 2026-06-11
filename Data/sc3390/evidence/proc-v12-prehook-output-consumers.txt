@@ -1,0 +1,14 @@
+1059:                <sourceFieldName>Has_Attribute_Adjustment__c</sourceFieldName>
+1066:                <sourceFieldName>Attribute_Price_Mode__c</sourceFieldName>
+1090:                <value>Base_Price__c * Attribute_Multiplier_Pct__c</value>
+1153:                <sourceFieldName>Has_Attribute_Adjustment__c</sourceFieldName>
+1160:                <sourceFieldName>Attribute_Price_Mode__c</sourceFieldName>
+1184:                <value>Base_Price__c</value>
+1205:                <value>{&quot;whereConditions&quot;:[{&quot;field&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-input1&quot;,&quot;value&quot;:&quot;Base_Price__c&quot;,&quot;allowCompatibleDataTypes&quot;:true},&quot;value&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-output&quot;,&quot;value&quot;:&quot;InputUnitPrice&quot;,&quot;allowCompatibleDataTypes&quot;:true}}]}</value>
+1233:                <sourceFieldName>Has_Attribute_Adjustment__c</sourceFieldName>
+1240:                <sourceFieldName>Attribute_Price_Mode__c</sourceFieldName>
+1264:                <value>Base_Price__c</value>
+1285:                <value>{&quot;whereConditions&quot;:[{&quot;field&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-input1&quot;,&quot;value&quot;:&quot;Base_Price__c&quot;,&quot;allowCompatibleDataTypes&quot;:true},&quot;value&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-output&quot;,&quot;value&quot;:&quot;InputUnitPrice&quot;,&quot;allowCompatibleDataTypes&quot;:true}}]}</value>
+1744:                <sourceFieldName>Base_Price__c</sourceFieldName>
+1920:                <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , NetUnitPrice , Base_Price__c * IF ( AttributeValue = &apos;Premier&apos; , 0.30 , IF ( AttributeValue = &apos;Standard&apos; , 0.20 , IF ( AttributeValue = &apos;Professional&apos; , 0.20 , 0 ) ) ) )</value>
+1985:                <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , IF ( COLACalculatedPrice__c &gt; 0 , COLACalculatedPrice__c , ( Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c ) * ( 1 + ( COLA_Uplift_Percent__c / 100 ) ) ) , NetUnitPrice )</value>
