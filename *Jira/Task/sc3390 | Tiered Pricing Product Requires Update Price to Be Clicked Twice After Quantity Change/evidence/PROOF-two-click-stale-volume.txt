@@ -1,0 +1,36 @@
+SC-3390 — DECISIVE PROOF: one-cycle stale-context confirmed by live FINEST trace
+Captured 2026-06-11 ~18:41-18:42Z | Org FortraUAT | User 005WC00000MgTN2YAN (TraceFlag 7tfWC000000aq89YAA)
+Quote 0Q0WC0000037rFZ0AY ('Fortra, LLC - Test') | CLSAAS line, Feature Options=Managed Service, Per User
+Prehook AttributeVolumePricingPrehook v3.0 (live 01pWC000001wAzJYAU). Configurator 'Update Prices', Instant Pricing OFF.
+Tier oracle (CLSAAS/Managed Service/USD/Total Price): 1-49=1231.2, 50-99=1357.2.
+
+============================================================================
+THE THREE CLICKS (only ONE line on the quote carries a non-null Unit Volume;
+ the other 5 CLSAAS lines read null and RESET to list price each pass):
+============================================================================
+
+--- CLICK A: Unit Quantity set to 49, Update Prices  [log 07LWC00000OsYTY2A3 @ 11:41:15] ---
+  [280] Attribute_Volume: 49
+  [305] MATCH: Attr=Feature_Options:Managed Service, Volume=49, PriceMode=Total Price, BasePrice=1231.200000
+  => prices the 1-49 tier (1231.2). Baseline correct.
+
+--- CLICK B: Unit Quantity changed to 50, FIRST Update Prices click  [log 07LWC00000OsqyH2AR @ 11:41:46] ---
+  [280] Attribute_Volume: 49      <==== STALE: reads the OLD value though UI shows 50
+  [305] MATCH: Attr=Feature_Options:Managed Service, Volume=49, PriceMode=Total Price, BasePrice=1231.200000
+  => prices the OLD 1-49 tier (1231.2). THE BUG.
+
+--- CLICK C: SECOND Update Prices click (no further edit)  [log 07LWC00000OscQh2AJ @ 11:42:32] ---
+  [280] Attribute_Volume: 50      <==== now reads the committed new value
+  [305] MATCH: Attr=Feature_Options:Managed Service, Volume=50, PriceMode=Total Price, BasePrice=1357.200000
+  => prices the correct 50-99 tier (1357.2). Resolved only on the 2nd click.
+
+============================================================================
+CONCLUSION:
+ * ROOT CAUSE CONFIRMED (was PLAUSIBLE-UNPROVEN): the first reprice after a Unit
+   Quantity change reads the PRIOR-committed volume (49); the value commits to the
+   pricing context one cycle late, so only the SECOND reprice reads the new volume (50).
+ * Engine is correct given its input (49->1231.2, 50->1357.2) => NOT a downstream/engine bug.
+ * No error/warning: every mismatch is a silent 'RESET ... resetting to list price' (cls:283).
+ * Instant Pricing was OFF (configurator banner: 'Prices don't reflect the latest selections...').
+
+Raw logs: Data/sc3390/logs/click49_184115.log, click50a_184146.log, click50b_184232.log

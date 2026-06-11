@@ -1,0 +1,49 @@
+SC-3390 — Context-definition hydration path for the tiered-pricing volume attribute
+Source: ContextDefinition SalesTransactionContextExt_v2 (active), retrieved read-only 2026-06-11
+File: Data/sc3390/retrieve/context/contextDefinitions/SalesTransactionContextExt_v2.contextDefinition-meta.xml
+
+KEY FACTS:
+1. Context node 'SalesTransactionItemAttribute' maps to object QuoteLineItemAttribute (line ~7656).
+2. Quote mapping block carries ALL FOUR intents: hydration + persistence + association + translation
+   (contextMappingIntents lines 4006-4017) => node is BIDIRECTIONAL (Input+Output equivalent).
+3. The attribute VALUE is hydrated from the PERSISTED DB column QuoteLineItemAttribute.AttributeValue:
+      <contextAttribute>AttributeValue</contextAttribute>
+      <contextAttrHydrationDetails><objectName>QuoteLineItemAttribute</objectName>
+        <queryAttribute>AttributeValue</queryAttribute></contextAttrHydrationDetails>
+4. The attribute NAME (e.g. 'Attribute_Volume') resolves via AttributeDefinition.DeveloperName:
+      <contextAttribute>AttributeName</contextAttribute>
+        hydrationInfo-2 objectName=AttributeDefinition queryAttribute=DeveloperName
+5. Other hydrated keys: AttributeKey<-AttributeDefinitionId, AttributePicklistValue<-AttributePicklistValueId,
+   SalesTransactionItemAttrParent<-QuoteLineItemId (links attr->parent QLI).
+
+IMPLICATION FOR SC-3390:
+The tiered-pricing prehook reads the volume from this context node. The node hydrates the value from the
+PERSISTED QuoteLineItemAttribute.AttributeValue column at price-contexts build time. Therefore the first
+'Update Price' prices the OLD/null volume IFF the side-panel edit of Unit Quantity has NOT yet been
+committed to QuoteLineItemAttribute.AttributeValue when price-contexts hydrates. The second click (value now
+committed) hydrates the new value -> correct tier. This is the concrete data path behind the §2.4 window and
+the 'surviving narrow variant' the RCA conceded under the refuted configurator-commit-async candidate:
+it is NOT a race INSIDE the place txn (correctly refuted - place reads the already-built transient ctx),
+it is a SAVE(side-panel)->HYDRATE(price-contexts) ordering question one call earlier.
+
+--- Raw extract: SalesTransactionItemAttribute node, AttributeValue mapping (lines 7528-7547) ---
+                </contextAttributeMappings>
+                <contextAttributeMappings>
+                    <contextAttrHydrationDetails>
+                        <inheritedFrom>SalesTransactionContext__stdctx/version/QuoteEntitiesMapping/SalesTransactionItemAttribute/AttributeValue/hydrationInfo-1</inheritedFrom>
+                        <objectName>QuoteLineItemAttribute</objectName>
+                        <queryAttribute>AttributeValue</queryAttribute>
+                    </contextAttrHydrationDetails>
+                    <contextAttribute>AttributeValue</contextAttribute>
+                    <contextInputAttributeName>AttributeValue</contextInputAttributeName>
+                    <inheritedFrom>SalesTransactionContext__stdctx/version/QuoteEntitiesMapping/SalesTransactionItemAttribute/AttributeValue</inheritedFrom>
+                </contextAttributeMappings>
+                <contextAttributeMappings>
+                    <contextAttrHydrationDetails>
+                        <inheritedFrom>SalesTransactionContext__stdctx/version/QuoteEntitiesMapping/SalesTransactionItemAttribute/AttributePicklistValue/hydrationInfo-1</inheritedFrom>
+                        <objectName>QuoteLineItemAttribute</objectName>
+                        <queryAttribute>AttributePicklistValueId</queryAttribute>
+                    </contextAttrHydrationDetails>
+                    <contextAttribute>AttributePicklistValue</contextAttribute>
+                    <contextInputAttributeName>AttributePicklistValue</contextInputAttributeName>
+                    <inheritedFrom>SalesTransactionContext__stdctx/version/QuoteEntitiesMapping/SalesTransactionItemAttribute/AttributePicklistValue</inheritedFrom>

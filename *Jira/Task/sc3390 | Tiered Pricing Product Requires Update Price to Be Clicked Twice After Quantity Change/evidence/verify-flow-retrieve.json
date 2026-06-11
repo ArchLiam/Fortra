@@ -1,0 +1,93 @@
+{
+  "status": 0,
+  "result": {
+    "done": true,
+    "fileProperties": [
+      {
+        "createdById": "005WC00000LwAWkYAN",
+        "createdByName": "Ben Kozlowski",
+        "createdDate": "2026-04-27T18:39:43.000Z",
+        "fileName": "unpackaged/flows/Fortra_QuoteLineItem_Calculate_ARR.flow",
+        "fullName": "Fortra_QuoteLineItem_Calculate_ARR",
+        "id": "301WC00000gfBInYAM",
+        "lastModifiedById": "005WC00000EsahZYAR",
+        "lastModifiedByName": "Data Migration",
+        "lastModifiedDate": "2026-05-05T19:55:53.000Z",
+        "manageableState": "unmanaged",
+        "type": "Flow"
+      },
+      {
+        "createdById": "005WC00000DZ6xVYAT",
+        "createdByName": "Nir Kailash",
+        "createdDate": "2026-06-11T14:08:06.000Z",
+        "fileName": "unpackaged/flows/Stamp_Maintenance_Pricing_Inputs.flow",
+        "fullName": "Stamp_Maintenance_Pricing_Inputs",
+        "id": "301WC00000kYwwkYAC",
+        "lastModifiedById": "005WC00000DZ6xVYAT",
+        "lastModifiedByName": "Nir Kailash",
+        "lastModifiedDate": "2026-06-11T14:08:16.000Z",
+        "manageableState": "unmanaged",
+        "type": "Flow"
+      },
+      {
+        "createdById": "005WC00000DZ6xVYAT",
+        "createdByName": "Nir Kailash",
+        "createdDate": "2026-06-07T21:41:14.000Z",
+        "fileName": "unpackaged/flows/Stamp_Source_List_Price.flow",
+        "fullName": "Stamp_Source_List_Price",
+        "id": "301WC00000kJs76YAC",
+        "lastModifiedById": "005WC00000DZ6xVYAT",
+        "lastModifiedByName": "Nir Kailash",
+        "lastModifiedDate": "2026-06-07T21:41:20.000Z",
+        "manageableState": "unmanaged",
+        "type": "Flow"
+      },
+      {
+        "createdById": "005a500001ddfltAAA",
+        "createdByName": "Marc DeBrey",
+        "createdDate": "2026-02-03T14:27:25.000Z",
+        "fileName": "unpackaged/flows/Fortra_Quote_Line_Item_Populate_QL_With_Quote_Values.flow",
+        "fullName": "Fortra_Quote_Line_Item_Populate_QL_With_Quote_Values",
+        "id": "301WC00000aEUPhYAO",
+        "lastModifiedById": "005WC00000MgfLUYAZ",
+        "lastModifiedByName": "Sara O'Malley",
+        "lastModifiedDate": "2026-04-11T17:38:44.000Z",
+        "manageableState": "unmanaged",
+        "type": "Flow"
+      },
+      {
+        "createdById": "005WC00000MgTN2YAN",
+        "createdByName": "Liam Jeong",
+        "createdDate": "2026-06-11T15:05:11.860Z",
+        "fileName": "unpackaged/package.xml",
+        "fullName": "unpackaged/package.xml",
+        "id": "",
+        "lastModifiedById": "005WC00000MgTN2YAN",
+        "lastModifiedByName": "Liam Jeong",
+        "lastModifiedDate": "2026-06-11T15:05:11.860Z",
+        "manageableState": "unmanaged",
+        "type": "Package"
+      }
+    ],
+    "id": "09SWC00000Qs3d92AB",
+    "messages": [
+      {
+        "fileName": "unpackaged/package.xml",
+        "problem": "Entity of type 'Flow' named 'Set_Services_Hourly_Rate' cannot be found"
+      }
+    ],
+    "status": "Succeeded",
+    "success": true,
+    "zipFilePath": "/Users/liamjeong/Documents/Code/Fortra/Data/sc3390/retrieve/flows/unpackaged.zip",
+    "files": [
+      {
+        "fullName": "Set_Services_Hourly_Rate",
+        "type": "Flow",
+        "state": "Failed",
+        "error": "Entity of type 'Flow' named 'Set_Services_Hourly_Rate' cannot be found",
+        "problemType": "Error"
+      }
+    ]
+  },
+  "warnings": []
+}
