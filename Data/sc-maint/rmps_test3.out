@@ -1,0 +1,80 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.137.7.
+
+
+=== Test Results
+TEST NAME                                                                                             OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+RenewalMaintenancePricingServiceTest.applyColaNetFinalizeToContext_withCandidatesAndFakeContextId     Pass              20134       
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_applyToContextBranch            Pass              1315        
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_blankQuoteIdRecordsResult       Pass              7           
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_finalizeAfterPricingBranch      Pass              1235        
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_noContextIdRunsFinalize         Pass              680         
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_nullAndEmptyRequests            Pass              7           
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_nullRequestInListRecordsResult  Pass              7           
+RenewalMaintenancePricingServiceTest.applyToContext_withCandidatesAndFakeContextId                    Pass              1112        
+RenewalMaintenancePricingServiceTest.computeColaNet_appliesUpliftToStampedComponents                  Pass              8           
+RenewalMaintenancePricingServiceTest.computeColaNet_derivesDiscretionaryFromDiscountPercent           Pass              7           
+RenewalMaintenancePricingServiceTest.computeColaNet_nullAndZeroBaseReturnNull                         Pass              8           
+RenewalMaintenancePricingServiceTest.computeColaNet_preColaNonPositiveReturnsNull                     Pass              6           
+RenewalMaintenancePricingServiceTest.computeColaNet_usesExplicitPriorDiscretionaryDollars             Pass              6           
+RenewalMaintenancePricingServiceTest.computeColaNet_zeroDiscountFallsToZeroDiscretionary              Pass              6           
+RenewalMaintenancePricingServiceTest.filterLinesNeedingColaNet_guardAndFilter                         Pass              9           
+RenewalMaintenancePricingServiceTest.finalizeRenewalMaintenanceAfterPricing_noCandidatesReturns       Pass              739         
+RenewalMaintenancePricingServiceTest.finalizeRenewalMaintenanceAfterPricing_nullQuoteReturns          Pass              10          
+RenewalMaintenancePricingServiceTest.needsColaNetCorrectionForValues_branches                         Pass              7           
+RenewalMaintenancePricingServiceTest.needsColaNetCorrection_delegatesToQliValues                      Pass              8           
+RenewalMaintenancePricingServiceTest.queryRenewalMaintenanceCandidates_returnsStampedRenewalLine      Pass              1125        
+RenewalMaintenancePricingServiceTest.repriceResult_defaultsToFalse                                    Pass              7           
+RenewalMaintenancePricingServiceTest.resolveColaLineTotal_branches                                    Pass              8           
+RenewalMaintenancePricingServiceTest.resolveUpdatePath_branches                                       Pass              15          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_guardBranches                        Pass              8           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_originalActionRenewTrue              Pass              8           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_otherLineWithTotalPriceDisqualifies  Pass              9           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_otherZeroTotalLineAllowed            Pass              6           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_perpetualLineDisqualifies            Pass              8           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_productTypeFromProduct2Fallback      Pass              10          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_renewalMaintenanceMissingBaseFalse   Pass              7           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_renewalMaintenanceOnlyTrue           Pass              8           
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_softwareLineDisqualifies             Pass              7           
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_missingQuoteReturnsFalse                     Pass              28          
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_nullIdReturnsFalse                           Pass              8           
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_realRenewalQuoteTrue                         Pass              1500        
+
+
+=== Apex Code Coverage by Class
+CLASSES                           PERCENT  UNCOVERED LINES       
+────────────────────────────────  ───────  ──────────────────────
+QuoteLineItemTriggerHandler       34%      34,38,39,40,46...     
+FindRecordsInCollection           0%       4,6,8,9,10...         
+COLAUpliftHandler                 4%       18,25,34,38,42...     
+OpportunityTriggerHandler         19%      35,36,37,38,39...     
+QuoteSyncingTriggerHandler        29%      20,25,35,37,40...     
+DatedConversionRateLookup         46%      31,34,42,45,46...     
+QuoteRenewalTypeHandler           70%      13,26,27              
+RenewalQuoteLineHandler           75%      31,36,44,50,51...     
+RenewalMaintenancePricingService  50%      139,140,141,142,144...
+RenewalQuoteHeaderHandler         14%      13,19,27,28,31...     
+RenewalAssetQuantityHandler       35%      22,27,35,43,48...     
+QuoteLineItemTrigger              92%      31                    
+OpportunityTrigger                71%      16,21                 
+QuoteSyncingTrigger               100%                           
+QuoteLineItemExchangeRateTrigger  83%      63,64,65,66,75        
+QuoteTrigger                      100%                           
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            35                         
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id          707WC00002y2zWD            
+Test Setup Time      0 ms                       
+Test Execution Time  28073 ms                   
+Test Total Time      28073 ms                   
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    44%                        
+

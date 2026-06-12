@@ -1,0 +1,17 @@
+Product2 p = new Product2(Name='DIAGNULL', ProductCode='DIAGNULL', IsActive=true, Fortra_Product_Type__c='New Maintenance');
+insert p;
+Pricebook2 std = [SELECT Id FROM Pricebook2 WHERE IsStandard=true LIMIT 1];
+PricebookEntry pbe = new PricebookEntry(Pricebook2Id=std.Id, Product2Id=p.Id, UnitPrice=100, IsActive=true);
+insert pbe;
+Account a = new Account(Name='DIAGNULL A'); insert a;
+Opportunity o = new Opportunity(AccountId=a.Id, Name='DIAGNULL O', StageName='Pre-Qualified', CloseDate=Date.today().addDays(30)); insert o;
+Quote q = new Quote(Name='DIAGNULL Q', OpportunityId=o.Id, Pricebook2Id=std.Id); insert q;
+QuoteLineItem qli = new QuoteLineItem(QuoteId=q.Id, PricebookEntryId=pbe.Id, Product2Id=p.Id, Quantity=1, UnitPrice=0);
+insert qli;
+QuoteLineItem r1 = [SELECT Fortra_Product_Type__c FROM QuoteLineItem WHERE Id=:qli.Id];
+System.debug('DIAGNULL after insert line-level=['+r1.Fortra_Product_Type__c+']');
+r1.Fortra_Product_Type__c = null;
+update r1;
+QuoteLineItem r2 = [SELECT Fortra_Product_Type__c FROM QuoteLineItem WHERE Id=:qli.Id];
+System.debug('DIAGNULL after null-update line-level=['+r2.Fortra_Product_Type__c+']');
+delete qli; delete q; delete o; delete a; delete pbe; delete p;

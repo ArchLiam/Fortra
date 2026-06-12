@@ -1,0 +1,244 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.137.7.
+
+
+=== Test Results
+TEST NAME                                                                                                     OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+PartnerNetPricePosthookTest.applyNetPricesToOrder_nullOrderReturnsZero                                        Pass              183         
+PartnerNetPricePosthookTest.applyPostPricingNetPrices_guardsAndBlankRequest                                   Pass              43          
+PartnerNetPricePosthookTest.buildNetPriceUpdate_returnsColaUpdateWhenRenewalMaintenanceMatches                Pass              10          
+PartnerNetPricePosthookTest.buildNetPriceUpdate_returnsNullWhenUpdatePathMissing                              Pass              2           
+PartnerNetPricePosthookTest.buildNetPriceUpdate_skipsWhenCommercialEqualsExistingPartnerUnit                  Pass              35          
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_buildsPathAndDiscountAttributes                 Pass              5           
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_correctsStaleLastTransactionNet                 Pass              5           
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_guardBranches                                   Pass              4           
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_nullWhenNoUpdatePathDerivable                   Pass              3           
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_skipsWhenNetAlreadyMatchesCola                  Pass              3           
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_discountBillingModelMissing                         Pass              866         
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_discountMissingMarginReturnsNull                    Pass              256         
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_guaranteedMarginAdditive                            Pass              282         
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_guaranteedMarginNoMarginsReturnsNull                Pass              241         
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_guardBranches                                       Pass              3           
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_notNeededReturnsNull                                Pass              232         
+PartnerNetPricePosthookTest.calculateDeferredPartnerPrice_unknownModelReturnsNull                             Pass              239         
+PartnerNetPricePosthookTest.collectPartnerIds_guaranteedMarginAddsAllPartners                                 Pass              8           
+PartnerNetPricePosthookTest.computeRenewalMaintenanceColaNet_appliesUpliftToStampedComponents                 Pass              3           
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_fallsBackToLinkedQuote                           Pass              1573        
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_orderWithoutQuoteReturns                         Pass              354         
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_skipsNonOrderTransaction                         Pass              3           
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_usesSalesTransactionSourceKey                    Pass              850         
+PartnerNetPricePosthookTest.execute_handlesContextErrorGracefully                                             Pass              32          
+PartnerNetPricePosthookTest.execute_skipsWhenContextIdBlank                                                   Pass              5           
+PartnerNetPricePosthookTest.getLineItemRecordId_sourceFallbacksAndInvalid                                     Pass              5           
+PartnerNetPricePosthookTest.loadRenewalMaintenanceLines_guardsAndQueries                                      Pass              59085       
+PartnerNetPricePosthookTest.needsDeferredPartnerPricing_falseBranches                                         Pass              51          
+PartnerNetPricePosthookTest.renewalDiscretionaryAndPartnerPercent_branches                                    Pass              5           
+PartnerNetPricePosthookTest.resolveContextId_readsContextOrInstanceId                                         Pass              4           
+PartnerNetPricePosthookTest.resolveLineTotalFromQuantity_nullUnitPriceReturnsNull                             Pass              7           
+PartnerNetPricePosthookTest.resolvePreProcedurePrice_prefersRegionalThenUnitThenList                          Pass              4           
+PartnerNetPricePosthookTest.resolveRenewalMaintenanceUpdatePath_branches                                      Pass              5           
+PartnerNetPricePosthookTest.shouldSkipProcedureOwnedPartner_evaluatesPricingSourceBranch                      Pass              5           
+PartnerNetPricePosthookTest.tagExtractionHelpers_handleWrappersAndInvalid                                     Pass              5           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_AppliesPartnerPriceToNetFields                            Pass              8           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_ComputesDeferredMaintenancePartnerPrice                   Pass              332         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWhenDiscretionaryNetAndPartnerAlreadyStamped         Pass              5           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWhenNetAlreadyMatches                                Pass              6           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWhenProcedurePreservedDiscretionaryNet               Pass              6           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWithoutPartnerPrice                                  Pass              5           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_UsesCommercialNetWhenPartnerNetNotYetStamped              Pass              6           
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_usesProductTypeFromBulkMapWhenContextBlank                Pass              1202        
+PartnerNetPricePosthookTest.testCalculateDeferredPartnerPrice_newMaintenanceDiscount                          Pass              283         
+PartnerNetPricePosthookTest.testNeedsDeferredPartnerPricing_detectsDerivedMaintenanceLine                     Pass              3           
+PartnerNetPricePosthookTest.testResolveCommercialUnitPrice_prefersLowerProcedureNet                           Pass              4           
+PartnerNetPricePosthookTest.testShouldSkipProcedureOwnedPartner_falseWhenNetNeedsPartnerEnforcement           Pass              3           
+PartnerNetPricePosthookTest.testShouldSkipProcedureOwnedPartner_whenProcedureStampedPartnerTier               Pass              4           
+PartnerPricingServiceTest.calculateDiscountPrice_appliesPercent                                               Pass              13          
+PartnerPricingServiceTest.calculateDiscountPrice_guards                                                       Pass              4           
+PartnerPricingServiceTest.calculateGuaranteedMarginPrice_additiveAndIgnoresNonPositive                        Pass              4           
+PartnerPricingServiceTest.calculateGuaranteedMarginPrice_capsAtHundred                                        Pass              2           
+PartnerPricingServiceTest.calculateGuaranteedMarginPrice_guards                                               Pass              3           
+PartnerPricingServiceTest.getMarginForProductType_allMappedTypes                                              Pass              5           
+PartnerPricingServiceTest.getMarginForProductType_guards                                                      Pass              4           
+PartnerPricingServiceTest.getMarginForProductType_nullPercentDefaultsZero                                     Pass              3           
+PartnerPricingServiceTest.getPricingModel_nullAndBlankReturnNull                                              Pass              3           
+PartnerPricingServiceTest.getPricingModel_returnsActiveMatch                                                  Pass              668         
+PartnerPricingServiceTest.getPricingModels_mapsByPartner                                                      Pass              516         
+PartnerPricingServiceTest.getPricingModels_nullEmptyBlankReturnEmpty                                          Pass              4           
+PartnerPricingServiceTest.loadProductTypesForLines_lineAndProductLevel                                        Pass              83178       
+PartnerPricingServiceTest.loadProductTypesForLines_nullEmpty                                                  Pass              4           
+PartnerPricingServiceTest.loadProductTypesForTransactionLines_allResolvedByQliShortCircuits                   Pass              871         
+PartnerPricingServiceTest.loadProductTypesForTransactionLines_nullEmpty                                       Pass              3           
+PartnerPricingServiceTest.loadProductTypesForTransactionLines_orderItemFallsBackToQli                         Pass              1719        
+PartnerPricingServiceTest.loadProductTypesForTransactionLines_qliAndOrderItem                                 Pass              1283        
+PartnerPricingServiceTest.resolveProductType_bulkContextWins                                                  Pass              4           
+PartnerPricingServiceTest.resolveProductType_bulkMapHitAndMiss                                                Pass              4           
+PartnerPricingServiceTest.resolveProductType_bulkNullMapDelegatesToSoql                                       Pass              876         
+PartnerPricingServiceTest.resolveProductType_contextWins                                                      Pass              4           
+PartnerPricingServiceTest.resolveProductType_fallsBackToProductLevel                                          Pass              983         
+PartnerPricingServiceTest.resolveProductType_nullLineDefaultsSoftware                                         Pass              4           
+PartnerPricingServiceTest.resolveProductType_usesLineLevelWhenPresent                                         Pass              900         
+RenewalMaintenancePricingServiceTest.applyColaNetFinalizeToContext_noCandidatesEarlyReturns                   Pass              2149        
+RenewalMaintenancePricingServiceTest.applyColaNetFinalizeToContext_withCandidatesAndFakeContextId             Pass              98330       
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_applyToContextBranch                    Pass              3258        
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_blankQuoteIdRecordsResult               Pass              4           
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_finalizeAfterPricingBranch              Pass              964         
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_noContextIdRunsFinalize                 Pass              567         
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_nullAndEmptyRequests                    Pass              5           
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_nullRequestInListRecordsResult          Pass              5           
+RenewalMaintenancePricingServiceTest.applyToContext_noCandidatesEarlyReturns                                  Pass              517         
+RenewalMaintenancePricingServiceTest.applyToContext_withCandidatesAndFakeContextId                            Pass              1027        
+RenewalMaintenancePricingServiceTest.computeColaNet_appliesUpliftToStampedComponents                          Pass              5           
+RenewalMaintenancePricingServiceTest.computeColaNet_derivesDiscretionaryFromDiscountPercent                   Pass              6           
+RenewalMaintenancePricingServiceTest.computeColaNet_nullAndZeroBaseReturnNull                                 Pass              4           
+RenewalMaintenancePricingServiceTest.computeColaNet_preColaNonPositiveReturnsNull                             Pass              4           
+RenewalMaintenancePricingServiceTest.computeColaNet_usesExplicitPriorDiscretionaryDollars                     Pass              4           
+RenewalMaintenancePricingServiceTest.computeColaNet_zeroDiscountFallsToZeroDiscretionary                      Pass              5           
+RenewalMaintenancePricingServiceTest.filterLinesNeedingColaNet_guardAndFilter                                 Pass              6           
+RenewalMaintenancePricingServiceTest.finalizeRenewalMaintenanceAfterPricing_noCandidatesReturns               Pass              516         
+RenewalMaintenancePricingServiceTest.finalizeRenewalMaintenanceAfterPricing_nullQuoteReturns                  Pass              6           
+RenewalMaintenancePricingServiceTest.needsColaNetCorrectionForValues_branches                                 Pass              5           
+RenewalMaintenancePricingServiceTest.needsColaNetCorrection_delegatesToQliValues                              Pass              5           
+RenewalMaintenancePricingServiceTest.queryRenewalMaintenanceCandidates_returnsStampedRenewalLine              Pass              912         
+RenewalMaintenancePricingServiceTest.repriceResult_defaultsToFalse                                            Pass              4           
+RenewalMaintenancePricingServiceTest.resolveColaLineTotal_branches                                            Pass              5           
+RenewalMaintenancePricingServiceTest.resolveUpdatePath_branches                                               Pass              31          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_guardBranches                                Pass              95          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_originalActionRenewTrue                      Pass              23          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_otherLineWithTotalPriceDisqualifies          Pass              11          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_otherZeroTotalLineAllowed                    Pass              11          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_perpetualLineDisqualifies                    Pass              10          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_productTypeFromProduct2Fallback              Pass              23          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_renewalMaintenanceMissingBaseFalse           Pass              10          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_renewalMaintenanceOnlyTrue                   Pass              12          
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_softwareLineDisqualifies                     Pass              11          
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_missingQuoteReturnsFalse                             Pass              74          
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_nullIdReturnsFalse                                   Pass              10          
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_realRenewalQuoteTrue                                 Pass              3629        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_bulkStampsMultipleRenewalQuotes                        Pass              4904        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_copiesBlankFieldsFromSourceQuote                       Pass              1095        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_doesNotOverwriteExistingValues                         Pass              918         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_noOpWhenNullOrEmpty                                    Pass              6           
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_resolvesSourceQuoteFromContractSourceQuoteId           Pass              974         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_resolvesSourceQuoteFromOrder                           Pass              1242        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_runsForOriginalActionRenewContext                      Pass              380         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_setsRenewalContractFromContractId                      Pass              303         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_skipsNonRenewalQuotes                                  Pass              309         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_skipsRenewalQuoteWithoutContract                       Pass              6           
+RenewalQuoteHeaderHandlerTest.isRenewalQuoteContext_acceptsRenewalTypeWithoutOriginalAction                   Pass              6           
+RenewalQuoteHeaderHandlerTest.isRenewalQuoteContext_falseForNullAndNonRenewal                                 Pass              5           
+RenewalQuoteHeaderHandlerTest.loadSourceQuotesByContractId_returnsEmptyForNullOrEmpty                         Pass              7           
+RenewalQuoteHeaderHandlerTest.loadSourceQuotesByContractId_returnsEmptyWhenNoSourceResolved                   Pass              431         
+RenewalQuoteHeaderHandlerTest.quoteTrigger_stampsHeaderOnRenewalInsert                                        Pass              1581        
+RenewalQuoteHeaderHandlerTest.resolveContractId_fallsBackToContractId                                         Pass              316         
+RenewalQuoteHeaderHandlerTest.resolveContractId_prefersRenewalContractField                                   Pass              594         
+RenewalQuoteHeaderHandlerTest.resolveContractId_returnsNullForNullQuote                                       Pass              5           
+RenewalQuoteHeaderHandlerTest.stampHeaderFields_isolatedCopyLogic                                             Pass              598         
+RenewalQuoteHeaderHandlerTest.stampHeaderFields_noOpForNullTargetOrSource                                     Pass              8           
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_noOpWhenNoZeroQtyCandidates                     Pass              131081      
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_noOpWhenNotRenewalQuote                         Pass              1099        
+OrderRepriceInvocableTest.clearOrderValidationResult_clearsRealOrder                                          Pass              122         
+OrderRepriceInvocableTest.clearOrderValidationResult_noopOnNullId                                             Pass              8           
+OrderRepriceInvocableTest.isPricingReady_evaluatesRealOrder                                                   Pass              78          
+OrderRepriceInvocableTest.isPricingReady_falseWhenOrderIdMissing                                              Pass              10          
+OrderRepriceInvocableTest.populateResultFromOrder_copiesStatusFields                                          Pass              19          
+OrderRepriceInvocableTest.reprice_handlesMissingOrderGracefully                                               Pass              1753        
+OrderRepriceInvocableTest.reprice_returnsResultPerRequest_andNeverThrows                                      Pass              3612        
+OrderRepriceInvocableTest.reprice_seedsQuotePricingBeforeExecutor                                             Pass              612         
+OrderRepriceInvocableTest.resolveQuoteTotal_nullWhenOrderHasNoQuote                                           Pass              461         
+OrderRepriceInvocableTest.resolveTotals_returnNullForUnknownOrder                                             Pass              14          
+MaintenanceOrderDecompositionServiceTest.buildCommercialPatchesFromWork_appliesAllLinkedLines                 Pass              60772       
+MaintenanceOrderDecompositionServiceTest.buildPatchesFromWork_matchesBuildPatches                             Pass              1230        
+MaintenanceOrderDecompositionServiceTest.buildPatches_newBusinessEmptyOrder                                   Pass              761         
+MaintenanceOrderDecompositionServiceTest.buildPatches_persistsDecompositionForDerivedLine                     Pass              162         
+MaintenanceOrderDecompositionServiceTest.buildPatches_returnsEmptyWhenOrderIdNull                             Pass              8           
+MaintenanceOrderDecompositionServiceTest.buildPatches_skipsNonDerivedPricebookEntry                           Pass              26784       
+MaintenanceOrderDecompositionServiceTest.buildPatches_skipsNonNewBusinessQuote                                Pass              867         
+MaintenanceOrderDecompositionServiceTest.compute_derivedMaintenanceUsesNetUnitPriceWhenUnitPriceZero          Pass              7           
+MaintenanceOrderDecompositionServiceTest.compute_invalidSourceBaseReturnsZeros                                Pass              8           
+MaintenanceOrderDecompositionServiceTest.compute_matchesWorkedExample                                         Pass              7           
+MaintenanceOrderDecompositionServiceTest.compute_noDiscounts                                                  Pass              8           
+MaintenanceOrderDecompositionServiceTest.compute_partnerOnly                                                  Pass              8           
+MaintenanceOrderDecompositionServiceTest.compute_premierTierRate                                              Pass              8           
+MaintenanceOrderDecompositionServiceTest.compute_professionalTierRate                                         Pass              7           
+MaintenanceOrderDecompositionServiceTest.compute_unknownTierSkipsDecomposition                                Pass              8           
+MaintenanceOrderDecompositionServiceTest.loadDerivedPricebookEntryIds_findsOrgDerivedEntries                  Pass              33          
+MaintenanceOrderDecompositionServiceTest.loadDerivedPricebookEntryIds_returnsEmptyForEmptyInput               Pass              8           
+MaintenanceOrderDecompositionServiceTest.loadMaintenanceTierByQliId_prefersMaintenanceTypeDefn                Pass              7091        
+MaintenanceOrderDecompositionServiceTest.loadMaintenanceTierByQliId_resolvesStandardTier                      Pass              3351        
+MaintenanceOrderDecompositionServiceTest.loadMaintenanceTierByQliId_returnsEmptyForEmptyInput                 Pass              7           
+QuoteToOrderFieldMapperTest.testHeaderBulkMultipleOrdersStaysWithinSoqlBudget                                 Pass              4573        
+QuoteToOrderFieldMapperTest.testHeaderLeavesAccountNullWhenNoPlace                                            Pass              847         
+QuoteToOrderFieldMapperTest.testMapsFieldsFromQLIToOrderItem                                                  Pass              1676        
+QuoteToOrderFieldMapperTest.testMapsHeaderBillShipFromQuotePlaces                                             Pass              4346        
+QuoteToOrderFieldMapperTest.testNullOrderId                                                                   Pass              11          
+QuoteToOrderFieldMapperTest.testSkipsWhenNoQuoteLineItemId                                                    Pass              550         
+QuoteRenewalTypeHandlerTest.applyRenewalQuoteType_noOpWhenNullOrEmpty                                         Pass              19          
+QuoteRenewalTypeHandlerTest.applyRenewalQuoteType_setsRenewalOnBatch                                          Pass              71          
+QuoteRenewalTypeHandlerTest.normalizeRenewalQuoteType_leavesNonRenewQuotesUnchanged                           Pass              5           
+QuoteRenewalTypeHandlerTest.normalizeRenewalQuoteType_preservesExistingRenewalType                            Pass              5           
+QuoteRenewalTypeHandlerTest.normalizeRenewalQuoteType_setsRenewalWhenOriginalActionIsRenew                    Pass              5           
+RenewalQuoteLineHandlerTest.findQuotesWithRenewalMaintenance_emptyWhenNoRenewalLines                          Pass              1551        
+RenewalQuoteLineHandlerTest.isCarryoverProductType_identifiesPerpetualAndNewMaintenance                       Pass              9           
+RenewalQuoteLineHandlerTest.removeNewMaintenanceCarryover_deletesExistingNewMaintenanceAfterRenewalInsert     Pass              88763       
+RenewalQuoteLineHandlerTest.removeNewMaintenanceCarryover_deletesLicenseAndNewMaintWhenRenewalPresentInBatch  Pass              1866        
+RenewalQuoteLineHandlerTest.removeNewMaintenanceCarryover_deletesNewMaintenanceWhenRenewalPresentInBatch      Pass              1859        
+RenewalQuoteLineHandlerTest.removeNewMaintenanceCarryover_noOpWhenNoRenewalQuotes                             Pass              657         
+RenewalQuoteLineHandlerTest.removeNewMaintenanceCarryover_noOpWhenNullOrEmpty                                 Pass              9           
+RenewalQuoteLineHandlerTest.resolveRenewalQuoteIds_includesRenewalQuoteType                                   Pass              724         
+
+
+=== Apex Code Coverage by Class
+CLASSES                               PERCENT  UNCOVERED LINES       
+────────────────────────────────────  ───────  ──────────────────────
+QuoteLineItemTriggerHandler           41%      34,40,46,47,48...     
+FindRecordsInCollection               0%       4,6,8,9,10...         
+PartnerPricingService                 100%                           
+AssetContractQueryHelper              19%      31,46,49,52,57...     
+COLAUpliftHandler                     14%      18,25,34,38,42...     
+OpportunityTriggerHandler             19%      35,36,37,38,39...     
+ChecklistValidationService            56%      28,29,35,45,46...     
+OrderValidationTriggerHandler         83%      12,37,38              
+QuoteSyncingTriggerHandler            29%      20,25,35,37,40...     
+DatedConversionRateLookup             46%      31,34,42,45,46...     
+QuoteToOrderFieldMapper               92%      85,99,100,111,112...  
+AssetMigrationQueueClearHandler       32%      22,23,28,29,32...     
+OrderRepriceInvocable                 91%      52,53,65,66,67...     
+QuoteRenewalTypeHandler               100%                           
+RenewalQuoteLineHandler               91%      31,36,44,63,64...     
+PartnerNetPricePosthook               69%      57,58,59,73,74...     
+MaintenanceOrderDecompositionService  51%      45,101,102,115,122... 
+RenewalMaintenancePricingService      50%      139,140,141,142,144...
+RenewalQuoteHeaderHandler             100%                           
+RenewalAssetQuantityHandler           98%      35,105                
+QuoteLineItemTrigger                  100%                           
+OpportunityTrigger                    71%      16,21                 
+OrderValidationTrigger                100%                           
+QuoteSyncingTrigger                   100%                           
+QuoteLineItemExchangeRateTrigger      83%      63,64,65,66,75        
+AssetMigrationQueueClearTrigger       100%                           
+QuoteTrigger                          100%                           
+
+
+=== Test Setup Time by Test Class for Run 707WC00002y3eWN
+TEST SETUP METHOD NAME                     SETUP TIME
+─────────────────────────────────────────  ──────────
+OrderRepriceInvocableTest.makeData         60816     
+QuoteToOrderFieldMapperTest.setupTestData  1497      
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            183                        
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id          707WC00002y3eWN            
+Test Setup Time      62313 ms                   
+Test Execution Time  397531 ms                  
+Test Total Time      459844 ms                  
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    45%                        
+
