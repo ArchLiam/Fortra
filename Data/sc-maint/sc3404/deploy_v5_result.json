@@ -1,0 +1,16 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.137.7.
+{
+  "name": "MetadataTransferError",
+  "message": "Metadata API request failed: Missing message metadata.transfer:Finalizing for locale en_US.",
+  "exitCode": 1,
+  "context": "DeployMetadata",
+  "data": {
+    "id": "0AfWC00000GJy7J0AT"
+  },
+  "stack": "MetadataTransferError: Metadata API request failed: Missing message metadata.transfer:Finalizing for locale en_US.\n    at SfCommandError.from (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-deploy-retrieve/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:39:16)\n    at DeployMetadata.catch (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-deploy-retrieve/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:316:47)\n    at DeployMetadata.catch (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-deploy-retrieve/lib/commands/project/deploy/start.js:262:27)\n    at DeployMetadata._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:306:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1",
+  "cause": "undefined",
+  "warnings": [],
+  "code": "MetadataTransferError",
+  "status": 1,
+  "commandName": "DeployMetadata"
+}

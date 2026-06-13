@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SC-3346 / SC-3403 — Final Remediation Report</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --panel2:#172033; --ink:#e2e8f0; --muted:#94a3b8;
+    --line:#334155; --accent:#38bdf8;
+    --green:#22c55e; --green-bg:#052e1a; --amber:#f59e0b; --amber-bg:#3a2a06;
+    --red:#ef4444; --red-bg:#3a0d0d; --gray:#64748b; --gray-bg:#1f2937; --teal:#2dd4bf;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:32px 20px 64px}
+  header.hero{border-radius:16px;padding:28px 30px;
+    background:linear-gradient(135deg,#0b3a5e 0%,#10243f 70%);border:1px solid var(--line)}
+  .eyebrow{color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+  h1{margin:6px 0 4px;font-size:30px;line-height:1.2}
+  .sub{color:var(--muted);font-size:15px}
+  .stats{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 8px}
+  .stat{flex:1 1 150px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .stat .n{font-size:30px;font-weight:800;line-height:1}
+  .stat .l{color:var(--muted);font-size:12.5px;margin-top:6px;text-transform:uppercase;letter-spacing:.04em}
+  .stat.green .n{color:var(--green)} .stat.teal .n{color:var(--teal)}
+  .stat.gray .n{color:var(--gray)} .stat.red .n{color:var(--red)}
+  .verdict{margin:22px 0;padding:16px 20px;border-radius:12px;background:var(--red-bg);
+    border:1px solid #7f1d1d;font-size:15.5px}
+  .verdict b{color:#fca5a5}
+  h2{margin:38px 0 14px;font-size:21px;border-left:4px solid var(--accent);padding-left:12px}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);font-size:14.5px}
+  th{background:var(--panel2);text-align:left;padding:11px 13px;color:var(--muted);
+    font-size:12px;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--line)}
+  td{padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  .id{font-weight:700;white-space:nowrap}
+  .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+  .b-green{background:var(--green-bg);color:#86efac;border:1px solid #14532d}
+  .b-teal{background:#04302b;color:#5eead4;border:1px solid #115e59}
+  .b-amber{background:var(--amber-bg);color:#fcd34d;border:1px solid #78491c}
+  .b-gray{background:var(--gray-bg);color:#cbd5e1;border:1px solid #475569}
+  .b-red{background:var(--red-bg);color:#fca5a5;border:1px solid #7f1d1d}
+  tr.blocker td{background:#2a0d0d}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .card h3{margin:0 0 6px;font-size:15px;color:var(--accent)}
+  .card p{margin:0;color:#cbd5e1;font-size:14px}
+  .callout{border-radius:12px;padding:18px 20px;border:1px solid var(--line);background:var(--panel)}
+  .callout.good{border-color:#14532d;background:#06281a}
+  .callout.bad{border-color:#7f1d1d;background:var(--red-bg)}
+  .callout h3{margin:0 0 8px;font-size:17px}
+  ol,ul{margin:10px 0;padding-left:22px} li{margin:6px 0}
+  code{background:#0b1424;border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px;
+    color:#7dd3fc;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .facts{counter-reset:f;list-style:none;padding-left:0}
+  .facts li{position:relative;padding:10px 12px 10px 46px;margin:8px 0;background:#240a0a;border:1px solid #7f1d1d;border-radius:10px}
+  .facts li::before{counter-increment:f;content:counter(f);position:absolute;left:12px;top:10px;
+    width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;
+    display:flex;align-items:center;justify-content:center;font-size:13px}
+  .path{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:12px}
+  .opt{background:#06281a;border:1px solid #14532d;border-radius:10px;padding:14px 16px}
+  .opt .tag{font-weight:800;color:var(--green);font-size:13px}
+  .live{display:flex;gap:10px;align-items:flex-start;background:#06281a;border:1px solid #14532d;
+    border-radius:12px;padding:16px 18px}
+  .dot{width:11px;height:11px;border-radius:50%;background:var(--green);margin-top:7px;flex:none;
+    box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+  footer{margin-top:40px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+  .pill{display:inline-block;background:var(--panel);border:1px solid var(--line);border-radius:6px;
+    padding:2px 8px;margin:3px 4px 0 0;font-size:12.5px;color:#cbd5e1}
+  @media print{body{background:#fff;color:#111}.wrap{max-width:none}header.hero{background:#0b3a5e}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Final Remediation Report · 2026-06-13</div>
+    <h1>SC-3346 / SC-3403 — Maintenance (Derived) Pricing</h1>
+    <div class="sub">Re-verify &amp; remediate the 11 peer-review findings · <b>FortraUAT only</b> (no prod changes) · Remediation: Liam · Build: Nir/Marc</div>
+    <div class="stats">
+      <div class="stat green"><div class="n">8</div><div class="l">Closed</div></div>
+      <div class="stat teal"><div class="n">1</div><div class="l">Cleared / dropped</div></div>
+      <div class="stat gray"><div class="n">2</div><div class="l">Out of scope (prod)</div></div>
+      <div class="stat red"><div class="n">1</div><div class="l">Remaining (owner-gated)</div></div>
+    </div>
+  </header>
+
+  <div class="verdict">
+    Opened at <b>NO-GO</b> (4 resolved / 3 partial / 4 not resolved). Now: <b>8 closed · 1 cleared · 2 out-of-scope · 1 remaining</b>.
+    The renewal <i>engine</i> fix is live and proven correct — the only thing between here and renewals pricing end-to-end is
+    <b>SC-3404</b>, which is fully designed but <b>cannot be safely executed without owner confirmation or a clone test</b>.
+  </div>
+
+  <h2>Scorecard — all 11 findings</h2>
+  <table>
+    <thead><tr><th>#</th><th>Finding</th><th>State</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td class="id">B-3</td><td>Partner picks 15% not 12%</td><td><span class="badge b-green">RESOLVED</span></td><td>Bulk overload falls through to Product2 lookup; test green</td></tr>
+      <tr><td class="id">B-4</td><td>Renewal formula null-guards</td><td><span class="badge b-green">RESOLVED (engine)</span></td><td><b>V14 active</b> w/ ISNULL guard; computes 67.38 in-flight (proven in log). Display gated by SC-3404.</td></tr>
+      <tr><td class="id">B-5</td><td>Decision-table refresh failing</td><td><span class="badge b-teal">CLEARED / DROPPED</span></td><td>B1 repro: renewing both assets succeeded, never touched the table. Not on the failing path → no window.</td></tr>
+      <tr><td class="id">B-6</td><td>Decomposition inconsistent</td><td><span class="badge b-green">RESOLVED</span></td><td>persistFromWork unconditional; 0 license-base leaks</td></tr>
+      <tr><td class="id">M-1</td><td>"No prehook" SDD false</td><td><span class="badge b-green">RESOLVED</span></td><td>Reconciliation note delivered; owner applies the .docx text</td></tr>
+      <tr><td class="id">M-2</td><td>Competing new-biz formulas</td><td><span class="badge b-amber">READY (rides w/ SC-3404)</span></td><td>Dead-code removal; dossier corrected (uses <code>Source_List_Price__c</code>; MDT is a typo)</td></tr>
+      <tr><td class="id">M-3</td><td>Prod lacks <code>_v2</code> context</td><td><span class="badge b-gray">OUT OF SCOPE</span></td><td>Prod item — excluded per UAT-only directive</td></tr>
+      <tr><td class="id">M-4</td><td>Source_List_Price mapping</td><td><span class="badge b-green">RESOLVED</span></td><td>Live deployed class has mapping active</td></tr>
+      <tr><td class="id">M-5</td><td>2 of 4 derived PBEs uncovered</td><td><span class="badge b-green">RESOLVED</span></td><td>Nir created the 2 PBEDP rows</td></tr>
+      <tr><td class="id">M-6</td><td>Prod prehook stale</td><td><span class="badge b-gray">OUT OF SCOPE</span></td><td>Prod item — excluded per UAT-only directive</td></tr>
+      <tr><td class="id">M-7</td><td>Renewal classes untested</td><td><span class="badge b-green">RESOLVED</span></td><td>Solo runs: 100% / 98% / 92% (review's 15%/36% was a stale aggregate)</td></tr>
+      <tr class="blocker"><td class="id">SC-3404</td><td><b>NEW: native element zeros the renewal maintenance line</b></td><td><span class="badge b-red">REMAINING — designed, owner-gated</span></td><td>The actual cause of $0 renewals — see below</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Fixed this session</h2>
+  <div class="cards">
+    <div class="card"><h3>B-4 — renewal formula</h3><p>Cloned V14 with the <b>ISNULL</b> guard (corrected from the review's invalid <code>BLANKVALUE</code>), deployed, activated (recovered an 8-versions-active LWC corruption via per-row Activate), reprice clean. Computes the correct 67.38 in-flight.</p></div>
+    <div class="card"><h3>M-7 — test coverage</h3><p>Existing dedicated tests already deliver ≥75% on solo runs (100% / 98% / 92%). No new code — the review read a stale partial aggregate.</p></div>
+    <div class="card"><h3>M-1 — SDD reconciliation</h3><p>Exact corrections written: the SignalingApexProcessor prehook stack is real and necessary; "no prehook" holds only for the new-business derived path.</p></div>
+  </div>
+
+  <h2>B-5 — cleared by repro (key win)</h2>
+  <div class="callout good">
+    <h3>✅ Not on the renewal failing path — disruptive window removed</h3>
+    <p>Native "renew both assets" on the BoKS test contract (#00069255) <b>succeeded</b>: a 2-line renewal quote was created, <code>ValidationResult=None</code>, and the FINEST log had <b>zero</b> hits for the AssetActionSource table / "Hash Key Group" / "MissingContributor". The table has been unsynced ~12 months while renewals work via Q2O carry-forward. <b>B-5 dropped from SC-3346 — the org-wide-discovery-offline window is off the table.</b></p>
+  </div>
+
+  <h2>SC-3404 — the real renewal blocker <span style="color:var(--red)">(designed, NOT executed)</span></h2>
+  <div class="callout bad">
+    <h3>What it is</h3>
+    <p>In active V14, the native <code>DerivedProductsRenewals</code> element (<code>resultIncluded=true</code>, authoritative) <b>overwrites B-4's correct 67.38 with the native value ($0)</b> for the maintenance line. Proven twice in live FINEST logs (formula computes 67.38; committed NetUnitPrice = 0). This — not B-4 — is why renewal maintenance shows $0.</p>
+    <h3 style="margin-top:14px">Design is ready</h3>
+    <p>Make the native element non-authoritative <b>only</b> for the stamped SC-3346 cohort (<b>5 lines</b>) while it stays authoritative for the <b>536,195</b> native-priced lines. Two drafted edits: amend the <code>DerivedProductsNonRenewal</code> filter to exclude the stamped cohort, and set <code>DerivedPricingRenewals resultIncluded=true</code>.</p>
+    <h3 style="margin-top:14px">Why it was NOT executed — three facts unknowable read-only; any one wrong silently zeros ~536K lines with no rollback net</h3>
+    <ol class="facts">
+      <li><b>Commit-precedence</b> — last vs first <code>resultIncluded=true</code> writer wins; decides one edit vs two.</li>
+      <li><b>Filter polarity</b> — <code>DerivedProductsNonRenewal</code> "keeps non-renewals" yet native commits 31 live renewal lines; retain-vs-exclude is unproven.</li>
+      <li><b>Formula container Branch B</b> (<code>Renewal AND ItemIsDerived</code>, no stamp) is broader than the cohort → flipping <code>resultIncluded</code> commits <code>(0 − priors)×(1+uplift)</code> = 0/negative for unstamped derived renewals → mass-misprice.</li>
+    </ol>
+    <p style="margin-top:10px">In-place V14 (no clone) + <code>ExpressionSetVersion</code> delete platform-blocked = no safety net. This is also Nir's SC-3346 build (peer-review NO-GO) overlapping Marc's same-day rework on the same V14.</p>
+    <h3 style="margin-top:14px">Path to GO — pick one</h3>
+    <div class="path">
+      <div class="opt"><span class="tag">(a) Owner confirms</span><p style="margin:6px 0 0;color:#cbd5e1;font-size:14px">Nir/Marc confirm commit-precedence + filter polarity → apply the verified edits in-place with the FIM-462 regression gate + context resync + V14 backup.</p></div>
+      <div class="opt"><span class="tag">(b) Clone test</span><p style="margin:6px 0 0;color:#cbd5e1;font-size:14px">Validate on a V14 clone with an authorized reprice (67.38 positive + FIM-462 native-preserve + Branch-B no-zero). Requires relaxing "no new versions" for the test.</p></div>
+    </div>
+  </div>
+
+  <h2>Current UAT live state</h2>
+  <div class="live"><div class="dot"></div>
+    <div><b>Healthy.</b> Pricing procedure <b>V14 active</b> (sole) — carries B-4's ISNULL renewal fix; new-business &amp; non-renewal pricing clean (no gack, healthy limits). Renewal maintenance <b>still displays $0</b> pending SC-3404. Nothing half-applied; V14 is reversible (re-activate V13 + resync).</div>
+  </div>
+
+  <h2>Out of scope · per "UAT only — no prod changes"</h2>
+  <div class="card" style="border-color:#475569">
+    <p><span class="badge b-gray">M-3</span> &nbsp;<span class="badge b-gray">M-6</span> &nbsp; Prod context + prod prehook — not prepared or touched. A prod-cutover manifest exists in <code>09_REMAINING_EXECUTION_PLAN.md</code> for whenever a prod cutover is separately authorized.</p>
+  </div>
+
+  <h2>Recommended next steps (owner)</h2>
+  <ol>
+    <li><b>SC-3404</b> — get Nir/Marc to confirm the engine semantics (a) or authorize a clone test (b); then execute the verified edit (M-2 rides along). This closes renewal end-to-end.</li>
+    <li>Apply the M-1 SDD text edits (doc owner).</li>
+    <li>Treat B-5 as a latent platform item — no action for SC-3346.</li>
+    <li>Prod cutover (M-3 / M-6 + the validated V14) — separate, explicitly-authorized engagement.</li>
+  </ol>
+
+  <footer>
+    <b>Dossier:</b>
+    <span class="pill">02 blockers</span><span class="pill">05 re-verification</span><span class="pill">06 B-5</span>
+    <span class="pill">07 B-4</span><span class="pill">08 M-1</span><span class="pill">09 remaining plan</span>
+    <span class="pill">10 B-5 runbook</span><span class="pill">FINAL_REPORT</span>
+    <div style="margin-top:8px">Artifacts: <code>Data/sc-maint/reverify/</code> · <code>Data/sc-maint/sc3346_b4/</code> · <code>Data/sc-maint/sc3404/</code></div>
+  </footer>
+
+</div>
+</body>
+</html>

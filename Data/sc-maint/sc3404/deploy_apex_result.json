@@ -1,0 +1,131 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.137.7.
+{
+  "status": 1,
+  "result": {
+    "checkOnly": false,
+    "completedDate": "2026-06-13T17:40:11.000Z",
+    "createdBy": "005WC00000MgTN2",
+    "createdByName": "Liam Jeong",
+    "createdDate": "2026-06-13T17:40:04.000Z",
+    "details": {
+      "componentFailures": [
+        {
+          "changed": false,
+          "columnNumber": 14,
+          "componentType": "ApexClass",
+          "created": false,
+          "createdDate": "2026-06-13T17:40:10.000Z",
+          "deleted": false,
+          "fileName": "classes/PartnerNetPricePosthook.cls",
+          "fullName": "PartnerNetPricePosthook",
+          "lineNumber": 23,
+          "problem": "Type is not visible: RevSignaling.SignalingApexProcessor",
+          "problemType": "Error",
+          "success": false
+        },
+        {
+          "changed": false,
+          "columnNumber": 36,
+          "componentType": "ApexClass",
+          "created": false,
+          "createdDate": "2026-06-13T17:40:10.000Z",
+          "deleted": false,
+          "fileName": "classes/PartnerNetPricePosthook.cls",
+          "fullName": "PartnerNetPricePosthook",
+          "lineNumber": 796,
+          "problem": "Duplicate modifier: TestVisible",
+          "problemType": "Error",
+          "success": false
+        },
+        {
+          "changed": false,
+          "columnNumber": 14,
+          "componentType": "ApexClass",
+          "created": false,
+          "createdDate": "2026-06-13T17:40:11.000Z",
+          "deleted": false,
+          "fileName": "classes/PartnerNetPricePosthookTest.cls",
+          "fullName": "PartnerNetPricePosthookTest",
+          "lineNumber": 23,
+          "problem": "Dependent class is invalid and needs recompilation:\n Class PartnerNetPricePosthook : Type is not visible: RevSignaling.SignalingApexProcessor",
+          "problemType": "Error",
+          "success": false
+        }
+      ],
+      "componentSuccesses": [
+        {
+          "changed": true,
+          "componentType": "",
+          "created": false,
+          "createdDate": "2026-06-13T17:40:11.000Z",
+          "deleted": false,
+          "fileName": "package.xml",
+          "fullName": "package.xml",
+          "success": true
+        }
+      ],
+      "runTestResult": {
+        "numFailures": 0,
+        "numTestsRun": 0,
+        "totalTime": 0,
+        "codeCoverage": [],
+        "codeCoverageWarnings": [],
+        "failures": [],
+        "flowCoverage": [],
+        "flowCoverageWarnings": [],
+        "successes": []
+      }
+    },
+    "done": true,
+    "id": "0AfWC00000GJz090AD",
+    "ignoreWarnings": false,
+    "lastModifiedDate": "2026-06-13T17:40:11.000Z",
+    "numberComponentErrors": 3,
+    "numberComponentsDeployed": 0,
+    "numberComponentsTotal": 3,
+    "numberTestErrors": 0,
+    "numberTestsCompleted": 0,
+    "numberTestsTotal": 0,
+    "rollbackOnError": true,
+    "runTestsEnabled": true,
+    "startDate": "2026-06-13T17:40:05.000Z",
+    "status": "Failed",
+    "success": false,
+    "files": [
+      {
+        "fullName": "PartnerNetPricePosthook",
+        "type": "ApexClass",
+        "state": "Failed",
+        "problemType": "Error",
+        "filePath": "/Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3404/deploy_apex/classes/PartnerNetPricePosthook.cls",
+        "lineNumber": 796,
+        "columnNumber": 36,
+        "error": "Duplicate modifier: TestVisible (796:36)"
+      },
+      {
+        "fullName": "PartnerNetPricePosthook",
+        "type": "ApexClass",
+        "state": "Failed",
+        "problemType": "Error",
+        "filePath": "/Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3404/deploy_apex/classes/PartnerNetPricePosthook.cls",
+        "lineNumber": 23,
+        "columnNumber": 14,
+        "error": "Type is not visible: RevSignaling.SignalingApexProcessor (23:14)"
+      },
+      {
+        "fullName": "PartnerNetPricePosthookTest",
+        "type": "ApexClass",
+        "state": "Failed",
+        "problemType": "Error",
+        "filePath": "/Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3404/deploy_apex/classes/PartnerNetPricePosthookTest.cls",
+        "lineNumber": 23,
+        "columnNumber": 14,
+        "error": "Dependent class is invalid and needs recompilation:\n Class PartnerNetPricePosthook : Type is not visible: RevSignaling.SignalingApexProcessor (23:14)"
+      }
+    ],
+    "zipSize": 16888,
+    "zipFileCount": 5,
+    "deployUrl": "https://fortra--uat.sandbox.my.salesforce.com/lightning/setup/DeployStatus/page?address=%2Fchangemgmt%2FmonitorDeploymentsDetails.apexp%3FasyncId%3D0AfWC00000GJz090AD%26retURL%3D%252Fchangemgmt%252FmonitorDeployment.apexp"
+  },
+  "warnings": []
+}
