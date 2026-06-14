@@ -3,7 +3,7 @@
     <fullName>Bill_To_Place__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Reference to the billing address place for this quote</description>
-    <inlineHelpText>Select the place where invoices should be sent for this quote</inlineHelpText>
+    <inlineHelpText>Select the place where invoices should be sent for this quote. Becomes the Order&apos;s Bill To Address and is required to submit the Order.</inlineHelpText>
     <label>Bill To Place</label>
     <referenceTo>Places__c</referenceTo>
     <relationshipLabel>Quotes</relationshipLabel>

@@ -3,7 +3,7 @@
     <fullName>Ship_To_Place__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <description>Reference to the shipping destination for products in this quote</description>
-    <inlineHelpText>Select the place where products should be delivered</inlineHelpText>
+    <inlineHelpText>Select the place where products should be delivered. Becomes the Order&apos;s Ship To Address, and its Account becomes the Ship To Account — both required to submit the Order.</inlineHelpText>
     <label>Ship To Place</label>
     <referenceTo>Places__c</referenceTo>
     <relationshipLabel>Quotes (Ship To Place)</relationshipLabel>

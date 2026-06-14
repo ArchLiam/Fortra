@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ContactId</fullName>
-    <inlineHelpText>This is the Fortra Quote Contact.</inlineHelpText>
+    <inlineHelpText>This is the Fortra Quote Contact and becomes the Order&apos;s Ship To contact. Required for Order submission — its First/Last Name and Workday mobile-phone details must be populated.</inlineHelpText>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>

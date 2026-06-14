@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BillToContactId</fullName>
+    <inlineHelpText>Select the Bill To contact. Required to complete the Order — this contact&apos;s First/Last Name and Workday mobile-phone details must be filled in before the Order can be submitted to Workday. Pick a contact related to this Quote&apos;s Account.</inlineHelpText>
     <trackHistory>false</trackHistory>
     <type>Lookup</type>
 </CustomField>
