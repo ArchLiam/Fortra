@@ -1,0 +1,30 @@
+{
+  "scenario_id": "MULTI-ASSET",
+  "domain": "Edge cases",
+  "title": "Multi-asset renewal (license + maintenance both renewed)",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3404",
+  "expected": "On a multi-asset renewal cart, BOTH renewed assets commit their correct net. License/subscription leg (beSECURE) reprices to NetUnitPrice 4442.35 (5417.50 list x 0.82). Renewal-maintenance leg (BoKS RRM) commits NetUnitPrice = correct COLA net 60.64 = (Base 71 - Prior_Partner 8.52 - Prior_Discretionary 6.25) x (1 + 7.85/100), with UnitPrice = 60.64.",
+  "actual": "Split outcome. License/subscription leg renews CORRECTLY (NetUnitPrice 4442.35, SalesTransactionActionType=Renew, ItemIsDerived=false). Renewal-maintenance leg is WRONG: COLA net 60.64 is correctly computed into COLACalculatedPrice__c but committed NetUnitPrice = 54.58 (= 60.64 x 0.90 partner double-discount) and UnitPrice = 0. The maint line (ItemIsDerived=true) is structurally excluded from the engine SalesTransactionActionType/price node (absent from that map), so the COLA net never persists - the SC-3404 defect, here in a multi-asset context. Cross-checked on 00781084: maint line UnitPrice=67.38 but NetUnitPrice=60.64 (67.38 x 0.90).",
+  "evidence": [
+    "Quote 00781053 / 0Q0WC0000037muD0AQ (Draft, Renewal) lines: beSECURE Cloud-Based (Subscription) UnitPrice 5417.50 / NetUnitPrice 4442.35; Powertech BoKS-RenewalMaintenance (Renewal Maintenance) UnitPrice 0 / NetUnitPrice 54.58 / COLACalculatedPrice__c 60.64 / Base_Price__c 71 / Source_List_Price__c 355 / COLA_Uplift_Percent__c 7.85 / Prior_Partner_Discount__c 8.52 / Prior_Discretionary_Discount__c 6.25.",
+    "Reprice via Place Sales Transaction (Force + configurationMethod Skip) returned isSuccess:true, salesTransactionId 0Q0WC0000037muD0AQ; line count unchanged 2->2 (non-destructive).",
+    "FINEST engine log 07LWC00000Oxr452AB (sales-transaction/actions/place): COLAUpliftPrehook '[246] Found 1 renewal QLIs from 2 total'; COLACalculatedPrice__c context map {0QLWC000003cy334AA=60.64, 0QLWC000003cxzq4AA=5417.5}; final NetUnitPrice map {0QLWC000003cy334AA=54.58, 0QLWC000003cxzq4AA=4442.35}.",
+    "SalesTransactionActionType map = {0QLWC000003cxzq4AA=Renew} ONLY - the maintenance QLI 0QLWC000003cy334AA is ABSENT from the action-type map (structurally excluded node, SC-3404 root cause per dossier doc-12). ItemIsDerived__std map = {0QLWC000003cy334AA=true, 0QLWC000003cxzq4AA=false}.",
+    "Numeric proof: maint COLA net (71-8.52-6.25)x1.0785 = 60.64 (=COLACalculatedPrice__c, correct); committed 54.58 = 60.64 x 0.90 (partner double-discount defect). beSECURE 4442.35 = 5417.50 x 0.82 (18% off, correct).",
+    "Canary cross-check 00781084 / 0Q0WC00000382MH0AY (Draft): maint line 0QLWC000003dEW24AM UnitPrice 67.38 (=correct COLA net) but NetUnitPrice 60.64 (=67.38 x 0.90); companion subscription line 10 Languages/50 Courses present (multi-asset).",
+    "SOLO test RenewalMaintenancePricingServiceTest: 50/50 Passed, 100% pass rate (90.2s) - confirms the COLA renewal-maintenance math computes correctly; defect is engine persistence only, not the computation."
+  ],
+  "actions_taken": [
+    "Queried both multi-asset renewal candidate quotes 00781053 and 00781084 (Draft/Renewal); selected 00781053 as the canonical multi-asset (subscription/license being renewed + renewal-maintenance line).",
+    "Computed expected COLA net and license discount per D4 formulas before repricing.",
+    "Repriced 00781053 twice via Place Sales Transaction API (Force + configurationMethod Skip); verified isSuccess:true and non-destructive (2->2 lines).",
+    "Captured a FINEST ApexLog of the reprice; extracted COLAUpliftPrehook renewal-QLI count, COLACalculatedPrice__c / NetUnitPrice / SalesTransactionActionType / ItemIsDerived context maps for both asset lines.",
+    "Cross-checked the second multi-asset quote 00781084 line state.",
+    "Ran RenewalMaintenancePricingServiceTest SOLO with coverage (50/50 Passed).",
+    "Created then deleted a temporary FINEST DebugLevel (7dlWC0000001rLdYAI); left the pre-existing trace flag untouched. No DML on Quote/QLI; no activation/integration."
+  ],
+  "notes": "Multi-asset renewal: the LICENSE/subscription leg renews correctly; the MAINTENANCE leg does not commit the correct COLA net. Per harness directive, a known open defect is still 'fail'. This is SC-3404 (renewal maintenance commits wrong/zero net because the derived maintenance line is structurally excluded from the engine price/action-type node) surfacing in the multi-asset context, compounded by the partner double-discount (60.64 x 0.90 = 54.58). Severity high (wrong value on the maintenance path) rather than critical because the license leg prices correctly and the correct COLA net is computed (sits on COLACalculatedPrice__c / UnitPrice). Work dir: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/multi-asset/ (body.json, reprice_result.json, engine.log, verdict.json)."
+}

@@ -1,0 +1,98 @@
+ ›   Warning: @salesforce/cli update available from 2.64.8 to 2.137.7.
+
+
+=== Test Results
+TEST NAME                                                                                             OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+RenewalMaintenancePricingServiceTest.applyColaNetFinalizeToContext_noCandidatesEarlyReturns           Pass              2497        
+RenewalMaintenancePricingServiceTest.applyColaNetFinalizeToContext_seamDrivesFinalizeBuildAndWrite    Pass              1377        
+RenewalMaintenancePricingServiceTest.applyColaNetFinalizeToContext_withCandidatesAndFakeContextId     Pass              1262        
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_applyToContextBranch            Pass              1342        
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_blankQuoteIdRecordsResult       Pass              180         
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_finalizeAfterPricingBranch      Pass              1471        
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_noContextIdRunsFinalize         Pass              803         
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_nullAndEmptyRequests            Pass              162         
+RenewalMaintenancePricingServiceTest.applyRenewalMaintenanceNetPrices_nullRequestInListRecordsResult  Pass              175         
+RenewalMaintenancePricingServiceTest.applyToContext_noCandidatesEarlyReturns                          Pass              789         
+RenewalMaintenancePricingServiceTest.applyToContext_seamDrivesUpdateBuildAndWrite                     Pass              1292        
+RenewalMaintenancePricingServiceTest.applyToContext_seamEmptyQueryResultFallsBackToDerivedPath        Pass              1344        
+RenewalMaintenancePricingServiceTest.applyToContext_seamFlatResponseShapeParsed                       Pass              1361        
+RenewalMaintenancePricingServiceTest.applyToContext_seamWithDataPathDerivedFromResponse               Pass              1349        
+RenewalMaintenancePricingServiceTest.applyToContext_withCandidatesAndFakeContextId                    Pass              1385        
+RenewalMaintenancePricingServiceTest.computeColaNet_appliesUpliftToStampedComponents                  Pass              175         
+RenewalMaintenancePricingServiceTest.computeColaNet_derivesDiscretionaryFromDiscountPercent           Pass              181         
+RenewalMaintenancePricingServiceTest.computeColaNet_nullAndZeroBaseReturnNull                         Pass              175         
+RenewalMaintenancePricingServiceTest.computeColaNet_preColaNonPositiveReturnsNull                     Pass              175         
+RenewalMaintenancePricingServiceTest.computeColaNet_usesExplicitPriorDiscretionaryDollars             Pass              185         
+RenewalMaintenancePricingServiceTest.computeColaNet_zeroDiscountFallsToZeroDiscretionary              Pass              178         
+RenewalMaintenancePricingServiceTest.filterLinesNeedingColaNet_guardAndFilter                         Pass              189         
+RenewalMaintenancePricingServiceTest.finalizeRenewalMaintenanceAfterPricing_noCandidatesReturns       Pass              820         
+RenewalMaintenancePricingServiceTest.finalizeRenewalMaintenanceAfterPricing_nullQuoteReturns          Pass              180         
+RenewalMaintenancePricingServiceTest.finalize_seamBlankContextIdOverrideEarlyReturns                  Pass              1333        
+RenewalMaintenancePricingServiceTest.finalize_seamRunsEndToEndThroughApplyToContext                   Pass              1370        
+RenewalMaintenancePricingServiceTest.invocable_applyToContext_seamReachesContextWrite                 Pass              1400        
+RenewalMaintenancePricingServiceTest.invocable_finalizeAfterPricing_seamReachesContextWrite           Pass              1327        
+RenewalMaintenancePricingServiceTest.invocable_noContextId_seamRunsFinalizeEndToEnd                   Pass              1365        
+RenewalMaintenancePricingServiceTest.needsColaNetCorrectionForValues_branches                         Pass              180         
+RenewalMaintenancePricingServiceTest.needsColaNetCorrection_delegatesToQliValues                      Pass              176         
+RenewalMaintenancePricingServiceTest.queryLineItems_seamMalformedItemsSkipped                         Pass              1338        
+RenewalMaintenancePricingServiceTest.queryLineItems_seamQueryResultWithoutItemsReturnsEmpty           Pass              1310        
+RenewalMaintenancePricingServiceTest.queryLineItems_seamUnrecognizedShapeReturnsEmpty                 Pass              1292        
+RenewalMaintenancePricingServiceTest.queryRenewalMaintenanceCandidates_returnsStampedRenewalLine      Pass              1316        
+RenewalMaintenancePricingServiceTest.repriceResult_defaultsToFalse                                    Pass              193         
+RenewalMaintenancePricingServiceTest.resolveColaLineTotal_branches                                    Pass              158         
+RenewalMaintenancePricingServiceTest.resolveUpdatePath_branches                                       Pass              167         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_guardBranches                        Pass              158         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_originalActionRenewTrue              Pass              159         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_otherLineWithTotalPriceDisqualifies  Pass              156         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_otherZeroTotalLineAllowed            Pass              167         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_perpetualLineDisqualifies            Pass              172         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_productTypeFromProduct2Fallback      Pass              171         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_renewalMaintenanceMissingBaseFalse   Pass              169         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_renewalMaintenanceOnlyTrue           Pass              178         
+RenewalMaintenancePricingServiceTest.usesColaOnlyRepriceForLines_softwareLineDisqualifies             Pass              181         
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_missingQuoteReturnsFalse                     Pass              184         
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_nullIdReturnsFalse                           Pass              168         
+RenewalMaintenancePricingServiceTest.usesColaOnlyReprice_realRenewalQuoteTrue                         Pass              1337        
+
+
+=== Apex Code Coverage by Class
+CLASSES                           PERCENT  UNCOVERED LINES       
+────────────────────────────────  ───────  ──────────────────────
+QuoteLineItemTriggerHandler       34%      34,38,39,40,46...     
+COLAUpliftHandler                 4%       18,25,34,38,42...     
+OpportunityTriggerHandler         19%      35,36,37,38,39...     
+QuoteSyncingTriggerHandler        29%      20,25,35,37,40...     
+DatedConversionRateLookup         46%      31,34,42,45,46...     
+QuoteRenewalTypeHandler           100%                           
+RenewalQuoteLineHandler           78%      31,36,44,50,51...     
+RenewalMaintenancePricingService  92%      157,158,159,161,170...
+RenewalQuoteHeaderHandler         15%      13,27,28,31,38...     
+RenewalAssetQuantityHandler       36%      22,27,35,43,66...     
+QuoteLineItemTrigger              92%      31                    
+OpportunityTrigger                71%      16,21                 
+QuoteLineGroupTrigger             0%       11,12,13,14           
+OrderValidationTrigger            100%                           
+QuoteSyncingTrigger               100%                           
+QuoteLineItemExchangeRateTrigger  83%      63,64,65,66,75        
+FortraBillingEventItemTrigger     0%       8,9,10                
+LicenseKeyTrigger                 0%       4,6,8,9,10...         
+AssetMigrationQueueClearTrigger   100%                           
+QuoteTrigger                      100%                           
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            50                         
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id                                     
+Test Setup Time      0 ms                       
+Test Execution Time  96699 ms                   
+Test Total Time      96699 ms                   
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    45%                        

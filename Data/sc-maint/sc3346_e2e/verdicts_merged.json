@@ -1,0 +1,592 @@
+[
+ {
+  "scenario_id": "NB-DERIVED-NET",
+  "domain": "Derived (new-business) pricing",
+  "title": "First-year maintenance derived NetUnitPrice value is correct",
+  "status": "pass",
+  "severity": "none",
+  "expected": "First-year (new-business) maintenance derived NetUnitPrice = tier x Source_List_Price__c (SDD-canonical formula, V14 ListContainer9 seq6 DerivedPricingFormula). For PIA-PIA-RNM-PIAMBK (Standard/Professional tier, Maintenance_Rate__mdt Rate__c=0.20) with Source_List_Price__c=355 (derived from contributing Perpetual license PIA-PIA-NRPS-PIAP UnitPrice 355 via PriceBookEntryDerivedPrice Formula=UnitPrice): expected derived NetUnitPrice = 0.20 x 355 = 71.00.",
+  "actual": "All 9 active-quantity derived New-Maintenance lines (PIA-PIA-RNM-PIAMBK) on Draft quote 00781057 hold NetUnitPrice=71 with Source_List_Price__c=355, ListPrice=0, UnitPrice=0. Result is exact (0.20 x 355 = 71.00) and reproducible: confirmed both pre-reprice and after a fresh Place Sales Transaction Force reprice (configurationMethod=Skip). Values are stable post-reprice (no async-queueable revert). Reprice was non-destructive (32 lines before and after). The perpetual license line prices at its catalog 355, and the maintenance derives 71 from it. M-2 competing-formula ambiguity does not yield a divergent value here because Base_Price__c was stamped equal to Source_List_Price__c (both 355), so tier x Source_List_Price and tier x Base_Price both converge to 71.",
+  "evidence": [
+   "Quote 00781057 / 0Q0WC0000037rFZ0AY (Draft) - 9 PIA-PIA-RNM-PIAMBK New-Maintenance lines all NetUnitPrice=71, Source_List_Price__c=355, ListPrice=0, UnitPrice=0 (e.g. QLI 0QLWC000003d2Q14AI, 0QLWC000003d2Q34AI)",
+   "Arithmetic: 0.20 (Maintenance_Rate__mdt Standard/Professional Rate__c) x 355 (Source_List_Price__c) = 71.00 = stamped NetUnitPrice (exact match)",
+   "Place Sales Transaction reprice: POST /services/data/v64.0/connect/rev/sales-transaction/actions/place with {pricingPref:Force, configurationPref:{configurationMethod:Skip}} returned isSuccess:true, salesTransactionId=0Q0WC0000037rFZ0AY",
+   "Non-destructive: COUNT(QuoteLineItem)=32 before and 32 after reprice; derived net held at 71 after fresh reprice",
+   "Maintenance_Rate__mdt tiers confirmed live: Basic 0.15, Professional 0.20, Standard 0.20, Premium 0.24, Express 0.30, Premier 0.30, Expert 0.35",
+   "Derived PBE config present (M-5 not triggered for this product): PriceBookEntryDerivedPrice on PBE 01uWC000005wsbUYAQ (PIA-PIA-RNM-PIAMBK), Formula=UnitPrice, ContributingProductId=01tWC00000DD1btYAD (Perpetual license PIA-PIA-NRPS-PIAP), DerivedPricingScope=Both, PricingSource=Product",
+   "Perpetual contributor license line PIA-PIA-NRPS-PIAP prices at NetUnitPrice=355 (catalog list) on same quote",
+   "Product2 PIA-PIA-RNM-PIAMBK = 01tWC00000DD1bsYAD, Fortra_Product_Type__c='New Maintenance'"
+  ],
+  "is_known_issue": false,
+  "actions_taken": [
+   "Queried QLIs on canonical category-A quotes 00780964, 00781057, 00781030 to select a cleanly derived-priced new-business record",
+   "Selected Draft quote 00781057 (0Q0WC0000037rFZ0AY) as the test record - it carries Perpetual PIA-PIA-NRPS-PIAP license + 9 derived New-Maintenance PIA-PIA-RNM-PIAMBK lines already priced at Net 71",
+   "Confirmed quote 00781057 Status=Draft (safe to reprice)",
+   "Queried Maintenance_Rate__mdt to confirm tier rates (Standard/Professional=0.20)",
+   "Repriced 00781057 via Place Sales Transaction API with pricingPref=Force + configurationMethod=Skip (non-destructive); isSuccess:true",
+   "Verified line count unchanged 32->32 and re-queried derived net values - held at 71 with Source_List_Price__c=355",
+   "Inspected PriceBookEntryDerivedPrice config for PBE 01uWC000005wsbUYAQ confirming derived-price config is present (contributing Perpetual license, Formula=UnitPrice)",
+   "Attempted SOLO MaintenanceOrderDecompositionServiceTest as corroboration but org returned 'admin operation already in progress' across 3 retries (concurrent same-day build edits) - this is a supporting check only; primary live-reprice validation is conclusive"
+  ],
+  "notes": "PASS: first-year maintenance derived net is correct (71 = 0.20 x 355). Distinct from the renewal-side SC-3404 defect (which commits 0/54.58/60.64 instead of COLA net 67.38) - that affects the RENEWAL maintenance path, not this new-business derived path. Caveats: (1) The other category-A quotes are in mixed states - canonical 00780964 (0Q0WC000003735t0AA) shows its New-Maintenance line at NetUnitPrice=0 with Source_List_Price__c null and Base_Price__c=355 (un-derived/pre-reprice state), and 00781030 EFT8 line is also 0 (would need a reprice to derive); 00781057 is the record where the derived net is correctly materialized. (2) M-2 competing-formula ambiguity (DerivedPricingFormula tier x Source_List_Price__c vs DerivedPricingNewBusiness tier x Base_Price__c) is latent here but does not produce a wrong value because Base_Price__c=Source_List_Price__c=355; flagged as a residual design item (M-2 READY/dead-code removal), not a value defect on this scenario. (3) Apex test corroboration was blocked by a concurrent org admin operation; the live numeric reprice is the conclusive evidence."
+ },
+ {
+  "scenario_id": "NB-DERIVED-FORMULA",
+  "domain": "Derived (new-business) pricing",
+  "title": "Which new-business formula computes the derived net (Source_List_Price x tier live vs Base_Price x tier dead-code)",
+  "status": "partial",
+  "severity": "medium",
+  "expected": "Exactly one live new-business derived formula computes maintenance net = tier x Source_List_Price__c (DerivedPricingFormula, the SDD-canonical path), with the competing Base_Price__c x tier formula (DerivedPricingNewBusiness) being unreachable dead code and ideally removed from the active procedure (M-2 resolution).",
+  "actual": "CONFIRMED at the computation level: the live new-business derived net is tier x Source_List_Price__c (DerivedPricingFormula, ListContainer9 seq2, gated by AttributeDefinitionCode='MTD' which EXISTS). Proven empirically on a real stamped line: 0QLWC000003cL1i4AE (EFT 8 Continuum-NewMaintenance, MTD tier=Premier=0.30, Source_List_Price__c=10000, Base_Price__c=0) priced NetUnitPrice=3000 = 0.30 x 10000. Because Base_Price__c=0 on that line, the competing Base_Price__c x tier formula would have yielded $0 -- so the actual 3000 result rules it out and proves Source_List_Price__c is the input. Second proof: 0QLWC000003broR4AQ priced 462 ~= 0.23 x 2008 (Source_List_Price=2008, Base=null); third: 0QLWC000003cGRp4AM Net=62.48 = (0.20 x 355=71) x 0.88 partner. The Base_Price__c x tier arm of DerivedPricingNewBusiness is DOUBLY-unreachable dead code: (a) its gating DerivedPricing filter (1 AND 2 AND 3) OR (4 AND 5) OR (6 AND 7 AND 8) only admits lines with AttributeDefinitionCode='MDT' (does NOT exist -- only MTD/Maintenance_Type_Defn) or QuoteTypeText__c='Renewal'; (b) the Base arm itself only fires when QuoteTypeText__c != 'Renewal' -- mutually exclusive with every admitting branch. HOWEVER status is PARTIAL not PASS because the dead formula is still PHYSICALLY PRESENT in the active V14 procedure (not yet removed; M-2 owner-gated, rides with SC-3404 as V15). Also noted out-of-scope: the canonical NB quote 00780964 maint line 0QLWC000003cFh44AE prices $0 because it is ItemIsDerived__std=false (74/74 context refs) with Source_List_Price__c=null and Base_Price__c=355 (license-list leak) -- a separate auto-add stamping defect, NOT a formula-choice issue.",
+  "evidence": [
+   "AttributeDefinition query: only Code='MTD' (DeveloperName=Maintenance_Type_Defn, Picklist) exists; 'MDT' returns 0 rows -> the MDT gate in the DerivedPricing filter is permanently false",
+   "Live active version confirmed: ExpressionSetVersion 9QMWC00000023eX4AQ VersionNumber=14 IsActive=true is the SOLE active version of ExpressionSet 9QLWC0000015cDl4AI (Rev_Mgmt_Default_Pricing_Procedure)",
+   "V14 DerivedPricingFormula (ListContainer9 seq2, v14block.xml L1848): IF(AttributeValue='Premier',0.30,IF('Standard',0.20,IF('Professional',0.20,0))) * Source_List_Price__c -> NetUnitPrice; gated by DerivredPricingAttributeFilter AttributeDefinitionCode='MTD' (L2319)",
+   "V14 DerivedPricingNewBusiness (ListContainer seq2, v14block.xml L1978): IF(QuoteTypeText__c='Renewal', NetUnitPrice, Base_Price__c * tier); gating DerivedPricing filter (L1751) = (1 AND 2 AND 3) OR (4 AND 5) OR (6 AND 7 AND 8) where crit3=AttributeDefinitionCode='MDT' (nonexistent), crit4/crit6=QuoteTypeText__c='Renewal' -> Base arm (non-Renewal) never co-occurs with an admitting branch = dead code",
+   "EMPIRICAL PROOF line 0QLWC000003cL1i4AE: MTD=Premier(0.30), Source_List_Price__c=10000, Base_Price__c=0, NetUnitPrice=3000 -> 0.30x10000=3000 matches Source_List_Price formula; Base_Price formula would give 0x0.30=0 (falsified)",
+   "Corroborating lines: 0QLWC000003broR4AQ Source=2008 Net=462 (~0.23x2008, the 462 gate); 0QLWC000003cGRp4AM Source=355 Base=355 Net=62.48 (=0.20x355x0.88 partner)",
+   "Reprice of canonical NB quote 00780964 (0Q0WC000003735t0AA) via Place ST + configurationMethod Skip returned isSuccess:true (non-destructive); FINEST ApexLog 07LWC00000OxpWv2AJ shows maint line 0QLWC000003cFh44AE has ItemIsDerived__std=false in 74/74 context maps, Base_Price__c=355, NetUnitPrice=0.0 throughout -> derived branch never fires on this line (separate stamping defect)",
+   "Harness sanity: QuoteRenewalTypeHandlerTest SOLO = 5/5 Pass (1558ms); new-business formula is in the pricing procedure metadata, not Apex, so no class computes it"
+  ],
+  "is_known_issue": true,
+  "ticket_ref": "SC-3403 (M-2)",
+  "actions_taken": [
+   "Confirmed MTD exists / MDT does not via AttributeDefinition SOQL",
+   "Confirmed VersionNumber=14 is sole active ExpressionSetVersion for ExpressionSet 9QLWC0000015cDl4AI",
+   "Read and decoded both competing V14 formula bodies + the DerivedPricing gating filter from v14block.xml (DerivedPricingFormula L1848 Source_List_Price; DerivedPricingNewBusiness L1978 Base_Price; gate L1751)",
+   "Proved the Base_Price x tier arm is doubly-unreachable (MDT-nonexistent gate + Renewal-vs-nonRenewal mutual exclusion)",
+   "Queried stamped New-Maintenance QLIs and found 0QLWC000003cL1i4AE (Base=0, Source=10000, Net=3000) which empirically proves the live formula reads Source_List_Price__c not Base_Price__c",
+   "Verified MTD tier=Premier(0.30) on that line via QuoteLineItemAttribute",
+   "Repriced canonical NB quote 00780964 (Draft) via Place ST + Skip (isSuccess:true, lines unchanged) under an existing FINEST trace; analyzed ApexLog 07LWC00000OxpWv2AJ confirming the maint line is ItemIsDerived=false so neither formula fires (separate $0 stamping defect)",
+   "Ran QuoteRenewalTypeHandlerTest SOLO (5/5 pass) as harness sanity check"
+  ],
+  "notes": "Scenario answer: the LIVE new-business derived-net formula is DerivedPricingFormula = tier x Source_List_Price__c (SDD-canonical). The Base_Price__c x tier formula (DerivedPricingNewBusiness) is proven dead code. Classified PARTIAL/medium (not PASS) because the dead formula is still physically present in the active V14 procedure -- M-2 dead-code removal is READY but owner-gated and bundled to ride with SC-3404 as V15; until removed it remains a latent ambiguity/maintainability defect. The canonical-quote $0 maintenance result (00780964) is a DIFFERENT defect (auto-add line stamped ItemIsDerived=false / Source_List_Price null / Base_Price=355 license-list leak) and belongs to the auto-add-stamping scenario, not the formula-choice scenario. Work artifacts: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/nb-derived-formula/ (body.json, log_07LWC00000OxpWv2AJ.txt). V14 block: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/inv/v14block.xml."
+ },
+ {
+  "scenario_id": "NB-DERIVED-TIER",
+  "domain": "Derived (new-business) pricing",
+  "title": "Maintenance tier/rate lookup (Maintenance_Rate / type) resolves correct %",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": false,
+  "ticket_ref": "",
+  "expected": "First-year (new-business) derived maintenance NetUnitPrice = tier-rate x Source_List_Price__c, where the tier rate is resolved per the line's MTD (Maintenance Type Defn) attribute from Maintenance_Rate__mdt for ALL 7 defined tiers (Basic 0.15, Professional 0.20, Standard 0.20, Premium 0.24, Express 0.30, Premier 0.30, Expert 0.35). e.g. Standard 0.20 x 355 = 71.",
+  "actual": "Tier resolution is correct for the 3 dominant tiers ONLY (Premier 0.30, Professional 0.20, Standard 0.20) and is NOT a CMDT lookup at all - the rates are hard-coded inline in the V14 DerivedPricingFormula IF-chain. The 4 remaining MTD tiers used on live lines (Basic 182, platinum 15, Expert 8, Premium 2 = 207 QLI attribute rows) fall through the formula's final ELSE to 0, deriving $0 maintenance net instead of 0.15/0.24/0.35. Maintenance_Rate__mdt is referenced 0 times in the procedure; the inline table omits Basic/Premium/Express/Expert and has no branch for the picklist value 'platinum'.",
+  "evidence": [
+   "Live V14 DerivedPricingFormula (ListContainer9 seq6, gated by DerivredPricingAttributeFilter AttributeDefinitionCode='MTD'): NetUnitPrice = IF(AttributeValue='Premier',0.30,IF(AttributeValue='Standard',0.20,IF(AttributeValue='Professional',0.20,0)))*Source_List_Price__c -- only 3 tiers, else 0 (v14block.xml line 1848).",
+   "Competing DerivedPricingNewBusiness formula (seq7, v14block.xml line 1978) has the IDENTICAL incomplete 3-tier IF chain (else 0) -- both first-year formulas omit Basic/Premium/Expert/Express/platinum.",
+   "grep 'Maintenance_Rate' over the V14 procedure block = 0 hits: the tier % is hard-coded inline, NOT a Maintenance_Rate__mdt lookup; the table can drift from the formula.",
+   "Maintenance_Rate__mdt (live, 7 rows): Basic 0.15, Professional 0.20, Standard 0.20, Premium 0.24, Express 0.30, Premier 0.30, Expert 0.35.",
+   "MTD AttributeDefinition 0tjWC000000096bYAA picklist (0v5WC00000005RBYAY) has 8 values: Basic, Expert, platinum, Premier, Premium, Professional, Standard, Express. 'platinum' has no Maintenance_Rate__mdt entry; the formula handles none of Basic/Premium/Expert/Express/platinum.",
+   "Live MTD tier usage tally over QuoteLineItemAttribute (AttributeDefinitionId=0tjWC000000096bYAA): Premier 24795, Professional 23580, Standard 1418 (all handled); Basic 182, platinum 15, Expert 8, Premium 2 (all resolve to 0 = WRONG). 207 rows mis-resolve.",
+   "POSITIVE proof tier math is correct for handled tiers: line 0QLWC000003d2QV4AY (quote 0Q0WC0000037rFZ0AY, Draft) MTD=Standard, Source_List_Price__c=355, NetUnitPrice=71 = 0.20x355 exact; line 0QLWC000003cdTF4AY MTD=Standard Automate Ultimate NetUnitPrice=55000 = 0.20x275000 exact.",
+   "Canonical new-business quote 00780964 (0Q0WC000003735t0AA, Draft, USD) repriced via Place Sales Transaction (Force + configurationMethod Skip) isSuccess:true; New-Maint line 0QLWC000003cFh44AE MTD=Standard but Source_List_Price__c=null -> NetUnitPrice committed 0 (tier resolved but Source null + structural-exclusion SC-3404 symptom; line count 2->2 unchanged).",
+   "Reprice body: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/nb-derived-tier/body.json ; describe + queries + verdict under /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/nb-derived-tier/."
+  ],
+  "actions_taken": [
+   "Queried Maintenance_Rate__mdt (7 tier rates) and confirmed the MTD AttributeDefinition (0tjWC000000096bYAA) picklist (8 values incl 'platinum').",
+   "Extracted the live V14 first-year DerivedPricingFormula and DerivedPricingNewBusiness formulas from the procedure snapshot; confirmed both hard-code only Premier/Standard/Professional (else 0) and reference Maintenance_Rate__mdt 0 times.",
+   "Tallied live MTD tier usage across QuoteLineItemAttribute (Premier 24795 / Professional 23580 / Standard 1418 handled; Basic 182 / platinum 15 / Expert 8 / Premium 2 = 207 unhandled).",
+   "Confirmed canonical quote 00780964 Draft, repriced it via Place Sales Transaction (Force, configurationMethod Skip), re-read lines; verified positive tier math on quotes 0Q0WC0000037rFZ0AY (71=0.20x355) and the Automate Ultimate line (55000=0.20x275000).",
+   "No DML/delete/activation/integration; only one non-destructive Skip reprice of a Draft quote and read-only SOQL/metadata inspection."
+  ],
+  "notes": "Two distinct findings. (1) PARTIAL PASS: for the 3 dominant tiers (Premier/Professional/Standard = 49793/50000 = 99.6% of live MTD attributes) the resolved % is exactly correct and ties to Maintenance_Rate__mdt. (2) FAIL/HIGH: the 'lookup' is not a Maintenance_Rate__mdt lookup at all -- it is a hard-coded 3-branch inline IF in the V14 procedure. The 4 minority tiers actually present on live lines (Basic 0.15, Premium 0.24, Expert 0.35, Express 0.30) plus the orphan picklist value 'platinum' all fall to the 0 default, deriving $0 maintenance net (207 live QLI attribute rows affected). This is a correctness + maintainability gap independent of SC-3404: even when Source_List_Price__c is correctly stamped, a Basic/Premium/Expert/Express line prices $0. Not an existing ticket -- relates to M-2 (two competing formulas) but the incomplete-tier-set defect is not captured by M-2/SC-3404/SC-3372; recommend a new ticket to either (a) data-drive the tier from Maintenance_Rate__mdt or (b) complete the inline IF for all tiers and reconcile 'platinum'/'Express'. Canonical quote 00780964 separately commits $0 due to null Source_List_Price__c + SC-3404 structural exclusion."
+ },
+ {
+  "scenario_id": "RN-COLA-MATH",
+  "domain": "Renewal COLA pricing",
+  "title": "Renewal maintenance COLA net computed in-flight = (Base - priorPartner - priorDisc) x (1 + COLA%)",
+  "status": "pass",
+  "severity": "none",
+  "expected": "For each renewal-maintenance line, the in-flight COLA net = (Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c) x (1 + COLA_Uplift_Percent__c/100), computed live by the pricing procedure (V14 DerivedPricingRenewals) and/or seeded by COLAUpliftPrehook into COLACalculatedPrice__c. Worked example: (71 - 8.52 - 0) x 1.0785 = 67.38.",
+  "actual": "PASS. The in-flight COLA net formula reproduces the stamped COLACalculatedPrice__c EXACTLY on all 4 stamped renewal-maintenance lines, and a live Force reprice of canary 00781109 re-fired the computation with a FINEST log explicitly logging the in-flight result 67.38. (1) Static formula proof vs stamped COLACalculatedPrice__c: 00781043 (71-8.52-0)x1.0785=67.38==67.38; 00781053 (71-8.52-6.25)x1.0785=60.64==60.64 (exercises the priorDisc term); 00781084 67.38==67.38; 00781109 67.38==67.38 -- 4/4 exact. (2) Live reprice (Place Sales Transaction, Force + configurationMethod Skip) of Draft canary 00781109/0Q0WC0000038aXd0AI returned isSuccess:true, line count unchanged (1->1), LastModifiedDate advanced to 23:59:27 (matched the ApexLog StartTime) confirming a genuine in-flight recompute, not a stale stamp read. (3) FINEST log 07LWC00000OxpTh2AJ shows the prehook computing it live: line 506 'RENEWAL MAINT COLA PREHOOK: QLI 0QLWC000003e2Sn4AI -> 67.38', line 636 'Submitting 1 COLA context updates', line 881 'RENEWAL MAINT COLA: Line 0QLWC000003e2Sn4AI -> Net=67.38 Partner%=12.00 Discount%=0.00', and the context maps carry COLACalculatedPrice__c={0QLWC000003e2Sn4AI=67.38} with COLA_Uplift_Percent__c={...=7.85}. (4) Inputs validated against source: COLA_Uplift_Percent__c=7.85 matches COLA_Uplift_Rules__mdt for the BoKS solution category (Powertech IAM BoKS=7.85); partner rate logged as 12.00% (the B-3-resolved maintenance rate, not 15% Software). The active V14 DerivedPricingRenewals formula (block-local line 2043) is the exact RN-COLA-MATH formula with ISNULL guards: IF(QuoteType='Renewal', IF(COLACalculatedPrice__c>0, COLACalculatedPrice__c, (ISNULL(Base_Price__c,0)-ISNULL(Prior_Partner_Discount__c,0)-ISNULL(Prior_Discretionary_Discount__c,0))x(1+ISNULL(COLA_Uplift_Percent__c,0)/100)), NetUnitPrice). NOTE: the in-flight COMPUTATION is correct; the separate downstream COMMIT into UnitPrice/NetUnitPrice (UnitPrice=0, NetUnitPrice=60.64 = 67.38x0.90 partner re-discount) is the SC-3404 defect, which is a different scenario and out of scope for RN-COLA-MATH.",
+  "evidence": [
+   "4/4 stamped renewal-maint QLIs match formula exactly: QLI 0QLWC000003ck6X4AQ (00781043) (71-8.52-0)x1.0785=67.38==COLACalculatedPrice__c 67.38",
+   "QLI 0QLWC000003cy334AA (00781053) (71-8.52-6.25)x1.0785=60.64==COLACalculatedPrice__c 60.64 (priorDisc=6.25 term exercised)",
+   "QLI 0QLWC000003dEW24AM (00781084) 67.38==67.38; QLI 0QLWC000003e2Sn4AI (00781109) 67.38==67.38",
+   "Live reprice canary 00781109/0Q0WC0000038aXd0AI: sf api request rest /services/data/v64.0/connect/rev/sales-transaction/actions/place (Force + configurationMethod Skip) -> isSuccess:true, salesTransactionId=0Q0WC0000038aXd0AI, line count 1->1 unchanged, QLI LastModifiedDate=2026-06-13T23:59:27Z",
+   "ApexLog 07LWC00000OxpTh2AJ (Operation=/...sales-transaction/actions/place, Status=Success) line 506: 'RENEWAL MAINT COLA PREHOOK: QLI 0QLWC000003e2Sn4AI -> 67.38'",
+   "Same log line 881: 'RENEWAL MAINT COLA: Line 0QLWC000003e2Sn4AI -> Net=67.38 Partner%=12.00 Discount%=0.00'; context map COLACalculatedPrice__c={0QLWC000003e2Sn4AI=67.38}, COLA_Uplift_Percent__c={...=7.85}",
+   "COLA_Uplift_Rules__mdt: Powertech IAM BoKS Default_Uplift_Percent__c=7.85 matches line COLA_Uplift_Percent__c=7.85",
+   "Active V14 DerivedPricingRenewals formula (v14block.xml block-local line 2043) is the RN-COLA-MATH formula with ISNULL guards, preferring COLACalculatedPrice__c when >0 else the live arithmetic",
+   "Logs saved: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/rn-cola-math/log_07LWC00000OxpTh2AJ.txt; reprice body: .../rn-cola-math/body.json"
+  ],
+  "actions_taken": [
+   "Verified all 4 Category-B canary quotes (00781043/53/84/109) are Draft = safe to reprice",
+   "Queried stamped COLA fields (Base_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, COLA_Uplift_Percent__c, COLACalculatedPrice__c, UnitPrice, NetUnitPrice) on the 4 renewal-maint QLIs",
+   "Computed expected COLA net = (Base-priorPartner-priorDisc)x(1+COLA%/100) and compared to stamped COLACalculatedPrice__c -> 4/4 exact match",
+   "Repriced Draft canary 00781109 via Place Sales Transaction (Force + configurationMethod Skip); confirmed isSuccess:true and non-destructive (1->1 lines)",
+   "Downloaded and grepped the resulting FINEST ApexLog (07LWC00000OxpTh2AJ); confirmed in-flight computation logs (lines 506/636/881 -> 67.38) and B-3-resolved Partner%=12.00",
+   "Cross-checked COLA_Uplift_Percent__c=7.85 against COLA_Uplift_Rules__mdt (Powertech IAM BoKS=7.85)",
+   "Inspected active V14 DerivedPricingRenewals formula in v14block.xml (block-local line 2043) confirming it is the RN-COLA-MATH formula with ISNULL guards",
+   "Attempted SOLO RenewalMaintenancePricingServiceTest run 3x but org returned 'admin operation already in progress' (concurrent sibling executor lock); supplementary only -- live reprice + FINEST log already prove the in-flight math (dossier cites this class at 92% solo)"
+  ],
+  "is_known_issue": false,
+  "notes": "RN-COLA-MATH validates the IN-FLIGHT COMPUTATION of the renewal-maintenance COLA net, which is CORRECT (67.38 / 60.64 exact, formula-proven and FINEST-log-proven on a live reprice). This is intentionally scoped apart from the downstream PERSISTENCE defect SC-3404, where the correct 67.38 fails to commit into UnitPrice (lands 0) / NetUnitPrice (lands 60.64 = 67.38 x 0.90 partner re-discount). If a separate scenario tests the committed UnitPrice/NetUnitPrice of renewal maintenance, that one should be marked fail/is_known_issue=true/ticket_ref=SC-3404. The COLA input chain is sound: COLA% sourced from COLA_Uplift_Rules__mdt (BoKS=7.85), partner rate logged at 12.00% (B-3 resolved, not 15% Software). The priorDisc term is genuinely exercised by 00781053 (Prior_Discretionary_Discount__c=6.25 -> 60.64), not just zero-path lines. SOLO unit test could not be run due to a transient org-wide 'admin operation already in progress' lock from concurrent executors; the live in-flight reprice evidence is stronger and sufficient for this scenario.",
+  "ticket_ref": "SC-3404"
+ },
+ {
+  "scenario_id": "RN-COLA-COMMIT",
+  "domain": "Renewal COLA pricing",
+  "title": "Renewal maintenance committed NetUnitPrice does not equal expected COLA net (SC-3404)",
+  "status": "fail",
+  "severity": "critical",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3404",
+  "expected": "Committed NetUnitPrice = COLA net = (Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c) x (1 + COLA_Uplift_Percent__c/100), equal to the stamped COLACalculatedPrice__c (e.g. 67.38 on canary 00781109; 60.64 on 00781053).",
+  "actual": "On all 4 canary lines NetUnitPrice diverges from the correct COLA net: 00781043 commits 0 (exp 67.38), 00781053 commits 54.58 (exp 60.64), 00781084 commits 60.64 (exp 67.38), 00781109 commits 60.64 / UnitPrice 0 (exp 67.38). The wrong values are either $0 or COLA-net x 0.90 (partner double-discount). COLACalculatedPrice__c carries the correct value on every line; the engine computes the COLA net but does not commit it.",
+  "evidence": [
+   "Live QLI query (4 canary Draft quotes): 00781043 NetUnitPrice=0 / COLACalculatedPrice=67.38; 00781053 (0QLWC000003cy334AA) NetUnitPrice=54.58 / COLACalc=60.64 / Prior_Discretionary=6.25; 00781084 (0QLWC000003dEW24AM) NetUnitPrice=60.64 / COLACalc=67.38 / UnitPrice=67.38; 00781109 (0QLWC000003e2Sn4AI) NetUnitPrice=60.64 / COLACalc=67.38 / UnitPrice=0. All Base_Price=71, Source_List_Price=355, COLA%=7.85, Prior_Partner=8.52.",
+   "Formula check: expected COLA net = (71-8.52-0)*1.0785 = 67.38 EXACT match to COLACalculatedPrice; (71-8.52-6.25)*1.0785 = 60.64 EXACT. Committed 54.58 = 60.64*0.90 and 60.64 = 67.38*0.90 (partner double-discount layer); commit-match=False on all 4 lines.",
+   "Live reprice reproduction: Place Sales Transaction (pricingPref Force, configurationMethod Skip) on canary 00781109 (0Q0WC0000038aXd0AI) returned isSuccess:true; line count 1->1 (non-destructive). Post-reprice NetUnitPrice=60.64, UnitPrice=0, COLACalculatedPrice=67.38, LastModifiedDate advanced to 2026-06-13T23:57:57Z -> defect re-confirmed under a fresh pricing pass.",
+   "Root-cause corroboration: canary maintenance PBEs 01uWC000006XPPBYA4 and 01uWC000005wsbVYAQ are IsDerived=true with UnitPrice=0 (zero-list), consistent with the SC-3404 structural-exclusion premise (derived + ListPrice0 line excluded from the engine NetUnitPrice price map; dossier doc-12).",
+   "SOLO Apex test RenewalMaintenancePricingServiceTest: 50/50 Pass, RenewalMaintenancePricingService=92% coverage -> the COLA-net computation service is correct and tested, isolating the defect to the engine commit/persistence layer, not the math."
+  ],
+  "actions_taken": [
+   "Queried live state of all 4 Draft canary renewal-maintenance QLIs (00781043/00781053/00781084/00781109) using the SC-3404 detector (COLACalculatedPrice != NetUnitPrice).",
+   "Computed expected COLA net per the D4 formula and compared to committed NetUnitPrice/UnitPrice and stamped COLACalculatedPrice for every line.",
+   "Repriced canary 00781109 via the managed Place Sales Transaction API (Force + configurationMethod Skip) and re-read the line to confirm the defect reproduces under a fresh pricing pass (non-destructive, line count unchanged).",
+   "Confirmed canary maintenance PBEs are IsDerived=true + UnitPrice=0 (structural-exclusion premise).",
+   "Ran RenewalMaintenancePricingServiceTest SOLO (--code-coverage --synchronous) = 92%, 50/50 pass, to isolate the defect to commit/persistence vs computation. No DML on Quote/QLI, no activation, no integration call."
+  ],
+  "notes": "Known open blocker SC-3404, the single remaining owner-gated item for the SC-3346 build (peer review SC-3403). Severity critical: every renewal-maintenance line commits the wrong net (either $0 or COLA-net x 0.90 partner double-discount) instead of the correct COLA net, which is the core deliverable of the additional-year renewal-pricing feature. The V14 pricing procedure (ExpressionSet 9QLWC0000015cDl4AI) and RenewalMaintenancePricingService both COMPUTE the correct value (67.38) into COLACalculatedPrice__c, but the engine does not persist it onto NetUnitPrice because the derived + zero-list + No-Change line is structurally excluded from the engine price map (dossier doc-12 root cause; native-override theory superseded). Fix is designed (prehook seed of InputUnitPrice/ListPrice) but NOT executed (in-place V14 edit, version-delete platform-blocked, ~536k native-priced lines at risk). Artifacts: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/rn-cola-commit/ (body.json, solo_test.out)."
+ },
+ {
+  "scenario_id": "RN-PARTNER-DD",
+  "domain": "Renewal COLA pricing",
+  "title": "Partner discount double-applied on renewal maintenance (COLA net x 0.90 = 60.64 instead of 67.38)",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3404",
+  "expected": "Renewal-maintenance committed NetUnitPrice should equal the COLA net = (Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c) x (1 + COLA_Uplift_Percent__c/100). For the canary BoKS line: (71 - 8.52 - 0) x 1.0785 = 67.38. The partner discount is ALREADY embedded in the COLA net as the Prior_Partner_Discount__c=8.52 subtraction, so no additional partner factor should be applied. Expected NetUnitPrice = 67.38 (and 60.64 for the discretionary-discount variant 0QLWC000003cy334AA).",
+  "actual": "Committed NetUnitPrice = 60.64 = COLA net 67.38 x 0.90 (a flat ~10% partner discount re-applied on top of the already-net COLA price). The partner discount is counted TWICE: once as the Prior_Partner_Discount__c=8.52 subtraction inside the COLA net, and again as the x0.90 layer. Confirmed across all three corpus lines: 0QLWC000003dEW24AM (q00781084) COLA 67.38 -> Net 60.64; 0QLWC000003e2Sn4AI (q00781109 canary) COLA 67.38 -> Net 60.64 (UnitPrice also 0); 0QLWC000003cy334AA (q00781053) COLA 60.64 -> Net 54.58. Note the applied factor is 0.90 (10%) even though PartnerDiscountPercent=12 is stamped on the line (not 0.88). After a live Force reprice (Skip config) of Draft quote 00781084, the line persisted UnitPrice=67.38 / NetUnitPrice=NetTotalPrice=Subtotal=60.64 / COLACalculatedPrice__c=67.38 (LastModifiedDate advanced to 2026-06-14T00:00:14, so this is actively re-committed, not stale). FINEST trace proves the underlying SC-3404 persistence wall: the procedure computes the correct NetUnitPrice=67.38 mid-waterfall (context snapshot at log line 19353) and the prehook seeds InputUnitPrice=67.38 ('RENEWAL MAINT COLA PREHOOK: QLI 0QLWC000003dEW24AM -> 67.38'), but the line is a structurally-excluded derived/OneTime renewal node (ItemIsDerived__std=true, DerivedPricingAttribute=true, ListPrice=0, SalesTransactionActionType=Renew) so the 67.38 is never persisted and the line retains its pre-existing double-discounted 60.64. The v1.4 posthook's buildRenewalMaintenanceColaUpdate runs but reads procedureNet=67.38 (==colaNet 67.38), so it short-circuits at class line 841-842 and writes nothing (no 'RENEWAL MAINT COLA:' INFO log emitted) -- it is incapable of overriding the persisted 60.64.",
+  "evidence": [
+   "Live SOQL (pre-reprice) of 3 renewal-maint corpus lines: 0QLWC000003dEW24AM Base=71 Prior_Partner=8.52 Prior_Disc=0 COLA%=7.85 COLACalc=67.38 UnitPrice=67.38 NetUnitPrice=60.64 PartnerDiscountPercent=12; 0QLWC000003cy334AA Prior_Disc=6.25 COLACalc=60.64 NetUnitPrice=54.58; 0QLWC000003e2Sn4AI COLACalc=67.38 NetUnitPrice=60.64 UnitPrice=0",
+   "Math: 60.64 / 67.38 = 0.89997 = x0.90 (10% partner re-discount); 54.58 / 60.64 = 0.9001 (10%); factor is 0.90 NOT 0.88 despite PartnerDiscountPercent=12. COLA net itself verified exact: (71-8.52-0)*1.0785=67.3847 -> 67.38; (71-8.52-6.25)*1.0785=60.6441 -> 60.64",
+   "Live Place-Sales-Transaction Force reprice (configurationMethod:Skip) of Draft quote 00781109 (0Q0WC0000038aXd0AI) returned isSuccess:true, line count unchanged 1->1; canary line still NetUnitPrice=60.64 / UnitPrice=0 / COLACalc=67.38 after reprice",
+   "Live reprice of Draft quote 00781084 (0Q0WC00000382MH0AY) isSuccess:true; post-reprice re-query: 0QLWC000003dEW24AM UnitPrice=67.38 NetUnitPrice=60.64 NetTotalPrice=60.64 Subtotal=60.64 COLACalculatedPrice__c=67.38 LastModifiedDate=2026-06-14T00:00:14 (actively re-committed)",
+   "FINEST ApexLog 07LWC00000Oxpjp2AB (Operation=/services/data/v64.0/connect/rev/sales-transaction/actions/place, Success, 28098 lines): line 10767 'RENEWAL MAINT COLA PREHOOK: QLI 0QLWC000003dEW24AM -> 67.38'; line 9753 'Found 2 renewal QLIs from 2 total'",
+   "NetUnitPrice value across waterfall context snapshots for maint line (log line -> value): 1507->60.64, ...8659->60.64, 19353->67.38 (procedure computes correct COLA net), 21734->60.64, ...22913->60.64 (reverts/never persisted). Final committed context (log ~line 21700+): NetUnitPrice{...=60.64}, ItemSubtotal{...=60.64}, InputUnitPrice{...=67.38}, ItemIsDerived__std=true, DerivedPricingAttribute=true, ListPrice=0",
+   "Posthook trace: buildRenewalMaintenanceColaUpdate (class lines 819-888) entered for maint line (log 20932-21125); colaNet=67.38 (log line 836), procedureNet=67.38 (log line 835), reaches short-circuit STATEMENT_EXECUTE [841]+[842] -> returns null; NO 'RENEWAL MAINT COLA:' INFO (class line 881) emitted = no override written; linesUpdated=1 was the subscription line, not the maint line",
+   "Live PartnerNetPricePosthook v1.4 (LastModified 2026-06-13T17:57Z, edited same day) body retrieved to Data/sc-maint/sc3346_e2e/work/rn-partner-dd/PartnerNetPricePosthook.live.cls -- buildRenewalMaintenanceColaUpdate writes NetUnitPrice=colaNet (no x0.90); the double-discount is NOT in current posthook code, it is the persisted/native-derived value the engine fails to overwrite",
+   "V14 PartnerDiscountDerivedMaintenance chain (v14block.xml ~line 3658) filter: ItemPricingSource NotEquals 'LastTransaction' AND QuoteTypeText__c NotEquals 'Renewal' -> the procedure's PartnerDiscountDerivedMaintenance20 ManualDiscount (AdjustmentValue=PartnerDiscountPercent) is gated OFF for these renewal lines; quote header Deal_Type__c='Fortra Originated' (also excluded)",
+   "SOLO PartnerNetPricePosthookTest could not run -- org returned 'admin operation already in progress' on 4 retries (build still moving / concurrent activation); test coverage not re-measured this run, but defect proven by live reprice + FINEST trace independent of tests"
+  ],
+  "actions_taken": [
+   "Queried 3 renewal-maintenance corpus QLI lines (quotes 00781053/00781084/00781109) and computed expected COLA net vs committed NetUnitPrice",
+   "Re-retrieved live PartnerNetPricePosthook (v1.4) and PartnerPricingService bodies via Tooling API to confirm current partner-discount logic (build edited same day)",
+   "Inspected V14 PartnerDiscountDerivedMaintenance filter in the pricing-procedure snapshot to confirm the ManualDiscount step is renewal-gated-off",
+   "Force-repriced Draft quotes 00781109 and 00781084 via managed Place Sales Transaction API with configurationMethod:Skip (non-destructive, line counts unchanged); re-queried persisted line state",
+   "Captured and analyzed FINEST ApexLog 07LWC00000Oxpjp2AB: traced NetUnitPrice 60.64->67.38->60.64 through the waterfall, confirmed prehook seed 67.38, posthook short-circuit at class line 841-842, and the structurally-excluded derived node",
+   "Attempted SOLO PartnerNetPricePosthookTest run (blocked by org admin-operation lock)"
+  ],
+  "notes": "DEFECT CONFIRMED, classed as known issue SC-3404 (renewal-maintenance committed net != COLA net). Mechanism is two-fold: (1) the partner discount is double-counted -- Prior_Partner_Discount__c=8.52 is already netted inside the COLA net, then a flat ~10% partner factor (x0.90) is re-applied producing 60.64/54.58; (2) the deeper persistence failure is SC-3404's structural-exclusion: the procedure DOES compute the correct 67.38 in-flight (and the prehook seeds InputUnitPrice=67.38), but the renewal-maintenance line is a derived/OneTime 'No-Change'-class node that is not a writable priced node, so the correct 67.38 is never persisted and the line keeps its stale double-discounted 60.64. Neither the current v1.4 posthook nor the V14 procedure ACTIVELY re-applies x0.90 (the V14 PartnerDiscountDerivedMaintenance ManualDiscount is gated off for QuoteType=Renewal and Deal_Type=Fortra Originated; the v1.4 posthook short-circuits because procedureNet==colaNet) -- the 60.64 is the persisted value the engine cannot overwrite. Severity HIGH: a wrong (under-)price commits on a live renewal path; it is owner-gated (Nir/Marc) and remains the one open SC-3403 blocker. Secondary observation worth flagging to the owner: the applied partner factor is 0.90 (10%), NOT 0.88 (12%) despite PartnerDiscountPercent=12 stamped on the line -- the partner-rate source/percentage is itself inconsistent. Guardrails respected: read-only + non-destructive Skip reprices on Draft quotes only; no DML on Quote/QLI, no activation, no integration, Accepted quote 00781068 untouched. A pre-existing TraceFlag on the running user was reused (none created/deleted). SOLO test coverage was not re-measured because the org held an admin-operation lock during this run; defect proof does not depend on tests. Work artifacts: Data/sc-maint/sc3346_e2e/work/rn-partner-dd/ (body.json, body84.json, log84.txt, PartnerNetPricePosthook.live.cls, PartnerPricingService.live.cls)."
+ },
+ {
+  "scenario_id": "RN-COLA-RATES",
+  "domain": "Renewal COLA pricing",
+  "title": "COLA uplift rate lookup by solution category (COLA_Uplift_Rules__mdt) vs spec rates",
+  "status": "partial",
+  "severity": "medium",
+  "expected": "Per the COLA SDD (docs/Fortra-Pricing-COLA-Solution-Design-Doc.docx), COLA_Uplift_Rules__mdt holds 20 Solution-Category rate records, range 0% (Fortra Platform) to 9.85% (Robotic Process Automation), looked up by Product2.Solution_Category__c and stamped onto renewal-maintenance lines as COLA_Uplift_Percent__c. Each renewal line's solution category should resolve to exactly one active rate, with no dead/duplicate rules and full product-category coverage.",
+  "actual": "Live UAT COLA_Uplift_Rules__mdt has 22 records (not 20), all Active=true, all effective-dates null. The 22 per-category rate values match the spec/discovery table EXACTLY with ZERO drift (diff of live vs expected = no difference; range 0-9.85 matches SDD). Lookup key Solution_Category__c is correct and collision-free (22 distinct category strings, no duplicate keys). Two real stamped lines confirm correct category->rate resolution: quote 0Q0WC00000382MH0AY line 0QLWC000003dEW24AM (PIA-PIA-RRM-PIAM) = 7.85% (BoKS/Powertech category) and line 0QLWC000003dEW14AM (HRM-HRM-RSL-10L50CS) = 5% (Human Risk Management). Two config defects vs spec: (1) record count 22 vs SDD's stated 20 - the two extras are a BoKS duplicate pair; (2) BoKS dead-rule/TEMP trap - the permanent 'Powertech IAM BoKS' rule (rate 7.85) matches 0 live products and is dead, while the ONLY rule covering the 17 live BoKS products (15 active) is the temp rule 'TEMP_BoKS_IAM_ProductCat' (category 'Powertech Identity & Access Manager (BoKS)', rate 7.85). Deleting the TEMP rule (or reconciling to the SDD's '20 records') strands 17 BoKS products at silent 0% uplift since their Product2.Solution_Category__c won't match the permanent rule. Latent uncovered cases: 88 null-category products -> no rule -> silent 0%; IPP (4 products) and Fortra Platform (0 products) at rate 0.",
+  "actions_taken": [
+   "Queried all 22 live COLA_Uplift_Rules__mdt records (DeveloperName, Solution_Category__c, Default_Uplift_Percent__c, Is_Active__c, effective dates) from FortraUAT",
+   "Extracted the COLA SDD docx (docs/Fortra-Pricing-COLA-Solution-Design-Doc.docx) text to capture the spec '20 Solution Categories / 0%-9.85%' statement and the lookup-by-Solution_Category__c contract",
+   "Cross-referenced the SC-3350 captured live_cmdt_rates.md (the by-category rate table + BoKS B8 trap + 88 null-category finding)",
+   "Diffed all 22 live category/rate pairs against the expected spec table -> zero drift",
+   "Verified no duplicate Solution_Category__c map keys (sort|uniq -d empty) and rate range 0 to 9.85",
+   "Confirmed BoKS coverage live: permanent 'Powertech IAM BoKS' rule = 0 products, TEMP rule category 'Powertech Identity & Access Manager (BoKS)' = 17 products",
+   "Validated category->rate stamping on two real QLI lines of Draft quote 0Q0WC00000382MH0AY (PIA-PIA-RRM-PIAM=7.85, HRM-HRM-RSL-10L50CS=5)",
+   "Checked SystemModstamp: CMDT data stable since 2026-04-17 (TEMP BoKS 2026-06-09), unchanged"
+  ],
+  "evidence": [
+   "Live CMDT (22 records) all Active=true, all dates null; rates: Brand Protection 5, Business Intelligence 7.85, Capacity Management 4.7, Cloud Data Protection 5, Core IGA 4.7, Cybersecurity 7.85, Data Protection 4.7, Doc Management 7.85, Email Security 5, File Integrity Monitoring 5, Fortra Platform 0, Globalscape 7.85, GoAnywhere 7.85, Human Risk Management 5, IPP 0, Network Monitoring 7.85, Offensive Security 6.2, Powertech IAM BoKS 7.85, Powertech Identity & Access Manager (BoKS) 7.85, Robotic Process Automation 9.85, Systems Management 7.85, Vulnerability Management 6.2",
+   "diff live-vs-expected per-category rate table = NO DRIFT (all 22 pairs match)",
+   "sort|uniq -d on Solution_Category__c = empty -> no map-key collision; rate range min=0 max=9.85",
+   "COLA SDD docx: 'covering 20 Solution Categories with rates ranging from 0% (Fortra Platform) to 9.85% (Robotic Process Automation)' and 'The 20 COLA_Uplift_Rules__mdt records are deployed and activated' -> spec=20, live=22",
+   "BoKS live counts: SELECT COUNT(Id) FROM Product2 WHERE Solution_Category__c='Powertech IAM BoKS' = 0 (dead permanent rule); WHERE Solution_Category__c='Powertech Identity & Access Manager (BoKS)' = 17 (TEMP rule, 15 active)",
+   "Canary stamping proof: QLI 0QLWC000003dEW24AM (PIA-PIA-RRM-PIAM) COLA_Uplift_Percent__c=7.85, COLACalculatedPrice__c=67.38, Base_Price__c=71, Prior_Partner_Discount__c=8.52; QLI 0QLWC000003dEW14AM (HRM-HRM-RSL-10L50CS) COLA_Uplift_Percent__c=5",
+   "SystemModstamp: newest record TEMP_BoKS_IAM_ProductCat 2026-06-09T23:34:29Z, all others 2026-04-17T00:34:39Z (data stable, unchanged by recent class edits)",
+   "88 null-category Product2 records have no CMDT rule -> silent 0% uplift on renewal (per SC-3350 live_cmdt_rates.md GROUP BY join)"
+  ],
+  "is_known_issue": true,
+  "ticket_ref": "SC-3350",
+  "notes": "CORE LOOKUP MECHANISM PASSES: the per-category rate lookup (key=Product2.Solution_Category__c -> COLA_Uplift_Rules__mdt keyed by Solution_Category__c) functions correctly and every one of the 22 live rate VALUES matches the spec table exactly (zero drift), proven by two independently-stamped real lines (7.85 BoKS, 5 HRM). Classified PARTIAL (not pass) because the rate TABLE diverges from the SDD's stated 20 records (live=22) via a BoKS duplicate pair, and carries a medium go-live trap: the permanent 'Powertech IAM BoKS' rule is dead (0 products) while the only rule covering the 17 live BoKS products is the temp 'TEMP_BoKS_IAM_ProductCat' rule -> deleting the temp rule (or 'reconciling to 20') strands 17 BoKS products at silent 0% uplift. Plus latent silent-0% cases: 88 null-category products, IPP (4 prods @0%), Fortra Platform (0 prods @0%). These are config/data go-live items tracked under SC-3350 (COLA renewal pricing) - the B8 BoKS trap and 88-null-category findings are documented in its evidence/research-notes/live_cmdt_rates.md. No SC-3404 interaction here: SC-3404 is the downstream net-commit/$0 persistence wall, separate from rate-lookup correctness which is what this scenario tests. All checks read-only; no DML/reprice/activation performed."
+ },
+ {
+  "scenario_id": "RN-MULTIYEAR",
+  "domain": "Renewal COLA pricing",
+  "title": "Additional-year / out-year / MyCAP renewal COLA pricing: computed correctly but never committed (renewal-maintenance net wrong on commit)",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3404",
+  "expected": "Out-year / additional-year renewal maintenance lines should COMMIT NetUnitPrice = UnitPrice = the COLA net = (Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c) x (1 + COLA_Uplift_Percent__c/100). For canary 00781109 (BoKS RRM): (71 - 8.52 - 0) x (1 + 7.85/100) = 62.48 x 1.0785 = 67.38. So UnitPrice and NetUnitPrice should both be 67.38 and Quote GrandTotal should be 67.38. The COLA computation (RenewalMaintenancePricingService.computeColaNet), the per-category COLA% (COLA_Uplift_Rules__mdt = 7.85 for BoKS), and the MyCAP branch (MyCAP_Rules__mdt 'Global' Is_Active__c=true, prehook loads it + runs processMyCAPEligibility) are all expected to be wired AND the result is expected to persist to the committed line.",
+  "actual": "COMPUTATION is WIRED and CORRECT, but the COMMIT is BROKEN. After a live Force reprice (Place Sales Transaction + configurationMethod Skip, isSuccess:true, non-destructive: line count stayed 1) of canary 00781109 / 0Q0WC0000038aXd0AI: the renewal-maintenance line 0QLWC000003e2Sn4AI committed UnitPrice=0 and NetUnitPrice=60.64 (= 67.38 x 0.90 partner re-discount), NOT the correct 67.38. COLACalculatedPrice__c=67.38 (correct value sits stamped on the line) but is NOT committed to NetUnitPrice/UnitPrice. Quote header GrandTotal=Subtotal=TCV=ACV=60.64 (all wrong; should be 67.38). FINEST log proves: (a) 67.38 is computed in-flight (69 references; computeColaNet runs), (b) the engine's writable NetUnitPrice context map holds the line pinned at the wrong 60.64 with InputUnitPrice=0.0, and (c) the finalize/persist pass logs USER_DEBUG [246] 'Found 0 renewal QLIs from 1 total' (processedCount:0) - so the correct COLA net is never written over the 60.64. The same defect is visible statically on the other 3 canaries: 00781084 NetUnitPrice=60.64 vs COLA 67.38; 00781053 NetUnitPrice=54.58 vs COLA 60.64 (with Prior_Discretionary 6.25); 00781043 NetUnitPrice=0 vs COLA 67.38 ($0 variant). MyCAP path is WIRED (MyCAP_Rules__mdt 'Global' active, prehook loads+evaluates it) but on these quotes Mycap__c=false so no MyCAP uplift applies; MyCAP does not rescue the commit defect. SOLO RenewalMaintenancePricingServiceTest = 30/30 Pass (computation logic proven), confirming the math is right and the failure is purely the engine persistence wall. Net: out-year/additional-year COLA renewal pricing is COMPUTED but INERT at commit.",
+  "evidence": [
+   "Canary 00781109 / 0Q0WC0000038aXd0AI QLI 0QLWC000003e2Sn4AI POST live Force-reprice: UnitPrice=0, NetUnitPrice=60.64, COLACalculatedPrice__c=67.38, Base_Price__c=71, Prior_Partner_Discount__c=8.52, COLA_Uplift_Percent__c=7.85 (line count unchanged 1->1, non-destructive)",
+   "Expected COLA net computed-vs-stamped (python Decimal HALF_UP): (71-8.52-0)x1.0785 = 67.38 = stamped COLACalculatedPrice__c; committed NetUnitPrice 60.64 = 67.38x0.90 (partner re-discount defect)",
+   "Reprice command: sf api request rest /services/data/v64.0/connect/rev/sales-transaction/actions/place --method POST --body @body.json -o FortraUAT => {isSuccess:true, salesTransactionId:0Q0WC0000038aXd0AI}",
+   "FINEST ApexLog 07LWC00000OxqBF2AZ (Operation=.../sales-transaction/actions/place): USER_DEBUG [246] INFO 'Found 0 renewal QLIs from 1 total'; buildResult {processedCount:0,skippedCount:0} => correct COLA net never written",
+   "FINEST log price-map: NetUnitPrice={0QLWC000003e2Sn4AI=60.64} and InputUnitPrice={0QLWC000003e2Sn4AI=0.0} (line pinned at wrong value); 67.38 computed 69x in-flight but not committed",
+   "Quote header in log: GrandTotal=60.64, Subtotal=60.64, Total_Contract_Value_TCV__c=60.64, Annual_Contract_Value_ACV__c=60.64, Mycap__c=false, OriginalActionType=Renew (all should be 67.38)",
+   "Other 3 canaries (static, read-only): 00781084 line 0QLWC000003dEW24AM NetUnitPrice=60.64 vs COLA 67.38; 00781053 line 0QLWC000003cy334AA NetUnitPrice=54.58 vs COLA 60.64 (Prior_Discretionary 6.25); 00781043 line 0QLWC000003ck6X4AQ NetUnitPrice=0 vs COLA 67.38",
+   "COLA% source confirmed: COLA_Uplift_Rules__mdt 'Powertech IAM BoKS'/'Powertech Identity & Access Manager (BoKS)' Default_Uplift_Percent__c=7.85, Is_Active__c=true = stamped COLA_Uplift_Percent__c 7.85",
+   "MyCAP path WIRED: COLAUpliftPrehook.cls lines 75-85 load MyCAP_Rules__mdt.getInstance('Global') + run processMyCAPEligibility (3% default); MyCAP_Rules__mdt 'Global' Is_Active__c=true exists; canary quotes Mycap__c=false so no MyCAP uplift applies",
+   "SOLO RenewalMaintenancePricingServiceTest: 30/30 Pass (computeColaNet_* + applyToContext_* + finalize_* all green) - computation logic proven correct; failure is engine commit only",
+   "RenewalMaintenancePricingService.cls L300-314 computeColaNet implements exactly (Base - PriorPartner - PriorDisc) x (1 + COLA%/100) with setScale(2,HALF_UP) - matches D4 formula"
+  ],
+  "actions_taken": [
+   "Verified all 4 renewal canary quotes are Draft + QuoteTypeText__c=Renewal (safe to reprice)",
+   "Read renewal QLI pricing fields (Base_Price__c, Source_List_Price__c, COLACalculatedPrice__c, NetUnitPrice, UnitPrice, COLA_Uplift_Percent__c, Prior_* ) on all 4 quotes",
+   "Computed expected COLA net (python Decimal HALF_UP) for each line and compared to stamped COLACalculatedPrice__c (all match) and committed NetUnitPrice (all wrong)",
+   "Read RenewalMaintenancePricingService.cls computeColaNet (L300-314) and confirmed it implements the D4 COLA formula exactly",
+   "Ran RenewalMaintenancePricingServiceTest SOLO --code-coverage --synchronous: 30/30 Pass",
+   "Performed a live Force reprice of canary 00781109 via Place Sales Transaction with configurationMethod Skip (isSuccess:true); captured pre/post state; verified line count unchanged (non-destructive)",
+   "Pulled the sales-transaction FINEST ApexLog (07LWC00000OxqBF2AZ) and traced: 67.38 computed in-flight, line pinned at 60.64 in NetUnitPrice context map, finalize logged 'Found 0 renewal QLIs from 1 total' (processedCount:0)",
+   "Confirmed COLA% source in COLA_Uplift_Rules__mdt (BoKS=7.85) and the MyCAP branch wiring (MyCAP_Rules__mdt 'Global' active; prehook loads + evaluates it; Mycap__c=false on canaries)",
+   "Re-verified all 4 quotes' line counts unchanged after the work (1/2/2/1)"
+  ],
+  "notes": "Scenario verdict: out-year / additional-year / MyCAP renewal COLA pricing is WIRED at the computation layer (formula correct, COLA% sourced from CMDT, MyCAP branch active and loaded) but INERT at the commit layer - this is the known open SC-3404 engine-persistence defect: the renewal-maintenance line is structurally excluded from the engine's writable price map (ItemIsDerived + qty 0 + ListPrice 0 + No-Change action), so the correct COLA net 67.38 computes into COLACalculatedPrice__c but the committed NetUnitPrice lands at the partner-double-discounted 60.64 (or 54.58/0). Marked fail (not partial) per the directive that a known open defect on a path is still 'fail'. Severity high (wrong committed value on a core renewal path; a fix is designed but owner-gated, not a hard blocker that prevents quote save). Active proc Rev_Mgmt_Default_Pricing_Procedure V14 (ExpressionSet 9QLWC0000015cDl4AI). Evidence/artifacts under /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/rn-multiyear/ (body.json, reprice.log, test.json). MyCAP could not be exercised with a Mycap__c=true quote in-corpus (none available as Draft); MyCAP wiring confirmed by code+CMDT inspection only - flagged as a coverage gap for MyCAP-specific repro. No records deleted/activated; no integration fired; no direct Quote/QLI DML."
+ },
+ {
+  "scenario_id": "DECOMP-SPLIT",
+  "domain": "Order decomposition",
+  "title": "Maintenance order line decomposition (parent license to derived maintenance child via Original_Order_Item__c)",
+  "status": "partial",
+  "severity": "medium",
+  "is_known_issue": false,
+  "ticket_ref": "SC-3346",
+  "expected": "Per the scenario premise, maintenance decomposition produces a derived maintenance child OrderItem linked to its parent license OrderItem via Original_Order_Item__c, with the child stamped Base_Price__c = license source list x tier rate (e.g. 355 x 0.20 = 71), carrying the maintenance base (71) NOT the raw license base (355) per B-6.",
+  "actual": "The Original_Order_Item__c FK-split decomposition model described in the scenario DOES NOT EXIST in the SC-3346 build. (1) All 40 OrderItems with Original_Order_Item__c populated are pure quantity-splits: child Product2Id == parent Product2Id on 40/40 (e.g. 5250 Integrator to 5250 Integrator), produced by PowerOrderSplittingService, all non-maintenance (Perpetual/Subscription/null). ZERO of the 19,844 maintenance OrderItems have Original_Order_Item__c populated. MaintenanceOrderDecompositionService never references the field (grep across all 11 build classes = 0 hits). (2) The actual implemented model is value-stamping on a single self-contained line: the maintenance line is a SEPARATE Product2 SKU (e.g. ...(BoKS)-NewMaintenance) added by the config rule; compute() reads the maintenance line's OWN Source_List_Price__c and stamps Base_Price__c = sourceBase x tierRate (cls line 869), no parent-FK traversal. On order 00095427 the New Maintenance line and its Perpetual license line have Original_Order_Item__c=null AND RelatedOrderItemId=null; they are independent OIs with separate QuoteLineItemIds. (3) The value-decomposition MATH is correct and B-6 holds: all 16 stamped maintenance OIs carry the maintenance base, none the 355 license base; order 00095427 Base 71 = 355 x 0.20, order 00095467 Base 55000 = 275000 x 0.20; tier table Standard/Professional 0.20, Premier 0.30 matches D4. SOLO MaintenanceOrderDecompositionServiceTest could NOT be self-run (org locked by concurrent admin operation across 8 attempts / ~3 min); dossier documents 33/33 pass, 97.9% solo coverage (cited, not self-verified this run).",
+  "evidence": [
+   "19,844 maintenance OrderItems (New+Renewal); 0 have Original_Order_Item__c populated (COUNT, JSON-parsed)",
+   "40 OrderItems have Original_Order_Item__c populated; python parent/child Product2Id compare = 40/40 SAME-PRODUCT quantity-split, 0 license-to-maint decomposition",
+   "grep Original_Order_Item across all retrieved build classes (work/inv/*.cls) = 0 hits; MaintenanceOrderDecompositionService.cls does not reference it",
+   "Order 00095427: maint OI 802WC00000OaDIkYAN (New Maintenance, Base_Price 71, Source_List_Price 355, Original_Order_Item__c=null, RelatedOrderItemId=null, QLI 0QLWC000003cGRp4AM) sits alongside license 802WC00000OaDIlYAN (Perpetual, UnitPrice 301.75, QLI 0QLWC000003cGRq4AM) with NO link field set",
+   "16 stamped maintenance OIs all carry maintenance base (B-6 holds): 71 = 355 x 0.20; order 00095467 55000 = 275000 x 0.20; none carry the 355 license base",
+   "MaintenanceOrderDecompositionService.cls line 869 maintenanceBase = (sourceBase * tierRate).setScale(2); sourceBase from line's own Source_List_Price__c/Base_Price__c (lines 102/123/405), not a parent FK",
+   "resolveTierRate (cls 841): Premier 0.30, Standard/Professional 0.20, else 0 - matches D4 Maintenance_Rate__mdt and live stamped values",
+   "SOLO test blocked: 'Error (1): admin operation already in progress' on 8 attempts over ~3 min (org-level concurrent admin op); coverage cited from dossier D1/D5 (33/33, 97.9%), not self-verified"
+  ],
+  "actions_taken": [
+   "Queried all 40 OrderItems with Original_Order_Item__c populated and classified parent vs child Product2Id via python (40/40 same-product quantity-splits, 0 decomposition)",
+   "Counted maintenance OrderItems (19,844), their Original_Order_Item__c linkage (0), and Base_Price stamping (16)",
+   "Grepped MaintenanceOrderDecompositionService.cls and all build classes for Original_Order_Item__c (0 hits); read compute()/resolveTierRate()/decompose entry to confirm value-stamping reads the line's own Source_List_Price__c",
+   "Verified decomposed base on the 16 stamped maintenance OIs (Base = Source_List_Price x 0.20; B-6 holds, no 355 leak); inspected order 00095427 to confirm license and maint lines are unlinked independent OIs",
+   "Attempted SOLO MaintenanceOrderDecompositionServiceTest run 8x in a backoff loop - blocked every time by org-level admin operation already in progress",
+   "No DML, no reprice, no activation, no deletion performed (read-only inspection only)"
+  ],
+  "notes": "The scenario's parent-to-derived-child via Original_Order_Item__c premise does not match the as-built SC-3346 design. The build implements maintenance decomposition as VALUE-stamping on a self-contained, separately-added maintenance SKU line (Base_Price = its own Source_List_Price x tier), NOT a parent-license to child-maintenance line split with an Original_Order_Item__c FK. The underlying decomposition arithmetic is correct and B-6 is resolved (verified on 16 live maintenance OrderItems incl. 00095427/00095467/00095470/00095475), so the FEATURE works - but via a different mechanism than the scenario describes. Marked PARTIAL (medium): value-decomposition is sound and proven, but the FK-link model under test is absent. Original_Order_Item__c is exclusively a PowerOrderSplittingService quantity-split field (relevant to SC-3210/SC-3368 line-type stamping, not SC-3346). SOLO unit coverage could not be self-verified due to org-level admin-op contention; cite dossier 33/33 as documented-only. Files: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/decomp-split/children.csv, children_full.json; /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/inv/MaintenanceOrderDecompositionService.cls"
+ },
+ {
+  "scenario_id": "DECOMP-BASE",
+  "domain": "Order decomposition",
+  "title": "B-6: maintenance OrderItem carries maintenance base (~71) not license base (355)",
+  "status": "pass",
+  "severity": "none",
+  "is_known_issue": false,
+  "ticket_ref": "SC-3403 (B-6)",
+  "expected": "Decomposition must stamp the maintenance line Base_Price__c with the MAINTENANCE base (license source x tier rate, e.g. 355 x 0.20 = 71), never the raw license base 355. No maintenance OrderItem should carry Base_Price__c equal to its Source_List_Price__c (license-base leak).",
+  "actual": "All 16 live maintenance OrderItems with Base_Price__c>0 carry the maintenance base. COUNT(maintenance OI WHERE Base_Price__c=355)=0; zero rows have Base_Price__c==Source_List_Price__c. Decomposition chain proven end-to-end at two price points: PIAMBK OI 802WC00000OcIChYAN (order 00095455) source QLI 0QLWC000003cUhi4AE Base=355 -> OI Base=71 (=355x0.20); RPA-AUT OI 802WC00000OdgjEYAR (order 00095467) source QLI 0QLWC000003cdTF4AY Base=275000 -> OI Base=55000 (=275000x0.20). Live code MaintenanceOrderDecompositionService v62 computes maintenanceBase=sourceBase*tierRate (L869) and stamps OI Base_Price__c=decomp.maintenanceBase (L312), overwriting the license base. 40/40 SOLO unit tests pass (incl compute_matchesWorkedExample, compute_professionalTierRate, inferTierFromPricing_findsStandardFor355PartnerNet, buildPatches_persistsDecompositionForDerivedLine); class coverage 79% SOLO floor.",
+  "evidence": [
+   "Live regression query: SELECT COUNT() FROM OrderItem WHERE Fortra_Product_Type__c IN ('New Maintenance','Renewal Maintenance') AND Base_Price__c=355 -> 0 records (no license-base leak).",
+   "Total maintenance OIs with Base_Price__c>0 = 16; awk field-equality check (Base_Price__c==Source_List_Price__c) returned 0 leak rows.",
+   "PIAMBK chain: OI 802WC00000OcIChYAN (order 00095455) Base=71 Source_List=355; source QLI 0QLWC000003cUhi4AE Base=355 -> decomposition rewrote 355 to 71 = 355 x 0.20 (Standard/Professional tier).",
+   "RPA-AUT chain (different price point): OI 802WC00000OdgjEYAR (order 00095467) Base=55000 Source_List=275000; source QLI 0QLWC000003cdTF4AY Base=275000 -> 55000 = 275000 x 0.20.",
+   "Code: MaintenanceOrderDecompositionService.cls (01pWC000002W5rRYAS v62) L869 result.maintenanceBase=(sourceBase*tierRate).setScale(2); L312 buildPatchesFromWork sets OrderItem Base_Price__c=decomp.maintenanceBase; resolveTierRate L846 Standard/Professional=0.20, Premier=0.30.",
+   "SOLO test: sf apex run test -o FortraUAT --tests MaintenanceOrderDecompositionServiceTest --code-coverage --synchronous -> 40/40 Pass, 0 Fail; MaintenanceOrderDecompositionService 79% coverage; B-6 tests compute_matchesWorkedExample/compute_professionalTierRate/compute_premierTierRate/inferTierFromPricing_findsStandardFor355PartnerNet/buildPatches_persistsDecompositionForDerivedLine all Pass."
+  ],
+  "actions_taken": [
+   "Queried live FortraUAT maintenance OrderItems (Fortra_Product_Type__c IN New/Renewal Maintenance) for Base_Price__c vs Source_List_Price__c.",
+   "Ran B-6 regression counts: zero OIs with Base_Price__c=355 and zero with Base==Source_List (license-base leak).",
+   "Traced two decomposed OIs back to their source QuoteLineItems to prove the license-base->maintenance-base rewrite at 71 and 55000.",
+   "Read live MaintenanceOrderDecompositionService body confirming maintenanceBase=sourceBase*tierRate and OI Base_Price__c stamping.",
+   "Ran MaintenanceOrderDecompositionServiceTest SOLO with --code-coverage --synchronous: 40/40 pass, 79% class coverage.",
+   "No DML, no reprice, no activation, no integration. Read-only SOQL + Tooling + one SOLO apex test run."
+  ],
+  "notes": "Matches D5 finding status B-6 RESOLVED on UAT. The decomposition design intentionally carries the license base on the QLI (Base_Price__c=355) and OVERWRITES it with the maintenance base on the OrderItem (Base_Price__c=71 = source x tier). No reprice was required: decomposed values are already persisted on Activated orders, and RLM blocks Quote/QLI DML. Coverage 79% is a SOLO floor (combined runs under-report; FINAL_REPORT cites 97.9% solo). One Renewal-Maint OI (802WC00000OgsuEYAR, PIA-PIA-RRM-PIAM) has Base=71 with Source_List null but COLACalculatedPrice=67.38 - its NetUnitPrice commit is the separate SC-3404 issue, not a B-6 base defect."
+ },
+ {
+  "scenario_id": "STAMP-FLOW",
+  "domain": "Stamp / data flow",
+  "title": "Stamp_Maintenance_Pricing_Inputs correctly stamps Base_Price / COLACalculatedPrice / priors / COLA% / product type before-save and re-fires on reprice",
+  "status": "pass",
+  "severity": "none",
+  "is_known_issue": false,
+  "expected": "Before-save QLI flow (V13, RecordBeforeSave CreateAndUpdate) stamps for renewal-maintenance lines: Base_Price__c (prior maintenance base carryforward), Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, COLA_Uplift_Percent__c (line override else category default), Fortra_Product_Type__c from Product2, and COLACalculatedPrice__c = (Base - Prior_Partner - Prior_Discretionary) * (1 + COLA%/100). For new business: Base_Price__c = source license pre-partner price (Pre_Partner_Price__c then ListPrice then UnitPrice) and Fortra_Product_Type__c from Product2. Stamps must fire before-save and re-fire on reprice (timing vs pricing).",
+  "actual": "All stamps verified arithmetically exact and re-fired correctly during a live non-destructive Place-Sales-Transaction reprice (configurationMethod Skip) of Draft quote 00781043 (line count 1->1; LastModifiedDate advanced to 2026-06-14T00:08:23Z). Renewal lines: 00781043 COLACalc=67.38=(71-8.52-0)*1.0785; 00781053 COLACalc=60.64=(71-8.52-6.25)*1.0785; 00781109/00781084 COLACalc=67.38 - all exact. Base_Price__c=71, Source_List_Price__c=355, COLA_Uplift_Percent__c=7.85, Prior_Partner_Discount__c=8.52, Fortra_Product_Type__c=Renewal Maintenance all correctly stamped. New business 00780964: Base_Price__c=355 = license Pre_Partner_Price__c (by flow design label 'Stamp Base = Source Line Pre-Partner Price'), Fortra_Product_Type__c=New Maintenance. The stamp flow itself is correct. Downstream UnitPrice/NetUnitPrice committing to 0/60.64/54.58 is the separate SC-3404 engine commit-wall, NOT a stamp-flow defect.",
+  "evidence": [
+   "Flow Stamp_Maintenance_Pricing_Inputs active V13 (AutoLaunchedFlow, RecordBeforeSave CreateAndUpdate on QuoteLineItem); Stamp_Source_List_Price active V8 - confirmed via FlowVersionView",
+   "Flow file: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/stamp-flow/unpackaged/flows/Stamp_Maintenance_Pricing_Inputs.flow",
+   "Formula ComputedRenewalColaNet = IF(Base>0,(Base-Prior_Partner-Prior_Discretionary)*(1+COLA%/100),0); ResolvedLicenseSourceBase = Pre_Partner_Price__c else ListPrice else UnitPrice",
+   "Renewal line 0QLWC000003ck6X4AQ (00781043): Base=71, Prior_Partner=8.52, Prior_Disc=0, COLA%=7.85, COLACalc=67.38 (exact match)",
+   "Renewal line 0QLWC000003cy334AA (00781053): Base=71, Prior_Partner=8.52, Prior_Disc=6.25, COLA%=7.85, COLACalc=60.64 (exact match)",
+   "New-biz license line 0QLWC000003cFh34AE Pre_Partner_Price__c=355=ListPrice; New-Maint line 0QLWC000003cFh44AE Base_Price__c=355, Fortra_Product_Type__c=New Maintenance",
+   "Reprice POST /services/data/v64.0/connect/rev/sales-transaction/actions/place {pricingPref:Force, configurationMethod:Skip} on 0Q0WC0000037XvB0AU -> isSuccess:true; line count 1->1 unchanged; stamps re-fired identical, LastModifiedDate advanced to 2026-06-14T00:08:23Z"
+  ],
+  "notes": "Adjacent finding (NOT a stamp-flow defect, flagged for completeness): COLAUpliftTest currently FAILS TO COMPILE - 'Method does not exist or incorrect signature: void buildOverrideMap(List<SObject>) from the type COLAUpliftPrehook' (line 1813). COLAUpliftPrehook was edited 2026-06-13 21:18 without keeping its test in sync (test/code signature drift on the prehook seed class) - a build-hygiene/coverage concern, separate from the declarative stamp flow which has no Apex test. SOLO test runs were also repeatedly blocked by an org 'admin operation already in progress' lock (concurrent build activity). The stamp flow itself is fully validated via the live reprice + data inspection above.",
+  "actions_taken": [
+   "Retrieved and read Stamp_Maintenance_Pricing_Inputs V13 flow; confirmed active V13 and Stamp_Source_List_Price active V8 via FlowVersionView",
+   "Queried stamped fields on renewal quotes 00781043/00781053/00781084/00781109, new-business 00780964, and clean OrderItem 00095427",
+   "Verified COLACalculatedPrice__c arithmetic exact against the flow ComputedRenewalColaNet formula for all renewal lines",
+   "Ran non-destructive Place-ST reprice (Skip) on Draft 00781043 and re-read stamps confirming before-save re-fire (line count unchanged 1->1, LastModifiedDate advanced)",
+   "Attempted COLAUpliftTest SOLO with coverage (blocked by org admin-operation lock, then surfaced a compile error in the test class)"
+  ],
+  "ticket_ref": ""
+ },
+ {
+  "scenario_id": "SLP-CARRY",
+  "domain": "Stamp / data flow",
+  "title": "Source_List_Price carry-forward Quote->Order (M-4 QuoteToOrderFieldMapper)",
+  "status": "pass",
+  "severity": "none",
+  "is_known_issue": false,
+  "expected": "On Quote->Order conversion, QuoteToOrderFieldMapper (M-4) copies QLI.Source_List_Price__c onto the matching OrderItem.Source_List_Price__c, because the native createOrderFromQuote does not map this custom field. Each maintenance OrderItem's Source_List_Price__c must equal its source QLI's Source_List_Price__c (e.g. 355 for the PIA-PIA-RNM-PIAMBK BoKS maintenance product), and the live deployed class must have the mapping active (not the README's reported commented-out state).",
+  "actual": "M-4 is RESOLVED on UAT. The LIVE deployed QuoteToOrderFieldMapper (Id 01pWC000002IuvRYAS, body 9,760 chars, LastModified 2026-06-12T20:21Z) has the Source_List_Price__c mapping ACTIVE/uncommented at two points: the QLI->OI copy loop (if sourceQLI.Source_List_Price__c != null && oi.Source_List_Price__c != sourceQLI.Source_List_Price__c -> patch.Source_List_Price__c = sourceQLI.Source_List_Price__c) and the decomposition/renewal merge-preserve (if extra.Source_List_Price__c != null -> existing.Source_List_Price__c = extra...). Live data: 15/15 maintenance OrderItems that have a QuoteLineItemId link carry Source_List_Price__c=355 faithfully equal to their source QLI value, with 0 mismatches and 0 carry-forward misses (no QLI-has-SLP / OI-null cases). SOLO test QuoteToOrderFieldMapperTest = 9/9 PASS at 77% class coverage; the SLP-carry block is among the covered lines (the 26 uncovered are the DML-lock fallback + error handlers, not the SLP mapping). No fresh Q2O conversion could be triggered (order activation forbidden by guardrails; renewal builder is UI-only; 0 post-fix conversions since 2026-06-12), so runtime carry-forward is validated against the existing converted-order population plus the unit test rather than a freshly-triggered conversion.",
+  "evidence": [
+   "LIVE class QuoteToOrderFieldMapper Id=01pWC000002IuvRYAS, ApiVersion 62, LengthWithoutComments 8408, LastModifiedDate 2026-06-12T20:21:26Z; full body length 9760 chars (read via Tooling SOQL ApexClass.Body)",
+   "Live body contains active SLP-carry: '// Source_List_Price__c (derived maintenance pricing input from stamp flow) if (sourceQLI.Source_List_Price__c != null && oi.Source_List_Price__c != sourceQLI.Source_List_Price__c) { patch.Source_List_Price__c = sourceQLI.Source_List_Price__c; changed = true; }' (body offset ~5701-5818) and merge-preserve 'if (extra.Source_List_Price__c != null) { existing.Source_List_Price__c = extra.Source_List_Price__c; }' (offset ~8448-8477)",
+   "Apex data join across all maintenance OrderItems with QLI link + SLP set: total=15 MATCH=15 MISMATCH=0; carry-forward MISSES (QLI has SLP, OI null)=0",
+   "Spot OIs: 802WC00000OaDIkYAN (order 00095427) / 802WC00000OcIChYAN (00095455) / 802WC00000OfhT0YAJ (00095468) / 9x on 00095470 / 802WC00000OgTnmYAF (00095472) all Source_List_Price__c=355, Base_Price__c=71, Fortra_Product_Type__c='New Maintenance'",
+   "Source QLIs 0QLWC000003cGRp4AM/0QLWC000003cUhi4AE/0QLWC000003clIk4AI/0QLWC000003d2OX4AY/0QLWC000003d5uA4AQ each Source_List_Price__c=355 (== OI value)",
+   "SOLO test: sf apex run test --tests QuoteToOrderFieldMapperTest --code-coverage --synchronous => 9/9 Pass, QuoteToOrderFieldMapper 77% (incl. testMapsSourceListPriceFromQLIToOrderItem Pass)",
+   "ApexCodeCoverageAggregate post-run: 86 covered / 26 uncovered; uncovered=[85,103,117,118,129,130,159,160,161,196,213-237] = DML-lock fallback (stripCommercialPricingFromPatches/isOrderProductDetailPricingLock) + error handlers, NOT the SLP block",
+   "Post-fix regression check: 0 maintenance OIs created >=2026-06-12 with a QLI link (no new Q2O conversions since the M-4 deploy) => no new carry-forward path could be runtime-triggered under guardrails"
+  ],
+  "actions_taken": [
+   "Read retrieved class copy at Data/sc-maint/sc3346_e2e/work/inv/QuoteToOrderFieldMapper.cls; then pulled the LIVE class body via Tooling SOQL + anonymous Apex to confirm the SLP mapping is active (not stale force-app copy)",
+   "Queried corpus orders (00095427/55/68/70/72/75) and their source quotes; queried maintenance OrderItems with Source_List_Price__c set",
+   "Ran an Apex data join comparing every QLI-linked maintenance OrderItem.Source_List_Price__c to its source QLI.Source_List_Price__c: 15/15 match, 0 mismatch, 0 carry-forward miss",
+   "Ran QuoteToOrderFieldMapperTest SOLO with --code-coverage (retried past 'admin operation already in progress'): 9/9 Pass, 77% class coverage; inspected covered/uncovered line list",
+   "Checked for post-M4-deploy (>=2026-06-12) QLI-linked maintenance OIs to rule out regression: none exist (no new conversions); did NOT create/activate any Order, no DML on Quote/QLI, no integration fired"
+  ],
+  "notes": "M-4 confirmed RESOLVED live, matching D5 finding status; README's 'commented out (cls:115-121)' claim reflects only the stale force-app/inv repo copies, not the deployed class. Validated population is small (15 QLI-linked maintenance OIs, all SLP=355 BoKS) because the M-4 fix is recent and most of the 6,149 New-Maint OIs predate it or lack QLI linkage. Could not freshly trigger a Q2O conversion within guardrails (order activation forbidden; renewal builder is UI-only), so runtime carry-forward is evidenced by the existing converted-order data + the passing dedicated unit test (testMapsSourceListPriceFromQLIToOrderItem) rather than a new conversion. Coverage 77% is below a 90% bar but the SLP-carry path itself is covered; the gap is in the Order-Product-Detail DML-lock fallback branch, out of scope for this scenario. Separately, SC-3404 (renewal-maintenance net commits $0/54.58/60.64 vs COLA 67.38) is a distinct procedure-persistence defect and does not affect Source_List_Price carry-forward, which is purely a field-copy data flow."
+ },
+ {
+  "scenario_id": "MAINT-ONLY",
+  "domain": "Edge cases",
+  "title": "Maintenance-only renewal quote (no contributor) -> MissingContributor handling",
+  "status": "fail",
+  "severity": "critical",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3404",
+  "expected": "A maintenance-only renewal cart (single RRM line, no on-cart contributor license/sub) should: (a) classify MissingContributor gracefully without blocking the transaction, and (b) commit the correct COLA renewal-maintenance net to the line's UnitPrice. Per D4 formula: COLA net = (Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c) x (1 + COLA_Uplift_Percent__c/100) = (71 - 8.52 - 0) x 1.0785 = 67.38. Expected UnitPrice = NetUnitPrice = 67.38.",
+  "actual": "MissingContributor handling is non-fatal/graceful (transaction completes), BUT the maintenance line does NOT price correctly. Canary Draft quote 00781109 (0Q0WC0000038aXd0AI), single RRM line PIA-PIA-RRM-PIAM (QLI 0QLWC000003e2Sn4AI), ParentQuoteLineItemId + RelatedQuoteLineItemId both null = true maint-only/no-contributor cart. Place Sales Transaction (Force + Skip) returned isSuccess:true, line count unchanged 1->1 (non-destructive). FINEST log: Quote header carries ValidationResult=MissingContributor (160+ occurrences, persisted through every context snapshot, never cleared) yet CalculationStatus=CompletedWithPricing - so MissingContributor is tolerated, not blocking. COLAUpliftPrehook correctly computes COLA net (preColaNet=62.48 -> colaNet=67.38) and stamps COLACalculatedPrice__c=67.38, BUT logs 'Found 0 renewal QLIs from 1 total' - it does NOT classify the maintenance line as a renewal QLI, so it never seeds InputUnitPrice/ListPrice. Result committed on the line: UnitPrice=0 (SC-3404 $0-commit; expected 67.38), NetUnitPrice=60.64 (= 67.38 x 0.90 partner double-discount defect), ListPrice=0. The correct 67.38 lands only in the side-field COLACalculatedPrice__c, never in the committed unit price. This is the SC-3404 structurally-unpriced-node defect surfacing on the maint-only edge case.",
+  "evidence": [
+   "Quote 00781109 / 0Q0WC0000038aXd0AI Draft, QuoteTypeText__c=Renewal, exactly 1 QLI (line-count query returned 1)",
+   "QLI 0QLWC000003e2Sn4AI: Product2.ProductCode=PIA-PIA-RRM-PIAM, ParentQuoteLineItemId=null, RelatedQuoteLineItemId=null (no contributor on cart)",
+   "Pre/post-reprice committed values identical: UnitPrice=0, NetUnitPrice=60.64, ListPrice=0, Base_Price__c=71, Source_List_Price__c=355, COLACalculatedPrice__c=67.38, COLA_Uplift_Percent__c=7.85, Prior_Partner_Discount__c=8.52, Prior_Discretionary_Discount__c=0",
+   "Place ST reprice (body.json Force + configurationMethod Skip) -> isSuccess:true, salesTransactionId=0Q0WC0000038aXd0AI; line count 1->1 unchanged (non-destructive)",
+   "FINEST log 07LWC00000OxqmL2AR line 1391: oldQuoteMap shows ValidationResult=MissingContributor; CalculationStatus=CompletedWithPricing; GrandTotal=60.64 (transaction NOT blocked)",
+   "FINEST log: ValidationResult=MissingContributor appears 160+ times, persisted across all context snapshots, never cleared",
+   "FINEST log line 8853: 'Found 0 renewal QLIs from 1 total' - prehook does not classify the maint line as renewal -> no InputUnitPrice/ListPrice seed (SC-3404 root cause per doc-12)",
+   "FINEST log lines 8973-9120 computeStampedMaintenanceColaNet: preColaNet=62.48 -> colaNet=67.38 -> stamped COLACalculatedPrice__c attribute=67.38 (correct COLA computed in-flight)",
+   "Arithmetic verification: (71-8.52-0)x1.0785=67.38 MATCH COLACalculatedPrice__c; 67.38x0.90=60.64 MATCH NetUnitPrice; UnitPrice=0 vs expected 67.38 = SC-3404 $0-commit",
+   "Final CalculationStatus tally in log: 57 CompletedWithPricing / 59 Saving; API isSuccess:true"
+  ],
+  "actions_taken": [
+   "Confirmed canary Draft quote 00781109 (0Q0WC0000038aXd0AI) header (Status=Draft, QuoteTypeText__c=Renewal) and single-line cart composition via SOQL",
+   "Verified contributor-linkage fields ParentQuoteLineItemId + RelatedQuoteLineItemId both null on the sole RRM line PIA-PIA-RRM-PIAM (true MissingContributor cart)",
+   "Wrote reprice body (Force + configurationMethod Skip) to Data/sc-maint/sc3346_e2e/work/maint-only/body.json",
+   "Ran Place Sales Transaction reprice via /services/data/v64.0/connect/rev/sales-transaction/actions/place -> isSuccess:true, non-destructive (1->1 lines)",
+   "Downloaded FINEST ApexLog 07LWC00000OxqmL2AR (17973 lines) to Data/sc-maint/sc3346_e2e/work/maint-only/reprice.log",
+   "Grepped log for contributor/MissingContributor/renewal-QLI/prehook signals; confirmed ValidationResult=MissingContributor (tolerated) + 'Found 0 renewal QLIs from 1 total' + computeStampedMaintenanceColaNet=67.38",
+   "Computed expected-vs-actual numerically: COLA net 67.38, partner double-discount 60.64, both match stamped values; UnitPrice=0 is the SC-3404 defect",
+   "Read-only/Draft-only throughout; no DML on Quote/QLI, no activation, no integration, no deletion"
+  ],
+  "notes": "MissingContributor handling itself is graceful at the transaction tier - it is stamped on Quote.ValidationResult but does NOT block the place action (isSuccess:true, CalculationStatus=CompletedWithPricing). Per dossier doc-12, MissingContributor is a red-herring for the pricing failure; the actual defect is that the structurally-derived maintenance line (ItemIsDerived + qty1 but ListPrice=0 + No-Change action) is never classified as a renewal QLI by COLAUpliftPrehook ('Found 0 renewal QLIs'), so the correct 67.38 COLA net it computes into COLACalculatedPrice__c is never seeded as InputUnitPrice -> UnitPrice commits at 0 and NetUnitPrice lands at the partner-double-discounted 60.64. This is SC-3404 (the single remaining owner-gated blocker), surfaced cleanly on the maint-only edge case. Fix per doc-12 = prehook must seed InputUnitPrice/ListPrice for these renewal-maintenance lines so they become priced nodes; designed but NOT executed (owner-gated; any wrong edit risks zeroing native-priced lines). Marking fail/critical because core maintenance UnitPrice is $0 on this path. Active proc V14 (ExpressionSet 9QLWC0000015cDl4AI)."
+ },
+ {
+  "scenario_id": "MULTI-ASSET",
+  "domain": "Edge cases",
+  "title": "Multi-asset renewal (license + maintenance both renewed)",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3404",
+  "expected": "On a multi-asset renewal cart, BOTH renewed assets commit their correct net. License/subscription leg (beSECURE) reprices to NetUnitPrice 4442.35 (5417.50 list x 0.82). Renewal-maintenance leg (BoKS RRM) commits NetUnitPrice = correct COLA net 60.64 = (Base 71 - Prior_Partner 8.52 - Prior_Discretionary 6.25) x (1 + 7.85/100), with UnitPrice = 60.64.",
+  "actual": "Split outcome. License/subscription leg renews CORRECTLY (NetUnitPrice 4442.35, SalesTransactionActionType=Renew, ItemIsDerived=false). Renewal-maintenance leg is WRONG: COLA net 60.64 is correctly computed into COLACalculatedPrice__c but committed NetUnitPrice = 54.58 (= 60.64 x 0.90 partner double-discount) and UnitPrice = 0. The maint line (ItemIsDerived=true) is structurally excluded from the engine SalesTransactionActionType/price node (absent from that map), so the COLA net never persists - the SC-3404 defect, here in a multi-asset context. Cross-checked on 00781084: maint line UnitPrice=67.38 but NetUnitPrice=60.64 (67.38 x 0.90).",
+  "evidence": [
+   "Quote 00781053 / 0Q0WC0000037muD0AQ (Draft, Renewal) lines: beSECURE Cloud-Based (Subscription) UnitPrice 5417.50 / NetUnitPrice 4442.35; Powertech BoKS-RenewalMaintenance (Renewal Maintenance) UnitPrice 0 / NetUnitPrice 54.58 / COLACalculatedPrice__c 60.64 / Base_Price__c 71 / Source_List_Price__c 355 / COLA_Uplift_Percent__c 7.85 / Prior_Partner_Discount__c 8.52 / Prior_Discretionary_Discount__c 6.25.",
+   "Reprice via Place Sales Transaction (Force + configurationMethod Skip) returned isSuccess:true, salesTransactionId 0Q0WC0000037muD0AQ; line count unchanged 2->2 (non-destructive).",
+   "FINEST engine log 07LWC00000Oxr452AB (sales-transaction/actions/place): COLAUpliftPrehook '[246] Found 1 renewal QLIs from 2 total'; COLACalculatedPrice__c context map {0QLWC000003cy334AA=60.64, 0QLWC000003cxzq4AA=5417.5}; final NetUnitPrice map {0QLWC000003cy334AA=54.58, 0QLWC000003cxzq4AA=4442.35}.",
+   "SalesTransactionActionType map = {0QLWC000003cxzq4AA=Renew} ONLY - the maintenance QLI 0QLWC000003cy334AA is ABSENT from the action-type map (structurally excluded node, SC-3404 root cause per dossier doc-12). ItemIsDerived__std map = {0QLWC000003cy334AA=true, 0QLWC000003cxzq4AA=false}.",
+   "Numeric proof: maint COLA net (71-8.52-6.25)x1.0785 = 60.64 (=COLACalculatedPrice__c, correct); committed 54.58 = 60.64 x 0.90 (partner double-discount defect). beSECURE 4442.35 = 5417.50 x 0.82 (18% off, correct).",
+   "Canary cross-check 00781084 / 0Q0WC00000382MH0AY (Draft): maint line 0QLWC000003dEW24AM UnitPrice 67.38 (=correct COLA net) but NetUnitPrice 60.64 (=67.38 x 0.90); companion subscription line 10 Languages/50 Courses present (multi-asset).",
+   "SOLO test RenewalMaintenancePricingServiceTest: 50/50 Passed, 100% pass rate (90.2s) - confirms the COLA renewal-maintenance math computes correctly; defect is engine persistence only, not the computation."
+  ],
+  "actions_taken": [
+   "Queried both multi-asset renewal candidate quotes 00781053 and 00781084 (Draft/Renewal); selected 00781053 as the canonical multi-asset (subscription/license being renewed + renewal-maintenance line).",
+   "Computed expected COLA net and license discount per D4 formulas before repricing.",
+   "Repriced 00781053 twice via Place Sales Transaction API (Force + configurationMethod Skip); verified isSuccess:true and non-destructive (2->2 lines).",
+   "Captured a FINEST ApexLog of the reprice; extracted COLAUpliftPrehook renewal-QLI count, COLACalculatedPrice__c / NetUnitPrice / SalesTransactionActionType / ItemIsDerived context maps for both asset lines.",
+   "Cross-checked the second multi-asset quote 00781084 line state.",
+   "Ran RenewalMaintenancePricingServiceTest SOLO with coverage (50/50 Passed).",
+   "Created then deleted a temporary FINEST DebugLevel (7dlWC0000001rLdYAI); left the pre-existing trace flag untouched. No DML on Quote/QLI; no activation/integration."
+  ],
+  "notes": "Multi-asset renewal: the LICENSE/subscription leg renews correctly; the MAINTENANCE leg does not commit the correct COLA net. Per harness directive, a known open defect is still 'fail'. This is SC-3404 (renewal maintenance commits wrong/zero net because the derived maintenance line is structurally excluded from the engine price/action-type node) surfacing in the multi-asset context, compounded by the partner double-discount (60.64 x 0.90 = 54.58). Severity high (wrong value on the maintenance path) rather than critical because the license leg prices correctly and the correct COLA net is computed (sits on COLACalculatedPrice__c / UnitPrice). Work dir: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/multi-asset/ (body.json, reprice_result.json, engine.log, verdict.json)."
+ },
+ {
+  "scenario_id": "PBEDP-COVERAGE",
+  "domain": "Config & data integrity",
+  "title": "Derived-PBE PriceBookEntryDerivedPrice config completeness (95% gap; M-5 / SC-3372)",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3372",
+  "expected": "Every IsDerived=true (zero-list, UnitPrice=0) maintenance PricebookEntry should have at least one PriceBookEntryDerivedPrice config row so the native DerivedPricingDataRetrieval element can derive a price from the contributing license. Without it, the native element hard-errors 'contributing products are missing' (SC-3372). Full coverage expected for an SC-3346 go.",
+  "actual": "Only 174 of 3,453 derived PBEs are covered by config (176 PBEDP rows, 2 multi-contributor). 3,279 of 3,453 (95.0%) have NO derived-price config; ALL 3,453 are UnitPrice=0 zero-list and ALL are IsActive=true, so the entire 95% gap is live exposure. Gap by type: New Maintenance 1,749 total / 84 covered / 1,665 missing; Renewal Maintenance 1,703 / 89 / 1,614. The M-5 peer-review 'RESOLVED' was scoped only to 4 canary PBEs (all confirmed covered; Nir created 01uWC000006XPNZYA4 + 01uWC000006XPPBYA4 on 2026-06-12 20:11Z) - the systemic catalog-wide gap remains open. Even the regression-gate product FIM-FIM-RNM-CCMLSE (01tWC00000DD16HYAT) carries a duplicate UNCOVERED active zero-list PBE (01uWC000005q7HbYAI) alongside its covered one (01uWC000005wsyeYAA).",
+  "evidence": [
+   "COUNT derived PBEs (IsDerived=true) = 3453; PBEDP config rows = 176; distinct PBEs covered (IsDerived=true AND Id IN (SELECT PricebookEntryId FROM PriceBookEntryDerivedPrice)) = 174; missing = 3279 (95.0%)",
+   "Zero-list: PricebookEntry IsDerived=true AND UnitPrice=0 -> 3453; AND UnitPrice>0 -> 0 (100% zero-list)",
+   "Active surface: IsDerived=true AND IsActive=true = 3453; same with NOT IN PBEDP subquery = 3279 (entire gap is active/live)",
+   "By type (local aggregate of 3453-record JSON pull): New Maintenance 1749 total/84 covered/1665 missing; Renewal Maintenance 1703/89/1614; null 1/1/0",
+   "M-5 canary PBEs all COVERED: 01uWC000005wsbUYAQ, 01uWC000005wsbVYAQ, 01uWC000006XPNZYA4, 01uWC000006XPPBYA4; the latter 2 created by Nir Kailash 2026-06-12T20:11:26Z (rows 182WC000000HNcvYAG, 182WC000000HNcwYAG)",
+   "Regression-gate product 01tWC00000DD16HYAT has 2 active derived zero-list PBEs: 01uWC000005wsyeYAA = COVERED, 01uWC000005q7HbYAI = MISSING",
+   "PBEDP config model uniform: Formula UnitPrice x175 + ListPrice x1; PricingSource Product x176; DerivedPricingScope Both x176; multi-contributor proven on TEACI PBE 01uWC000005wsfZYAQ (2 contributing licenses 01tWC00000DCxkrYAD + 01tWC00000DCxkoYAD), explaining 176 rows / 174 distinct PBEs",
+   "Sample active MISSING-config maintenance PBEs: 01uWC000005mZ7bYAE (Device Profiler Ev Express-NewMaintenance), 01uWC000005pESkYAM (GoAnywhere Premium Bundle-RenewalMaintenance), 01uWC000005pESwYAM (GoAnywhere Secure Folders-RenewalMaintenance)"
+  ],
+  "actions_taken": [
+   "Queried live FortraUAT (read-only): COUNT(Id) of PricebookEntry IsDerived=true (3453), PriceBookEntryDerivedPrice (176), and the IsDerived+IN-subquery intersection (174 distinct covered)",
+   "Verified 100% zero-list via UnitPrice=0 (3453) and UnitPrice>0 (0) filters",
+   "Pulled all 3453 derived PBEs and all 176 PBEDP rows as JSON to Data/sc-maint/sc3346_e2e/work/pbedp-coverage/ and aggregated coverage gap by Fortra_Product_Type__c locally in python3",
+   "Confirmed the 4 M-5 canary PBEs are covered and that Nir's 2 rows were created 2026-06-12 20:11Z",
+   "Inspected regression-gate product CCMLSE: 2 active derived PBEs, only 1 covered (duplicate uncovered active zero-list PBE persists)",
+   "Confirmed entire 3279-row gap is IsActive=true (live SC-3372 exposure), sampled active missing PBEs, and verified the uniform formula/source/scope model + multi-contributor TEACI case",
+   "No DML, no reprice, no deploy, no activation - read-only inspection only"
+  ],
+  "notes": "Matches D5 finding M-5 / SC-3372 exactly and reproduces the D2 discovery numbers to the unit. The peer-review M-5 'RESOLVED (06-12)' status is true ONLY for the 4 named canary PBEs and must not be read as catalog-wide resolution: 95% of derived (zero-list) maintenance PBEs still lack PriceBookEntryDerivedPrice config and all are active. This is the SC-3372 'contributing products are missing' core. Severity high (open systemic config gap on a maintenance pricing path), not critical because it is a known data/config completeness item with a per-PBE remediation path (DerivedPricingDataRetrieval errors only when such a PBE is actually transacted), and not all 3279 are necessarily on hot transactional paths. Distinct from SC-3404 (the procedure-persistence renewal-$0 blocker), which is a separate finding."
+ },
+ {
+  "scenario_id": "ZERO-LIST-PBE",
+  "domain": "Config & data integrity",
+  "title": "Derived maintenance PBEs with $0 list price (SC-3372 secondary): zero-list PBE yields $0 maintenance line on reprice",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3372",
+  "expected": "All IsDerived=true maintenance PBEs carry UnitPrice=0 (zero list) by design, so each must get its price from the derived-pricing layer. For the first-year/new-business maintenance line the expected committed net (D4 SDD formula) = tier x Source_List_Price__c. On canonical Draft quote 00780964 (PIA-PIA-RNM-PIAMBK, Professional/Standard tier 0.20, license list 355): expected NetUnitPrice = 0.20 x 355 = 71 (= stamped Base_Price__c 71 family). A zero-list PBE must NOT yield a $0 maintenance line; the derived layer (PriceBookEntryDerivedPrice contribution and/or the DerivedPricingFormula step reading Source_List_Price__c) must populate a non-zero net.",
+  "actual": "All 3,453 derived PBEs are zero-list (UnitPrice=0, 100%; UnitPrice>0 returns 0). Only 176 PriceBookEntryDerivedPrice config rows cover 174 distinct PBEs -> 3,279 uncovered (95%); on the real transacting Fortra Price Book, 1,717 uncovered vs 172 covered (91% uncovered). Live non-destructive reprice (Place ST + Skip, Force) of canonical Draft quote 00780964 (lines 2->2 unchanged) committed the New-Maintenance line 0QLWC000003cFh44AE at NetUnitPrice=0, UnitPrice=0, ListPrice=0 with Base_Price__c=355 stamped but Source_List_Price__c=null. Expected 71, actual 0. FINEST log (07LWC00000OxrYj2AJ) shows the maintenance line carries ListPrice=0.0/NetUnitPrice=0.0 across all 5 engine context snapshots (license line 0QLWC000003cFh34AE = 355/301.75 prices fine); the zero-list PBE feeds ListPrice=0 to the engine and the derived formula's Source_List_Price__c input is absent, so net stays 0. The failure is inconsistent (not universal): the SAME product PIA-PIA-RNM-PIAMBK on Draft quote 0Q0WC000002ssK10AI prices correctly to 71 (also ListPrice=0). Among Draft New-Maintenance lines: 14 commit $0 net vs 17 non-zero; of the 14 zero-net, 12 have Source_List_Price__c=null (the dominant root) and 1 has positive source-list (true persistence-wall case). So the PBE's $0 list is the necessary structural condition; whether net populates depends on the derived-pricing/stamp layer landing Source_List_Price__c.",
+  "evidence": [
+   "Derived PBE counts (FortraUAT): IsDerived=true total=3453; UnitPrice=0=3453 (100%); UnitPrice>0=0 -> full-scope zero-list confirmed.",
+   "Coverage: PriceBookEntryDerivedPrice rows=176; distinct PBEs covered=174; uncovered IsDerived PBEs=3279 (95%). Uncovered by book: Fortra Price Book 1717 vs covered 172 (91% uncovered); Standard Price Book 1560 vs 1; Fortra Derived Pricing 2 vs 1.",
+   "Uncovered by type: New Maintenance 1665, Renewal Maintenance 1614.",
+   "Canonical Draft quote 00780964 / 0Q0WC000003735t0AA (Standard Price Book). New-Maint line 0QLWC000003cFh44AE PBE 01uWC000004dT3QYAU (UnitPrice=0, 0 derived-price config rows).",
+   "Reprice via Place Sales Transaction (configurationMethod:Skip, pricingPref:Force) -> isSuccess:true, salesTransactionId=0Q0WC000003735t0AA, lines 2->2 unchanged (non-destructive). Command: sf api request rest /services/data/v64.0/connect/rev/sales-transaction/actions/place --method POST --body @body.json -o FortraUAT.",
+   "Post-reprice committed: maintenance line NetUnitPrice=0, UnitPrice=0, ListPrice=0, Base_Price__c=355, Source_List_Price__c=null, COLACalculatedPrice__c=null. Expected derived net 0.20x355=71; actual 0.",
+   "FINEST log 07LWC00000OxrYj2AJ (Operation=/sales-transaction/actions/place, Success, 1.46MB) context maps repeated across 5 snapshots: ListPrice={0QLWC000003cFh34AE=355.0, 0QLWC000003cFh44AE=0.0}; NetUnitPrice={...cFh34AE=301.75, ...cFh44AE=0.0}; Base_Price__c={...cFh44AE=355.0}. Maintenance line net never leaves 0; Source_List_Price__c not present in context maps.",
+   "Inconsistency proof: same product PIA-PIA-RNM-PIAMBK New-Maint on Draft quote 0Q0WC000002ssK10AI line 0QLWC000003PZaM4AW = NetUnitPrice 71 (ListPrice 0, Source_List_Price__c null) -> correct. CCMLSE New-Maint lines (462 gate) price 462 with Source_List_Price__c=2008.",
+   "Prevalence: Draft New-Maintenance lines NetUnitPrice=0 count=14 vs >0 count=17; of the 14 zero-net, Source_List_Price__c null=12, positive=1.",
+   "Gate product CCMLSE (01tWC00000DD16HYAT) has 2 derived PBEs: 01uWC000005q7HbYAI (Standard PB, uncovered) + 01uWC000005wsyeYAA (Fortra PB, covered via 182WC000000FN2RYAW from license 01tWC00000DD16IYAT Formula=UnitPrice) -> duplicate uncovered zero-list PBE per maintenance product confirmed."
+  ],
+  "actions_taken": [
+   "Counted derived PBEs and zero-list split (IsDerived=true: 3453 total, 3453 zero-list, 0 nonzero) via SOQL aggregate (json-parsed).",
+   "Quantified PriceBookEntryDerivedPrice coverage gap (176 rows / 174 distinct covered, 3279 uncovered) and split uncovered/covered by price book and by Fortra_Product_Type__c.",
+   "Inspected gate product CCMLSE and contributing license CCMLIE PBEs/config to confirm duplicate-uncovered-PBE pattern.",
+   "Selected canonical Draft new-business quote 00780964 (Standard Price Book) from corpus and read its lines pre-reprice.",
+   "Set up reprice body (configurationMethod:Skip), confirmed line count, repriced via managed Place Sales Transaction API (Force) twice (isSuccess:true, 2->2 lines, non-destructive).",
+   "Created/reused FINEST TraceFlag (existing flag present, debug level Finiest) and captured sales-transaction ApexLog 07LWC00000OxrYj2AJ; grepped context maps for the maintenance line ListPrice/NetUnitPrice/Base_Price__c/Source_List_Price__c.",
+   "Cross-checked the same product on a different Draft quote (priced 71) and the 462-gate product to establish inconsistency, and counted Draft new-maint zero-net prevalence + Source_List_Price__c null split."
+  ],
+  "notes": "No DML/activation/integration; only non-destructive Place-ST reprices (Skip) on Draft quote 00780964 and read-only SOQL/Tooling + one FINEST log read. Guardrails honored (Accepted quote 00781068 untouched). Root cause is two-layered and matches SC-3372 secondary: (1) every derived maintenance PBE is zero-list by design, so net depends entirely on the derived layer; (2) when Source_List_Price__c is not stamped on the line, the DerivedPricingFormula (tier x Source_List_Price__c, V14 ListContainer9 seq6) has no input and the line commits $0 (12 of 14 zero-net Draft new-maint lines have Source_List_Price__c=null). Distinct from SC-3404 (renewal persistence wall): here the new-business formula input itself is missing. Same-product line elsewhere prices 71, so this is a data/stamping consistency defect surfaced through the zero-list PBE, not a universal pricing break. Severity high (wrong/zero value on the new-business maintenance path, partial/intermittent) rather than critical (not all maintenance lines fail). Work artifacts: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/zero-list-pbe/ (body.json, reprice.log). Recommend follow-up: confirm Stamp_Source_List_Price flow (v8) coverage on new-business derived lines and/or PriceBookEntryDerivedPrice backfill for the 3,279 uncovered PBEs (M-5 remediation only created config for 4 PBEs)."
+ },
+ {
+  "scenario_id": "MDT-RECORDS",
+  "domain": "Config & data integrity",
+  "title": "Maintenance_Type_Defn / Maintenance_Rate / COLA rules CMDT records present & correct",
+  "status": "partial",
+  "severity": "medium",
+  "is_known_issue": false,
+  "expected": "Maintenance_Rate__mdt (7 tier rows), COLA_Uplift_Rules__mdt (per-category uplift rows), and the Maintenance_Type_Defn (MTD) gate definition are all present, fully populated (no nulls), and consumed correctly by the V14 derived/COLA pricing path; tier rates and category uplift % match the D4 formula reference exactly.",
+  "actual": "Core data is PRESENT and CORRECT and is consumed correctly end-to-end, but two config-integrity blemishes exist in the domain under test. (1) Maintenance_Rate__mdt = 7 rows, all values match D4 EXACTLY: Basic 0.15, Professional 0.20, Standard 0.20, Premium 0.24, Express 0.30, Premier 0.30, Expert 0.35; no null Rate__c/MaintenanceType__c. (2) COLA_Uplift_Rules__mdt = 22 rows, ALL Is_Active__c=true, no null uplift/category, values match D4 exactly (Fortra Platform/IPP 0; Capacity/Core IGA/Data Protection 4.7; Brand/Cloud/Email/FIM/HRM 5.0; Offensive Sec/Vuln Mgmt 6.2; BI/Cyber/Doc/Globalscape/GoAnywhere/Network/BoKS/Systems 7.85; RPA 9.85). (3) There is NO Maintenance_Type_Defn CMDT type -- 'Maintenance_Type_Defn' is an AttributeDefinition (Id 0tjWC000000096bYAA, Code=MTD, DataType=Picklist, IsActive=true) used as the derived-formula gate; only two CMDT types exist (Maintenance_Rate__mdt, COLA_Uplift_Rules__mdt). LIVE CONSUMPTION PROVEN on canary line 0QLWC000003dEW24AM (BoKS Renewal Maintenance): stamped COLA_Uplift_Percent__c=7.85 matches the BoKS COLA row; Base_Price__c 71 = Source_List_Price__c 355 x 0.20 (Standard/Professional tier); COLACalculatedPrice__c 67.38 = (71-8.52-0)x1.0785 -- all CMDT-driven arithmetic exact. DEFECT-A (medium): the MTD attribute picklist has 8 active values but one -- 'platinum' (lowercase) -- has NO matching Maintenance_Rate__mdt tier, so a product configured MTD='platinum' falls to the formula ELSE branch (rate 0) -> silent $0 first-year maintenance net; the 7 legit tiers all map 1:1. DEFECT-B (low/medium): COLA_Uplift_Rules__mdt has a TEMP/duplicate row 'TEMP_BoKS_IAM_ProductCat' (Solution_Category__c='Powertech Identity & Access Manager (BoKS)', 7.85) alongside 'Powertech_IAM_BoKS' (7.85) -- the TEMP_ row is the one whose category text matches the live BoKS product, so it is load-bearing despite the temp-marker; same-value so no current mispricing, but a hygiene/duplicate-resolution risk.",
+  "evidence": [
+   "EntityDefinition query: only COLA_Uplift_Rules__mdt + Maintenance_Rate__mdt exist (no %Maintenance%/%COLA%/%Type_Defn%/%MTD% CMDT besides these two)",
+   "AttributeDefinition WHERE Code='MTD' -> Id 0tjWC000000096bYAA, DeveloperName=Maintenance_Type_Defn, DataType=Picklist, IsActive=true (this is the 'Maintenance_Type_Defn' referenced by the scenario; NOT a CMDT)",
+   "Maintenance_Rate__mdt (7 rows): Basic 0.15 / Professional 0.20 / Standard 0.20 / Premium 0.24 / Express 0.30 / Premier 0.30 / Expert 0.35; COUNT()=7; zero null Rate__c",
+   "COLA_Uplift_Rules__mdt COUNT()=22, all Is_Active__c=true (inactive=0), zero null uplift/category; values match D4 category table exactly",
+   "MTD picklist values (8 active): Basic, Expert, Express, platinum, Premier, Premium, Professional, Standard. comm cross-ref vs Maintenance_Rate tiers -> 'platinum' is orphan (no rate row); all 7 real tiers map 1:1",
+   "Canary line 0QLWC000003dEW24AM (Powertech IAM BoKS-RenewalMaintenance): COLA_Uplift_Percent__c=7.85 (=BoKS COLA row), Base_Price__c=71=355x0.20, COLACalculatedPrice__c=67.38=(71-8.52-0)x1.0785 -> CMDT data consumed correctly",
+   "COLA BoKS rows: Powertech_IAM_BoKS (cat 'Powertech IAM BoKS', 7.85) + TEMP_BoKS_IAM_ProductCat (cat 'Powertech Identity & Access Manager (BoKS)', 7.85) -> TEMP_ duplicate, latter matches live product category text"
+  ],
+  "actions_taken": [
+   "Created work dir Data/sc-maint/sc3346_e2e/work/mdt-records/",
+   "Queried EntityDefinition for Maintenance/COLA/Type_Defn/MTD CMDT types (read-only) -- confirmed only 2 CMDTs exist",
+   "Queried AttributeDefinition Code IN ('MTD','MDT') -- confirmed MTD=Maintenance_Type_Defn AttributeDefinition, MDT absent",
+   "Pulled all 7 Maintenance_Rate__mdt and all 22 COLA_Uplift_Rules__mdt records; verified counts via COUNT() JSON",
+   "Pulled MTD AttributePicklistValue set (8 active) and comm-diffed against Maintenance_Rate tiers -- found 'platinum' orphan",
+   "Validated CMDT consumption on live canary QLI 0QLWC000003dEW24AM (read-only) -- 7.85 uplift + 0.20 tier + 67.38 COLA net all tie exactly",
+   "Checked for null/blank Rate__c, uplift %, category, and the TEMP_/duplicate BoKS COLA rows"
+  ],
+  "notes": "Domain = Config & data integrity. The core CMDT data required for maintenance pricing is present and correct and is consumed correctly by the live V14 path (proven numerically on the BoKS canary). Status=partial (not pass) because of two genuine config-integrity blemishes in the exact domain under test: (A medium) the MTD attribute picklist value 'platinum' has no Maintenance_Rate tier -> latent silent $0 first-year-maintenance trap if ever configured (the D4 formula's ELSE=0 branch); (B low/medium) a TEMP_/duplicate BoKS COLA row that is load-bearing (its category text matches the live product) and should be resolved before prod. Neither blocks the canary corpus. Separately confirms D5/M-2: 'Maintenance_Type_Defn' is an AttributeDefinition (MTD), not a CMDT -- no MTD/Type_Defn CMDT exists; this is a naming clarification, not a defect. The 60.64-vs-67.38 commit on the canary is the SC-3404 procedure-persistence defect (out of scope for this config/data scenario, not a CMDT issue). All work read-only; no DML/reprice/deploy/activation performed.",
+  "ticket_ref": ""
+ },
+ {
+  "scenario_id": "PROC-V14",
+  "domain": "Config & data integrity",
+  "title": "V14 active + derived/maintenance procedure elements present & correct",
+  "status": "pass",
+  "severity": "none",
+  "is_known_issue": false,
+  "expected": "Rev_Mgmt_Default_Pricing_Procedure V14 (versionNumber 14 / fullName ..._V140) is the sole Active ExpressionSetVersion, and all SC-3346 derived/maintenance/COLA/partner procedure elements are present with correct formulas/wiring per the D4 reference: DerivedPricingFormula = tier x Source_List_Price__c (tiers Premier 0.30 / Standard 0.20 / Professional 0.20); DerivedPricingRenewals = IF(Renewal, IF(COLACalc>0, COLACalc, (Base-PriorPartner-PriorDiscretionary)*(1+COLA/100)), NetUnitPrice) with ISNULL guards on all four operands (B-4); DerivedPricingNetUnitPriceValueReset and COLAUpliftonRenewalNet present (NEW in V14); native DerivedProductsRenewals (DerivedPricing actionType, resultIncluded=true); MTD attribute gate; full PartnerDiscountDerivedMaintenance chain; COLA filter (LastTransaction AND DerivedPricingAttribute=false AND Renew AND COLA not-null). Procedure must execute end-to-end on a Draft reprice.",
+  "actual": "CONFIRMED LIVE on 2026-06-13. Live retrieve of ExpressionSetDefinition Rev_Mgmt_Default_Pricing_Procedure (api 67) shows V140 / versionNumber 14 is the SOLE Active version; all 13 prior versions (V1..V130) are Inactive (corrects the pre_reactivate snapshot which carried V14 as Inactive). ExpressionSetDefinition Id 9QAWC0000003mg14AA. All required elements present and formulas verified byte-exact against the live block: (1) DerivedPricingFormula = IF(AttributeValue='Premier',0.30,IF('Standard',0.20,IF('Professional',0.20,0)))*Source_List_Price__c [line 1819]; (2) DerivedPricingNetUnitPriceValueReset = IF(QuoteTypeText__c='Renewal',NetUnitPrice,0) [1883, NEW in V14]; (3) DerivedPricingNewBusiness = IF(Renewal,NetUnitPrice,Base_Price__c*tier) [1947, M-2 dead-code path]; (4) DerivedPricingRenewals [2011] has ISNULL guards on Base_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, COLA_Uplift_Percent__c -> B-4 RESOLVED; (5) COLAUpliftonRenewalNet: COLACalculatedPrice__c->NetUnitPrice [1600, NEW in V14]; COLAUpliftonRenewal27: COLACalc->InputUnitPrice [1550]; (6) native DerivedProductsRenewals actionType=DerivedPricing, resultIncluded=true, parent DerivedProductsNativePull [2266]; (7) DerivredPricingAttributeFilter gates AttributeDefinitionCode='MTD' [2282]; (8) PartnerDiscountDerivedMaintenance19/20 + StampPartnerUnitPriceDerivedMaintenance (NetUnitPrice->PartnerUnitPrice) [4454] all present; (9) COLAUpliftonRenewal filter = ItemPricingSource='LastTransaction' AND DerivedPricingAttribute=false AND SalesTransactionActionType='Renew' AND COLA_Uplift_Percent__c not-null. Live reprice of Draft canary 00781053 (0Q0WC0000037muD0AQ) via Place Sales Transaction (Force + configurationMethod Skip) returned isSuccess:true; line count unchanged 2->2 (non-destructive); procedure ran clean (no contextDefinitionName gack). Post-reprice RRM line 0QLWC000003cy334AA computed COLACalculatedPrice__c=60.64 = (71-8.52-6.25)*1.0785 EXACT, proving the DerivedPricingRenewals V14 formula is correct. SOLO smoke test QuoteRenewalTypeHandlerTest = 5/5 Pass, class 100%. NOTE: the committed NetUnitPrice on that line is 54.58 (=60.64*0.90) / UnitPrice 0 = the SC-3404 commit symptom, which is a SEPARATE engine-persistence defect, NOT a V14 element presence/correctness defect (the elements compute the correct 60.64 into COLACalculatedPrice__c).",
+  "evidence": [
+   "Live ExpressionSetDefinition retrieve: V140/versionNumber 14 = sole <status>Active</status>; V1-V130 all Inactive. File: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/proc-v14/retr/esd/force-app/main/default/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml (73,980 lines; V14 block lines 68472-73979)",
+   "ExpressionSetDefinition Id 9QAWC0000003mg14AA (DeveloperName Rev_Mgmt_Default_Pricing_Procedure)",
+   "V14 block extracted to /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/proc-v14/v14_live.xml (5,508 lines)",
+   "DerivedPricingFormula [1819]: IF(AttributeValue='Premier',0.30,IF('Standard',0.20,IF('Professional',0.20,0)))*Source_List_Price__c -- SDD-canonical tier x Source_List_Price__c",
+   "DerivedPricingRenewals [2011]: IF(Renewal, IF(COLACalc>0, COLACalc, (IF(ISNULL(Base_Price__c),0,Base_Price__c)-IF(ISNULL(Prior_Partner_Discount__c),0,...)-IF(ISNULL(Prior_Discretionary_Discount__c),0,...))*(1+(IF(ISNULL(COLA_Uplift_Percent__c),0,...)/100))), NetUnitPrice) -- ISNULL guards on all 4 operands (B-4 RESOLVED)",
+   "DerivedPricingNetUnitPriceValueReset [1883] + COLAUpliftonRenewalNet [1600] = NEW-in-V14 elements present; native DerivedProductsRenewals resultIncluded=true [2266]; MTD gate [2282]; StampPartnerUnitPriceDerivedMaintenance NetUnitPrice->PartnerUnitPrice [4454]",
+   "Reprice canary 00781053 (0Q0WC0000037muD0AQ): sf api request rest /services/data/v64.0/connect/rev/sales-transaction/actions/place --method POST --body @body.json -> {isSuccess:true, salesTransactionId:0Q0WC0000037muD0AQ}; line count 2->2 unchanged",
+   "Post-reprice RRM line 0QLWC000003cy334AA: Base 71, Prior_Partner 8.52, Prior_Discretionary 6.25, COLA 7.85 -> COLACalculatedPrice__c=60.64 = (71-8.52-6.25)*1.0785 EXACT (V14 renewal formula correct)",
+   "SOLO test: sf apex run test --tests QuoteRenewalTypeHandlerTest --code-coverage --synchronous -> 5/5 Pass, QuoteRenewalTypeHandler 100%",
+   "Committed NetUnitPrice 54.58 / UnitPrice 0 on same line = SC-3404 commit symptom (separate ticket), not a PROC-V14 element defect"
+  ],
+  "actions_taken": [
+   "Queried ExpressionSetDefinition via Tooling API (Id 9QAWC0000003mg14AA)",
+   "Retrieved live ExpressionSetDefinition metadata (api 67) into isolated SFDX project to confirm Active version state",
+   "Confirmed V140/versionNumber 14 is sole Active; all prior 13 versions Inactive",
+   "Extracted V14 block (5,508 lines) and grepped all derived/maintenance/COLA/partner step names and formula <value> lines",
+   "Validated each formula byte-exact against the D4 reference (DerivedPricingFormula, DerivedPricingRenewals ISNULL guards, NetUnitPriceValueReset, COLAUpliftonRenewalNet, native DerivedProductsRenewals, MTD gate, PartnerDiscountDerivedMaintenance chain, COLA filter)",
+   "Ran non-destructive Place Sales Transaction reprice (Force + Skip) on Draft canary 00781053; confirmed isSuccess:true and line count 2->2 unchanged",
+   "Queried post-reprice maintenance line values and arithmetically verified COLACalculatedPrice__c=60.64 matches the V14 renewal formula exactly",
+   "Ran SOLO QuoteRenewalTypeHandlerTest (5/5 Pass, 100%) as build-testability smoke"
+  ],
+  "notes": "PASS: V14 is the live Active pricing procedure and every required SC-3346 derived/maintenance procedure element is present and correct, with formulas verified byte-exact and arithmetically (renewal COLA net 60.64 computed correctly in-flight). The procedure executes end-to-end on a Draft reprice with no error. Caveat (not a defect of THIS scenario): the committed NetUnitPrice still lands at the partner-re-discounted 54.58 / UnitPrice 0 = the SC-3404 renewal-commit persistence defect, which is an engine price-map exclusion issue separate from V14 element presence/correctness (the elements compute the correct value into COLACalculatedPrice__c). M-2 DerivedPricingNewBusiness (Base_Price__c x tier, MDT-gated) remains as documented dead code (unreachable; only AttributeDefinition Code MTD exists). Snapshot caveat resolved: the pre_reactivate snapshot showed V14 Inactive, but the live retrieve confirms V14 is genuinely Active.",
+  "ticket_ref": "SC-3403"
+ },
+ {
+  "scenario_id": "B4-NULLGUARD",
+  "domain": "Peer-review findings",
+  "title": "B-4: renewal formula ISNULL guards + null carry-forward",
+  "status": "pass",
+  "severity": "none",
+  "is_known_issue": false,
+  "ticket_ref": "SC-3403 (B-4); SC-3404 (separate $0-commit blocker, still open)",
+  "expected": "Active V14 DerivedPricingRenewals formula wraps all 4 renewal carry-forward operands (Base_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, COLA_Uplift_Percent__c) in IF(ISNULL(...),0,...) guards so a renewal line with null priors computes a valid number rather than null/garbage. Carry-forward arm (when COLACalculatedPrice__c not >0) = (Base - PriorPartner - PriorDiscretionary) * (1 + COLA%/100). For the test line: (71 - 8.52 - 0) * 1.0785 = 67.38.",
+  "actual": "CONFIRMED resolved at the formula/engine layer. Live retrieve of the sole-active V14 (ExpressionSetVersion 9QMWC00000023eX4AQ IsActive=true) shows DerivedPricingRenewals = IF(QuoteTypeText__c='Renewal', IF(COLACalculatedPrice__c>0, COLACalculatedPrice__c, (IF(ISNULL(Base_Price__c),0,Base_Price__c) - IF(ISNULL(Prior_Partner_Discount__c),0,Prior_Partner_Discount__c) - IF(ISNULL(Prior_Discretionary_Discount__c),0,Prior_Discretionary_Discount__c)) * (1 + (IF(ISNULL(COLA_Uplift_Percent__c),0,COLA_Uplift_Percent__c)/100))), NetUnitPrice). All 4 operands ISNULL-guarded; only the active version carries the guard (5 inactive predecessor blocks have the un-guarded (Base - PriorPartner - PriorDiscretionary)*(1+COLA/100)). Function is ISNULL (20 precedents in ExpressionSet; BLANKVALUE=0, confirming the review's original BLANKVALUE recommendation was correctly rejected). Live reprice of Draft renewal quote 00780982 / 0Q0WC0000037AKH0A2 (QuoteTypeText__c=Renewal) on line 0QLWC000003cN584AE (COLACalculatedPrice__c=null pre-reprice, so the guarded carry-forward arm fires) produced COLACalculatedPrice__c=67.38 = (71-8.52-0)*1.0785 exactly, matching expected. RenewalMaintenancePricingService SOLO test 50/50 pass, 92% coverage. CAVEAT: committed UnitPrice/NetUnitPrice/ListPrice on the line remain 0 -- this is the separate, still-open SC-3404 structural-exclusion blocker (prehook log 'Found 0 renewal QLIs from 1 total', InputUnitPrice stays 0.0, line never seeded as a priced node), NOT a B-4 defect. B-4's null-guard fix is correct and complete; the $0 display is owned by SC-3404. No Draft renewal-maint line currently presents an actual null prior (stamp flow populates them), so the guard's null-defaulting is verified structurally (formula text) plus arithmetically (carry-forward arm fired on the null-COLA line), rather than against a live null operand.",
+  "evidence": [
+   "Live active version: ExpressionSetVersion 9QMWC00000023eX4AQ ESId=9QLWC0000015cDl4AI IsActive=true VersionNumber=14 (sole active; versions 1-13 IsActive=false)",
+   "Live retrieve formula (active block, file line 71837): IF(QuoteTypeText__c='Renewal', IF(COLACalculatedPrice__c>0, COLACalculatedPrice__c, (IF(ISNULL(Base_Price__c),0,Base_Price__c) - IF(ISNULL(Prior_Partner_Discount__c),0,Prior_Partner_Discount__c) - IF(ISNULL(Prior_Discretionary_Discount__c),0,Prior_Discretionary_Discount__c)) * (1 + (IF(ISNULL(COLA_Uplift_Percent__c),0,COLA_Uplift_Percent__c)/100))), NetUnitPrice)",
+   "Inactive predecessor formula (file lines 43137/48681/54623) = (Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c)*(1+(COLA_Uplift_Percent__c/100)) -- NO null guards; guard exists ONLY in active V14",
+   "grep counts: ISNULL=20 in ExpressionSet (6 inside active V14 block), BLANKVALUE=0 -- confirms ISNULL is the precedented/correct function and BLANKVALUE was rightly not used",
+   "Reprice harness: POST /services/data/v64.0/connect/rev/sales-transaction/actions/place body {pricingPref:Force, configurationMethod:Skip} on 0Q0WC0000037AKH0A2 -> isSuccess:true; line count 1->1 unchanged (non-destructive); quote stays Draft",
+   "Test line 0QLWC000003cN584AE (PIA-PIA-RRM PowertechIAM BoKS RenewalMaintenance) pre-reprice: Base_Price__c=71, COLACalculatedPrice__c=null, COLA_Uplift_Percent__c=7.85, Prior_Partner_Discount__c=8.52, Prior_Discretionary_Discount__c=0, UnitPrice=0, NetUnitPrice=0",
+   "Post-reprice: COLACalculatedPrice__c flipped null->67.38 = (71-8.52-0)*1.0785 (guarded carry-forward arm computed correct value); UnitPrice/NetUnitPrice/ListPrice still 0 (SC-3404 commit blocker)",
+   "FINEST ApexLog 07LWC00000OxrnF2AR: COLACalculatedPrice__c={0QLWC000003cN584AE=67.38} in context maps; InputUnitPrice={0QLWC000003cN584AE=0.0}; COLAUpliftPrehook USER_DEBUG '[246] Found 0 renewal QLIs from 1 total' -> prehook never seeds InputUnitPrice (SC-3404 root cause, separate from B-4)",
+   "RenewalMaintenancePricingServiceTest SOLO: 50 tests, 100% pass, RenewalMaintenancePricingService 92% coverage (refutes stale 2% aggregate)"
+  ],
+  "actions_taken": [
+   "Queried ExpressionSetVersion for Rev_Mgmt_Default_Pricing_Procedure -> V14 (9QMWC00000023eX4AQ) confirmed sole active",
+   "Retrieved live ExpressionSetDefinition (api 67) and located the active-block DerivedPricingRenewals formula; confirmed all 4 ISNULL guards; compared vs un-guarded inactive predecessor formulas",
+   "Counted ISNULL (20) vs BLANKVALUE (0) in the ExpressionSet to confirm correct function choice",
+   "Selected Draft renewal quote 00780982/0Q0WC0000037AKH0A2 line 0QLWC000003cN584AE (COLACalculatedPrice__c null = carry-forward branch); repriced via Place Sales Transaction (Force + Skip)",
+   "Captured FINEST ApexLog 07LWC00000OxrnF2AR; verified computed 67.38 in COLACalculatedPrice__c and the SC-3404 'Found 0 renewal QLIs' / InputUnitPrice=0.0 commit gate",
+   "Ran RenewalMaintenancePricingServiceTest SOLO with coverage (50/50 pass, 92%)",
+   "Confirmed quote remained Draft, 1 line (non-destructive)"
+  ],
+  "notes": "B-4 null-guard is RESOLVED in the active V14 procedure and computes the correct renewal value (67.38) through the guarded carry-forward arm. Scenario = pass for B-4 specifically. The end-to-end $0 displayed/committed price is the distinct, still-open SC-3404 structural-exclusion blocker (prehook does not seed InputUnitPrice for the No-Change derived line), not a B-4 regression. Work dir: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/b4-nullguard/. Live procedure file: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/b4-nullguard/retrieve/unpackaged/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition. Persisted verdict: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/b4-nullguard/verdict.json."
+ }
+]

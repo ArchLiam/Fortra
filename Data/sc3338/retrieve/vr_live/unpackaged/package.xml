@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Order.Lock_Currency_At_Order_Activation</members>
+        <members>Order.Order_BillToAddressAcct_Equal_OrderAcct</members>
+        <members>Order.Order_BillToContactAcct_Equal_OrderAcct</members>
+        <members>Order.Order_BillToPlaceAcct_Equal_OrderAcct</members>
+        <members>Quote.Quote_BillToContactAcct_Equal_QuoteAcct</members>
+        <members>Quote.Quote_BillToPlacceAcct_Equal_QuoteAcct</members>
+        <name>ValidationRule</name>
+    </types>
+    <version>66.0</version>
+</Package>

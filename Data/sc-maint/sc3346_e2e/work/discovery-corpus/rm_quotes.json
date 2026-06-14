@@ -1,0 +1,16 @@
+{
+  "name": "MALFORMED_QUERY",
+  "message": "\nQuote.Status='Draft' GROUP BY QuoteId, Quote.QuoteNumber LIMIT 200\n                                       ^\nERROR at Row:1:Column:148\nfield 'QuoteNumber' can not be grouped in a query call",
+  "exitCode": 1,
+  "context": "DataSoqlQueryCommand",
+  "data": {
+    "message": "\nQuote.Status='Draft' GROUP BY QuoteId, Quote.QuoteNumber LIMIT 200\n                                       ^\nERROR at Row:1:Column:148\nfield 'QuoteNumber' can not be grouped in a query call",
+    "errorCode": "MALFORMED_QUERY"
+  },
+  "stack": "MALFORMED_QUERY: \nQuote.Status='Draft' GROUP BY QuoteId, Quote.QuoteNumber LIMIT 200\n                                       ^\nERROR at Row:1:Column:148\nfield 'QuoteNumber' can not be grouped in a query call\n    at SfCommandError.from (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-data/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:39:16)\n    at DataSoqlQueryCommand.catch (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-data/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:316:47)\n    at DataSoqlQueryCommand._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:306:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1",
+  "cause": "MALFORMED_QUERY: \nQuote.Status='Draft' GROUP BY QuoteId, Quote.QuoteNumber LIMIT 200\n                                       ^\nERROR at Row:1:Column:148\nfield 'QuoteNumber' can not be grouped in a query call\n    at HttpApi.getError (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:290:56)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:127:33\n    at async Query._execute (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/query.js:373:22)\n    at async /usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/query.js:305:17 {\n  data: {\n    message: '\\n' +\n      \"Quote.Status='Draft' GROUP BY QuoteId, Quote.QuoteNumber LIMIT 200\\n\" +\n      '                                       ^\\n' +\n      'ERROR at Row:1:Column:148\\n' +\n      \"field 'QuoteNumber' can not be grouped in a query call\",\n    errorCode: 'MALFORMED_QUERY'\n  },\n  errorCode: 'MALFORMED_QUERY'\n}",
+  "warnings": [],
+  "code": "1",
+  "status": 1,
+  "commandName": "DataSoqlQueryCommand"
+}

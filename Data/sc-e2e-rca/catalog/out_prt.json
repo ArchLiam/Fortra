@@ -1,0 +1,20 @@
+{
+  "name": "DUPLICATE_VALUE",
+  "message": "Can't create the record. There's already a product relationship type with a main product role category of Bundle Parent and an associated product role category of Product Classification Component.",
+  "exitCode": 1,
+  "context": "Create",
+  "data": {
+    "message": "Can't create the record. There's already a product relationship type with a main product role category of Bundle Parent and an associated product role category of Product Classification Component.",
+    "errorCode": "DUPLICATE_VALUE",
+    "fields": [
+      "MainProductRoleCat",
+      "AssociatedProductRoleCat"
+    ]
+  },
+  "stack": "DUPLICATE_VALUE: Can't create the record. There's already a product relationship type with a main product role category of Bundle Parent and an associated product role category of Product Classification Component.\n    at SfCommandError.from (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-data/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:39:16)\n    at Create.catch (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-data/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:316:47)\n    at Create._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:306:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1",
+  "cause": "DUPLICATE_VALUE: Can't create the record. There's already a product relationship type with a main product role category of Bundle Parent and an associated product role category of Product Classification Component.\n    at HttpApi.getError (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:290:56)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:127:33\n    at async Connection.create (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/connection.js:733:15)\n    at async Create.run (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-data/lib/commands/data/create/record.js:48:24)\n    at async Create._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:302:22)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1 {\n  data: {\n    message: \"Can't create the record. There's already a product relationship type with a main product role category of Bundle Parent and an associated product role category of Product Classification Component.\",\n    errorCode: 'DUPLICATE_VALUE',\n    fields: [ 'MainProductRoleCat', 'AssociatedProductRoleCat' ]\n  },\n  errorCode: 'DUPLICATE_VALUE'\n}",
+  "warnings": [],
+  "code": "1",
+  "status": 1,
+  "commandName": "Create"
+}

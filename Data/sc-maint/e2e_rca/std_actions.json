@@ -1,0 +1,592 @@
+{
+  "actions": [
+    {
+      "label": "Post to Chatter",
+      "name": "chatterPost",
+      "type": "CHATTERPOST",
+      "url": "/services/data/v62.0/actions/standard/chatterPost"
+    },
+    {
+      "label": "Enable Folder Support for a Content Workspace (Library)",
+      "name": "contentWorkspaceEnableFolders",
+      "type": "CONTENTWORKSPACE_ENABLE_FOLDERS",
+      "url": "/services/data/v62.0/actions/standard/contentWorkspaceEnableFolders"
+    },
+    {
+      "label": "Send Email",
+      "name": "emailSimple",
+      "type": "EMAILSIMPLE",
+      "url": "/services/data/v62.0/actions/standard/emailSimple"
+    },
+    {
+      "label": "Submit for Approval",
+      "name": "submit",
+      "type": "SUBMITAPPROVAL",
+      "url": "/services/data/v62.0/actions/standard/submit"
+    },
+    {
+      "label": "Deactivate Session-Based Permission Set",
+      "name": "deactivateSessionPermSet",
+      "type": "DEACTIVATE_SESSION_PERM_SET",
+      "url": "/services/data/v62.0/actions/standard/deactivateSessionPermSet"
+    },
+    {
+      "label": "Activate Session-Based Permission Set",
+      "name": "activateSessionPermSet",
+      "type": "ACTIVATE_SESSION_PERM_SET",
+      "url": "/services/data/v62.0/actions/standard/activateSessionPermSet"
+    },
+    {
+      "label": "Choose Price Book",
+      "name": "choosePricebook",
+      "type": "CHOOSE_PRICEBOOK",
+      "url": "/services/data/v62.0/actions/standard/choosePricebook"
+    },
+    {
+      "label": "Skills Based Routing (Legacy)",
+      "name": "skillsBasedRouting",
+      "type": "SKILLS_BASED_ROUTING",
+      "url": "/services/data/v62.0/actions/standard/skillsBasedRouting"
+    },
+    {
+      "label": "Add Skill Requirements",
+      "name": "addSkillRequirements",
+      "type": "ADD_SKILL_REQUIREMENTS",
+      "url": "/services/data/v62.0/actions/standard/addSkillRequirements"
+    },
+    {
+      "label": "Add Screen Pop",
+      "name": "addScreenPop",
+      "type": "ADD_SCREEN_POP",
+      "url": "/services/data/v62.0/actions/standard/addScreenPop"
+    },
+    {
+      "label": "Search for an Individual",
+      "name": "findMatchingIndividuals",
+      "type": "FIND_MATCHING_INDIVIDUALS",
+      "url": "/services/data/v62.0/actions/standard/findMatchingIndividuals"
+    },
+    {
+      "label": "Route Work",
+      "name": "routeWork",
+      "type": "ROUTE_WORK",
+      "url": "/services/data/v62.0/actions/standard/routeWork"
+    },
+    {
+      "label": "SV Outbound Call",
+      "name": "scvOutboundCall",
+      "type": "SCV_OUTBOUND_CALL",
+      "url": "/services/data/v62.0/actions/standard/scvOutboundCall"
+    },
+    {
+      "label": "Check Availability for Routing",
+      "name": "checkAvailabilityForRouting",
+      "type": "CHECK_AVAILABILITY_FOR_ROUTING",
+      "url": "/services/data/v62.0/actions/standard/checkAvailabilityForRouting"
+    },
+    {
+      "label": "Publish Knowledge Articles",
+      "name": "publishKnowledgeArticles",
+      "type": "PUBLISH_KNOWLEDGE_ARTICLES",
+      "url": "/services/data/v62.0/actions/standard/publishKnowledgeArticles"
+    },
+    {
+      "label": "Routing Address Verification",
+      "name": "routingAddressVerification",
+      "type": "ROUTING_ADDRESS_VERIFICATION",
+      "url": "/services/data/v62.0/actions/standard/routingAddressVerification"
+    },
+    {
+      "label": "Assign Target to Cadence",
+      "name": "assignTargetToSalesCadence",
+      "type": "ASSIGN_TARGET_TO_SALES_CADENCE",
+      "url": "/services/data/v62.0/actions/standard/assignTargetToSalesCadence"
+    },
+    {
+      "label": "Remove Target from Cadence",
+      "name": "removeTargetFromSalesCadence",
+      "type": "REMOVE_TARGET_FROM_SALES_CADENCE",
+      "url": "/services/data/v62.0/actions/standard/removeTargetFromSalesCadence"
+    },
+    {
+      "label": "Modify Cadence Tracker Attributes",
+      "name": "modifyCadenceTrackerAttributes",
+      "type": "MODIFY_ATTRIBUTES_SALES_CADENCE_TRACKER",
+      "url": "/services/data/v62.0/actions/standard/modifyCadenceTrackerAttributes"
+    },
+    {
+      "label": "Apply Lead Assignment Rules",
+      "name": "invocableApplyLeadAssignmentRules",
+      "type": "LEAD_ASSIGNMENT_RULES",
+      "url": "/services/data/v62.0/actions/standard/invocableApplyLeadAssignmentRules"
+    },
+    {
+      "label": "Pause Cadence Tracker",
+      "name": "pauseSalesCadenceTracker",
+      "type": "PAUSE_SALES_CADENCE_TRACKER",
+      "url": "/services/data/v62.0/actions/standard/pauseSalesCadenceTracker"
+    },
+    {
+      "label": "Resume Cadence Tracker",
+      "name": "resumeSalesCadenceTracker",
+      "type": "RESUME_SALES_CADENCE_TRACKER",
+      "url": "/services/data/v62.0/actions/standard/resumeSalesCadenceTracker"
+    },
+    {
+      "label": "Change Cadence Target Assignee",
+      "name": "changeSalesCadenceTargetAssignee",
+      "type": "CHANGE_SALES_CADENCE_TARGET_ASSIGNEE",
+      "url": "/services/data/v62.0/actions/standard/changeSalesCadenceTargetAssignee"
+    },
+    {
+      "label": "Send Cadence Event",
+      "name": "sendSalesCadenceEvent",
+      "type": "SEND_SALES_CADENCE_EVENT",
+      "url": "/services/data/v62.0/actions/standard/sendSalesCadenceEvent"
+    },
+    {
+      "label": "Select Template For Cadence Step Tracker",
+      "name": "selectTemplateForSalesCadenceStepTracker",
+      "type": "SELECT_TEMPLATE_FOR_SALES_CADENCE_STEP_TRACKER",
+      "url": "/services/data/v62.0/actions/standard/selectTemplateForSalesCadenceStepTracker"
+    },
+    {
+      "label": "Assign Knowledge Articles",
+      "name": "assignKnowledgeArticles",
+      "type": "ASSIGN_KNOWLEDGE_ARTICLES",
+      "url": "/services/data/v62.0/actions/standard/assignKnowledgeArticles"
+    },
+    {
+      "label": "Create draft from online knowledge article",
+      "name": "createDraftFromOnlineKnowledgeArticle",
+      "type": "CREATE_DRAFT_FROM_ONLINE_KNOWLEDGE_ARTICLES",
+      "url": "/services/data/v62.0/actions/standard/createDraftFromOnlineKnowledgeArticle"
+    },
+    {
+      "label": "Archive online knowledge articles",
+      "name": "archiveKnowledgeArticles",
+      "type": "ARCHIVE_KNOWLEDGE_ARTICLES",
+      "url": "/services/data/v62.0/actions/standard/archiveKnowledgeArticles"
+    },
+    {
+      "label": "Restore archived knowledge article version",
+      "name": "restoreKnowledgeArticleVersion",
+      "type": "RESTORE_KNOWLEDGE_ARTICLE_VERSION",
+      "url": "/services/data/v62.0/actions/standard/restoreKnowledgeArticleVersion"
+    },
+    {
+      "label": "Send Custom Notification",
+      "name": "customNotificationAction",
+      "type": "CUSTOM_NOTIFICATION_ACTION",
+      "url": "/services/data/v62.0/actions/standard/customNotificationAction"
+    },
+    {
+      "label": "Create Customer Contact Request",
+      "name": "contactRequestAction",
+      "type": "CONTACT_REQUEST_ACTION",
+      "url": "/services/data/v62.0/actions/standard/contactRequestAction"
+    },
+    {
+      "label": "Delete Knowledge Articles",
+      "name": "deleteKnowledgeArticles",
+      "type": "DELETE_KNOWLEDGE_ARTICLES",
+      "url": "/services/data/v62.0/actions/standard/deleteKnowledgeArticles"
+    },
+    {
+      "label": "Submit Knowledge Article for Translation",
+      "name": "submitKnowledgeArticleForTranslation",
+      "type": "SUBMIT_KNOWLEDGE_ARTICLE_FOR_TRANSLATION",
+      "url": "/services/data/v62.0/actions/standard/submitKnowledgeArticleForTranslation"
+    },
+    {
+      "label": "Publish Managed Content Release",
+      "name": "managedContentReleasePublish",
+      "type": "MANAGED_CONTENT_RELEASE_PUBLISH",
+      "url": "/services/data/v62.0/actions/standard/managedContentReleasePublish"
+    },
+    {
+      "label": "Create Order from Quote",
+      "name": "createOrderFromQuote",
+      "type": "QUOTE_TO_ORDER",
+      "url": "/services/data/v62.0/actions/standard/createOrderFromQuote"
+    },
+    {
+      "label": "Create or Update Asset from Order",
+      "name": "createOrUpdateAssetFromOrder",
+      "type": "ORDER_TO_ASSET",
+      "url": "/services/data/v62.0/actions/standard/createOrUpdateAssetFromOrder"
+    },
+    {
+      "label": "Create or Update Asset from Order Product",
+      "name": "createOrUpdateAssetFromOrderItem",
+      "type": "ORDERITEM_TO_ASSET",
+      "url": "/services/data/v62.0/actions/standard/createOrUpdateAssetFromOrderItem"
+    },
+    {
+      "label": "Create Contract",
+      "name": "createContract",
+      "type": "TRANSACTION_TO_CONTRACT",
+      "url": "/services/data/v62.0/actions/standard/createContract"
+    },
+    {
+      "label": "Export Survey Version Responses",
+      "name": "exportSurveyResponses",
+      "type": "EXPORT_SURVEY_RESPONSES",
+      "url": "/services/data/v62.0/actions/standard/exportSurveyResponses"
+    },
+    {
+      "label": "Send Survey Invitation",
+      "name": "sendSurveyInvitation",
+      "type": "SEND_SURVEY_INVITATION",
+      "url": "/services/data/v62.0/actions/standard/sendSurveyInvitation"
+    },
+    {
+      "label": "Add Work Plans",
+      "name": "addWorkPlans",
+      "type": "ADD_WORK_PLANS",
+      "url": "/services/data/v62.0/actions/standard/addWorkPlans"
+    },
+    {
+      "label": "Add Work Steps",
+      "name": "addWorkSteps",
+      "type": "ADD_WORK_STEPS",
+      "url": "/services/data/v62.0/actions/standard/addWorkSteps"
+    },
+    {
+      "label": "Delete Work Plans",
+      "name": "deleteWorkPlans",
+      "type": "DELETE_WORK_PLANS",
+      "url": "/services/data/v62.0/actions/standard/deleteWorkPlans"
+    },
+    {
+      "label": "Refresh Decision Table",
+      "name": "refreshDecisionTable",
+      "type": "REFRESH_DECISION_TABLE",
+      "url": "/services/data/v62.0/actions/standard/refreshDecisionTable"
+    },
+    {
+      "label": "Replace Asset",
+      "name": "replaceAsset",
+      "type": "REPLACE_ASSET",
+      "url": "/services/data/v62.0/actions/standard/replaceAsset"
+    },
+    {
+      "label": "Relocate Asset",
+      "name": "relocateAsset",
+      "type": "RELOCATE_ASSET",
+      "url": "/services/data/v62.0/actions/standard/relocateAsset"
+    },
+    {
+      "label": "Generate Knowledge Feedback Log",
+      "name": "generateKnowledgeLogData",
+      "type": "GENERATE_KNOWLEDGE_LOG_DATA",
+      "url": "/services/data/v62.0/actions/standard/generateKnowledgeLogData"
+    },
+    {
+      "label": "Submit Failed Records",
+      "name": "submitFailedRecordsBatchJob",
+      "type": "SUBMIT_FAILED_RECORDS_BATCH_JOB",
+      "url": "/services/data/v62.0/actions/standard/submitFailedRecordsBatchJob"
+    },
+    {
+      "label": "Create Article Recommendations",
+      "name": "createArticleRecommendations",
+      "type": "CREATE_ARTICLE_RECOMMENDATIONS",
+      "url": "/services/data/v62.0/actions/standard/createArticleRecommendations"
+    },
+    {
+      "label": "Apply Case Classification Recommendations",
+      "name": "applyCaseClassificationRecommendations",
+      "type": "APPLY_RECOMMENDATIONS",
+      "url": "/services/data/v62.0/actions/standard/applyCaseClassificationRecommendations"
+    },
+    {
+      "label": "Get article smart link URL",
+      "name": "getArticleSmartLinkUrl",
+      "type": "GET_ARTICLE_SMART_LINK_URL",
+      "url": "/services/data/v62.0/actions/standard/getArticleSmartLinkUrl"
+    },
+    {
+      "label": "Build Identity Verification Context",
+      "name": "buildIdentityVerification",
+      "type": "BUILD_IDENTITY_VERIFICATION",
+      "url": "/services/data/v62.0/actions/standard/buildIdentityVerification"
+    },
+    {
+      "label": "Get Verification Data",
+      "name": "getVerificationData",
+      "type": "GET_VERIFIERS",
+      "url": "/services/data/v62.0/actions/standard/getVerificationData"
+    },
+    {
+      "label": "Save Member Verification Steps",
+      "name": "saveMemberVerificationSteps",
+      "type": "SAVE_MEMBER_VERIFICATION_STEPS",
+      "url": "/services/data/v62.0/actions/standard/saveMemberVerificationSteps"
+    },
+    {
+      "label": "Limit Repetitions",
+      "name": "limitRepetitions",
+      "type": "LIMIT_REPETITIONS",
+      "url": "/services/data/v62.0/actions/standard/limitRepetitions"
+    },
+    {
+      "label": "Get Assessment Response Summary",
+      "name": "getAssessmentResponseSummary",
+      "type": "GET_ASSESSMENT_RESPONSE_SUMMARY",
+      "url": "/services/data/v62.0/actions/standard/getAssessmentResponseSummary"
+    },
+    {
+      "label": "Industries Send Apex Asynchronous Request",
+      "name": "industriesSendApexAsyncRequest",
+      "type": "INDUSTRIES_SEND_APEX_ASYNC_REQUEST",
+      "url": "/services/data/v62.0/actions/standard/industriesSendApexAsyncRequest"
+    },
+    {
+      "label": "Industries Send External Async Request",
+      "name": "industriesSendExtAsyncRequest",
+      "type": "INDUSTRIES_SEND_EXTERNAL_ASYNC_REQUEST",
+      "url": "/services/data/v62.0/actions/standard/industriesSendExtAsyncRequest"
+    },
+    {
+      "label": "Generate Disambiguation Feedback Log",
+      "name": "generateDisambiguationLogData",
+      "type": "GENERATE_DISAMBIGUATION_LOG_DATA",
+      "url": "/services/data/v62.0/actions/standard/generateDisambiguationLogData"
+    },
+    {
+      "label": "Assign Enablement Program",
+      "name": "assignEnablementProgram",
+      "type": "ASSIGN_ENABLEMENT_PROGRAM",
+      "url": "/services/data/v62.0/actions/standard/assignEnablementProgram"
+    },
+    {
+      "label": "Initiate Amendment",
+      "name": "initiateAmendment",
+      "type": "INITIATE_AMENDMENT",
+      "url": "/services/data/v62.0/actions/standard/initiateAmendment"
+    },
+    {
+      "label": "Initiate Renewal",
+      "name": "initiateRenewal",
+      "type": "INITIATE_RENEWAL",
+      "url": "/services/data/v62.0/actions/standard/initiateRenewal"
+    },
+    {
+      "label": "Initiate Cancellation",
+      "name": "initiateCancellation",
+      "type": "INITIATE_CANCELLATION",
+      "url": "/services/data/v62.0/actions/standard/initiateCancellation"
+    },
+    {
+      "label": "Build Context",
+      "name": "buildContext",
+      "type": "BUILD_CONTEXT",
+      "url": "/services/data/v62.0/actions/standard/buildContext"
+    },
+    {
+      "label": "Create CLM Contract",
+      "name": "createClmContract",
+      "type": "CREATE_CONTRACT_DOC_GEN",
+      "url": "/services/data/v62.0/actions/standard/createClmContract"
+    },
+    {
+      "label": "Check-In Contract Document Version",
+      "name": "checkInContractDocumentVersion",
+      "type": "CHECKIN_CONTRACT",
+      "url": "/services/data/v62.0/actions/standard/checkInContractDocumentVersion"
+    },
+    {
+      "label": "Perform Contract Action",
+      "name": "performContractAction",
+      "type": "CONTRACT_ACTION",
+      "url": "/services/data/v62.0/actions/standard/performContractAction"
+    },
+    {
+      "label": "Send Contract for E-Signature",
+      "name": "sendContractForESignature",
+      "type": "SEND_ESIGN_CONTRACT",
+      "url": "/services/data/v62.0/actions/standard/sendContractForESignature"
+    },
+    {
+      "label": "Unlock Contract Document Version",
+      "name": "unlockContractDocumentVersion",
+      "type": "UNLOCK_CONTRACT_DOCUMENT_VERSION",
+      "url": "/services/data/v62.0/actions/standard/unlockContractDocumentVersion"
+    },
+    {
+      "label": "Get Content Doc Details for Contract Doc Version",
+      "name": "getCntntDocDtlForCntrDocVer",
+      "type": "GET_CNTNT_DOC_DTL_FOR_CNTR_DOC_VER",
+      "url": "/services/data/v62.0/actions/standard/getCntntDocDtlForCntrDocVer"
+    },
+    {
+      "label": "Create Contract Document Version",
+      "name": "createContractDocumentVersion",
+      "type": "CREATE_CONTRACT_DOCUMENT_VERSION",
+      "url": "/services/data/v62.0/actions/standard/createContractDocumentVersion"
+    },
+    {
+      "label": "Persist Context Data",
+      "name": "persistContextData",
+      "type": "PERSIST_CONTEXT_DATA",
+      "url": "/services/data/v62.0/actions/standard/persistContextData"
+    },
+    {
+      "label": "Send Conversation Messages",
+      "name": "sendConversationMessages",
+      "type": "SEND_CONVERSATION_MESSAGES",
+      "url": "/services/data/v62.0/actions/standard/sendConversationMessages"
+    },
+    {
+      "label": "Create Boost and Bury Rule",
+      "name": "createSearchBoostBuryRule",
+      "type": "CREATE_SEARCH_BOOST_BURY_RULE",
+      "url": "/services/data/v62.0/actions/standard/createSearchBoostBuryRule"
+    },
+    {
+      "label": "Submit Order",
+      "name": "submitOrder",
+      "type": "SUBMIT_ORDER",
+      "url": "/services/data/v62.0/actions/standard/submitOrder"
+    },
+    {
+      "label": "Get Related List",
+      "name": "getRelatedList",
+      "type": "GET_RELATED_LIST",
+      "url": "/services/data/v62.0/actions/standard/getRelatedList"
+    },
+    {
+      "label": "Salesforce Pricing",
+      "name": "runSalesforcePricing",
+      "type": "SALESFORCE_PRICING",
+      "url": "/services/data/v62.0/actions/standard/runSalesforcePricing"
+    },
+    {
+      "label": "Salesforce Headless Pricing",
+      "name": "runSalesforceHeadlessPricing",
+      "type": "SALESFORCE_HEADLESS_PRICING",
+      "url": "/services/data/v62.0/actions/standard/runSalesforceHeadlessPricing"
+    },
+    {
+      "label": "Create Integration Plan",
+      "name": "createIntegrationPlan",
+      "type": "CREATE_INTEGRATION_PLAN",
+      "url": "/services/data/v62.0/actions/standard/createIntegrationPlan"
+    },
+    {
+      "label": "Run Integration Plan",
+      "name": "runIntegrationPlan",
+      "type": "RUN_INTEGRATION_PLAN",
+      "url": "/services/data/v62.0/actions/standard/runIntegrationPlan"
+    },
+    {
+      "label": "Post Draft Invoice Batch Run",
+      "name": "postDraftInvoiceBatchRun",
+      "type": "POST_DRAFT_INVOICE_BATCH_RUN",
+      "url": "/services/data/v62.0/actions/standard/postDraftInvoiceBatchRun"
+    },
+    {
+      "label": "Post Draft Invoice",
+      "name": "postDraftInvoice",
+      "type": "POST_DRAFT_INVOICE",
+      "url": "/services/data/v62.0/actions/standard/postDraftInvoice"
+    },
+    {
+      "label": "Recover Billing Schedules",
+      "name": "recoverBillingSchedules",
+      "type": "RECOVER_BILLING_SCHEDULES",
+      "url": "/services/data/v62.0/actions/standard/recoverBillingSchedules"
+    },
+    {
+      "label": "Check Out Contract Document Version",
+      "name": "checkOutContractDocVersion",
+      "type": "CHECKOUT_CONTRACT_DOC_VERSION",
+      "url": "/services/data/v62.0/actions/standard/checkOutContractDocVersion"
+    },
+    {
+      "label": "Get Contract Document Versions",
+      "name": "getContractDocumentVersions",
+      "type": "GET_CONTRACT_DOCUMENT_VERSIONS",
+      "url": "/services/data/v62.0/actions/standard/getContractDocumentVersions"
+    },
+    {
+      "label": "Create or Update CLM Contracts",
+      "name": "updateClmContracts",
+      "type": "UPDATE_CLM_CONTRACTS",
+      "url": "/services/data/v62.0/actions/standard/updateClmContracts"
+    },
+    {
+      "label": "Check Service Catalog Item Eligibility",
+      "name": "checkServiceCatalogItemEligibility",
+      "type": "CHECK_SERVICE_CATALOG_ITEM_ELIGIBILITY",
+      "url": "/services/data/v62.0/actions/standard/checkServiceCatalogItemEligibility"
+    },
+    {
+      "label": "Create Billing Schedules from Billing Transaction",
+      "name": "createBillingSchedulesFromBillingTransaction",
+      "type": "CREATE_BILLING_SCHEDULES_FROM_BILLING_TRANSACTION",
+      "url": "/services/data/v62.0/actions/standard/createBillingSchedulesFromBillingTransaction"
+    },
+    {
+      "label": "Recall Approval Submission",
+      "name": "recallApprovalSubmission",
+      "type": "RECALL_APPROVAL_SUBMISSION",
+      "url": "/services/data/v62.0/actions/standard/recallApprovalSubmission"
+    },
+    {
+      "label": "Reassign Approval Work Item",
+      "name": "reassignApprovalWorkItem",
+      "type": "REASSIGN_APPROVAL_WORK_ITEM",
+      "url": "/services/data/v62.0/actions/standard/reassignApprovalWorkItem"
+    },
+    {
+      "label": "Review Approval Work Item",
+      "name": "reviewApprovalWorkItem",
+      "type": "REVIEW_APPROVAL_WORK_ITEM",
+      "url": "/services/data/v62.0/actions/standard/reviewApprovalWorkItem"
+    },
+    {
+      "label": "Override Approval Work Item",
+      "name": "overrideApprovalWorkItem",
+      "type": "OVERRIDE_APPROVAL_WORK_ITEM",
+      "url": "/services/data/v62.0/actions/standard/overrideApprovalWorkItem"
+    },
+    {
+      "label": "Cancel Approval Submission",
+      "name": "cancelApprovalSubmission",
+      "type": "CANCEL_APPROVAL_SUBMISSION",
+      "url": "/services/data/v62.0/actions/standard/cancelApprovalSubmission"
+    },
+    {
+      "label": "Apply Credit",
+      "name": "applyCredit",
+      "type": "APPLY_CREDIT",
+      "url": "/services/data/v62.0/actions/standard/applyCredit"
+    },
+    {
+      "label": "Unapply Credit",
+      "name": "unapplyCredit",
+      "type": "UNAPPLY_CREDIT",
+      "url": "/services/data/v62.0/actions/standard/unapplyCredit"
+    },
+    {
+      "label": "Get Product Details",
+      "name": "getProductDetails",
+      "type": "GET_PRODUCT_DETAILS",
+      "url": "/services/data/v62.0/actions/standard/getProductDetails"
+    },
+    {
+      "label": "Find Products",
+      "name": "findProducts",
+      "type": "FIND_PRODUCTS",
+      "url": "/services/data/v62.0/actions/standard/findProducts"
+    },
+    {
+      "label": "Get Products",
+      "name": "getProducts",
+      "type": "GET_PRODUCTS",
+      "url": "/services/data/v62.0/actions/standard/getProducts"
+    }
+  ]
+}

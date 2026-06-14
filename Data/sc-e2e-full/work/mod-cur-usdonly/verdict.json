@@ -1,0 +1,26 @@
+{
+  "scenario_id": "MOD-CUR-USDONLY",
+  "domain": "Pricing modifiers",
+  "title": "Non-USD configured product uses USD values (SC-3384) + JPY 1.0-rate corruption",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": true,
+  "ticket_ref": "SC-3384",
+  "expected": "On a non-USD (EUR) quote, configured/attribute/ABA-driven products should price using currency-correct values: AAMP UnitPrice should equal the EUR catalog list 2898 EUR (not the USD list 3150), and NetUnitPrice should be the EUR-appropriate attribute-adjusted net (not the USD-derived 1575). All 12 active currencies should carry real ConversionRates (JPY authoritative ~149.25).",
+  "actual": "AAMP (Perpetual, ABA-driven, 0 tier-storage rows) on EUR quote 00780956 committed UnitPrice=3150 (USD list, NOT the EUR catalog 2898) and NetUnitPrice=1575 (USD ABA value, currency-blind). Reprice via Place Sales Transaction (Skip) re-committed the identical USD-derived values, proving live engine behavior not stale data. All 1117 Attribute_Tier_Pricing_Storage rows are USD-only despite a CurrencyIsoCode field. CLSAAS tiered line nets to 0 (USD-only tier storage). Separately, 8/12 active currencies are stuck at ConversionRate=1.0 (ARS, CHF, GBP, ILS, JPY, NZD, SEK + USD), so JPY=1.0 vs authoritative ~149.25 = ~149x understatement.",
+  "evidence": [
+    "CurrencyType active rates: AUD 1.52, CAD 1.35, EUR 0.92, MXN 0.056 (real); ARS, CHF, GBP, ILS, JPY, NZD, SEK, USD all = 1.0 (8 stuck, USD correct). JPY=1.0 vs SC-3384 authoritative 149.2537.",
+    "EUR quote 0Q0WC0000036xy90AA / 00780956 line L04266145 GS-GSE-NRPS-AAMP (Perpetual): ListPrice=2898 UnitPrice=3150 NetUnitPrice=1575 NetTotalPrice=1575 TLA=3150 (EUR).",
+    "PricebookEntry GS-GSE-NRPS-AAMP currency-specific lists: EUR=2898 (Fortra PB), USD=3150 (Std+Fortra PB), AUD=4788, CAD=4252.5, GBP=2488.5. Line UnitPrice 3150 = USD list, NOT EUR 2898 => currency-blind configured price.",
+    "AAMP attribute-tier rows: 0 (net 1575 sourced from ABA decision table, not tier storage) => ABA path is the currency-blind one for perpetual configured products, per SC-3384 mechanism.",
+    "Attribute_Tier_Pricing_Storage: 1117 rows total, currency distribution = USD:1117 (100% USD-only) despite object having a CurrencyIsoCode field.",
+    "Reprice command: POST /services/data/v64.0/connect/rev/sales-transaction/actions/place body pricingPref=Force configurationPref=Skip id=0Q0WC0000036xy90AA => isSuccess:true, errorResponse:[].",
+    "Post-reprice EUR lines unchanged: AAMP unit=3150 net=1575; VM-VLM-NRSU-VMA list=460 net=500; HRM-HRM-RSL-CLSAAS list=2005.6 net=0; VM-BSL-RSL-BESEPB net=824. Header Subtotal=5831.2 TotalPrice=2899 GrandTotal=2899 ALE=5831.2 EUR (identical pre/post => deterministic engine behavior).",
+    "No JPY PricebookEntry exists for AAMP; with JPY rate stuck at 1.0 any rate-converted JPY value mirrors USD magnitude (no yen scaling). JPY quote 00340931 (Subtotal=TotalPrice=GrandTotal=4845735) has legacy null-Product2 lines list=0 (not configured-product evidence; rate corruption is the JPY symptom)."
+  ],
+  "actions_taken": [
+    "Read-only SOQL: CurrencyType active rates, Quote/QLI of EUR repro 00780956 and JPY 00340931, PricebookEntry for GS-GSE-NRPS-AAMP across currencies, Attribute_Tier_Pricing_Storage currency distribution and AAMP rows, describe of tier-storage object.",
+    "Reprice (non-destructive, Skip): Place Sales Transaction Force/Skip on Draft EUR quote 0Q0WC0000036xy90AA / 00780956 (isSuccess:true) to confirm engine re-commits USD-derived values. No Quote/QLI DML, no activation, no integration, no deletes."
+  ],
+  "notes": "KNOWN-FAIL SC-3384, classified fail/high. Two interlocking defects confirmed live 2026-06-13: (1) configured/ABA/tier products are currency-blind (AAMP commits USD list 3150 + USD ABA net 1575 on an EUR quote whose EUR catalog list is 2898; tier storage 100% USD-only); (2) currency-rate corruption (8/12 currencies incl JPY stuck at ConversionRate=1.0). Not a regression and not a test error per D5 guidance. Severity high (wrong price on the non-USD configured-product path) rather than critical: straight currency-specific catalog PBE lines (e.g. BESEPB net=824) do price correctly, so it is path-specific, not total pricing-engine failure. CLSAAS net=0 is a related downstream $0 (USD-only tier storage) in the same SC-3384 family. JPY configured-product proof was limited because the org's only JPY quotes carry legacy null-Product2/list=0 lines; the JPY symptom is established at the rate-corruption level (1.0 vs ~149.25). Did NOT touch any Accepted/Ordered quote. Workdir: /Users/liamjeong/Documents/Code/Fortra/Data/sc-e2e-full/work/mod-cur-usdonly/"
+}

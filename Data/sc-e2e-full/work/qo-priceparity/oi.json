@@ -1,0 +1,36 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "OrderItem",
+          "url": "/services/data/v67.0/sobjects/OrderItem/802WC00000OXlGrYAL"
+        },
+        "Id": "802WC00000OXlGrYAL",
+        "OrderItemNumber": "0000564188",
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "NetUnitPrice": 7992.5,
+        "Discount": null,
+        "TotalAdjustmentAmount": 0
+      },
+      {
+        "attributes": {
+          "type": "OrderItem",
+          "url": "/services/data/v67.0/sobjects/OrderItem/802WC00000OXlGsYAL"
+        },
+        "Id": "802WC00000OXlGsYAL",
+        "OrderItemNumber": "0000564189",
+        "UnitPrice": 29537.5,
+        "ListPrice": 34750,
+        "NetUnitPrice": 25106.875,
+        "Discount": null,
+        "TotalAdjustmentAmount": -4430.625
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

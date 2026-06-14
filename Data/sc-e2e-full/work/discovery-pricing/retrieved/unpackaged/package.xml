@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>COLAUpliftHandler</members>
+        <members>COLAUpliftPrehook</members>
+        <members>PartnerNetPricePosthook</members>
+        <members>PartnerPricingPrehook</members>
+        <members>PartnerPricingPrehookV2</members>
+        <members>PartnerPricingService</members>
+        <members>PartnerPricingServiceV2</members>
+        <members>SourceListPricePrehook</members>
+        <name>ApexClass</name>
+    </types>
+    <version>66.0</version>
+</Package>

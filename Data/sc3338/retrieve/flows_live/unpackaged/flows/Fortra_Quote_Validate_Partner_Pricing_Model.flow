@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customErrors>
+        <name>Error_Billing_Partner_Required</name>
+        <label>Error Billing Partner Required</label>
+        <locationX>50</locationX>
+        <locationY>278</locationY>
+        <customErrorMessages>
+            <errorMessage>Billing Partner is required before setting Partner Pricing Model.</errorMessage>
+            <fieldSelection>Partner_Pricing_Model__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Error_Invalid_PPM</name>
+        <label>Error Invalid PPM</label>
+        <locationX>308</locationX>
+        <locationY>518</locationY>
+        <customErrorMessages>
+            <errorMessage>The selected Partner Pricing Model &apos;{!$Record.Partner_Pricing_Model__c}&apos; does not match any active Partner Pricing Model record for the Billing Partner.</errorMessage>
+            <fieldSelection>Partner_Pricing_Model__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Check_Billing_Partner_Set</name>
+        <label>Check Billing Partner Set</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <defaultConnector>
+            <targetReference>Error_Billing_Partner_Required</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Billing Partner</defaultConnectorLabel>
+        <rules>
+            <name>Billing_Partner_Set</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Billing_Partner__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Matching_PPM</targetReference>
+            </connector>
+            <label>Billing Partner Set</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_PPM_Valid</name>
+        <label>Check PPM Valid</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <defaultConnector>
+            <targetReference>Error_Invalid_PPM</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Matching PPM</defaultConnectorLabel>
+        <rules>
+            <name>PPM_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Matching_PPM</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>PPM Found</label>
+        </rules>
+    </decisions>
+    <description>Before-save validation: when Partner_Pricing_Model__c is set or changed on a Quote, verifies that an active Partner_Pricing_Model__c record with a matching Model_Type__c exists for the Billing Partner (not the customer Account).</description>
+    <environments>Default</environments>
+    <interviewLabel>Fortra Quote Validate Partner Pricing Model {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra Quote Validate Partner Pricing Model</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Matching_PPM</name>
+        <label>Get Matching PPM</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_PPM_Valid</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Billing_Partner__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Model_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Partner_Pricing_Model__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Is_Active__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Partner_Pricing_Model__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Billing_Partner_Set</targetReference>
+        </connector>
+        <filterFormula>AND(
+    OR(ISNEW(), ISCHANGED({!$Record.Partner_Pricing_Model__c})),
+    NOT(ISBLANK(TEXT({!$Record.Partner_Pricing_Model__c})))
+)</filterFormula>
+        <object>Quote</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

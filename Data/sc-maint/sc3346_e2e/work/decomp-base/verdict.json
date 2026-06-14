@@ -1,0 +1,28 @@
+{
+  "scenario_id": "DECOMP-BASE",
+  "domain": "Order decomposition",
+  "title": "B-6: maintenance OrderItem carries maintenance base (~71) not license base (355)",
+  "status": "pass",
+  "severity": "none",
+  "is_known_issue": false,
+  "expected": "Decomposition must stamp the maintenance line Base_Price__c with the MAINTENANCE base (license source x tier rate, e.g. 355 x 0.20 = 71), never the raw license base 355. No maintenance OrderItem should carry Base_Price__c equal to its Source_List_Price__c (license-base leak).",
+  "actual": "All 16 live maintenance OrderItems with Base_Price__c>0 carry the maintenance base. COUNT(maintenance OI WHERE Base_Price__c=355)=0; zero rows have Base_Price__c==Source_List_Price__c. Decomposition chain proven end-to-end at two price points: PIAMBK OI 802WC00000OcIChYAN (order 00095455) source QLI 0QLWC000003cUhi4AE Base=355 -> OI Base=71 (=355x0.20); RPA-AUT OI 802WC00000OdgjEYAR (order 00095467) source QLI 0QLWC000003cdTF4AY Base=275000 -> OI Base=55000 (=275000x0.20). Live code MaintenanceOrderDecompositionService v62 computes maintenanceBase=sourceBase*tierRate (L869) and stamps OI Base_Price__c=decomp.maintenanceBase (L312), overwriting the license base. 40/40 SOLO unit tests pass (incl compute_matchesWorkedExample, compute_professionalTierRate, inferTierFromPricing_findsStandardFor355PartnerNet, buildPatches_persistsDecompositionForDerivedLine); class coverage 79% SOLO floor.",
+  "evidence": [
+    "Live regression query: SELECT COUNT() FROM OrderItem WHERE Fortra_Product_Type__c IN ('New Maintenance','Renewal Maintenance') AND Base_Price__c=355 -> 0 records (no license-base leak).",
+    "Total maintenance OIs with Base_Price__c>0 = 16; awk field-equality check (Base_Price__c==Source_List_Price__c) returned 0 leak rows.",
+    "PIAMBK chain: OI 802WC00000OcIChYAN (order 00095455) Base=71 Source_List=355; source QLI 0QLWC000003cUhi4AE Base=355 -> decomposition rewrote 355 to 71 = 355 x 0.20 (Standard/Professional tier).",
+    "RPA-AUT chain (different price point): OI 802WC00000OdgjEYAR (order 00095467) Base=55000 Source_List=275000; source QLI 0QLWC000003cdTF4AY Base=275000 -> 55000 = 275000 x 0.20.",
+    "Code: MaintenanceOrderDecompositionService.cls (01pWC000002W5rRYAS v62) L869 result.maintenanceBase=(sourceBase*tierRate).setScale(2); L312 buildPatchesFromWork sets OrderItem Base_Price__c=decomp.maintenanceBase; resolveTierRate L846 Standard/Professional=0.20, Premier=0.30.",
+    "SOLO test: sf apex run test -o FortraUAT --tests MaintenanceOrderDecompositionServiceTest --code-coverage --synchronous -> 40/40 Pass, 0 Fail; MaintenanceOrderDecompositionService 79% coverage; B-6 tests compute_matchesWorkedExample/compute_professionalTierRate/compute_premierTierRate/inferTierFromPricing_findsStandardFor355PartnerNet/buildPatches_persistsDecompositionForDerivedLine all Pass."
+  ],
+  "actions_taken": [
+    "Queried live FortraUAT maintenance OrderItems (Fortra_Product_Type__c IN New/Renewal Maintenance) for Base_Price__c vs Source_List_Price__c.",
+    "Ran B-6 regression counts: zero OIs with Base_Price__c=355 and zero with Base==Source_List (license-base leak).",
+    "Traced two decomposed OIs back to their source QuoteLineItems to prove the license-base->maintenance-base rewrite at 71 and 55000.",
+    "Read live MaintenanceOrderDecompositionService body (work/inv copy) confirming maintenanceBase=sourceBase*tierRate and OI Base_Price__c stamping.",
+    "Ran MaintenanceOrderDecompositionServiceTest SOLO with --code-coverage --synchronous: 40/40 pass, 79% class coverage.",
+    "No DML, no reprice, no activation, no integration. Read-only SOQL + Tooling + one SOLO apex test run."
+  ],
+  "notes": "Matches D5 finding status B-6 RESOLVED on UAT. The decomposition design intentionally carries the license base on the QLI (Base_Price__c=355) and OVERWRITES it with the maintenance base on the OrderItem (Base_Price__c=71 = source x tier). No reprice was required: decomposed values are already persisted on Activated orders, and RLM blocks Quote/QLI DML. Coverage 79% is a SOLO floor (combined runs under-report; FINAL_REPORT cites 97.9% solo). One Renewal-Maint OI (802WC00000OgsuEYAR, PIA-PIA-RRM-PIAM) has Base=71 with Source_List null but COLACalculatedPrice=67.38 — its NetUnitPrice commit is the separate SC-3404 issue, not a B-6 base defect.",
+  "ticket_ref": "SC-3403 (B-6)"
+}

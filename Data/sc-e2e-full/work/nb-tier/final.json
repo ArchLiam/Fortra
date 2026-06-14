@@ -1,0 +1,76 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003diM14AI"
+        },
+        "QuoteId": "0Q0WC0000038Vkr0AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Quantity": 200,
+        "ListPrice": 2180,
+        "UnitPrice": 2180,
+        "NetUnitPrice": 0,
+        "NetTotalPrice": 0,
+        "TotalLineAmount": 0,
+        "Base_Price__c": 2180,
+        "Attribute_Price_Mode__c": "Unit Price"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003diNd4AI"
+        },
+        "QuoteId": "0Q0WC0000038Vkr0AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "UnitPrice": 2180,
+        "NetUnitPrice": 0,
+        "NetTotalPrice": 0,
+        "TotalLineAmount": 0,
+        "Base_Price__c": 2180,
+        "Attribute_Price_Mode__c": "Unit Price"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dj8P4AQ"
+        },
+        "QuoteId": "0Q0WC0000038W930AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17QYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSACH"
+        },
+        "Quantity": 50,
+        "ListPrice": 1198.8,
+        "UnitPrice": 1957.2,
+        "NetUnitPrice": 0,
+        "NetTotalPrice": 0,
+        "TotalLineAmount": 0,
+        "Base_Price__c": 1957.2,
+        "Attribute_Price_Mode__c": "Total Price"
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

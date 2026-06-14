@@ -1,0 +1,185 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cFh34AE"
+        },
+        "QuoteId": "0Q0WC000003735t0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003735t0AA"
+          },
+          "QuoteNumber": "00780964"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cFh44AE"
+        },
+        "QuoteId": "0Q0WC000003735t0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003735t0AA"
+          },
+          "QuoteNumber": "00780964"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cy334AA"
+        },
+        "QuoteId": "0Q0WC0000037muD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+          },
+          "QuoteNumber": "00781053"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cxzq4AA"
+        },
+        "QuoteId": "0Q0WC0000037muD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+          },
+          "QuoteNumber": "00781053"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dEW14AM"
+        },
+        "QuoteId": "0Q0WC00000382MH0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000382MH0AY"
+          },
+          "QuoteNumber": "00781084"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000E5JwVYAV"
+          },
+          "ProductCode": "HRM-HRM-RSL-10L50CS"
+        },
+        "Fortra_Product_Type__c": null,
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dEW24AM"
+        },
+        "QuoteId": "0Q0WC00000382MH0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000382MH0AY"
+          },
+          "QuoteNumber": "00781084"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003e2Sn4AI"
+        },
+        "QuoteId": "0Q0WC0000038aXd0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038aXd0AI"
+          },
+          "QuoteNumber": "00781109"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "ParentQuoteLineItemId": null,
+        "RelatedQuoteLineItemId": null,
+        "Replaced_Asset__c": null
+      }
+    ],
+    "totalSize": 7,
+    "done": true
+  },
+  "warnings": []
+}

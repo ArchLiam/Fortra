@@ -1,0 +1,1286 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cFh34AE"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003735t0AA"
+          },
+          "QuoteNumber": "00780964"
+        },
+        "QuoteId": "0Q0WC000003735t0AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 301.75,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cFh44AE"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003735t0AA"
+          },
+          "QuoteNumber": "00780964"
+        },
+        "QuoteId": "0Q0WC000003735t0AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 355,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ck3K4AQ"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000379ZV0AY"
+          },
+          "QuoteNumber": "00780977"
+        },
+        "QuoteId": "0Q0WC00000379ZV0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DxYAL"
+          },
+          "Name": "EFT 8 Continuum",
+          "ProductCode": "GS-GSE-NRPS-E8CP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cL1j4AE"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000379ZV0AY"
+          },
+          "QuoteNumber": "00780977"
+        },
+        "QuoteId": "0Q0WC00000379ZV0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DxYAL"
+          },
+          "Name": "EFT 8 Continuum",
+          "ProductCode": "GS-GSE-NRPS-E8CP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cL1i4AE"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000379ZV0AY"
+          },
+          "QuoteNumber": "00780977"
+        },
+        "QuoteId": "0Q0WC00000379ZV0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DwYAL"
+          },
+          "Name": "EFT 8 Continuum-NewMaintenance",
+          "ProductCode": "GS-GSE-RNM-EFT8"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 3000,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 10000
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ck3J4AQ"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000379ZV0AY"
+          },
+          "QuoteNumber": "00780977"
+        },
+        "QuoteId": "0Q0WC00000379ZV0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DwYAL"
+          },
+          "Name": "EFT 8 Continuum-NewMaintenance",
+          "ProductCode": "GS-GSE-RNM-EFT8"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 0
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cMIj4AM"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000379sr0AA"
+          },
+          "QuoteNumber": "00780981"
+        },
+        "QuoteId": "0Q0WC00000379sr0AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 0,
+        "ListPrice": 0,
+        "NetUnitPrice": null,
+        "Base_Price__c": 71,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cVgz4AE"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037K3V0AU"
+          },
+          "QuoteNumber": "00781022"
+        },
+        "QuoteId": "0Q0WC0000037K3V0AU",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 0,
+        "ListPrice": 0,
+        "NetUnitPrice": null,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ceCP4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037SsH0AU"
+          },
+          "QuoteNumber": "00781030"
+        },
+        "QuoteId": "0Q0WC0000037SsH0AU",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DxYAL"
+          },
+          "Name": "EFT 8 Continuum",
+          "ProductCode": "GS-GSE-NRPS-E8CP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ceCQ4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037SsH0AU"
+          },
+          "QuoteNumber": "00781030"
+        },
+        "QuoteId": "0Q0WC0000037SsH0AU",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DwYAL"
+          },
+          "Name": "EFT 8 Continuum-NewMaintenance",
+          "ProductCode": "GS-GSE-RNM-EFT8"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dFYX4A2"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037SsH0AU"
+          },
+          "QuoteNumber": "00781030"
+        },
+        "QuoteId": "0Q0WC0000037SsH0AU",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17hYAD"
+          },
+          "Name": "CSCO I & II Course",
+          "ProductCode": "OS-COS-NRST-CIICS"
+        },
+        "Fortra_Product_Type__c": "Services",
+        "Quantity": 1,
+        "ListPrice": 850,
+        "NetUnitPrice": 0,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cj2P4AQ"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037Xgf0AE"
+          },
+          "QuoteNumber": "00781040"
+        },
+        "QuoteId": "0Q0WC0000037Xgf0AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 0,
+        "ListPrice": 0,
+        "NetUnitPrice": null,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QL4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q24AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QH4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QF4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QW4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q64AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q74AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q84AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QD4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QC4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)",
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "ListPrice": 355,
+        "NetUnitPrice": 355,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QR4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 0,
+        "ListPrice": 0,
+        "NetUnitPrice": null,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q14AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q34AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q44AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q94AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QE4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QG4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QT4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QU4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QV4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 71,
+        "Base_Price__c": null,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QB4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QM4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1fiYAD"
+          },
+          "Name": "Security Awareness",
+          "ProductCode": "HRM-HRM-RSL-SEAW"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QN4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QO4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QP4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QQ4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1fiYAD"
+          },
+          "Name": "Security Awareness",
+          "ProductCode": "HRM-HRM-RSL-SEAW"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QA4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1fiYAD"
+          },
+          "Name": "Security Awareness",
+          "ProductCode": "HRM-HRM-RSL-SEAW"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QS4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1fiYAD"
+          },
+          "Name": "Security Awareness",
+          "ProductCode": "HRM-HRM-RSL-SEAW"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2Q54AI"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QI4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1fiYAD"
+          },
+          "Name": "Security Awareness",
+          "ProductCode": "HRM-HRM-RSL-SEAW"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QJ4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 2180,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d2QK4AY"
+        },
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037rFZ0AY"
+          },
+          "QuoteNumber": "00781057"
+        },
+        "QuoteId": "0Q0WC0000037rFZ0AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1fiYAD"
+          },
+          "Name": "Security Awareness",
+          "ProductCode": "HRM-HRM-RSL-SEAW"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "ListPrice": 0,
+        "NetUnitPrice": 0,
+        "Base_Price__c": 0,
+        "COLACalculatedPrice__c": null,
+        "Source_List_Price__c": null
+      }
+    ],
+    "totalSize": 44,
+    "done": true
+  },
+  "warnings": []
+}

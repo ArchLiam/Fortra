@@ -1,0 +1,16 @@
+{
+  "name": "ORG_ADMIN_LOCKED",
+  "message": "admin operation already in progress",
+  "exitCode": 1,
+  "context": "Test",
+  "data": {
+    "message": "admin operation already in progress",
+    "errorCode": "ORG_ADMIN_LOCKED"
+  },
+  "stack": "ORG_ADMIN_LOCKED: admin operation already in progress\n    at SfCommandError.from (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-apex/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:39:16)\n    at Test.catch (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-apex/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:316:47)\n    at Test._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:306:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1",
+  "cause": "ORG_ADMIN_LOCKED: admin operation already in progress\n    at HttpApi.getError (/usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:290:56)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /usr/local/lib/sf/node_modules/@jsforce/jsforce-node/lib/http-api.js:127:33\n    at async SyncTests.runTests (/usr/local/lib/sf/node_modules/@salesforce/apex-node/lib/src/tests/syncTests.js:43:30)\n    at async TestService.runTestSynchronous (/usr/local/lib/sf/node_modules/@salesforce/apex-node/lib/src/tests/testService.js:140:20)\n    at async Test.run (file:///usr/local/lib/sf/node_modules/@salesforce/plugin-apex/lib/commands/apex/run/test.js:106:15)\n    at async Test._run (/usr/local/lib/sf/node_modules/@oclif/core/lib/command.js:302:22)\n    at async Config.runCommand (/usr/local/lib/sf/node_modules/@oclif/core/lib/config/config.js:425:25)\n    at async run (/usr/local/lib/sf/node_modules/@oclif/core/lib/main.js:95:16)\n    at async file:///usr/local/lib/sf/bin/run.js:15:1 {\n  data: {\n    message: 'admin operation already in progress',\n    errorCode: 'ORG_ADMIN_LOCKED'\n  },\n  errorCode: 'ORG_ADMIN_LOCKED'\n}",
+  "warnings": [],
+  "code": "1",
+  "status": 1,
+  "commandName": "Test"
+}

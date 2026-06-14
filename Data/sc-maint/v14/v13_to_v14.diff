@@ -1,0 +1,380 @@
+7c7
+<     <label>(Deprecated)Rev Mgmt Default Pricing V13</label>
+---
+>     <label>Rev Mgmt Default Pricing V14</label>
+11c11
+<     <status>Inactive</status>
+---
+>     <status>Active</status>
+328c328
+<         <name>AggregatePrice102</name>
+---
+>         <name>AggregatePrice101</name>
+401c401
+<         <parentStep>ListContainer47</parentStep>
+---
+>         <parentStep>ListContainer46</parentStep>
+472c472
+<         <name>Assignment108</name>
+---
+>         <name>Assignment107</name>
+522,523c522,523
+<         <name>Assignment79</name>
+<         <parentStep>ListContainer77</parentStep>
+---
+>         <name>Assignment78</name>
+>         <parentStep>ListContainer76</parentStep>
+573,574c573,574
+<         <name>Assignment83</name>
+<         <parentStep>ListContainer81</parentStep>
+---
+>         <name>Assignment82</name>
+>         <parentStep>ListContainer80</parentStep>
+624,625c624,625
+<         <name>Assignment89</name>
+<         <parentStep>ListContainer87</parentStep>
+---
+>         <name>Assignment88</name>
+>         <parentStep>ListContainer86</parentStep>
+802c802
+<         <parentStep>ListContainer50</parentStep>
+---
+>         <parentStep>ListContainer49</parentStep>
+972c972
+<         <parentStep>ListContainer53</parentStep>
+---
+>         <parentStep>ListContainer52</parentStep>
+1011c1011
+<         <parentStep>ListContainer50</parentStep>
+---
+>         <parentStep>ListContainer49</parentStep>
+1044,1045c1044,1045
+<         <name>AttributePricingFilter54</name>
+<         <parentStep>ListContainer53</parentStep>
+---
+>         <name>AttributePricingFilter53</name>
+>         <parentStep>ListContainer52</parentStep>
+1138c1138
+<         <name>AttributeValuePricingCalculatedMode40</name>
+---
+>         <name>AttributeValuePricingCalculatedMode39</name>
+1218c1218
+<         <name>AttributeValuePricingTotalPriceMode43</name>
+---
+>         <name>AttributeValuePricingTotalPriceMode42</name>
+1298c1298
+<         <name>AttributeValuePricingUnitPriceMode37</name>
+---
+>         <name>AttributeValuePricingUnitPriceMode36</name>
+1483c1483
+<         <parentStep>ListContainer56</parentStep>
+---
+>         <parentStep>ListContainer55</parentStep>
+1492,1542d1491
+<         <actionType>AssignmentElement</actionType>
+<         <customElement>
+<             <parameters>
+<                 <input>true</input>
+<                 <name>section-0-input1</name>
+<                 <output>false</output>
+<                 <type>Parameter</type>
+<                 <value>COLACalculatedPrice__c</value>
+<             </parameters>
+<             <parameters>
+<                 <input>true</input>
+<                 <name>sectionCount</name>
+<                 <output>false</output>
+<                 <type>Literal</type>
+<                 <value>1</value>
+<             </parameters>
+<             <parameters>
+<                 <input>true</input>
+<                 <name>sectionJsonString1</name>
+<                 <output>false</output>
+<                 <type>Literal</type>
+<                 <value>{&quot;whereConditions&quot;:[]}</value>
+<             </parameters>
+<             <parameters>
+<                 <input>true</input>
+<                 <name>sectionJsonString2</name>
+<                 <output>false</output>
+<                 <type>Literal</type>
+<                 <value>{&quot;whereConditions&quot;:[{&quot;field&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-input1&quot;,&quot;value&quot;:&quot;COLACalculatedPrice__c&quot;,&quot;allowCompatibleDataTypes&quot;:true},&quot;value&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-output&quot;,&quot;value&quot;:&quot;NetUnitPrice&quot;,&quot;allowCompatibleDataTypes&quot;:true}}]}</value>
+<             </parameters>
+<             <parameters>
+<                 <input>false</input>
+<                 <name>section-0-output</name>
+<                 <output>true</output>
+<                 <type>Parameter</type>
+<                 <value>NetUnitPrice</value>
+<             </parameters>
+<         </customElement>
+<         <description>Assignment</description>
+<         <hasNestedExplainability>false</hasNestedExplainability>
+<         <label>COLA Uplift Net on Renewal</label>
+<         <name>COLAUpliftNetonRenewal</name>
+<         <parentStep>ListContainer2</parentStep>
+<         <resultIncluded>false</resultIncluded>
+<         <sequenceNumber>3</sequenceNumber>
+<         <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+<         <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+<         <shouldShowExplExternally>false</shouldShowExplExternally>
+<         <stepType>BusinessKnowledgeModel</stepType>
+<     </steps>
+<     <steps>
+1638a1588,1638
+>         <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+>         <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+>         <shouldShowExplExternally>false</shouldShowExplExternally>
+>         <stepType>BusinessKnowledgeModel</stepType>
+>     </steps>
+>     <steps>
+>         <actionType>AssignmentElement</actionType>
+>         <customElement>
+>             <parameters>
+>                 <input>true</input>
+>                 <name>section-0-input1</name>
+>                 <output>false</output>
+>                 <type>Parameter</type>
+>                 <value>COLACalculatedPrice__c</value>
+>             </parameters>
+>             <parameters>
+>                 <input>true</input>
+>                 <name>sectionCount</name>
+>                 <output>false</output>
+>                 <type>Literal</type>
+>                 <value>1</value>
+>             </parameters>
+>             <parameters>
+>                 <input>true</input>
+>                 <name>sectionJsonString1</name>
+>                 <output>false</output>
+>                 <type>Literal</type>
+>                 <value>{&quot;whereConditions&quot;:[]}</value>
+>             </parameters>
+>             <parameters>
+>                 <input>true</input>
+>                 <name>sectionJsonString2</name>
+>                 <output>false</output>
+>                 <type>Literal</type>
+>                 <value>{&quot;whereConditions&quot;:[{&quot;field&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-input1&quot;,&quot;value&quot;:&quot;COLACalculatedPrice__c&quot;,&quot;allowCompatibleDataTypes&quot;:true},&quot;value&quot;:{&quot;dataType&quot;:&quot;Currency&quot;,&quot;name&quot;:&quot;section-0-output&quot;,&quot;value&quot;:&quot;NetUnitPrice&quot;,&quot;allowCompatibleDataTypes&quot;:true}}]}</value>
+>             </parameters>
+>             <parameters>
+>                 <input>false</input>
+>                 <name>section-0-output</name>
+>                 <output>true</output>
+>                 <type>Parameter</type>
+>                 <value>NetUnitPrice</value>
+>             </parameters>
+>         </customElement>
+>         <description>Assignment</description>
+>         <hasNestedExplainability>false</hasNestedExplainability>
+>         <label>COLA Uplift Net on Renewal</label>
+>         <name>COLAUpliftonRenewalNet</name>
+>         <parentStep>ListContainer2</parentStep>
+>         <resultIncluded>false</resultIncluded>
+>         <sequenceNumber>3</sequenceNumber>
+1668c1668
+<         <parentStep>ListContainer44</parentStep>
+---
+>         <parentStep>ListContainer43</parentStep>
+1718,1719c1718,1719
+<         <name>ContactedPricing46</name>
+<         <parentStep>ListContainer44</parentStep>
+---
+>         <name>ContactedPricing45</name>
+>         <parentStep>ListContainer43</parentStep>
+2043c2043
+<                 <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , IF ( COLACalculatedPrice__c &gt; 0 , COLACalculatedPrice__c , ( Base_Price__c - Prior_Partner_Discount__c - Prior_Discretionary_Discount__c ) * ( 1 + ( COLA_Uplift_Percent__c / 100 ) ) ) , NetUnitPrice )</value>
+---
+>                 <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , IF ( COLACalculatedPrice__c &gt; 0 , COLACalculatedPrice__c , ( IF ( ISNULL ( Base_Price__c ) , 0 , Base_Price__c ) - IF ( ISNULL ( Prior_Partner_Discount__c ) , 0 , Prior_Partner_Discount__c ) - IF ( ISNULL ( Prior_Discretionary_Discount__c ) , 0 , Prior_Discretionary_Discount__c ) ) * ( 1 + ( IF ( ISNULL ( COLA_Uplift_Percent__c ) , 0 , COLA_Uplift_Percent__c ) / 100 ) ) ) , NetUnitPrice )</value>
+2473c2473
+<         <parentStep>ListContainer70</parentStep>
+---
+>         <parentStep>ListContainer69</parentStep>
+2712c2712
+<         <name>ListContainer44</name>
+---
+>         <name>ListContainer43</name>
+2723c2723
+<         <name>ListContainer47</name>
+---
+>         <name>ListContainer46</name>
+2733,2734c2733,2734
+<         <label>List Container 5</label>
+<         <name>ListContainer5</name>
+---
+>         <label>List Container</label>
+>         <name>ListContainer49</name>
+2736c2736
+<         <sequenceNumber>13</sequenceNumber>
+---
+>         <sequenceNumber>18</sequenceNumber>
+2744,2745c2744,2745
+<         <label>List Container</label>
+<         <name>ListContainer50</name>
+---
+>         <label>List Container 5</label>
+>         <name>ListContainer5</name>
+2747c2747
+<         <sequenceNumber>18</sequenceNumber>
+---
+>         <sequenceNumber>13</sequenceNumber>
+2756c2756
+<         <name>ListContainer53</name>
+---
+>         <name>ListContainer52</name>
+2767c2767
+<         <name>ListContainer56</name>
+---
+>         <name>ListContainer55</name>
+2778c2778
+<         <name>ListContainer59</name>
+---
+>         <name>ListContainer58</name>
+2800c2800
+<         <name>ListContainer62</name>
+---
+>         <name>ListContainer61</name>
+2811c2811
+<         <name>ListContainer65</name>
+---
+>         <name>ListContainer64</name>
+2821,2822c2821,2822
+<         <label>List Container 7</label>
+<         <name>ListContainer7</name>
+---
+>         <label>List Container</label>
+>         <name>ListContainer69</name>
+2824c2824
+<         <sequenceNumber>15</sequenceNumber>
+---
+>         <sequenceNumber>24</sequenceNumber>
+2832,2833c2832,2833
+<         <label>List Container</label>
+<         <name>ListContainer70</name>
+---
+>         <label>List Container 7</label>
+>         <name>ListContainer7</name>
+2835c2835
+<         <sequenceNumber>24</sequenceNumber>
+---
+>         <sequenceNumber>15</sequenceNumber>
+2844c2844
+<         <name>ListContainer77</name>
+---
+>         <name>ListContainer76</name>
+2866c2866
+<         <name>ListContainer81</name>
+---
+>         <name>ListContainer80</name>
+2877c2877
+<         <name>ListContainer84</name>
+---
+>         <name>ListContainer83</name>
+2888c2888
+<         <name>ListContainer87</name>
+---
+>         <name>ListContainer86</name>
+2938c2938
+<         <parentStep>ListContainer47</parentStep>
+---
+>         <parentStep>ListContainer46</parentStep>
+2959,2960c2959,2960
+<         <name>ListOperation57</name>
+<         <parentStep>ListContainer56</parentStep>
+---
+>         <name>ListOperation56</name>
+>         <parentStep>ListContainer55</parentStep>
+2981,2982c2981,2982
+<         <name>ListOperation71</name>
+<         <parentStep>ListContainer70</parentStep>
+---
+>         <name>ListOperation70</name>
+>         <parentStep>ListContainer69</parentStep>
+3015c3015
+<         <name>ListOperation74</name>
+---
+>         <name>ListOperation73</name>
+3044,3045c3044,3045
+<         <name>ListOperation78</name>
+<         <parentStep>ListContainer77</parentStep>
+---
+>         <name>ListOperation77</name>
+>         <parentStep>ListContainer76</parentStep>
+3078,3079c3078,3079
+<         <name>ListOperation82</name>
+<         <parentStep>ListContainer81</parentStep>
+---
+>         <name>ListOperation81</name>
+>         <parentStep>ListContainer80</parentStep>
+3107,3108c3107,3108
+<         <name>ListOperation85</name>
+<         <parentStep>ListContainer84</parentStep>
+---
+>         <name>ListOperation84</name>
+>         <parentStep>ListContainer83</parentStep>
+3129,3130c3129,3130
+<         <name>ListOperation88</name>
+<         <parentStep>ListContainer87</parentStep>
+---
+>         <name>ListOperation87</name>
+>         <parentStep>ListContainer86</parentStep>
+3223c3223
+<         <parentStep>ListContainer65</parentStep>
+---
+>         <parentStep>ListContainer64</parentStep>
+3264c3264
+<         <parentStep>ListContainer65</parentStep>
+---
+>         <parentStep>ListContainer64</parentStep>
+3350c3350
+<         <parentStep>ListContainer65</parentStep>
+---
+>         <parentStep>ListContainer64</parentStep>
+3415c3415
+<         <parentStep>ListContainer65</parentStep>
+---
+>         <parentStep>ListContainer64</parentStep>
+3599c3599
+<         <name>PartnerDiscount31</name>
+---
+>         <name>PartnerDiscount30</name>
+4183c4183
+<         <parentStep>ListContainer62</parentStep>
+---
+>         <parentStep>ListContainer61</parentStep>
+4254,4255c4254,4255
+<         <name>QuantityPrice64</name>
+<         <parentStep>ListContainer62</parentStep>
+---
+>         <name>QuantityPrice63</name>
+>         <parentStep>ListContainer61</parentStep>
+4327c4327
+<         <name>RegionalServicesPrice34</name>
+---
+>         <name>RegionalServicesPrice33</name>
+4815,4816c4815,4816
+<         <name>SubscriptionPricing80</name>
+<         <parentStep>ListContainer77</parentStep>
+---
+>         <name>SubscriptionPricing79</name>
+>         <parentStep>ListContainer76</parentStep>
+4894,4895c4894,4895
+<         <name>SubscriptionPricing86</name>
+<         <parentStep>ListContainer84</parentStep>
+---
+>         <name>SubscriptionPricing85</name>
+>         <parentStep>ListContainer83</parentStep>
+5343c5343
+<         <parentStep>ListContainer59</parentStep>
+---
+>         <parentStep>ListContainer58</parentStep>
+5377c5377
+<         <parentStep>ListContainer59</parentStep>
+---
+>         <parentStep>ListContainer58</parentStep>
+5616c5616
+<     <versionNumber>13</versionNumber>
+---
+>     <versionNumber>14</versionNumber>

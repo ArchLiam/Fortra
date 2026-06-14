@@ -1,0 +1,30 @@
+{
+  "scenario_id": "NB-DERIVED-TIER",
+  "domain": "Derived (new-business) pricing",
+  "title": "Maintenance tier/rate lookup (Maintenance_Rate / type) resolves correct %",
+  "status": "fail",
+  "severity": "high",
+  "is_known_issue": false,
+  "ticket_ref": "",
+  "expected": "First-year (new-business) derived maintenance NetUnitPrice = tier-rate x Source_List_Price__c, where the tier rate is resolved per the line's MTD (Maintenance Type Defn) attribute from Maintenance_Rate__mdt for ALL 7 defined tiers (Basic 0.15, Professional 0.20, Standard 0.20, Premium 0.24, Express 0.30, Premier 0.30, Expert 0.35). e.g. Standard 0.20 x 355 = 71.",
+  "actual": "Tier resolution is correct for the 3 dominant tiers ONLY (Premier 0.30, Professional 0.20, Standard 0.20) and is NOT a CMDT lookup at all - the rates are hard-coded inline in the V14 DerivedPricingFormula IF-chain. The 4 remaining MTD tiers used on live lines (Basic 182, platinum 15, Expert 8, Premium 2 = 207 QLI attribute rows) fall through the formula's final ELSE to 0, deriving $0 maintenance net instead of 0.15/0.24/0.35. Maintenance_Rate__mdt is referenced 0 times in the procedure; the inline table omits Basic/Premium/Express/Expert and contains no branch for the picklist value 'platinum'.",
+  "evidence": [
+    "Live V14 DerivedPricingFormula (ListContainer9 seq6, gated by DerivredPricingAttributeFilter AttributeDefinitionCode='MTD'): NetUnitPrice = IF(AttributeValue='Premier',0.30,IF(AttributeValue='Standard',0.20,IF(AttributeValue='Professional',0.20,0)))*Source_List_Price__c  -- only 3 tiers, else 0 (v14block.xml line 1848).",
+    "Competing DerivedPricingNewBusiness formula (seq7, v14block.xml line 1978) has the IDENTICAL incomplete 3-tier IF chain (else 0) -- both first-year formulas omit Basic/Premium/Expert/Express/platinum.",
+    "grep 'Maintenance_Rate' over the V14 procedure block = 0 hits: the tier % is hard-coded inline, NOT a Maintenance_Rate__mdt lookup; the table can drift from the formula.",
+    "Maintenance_Rate__mdt (live, 7 rows): Basic 0.15, Professional 0.20, Standard 0.20, Premium 0.24, Express 0.30, Premier 0.30, Expert 0.35.",
+    "MTD AttributeDefinition 0tjWC000000096bYAA picklist (0v5WC00000005RBYAY) has 8 values: Basic, Expert, platinum, Premier, Premium, Professional, Standard, Express. 'platinum' has no Maintenance_Rate__mdt entry; the formula handles none of Basic/Premium/Expert/Express/platinum.",
+    "Live MTD tier usage tally over QuoteLineItemAttribute (AttributeDefinitionId=0tjWC000000096bYAA): Premier 24795, Professional 23580, Standard 1418 (all handled); Basic 182, platinum 15, Expert 8, Premium 2 (all resolve to 0 = WRONG). 207 rows mis-resolve.",
+    "POSITIVE proof tier math is correct for handled tiers: line 0QLWC000003d2QV4AY (quote 0Q0WC0000037rFZ0AY, Draft) MTD=Standard, Source_List_Price__c=355, NetUnitPrice=71 = 0.20x355 exact; line 0QLWC000003cdTF4AY MTD-Standard Automate Ultimate NetUnitPrice=55000 = 0.20x275000 exact.",
+    "Canonical new-business quote 00780964 (0Q0WC000003735t0AA, Draft, USD) repriced via Place Sales Transaction (Force + configurationMethod Skip) isSuccess:true; New-Maint line 0QLWC000003cFh44AE MTD=Standard but Source_List_Price__c=null -> NetUnitPrice committed 0 (tier resolved but Source null + structural-exclusion SC-3404 symptom; line count 2->2 unchanged).",
+    "Reprice body: /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/nb-derived-tier/body.json ; describe + queries under /Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/sc3346_e2e/work/nb-derived-tier/."
+  ],
+  "actions_taken": [
+    "Queried Maintenance_Rate__mdt (7 tier rates) and confirmed the MTD AttributeDefinition (0tjWC000000096bYAA) picklist (8 values incl 'platinum').",
+    "Extracted the live V14 first-year DerivedPricingFormula and DerivedPricingNewBusiness formulas from the procedure snapshot; confirmed both hard-code only Premier/Standard/Professional (else 0) and reference Maintenance_Rate__mdt 0 times.",
+    "Tallied live MTD tier usage across QuoteLineItemAttribute (Premier 24795 / Professional 23580 / Standard 1418 handled; Basic 182 / platinum 15 / Expert 8 / Premium 2 = 207 unhandled).",
+    "Confirmed canonical quote 00780964 Draft, repriced it via Place Sales Transaction (Force, configurationMethod Skip), re-read lines; verified positive tier math on quotes 0Q0WC0000037rFZ0AY (71=0.20x355) and the Automate Ultimate line (55000=0.20x275000).",
+    "No DML/delete/activation/integration; only one non-destructive Skip reprice of a Draft quote and read-only SOQL/metadata inspection."
+  ],
+  "notes": "Two distinct findings. (1) PARTIAL PASS: for the 3 dominant tiers (Premier/Professional/Standard = 49793/50000 = 99.6% of live MTD attributes) the resolved % is exactly correct and ties to Maintenance_Rate__mdt. (2) FAIL/HIGH: the 'lookup' is not a Maintenance_Rate__mdt lookup at all -- it is a hard-coded 3-branch inline IF in the V14 procedure. The 4 minority tiers actually present on live lines (Basic 0.15, Premium 0.24, Expert 0.35, Express 0.30) plus the orphan picklist value 'platinum' all fall to the 0 default, deriving $0 maintenance net (207 live QLI attribute rows affected). This is a maintainability + correctness gap independent of SC-3404: even when Source_List_Price__c is correctly stamped, a Basic/Premium/Expert/Express line will price $0. Not an existing ticket -- relates to M-2 (two competing formulas) but the incomplete-tier-set defect is not captured by M-2/SC-3404/SC-3372; recommend a new ticket to either (a) data-drive the tier from Maintenance_Rate__mdt or (b) complete the inline IF for all tiers and reconcile 'platinum'/'Express'. Canonical quote 00780964 separately commits $0 due to null Source_List_Price__c + SC-3404 structural exclusion."
+}

@@ -1,0 +1,52 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "s": null,
+        "c": 8106
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "s": "Approved",
+        "c": 87411
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "s": "In Review",
+        "c": 4128
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "s": "Accepted",
+        "c": 1
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "s": "Won",
+        "c": 362790
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "s": "Draft",
+        "c": 35784
+      }
+    ],
+    "totalSize": 6,
+    "done": true
+  },
+  "warnings": []
+}
