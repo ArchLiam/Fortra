@@ -1,0 +1,28 @@
+SC-3346 MDT-RECORDS DEFECT-A platinum orphan — RESOLUTION & SAFETY evidence (2026-06-14, live FortraUAT)
+
+K1 USAGE (full 102,122-row export, NOT 50k-truncated):
+  platinum = 18 lines (retest's "15" was truncation undercount; prior memory "18" is CORRECT)
+  Products: GS-GSE-RRM-EFWO x13 ('EFT Workspaces (WSM)-RenewalMaintenance'), GS-GSE-RRM-EFSMB x5 ('EFT SMB WSM Module 25 Users-RenewalMaintenance')
+  Fortra_Product_Type__c: Renewal Maintenance (18/18); Quote.Status: Approved (18/18); QuoteTypeText: Renewal
+  Same 2 products ALSO carry tier=Standard on 5 non-platinum lines (EFWO Standard:5)
+  All distinct MTD values+counts: Premier 42604, Professional 41881, Standard 16588, Premium 833, Basic 185, platinum 18, Expert 13
+
+K2 ACTIVE FORMULA (fresh live retrieve src_fresh/...meta.xml):
+  Active = V14 (ExpressionSetVersion 9QMWC00000023eX4AQ, IsActive=true; V1-V13 all Inactive)
+  V14 element 'DerivedPricingFormula' (FormulaBasedPricing, gated ItemIsDerived__std=true), line 71642:
+    IF ( AttributeValue = 'Premier' , 0.30 , IF ( AttributeValue = 'Standard' , 0.20 , IF ( AttributeValue = 'Professional' , 0.20 , 0 ) ) ) * Source_List_Price__c
+  => 3 TIERS ONLY. ZERO platinum refs in entire V14 block. ZERO 'Maintenance_Rate'/'MaintenanceType' refs (rates hard-coded inline, NOT MDT-driven).
+  Memory project_nb_derived_tier_fix ("3->7 tiers, platinum flagged") is FALSE for current live. Retest report ("3 tiers") is CORRECT.
+  Sibling V14 step 'DerivedPricingNetUnitPriceValueReset': IF(QuoteTypeText__c='Renewal', NetUnitPrice, 0) -> Renewal carries net forward, bypassing tier formula.
+
+WHY NO LIVE $0 TRAP: all 18 platinum lines are Renewal -> priced by NetUnitPrice carry-forward (TotalPrice 334-952 real), NOT the 3-tier formula. $0 trap only fires on a NEW-maint platinum line; 0 such lines exist in 102,122 rows.
+
+PICKLIST: AttributeDefinition 'Maintenance Type Defn' 0tjWC000000096bYAA, Picklist 0v5WC00000005RBYAY (Text-backed, unrestricted).
+  Values: Basic, Expert, Express, platinum(APV_1559, 0v6WC0000000A5SYAU, Active, ONLY lowercase value), Premier, Premium, Professional, Standard.
+  platinum is NOT a near-match typo of any value; only the odd lowercase casing.
+  Maintenance_Rate__mdt: 7 rows Basic .15 / Expert .35 / Express .30 / Premier .30 / Premium .24 / Professional .20 / Standard .20. No platinum.
+  (Formula covers only 3 of 8 picklist values; Express/Premium/Expert/Basic also unhandled by formula but have MDT rows + ~1031 non-platinum lines.)
+
+DEPLOY MECHANICS:
+  CMDT (Maintenance_Rate__mdt new row): simple, no version dance. Proven pattern cola_fix/ (CustomMetadata member + standard deploy api67).
+  FORMULA edit: pricing-procedure version change = deactivate->deploy->reactivate offline window (reference_pricing_procedure_deploy_mechanics). Higher risk: touches live active V14.

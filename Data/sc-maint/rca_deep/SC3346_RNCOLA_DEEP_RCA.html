@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SC-3346 Renewal-Maint Commit — Deep RCA</title>
+<style>
+ *{box-sizing:border-box;margin:0;padding:0}
+ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.55;padding:40px 24px 90px}
+ .wrap{max-width:1240px;margin:0 auto}
+ .eyebrow{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#7d8590;font-weight:700}
+ h1{font-size:38px;font-weight:800;margin:6px 0 8px;line-height:1.1}
+ .sub{font-size:15px;color:#9aa4af}
+ .correction{margin:22px 0;padding:18px 22px;border-radius:12px;background:linear-gradient(135deg,#3d2c00,#241a04);border:1px solid #9a6700;border-left:5px solid #e3b341}
+ .correction .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#e3b341;font-weight:800}
+ .correction p{font-size:15px;color:#f0e6c8;margin-top:6px}
+ .verdict{margin:22px 0;padding:24px 28px;border-radius:14px;background:#161b22;border:1px solid #30363d;border-left:5px solid #3fb950}
+ .verdict .lbl{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#3fb950;font-weight:800}
+ .verdict .txt{font-size:20px;font-weight:600;margin-top:8px;color:#fff}
+ .verdict .txt b{color:#7ee787}
+ .sec-h{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#7d8590;font-weight:800;margin:40px 0 14px}
+ table{width:100%;border-collapse:collapse;font-size:14px}
+ th{text-align:left;padding:10px 12px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#7d8590;border-bottom:2px solid #30363d}
+ td{padding:12px;border-bottom:1px solid #21262d;vertical-align:top;color:#c9d1d9}
+ .mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;color:#79c0ff;font-weight:700;white-space:nowrap}
+ .net{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.5px;padding:3px 10px;border-radius:20px}
+ .tally{font-size:11px;color:#7d8590;margin-top:5px;font-family:ui-monospace,Menlo,monospace}
+ code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#21262d;padding:1px 5px;border-radius:5px;color:#e3b341}
+ .flow{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:18px 20px;color:#e6edf3;line-height:1.85;overflow-x:auto;white-space:pre}
+ .flow .ok{color:#3fb950}.flow .bad{color:#ff7b72}.flow .dim{color:#7d8590}.flow .key{color:#e3b341}
+ .fix{display:flex;gap:16px;align-items:flex-start;border-radius:14px;padding:18px 22px;margin-bottom:12px;border:1px solid}
+ .fix.f1{background:linear-gradient(135deg,#172554,#0d1b3d);border-color:#3b82f6}
+ .fix.f2{background:linear-gradient(135deg,#2d2606,#241a04);border-color:#9a6700}
+ .fix.f3{background:#0e2a18;border-color:#2ea04366}
+ .fix.f4{background:#1a1011;border-color:#cf222e44}
+ .fix .p{flex:0 0 auto;font-size:12px;font-weight:800;letter-spacing:.5px;padding:5px 11px;border-radius:20px;background:#0d1117;color:#e6edf3;border:1px solid #30363d;height:fit-content}
+ .fix .q{font-size:17px;font-weight:700;color:#fff}.fix .d{font-size:14px;color:#adbac7;margin-top:5px}
+ .fix .tag{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px}
+ .rec{margin-top:8px;padding:22px 24px;border-radius:14px;background:linear-gradient(135deg,#172554,#0d1b3d);border:1px solid #3b82f6}
+ .rec ol{margin:10px 0 0 20px}.rec li{font-size:15px;color:#cdd9f0;margin-bottom:8px}
+ .foot{margin-top:30px;color:#6e7681;font-size:13px;text-align:center}
+ @media(max-width:880px){h1{font-size:28px}}
+ @media print{body{background:#fff;color:#111}td{color:#222}.flow{background:#f6f8fa;color:#111}}
+</style></head><body><div class="wrap">
+
+ <div class="eyebrow">Deep Root-Cause Analysis · 37-agent investigation · 2026-06-14</div>
+ <h1>SC-3346 — Renewal-Maintenance Commit Defect</h1>
+ <div class="sub">FortraUAT <code>00DWC000006eUFF2A2</code> · pricing procedure V14 · BoKS <code>PIA-PIA-RRM-PIAM</code> · evidence order: repo → UAT metadata → live data → 6-hypothesis adversarial adjudication (18 verifiers)</div>
+
+ <div class="correction">
+  <div class="lbl">⚠️ This RCA corrects an earlier conclusion this session</div>
+  <p>The FINEST log I relied on earlier (<code>skip_reprice_60.64.log</code>) was <b>PRE-v1.5</b>. The "×0.90 actively re-applied on reprice" (H1) was the <b>old bug v1.5 already fixed</b> — not current behavior. The provenance-independent posthook gate I recommended (H6) is <b>already shipped and insufficient</b>. The real story is below.</p>
+ </div>
+
+ <div class="verdict">
+  <div class="lbl">Executive verdict — the ONE root cause</div>
+  <div class="txt">A BoKS renewal-maintenance line commits the correct <b>67.38</b> if and only if it carries a <b>Type=Renew QuoteAction at birth</b>. The auto-added <code>RRM</code> lines never get one (a <b>SKU mismatch</b>: customers own <code>RNM-PIAMBK</code> assets, the line is the <code>RRM-PIAM</code> SKU), so they're QuoteAction-less derived nodes whose committed <code>NetUnitPrice</code> the stack <b>cannot durably write</b> — freezing the pre-v1.5 ×0.90 fossil (60.64 / 54.58 / $0). The double-discount that <i>created</i> the value is already fixed; the value <i>persists</i> because the engine silently drops the corrective write.</div>
+ </div>
+
+ <div class="sec-h">6-hypothesis adversarial adjudication (3 skeptic verifiers each)</div>
+ <table><thead><tr><th>ID</th><th>Hypothesis</th><th>Verdict (tally)</th><th>Decisive evidence</th></tr></thead><tbody>
+ <tr><td class="mono">H1</td><td>Active double-discount re-applied on a fresh reprice</td><td><span class="net" style="color:#ff7b72;background:#2a1416">REFUTED</span><div class="tally">refuted:2 · partial:1</div></td><td>TRUE only PRE-v1.5. Post-v1.5 FINEST log shows <code>calculateDeferredPartnerPrice=0</code> — the deferred path is never reached. The ×0.90 was the <b>value-creator</b>, now suppressed in live v1.5.</td></tr><tr><td class="mono">H2</td><td>Frozen fossil — engine no-ops the corrective NetUnitPrice write</td><td><span class="net" style="color:#3fb950;background:#0e2a18">CONFIRMED</span><div class="tally">confirmed:2 · partial:1</div></td><td>Post-v1.5 log: posthook builds <code>Net=67.38</code>, write returns clean, yet all 96 NetUnitPrice dumps stay <b>60.64</b>; the <code>COLACalculatedPrice__c</code> custom-field sibling in the same batch DID land. The engine silently drops NetUnitPrice writes on a settled QA-null / IsDerived node.</td></tr><tr><td class="mono">H3</td><td>No Renew QuoteAction (SKU mismatch RNM→RRM) — the ROOT 🎯 ROOT</td><td><span class="net" style="color:#3fb950;background:#0e2a18">CONFIRMED</span><div class="tally">confirmed:3</div></td><td>IFF proven on all 7 live lines: a line commits 67.38 <b>⟺</b> it carries a <code>Type=Renew</code> QuoteAction. Customers own <code>PIA-PIA-RNM-PIAMBK</code> assets; the renewal line is the <code>PIA-PIA-RRM-PIAM</code> SKU auto-added by PCR 14OWC…Eyb2AE, so <code>initiateRenewal</code> can never SKU-match → QuoteAction-less.</td></tr><tr><td class="mono">H4</td><td>$0 = distinct unseeded-base sub-mechanism</td><td><span class="net" style="color:#ff7b72;background:#2a1416">REFUTED</span><div class="tally">refuted:3</div></td><td>The two $0 lines have <code>Source_List_Price=355 / Base_Price=71</code> FULLY SEEDED. The $0 is the <b>same</b> frozen-fossil / no-op-write mechanism (H2/H3), not a separate unseeded-base bug.</td></tr><tr><td class="mono">H5</td><td>Lever-d procedure commit-path self-heals existing + new</td><td><span class="net" style="color:#e3b341;background:#2d2606">CONTINGENT</span><div class="tally">contingent:3</div></td><td>The <code>resultIncluded=true</code> committer element is real, well-formed, deployable (staged in deploy_v4) — but its self-heal price effect was <b>never observed</b>. Needs an authorized offline V14 deploy+reprice test. Crux: does an ungated committer overwrite a <i>settled</i> derived node, without rollup staleness?</td></tr><tr><td class="mono">H6</td><td>Provenance-independent posthook gate is the fix</td><td><span class="net" style="color:#ff7b72;background:#2a1416">REFUTED</span><div class="tally">refuted:2 · partial:1</div></td><td>Both halves ALREADY SHIPPED in live v1.5 (gates on <code>FPT + QuoteTypeText__c</code>, not QuoteActionId) AND the canary still commits 60.64 — because the corrective write no-ops on the settled node. Correct & safe as a <b>floor</b>, insufficient as the <b>fix</b>.</td></tr>
+ </tbody></table>
+
+ <div class="sec-h">Mechanism — birth to wrong committed price</div>
+ <div class="flow"><span class="key">[BIRTH]</span>  Renewal quote on Perpetual license
+   │  PCR 14OWC…Eyb2AE AutoAdd → RRM line, <span class="bad">QuoteActionId = null</span>
+   │  initiateRenewal CANNOT SKU-match (account owns RNM-PIAMBK, not RRM-PIAM)   <span class="bad">◄── H3 ROOT</span>
+   ▼
+<span class="key">[PREHOOK]</span> COLAUpliftPrehook → <span class="ok">COLACalculatedPrice__c = 67.38</span> ✔   (born-net handler SKIPPED: QuoteActionId==null)
+   ▼
+<span class="key">[V14]</span> DerivedPricingRenewals (RI=false) computes 67.38;  partner ×0.90 committers <span class="dim">FILTER-GATED OUT of renewals</span>
+   ▼
+<span class="bad">PRE-v1.5 (≤06-13):</span> posthook v1.4 → calculateDeferredPartnerPrice(67.38, 10%) = <span class="bad">60.64</span>  ◄── H1 created the value
+   ▼  (06-14 02:35Z  v1.5 deployed)
+<span class="ok">POST-v1.5 (live):</span> bypass L232-237 → <span class="dim">deferred path NEVER called</span> (H1 closed) ;  posthook BUILDS <span class="ok">Net=67.38</span>
+   <span class="bad">✗ engine SILENTLY DROPS the NetUnitPrice write on the settled QA-null/IsDerived node</span>  ◄── H2
+   <span class="dim">(96/96 dumps = 60.64; COLACalculatedPrice__c sibling in same batch DID land)</span>
+   ▼
+   committed NetUnitPrice = <span class="bad">60.64  → FROZEN FOSSIL</span></div>
+
+ <div class="sec-h">Fix options — ranked</div>
+ <div class="fix f1"><div class="p">OPT 1</div><div><div class="q">H3 creation-path born-net — the DURABLE root fix (new lines)</div>
+  <div class="d">Attach a <code>Type=Renew</code> QuoteAction (SKU-matched to an RRM asset) to every auto-added RRM line — in Apex/configurator, since the Product2 <code>Renewal_Product__c</code>/<code>IsRenewable__c</code> fields don't exist in this org. <b>Proven</b> (born-Renew line held 2097.9 through reprice). Owner-gated (Nir's renewal architecture); does NOT heal ~existing fossils.</div>
+  <span class="tag" style="background:#1f6feb33;color:#79c0ff">Owner: Nir · new lines only</span></div></div>
+ <div class="fix f2"><div class="p">OPT 2</div><div><div class="q">H5 lever-d procedure commit — only single change that self-heals existing + new</div>
+  <div class="d">Add a <code>resultIncluded=true</code> element gated <code>FPT='Renewal Maintenance' AND COLACalculatedPrice__c>0</code>, contributor-ungated, sequenced last, committing <code>COLACalculatedPrice__c→NetUnitPrice</code>. <b>CONTINGENT</b> — element is staged but self-heal unproven. Needs an authorized offline V14 deploy+reprice test (crux: overwrites a settled derived node? rollup staleness?). Co-owned V14 republish + ~100k-line regression.</div>
+  <span class="tag" style="background:#9a670033;color:#e3b341">Owner: Nir/Marc · V14 republish · test first</span></div></div>
+ <div class="fix f3"><div class="p">OPT 3</div><div><div class="q">H6 posthook gate — ALREADY SHIPPED (v1.5), the floor not the fix</div>
+  <div class="d">v1.5 already suppresses the active re-discount (H1 closed, safe) — keep it. But the commit no-ops on settled QA-null nodes, so it doesn't heal fossils or land a fresh net. Insufficient alone.</div>
+  <span class="tag" style="background:#2ea04333;color:#3fb950">Already live · keep</span></div></div>
+ <div class="fix f4"><div class="p">OPT 4</div><div><div class="q">lever-b (PBEDP list price) / lever-c (prehook seed) — REFUTED, do not pursue</div>
+  <div class="d">Derived PBE already has a valid PBEDP (base seeds to 71); the working line itself has <code>ListPrice=0</code>. Prehook seed of engine-owned fields no-ops on the QA-less node. Both dead.</div></div></div>
+
+ <div class="sec-h">Recommended path</div>
+ <div class="rec">
+  <ol>
+   <li><b>Keep v1.5</b> (H6) — correct & safe floor; closes the active re-discount channel for all future repricings.</li>
+   <li><b>Run the authorized offline lever-d (H5) canary test</b> — the only single change that can self-heal the existing re-priceable fossils. If it flips 60.64→67.38 AND $0→67.38 with correct rollups and no regression (control 67.38, NB-derive 71, perpetual 301.75, FIM 462) → ship lever-d as the primary fix.</li>
+   <li><b>If lever-d fails/unsafe → H3 born-net</b> for new lines + explicit data remediation of the 6 existing lines (Nir-owned renewal architecture).</li>
+   <li><b>Prerequisite:</b> fix the <code>COLAUpliftTest.buildOverrideMap</code> 41-error drift first — it blocks any procedure validate (and is a prod-cutover blocker regardless: 0% compile → 0% coverage).</li>
+  </ol>
+ </div>
+
+ <div class="foot">READ-ONLY investigation (no reprice/DML/deploy) · 6 repo + 12 forensic + 18 verifier + 1 synthesis agents · do NOT touch Accepted quote 00781068 / line 0QLWC000003dAaT4AU · downstream Workday/Asset remediation is a separate owner-gated workstream · 2026-06-14</div>
+
+</div></body></html>

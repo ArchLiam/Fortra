@@ -1,0 +1,4350 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cN584AE"
+        },
+        "Id": "0QLWC000003cN584AE",
+        "QuoteId": "0Q0WC0000037AKH0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037AKH0A2"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 0,
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 67.38,
+        "QuoteActionId": null,
+        "Source_List_Price__c": 355,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-10T00:35:59.000+0000",
+        "LastModifiedDate": "2026-06-14T05:09:33.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ck6X4AQ"
+        },
+        "Id": "0QLWC000003ck6X4AQ",
+        "QuoteId": "0Q0WC0000037XvB0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037XvB0AU"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 0,
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 67.38,
+        "QuoteActionId": null,
+        "Source_List_Price__c": 355,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-10T20:12:06.000+0000",
+        "LastModifiedDate": "2026-06-14T04:58:31.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cy334AA"
+        },
+        "Id": "0QLWC000003cy334AA",
+        "QuoteId": "0Q0WC0000037muD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 54.58,
+        "UnitPrice": 60.64,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 60.64,
+        "QuoteActionId": null,
+        "Source_List_Price__c": 355,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-11T09:53:45.000+0000",
+        "LastModifiedDate": "2026-06-14T18:36:27.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dEW24AM"
+        },
+        "Id": "0QLWC000003dEW24AM",
+        "QuoteId": "0Q0WC00000382MH0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000382MH0AY"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 67.38,
+        "UnitPrice": 67.38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 67.38,
+        "QuoteActionId": "7ocWC00000u7yf8YAA",
+        "Source_List_Price__c": 355,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-11T21:15:01.000+0000",
+        "LastModifiedDate": "2026-06-14T19:06:48.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003e2Sn4AI"
+        },
+        "Id": "0QLWC000003e2Sn4AI",
+        "QuoteId": "0Q0WC0000038aXd0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038aXd0AI"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 60.64,
+        "UnitPrice": 67.38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 67.38,
+        "QuoteActionId": null,
+        "Source_List_Price__c": 355,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-13T21:06:00.000+0000",
+        "LastModifiedDate": "2026-06-14T19:10:46.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003eMph4AE"
+        },
+        "Id": "0QLWC000003eMph4AE",
+        "QuoteId": "0Q0WC0000039AMb0AM",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039AMb0AM"
+          },
+          "Name": "Renewal Quote Copy",
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 54.58,
+        "UnitPrice": 60.64,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 60.64,
+        "QuoteActionId": null,
+        "Source_List_Price__c": 355,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-14T17:57:34.000+0000",
+        "LastModifiedDate": "2026-06-14T17:57:34.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dAaT4AU"
+        },
+        "Id": "0QLWC000003dAaT4AU",
+        "QuoteId": "0Q0WC0000037yTx0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037yTx0AI"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Accepted",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": 60.64,
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 67.38,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": 71,
+        "CreatedDate": "2026-06-11T18:37:22.000+0000",
+        "LastModifiedDate": "2026-06-11T18:39:13.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Fyx34AC"
+        },
+        "Id": "0QLWC000003Fyx34AC",
+        "QuoteId": "0Q0WC000002QCeR0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QCeR0AW"
+          },
+          "Name": "BoKs Renewal  Ministry of Social Development NZ - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1000,
+        "NetUnitPrice": null,
+        "UnitPrice": 113.47,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:42:38.000+0000",
+        "LastModifiedDate": "2026-05-04T19:42:50.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003G0N84AK"
+        },
+        "Id": "0QLWC000003G0N84AK",
+        "QuoteId": "0Q0WC000002QETq0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QETq0AO"
+          },
+          "Name": "Renewal Quote for Account: ING Business Shared Services B.V. - 3/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 21457,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:42:50.000+0000",
+        "LastModifiedDate": "2026-05-04T19:42:56.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003G2wD4AS"
+        },
+        "Id": "0QLWC000003G2wD4AS",
+        "QuoteId": "0Q0WC000002QFSh0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QFSh0AO"
+          },
+          "Name": "Extend 92 licenses for 6mth term",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 92,
+        "NetUnitPrice": null,
+        "UnitPrice": 20,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:43:08.000+0000",
+        "LastModifiedDate": "2026-05-04T19:43:10.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003FsB24AK"
+        },
+        "Id": "0QLWC000003FsB24AK",
+        "QuoteId": "0Q0WC000002QFql0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QFql0AG"
+          },
+          "Name": "Cancellation of 24 lic",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 24,
+        "NetUnitPrice": null,
+        "UnitPrice": 337.9,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:43:34.000+0000",
+        "LastModifiedDate": "2026-05-04T19:43:37.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003G9RJ4A0"
+        },
+        "Id": "0QLWC000003G9RJ4A0",
+        "QuoteId": "0Q0WC000002QG2U0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QG2U0AW"
+          },
+          "Name": "Cancel 329 licenses  BoKs Renewal  Suncor Energy Services Inc. - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 329,
+        "NetUnitPrice": null,
+        "UnitPrice": 253.31,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:43:47.000+0000",
+        "LastModifiedDate": "2026-05-04T19:43:50.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GBMv4AO"
+        },
+        "Id": "0QLWC000003GBMv4AO",
+        "QuoteId": "0Q0WC000002QG6g0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QG6g0AG"
+          },
+          "Name": "Renewal Quote for Account: Electronic Payments, Inc. - 9/30/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": null,
+        "UnitPrice": 4829.12,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:44:03.000+0000",
+        "LastModifiedDate": "2026-05-04T19:44:09.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GDOZ4A4"
+        },
+        "Id": "0QLWC000003GDOZ4A4",
+        "QuoteId": "0Q0WC000002QGLY0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QGLY0A4"
+          },
+          "Name": "2025-2026 BoKs renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 604,
+        "NetUnitPrice": null,
+        "UnitPrice": 31.14,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:44:18.000+0000",
+        "LastModifiedDate": "2026-05-04T19:44:23.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GHTN4A4"
+        },
+        "Id": "0QLWC000003GHTN4A4",
+        "QuoteId": "0Q0WC000002QDzt0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QDzt0AG"
+          },
+          "Name": "Revised Boks renewal  Boart Longyear - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60,
+        "NetUnitPrice": null,
+        "UnitPrice": 161.21,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:44:42.000+0000",
+        "LastModifiedDate": "2026-05-04T19:44:44.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GHzq4AG"
+        },
+        "Id": "0QLWC000003GHzq4AG",
+        "QuoteId": "0Q0WC000002QGXt0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QGXt0AO"
+          },
+          "Name": "Renewal Quote for Account: Ford Otomotiv Sanayi A.S. - 9/30/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60,
+        "NetUnitPrice": null,
+        "UnitPrice": 85.2,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:44:46.000+0000",
+        "LastModifiedDate": "2026-05-04T19:44:54.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GHzr4AG"
+        },
+        "Id": "0QLWC000003GHzr4AG",
+        "QuoteId": "0Q0WC000002QGXt0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QGXt0AO"
+          },
+          "Name": "Renewal Quote for Account: Ford Otomotiv Sanayi A.S. - 9/30/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 40,
+        "NetUnitPrice": null,
+        "UnitPrice": 118.7,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:44:46.000+0000",
+        "LastModifiedDate": "2026-05-04T19:44:54.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GNSg4AO"
+        },
+        "Id": "0QLWC000003GNSg4AO",
+        "QuoteId": "0Q0WC000002QHVp0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QHVp0AO"
+          },
+          "Name": "qty 2600",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 2600,
+        "NetUnitPrice": null,
+        "UnitPrice": 70,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:45:22.000+0000",
+        "LastModifiedDate": "2026-05-04T19:45:24.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GOP14AO"
+        },
+        "Id": "0QLWC000003GOP14AO",
+        "QuoteId": "0Q0WC000002RGEE0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RGEE0A4"
+          },
+          "Name": "Renewal Quote for Account: Tucson Electric Power Company - Corporate IT Group - 11/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 417,
+        "NetUnitPrice": null,
+        "UnitPrice": 207.43,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:45:30.000+0000",
+        "LastModifiedDate": "2026-05-04T19:45:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GOP04AO"
+        },
+        "Id": "0QLWC000003GOP04AO",
+        "QuoteId": "0Q0WC000002RGEE0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RGEE0A4"
+          },
+          "Name": "Renewal Quote for Account: Tucson Electric Power Company - Corporate IT Group - 11/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 50,
+        "NetUnitPrice": null,
+        "UnitPrice": 56.8,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:45:30.000+0000",
+        "LastModifiedDate": "2026-05-04T19:45:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GRHG4A4"
+        },
+        "Id": "0QLWC000003GRHG4A4",
+        "QuoteId": "0Q0WC000002QHKK0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QHKK0A4"
+          },
+          "Name": "Renewal Quote for Account: Boart Longyear - 1/5/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60,
+        "NetUnitPrice": null,
+        "UnitPrice": 176.73,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:45:53.000+0000",
+        "LastModifiedDate": "2026-05-04T19:45:57.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GSnD4AW"
+        },
+        "Id": "0QLWC000003GSnD4AW",
+        "QuoteId": "0Q0WC000002QI0L0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QI0L0AW"
+          },
+          "Name": "Renewal Quote for Account: TIAA-CREF - 4/3/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 8100,
+        "NetUnitPrice": null,
+        "UnitPrice": 40,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:05.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:11.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GTee4AG"
+        },
+        "Id": "0QLWC000003GTee4AG",
+        "QuoteId": "0Q0WC000002QIfT0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QIfT0AW"
+          },
+          "Name": "Renewal Quote for Account: Tietoevry Tech Services AB - 1/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 6,
+        "NetUnitPrice": null,
+        "UnitPrice": 256.56,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:13.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:17.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GUcU4AW"
+        },
+        "Id": "0QLWC000003GUcU4AW",
+        "QuoteId": "0Q0WC000002QIsI0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QIsI0AW"
+          },
+          "Name": "Renewal Quote for Account: Boart Longyear - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 80,
+        "NetUnitPrice": null,
+        "UnitPrice": 161.21,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:20.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:24.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GUmT4AW"
+        },
+        "Id": "0QLWC000003GUmT4AW",
+        "QuoteId": "0Q0WC000002QIQh0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QIQh0AO"
+          },
+          "Name": "BoKs 2024 Renewal JPMorgan",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60000,
+        "NetUnitPrice": null,
+        "UnitPrice": 23.94,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:21.000+0000",
+        "LastModifiedDate": "2026-05-04T19:47:01.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GYmQ4AW"
+        },
+        "Id": "0QLWC000003GYmQ4AW",
+        "QuoteId": "0Q0WC000002REFo0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002REFo0AO"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 150,
+        "NetUnitPrice": null,
+        "UnitPrice": 104.78,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:48.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:50.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GYmP4AW"
+        },
+        "Id": "0QLWC000003GYmP4AW",
+        "QuoteId": "0Q0WC000002REFo0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002REFo0AO"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 200,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.5,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:48.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:50.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GYmO4AW"
+        },
+        "Id": "0QLWC000003GYmO4AW",
+        "QuoteId": "0Q0WC000002REFo0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002REFo0AO"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 850,
+        "NetUnitPrice": null,
+        "UnitPrice": 383.34,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:48.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:50.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GZVd4AO"
+        },
+        "Id": "0QLWC000003GZVd4AO",
+        "QuoteId": "0Q0WC000002QIez0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QIez0AG"
+          },
+          "Name": "Renewal Quote for Account: TaTa Consultancy Services - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 198,
+        "NetUnitPrice": null,
+        "UnitPrice": 210,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:52.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GZxw4AG"
+        },
+        "Id": "0QLWC000003GZxw4AG",
+        "QuoteId": "0Q0WC000002QIdX0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QIdX0AW"
+          },
+          "Name": "Renewal Quote for Account: DXC - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 137,
+        "NetUnitPrice": null,
+        "UnitPrice": 322.02,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:55.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:58.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GZxv4AG"
+        },
+        "Id": "0QLWC000003GZxv4AG",
+        "QuoteId": "0Q0WC000002QIdX0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QIdX0AW"
+          },
+          "Name": "Renewal Quote for Account: DXC - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 21,
+        "NetUnitPrice": null,
+        "UnitPrice": 311.45,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:46:55.000+0000",
+        "LastModifiedDate": "2026-05-04T19:46:58.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GbTj4AK"
+        },
+        "Id": "0QLWC000003GbTj4AK",
+        "QuoteId": "0Q0WC000002REON0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002REON0A4"
+          },
+          "Name": "Carahsoft- 1yr  GOVERNMENT OF CANADA - 12/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 3855,
+        "NetUnitPrice": null,
+        "UnitPrice": 43.34,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:47:03.000+0000",
+        "LastModifiedDate": "2026-05-04T19:47:06.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Gm3o4AC"
+        },
+        "Id": "0QLWC000003Gm3o4AC",
+        "QuoteId": "0Q0WC000002REgD0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002REgD0AW"
+          },
+          "Name": "Add on coterm renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1000,
+        "NetUnitPrice": null,
+        "UnitPrice": 34.83,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:48:32.000+0000",
+        "LastModifiedDate": "2026-05-04T19:48:35.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GpSE4A0"
+        },
+        "Id": "0QLWC000003GpSE4A0",
+        "QuoteId": "0Q0WC000002QLBV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QLBV0A4"
+          },
+          "Name": "Renewal Quote for Account: Domestic & General Services Ltd - 7/1/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 100,
+        "NetUnitPrice": null,
+        "UnitPrice": 60,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:48:56.000+0000",
+        "LastModifiedDate": "2026-05-04T19:48:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Gx6W4AS"
+        },
+        "Id": "0QLWC000003Gx6W4AS",
+        "QuoteId": "0Q0WC000002QM740AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QM740AG"
+          },
+          "Name": "Revised BoKs Renewal  Suncor Energy Services Inc. - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 501,
+        "NetUnitPrice": null,
+        "UnitPrice": 253.31,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:49:54.000+0000",
+        "LastModifiedDate": "2026-05-04T19:49:56.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GyWu4AK"
+        },
+        "Id": "0QLWC000003GyWu4AK",
+        "QuoteId": "0Q0WC000002QMcW0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QMcW0AW"
+          },
+          "Name": "2025 Renewal Carahsoft",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 3855,
+        "NetUnitPrice": null,
+        "UnitPrice": 40.01,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:06.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:11.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GyPa4AK"
+        },
+        "Id": "0QLWC000003GyPa4AK",
+        "QuoteId": "0Q0WC000002QN6n0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QN6n0AG"
+          },
+          "Name": "cancellation BoKs Renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 253,
+        "NetUnitPrice": null,
+        "UnitPrice": 133.53,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:06.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:09.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003GzTc4AK"
+        },
+        "Id": "0QLWC000003GzTc4AK",
+        "QuoteId": "0Q0WC000002QMBI0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QMBI0A4"
+          },
+          "Name": "Renewal Quote for Account: Ministry of Social Development NZ - 4/3/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1000,
+        "NetUnitPrice": null,
+        "UnitPrice": 113.47,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:14.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003H1k34AC"
+        },
+        "Id": "0QLWC000003H1k34AC",
+        "QuoteId": "0Q0WC000002QNLV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QNLV0A4"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 850,
+        "NetUnitPrice": null,
+        "UnitPrice": 383.34,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:28.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:31.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003H1k14AC"
+        },
+        "Id": "0QLWC000003H1k14AC",
+        "QuoteId": "0Q0WC000002QNLV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QNLV0A4"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 200,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.5,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:28.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:31.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003H1k24AC"
+        },
+        "Id": "0QLWC000003H1k24AC",
+        "QuoteId": "0Q0WC000002QNLV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QNLV0A4"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 150,
+        "NetUnitPrice": null,
+        "UnitPrice": 104.78,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:28.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:31.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003H3Jz4AK"
+        },
+        "Id": "0QLWC000003H3Jz4AK",
+        "QuoteId": "0Q0WC000002QMwa0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QMwa0AG"
+          },
+          "Name": "Cancel quote BoKs 2024 Renewal JPMorgan",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 59396,
+        "NetUnitPrice": null,
+        "UnitPrice": 23.87,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:50:37.000+0000",
+        "LastModifiedDate": "2026-05-04T19:50:41.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HAd44AG"
+        },
+        "Id": "0QLWC000003HAd44AG",
+        "QuoteId": "0Q0WC000002QQ390AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QQ390AG"
+          },
+          "Name": "All BoKs renewals",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 21457,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:27.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:30.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HAd34AG"
+        },
+        "Id": "0QLWC000003HAd34AG",
+        "QuoteId": "0Q0WC000002QQ390AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QQ390AG"
+          },
+          "Name": "All BoKs renewals",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1000,
+        "NetUnitPrice": null,
+        "UnitPrice": 34.83,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:27.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:30.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HB1q4AG"
+        },
+        "Id": "0QLWC000003HB1q4AG",
+        "QuoteId": "0Q0WC000002QPQb0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QPQb0AO"
+          },
+          "Name": "Renewal Quote for Account: Rikspolisstyrelsen (Swedish Police) - 9/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 850,
+        "NetUnitPrice": null,
+        "UnitPrice": 413.44,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:29.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HB1p4AG"
+        },
+        "Id": "0QLWC000003HB1p4AG",
+        "QuoteId": "0Q0WC000002QPQb0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QPQb0AO"
+          },
+          "Name": "Renewal Quote for Account: Rikspolisstyrelsen (Swedish Police) - 9/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 150,
+        "NetUnitPrice": null,
+        "UnitPrice": 113.01,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:29.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HB1o4AG"
+        },
+        "Id": "0QLWC000003HB1o4AG",
+        "QuoteId": "0Q0WC000002QPQb0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QPQb0AO"
+          },
+          "Name": "Renewal Quote for Account: Rikspolisstyrelsen (Swedish Police) - 9/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 200,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.5,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:29.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HB1n4AG"
+        },
+        "Id": "0QLWC000003HB1n4AG",
+        "QuoteId": "0Q0WC000002QPQb0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QPQb0AO"
+          },
+          "Name": "Renewal Quote for Account: Rikspolisstyrelsen (Swedish Police) - 9/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 200,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.51,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:29.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:32.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HBgO4AW"
+        },
+        "Id": "0QLWC000003HBgO4AW",
+        "QuoteId": "0Q0WC000002RFTn0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RFTn0AO"
+          },
+          "Name": "Cancellation Quote 7630 lic",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 7360,
+        "NetUnitPrice": null,
+        "UnitPrice": 41.8,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:34.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:37.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HEWY4A4"
+        },
+        "Id": "0QLWC000003HEWY4A4",
+        "QuoteId": "0Q0WC000002QQ5L0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QQ5L0AW"
+          },
+          "Name": "Renewal Quote for Account: DXC - 5/5/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 158,
+        "NetUnitPrice": null,
+        "UnitPrice": 320.62,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:51.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:55.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HEWX4A4"
+        },
+        "Id": "0QLWC000003HEWX4A4",
+        "QuoteId": "0Q0WC000002QQ5L0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QQ5L0AW"
+          },
+          "Name": "Renewal Quote for Account: DXC - 5/5/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 34,
+        "NetUnitPrice": null,
+        "UnitPrice": 256.02,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:51.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:55.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HEvu4AG"
+        },
+        "Id": "0QLWC000003HEvu4AG",
+        "QuoteId": "0Q0WC000002QQNY0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QQNY0A4"
+          },
+          "Name": "Renewal Quote for Account: ING Belgium - 3/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1459,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:51:55.000+0000",
+        "LastModifiedDate": "2026-05-04T19:51:57.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HFUM4A4"
+        },
+        "Id": "0QLWC000003HFUM4A4",
+        "QuoteId": "0Q0WC000002QQea0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QQea0AG"
+          },
+          "Name": "2024 BoKs Renewal  Santander Global Banking & Markets - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 530,
+        "NetUnitPrice": null,
+        "UnitPrice": 153.3,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:52:00.000+0000",
+        "LastModifiedDate": "2026-05-04T19:52:03.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HG9Q4AW"
+        },
+        "Id": "0QLWC000003HG9Q4AW",
+        "QuoteId": "0Q0WC000002QPPb0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QPPb0AO"
+          },
+          "Name": "BoKs 60 lic on C",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:52:02.000+0000",
+        "LastModifiedDate": "2026-05-04T19:52:31.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HJVx4AO"
+        },
+        "Id": "0QLWC000003HJVx4AO",
+        "QuoteId": "0Q0WC000002QRE40AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QRE40AO"
+          },
+          "Name": "Revised BoKs 2024 Renewal JPMorgan",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 604,
+        "NetUnitPrice": null,
+        "UnitPrice": 31.14,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:52:24.000+0000",
+        "LastModifiedDate": "2026-05-04T19:52:27.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HKr44AG"
+        },
+        "Id": "0QLWC000003HKr44AG",
+        "QuoteId": "0Q0WC000002QRSV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QRSV0A4"
+          },
+          "Name": "Renewal Quote for Account: Domestic & General Services Ltd - 7/6/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 100,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.71,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:52:36.000+0000",
+        "LastModifiedDate": "2026-05-04T19:52:40.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HMKj4AO"
+        },
+        "Id": "0QLWC000003HMKj4AO",
+        "QuoteId": "0Q0WC000002PzGM0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002PzGM0A0"
+          },
+          "Name": "BoKs Renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 400,
+        "NetUnitPrice": null,
+        "UnitPrice": 133.53,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:52:50.000+0000",
+        "LastModifiedDate": "2026-05-04T19:52:56.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HSem4AG"
+        },
+        "Id": "0QLWC000003HSem4AG",
+        "QuoteId": "0Q0WC000002QSHq0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QSHq0AO"
+          },
+          "Name": "Renewal Quote for Account: Essent Guaranty, Inc. - 11/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 40,
+        "NetUnitPrice": null,
+        "UnitPrice": 27.01,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:53:26.000+0000",
+        "LastModifiedDate": "2026-05-04T19:53:38.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HSel4AG"
+        },
+        "Id": "0QLWC000003HSel4AG",
+        "QuoteId": "0Q0WC000002QSHq0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QSHq0AO"
+          },
+          "Name": "Renewal Quote for Account: Essent Guaranty, Inc. - 11/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 185,
+        "NetUnitPrice": null,
+        "UnitPrice": 38.62,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:53:26.000+0000",
+        "LastModifiedDate": "2026-05-04T19:53:38.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HURe4AO"
+        },
+        "Id": "0QLWC000003HURe4AO",
+        "QuoteId": "0Q0WC000002RFy90AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RFy90AG"
+          },
+          "Name": "Cotermed All BoKs to 6.30.24 Applied Materials, Inc. - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1920,
+        "NetUnitPrice": null,
+        "UnitPrice": 113.67,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:53:40.000+0000",
+        "LastModifiedDate": "2026-05-04T19:53:44.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HURd4AO"
+        },
+        "Id": "0QLWC000003HURd4AO",
+        "QuoteId": "0Q0WC000002RFy90AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RFy90AG"
+          },
+          "Name": "Cotermed All BoKs to 6.30.24 Applied Materials, Inc. - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 185,
+        "NetUnitPrice": null,
+        "UnitPrice": 92.35,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:53:40.000+0000",
+        "LastModifiedDate": "2026-05-04T19:53:44.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HURc4AO"
+        },
+        "Id": "0QLWC000003HURc4AO",
+        "QuoteId": "0Q0WC000002RFy90AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RFy90AG"
+          },
+          "Name": "Cotermed All BoKs to 6.30.24 Applied Materials, Inc. - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 100,
+        "NetUnitPrice": null,
+        "UnitPrice": 67.72,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:53:40.000+0000",
+        "LastModifiedDate": "2026-05-04T19:53:44.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HYGI4A4"
+        },
+        "Id": "0QLWC000003HYGI4A4",
+        "QuoteId": "0Q0WC000002RG7g0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RG7g0AG"
+          },
+          "Name": "BoKs 2023 renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60000,
+        "NetUnitPrice": null,
+        "UnitPrice": 23.94,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:11.000+0000",
+        "LastModifiedDate": "2026-05-04T19:54:13.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Ha3e4AC"
+        },
+        "Id": "0QLWC000003Ha3e4AC",
+        "QuoteId": "0Q0WC000002Q6Mv0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Q6Mv0AK"
+          },
+          "Name": "Renewal Quote for Account: DXC - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 21,
+        "NetUnitPrice": null,
+        "UnitPrice": 288.78,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:23.000+0000",
+        "LastModifiedDate": "2026-05-04T19:54:29.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Ha3d4AC"
+        },
+        "Id": "0QLWC000003Ha3d4AC",
+        "QuoteId": "0Q0WC000002Q6Mv0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Q6Mv0AK"
+          },
+          "Name": "Renewal Quote for Account: DXC - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 137,
+        "NetUnitPrice": null,
+        "UnitPrice": 298.58,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:23.000+0000",
+        "LastModifiedDate": "2026-05-04T19:54:29.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Hbzw4AC"
+        },
+        "Id": "0QLWC000003Hbzw4AC",
+        "QuoteId": "0Q0WC000002RGJp0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RGJp0AO"
+          },
+          "Name": "Renewal Quote for Account: DOMESTIC & GENERAL GROUP LTD - 7/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 100,
+        "NetUnitPrice": null,
+        "UnitPrice": 44.61,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:37.000+0000",
+        "LastModifiedDate": "2026-05-04T19:54:40.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HcC94AK"
+        },
+        "Id": "0QLWC000003HcC94AK",
+        "QuoteId": "0Q0WC000002QTy00AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QTy00AG"
+          },
+          "Name": "revised 168 BoKs Licenses",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 168,
+        "NetUnitPrice": null,
+        "UnitPrice": 337.9,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:37.000+0000",
+        "LastModifiedDate": "2026-05-04T19:54:41.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003FjR04AK"
+        },
+        "Id": "0QLWC000003FjR04AK",
+        "QuoteId": "0Q0WC000002QU3D0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QU3D0AW"
+          },
+          "Name": "BoKs Renewal Ta Ta Consultancy Services - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 198,
+        "NetUnitPrice": null,
+        "UnitPrice": 210,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:51.000+0000",
+        "LastModifiedDate": "2026-05-04T19:54:55.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HedQ4AS"
+        },
+        "Id": "0QLWC000003HedQ4AS",
+        "QuoteId": "0Q0WC000002QU5x0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QU5x0AG"
+          },
+          "Name": "Renewal Quote for Account: Ministry of Social Development NZ - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1000,
+        "NetUnitPrice": null,
+        "UnitPrice": 113.47,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:54:57.000+0000",
+        "LastModifiedDate": "2026-05-04T19:55:01.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HgAT4A0"
+        },
+        "Id": "0QLWC000003HgAT4A0",
+        "QuoteId": "0Q0WC000002QTiY0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QTiY0AW"
+          },
+          "Name": "Renewal Quote for Account: Telia Company AB - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 6,
+        "NetUnitPrice": null,
+        "UnitPrice": 256.56,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:55:10.000+0000",
+        "LastModifiedDate": "2026-05-04T19:55:13.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Hi9b4AC"
+        },
+        "Id": "0QLWC000003Hi9b4AC",
+        "QuoteId": "0Q0WC000002QUE30AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QUE30AO"
+          },
+          "Name": "Cancellation of 100 BoKs",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 100,
+        "NetUnitPrice": null,
+        "UnitPrice": 44.61,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:55:25.000+0000",
+        "LastModifiedDate": "2026-05-04T19:55:42.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Hnq64AC"
+        },
+        "Id": "0QLWC000003Hnq64AC",
+        "QuoteId": "0Q0WC000002QVZW0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QVZW0A4"
+          },
+          "Name": "Renewal Quote for Account: Wells Fargo & Company - 2/2/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 90000,
+        "NetUnitPrice": null,
+        "UnitPrice": 18.9,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:56:09.000+0000",
+        "LastModifiedDate": "2026-05-04T19:56:14.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Ho114AC"
+        },
+        "Id": "0QLWC000003Ho114AC",
+        "QuoteId": "0Q0WC000002QKp90AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QKp90AG"
+          },
+          "Name": "BoKs Renewal TIAA-CREF - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 8100,
+        "NetUnitPrice": null,
+        "UnitPrice": 40,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:56:10.000+0000",
+        "LastModifiedDate": "2026-05-04T19:56:12.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Hr7l4AC"
+        },
+        "Id": "0QLWC000003Hr7l4AC",
+        "QuoteId": "0Q0WC000002QW1y0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QW1y0AG"
+          },
+          "Name": "Renewal Quote for Account: PureLogic IT - 9/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": null,
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:56:28.000+0000",
+        "LastModifiedDate": "2026-05-04T19:56:31.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HruA4AS"
+        },
+        "Id": "0QLWC000003HruA4AS",
+        "QuoteId": "0Q0WC000002QVf50AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QVf50AG"
+          },
+          "Name": "2024 BoKs Renewal Rikspolisstyrelsen (Swedish Police) - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1200,
+        "NetUnitPrice": null,
+        "UnitPrice": 295.38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:56:33.000+0000",
+        "LastModifiedDate": "2026-05-04T19:56:42.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HuXK4A0"
+        },
+        "Id": "0QLWC000003HuXK4A0",
+        "QuoteId": "0Q0WC000002QVxX0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QVxX0AW"
+          },
+          "Name": "Renewal Quote for Account: TIAA-CREF - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 8100,
+        "NetUnitPrice": null,
+        "UnitPrice": 40,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:56:54.000+0000",
+        "LastModifiedDate": "2026-05-04T19:57:01.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Huqw4AC"
+        },
+        "Id": "0QLWC000003Huqw4AC",
+        "QuoteId": "0Q0WC000002QWWD0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QWWD0A4"
+          },
+          "Name": "Revised BoKs Renewal Ta Ta Consultancy Services - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 165,
+        "NetUnitPrice": null,
+        "UnitPrice": 210,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:56:55.000+0000",
+        "LastModifiedDate": "2026-05-04T19:56:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HxuQ4AS"
+        },
+        "Id": "0QLWC000003HxuQ4AS",
+        "QuoteId": "0Q0WC000002QWQ10AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QWQ10AO"
+          },
+          "Name": "Requote Renewal 2023",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 137,
+        "NetUnitPrice": null,
+        "UnitPrice": 298.58,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:57:16.000+0000",
+        "LastModifiedDate": "2026-05-04T19:57:19.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003HxuR4AS"
+        },
+        "Id": "0QLWC000003HxuR4AS",
+        "QuoteId": "0Q0WC000002QWQ10AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QWQ10AO"
+          },
+          "Name": "Requote Renewal 2023",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 21,
+        "NetUnitPrice": null,
+        "UnitPrice": 288.78,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:57:16.000+0000",
+        "LastModifiedDate": "2026-05-04T19:57:19.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003I38G4AS"
+        },
+        "Id": "0QLWC000003I38G4AS",
+        "QuoteId": "0Q0WC000002QWzF0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QWzF0AW"
+          },
+          "Name": "Revised Renewal Qty 20,000 Lic",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 20000,
+        "NetUnitPrice": null,
+        "UnitPrice": 41.8,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:57:52.000+0000",
+        "LastModifiedDate": "2026-05-04T19:57:55.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003I5d74AC"
+        },
+        "Id": "0QLWC000003I5d74AC",
+        "QuoteId": "0Q0WC000002QXwA0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QXwA0AW"
+          },
+          "Name": "Cancellation Boart Longyear - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 20,
+        "NetUnitPrice": null,
+        "UnitPrice": 161.21,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:58:09.000+0000",
+        "LastModifiedDate": "2026-05-04T19:58:12.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003I6Bl4AK"
+        },
+        "Id": "0QLWC000003I6Bl4AK",
+        "QuoteId": "0Q0WC000002QXbP0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QXbP0AW"
+          },
+          "Name": "Renewal Quote for Account: Suncor Energy Services Inc. - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 501,
+        "NetUnitPrice": null,
+        "UnitPrice": 253.31,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:58:13.000+0000",
+        "LastModifiedDate": "2026-05-04T19:58:16.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003I7Sy4AK"
+        },
+        "Id": "0QLWC000003I7Sy4AK",
+        "QuoteId": "0Q0WC000002QY3M0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QY3M0AW"
+          },
+          "Name": "Renewal Quote for Account: Commerce Bank - 11/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 110,
+        "NetUnitPrice": null,
+        "UnitPrice": 322.35,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:58:23.000+0000",
+        "LastModifiedDate": "2026-05-04T19:58:26.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003I9eY4AS"
+        },
+        "Id": "0QLWC000003I9eY4AS",
+        "QuoteId": "0Q0WC000002QYWF0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QYWF0A4"
+          },
+          "Name": "Renewal Quote for Account: Electronic Payments, Inc. - 10/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": null,
+        "UnitPrice": 5208.21,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:58:35.000+0000",
+        "LastModifiedDate": "2026-05-04T19:58:39.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IHuX4AW"
+        },
+        "Id": "0QLWC000003IHuX4AW",
+        "QuoteId": "0Q0WC000002RHxZ0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RHxZ0AW"
+          },
+          "Name": "FY23 Q2 Wells BoKS Addon",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 65000,
+        "NetUnitPrice": null,
+        "UnitPrice": 20.7,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:59:44.000+0000",
+        "LastModifiedDate": "2026-05-07T18:12:34.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IIYB4A4"
+        },
+        "Id": "0QLWC000003IIYB4A4",
+        "QuoteId": "0Q0WC000002QaAX0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QaAX0A0"
+          },
+          "Name": "Renewal Quote for Account: Commerce Bank - 11/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 110,
+        "NetUnitPrice": null,
+        "UnitPrice": 322.35,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T19:59:49.000+0000",
+        "LastModifiedDate": "2026-05-04T19:59:52.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IQPx4AO"
+        },
+        "Id": "0QLWC000003IQPx4AO",
+        "QuoteId": "0Q0WC000002QZN20AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QZN20AO"
+          },
+          "Name": "BoKs January renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 147,
+        "NetUnitPrice": null,
+        "UnitPrice": 133.53,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:00:59.000+0000",
+        "LastModifiedDate": "2026-05-04T20:01:09.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IROa4AO"
+        },
+        "Id": "0QLWC000003IROa4AO",
+        "QuoteId": "0Q0WC000002QbFJ0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QbFJ0A0"
+          },
+          "Name": "Renewal Quote for Account: Suncor Energy Services Inc. - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 501,
+        "NetUnitPrice": null,
+        "UnitPrice": 273.2,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:01:08.000+0000",
+        "LastModifiedDate": "2026-05-04T20:01:12.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IT8T4AW"
+        },
+        "Id": "0QLWC000003IT8T4AW",
+        "QuoteId": "0Q0WC000002Qbr20AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qbr20AC"
+          },
+          "Name": "Renewal Quote for Account: ING Business Shared Services B.V. - 3/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 22457,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:01:21.000+0000",
+        "LastModifiedDate": "2026-05-04T20:01:23.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ITtV4AW"
+        },
+        "Id": "0QLWC000003ITtV4AW",
+        "QuoteId": "0Q0WC000002QatH0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QatH0AS"
+          },
+          "Name": "Renewal Quote for Account: Applied Materials, Inc. - 4/3/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 2385,
+        "NetUnitPrice": null,
+        "UnitPrice": 106.77,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:01:27.000+0000",
+        "LastModifiedDate": "2026-05-04T20:01:30.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IUXW4A4"
+        },
+        "Id": "0QLWC000003IUXW4A4",
+        "QuoteId": "0Q0WC000002QbJG0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QbJG0A0"
+          },
+          "Name": "33 Cancel BoKs Renewal Ta Ta Consultancy Services - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 33,
+        "NetUnitPrice": null,
+        "UnitPrice": 210,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:01:35.000+0000",
+        "LastModifiedDate": "2026-05-04T20:01:41.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IbBv4AK"
+        },
+        "Id": "0QLWC000003IbBv4AK",
+        "QuoteId": "0Q0WC000002QbRR0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QbRR0A0"
+          },
+          "Name": "2025 BoKs ING renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 22457,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:02:24.000+0000",
+        "LastModifiedDate": "2026-05-04T20:02:27.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003If244AC"
+        },
+        "Id": "0QLWC000003If244AC",
+        "QuoteId": "0Q0WC000002RIc10AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RIc10AG"
+          },
+          "Name": "cancel invoice",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 92,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:02:57.000+0000",
+        "LastModifiedDate": "2026-05-04T20:02:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IhN74AK"
+        },
+        "Id": "0QLWC000003IhN74AK",
+        "QuoteId": "0Q0WC000002Qddh0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qddh0AC"
+          },
+          "Name": "BoKs Renewal  Suncor Energy Services Inc. - 4/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 830,
+        "NetUnitPrice": null,
+        "UnitPrice": 253.31,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:03:18.000+0000",
+        "LastModifiedDate": "2026-05-04T20:03:21.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IiYp4AK"
+        },
+        "Id": "0QLWC000003IiYp4AK",
+        "QuoteId": "0Q0WC000002Qd9d0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qd9d0AC"
+          },
+          "Name": "Renewal Quote for Account: PureLogic IT - 9/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1,
+        "NetUnitPrice": null,
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:03:26.000+0000",
+        "LastModifiedDate": "2026-05-04T20:03:30.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Iui24AC"
+        },
+        "Id": "0QLWC000003Iui24AC",
+        "QuoteId": "0Q0WC000002Qflc0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qflc0AC"
+          },
+          "Name": "All BoKs Renewals Quote for Account: SAAB - 12/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 350,
+        "NetUnitPrice": null,
+        "UnitPrice": 57.96,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:04:56.000+0000",
+        "LastModifiedDate": "2026-05-04T20:05:00.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Iui34AC"
+        },
+        "Id": "0QLWC000003Iui34AC",
+        "QuoteId": "0Q0WC000002Qflc0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qflc0AC"
+          },
+          "Name": "All BoKs Renewals Quote for Account: SAAB - 12/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 610,
+        "NetUnitPrice": null,
+        "UnitPrice": 70.73,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:04:56.000+0000",
+        "LastModifiedDate": "2026-05-04T20:05:00.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IvUu4AK"
+        },
+        "Id": "0QLWC000003IvUu4AK",
+        "QuoteId": "0Q0WC000002Qfm20AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qfm20AC"
+          },
+          "Name": "Carahsoft- Co Termed to 2.28.26 GOVERNMENT OF CANADA - 12/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 3855,
+        "NetUnitPrice": null,
+        "UnitPrice": 80,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:05:02.000+0000",
+        "LastModifiedDate": "2026-05-04T20:05:05.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J0DJ4A0"
+        },
+        "Id": "0QLWC000003J0DJ4A0",
+        "QuoteId": "0Q0WC000002Qu7K0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qu7K0AS"
+          },
+          "Name": "Revised BoKs Renewal",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 147,
+        "NetUnitPrice": null,
+        "UnitPrice": 133.53,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:05:35.000+0000",
+        "LastModifiedDate": "2026-05-04T20:05:37.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J2ky4AC"
+        },
+        "Id": "0QLWC000003J2ky4AC",
+        "QuoteId": "0Q0WC000002RPPS0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RPPS0A4"
+          },
+          "Name": "Renewal Quote for Account: Santander Global Banking & Markets - 9/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 530,
+        "NetUnitPrice": null,
+        "UnitPrice": 165.34,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:05:52.000+0000",
+        "LastModifiedDate": "2026-05-04T20:05:55.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J3Fl4AK"
+        },
+        "Id": "0QLWC000003J3Fl4AK",
+        "QuoteId": "0Q0WC000002QgS80AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QgS80AK"
+          },
+          "Name": "Renewal Quote for Account: Itau Unibanco - 3/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 300,
+        "NetUnitPrice": null,
+        "UnitPrice": 202.7,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:05:55.000+0000",
+        "LastModifiedDate": "2026-05-04T20:05:57.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J3mI4AS"
+        },
+        "Id": "0QLWC000003J3mI4AS",
+        "QuoteId": "0Q0WC000002Qgjp0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qgjp0AC"
+          },
+          "Name": "Renewal Quote for Account: Applied Materials, Inc. - 4/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 2205,
+        "NetUnitPrice": null,
+        "UnitPrice": 108.53,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:05:58.000+0000",
+        "LastModifiedDate": "2026-05-04T20:06:02.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J8de4AC"
+        },
+        "Id": "0QLWC000003J8de4AC",
+        "QuoteId": "0Q0WC000002QhJI0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QhJI0A0"
+          },
+          "Name": "FYQ4 Swedish Police 250",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 150,
+        "NetUnitPrice": null,
+        "UnitPrice": 113.01,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:06:34.000+0000",
+        "LastModifiedDate": "2026-05-07T18:16:21.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J8df4AC"
+        },
+        "Id": "0QLWC000003J8df4AC",
+        "QuoteId": "0Q0WC000002QhJI0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QhJI0A0"
+          },
+          "Name": "FYQ4 Swedish Police 250",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 850,
+        "NetUnitPrice": null,
+        "UnitPrice": 413.44,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:06:34.000+0000",
+        "LastModifiedDate": "2026-05-07T18:16:21.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J8dd4AC"
+        },
+        "Id": "0QLWC000003J8dd4AC",
+        "QuoteId": "0Q0WC000002QhJI0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QhJI0A0"
+          },
+          "Name": "FYQ4 Swedish Police 250",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 200,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.5,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:06:34.000+0000",
+        "LastModifiedDate": "2026-05-07T18:16:21.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003J8dc4AC"
+        },
+        "Id": "0QLWC000003J8dc4AC",
+        "QuoteId": "0Q0WC000002QhJI0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QhJI0A0"
+          },
+          "Name": "FYQ4 Swedish Police 250",
+          "Status": "Won",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 200,
+        "NetUnitPrice": null,
+        "UnitPrice": 64.51,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:06:34.000+0000",
+        "LastModifiedDate": "2026-05-07T18:16:21.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JCvi4AG"
+        },
+        "Id": "0QLWC000003JCvi4AG",
+        "QuoteId": "0Q0WC000002QhMr0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QhMr0AK"
+          },
+          "Name": "Renewal Quote for Account: Boart Longyear - 1/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 60,
+        "NetUnitPrice": null,
+        "UnitPrice": 168.79,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:07:05.000+0000",
+        "LastModifiedDate": "2026-05-04T20:07:13.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JFDQ4A4"
+        },
+        "Id": "0QLWC000003JFDQ4A4",
+        "QuoteId": "0Q0WC000002QiKD0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QiKD0A0"
+          },
+          "Name": "Renewal Quote for Account: FIS - Fidelity National Information Services, Inc. - 8/4/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 20000,
+        "NetUnitPrice": null,
+        "UnitPrice": 41.8,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:07:25.000+0000",
+        "LastModifiedDate": "2026-05-04T20:07:28.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JMfJ4AW"
+        },
+        "Id": "0QLWC000003JMfJ4AW",
+        "QuoteId": "0Q0WC000002QjOj0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QjOj0AK"
+          },
+          "Name": "Renewal Quote for Account: Wells Fargo & Company - 2/4/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 90000,
+        "NetUnitPrice": null,
+        "UnitPrice": 18.9,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:08:18.000+0000",
+        "LastModifiedDate": "2026-05-04T20:08:21.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JTHt4AO"
+        },
+        "Id": "0QLWC000003JTHt4AO",
+        "QuoteId": "0Q0WC000002QkRo0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QkRo0AK"
+          },
+          "Name": "Renewal Quote for Account: Old Dominion Freight Line - 3/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 10,
+        "NetUnitPrice": null,
+        "UnitPrice": 84.66,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:09:12.000+0000",
+        "LastModifiedDate": "2026-05-04T20:09:16.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JZ1v4AG"
+        },
+        "Id": "0QLWC000003JZ1v4AG",
+        "QuoteId": "0Q0WC000002QRra0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QRra0AG"
+          },
+          "Name": "Renewal Quote for Account: DXC - 4/3/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 192,
+        "NetUnitPrice": null,
+        "UnitPrice": 337.9,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:09:48.000+0000",
+        "LastModifiedDate": "2026-05-04T20:09:50.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JZDg4AO"
+        },
+        "Id": "0QLWC000003JZDg4AO",
+        "QuoteId": "0Q0WC000002QkhI0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QkhI0AS"
+          },
+          "Name": "Renewal Quote for Account: Tucson Electric Power Company - Corporate IT Group - 11/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 417,
+        "NetUnitPrice": null,
+        "UnitPrice": 207.43,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:09:49.000+0000",
+        "LastModifiedDate": "2026-05-04T20:09:51.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IC7N4AW"
+        },
+        "Id": "0QLWC000003IC7N4AW",
+        "QuoteId": "0Q0WC000002QlnU0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QlnU0AS"
+          },
+          "Name": "Renewal Quote for Account: SAAB - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 310,
+        "NetUnitPrice": null,
+        "UnitPrice": 60.41,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:10:20.000+0000",
+        "LastModifiedDate": "2026-05-04T20:10:22.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003IC7O4AW"
+        },
+        "Id": "0QLWC000003IC7O4AW",
+        "QuoteId": "0Q0WC000002QlnU0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QlnU0AS"
+          },
+          "Name": "Renewal Quote for Account: SAAB - 1/2/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 150,
+        "NetUnitPrice": null,
+        "UnitPrice": 62.52,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:10:20.000+0000",
+        "LastModifiedDate": "2026-05-04T20:10:22.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JgTU4A0"
+        },
+        "Id": "0QLWC000003JgTU4A0",
+        "QuoteId": "0Q0WC000002Qlw30AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Qlw30AC"
+          },
+          "Name": "BoKs 2023 Renewal Wells Fargo & Company - 2/6/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 65000,
+        "NetUnitPrice": null,
+        "UnitPrice": 20.7,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:10:38.000+0000",
+        "LastModifiedDate": "2026-05-04T20:10:40.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Jhhn4AC"
+        },
+        "Id": "0QLWC000003Jhhn4AC",
+        "QuoteId": "0Q0WC000002QmGv0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QmGv0AK"
+          },
+          "Name": "Renewal Quote for Account: Ford Otomotiv Sanayi A.S. - 10/2/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 100,
+        "NetUnitPrice": null,
+        "UnitPrice": 98.6,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:10:45.000+0000",
+        "LastModifiedDate": "2026-05-04T20:10:53.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JiCm4AK"
+        },
+        "Id": "0QLWC000003JiCm4AK",
+        "QuoteId": "0Q0WC000002QmI20AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QmI20AK"
+          },
+          "Name": "Renewal Quote for Account: Essent Guaranty, Inc. - 9/30/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 160,
+        "NetUnitPrice": null,
+        "UnitPrice": 32,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:10:48.000+0000",
+        "LastModifiedDate": "2026-05-04T20:10:52.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JiCn4AK"
+        },
+        "Id": "0QLWC000003JiCn4AK",
+        "QuoteId": "0Q0WC000002QmI20AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QmI20AK"
+          },
+          "Name": "Renewal Quote for Account: Essent Guaranty, Inc. - 9/30/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 25,
+        "NetUnitPrice": null,
+        "UnitPrice": 65.13,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:10:48.000+0000",
+        "LastModifiedDate": "2026-05-04T20:10:52.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003Jn194AC"
+        },
+        "Id": "0QLWC000003Jn194AC",
+        "QuoteId": "0Q0WC000002RM3V0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RM3V0AW"
+          },
+          "Name": "Renewal Quote for Account: GOVERNMENT OF CANADA - 12/3/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 3855,
+        "NetUnitPrice": null,
+        "UnitPrice": 40,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:11:24.000+0000",
+        "LastModifiedDate": "2026-05-04T20:11:27.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JubB4AS"
+        },
+        "Id": "0QLWC000003JubB4AS",
+        "QuoteId": "0Q0WC000002QmkU0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QmkU0AS"
+          },
+          "Name": "Renewal Quote for Account: SAAB - 1/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 460,
+        "NetUnitPrice": null,
+        "UnitPrice": 65.9,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:12:18.000+0000",
+        "LastModifiedDate": "2026-05-04T20:12:25.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JubA4AS"
+        },
+        "Id": "0QLWC000003JubA4AS",
+        "QuoteId": "0Q0WC000002QmkU0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QmkU0AS"
+          },
+          "Name": "Renewal Quote for Account: SAAB - 1/3/2024 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 150,
+        "NetUnitPrice": null,
+        "UnitPrice": 53.84,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:12:18.000+0000",
+        "LastModifiedDate": "2026-05-04T20:12:25.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JuWe4AK"
+        },
+        "Id": "0QLWC000003JuWe4AK",
+        "QuoteId": "0Q0WC000002QnWj0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QnWj0AK"
+          },
+          "Name": "Renewal Quote for Account: ING Business Shared Services B.V. - 3/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 1000,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:12:18.000+0000",
+        "LastModifiedDate": "2026-05-04T20:12:23.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JuWd4AK"
+        },
+        "Id": "0QLWC000003JuWd4AK",
+        "QuoteId": "0Q0WC000002QnWj0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QnWj0AK"
+          },
+          "Name": "Renewal Quote for Account: ING Business Shared Services B.V. - 3/5/2023 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 18998,
+        "NetUnitPrice": null,
+        "UnitPrice": 38,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:12:18.000+0000",
+        "LastModifiedDate": "2026-05-04T20:12:23.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003JwTy4AK"
+        },
+        "Id": "0QLWC000003JwTy4AK",
+        "QuoteId": "0Q0WC000002RKLN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002RKLN0A4"
+          },
+          "Name": "Renewal Quote for Account: Tietoevry Tech Services AB - 1/5/2025 12:00:00 AM",
+          "Status": "Won",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Quantity": 6,
+        "NetUnitPrice": null,
+        "UnitPrice": 256.56,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": null,
+        "QuoteActionId": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "CreatedDate": "2026-05-04T20:13:29.000+0000",
+        "LastModifiedDate": "2026-05-04T20:14:26.000+0000"
+      }
+    ],
+    "totalSize": 124,
+    "done": true
+  },
+  "warnings": []
+}

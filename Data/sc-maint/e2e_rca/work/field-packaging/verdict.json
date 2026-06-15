@@ -1,0 +1,11 @@
+{
+  "scenario_id": "FIELD-PACKAGING",
+  "domain": "Config & data integrity",
+  "title": "SC-3346 custom fields exist + picklist values (force-app/prod gap)",
+  "status": "partial",
+  "severity": "medium",
+  "fixability": "uat-fixable",
+  "expected": "All SC-3346 custom fields exist live in UAT with correct types, and load-bearing picklist values present; deployable source-of-truth force-app carries them for prod promotion.",
+  "actual": "Field+picklist existence PASSES in live UAT; force-app/prod packaging FAILS.",
+  "evidence": []
+}

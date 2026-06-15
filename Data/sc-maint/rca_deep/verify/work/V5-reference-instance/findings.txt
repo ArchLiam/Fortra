@@ -1,0 +1,36 @@
+V5-reference-instance — control 67.38 vs fossil 60.64 DELTA (READ-ONLY, FortraUAT)
+
+CONTROL QLI 0QLWC000003dEW24AM (quote 00781084 / 0Q0WC00000382MH0AY, Draft)
+  Product PIA-PIA-RRM-PIAM 01tWC00000DD1buYAD ; derived PBE 01uWC000006XPPBYA4 (IsDerived=true, ListPrice=0)
+  UnitPrice 67.38 ; NetUnitPrice 67.38  (engine wrote net = unit)
+  QuoteAction 7ocWC00000u7yf8YAA Type=Renew SourceAssetId=02iWC000008GKPaYAO
+    (quote also has 2nd QA 7ocWC00000u7yf7YAA -> HRM training asset, irrelevant to RRM line)
+  SourceAsset 02iWC000008GKPaYAO = PIA-PIA-RRM-PIAM (SAME product as derived line), Price 60.64, acct Nir DPP Test 2 (001WC00000kZKNxYAO)
+    AssetAction 4nLWC00000319M62AI Type=Generate Category=Initial Sale
+    AAS-000543549 4nMWC0000044n9W2AQ: Subtotal 60.64, NetUnitPrice 60.64, Qty 1, PricebookEntryId 01uWC000006XPPBYA4 (= derived PBE)
+  => contributor resolves: asset LTP/AAS 60.64 -> uplift -> committed 67.38
+
+FOSSIL QLI 0QLWC000003e2Sn4AI (quote 00781109 / 0Q0WC0000038aXd0AI, Draft)
+  Product PIA-PIA-RRM-PIAM 01tWC00000DD1buYAD ; derived PBE 01uWC000006XPPBYA4 (IDENTICAL to control)
+  UnitPrice 67.38 ; NetUnitPrice 60.64  (net != unit ; fossil retained)
+  QuoteActions on quote: 0  (NO Renew action)
+  acct 001WC00000kTYyNYAW owns: PIAP 02iWC000008DmS2YAK (301.75), RNM/PIAMBK 02iWC000008DmS1YAK (62.48). NO RRM asset.
+
+MAP PRODUCTS / PBEDP (the SOURCE->DERIVED mapping), all 3 records:
+  182WC000000FN2tYAG, 182WC000000HNcvYAG, 182WC000000HNcwYAG
+  ALL: Product=PIA-PIA-RRM-PIAM (01tWC00000DD1buYAD), ContributingProductId=PIA-PIA-NRPS-PIAP (01tWC00000DD1btYAD, the LICENSE),
+       DerivedPricingScope=Both, PricingSource=Product, Formula='UnitPrice', EffectiveFrom 2026-04-01.
+  => declared contributor product is the PERPETUAL LICENSE PIAP, NOT the RNM new-maint PIAMBK.
+
+PROCEDURE: ExpressionSet 9QLWC0000015cDl4AI "Revenue Management Default Pricing Procedure" V14 Active (ESV 9QMWC00000023eX4AQ),
+  context def SalesTransactionContextExt_v2. Discovery is NATIVE in-procedure: step "DerivedProductsNativePull" (parentStep=null) ->
+  child elements "Derived Products - Non-Renewal" (DerivedProductsNonRenewal) + "Derived Products - Renewals" (DerivedProductsRenewals, actionType=DerivedPricing).
+  DerivedProductsRenewals inputs read context fields: Contributor(->ContributingId), ContributorProduct(->ContributingProduct),
+  ContributorUnitPrice(->ContributingNetUnitPrice), ContributorScope, ContributorSource, ContributorTotalPrice, ContributorListPrice,
+  ContributorFormulaInput ; outputs NetUnitPrice + ItemNetTotalPrice(->Subtotal). Same context shared (single procedure).
+
+DELTA that makes control commit 67.38:
+  (1) PRESENCE of QuoteAction(Type=Renew) on the quote  [control 1+, fossil 0]
+  (2) SourceAsset PRODUCT = the derived RRM product itself, with a lifecycle AAS carrying LTP 60.64 on the derived PBE
+      [control: RRM asset 02iWC000008GKPaYAO ; fossil acct has NO RRM asset]
+  NOT the Map Products / context / element wiring — those are IDENTICAL for both lines.

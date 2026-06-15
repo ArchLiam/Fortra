@@ -1,0 +1,47 @@
+{
+  "status": 0,
+  "result": {
+    "done": true,
+    "fileProperties": [
+      {
+        "createdById": "005a500001eZ8nxAAC",
+        "createdByName": "Aaron Broom",
+        "createdDate": "2025-08-04T13:57:34.000Z",
+        "fileName": "unpackaged/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition",
+        "fullName": "Rev_Mgmt_Default_Pricing_Procedure",
+        "id": "9QAWC0000003mg14AA",
+        "lastModifiedById": "005WC00000MgTN2YAN",
+        "lastModifiedByName": "Liam Jeong",
+        "lastModifiedDate": "2026-06-14T17:28:43.000Z",
+        "manageableState": "unmanaged",
+        "type": "ExpressionSetDefinition"
+      },
+      {
+        "createdById": "005WC00000MgTN2YAN",
+        "createdByName": "Liam Jeong",
+        "createdDate": "2026-06-14T18:33:05.289Z",
+        "fileName": "unpackaged/package.xml",
+        "fullName": "unpackaged/package.xml",
+        "id": "",
+        "lastModifiedById": "005WC00000MgTN2YAN",
+        "lastModifiedByName": "Liam Jeong",
+        "lastModifiedDate": "2026-06-14T18:33:05.289Z",
+        "manageableState": "unmanaged",
+        "type": "Package"
+      }
+    ],
+    "id": "09SWC00000R0DsB2AV",
+    "status": "Succeeded",
+    "success": true,
+    "messages": [],
+    "files": [
+      {
+        "fullName": "Rev_Mgmt_Default_Pricing_Procedure",
+        "type": "ExpressionSetDefinition",
+        "state": "Created",
+        "filePath": "/Users/liamjeong/Documents/Code/Fortra/Data/sc-maint/e2e_func2/work/nb-derived-net/retrieve/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml"
+      }
+    ]
+  },
+  "warnings": []
+}

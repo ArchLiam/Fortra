@@ -36,6 +36,17 @@ with `Source_List_Price__c=null`, `Base_Price__c=355` (license-list leak) — th
 That is an **auto-add line-stamping** defect (the maintenance SKU wasn't stamped derived / wasn't given the
 license list price), not a formula-choice issue. Belongs to the auto-add/CFG-AUTOADD scenario.
 
+## STATUS 2026-06-14: dead element REMOVED from V14 (deployed, pending reactivation)
+User deactivated V14 and authorized the edit. Removed the `DerivedPricingNewBusiness` `<steps>` block from the
+V14 block of `Rev_Mgmt_Default_Pricing_Procedure` and renumbered `ListContainer` to stay contiguous
+(DerivedPricingRenewals 3→2, DerivedPricingValuesAssignment 4→3). Deployed via metadata API (NoTestRun; the
+`metadata.transfer:Finalizing` error is the cosmetic CLI bug — deploy succeeded). **Verified by re-retrieve:**
+DerivedPricingNewBusiness 6→5 (only V14's removed), V14 ListContainer seqs = 1/2/3, line count 75412→75347,
+diff = exactly the −65 block + 2 seq renumbers, XML valid. V14 remains inactive.
+**REMAINING (user-gated): reactivate V14 + re-sync the scale cache, then a confirmation reprice.** Functionally
+a no-op (the removed element was triply-inert), so post-reactivation pricing should be byte-identical.
+Pristine rollback snapshot: `pristine_v14edit/`. Edited source: `retrieve_v14edit/`.
+
 ## Recommendation
 - **Functional resolution: PASS.** The correct formula computes the net; the dead formula is provably incapable
   of changing any price. There is no pricing risk today.

@@ -1,0 +1,386 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ExpressionSetDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/ExpressionSetDefinition/9QAWC000000C8mb4AC"
+        },
+        "Metadata": {
+          "contextDefinitions": [
+            "SalesTransactionContextExt_v2"
+          ],
+          "description": null,
+          "executionMode": null,
+          "executionScale": null,
+          "interfaceSourceType": "DiscoveryProcedure",
+          "label": "Salesforce Default Pricing Discovery Procedure v2",
+          "processType": "PricingDiscovery",
+          "resourceInitializationType": null,
+          "template": false,
+          "type": null,
+          "urls": null,
+          "usageSubtype": null,
+          "versions": [
+            {
+              "decimalScale": 2,
+              "description": "Salesforce Default Pricing Discovery Procedure v2",
+              "endDate": null,
+              "expressionSetDefinition": "Salesforce_Default_Pricing_Discovery_Procedure_v2",
+              "interfaceSourceType": "DiscoveryProcedure",
+              "label": "Salesforce Default Pricing Discovery Procedure v2",
+              "processType": "PricingDiscovery",
+              "rank": 1,
+              "shouldShowExplExternally": false,
+              "startDate": "2026-05-30T00:00:00.000+0000",
+              "status": "Active",
+              "steps": [
+                {
+                  "actionType": "AssetDiscovery",
+                  "advancedCondition": null,
+                  "aggregation": null,
+                  "assignment": null,
+                  "conditionExpression": null,
+                  "customElement": {
+                    "parameters": [
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "AccountId",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "Account"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LifecycleStartDate",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "EffectiveFrom"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LifecycleEndDate",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "EffectiveFrom"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "StartDate",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "EffectiveFrom"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "EndDate",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "EffectiveFrom"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LookUpName",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "Asset Action Source Entries V2"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LookUpId",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "0lDa50000007BJhEAM"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LookUpApiName",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "Asset_Action_Source_Entries_Decision_Table_V2"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "IsRealTime",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "false"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "NetUnitPrice",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorUnitPrice"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "TotalPrice",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorTotalPrice"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "ListPrice",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorListPrice"
+                      }
+                    ]
+                  },
+                  "decisionTable": null,
+                  "description": "Asset Discovery",
+                  "failedExplainerTemplate": null,
+                  "failedMessageTokenMappings": null,
+                  "hasNestedExplainability": false,
+                  "label": "Asset Discovery",
+                  "name": "AssetDiscovery",
+                  "noResultExplainerTemplate": null,
+                  "noResultMessageTokenMappings": null,
+                  "parentStep": null,
+                  "passedExplainerTemplate": null,
+                  "passedMessageTokenMappings": null,
+                  "predictiveAIElement": null,
+                  "resultIncluded": true,
+                  "sequenceNumber": 3,
+                  "shouldExposExecPathMsgOnly": true,
+                  "shouldExposeConditionDetails": false,
+                  "shouldShowExplExternally": false,
+                  "stepType": "BusinessKnowledgeModel",
+                  "subExpression": null
+                },
+                {
+                  "actionType": "RuleFetch",
+                  "advancedCondition": null,
+                  "aggregation": null,
+                  "assignment": null,
+                  "conditionExpression": null,
+                  "customElement": {
+                    "parameters": [
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "PricebookEntryId",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "ItemPricebookEntry"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "ProductSellingModelId",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "ProductSellingModel"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "ProductId",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "Product"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "EffectiveFrom",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "EffectiveFrom"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "EffectiveTo",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "EffectiveFrom"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LineItemId",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "LineItem"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "IsDerived",
+                        "output": false,
+                        "type": "Parameter",
+                        "value": "DerivedPricingAttribute"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LookUpName",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "Derived Pricing Entries"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LookUpId",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "0lDa50000007BI5EAM"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "LookUpApiName",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "Derived_Pricing_Entries_Decision_Table"
+                      },
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "IsRealTime",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "false"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "ContributorProduct",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorProduct"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "ContributorScope",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorScope"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "ContributorFormulaInput",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorFormulaInput"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "ContributorSource",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorSource"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "Contributor",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "Contributor"
+                      },
+                      {
+                        "dataType": null,
+                        "input": false,
+                        "name": "ContributorPriceDetail",
+                        "output": true,
+                        "type": "Parameter",
+                        "value": "ContributorPriceDetail"
+                      }
+                    ]
+                  },
+                  "decisionTable": null,
+                  "description": "Fetch Pricing Rules",
+                  "failedExplainerTemplate": null,
+                  "failedMessageTokenMappings": null,
+                  "hasNestedExplainability": false,
+                  "label": "Fetch Pricing Rules",
+                  "name": "FetchPricingRules",
+                  "noResultExplainerTemplate": null,
+                  "noResultMessageTokenMappings": null,
+                  "parentStep": null,
+                  "passedExplainerTemplate": null,
+                  "passedMessageTokenMappings": null,
+                  "predictiveAIElement": null,
+                  "resultIncluded": false,
+                  "sequenceNumber": 1,
+                  "shouldExposExecPathMsgOnly": true,
+                  "shouldExposeConditionDetails": false,
+                  "shouldShowExplExternally": false,
+                  "stepType": "BusinessKnowledgeModel",
+                  "subExpression": null
+                },
+                {
+                  "actionType": "MapProduct",
+                  "advancedCondition": null,
+                  "aggregation": null,
+                  "assignment": null,
+                  "conditionExpression": null,
+                  "customElement": {
+                    "parameters": [
+                      {
+                        "dataType": null,
+                        "input": true,
+                        "name": "IsRealTime",
+                        "output": false,
+                        "type": "Literal",
+                        "value": "false"
+                      }
+                    ]
+                  },
+                  "decisionTable": null,
+                  "description": "Map Product",
+                  "failedExplainerTemplate": null,
+                  "failedMessageTokenMappings": null,
+                  "hasNestedExplainability": false,
+                  "label": "Map Product",
+                  "name": "MapProduct",
+                  "noResultExplainerTemplate": null,
+                  "noResultMessageTokenMappings": null,
+                  "parentStep": null,
+                  "passedExplainerTemplate": null,
+                  "passedMessageTokenMappings": null,
+                  "predictiveAIElement": null,
+                  "resultIncluded": false,
+                  "sequenceNumber": 2,
+                  "shouldExposExecPathMsgOnly": true,
+                  "shouldExposeConditionDetails": false,
+                  "shouldShowExplExternally": false,
+                  "stepType": "BusinessKnowledgeModel",
+                  "subExpression": null
+                }
+              ],
+              "uiTier": null,
+              "urls": null,
+              "variables": [],
+              "versionNumber": 1
+            }
+          ]
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,30 @@
+M1-SDD FUNCTIONAL E2E — prehook seeds COLACalc + posthook/handler net mechanism (M-1)
+Run 2026-06-14, live FortraUAT, procedure V14 (ExpressionSet 9QLWC0000015cDl4AI).
+
+LIVE HOOK STATE (Tooling):
+  COLAUpliftPrehook         01pWC000001wNGbYAM v65 len47235 LMD 2026-06-14T14:40:21Z (Liam Jeong) implements RevSignaling.SignalingApexProcessor (L21)
+  PartnerNetPricePosthook   01pWC000002VmiLYAS v65 len35566 LMD 2026-06-14T02:35:00Z (Liam Jeong) implements RevSignaling.SignalingApexProcessor (L26)
+
+PREHOOK SEED (COLACalc) — WORKS:
+  computeStampedMaintenanceColaNet L545 = (Base - priorPartner - priorDisc) x (1+COLA%/100); seeds COLACalculatedPrice__c only (L582); no price-field seed.
+  Canary reprice log 07LWC00000OyWX42AN L9118 [604]: "RENEWAL MAINT COLA PREHOOK: QLI 0QLWC000003e2Sn4AI -> 67.38"
+  SOQL: COLACalculatedPrice__c = 67.38 / 60.64 stamped on all 4 canary lines.
+
+POSTHOOK NET MECHANISM — computes+submits correct net (no x0.90 in code), but no-op on excluded node:
+  computeRenewalMaintenanceColaNet L924 = same formula -> 67.38; build L876-882 writes NetUnitPrice/NetTotalPrice/UnitPrice/InputUnitPrice/PartnerUnitPrice/COLACalculatedPrice__c ALL = colaNet (67.38); PartnerDiscountPercent written as display attr only (L885-889).
+  Canary log: L10715 [852] procedureNet=60.64; L10990 [898] "RENEWAL MAINT COLA: Line 0QLWC000003e2Sn4AI -> Net=67.38 Partner%=12.00 Discount%=0.00"; submit via Context.IndustriesContext.updateContextAttributes [721]; linesUpdated=1.
+  Canary FINAL committed SOQL: NetUnitPrice=60.64, NetTotalPrice=60.64, UnitPrice=67.38, COLACalculatedPrice__c=67.38, Pre_Partner_Price__c=67.38, ALE__c=67.38.
+  60.64 = 67.38 x 0.90 (committed net is WRONG vs expected COLA net 67.38).
+
+POSITIVE CONTROL (mechanism lands when node is a priced node):
+  dEW24 (00781084, QuoteAction.Type='Renew'): reprice log 07LWC00000OyX1h2AF L9726 "Found 2 renewal QLIs from 2 total"; L21079 procedureNet=67.38 (procedure prices it correctly) -> posthook short-circuits (L857-859, no override needed). Committed NetUnitPrice=67.38 (CORRECT).
+  Canary (e2Sn4, QA=null): prehook L8826 "Found 0 renewal QLIs from 1 total" (no Renew QuoteAction) -> asset-renewal path empty; stamped path still seeds COLACalc; procedureNet=60.64 -> posthook override submitted but no-op.
+
+ALL 4 CANARY LINES (Draft Renewal quotes):
+  line            QA     pD    COLAseed   committedNet  expected  outcome
+  e2Sn4 (canary)  null   0     67.38      60.64         67.38     WRONG (no-op on QA-less excluded node)
+  dEW24 (posctrl) Renew  0     67.38      67.38         67.38     CORRECT (procedureNet=67.38)
+  ck6X4           null   0     67.38      0             67.38     WRONG ($0 unpriced node)
+  cy334           null   6.25  60.64      54.58         60.64     WRONG (54.58=60.64x0.90)
+
+Reprices: isSuccess:true, non-destructive, 0 ScaleCache/FATAL/NPE in log. Reused existing FINEST TraceFlag 7tfWC000000bjm9YAA (exp 18:00Z); none created/deleted. No Quote/QLI DML, no activation, no integration. Accepted quote 00781068 untouched.

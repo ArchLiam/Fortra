@@ -1,0 +1,106 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cN584AE"
+        },
+        "Id": "0QLWC000003cN584AE",
+        "QuoteActionId": null,
+        "Product2Id": "01tWC00000DD1buYAD",
+        "PricebookEntryId": "01uWC000006XPPBYA4",
+        "ListPrice": 0,
+        "UnitPrice": 67.38,
+        "NetUnitPrice": 0,
+        "COLA_Source__c": null,
+        "COLACalculatedPrice__c": 67.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ck6X4AQ"
+        },
+        "Id": "0QLWC000003ck6X4AQ",
+        "QuoteActionId": null,
+        "Product2Id": "01tWC00000DD1buYAD",
+        "PricebookEntryId": "01uWC000006XPPBYA4",
+        "ListPrice": 0,
+        "UnitPrice": 67.38,
+        "NetUnitPrice": 0,
+        "COLA_Source__c": null,
+        "COLACalculatedPrice__c": 67.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cy334AA"
+        },
+        "Id": "0QLWC000003cy334AA",
+        "QuoteActionId": null,
+        "Product2Id": "01tWC00000DD1buYAD",
+        "PricebookEntryId": "01uWC000006XPPBYA4",
+        "ListPrice": 0,
+        "UnitPrice": 60.64,
+        "NetUnitPrice": 54.58,
+        "COLA_Source__c": null,
+        "COLACalculatedPrice__c": 60.64,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dEW24AM"
+        },
+        "Id": "0QLWC000003dEW24AM",
+        "QuoteActionId": "7ocWC00000u7yf8YAA",
+        "Product2Id": "01tWC00000DD1buYAD",
+        "PricebookEntryId": "01uWC000006XPPBYA4",
+        "ListPrice": 0,
+        "UnitPrice": 67.38,
+        "NetUnitPrice": 67.38,
+        "COLA_Source__c": "CMDT Lookup",
+        "COLACalculatedPrice__c": 67.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003e2Sn4AI"
+        },
+        "Id": "0QLWC000003e2Sn4AI",
+        "QuoteActionId": null,
+        "Product2Id": "01tWC00000DD1buYAD",
+        "PricebookEntryId": "01uWC000006XPPBYA4",
+        "ListPrice": 0,
+        "UnitPrice": 67.38,
+        "NetUnitPrice": 60.64,
+        "COLA_Source__c": null,
+        "COLACalculatedPrice__c": 67.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003eMph4AE"
+        },
+        "Id": "0QLWC000003eMph4AE",
+        "QuoteActionId": null,
+        "Product2Id": "01tWC00000DD1buYAD",
+        "PricebookEntryId": "01uWC000006XPPBYA4",
+        "ListPrice": 0,
+        "UnitPrice": 60.64,
+        "NetUnitPrice": 54.58,
+        "COLA_Source__c": null,
+        "COLACalculatedPrice__c": 60.64,
+        "Quantity": 1
+      }
+    ],
+    "totalSize": 6,
+    "done": true
+  },
+  "warnings": []
+}

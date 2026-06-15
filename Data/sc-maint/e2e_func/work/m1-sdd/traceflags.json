@@ -1,0 +1,27 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "TraceFlag",
+          "url": "/services/data/v67.0/tooling/sobjects/TraceFlag/7tfWC000000bjm9YAA"
+        },
+        "Id": "7tfWC000000bjm9YAA",
+        "TracedEntityId": "005WC00000MgTN2YAN",
+        "DebugLevelId": "7dlWC0000001YxJYAU",
+        "ExpirationDate": "2026-06-14T18:00:00.000+0000",
+        "LogType": "USER_DEBUG",
+        "DebugLevel": {
+          "attributes": {
+            "type": "DebugLevel",
+            "url": "/services/data/v67.0/tooling/sobjects/DebugLevel/7dlWC0000001YxJYAU"
+          },
+          "DeveloperName": "Finiest"
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  }
+}

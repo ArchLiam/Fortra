@@ -1,0 +1,62 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037XvB0AU"
+        },
+        "Id": "0Q0WC0000037XvB0AU",
+        "Name": "Renewal Quote",
+        "QuoteNumber": "00781043",
+        "Status": "Draft",
+        "QuoteTypeText__c": "Renewal",
+        "CurrencyIsoCode": "USD",
+        "OriginalActionType": "Renew"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+        },
+        "Id": "0Q0WC0000037muD0AQ",
+        "Name": "Renewal Quote",
+        "QuoteNumber": "00781053",
+        "Status": "Draft",
+        "QuoteTypeText__c": "Renewal",
+        "CurrencyIsoCode": "USD",
+        "OriginalActionType": "Renew"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000382MH0AY"
+        },
+        "Id": "0Q0WC00000382MH0AY",
+        "Name": "Renewal Quote",
+        "QuoteNumber": "00781084",
+        "Status": "Draft",
+        "QuoteTypeText__c": "Renewal",
+        "CurrencyIsoCode": "USD",
+        "OriginalActionType": "Renew"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038aXd0AI"
+        },
+        "Id": "0Q0WC0000038aXd0AI",
+        "Name": "Renewal Quote",
+        "QuoteNumber": "00781109",
+        "Status": "Draft",
+        "QuoteTypeText__c": "Renewal",
+        "CurrencyIsoCode": "USD",
+        "OriginalActionType": "Renew"
+      }
+    ],
+    "totalSize": 4,
+    "done": true
+  },
+  "warnings": []
+}

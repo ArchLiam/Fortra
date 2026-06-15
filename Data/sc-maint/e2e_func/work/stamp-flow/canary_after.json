@@ -1,0 +1,27 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003e2Sn4AI"
+        },
+        "Id": "0QLWC000003e2Sn4AI",
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Base_Price__c": 71,
+        "Source_List_Price__c": 355,
+        "Prior_Partner_Discount__c": 8.52,
+        "Prior_Discretionary_Discount__c": 0,
+        "COLA_Uplift_Percent__c": 7.85,
+        "COLACalculatedPrice__c": 67.38,
+        "NetUnitPrice": 60.64,
+        "UnitPrice": 67.38,
+        "LastModifiedDate": "2026-06-14T14:45:51.000+0000"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

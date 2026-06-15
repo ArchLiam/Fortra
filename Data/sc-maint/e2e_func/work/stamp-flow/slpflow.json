@@ -1,0 +1,34 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Flow",
+          "url": "/services/data/v67.0/tooling/sobjects/Flow/301WC00000kJs76YAC"
+        },
+        "VersionNumber": 8,
+        "Status": "Active"
+      },
+      {
+        "attributes": {
+          "type": "Flow",
+          "url": "/services/data/v67.0/tooling/sobjects/Flow/301WC00000kJt9ZYAS"
+        },
+        "VersionNumber": 7,
+        "Status": "Obsolete"
+      },
+      {
+        "attributes": {
+          "type": "Flow",
+          "url": "/services/data/v67.0/tooling/sobjects/Flow/301WC00000kJrEIYA0"
+        },
+        "VersionNumber": 6,
+        "Status": "Obsolete"
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

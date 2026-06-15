@@ -1,0 +1,39 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cxzq4AA"
+        },
+        "Id": "0QLWC000003cxzq4AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB",
+          "Fortra_Product_Type__c": "Subscription",
+          "Solution_Category__c": "Vulnerability Management"
+        },
+        "Quantity": 1,
+        "UnitPrice": 5417.5,
+        "NetUnitPrice": 4442.35,
+        "ListPrice": 0,
+        "COLACalculatedPrice__c": 5417.5,
+        "COLA_Uplift_Percent__c": 6.2,
+        "Pre_COLA_Price__c": 5101.22,
+        "Default_COLA_Uplift_Percent__c": null,
+        "COLA_Solution_Category__c": "Vulnerability Management",
+        "COLA_Applied_Date__c": "2026-06-14T14:46:22.000+0000",
+        "COLA_Source__c": "CMDT Lookup",
+        "Is_COLA_Overridden__c": false,
+        "QuoteActionId": "7ocWC00000u7tqlYAA"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

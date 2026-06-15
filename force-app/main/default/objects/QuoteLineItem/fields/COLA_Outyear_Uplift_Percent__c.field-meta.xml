@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COLA_Outyear_Uplift_Percent__c</fullName>
+    <description>The COLA uplift percentage applied to out-years (years 2+) on multi-year deals. Defaults to MyCAP_Rules__mdt Global value when COLA Source is MyCAP Default. Editable for negotiated out-year rates.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The COLA percentage applied to out-years (years 2+). Defaults to the MyCAP rate but can be overridden for negotiated deals.</inlineHelpText>
+    <label>COLA Outyear Uplift Percent</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

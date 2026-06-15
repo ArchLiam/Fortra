@@ -1,0 +1,810 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cxzq4AA"
+        },
+        "Id": "0QLWC000003cxzq4AA",
+        "QuoteId": "0Q0WC0000037muD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 5417.5,
+        "NetUnitPrice": 4442.35,
+        "Pre_COLA_Price__c": 5101.22,
+        "COLA_Uplift_Percent__c": 6.2,
+        "COLA_Solution_Category__c": "Vulnerability Management",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-14T14:46:22.000+0000",
+        "QuoteActionId": "7ocWC00000u7tqlYAA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bGgr4AE"
+        },
+        "Id": "0QLWC000003bGgr4AE",
+        "QuoteId": "0Q0WC00000364Lm0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000364Lm0AI"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 2674.8475,
+        "NetUnitPrice": 2674.85,
+        "Pre_COLA_Price__c": 2435,
+        "COLA_Uplift_Percent__c": 9.85,
+        "COLA_Solution_Category__c": "Robotic Process Automation",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-14T14:45:02.000+0000",
+        "QuoteActionId": "7ocWC00000tYaHYYA0"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bGgp4AE"
+        },
+        "Id": "0QLWC000003bGgp4AE",
+        "QuoteId": "0Q0WC00000364Lm0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000364Lm0AI"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 2674.8475,
+        "NetUnitPrice": 2674.85,
+        "Pre_COLA_Price__c": 2435,
+        "COLA_Uplift_Percent__c": 9.85,
+        "COLA_Solution_Category__c": "Robotic Process Automation",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-14T14:45:02.000+0000",
+        "QuoteActionId": "7ocWC00000tYaHWYA0"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bJOX4A2"
+        },
+        "Id": "0QLWC000003bJOX4A2",
+        "QuoteId": "0Q0WC000003671t0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003671t0AA"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 929.25,
+        "NetUnitPrice": 929.25,
+        "Pre_COLA_Price__c": 875,
+        "COLA_Uplift_Percent__c": 6.2,
+        "COLA_Solution_Category__c": "Vulnerability Management",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-13T22:01:08.000+0000",
+        "QuoteActionId": "7ocWC00000tYaMMYA0"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bJOY4A2"
+        },
+        "Id": "0QLWC000003bJOY4A2",
+        "QuoteId": "0Q0WC000003671t0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003671t0AA"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "ProductCode": "BI-ABS-RSS-ABSTSU",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 4697.946,
+        "NetUnitPrice": 4697.95,
+        "Pre_COLA_Price__c": 4356,
+        "COLA_Uplift_Percent__c": 7.85,
+        "COLA_Solution_Category__c": "Business Intelligence",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-13T22:01:08.000+0000",
+        "QuoteActionId": "7ocWC00000tYaMLYA0"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dEHV4A2"
+        },
+        "Id": "0QLWC000003dEHV4A2",
+        "QuoteId": "0Q0WC000003829N0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003829N0AQ"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD13zYAD"
+          },
+          "ProductCode": "RPA-AUT-RSS-AUES",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 0,
+        "NetUnitPrice": 0,
+        "Pre_COLA_Price__c": 0,
+        "COLA_Uplift_Percent__c": 9.85,
+        "COLA_Solution_Category__c": "Robotic Process Automation",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-11T21:10:18.000+0000",
+        "QuoteActionId": "7ocWC00000u7yaHYAQ"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bIAj4AM"
+        },
+        "Id": "0QLWC000003bIAj4AM",
+        "QuoteId": "0Q0WC00000365ph0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000365ph0AA"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 2674.8475,
+        "NetUnitPrice": 2674.85,
+        "Pre_COLA_Price__c": 2435,
+        "COLA_Uplift_Percent__c": 9.85,
+        "COLA_Solution_Category__c": "Robotic Process Automation",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-11T01:43:50.000+0000",
+        "QuoteActionId": "7ocWC00000tYaJ7YAK"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aWhB4AU"
+        },
+        "Id": "0QLWC000003aWhB4AU",
+        "QuoteId": "0Q0WC0000035LA90AM",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035LA90AM"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 2674.8475,
+        "NetUnitPrice": 2674.85,
+        "Pre_COLA_Price__c": 2435,
+        "COLA_Uplift_Percent__c": 9.85,
+        "COLA_Solution_Category__c": "Robotic Process Automation",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-11T01:43:29.000+0000",
+        "QuoteActionId": "7ocWC00000tGd8zYAC"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000034PsY4AU"
+        },
+        "Id": "0QLWC0000034PsY4AU",
+        "QuoteId": "0Q0WC000002iHNN0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002iHNN0A2"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BUYA1"
+          },
+          "ProductCode": "FIM-FIM-RSS-DPEEXS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 341.25,
+        "NetUnitPrice": 334.75,
+        "Pre_COLA_Price__c": 325,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "File Integrity Monitoring",
+        "COLA_Source__c": "MyCAP Default",
+        "COLA_Applied_Date__c": "2026-06-11T01:43:03.000+0000",
+        "QuoteActionId": "7ocWC00000muSpCYAU"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000031Lgb4AE"
+        },
+        "Id": "0QLWC0000031Lgb4AE",
+        "QuoteId": "0Q0WC000002gWNJ0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002gWNJ0A2"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCy0FYAT"
+          },
+          "ProductCode": "ES-SIG-RSS-SSSIGS_LIC",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 588.924,
+        "NetUnitPrice": 0,
+        "Pre_COLA_Price__c": 560.88,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Line Override",
+        "COLA_Applied_Date__c": "2026-06-11T01:42:53.000+0000",
+        "QuoteActionId": "7ocWC00000mX6B3YAK"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002YTxh4AG"
+        },
+        "Id": "0QLWC000002YTxh4AG",
+        "QuoteId": "0Q0WC000002Jg7F0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Jg7F0AS"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCy0FYAT"
+          },
+          "ProductCode": "ES-SIG-RSS-SSSIGS_LIC",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": null,
+        "NetUnitPrice": null,
+        "Pre_COLA_Price__c": 369,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "MyCAP Default",
+        "COLA_Applied_Date__c": "2026-06-11T01:42:30.000+0000",
+        "QuoteActionId": "7ocWC00000h8NhpYAE"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003abKH4AY"
+        },
+        "Id": "0QLWC000003abKH4AY",
+        "QuoteId": "0Q0WC0000035P8v0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035P8v0AE"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "ProductCode": "DM-WCU-RSS-5250SU",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 6548.85,
+        "NetUnitPrice": 2021.25,
+        "Pre_COLA_Price__c": 6063.75,
+        "COLA_Uplift_Percent__c": 8,
+        "COLA_Solution_Category__c": "Doc Management",
+        "COLA_Source__c": "Line Override",
+        "COLA_Applied_Date__c": "2026-06-05T16:20:02.000+0000",
+        "QuoteActionId": "7ocWC00000tGdIfYAK"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aVMw4AM"
+        },
+        "Id": "0QLWC000003aVMw4AM",
+        "QuoteId": "0Q0WC0000035Jt80AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035Jt80AE"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "ProductCode": "DM-WCU-RSS-5250SU",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 6539.754375,
+        "NetUnitPrice": 2021.25,
+        "Pre_COLA_Price__c": 6063.75,
+        "COLA_Uplift_Percent__c": 7.85,
+        "COLA_Solution_Category__c": "Doc Management",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-06-05T12:43:46.000+0000",
+        "QuoteActionId": "7ocWC00000tGd7NYAS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aHv34AE"
+        },
+        "Id": "0QLWC000003aHv34AE",
+        "QuoteId": "0Q0WC00000355yD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000355yD0AQ"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "ProductCode": "DM-WCU-RSS-5250SU",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 6306.3,
+        "NetUnitPrice": 2021.25,
+        "Pre_COLA_Price__c": 6063.75,
+        "COLA_Uplift_Percent__c": 4,
+        "COLA_Solution_Category__c": "Doc Management",
+        "COLA_Source__c": "Contract Override",
+        "COLA_Applied_Date__c": "2026-06-04T21:45:06.000+0000",
+        "QuoteActionId": "7ocWC00000t8FAHYA2"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037spx4AA"
+        },
+        "Id": "0QLWC0000037spx4AA",
+        "QuoteId": "0Q0WC000002lm6T0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lm6T0AQ"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 96820,
+        "NetUnitPrice": 94000,
+        "Pre_COLA_Price__c": 94000,
+        "COLA_Uplift_Percent__c": 3,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Line Override",
+        "COLA_Applied_Date__c": "2026-04-23T19:03:37.000+0000",
+        "QuoteActionId": "7ocWC00000nm5sPYAQ"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037sd34AA"
+        },
+        "Id": "0QLWC0000037sd34AA",
+        "QuoteId": "0Q0WC000002lloj0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lloj0AA"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 98700,
+        "NetUnitPrice": 96350,
+        "Pre_COLA_Price__c": 94000,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Line Override",
+        "COLA_Applied_Date__c": "2026-04-23T18:57:56.000+0000",
+        "QuoteActionId": "7ocWC00000nm5pBYAQ"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037qbF4AQ"
+        },
+        "Id": "0QLWC0000037qbF4AQ",
+        "QuoteId": "0Q0WC000002ljtN0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002ljtN0AQ"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 96350,
+        "NetUnitPrice": 96350,
+        "Pre_COLA_Price__c": 94000,
+        "COLA_Uplift_Percent__c": 2.5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Contract Override",
+        "COLA_Applied_Date__c": "2026-04-23T17:33:52.000+0000",
+        "QuoteActionId": "7ocWC00000nm57dYAA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037ozF4AQ"
+        },
+        "Id": "0QLWC0000037ozF4AQ",
+        "QuoteId": "0Q0WC000002liFl0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002liFl0AI"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 98700,
+        "NetUnitPrice": 94000,
+        "Pre_COLA_Price__c": 94000,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Contract Override",
+        "COLA_Applied_Date__c": "2026-04-23T16:23:38.000+0000",
+        "QuoteActionId": "7ocWC00000nm4xxYAA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037n5V4AQ"
+        },
+        "Id": "0QLWC0000037n5V4AQ",
+        "QuoteId": "0Q0WC000002lgPF0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lgPF0AY"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 98700,
+        "NetUnitPrice": 98700,
+        "Pre_COLA_Price__c": 94000,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Contract Override",
+        "COLA_Applied_Date__c": "2026-04-23T15:06:04.000+0000",
+        "QuoteActionId": "7ocWC00000nm4ptYAA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037m2z4AA"
+        },
+        "Id": "0QLWC0000037m2z4AA",
+        "QuoteId": "0Q0WC000002lfOL0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lfOL0AY"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 103400,
+        "NetUnitPrice": 98700,
+        "Pre_COLA_Price__c": 94000,
+        "COLA_Uplift_Percent__c": 10,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "Line Override",
+        "COLA_Applied_Date__c": "2026-04-23T15:02:07.000+0000",
+        "QuoteActionId": "7ocWC00000nm4mfYAA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037ljd4AA"
+        },
+        "Id": "0QLWC0000037ljd4AA",
+        "QuoteId": "0Q0WC000002lf6b0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lf6b0AA"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 296100,
+        "NetUnitPrice": 296100,
+        "Pre_COLA_Price__c": 282000,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Email Security",
+        "COLA_Source__c": "MyCAP Default",
+        "COLA_Applied_Date__c": "2026-04-23T14:09:37.000+0000",
+        "QuoteActionId": "7ocWC00000nm4hpYAA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000031OTB4A2"
+        },
+        "Id": "0QLWC0000031OTB4A2",
+        "QuoteId": "0Q0WC000002gYfF0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002gYfF0AU"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17QYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSACH",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 7567560,
+        "NetUnitPrice": 7567560,
+        "Pre_COLA_Price__c": 7207200,
+        "COLA_Uplift_Percent__c": 5,
+        "COLA_Solution_Category__c": "Human Risk Management",
+        "COLA_Source__c": "Line Override",
+        "COLA_Applied_Date__c": "2026-04-13T18:26:49.000+0000",
+        "QuoteActionId": "7ocWC00000mX6cTYAS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeH4AW"
+        },
+        "Id": "0QLWC000002UYeH4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OjYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASSS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 1279.79537671,
+        "NetUnitPrice": 0,
+        "Pre_COLA_Price__c": 1186.6438356164385,
+        "COLA_Uplift_Percent__c": 7.85,
+        "COLA_Solution_Category__c": "GoAnywhere",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-02-18T18:43:06.000+0000",
+        "QuoteActionId": "7ocWC00000gGY0jYAG"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeD4AW"
+        },
+        "Id": "0QLWC000002UYeD4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MAYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAWRS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 8410.08390411,
+        "NetUnitPrice": 12650,
+        "Pre_COLA_Price__c": 7797.945205479453,
+        "COLA_Uplift_Percent__c": 7.85,
+        "COLA_Solution_Category__c": "GoAnywhere",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-02-18T18:43:06.000+0000",
+        "QuoteActionId": "7ocWC00000gGY0kYAG"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeF4AW"
+        },
+        "Id": "0QLWC000002UYeF4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Name": "Renewal Quote",
+          "Status": "Draft"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OjYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASSS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "UnitPrice": 1279.79537671,
+        "NetUnitPrice": 0,
+        "Pre_COLA_Price__c": 1186.6438356164385,
+        "COLA_Uplift_Percent__c": 7.85,
+        "COLA_Solution_Category__c": "GoAnywhere",
+        "COLA_Source__c": "CMDT Lookup",
+        "COLA_Applied_Date__c": "2026-02-18T18:43:06.000+0000",
+        "QuoteActionId": "7ocWC00000gGY0oYAG"
+      }
+    ],
+    "totalSize": 25,
+    "done": true
+  },
+  "warnings": []
+}

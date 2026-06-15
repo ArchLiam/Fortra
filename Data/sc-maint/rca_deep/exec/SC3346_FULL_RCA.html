@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SC-3346 — Maintenance (Derived) Pricing + COLA: Full RCA</title>
+<style>
+ *{box-sizing:border-box;margin:0;padding:0}
+ html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.55;padding:44px 26px 70px}
+ .wrap{max-width:1200px;margin:0 auto}
+ .eyebrow{font-size:13px;letter-spacing:2.5px;text-transform:uppercase;color:#7d8590;font-weight:700}
+ h1{font-size:37px;font-weight:850;margin:6px 0 6px;line-height:1.08}
+ .sub{font-size:15px;color:#9aa4af;max-width:880px}
+ .verdict{margin:24px 0;padding:22px 26px;border-radius:16px;background:linear-gradient(135deg,#0e2a18,#0a1f12);border:1px solid #2ea043}
+ .verdict .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#3fb950;font-weight:800}
+ .verdict .txt{font-size:22px;font-weight:740;margin-top:7px;color:#fff}
+ .verdict .txt b{color:#7ee787}
+ .kpis{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
+ .kpi{flex:1;min-width:140px;background:#161b22;border:1px solid #30363d;border-radius:13px;padding:16px;text-align:center}
+ .kpi .n{font-size:30px;font-weight:850;line-height:1.05}
+ .kpi .l{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#7d8590;margin-top:7px;font-weight:600}
+ .sec-h{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#58a6ff;font-weight:800;margin:38px 0 14px;padding-bottom:7px;border-bottom:1px solid #21262d}
+ .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ .card{background:#161b22;border:1px solid #30363d;border-radius:14px;padding:20px 22px}
+ .card h3{font-size:16px;margin-bottom:9px;color:#fff}
+ .card p,.card li{font-size:14px;color:#adbac7}
+ .card ul{margin:6px 0 0 18px}
+ .chain{list-style:none}
+ .chain li{position:relative;padding:9px 0 9px 42px;font-size:14.5px;color:#c9d1d9;border-left:2px solid #30363d;margin-left:14px}
+ .chain li::before{counter-increment:step;content:counter(step);position:absolute;left:-15px;top:8px;width:28px;height:28px;border-radius:50%;background:#db6d28;color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center}
+ .chain{counter-reset:step}
+ .chain li.fix::before{background:#2ea043}
+ .tl{list-style:none;counter-reset:ph}
+ .tl li{position:relative;padding:11px 0 11px 46px;border-left:2px solid #30363d;margin-left:16px}
+ .tl li::before{counter-increment:ph;content:"P"counter(ph);position:absolute;left:-19px;top:9px;width:36px;height:24px;border-radius:12px;background:#1f2937;border:1px solid #30363d;color:#58a6ff;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center}
+ .tl .h{font-size:14.5px;font-weight:700;color:#e6edf3}
+ .tl .d{font-size:13.5px;color:#9aa4af;margin-top:2px}
+ .tl li.win::before{background:#0e2a18;border-color:#2ea043;color:#3fb950}
+ table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:4px}
+ th{text-align:left;padding:8px 11px;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:#7d8590;border-bottom:2px solid #30363d}
+ td{padding:9px 11px;border-bottom:1px solid #21262d;vertical-align:top;color:#c9d1d9}
+ .mono{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:#79c0ff}
+ .pill{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:20px;white-space:nowrap}
+ .ok{color:#3fb950;background:#0e2a18}.bad{color:#ff7b72;background:#2a1416}.warn{color:#e3b341;background:#2d2606}.info{color:#58a6ff;background:#0d2440}
+ .flow{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#0d1117;border:1px solid #30363d;border-radius:10px;padding:13px 15px;color:#e6edf3;line-height:1.85;overflow-x:auto}
+ .flow .g{color:#3fb950}.flow .d{color:#7d8590}.flow .y{color:#e3b341}
+ .note{background:#13202e;border:1px solid #1f4060;border-left:3px solid #58a6ff;border-radius:8px;padding:12px 15px;font-size:13.5px;color:#adbac7;margin-top:10px}
+ .foot{margin-top:30px;color:#6e7681;font-size:12px;text-align:center;border-top:1px solid #21262d;padding-top:16px}
+ code{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#21262d;padding:1px 5px;border-radius:5px;color:#e3b341}
+ b.g{color:#7ee787}
+ @media(max-width:860px){.two{grid-template-columns:1fr}h1{font-size:28px}}
+ @media print{@page{margin:13mm 0}.kpi,.card,.verdict,.flow,table,.chain li,.tl li,.note{break-inside:avoid}.sec-h{break-after:avoid}}
+</style></head><body><div class="wrap">
+
+ <div class="eyebrow">Root-Cause Analysis &middot; Revenue Cloud Advanced / RLM &middot; FortraUAT &middot; 2026-06-14</div>
+ <h1>SC-3346 &mdash; Maintenance (Derived) Pricing + COLA</h1>
+ <div class="sub">Full investigation, root cause, fix, and live end-to-end validation for renewal-maintenance lines committing the wrong COLA price. Product in scope: Powertech Identity &amp; Access Manager (BoKS).</div>
+
+ <div class="verdict">
+   <div class="lbl">Verdict</div>
+   <div class="txt"><b>FIXED &mdash; deployed and end-to-end proven on live data.</b> A maintenance renewal now commits the correct COLA net <b>$67.38</b> (= 62.48 &times; 1.0785) instead of the frozen <b>$60.64 / $0</b> &mdash; the native engine applies the COLA uplift once the owned line renews as <b>Renew</b>.</div>
+ </div>
+
+ <div class="kpis">
+   <div class="kpi"><div class="n" style="color:#3fb950">$67.38</div><div class="l">Now commits (was $60.64/$0)</div></div>
+   <div class="kpi"><div class="n" style="color:#3fb950">4/4</div><div class="l">Unit tests &middot; 100% class cov</div></div>
+   <div class="kpi"><div class="n" style="color:#79c0ff">1 / 0</div><div class="l">Lines total / stray RRM</div></div>
+   <div class="kpi"><div class="n" style="color:#3fb950">$67.38</div><div class="l">Quote rollup (not stale)</div></div>
+   <div class="kpi"><div class="n" style="color:#e3b341">6</div><div class="l">Dead-ends ruled out</div></div>
+   <div class="kpi"><div class="n" style="color:#3fb950">0</div><div class="l">Catalog / model changes</div></div>
+ </div>
+
+ <div class="sec-h">1 &middot; The defect &mdash; in business terms</div>
+ <div class="card">
+   <p>When a customer renews their BoKS maintenance, the renewal line priced at the <b>wrong amount</b> &mdash; a stale <b>$60.64</b> (a one-period double-discounted fossil, = 67.38 &times; 0.90) or <b>$0</b> &mdash; instead of the correct cost-of-living-adjusted renewal of <b>$67.38</b> (last year&rsquo;s net $62.48 &times; 7.85% COLA). The COLA arithmetic was never wrong; the value simply <b>never committed</b> to the line. Several prior remediation attempts failed because every one of them tried to <i>write the price</i> at reprice time &mdash; the wrong layer entirely.</p>
+ </div>
+
+ <div class="sec-h">2 &middot; Root cause &mdash; a selling-model mismatch (found via end-to-end debug)</div>
+ <ol class="chain">
+   <li>New-business maintenance (<span class="mono">PIA-PIA-RNM-PIAMBK</span>) is sold under a <b>One-Time</b> selling model, so the asset the customer owns is One-Time &mdash; <b>not a renewable subscription</b>.</li>
+   <li>The platform&rsquo;s <code>initiateRenewal</code> therefore tags that asset&rsquo;s renewal as <b>QuoteAction.Type = &ldquo;No Change&rdquo;, Quantity 0</b> &mdash; which never enters the <code>Renew</code>-gated COLA path (<span class="mono">COLAUpliftonRenewalNet</span>). Term-Based subscriptions (beSECURE) renew as <code>Renew</code> and price correctly.</li>
+   <li>The legacy Year-2 AutoAdd rule then <b>deletes</b> that owned-asset line and substitutes an asset-less <b>Renewal-Maintenance</b> line (<span class="mono">PIA-PIA-RRM-PIAM</span>) with <b>no contributor</b> &mdash; the native <span class="mono">DerivedProductsRenewals</span> committer skips it, so its price freezes at the fossil or $0.</li>
+   <li class="fix"><b>The fix:</b> stop discarding the owned line &mdash; <b>flip it to <code>Renew</code></b> and let the native engine apply the COLA uplift to last year&rsquo;s net. No new pricing logic, no catalog change, no selling-model change.</li>
+ </ol>
+
+ <div class="sec-h">3 &middot; The investigation &mdash; phase by phase</div>
+ <ul class="tl">
+   <li><div class="h">Symptom triage &amp; scope</div><div class="d">Renewal-maintenance committing $60.64 / $0 vs the COLA-correct $67.38. COLA math verified correct; the value was not persisting to the line.</div></li>
+   <li><div class="h">Two mechanisms separated</div><div class="d">A1 (partner double-discount, posthook-version dependent) vs A2 (no priced node at all) &mdash; sequential, not competing. The earlier qty-based framing was tested and set aside.</div></li>
+   <li><div class="h">Contributor model established</div><div class="d">A derived renewal prices only from a contributor: the prior owned Asset surfaced via <span class="mono">QuoteAction(Type=Renew).SourceAsset</span>, matched by product. No contributor &rarr; the committer skips the line.</div></li>
+   <li><div class="h">Reprice-time writes refuted (&times;3)</div><div class="d">Direct <code>NetUnitPrice</code> write (read-only on insert), <span class="mono">PartnerNetPricePosthook</span>, and a procedure committer all returned success yet no-oped on a settled derived node.</div></li>
+   <li><div class="h">Self-healing candidate rejected</div><div class="d">The &ldquo;lever-d&rdquo; procedure-commit change could self-heal existing fossils, but <b>could not be proven to fire</b> (the $67.38 in those logs was prehook-sourced, byte-identical across runs) &rarr; rejected as unproven/unsafe.</div></li>
+   <li><div class="h">Born-net &amp; PBEDP dead-ends</div><div class="d">Hand-stamping a Renew QuoteAction <i>after</i> insert was too late (line settles at $0). Mapping the owned product as a price contributor (PBEDP) is platform-blocked &mdash; it is itself a derived product.</div></li>
+   <li class="win"><div class="h">Decisive E2E debug &mdash; root cause exposed</div><div class="d">Running the real <code>initiateRenewal</code> with debug logging showed it emitting <b>No Change / qty 0</b> for the One-Time maintenance asset &mdash; the line that never enters the COLA path. The fix writes itself: flip to <code>Renew</code>.</div></li>
+ </ul>
+
+ <div class="sec-h">4 &middot; Why earlier fixes could not work &mdash; the dead-end ledger</div>
+ <table><thead><tr><th>Attempted lever</th><th>Why it cannot work</th></tr></thead><tbody>
+   <tr><td>Write <code>NetUnitPrice</code> directly</td><td><span class="pill bad">DEAD</span> engine-owned, read-only on insert</td></tr>
+   <tr><td><span class="mono">PartnerNetPricePosthook</span> (reprice-time)</td><td><span class="pill bad">DEAD</span> no-ops on a settled derived node</td></tr>
+   <tr><td>Procedure committer / RMPS (&ldquo;lever-d&rdquo;)</td><td><span class="pill bad">DEAD</span> returns success but could not be proven to fire; value was prehook-sourced</td></tr>
+   <tr><td>Map owned product as contributor (PBEDP)</td><td><span class="pill bad">DEAD</span> platform-blocked &mdash; it is a derived product</td></tr>
+   <tr><td>Hand-attach a <code>Renew</code> QuoteAction <i>after</i> insert</td><td><span class="pill bad">DEAD</span> too late; line settles un-priced and locks at $0</td></tr>
+   <tr><td>Re-model the catalog (merge RNM/RRM)</td><td><span class="pill warn">UNNEEDED</span> far higher blast radius; the flip achieves the same outcome</td></tr>
+ </tbody></table>
+ <div class="note"><b>The unifying insight:</b> every dead-end tried to <i>write the price</i>. None supplied the one thing the engine needs &mdash; a <code>Renew</code> line with a contributor. The fix does exactly that and lets the native engine compute and commit.</div>
+
+ <div class="sec-h">5 &middot; The fix &mdash; design, code &amp; wiring</div>
+ <div class="two">
+   <div class="card"><h3>Apex &middot; <span class="mono">RenewalMaintenanceFlip</span></h3>
+     <p>Selects renewal-quote lines that are owned-maintenance carryover stuck on <code>No Change</code>, and flips them:</p>
+     <ul>
+       <li><code>QuoteAction.Type</code> &rarr; <code>Renew</code></li>
+       <li>line <code>StartQuantity = 0</code>, <code>Quantity = SourceAsset.Quantity</code></li>
+       <li>bulk-safe, idempotent, null/empty-safe</li>
+       <li><code>@InvocableMethod</code> for clean Flow binding</li>
+     </ul>
+     <p style="margin-top:8px"><span class="pill ok">DEPLOYED</span> API 64 &middot; <b class="g">4/4 tests pass</b> &middot; <b class="g">100% class coverage</b></p></div>
+   <div class="card"><h3>Flow &middot; <span class="mono">Fortra_Create_Renewal_Quote</span></h3>
+     <p>Wired so every renewal automatically runs <b>flip &rarr; reprice</b>:</p>
+     <div class="flow" style="margin-top:8px">initiate renewal <span class="d">&rarr;</span> populate dates <span class="d">&rarr;</span><br><span class="y">Flip&nbsp;Maintenance</span> (apex) <span class="d">&rarr;</span> <span class="y">Reprice</span> (subflow) <span class="d">&rarr;</span> <span class="g">$67.38 committed</span></div>
+     <p style="margin-top:9px">Reprice = Place Sales Transaction, <code>pricingPref:Force</code>, <code>configurationPref:{configurationMethod:Skip}</code>.</p></div>
+ </div>
+
+ <div class="sec-h">6 &middot; End-to-end validation (fresh live run, 2026-06-14)</div>
+ <table><thead><tr><th>Stage</th><th>Owned maintenance line &middot; <span class="mono">PIA-PIA-RNM-PIAMBK</span></th></tr></thead><tbody>
+   <tr><td><code>initiateRenewal</code> &rarr; before flip</td><td><span class="pill warn">No Change</span> qty 0 &middot; StartQty 1 &middot; <b>Net = null</b> &middot; QA = No Change <span style="color:#7d8590">&larr; root cause reproduced live</span></td></tr>
+   <tr><td>after <span class="mono">flipToRenew</span></td><td><span class="pill info">Renew</span> qty 1 &middot; StartQty 0 &middot; Net still null</td></tr>
+   <tr><td>after Force/Skip reprice</td><td><span class="pill ok">Renew</span> qty 1 &middot; <b class="g">Net = 67.38</b> &middot; NetTotal 67.38 &middot; Uplift 7.85% &middot; QA = Renew</td></tr>
+ </tbody></table>
+ <div class="two" style="margin-top:14px">
+   <div class="card"><h3>Survival &mdash; all-lines proof</h3>
+     <p>An unfiltered query of <b>every</b> line on the renewal quote returned <b class="g">exactly 1 line, 0 RRM lines</b>. The flipped owned line is the sole, correctly-priced maintenance line &mdash; no asset-less substitute survived.</p></div>
+   <div class="card"><h3>Rollup &mdash; header not stale</h3>
+     <p>Quote header totals all reconcile to the line: <span class="mono">Subtotal = TotalPrice = GrandTotal = ALE = 67.38</span>, LineItemCount 1. The original business symptom (a stale total) cannot re-surface.</p></div>
+ </div>
+ <div class="note"><b>Native-engine commit confirmed.</b> The custom <code>COLACalculatedPrice__c</code> field read <b>0</b> on the settled line while <code>NetUnitPrice = 67.38</code> &mdash; proving the <i>platform</i> renewal uplift committed the value once the line became a <code>Renew</code> node, not a custom Apex write. Downstream (Workday line-type, billing dates, ARR) is independent of the maintenance-type split. Test data was deleted; the canary asset remains intact at $62.48.</div>
+
+ <div class="sec-h">7 &middot; Honest caveats &amp; scope</div>
+ <div class="two">
+   <div class="card"><h3>Forward-only fix</h3><p>The flip corrects renewals <b>as they are generated</b> (the wired flow / on-demand <span class="mono">flipToRenew</span>). It does <b>not</b> retroactively heal already-settled fossil lines on pre-existing Draft quotes &mdash; those need a separate remediation reprice.</p></div>
+   <div class="card"><h3>Known residuals to confirm</h3><ul>
+     <li>The exact platform reason a direct <code>NetUnitPrice</code> write no-ops is empirically strong (reproduced 3&times;) but not mechanistically pinned.</li>
+     <li>The 7.85% rate comes from a COLA-rate custom metadata rule; the exact record was not re-pinned this pass &mdash; verify before prod.</li>
+   </ul></div>
+ </div>
+
+ <div class="sec-h">8 &middot; Before production promotion</div>
+ <div class="card">
+   <p>Two verify-before-prod items carry forward: <b>re-pin the 7.85% BoKS COLA rate</b> to its <code>Maintenance_Rate__mdt</code> record (a known orphan-&ldquo;platinum&rdquo; rule exists elsewhere in this catalog), and <b>resolve the pre-existing <code>COLAUpliftTest.buildOverrideMap</code> coverage drift</b> (a separate test-suite issue that gates any procedure-side validate). A single production renewal smoke-test then confirms the flip + reprice commits <b>$67.38</b> end to end.</p>
+ </div>
+
+ <div class="foot">FortraUAT (00DWC000006eUFF2A2) &middot; canary asset 02iWC000008DmS1YAK &middot; tests 4/4 + 100% class coverage &middot; E2E all-lines + header-rollup verified &middot; no Orders activated, no Workday events, Accepted quote 00781068 untouched &middot; test data cleaned, canary intact &middot; companion detail in the full MD</div>
+
+</div></body></html>

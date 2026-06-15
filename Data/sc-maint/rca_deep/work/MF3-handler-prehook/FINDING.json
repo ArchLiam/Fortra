@@ -1,0 +1,6 @@
+{
+  "probe_id": "MF3-handler-prehook",
+  "layer": "uat-metadata",
+  "question": "Live COLAUpliftHandler + COLAUpliftPrehook forensics: where does the Renew-born path stamp the COLA net/committed net (NetUnitPrice vs COLACalculatedPrice/UnitPrice)? Confirm the QuoteAction Type=Renew filter and the QuoteActionId==null skip, why the auto-added line diverges from the Renew-born line, whether H3 is the upstream cause, and whether a creation-path born-net fix is code-feasible.",
+  "finding": "ready"
+}

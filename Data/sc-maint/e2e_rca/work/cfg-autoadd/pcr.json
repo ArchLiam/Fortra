@@ -1,0 +1,2838 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001rzPm2AI"
+        },
+        "Id": "14OWC000001rzPm2AI",
+        "Name": "Can only be purchased alongside Intermapper Server Freeware",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "canOnlyBePurchasedAlongsideIntermapperServerFreeware"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001rzcf2AA"
+        },
+        "Id": "14OWC000001rzcf2AA",
+        "Name": "A customer can not own WebDocs Document Management and WebForms SMB",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "aCustomerCanNotOwnWebdocsDocumentManagementAndWebformsSmb"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001rzeH2AQ"
+        },
+        "Id": "14OWC000001rzeH2AQ",
+        "Name": "Can only be sold to customers with GoAnywhere Gateway",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "canOnlyBeSoldToCustomersWithGoanywhereGateway"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s5br2AA"
+        },
+        "Id": "14OWC000001s5br2AA",
+        "Name": "Year 1 Maintenance Sku added to Device Profiler Ev NonTran Unlmtd Use Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToDeviceProfilerEvNontranUnlmtdUsePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s6ZJ2AY"
+        },
+        "Id": "14OWC000001s6ZJ2AY",
+        "Name": "Year 1 Maintenance Sku added to TE Academic Institution Site License Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTeAcademicInstitutionSiteLicensePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s73x2AA"
+        },
+        "Id": "14OWC000001s73x2AA",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for Small Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForSmallStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s7C12AI"
+        },
+        "Id": "14OWC000001s7C12AI",
+        "Name": "Year 1 Maintenance Sku added to Device Profiler Ev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToDeviceProfilerEvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s7Dd2AI"
+        },
+        "Id": "14OWC000001s7Dd2AI",
+        "Name": "Year 1 Maintenance Sku added to Device Profiler Ev Limited Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToDeviceProfilerEvLimitedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s7Gr2AI"
+        },
+        "Id": "14OWC000001s7Gr2AI",
+        "Name": "Year 1 Maintenance Sku added to CCM Scan Engine Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmScanEnginePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s7K52AI"
+        },
+        "Id": "14OWC000001s7K52AI",
+        "Name": "Year 1 Maintenance Sku added to CCM Management Server Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmManagementServerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s7NJ2AY"
+        },
+        "Id": "14OWC000001s7NJ2AY",
+        "Name": "Year 1 Maintenance Sku added to CCM Limited Management Server Perpetual license",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmLimitedManagementServerPerpetualLicense"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC000001s7QX2AY"
+        },
+        "Id": "14OWC000001s7QX2AY",
+        "Name": "Year 1 Maintenance Sku added to CCM for Workstations Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmForWorkstationsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QDp2AM"
+        },
+        "Id": "14OWC0000021QDp2AM",
+        "Name": "Year 2 Maintenance Sku added to CCM for Workstations Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToCcmForWorkstationsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QIf2AM"
+        },
+        "Id": "14OWC0000021QIf2AM",
+        "Name": "Year 2 Maintenance Sku added to CCM Limited Management Server Perpetual license",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToCcmLimitedManagementServerPerpetualLicense"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QP72AM"
+        },
+        "Id": "14OWC0000021QP72AM",
+        "Name": "Year 2 Maintenance Sku added to CCM Management Server Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToCcmManagementServerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QSL2A2"
+        },
+        "Id": "14OWC0000021QSL2A2",
+        "Name": "Year 2 Maintenance Sku added to CCM Scan Engine Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToCcmScanEnginePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QVZ2A2"
+        },
+        "Id": "14OWC0000021QVZ2A2",
+        "Name": "Year 2 Maintenance Sku added to Device Profiler Ev Express Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToDeviceProfilerEvExpressPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QnJ2AU"
+        },
+        "Id": "14OWC0000021QnJ2AU",
+        "Name": "Year 2 Maintenance Sku added to Device Profiler Ev Limited Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToDeviceProfilerEvLimitedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021QqX2AU"
+        },
+        "Id": "14OWC0000021QqX2AU",
+        "Name": "Year 2 Maintenance Sku added to Device Profiler Ev NonTran Unlmtd Use Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToDeviceProfilerEvNontranUnlmtdUsePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021Qtl2AE"
+        },
+        "Id": "14OWC0000021Qtl2AE",
+        "Name": "Year 2 Maintenance Sku added to Device Profiler Ev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToDeviceProfilerEvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000021tR72AI"
+        },
+        "Id": "14OWC0000021tR72AI",
+        "Name": "Autoadd DPEENM when DPEEXS on New quote",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 1,
+        "ApiName": "autoaddDpeenmWhenDpeexsOnNewQuote"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022DMb2AM"
+        },
+        "Id": "14OWC0000022DMb2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise Console Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseConsolePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Dkn2AE"
+        },
+        "Id": "14OWC0000022Dkn2AE",
+        "Name": "Year 1 Maintenance Sku added to VnE Manager Ev_Device Profiler Ev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 11,
+        "ApiName": "year1MaintenanceSkuAddedToVneManagerEv_deviceProfilerEvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Dxh2AE"
+        },
+        "Id": "14OWC0000022Dxh2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise Console Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseConsolePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022DzJ2AU"
+        },
+        "Id": "14OWC0000022DzJ2AU",
+        "Name": "Year 1 Maintenance Sku added to VnE Manager Ev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 12,
+        "ApiName": "year1MaintenanceSkuAddedToVneManagerEvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022E0v2AE"
+        },
+        "Id": "14OWC0000022E0v2AE",
+        "Name": "Year 1 Maintenance Sku added to VnE Manager Ev Limited Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 13,
+        "ApiName": "year1MaintenanceSkuAddedToVneManagerEvLimitedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022E8z2AE"
+        },
+        "Id": "14OWC0000022E8z2AE",
+        "Name": "Year 1 Maintenance Sku added to VnE Manager Ev Express Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 14,
+        "ApiName": "year1MaintenanceSkuAddedToVneManagerEvExpressPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022ECD2A2"
+        },
+        "Id": "14OWC0000022ECD2A2",
+        "Name": "Year 1 Maintenance Sku added to TripwireEnterpriseforMidSizeStorewND Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 15,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireenterpriseformidsizestorewndPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EDp2AM"
+        },
+        "Id": "14OWC0000022EDp2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for File Systems Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForFileSystemsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EH32AM"
+        },
+        "Id": "14OWC0000022EH32AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Industrial Dev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForIndustrialDevPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EIf2AM"
+        },
+        "Id": "14OWC0000022EIf2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Term Based Enterprise License Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 16,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireTermBasedEnterpriseLicensePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022ELt2AM"
+        },
+        "Id": "14OWC0000022ELt2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire State Analyzer Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 16,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireStateAnalyzerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022ENV2A2"
+        },
+        "Id": "14OWC0000022ENV2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire State Analyzer Express Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 17,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireStateAnalyzerExpressPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EQj2AM"
+        },
+        "Id": "14OWC0000022EQj2AM",
+        "Name": "Year 2 Maintenance Sku added to VnE Manager Ev_Device Profiler Ev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToVneManagerEv_deviceProfilerEvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EQk2AM"
+        },
+        "Id": "14OWC0000022EQk2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for POS End Point Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 27,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForPosEndPointPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022ESL2A2"
+        },
+        "Id": "14OWC0000022ESL2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Manager Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 18,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireManagerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022ETx2AM"
+        },
+        "Id": "14OWC0000022ETx2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Term Based Enterprise License Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireTermBasedEnterpriseLicensePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EYn2AM"
+        },
+        "Id": "14OWC0000022EYn2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center Term Based Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 18,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterTermBasedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EaP2AU"
+        },
+        "Id": "14OWC0000022EaP2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center Remote Log Collect Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 19,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterRemoteLogCollectPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Edp2AE"
+        },
+        "Id": "14OWC0000022Edp2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center Manager License Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 22,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterManagerLicensePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EiT2AU"
+        },
+        "Id": "14OWC0000022EiT2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center Manager Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterManagerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EnJ2AU"
+        },
+        "Id": "14OWC0000022EnJ2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center Manager License Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterManagerLicensePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Es92AE"
+        },
+        "Id": "14OWC0000022Es92AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EvN2AU"
+        },
+        "Id": "14OWC0000022EvN2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for Security Dev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForSecurityDevPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022EvO2AU"
+        },
+        "Id": "14OWC0000022EvO2AU",
+        "Name": "Year 2 Maintenance Sku added to CCM for Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToCcmForServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Ewz2AE"
+        },
+        "Id": "14OWC0000022Ewz2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for NetworkDevices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForNetworkdevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Eyb2AE"
+        },
+        "Id": "14OWC0000022Eyb2AE",
+        "Name": "Year 2 Maintenance Sku added to Powertech Identity_Access Manager Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPowertechIdentity_accessManagerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022F3d2AE"
+        },
+        "Id": "14OWC0000022F3d2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for Security Dev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 26,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForSecurityDevPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022F532AE"
+        },
+        "Id": "14OWC0000022F532AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for VMware ESX RC Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 24,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForVmwareEsxRcPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022F6f2AE"
+        },
+        "Id": "14OWC0000022F6f2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 25,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FBV2A2"
+        },
+        "Id": "14OWC0000022FBV2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 27,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FEj2AM"
+        },
+        "Id": "14OWC0000022FEj2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for NetworkDevices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 27,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForNetworkdevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FGL2A2"
+        },
+        "Id": "14OWC0000022FGL2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for Network Device Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 29,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForNetworkDevicePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FHx2AM"
+        },
+        "Id": "14OWC0000022FHx2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for Microsoft IIS Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 30,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForMicrosoftIisPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FMn2AM"
+        },
+        "Id": "14OWC0000022FMn2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for Industrial Env Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 31,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForIndustrialEnvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FRp2AM"
+        },
+        "Id": "14OWC0000022FRp2AM",
+        "Name": "Year 2 Maintenance Sku added to CCM for Single Purpose Devices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToCcmForSinglePurposeDevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FbJ2AU"
+        },
+        "Id": "14OWC0000022FbJ2AU",
+        "Name": "Year 2 Maintenance Sku added to Automate Ultimate Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToAutomateUltimatePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Fmb2AE"
+        },
+        "Id": "14OWC0000022Fmb2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for File Systems Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 32,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForFileSystemsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FrR2AU"
+        },
+        "Id": "14OWC0000022FrR2AU",
+        "Name": "Year 2 Maintenance Sku added to CCM for Network Devices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToCcmForNetworkDevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Fuf2AE"
+        },
+        "Id": "14OWC0000022Fuf2AE",
+        "Name": "Year 2 Maintenance Sku added to CCM Limited Scan Engine Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToCcmLimitedScanEnginePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FwH2AU"
+        },
+        "Id": "14OWC0000022FwH2AU",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for Databases Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForDatabasesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Fxt2AE"
+        },
+        "Id": "14OWC0000022Fxt2AE",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022FzV2AU"
+        },
+        "Id": "14OWC0000022FzV2AU",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for File System Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForFileSystemPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022G172AE"
+        },
+        "Id": "14OWC0000022G172AE",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for Network Dev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForNetworkDevPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022G2j2AE"
+        },
+        "Id": "14OWC0000022G2j2AE",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022G4L2AU"
+        },
+        "Id": "14OWC0000022G4L2AU",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for Small Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForSmallStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022G5x2AE"
+        },
+        "Id": "14OWC0000022G5x2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for Directory Serv Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 34,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForDirectoryServPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022G7Z2AU"
+        },
+        "Id": "14OWC0000022G7Z2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 35,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022G9B2AU"
+        },
+        "Id": "14OWC0000022G9B2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center Console Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 36,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterConsolePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GAn2AM"
+        },
+        "Id": "14OWC0000022GAn2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Microsoft IIS Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForMicrosoftIisPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GCP2A2"
+        },
+        "Id": "14OWC0000022GCP2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Log Center Advanced Log Colle Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterAdvancedLogCollePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GE12AM"
+        },
+        "Id": "14OWC0000022GE12AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire IP360 NonTransferable Unlimi Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireIp360NontransferableUnlimiPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GFd2AM"
+        },
+        "Id": "14OWC0000022GFd2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire for Servers  Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireForServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GHF2A2"
+        },
+        "Id": "14OWC0000022GHF2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire for Directory Services Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireForDirectoryServicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GKT2A2"
+        },
+        "Id": "14OWC0000022GKT2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire for Databases Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireForDatabasesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GM52AM"
+        },
+        "Id": "14OWC0000022GM52AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire EnterpriseforSmallStoreswND Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseforsmallstoreswndPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GNh2AM"
+        },
+        "Id": "14OWC0000022GNh2AM",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GPJ2A2"
+        },
+        "Id": "14OWC0000022GPJ2A2",
+        "Name": "Year 2 Maintenance Sku added to Policy Manager for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPolicyManagerForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GVl2AM"
+        },
+        "Id": "14OWC0000022GVl2AM",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Mgr for Directory Serv Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityMgrForDirectoryServPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GXN2A2"
+        },
+        "Id": "14OWC0000022GXN2A2",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Mgr for Large Store 75 Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityMgrForLargeStore75Perpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GYz2AM"
+        },
+        "Id": "14OWC0000022GYz2AM",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Mgr for MidSize Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityMgrForMidsizeStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GcD2AU"
+        },
+        "Id": "14OWC0000022GcD2AU",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Mgr for POS End Point Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityMgrForPosEndPointPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Gdp2AE"
+        },
+        "Id": "14OWC0000022Gdp2AE",
+        "Name": "Year 2 Maintenance Sku added to FIM for MidSize Stores Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToFimForMidsizeStoresPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GfR2AU"
+        },
+        "Id": "14OWC0000022GfR2AU",
+        "Name": "Year 2 Maintenance Sku added to IP360 Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToIp360Perpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Gh32AE"
+        },
+        "Id": "14OWC0000022Gh32AE",
+        "Name": "Year 2 Maintenance Sku added to IP360 Term Based Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToIp360TermBasedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Gif2AE"
+        },
+        "Id": "14OWC0000022Gif2AE",
+        "Name": "Year 2 Maintenance Sku added to Policy Manager for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPolicyManagerForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Glt2AE"
+        },
+        "Id": "14OWC0000022Glt2AE",
+        "Name": "Year 2 Maintenance Sku added to Policy Manager for File Systems Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPolicyManagerForFileSystemsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Glu2AE"
+        },
+        "Id": "14OWC0000022Glu2AE",
+        "Name": "Year 2 Maintenance Sku added to Policy Manager for Network Devices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPolicyManagerForNetworkDevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GnV2AU"
+        },
+        "Id": "14OWC0000022GnV2AU",
+        "Name": "Year 2 Maintenance Sku added to Policy Manager for POS End Point Syste Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPolicyManagerForPosEndPointSystePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Gp72AE"
+        },
+        "Id": "14OWC0000022Gp72AE",
+        "Name": "Year 2 Maintenance Sku added to Policy Manager for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToPolicyManagerForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022GsL2AU"
+        },
+        "Id": "14OWC0000022GsL2AU",
+        "Name": "Year 2 Maintenance Sku added to TE Academic Institution Site License Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTeAcademicInstitutionSiteLicensePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Gtx2AE"
+        },
+        "Id": "14OWC0000022Gtx2AE",
+        "Name": "Year 2 Maintenance Sku added to TEAcademicInstitutionSiteLicenseDataPerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTeacademicinstitutionsitelicensedataperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022H0P2AU"
+        },
+        "Id": "14OWC0000022H0P2AU",
+        "Name": "Year 2 Maintenance Sku added to TEAcademicInstitutionSiteLicenseDeskPerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTeacademicinstitutionsitelicensedeskperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022H212AE"
+        },
+        "Id": "14OWC0000022H212AE",
+        "Name": "Year 2 Maintenance Sku added to TEAcademicInstitutionSiteLicenseDirSer Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTeacademicinstitutionsitelicensedirserPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022H6r2AE"
+        },
+        "Id": "14OWC0000022H6r2AE",
+        "Name": "Year 2 Maintenance Sku added to TEAcademicInstitutionSiteLicenseNetDevPerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTeacademicinstitutionsitelicensenetdevperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HA52AM"
+        },
+        "Id": "14OWC0000022HA52AM",
+        "Name": "Year 2 Maintenance Sku added to TEAcademicInstitutionSiteLicenseVMWarePerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTeacademicinstitutionsitelicensevmwareperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HBh2AM"
+        },
+        "Id": "14OWC0000022HBh2AM",
+        "Name": "Year 2 Maintenance Sku added to TFS for Workstations Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTfsForWorkstationsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HTR2A2"
+        },
+        "Id": "14OWC0000022HTR2A2",
+        "Name": "Year 2 Maintenance Sku added to Tripwire App Custom Workflow Integrate Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireAppCustomWorkflowIntegratePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HV32AM"
+        },
+        "Id": "14OWC0000022HV32AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire App Term Based Enterprise Uti Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireAppTermBasedEnterpriseUtiPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HWf2AM"
+        },
+        "Id": "14OWC0000022HWf2AM",
+        "Name": "Year 2 Maintenance Sku added to VnE Manager Ev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToVneManagerEvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HYH2A2"
+        },
+        "Id": "14OWC0000022HYH2A2",
+        "Name": "Year 2 Maintenance Sku added to VnE Manager Ev Limited Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToVneManagerEvLimitedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HZt2AM"
+        },
+        "Id": "14OWC0000022HZt2AM",
+        "Name": "Year 2 Maintenance Sku added to VnE Manager Ev Express Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToVneManagerEvExpressPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HbV2AU"
+        },
+        "Id": "14OWC0000022HbV2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hd72AE"
+        },
+        "Id": "14OWC0000022Hd72AE",
+        "Name": "Year 2 Maintenance Sku added to TripwireEnterpriseforMidSizeStorewND Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireenterpriseformidsizestorewndPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hej2AE"
+        },
+        "Id": "14OWC0000022Hej2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for VMware ESX RC Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForVmwareEsxRcPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HgL2AU"
+        },
+        "Id": "14OWC0000022HgL2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire State Analyzer Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireStateAnalyzerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hhx2AE"
+        },
+        "Id": "14OWC0000022Hhx2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center Manager Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterManagerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HjZ2AU"
+        },
+        "Id": "14OWC0000022HjZ2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire State Analyzer Express Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireStateAnalyzerExpressPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HlB2AU"
+        },
+        "Id": "14OWC0000022HlB2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center Remote Log Collect Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterRemoteLogCollectPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hmn2AE"
+        },
+        "Id": "14OWC0000022Hmn2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center Term Based Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterTermBasedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HoP2AU"
+        },
+        "Id": "14OWC0000022HoP2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Manager Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireManagerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hq12AE"
+        },
+        "Id": "14OWC0000022Hq12AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Large Stores Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForLargeStoresPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hrd2AE"
+        },
+        "Id": "14OWC0000022Hrd2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Directory Serv Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForDirectoryServPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HtF2AU"
+        },
+        "Id": "14OWC0000022HtF2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 1,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hur2AE"
+        },
+        "Id": "14OWC0000022Hur2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Databases Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForDatabasesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022HwT2AU"
+        },
+        "Id": "14OWC0000022HwT2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise Express Console Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseExpressConsolePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hy52AE"
+        },
+        "Id": "14OWC0000022Hy52AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire CCM Unlimited Use Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireCcmUnlimitedUsePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Hzh2AE"
+        },
+        "Id": "14OWC0000022Hzh2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Large StoresND Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForLargeStoresndPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022KKu2AM"
+        },
+        "Id": "14OWC0000022KKu2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire EnterpriseforSmallStoreswND Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseforsmallstoreswndPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022KS52AM"
+        },
+        "Id": "14OWC0000022KS52AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for POS End Point Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForPosEndPointPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022KVJ2A2"
+        },
+        "Id": "14OWC0000022KVJ2A2",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022KXl2AM"
+        },
+        "Id": "14OWC0000022KXl2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for Network Device Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForNetworkDevicePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022KZN2A2"
+        },
+        "Id": "14OWC0000022KZN2A2",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for Microsoft IIS Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForMicrosoftIisPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Kaz2AE"
+        },
+        "Id": "14OWC0000022Kaz2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for Industrial Env Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForIndustrialEnvPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Kfp2AE"
+        },
+        "Id": "14OWC0000022Kfp2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for File Systems Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForFileSystemsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Kj32AE"
+        },
+        "Id": "14OWC0000022Kj32AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center for Directory Serv Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterForDirectoryServPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022KpV2AU"
+        },
+        "Id": "14OWC0000022KpV2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center Console Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterConsolePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Kr72AE"
+        },
+        "Id": "14OWC0000022Kr72AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Microsoft IIS Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForMicrosoftIisPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Kvx2AE"
+        },
+        "Id": "14OWC0000022Kvx2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Log Center Advanced Log Colle Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireLogCenterAdvancedLogCollePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022L2P2AU"
+        },
+        "Id": "14OWC0000022L2P2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire IP360 NonTransferable Unlimi Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireIp360NontransferableUnlimiPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022L412AE"
+        },
+        "Id": "14OWC0000022L412AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire for Servers  Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireForServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022L7F2AU"
+        },
+        "Id": "14OWC0000022L7F2AU",
+        "Name": "Year 2 Maintenance Sku added to Tripwire for Directory Services Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireForDirectoryServicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022L8r2AE"
+        },
+        "Id": "14OWC0000022L8r2AE",
+        "Name": "Year 2 Maintenance Sku added to Tripwire for Databases Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireForDatabasesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LC52AM"
+        },
+        "Id": "14OWC0000022LC52AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterprisePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LGv2AM"
+        },
+        "Id": "14OWC0000022LGv2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LIX2A2"
+        },
+        "Id": "14OWC0000022LIX2A2",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Small Stores Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForSmallStoresPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LLl2AM"
+        },
+        "Id": "14OWC0000022LLl2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LOz2AM"
+        },
+        "Id": "14OWC0000022LOz2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for POS End Point Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForPosEndPointPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LP02AM"
+        },
+        "Id": "14OWC0000022LP02AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Network Device Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForNetworkDevicePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LTp2AM"
+        },
+        "Id": "14OWC0000022LTp2AM",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for MidSize Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForMidsizeStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022LVR2A2"
+        },
+        "Id": "14OWC0000022LVR2A2",
+        "Name": "Year 2 Maintenance Sku added to Tripwire Enterprise for Microsoft Exch Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToTripwireEnterpriseForMicrosoftExchPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022MjL2AU"
+        },
+        "Id": "14OWC0000022MjL2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Mo52AE"
+        },
+        "Id": "14OWC0000022Mo52AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterprisePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Mph2AE"
+        },
+        "Id": "14OWC0000022Mph2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022MrJ2AU"
+        },
+        "Id": "14OWC0000022MrJ2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Small Stores Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForSmallStoresPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Msv2AE"
+        },
+        "Id": "14OWC0000022Msv2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for POS End Point Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForPosEndPointPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022MuX2AU"
+        },
+        "Id": "14OWC0000022MuX2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Network Device Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForNetworkDevicePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Mw92AE"
+        },
+        "Id": "14OWC0000022Mw92AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for MidSize Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForMidsizeStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Mxl2AE"
+        },
+        "Id": "14OWC0000022Mxl2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Microsoft Exch Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForMicrosoftExchPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022NQn2AM"
+        },
+        "Id": "14OWC0000022NQn2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Large StoresND Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForLargeStoresndPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022NSP2A2"
+        },
+        "Id": "14OWC0000022NSP2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Large Stores Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForLargeStoresPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022NaT2AU"
+        },
+        "Id": "14OWC0000022NaT2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for File Systems Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForFileSystemsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Nc52AE"
+        },
+        "Id": "14OWC0000022Nc52AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Directory Serv Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForDirectoryServPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Ndh2AE"
+        },
+        "Id": "14OWC0000022Ndh2AE",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022NfJ2AU"
+        },
+        "Id": "14OWC0000022NfJ2AU",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise for Databases Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseForDatabasesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PE52AM"
+        },
+        "Id": "14OWC0000022PE52AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire Enterprise Express Console Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireEnterpriseExpressConsolePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PFh2AM"
+        },
+        "Id": "14OWC0000022PFh2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire CCM Unlimited Use Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireCcmUnlimitedUsePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PHJ2A2"
+        },
+        "Id": "14OWC0000022PHJ2A2",
+        "Name": "Year 1 Maintenance Sku added to Tripwire App Term Based Enterprise Uti Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireAppTermBasedEnterpriseUtiPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PIv2AM"
+        },
+        "Id": "14OWC0000022PIv2AM",
+        "Name": "Year 1 Maintenance Sku added to Tripwire App Custom Workflow Integrate Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireAppCustomWorkflowIntegratePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PKX2A2"
+        },
+        "Id": "14OWC0000022PKX2A2",
+        "Name": "Year 1 Maintenance Sku added to TFS for Workstations Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTfsForWorkstationsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PM92AM"
+        },
+        "Id": "14OWC0000022PM92AM",
+        "Name": "Year 1 Maintenance Sku added to TEAcademicInstitutionSiteLicenseVMWarePerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTeacademicinstitutionsitelicensevmwareperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PNl2AM"
+        },
+        "Id": "14OWC0000022PNl2AM",
+        "Name": "Year 1 Maintenance Sku added to TEAcademicInstitutionSiteLicenseNetDevPerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTeacademicinstitutionsitelicensenetdevperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PPN2A2"
+        },
+        "Id": "14OWC0000022PPN2A2",
+        "Name": "Year 1 Maintenance Sku added to TEAcademicInstitutionSiteLicenseDirSer Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTeacademicinstitutionsitelicensedirserPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PQz2AM"
+        },
+        "Id": "14OWC0000022PQz2AM",
+        "Name": "Year 1 Maintenance Sku added to TEAcademicInstitutionSiteLicenseDeskPerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTeacademicinstitutionsitelicensedeskperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PSb2AM"
+        },
+        "Id": "14OWC0000022PSb2AM",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for Databases Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForDatabasesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022PUD2A2"
+        },
+        "Id": "14OWC0000022PUD2A2",
+        "Name": "Year 1 Maintenance Sku added to CCM for Single Purpose Devices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmForSinglePurposeDevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UGz2AM"
+        },
+        "Id": "14OWC0000022UGz2AM",
+        "Name": "Year 1 Maintenance Sku added to IP360 Term Based Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToIp360TermBasedPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UIb2AM"
+        },
+        "Id": "14OWC0000022UIb2AM",
+        "Name": "Year 1 Maintenance Sku added to Automate Ultimate Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToAutomateUltimatePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UKD2A2"
+        },
+        "Id": "14OWC0000022UKD2A2",
+        "Name": "Year 1 Maintenance Sku added to TEAcademicInstitutionSiteLicenseDataPerpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTeacademicinstitutionsitelicensedataperpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022ULp2AM"
+        },
+        "Id": "14OWC0000022ULp2AM",
+        "Name": "Year 1 Maintenance Sku added to Powertech Identity_Access Manager Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPowertechIdentity_accessManagerPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UNR2A2"
+        },
+        "Id": "14OWC0000022UNR2A2",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UP32AM"
+        },
+        "Id": "14OWC0000022UP32AM",
+        "Name": "Year 1 Maintenance Sku added to Policy Manager for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPolicyManagerForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UQf2AM"
+        },
+        "Id": "14OWC0000022UQf2AM",
+        "Name": "Year 1 Maintenance Sku added to Policy Manager for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPolicyManagerForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022USH2A2"
+        },
+        "Id": "14OWC0000022USH2A2",
+        "Name": "Year 1 Maintenance Sku added to Policy Manager for POS End Point Syste Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPolicyManagerForPosEndPointSystePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UTt2AM"
+        },
+        "Id": "14OWC0000022UTt2AM",
+        "Name": "Year 1 Maintenance Sku added to Policy Manager for Network Devices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPolicyManagerForNetworkDevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UVV2A2"
+        },
+        "Id": "14OWC0000022UVV2A2",
+        "Name": "Year 1 Maintenance Sku added to Policy Manager for File Systems Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPolicyManagerForFileSystemsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UX72AM"
+        },
+        "Id": "14OWC0000022UX72AM",
+        "Name": "Year 1 Maintenance Sku added to Policy Manager for Desktops Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToPolicyManagerForDesktopsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UYj2AM"
+        },
+        "Id": "14OWC0000022UYj2AM",
+        "Name": "Year 1 Maintenance Sku added to IP360 Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToIp360Perpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UaL2AU"
+        },
+        "Id": "14OWC0000022UaL2AU",
+        "Name": "Year 1 Maintenance Sku added to FIM for MidSize Stores Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFimForMidsizeStoresPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Ubx2AE"
+        },
+        "Id": "14OWC0000022Ubx2AE",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Mgr for POS End Point Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityMgrForPosEndPointPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UdZ2AU"
+        },
+        "Id": "14OWC0000022UdZ2AU",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Mgr for MidSize Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityMgrForMidsizeStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UfB2AU"
+        },
+        "Id": "14OWC0000022UfB2AU",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Mgr for Large Store 75 Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityMgrForLargeStore75Perpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Ugn2AE"
+        },
+        "Id": "14OWC0000022Ugn2AE",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Mgr for Directory Serv Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityMgrForDirectoryServPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UiP2AU"
+        },
+        "Id": "14OWC0000022UiP2AU",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for VMware ESX Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForVmwareEsxPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Uk12AE"
+        },
+        "Id": "14OWC0000022Uk12AE",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for POS Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForPosServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Uld2AE"
+        },
+        "Id": "14OWC0000022Uld2AE",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for Network Dev Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForNetworkDevPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UnF2AU"
+        },
+        "Id": "14OWC0000022UnF2AU",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for File System Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForFileSystemPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Uor2AE"
+        },
+        "Id": "14OWC0000022Uor2AE",
+        "Name": "Year 1 Maintenance Sku added to Device Profiler Ev Express Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToDeviceProfilerEvExpressPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022UqT2AU"
+        },
+        "Id": "14OWC0000022UqT2AU",
+        "Name": "Year 1 Maintenance Sku added to CCM Limited Scan Engine Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmLimitedScanEnginePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Us52AE"
+        },
+        "Id": "14OWC0000022Us52AE",
+        "Name": "Year 1 Maintenance Sku added to CCM for Servers Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmForServersPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000022Uth2AE"
+        },
+        "Id": "14OWC0000022Uth2AE",
+        "Name": "Year 1 Maintenance Sku added to CCM for Network Devices Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToCcmForNetworkDevicesPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023ZWL2A2"
+        },
+        "Id": "14OWC0000023ZWL2A2",
+        "Name": "Year 1 Maintenance Sku added to Automate Maintenance Add Ons Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToAutomateMaintenanceAddOnsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023Zcn2AE"
+        },
+        "Id": "14OWC0000023Zcn2AE",
+        "Name": "Year 1 Maintenance Sku added to Doc Management Bundle Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToDocManagementBundlePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023ZeP2AU"
+        },
+        "Id": "14OWC0000023ZeP2AU",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for Large Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForLargeStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023Zg12AE"
+        },
+        "Id": "14OWC0000023Zg12AE",
+        "Name": "Year 1 Maintenance Sku added to File Integrity Manager for Mid Size St Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFileIntegrityManagerForMidSizeStPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023Zkr2AE"
+        },
+        "Id": "14OWC0000023Zkr2AE",
+        "Name": "Year 1 Maintenance Sku added to FileCatalyst Central Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToFilecatalystCentralPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023Zo52AE"
+        },
+        "Id": "14OWC0000023Zo52AE",
+        "Name": "Year1Maintenance Sku added to Tripwire Log Center for Microsoft Exch Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToTripwireLogCenterForMicrosoftExchPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023ZrJ2AU"
+        },
+        "Id": "14OWC0000023ZrJ2AU",
+        "Name": "Year 2 Maintenance Sku added to Automate Maintenance Add Ons Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToAutomateMaintenanceAddOnsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023a4D2AQ"
+        },
+        "Id": "14OWC0000023a4D2AQ",
+        "Name": "Year 2 Maintenance Sku added to File Integrity Manager for Large Store Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToFileIntegrityManagerForLargeStorePerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC0000023a5p2AA"
+        },
+        "Id": "14OWC0000023a5p2AA",
+        "Name": "Year 2 Maintenance Sku added to TE Academic Institution Site LicenseDS Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year2MaintenanceSkuAddedToTeAcademicInstitutionSiteLicensedsPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC00000252hZ2AQ"
+        },
+        "Id": "14OWC00000252hZ2AQ",
+        "Name": "Year 1 Maintenance Sku added to EFT 8 Continuum Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 10,
+        "ApiName": "year1MaintenanceSkuAddedToEft8ContinuumPerpetual"
+      },
+      {
+        "attributes": {
+          "type": "ProductConfigurationRule",
+          "url": "/services/data/v67.0/sobjects/ProductConfigurationRule/14OWC00000252jB2AQ"
+        },
+        "Id": "14OWC00000252jB2AQ",
+        "Name": "Year 2 Maintenance Sku added to EFT 8 Continuum Perpetual",
+        "RuleType": "Configurator",
+        "RuleSubType": "Transaction",
+        "Status": "Active",
+        "ProcessScope": "Transaction",
+        "Sequence": 20,
+        "ApiName": "year2MaintenanceSkuAddedToEft8ContinuumPerpetual"
+      }
+    ],
+    "totalSize": 202,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,43 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003e2Sn4AI"
+        },
+        "Id": "0QLWC000003e2Sn4AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1buYAD"
+          },
+          "ProductCode": "PIA-PIA-RRM-PIAM",
+          "Name": "Powertech Identity & Access Manager (BoKS)-RenewalMaintenance"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 60.64,
+        "ListPrice": 0,
+        "UnitPrice": 67.38,
+        "COLACalculatedPrice__c": 67.38,
+        "Source_List_Price__c": 355,
+        "NetTotalPrice": 60.64,
+        "TotalLineAmount": 60.64,
+        "Regional_NetUnit_Price__c": null,
+        "Partner_Discount_Percent__c": null,
+        "Partner_Adjusted_Price__c": 60.64,
+        "Pre_Partner_Price__c": 67.38,
+        "Partner_Pricing_Model_Applied__c": "Discount",
+        "Partner_Margin_Detail__c": null,
+        "Pre_COLA_Price__c": null,
+        "COLA_Uplift_Percent__c": 7.85,
+        "Is_COLA_Overridden__c": false,
+        "PriceWaterfallIdentifier": "0QLWC000003e2Sn4AI:68024366288961"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,5 @@
+Execute Anonymous:     System.debug('E2E-RENEW success=' + r.isSuccess());
+Execute Anonymous:     System.debug('E2E-OUTPUTS=' + r.getOutputParameters());
+Execute Anonymous:     if (!r.isSuccess()) System.debug('E2E-ERRORS=' + r.getErrors());
+21:31:11.36 (4673003933)|USER_DEBUG|[6]|DEBUG|E2E-RENEW success=true
+21:31:11.36 (4673060116)|USER_DEBUG|[7]|DEBUG|E2E-OUTPUTS={renewRecordId=0Q0WC0000039Kc50AE}

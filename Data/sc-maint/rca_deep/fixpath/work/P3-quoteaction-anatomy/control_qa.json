@@ -1,0 +1,27 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteAction",
+          "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000u7yf8YAA"
+        },
+        "Id": "7ocWC00000u7yf8YAA",
+        "Name": "QA-000000244",
+        "Type": "Renew",
+        "Subtype": null,
+        "QuoteId": "0Q0WC00000382MH0AY",
+        "SourceAssetId": "02iWC000008GKPaYAO",
+        "CurrencyIsoCode": "USD",
+        "IsDeleted": false,
+        "CreatedDate": "2026-06-11T21:14:58.000+0000",
+        "CreatedById": "005WC00000DZ6xVYAT",
+        "LastModifiedDate": "2026-06-11T21:15:02.000+0000"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

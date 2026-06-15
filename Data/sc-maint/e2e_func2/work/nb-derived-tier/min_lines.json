@@ -1,0 +1,5386 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002LeHR4A0"
+        },
+        "Id": "0QLWC000002LeHR4A0",
+        "QuoteId": "0Q0WC0000027OVt0AM",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027OVt0AM"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 42,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002LeHS4A0"
+        },
+        "Id": "0QLWC000002LeHS4A0",
+        "QuoteId": "0Q0WC0000027OVt0AM",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027OVt0AM"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 35,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002LfGi4AK"
+        },
+        "Id": "0QLWC000002LfGi4AK",
+        "QuoteId": "0Q0WC0000026bIH0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026bIH0AY"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": 3880.8,
+        "NetUnitPrice": 3880.8,
+        "Quantity": 100
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002LnkY4AS"
+        },
+        "Id": "0QLWC000002LnkY4AS",
+        "QuoteId": "0Q0WC0000026bIH0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026bIH0AY"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": 19.2,
+        "NetUnitPrice": 19.2,
+        "Quantity": 200
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Lo2H4AS"
+        },
+        "Id": "0QLWC000002Lo2H4AS",
+        "QuoteId": "0Q0WC0000026bIH0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026bIH0AY"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10xYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-FPSS"
+        },
+        "Fortra_Product_Type__c": "Software",
+        "Source_List_Price__c": null,
+        "Base_Price__c": 73.75,
+        "NetUnitPrice": 0,
+        "Quantity": 50
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002OeuP4AS"
+        },
+        "Id": "0QLWC000002OeuP4AS",
+        "QuoteId": "0Q0WC000001yWpF0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000001yWpF0AU"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002OeuQ4AS"
+        },
+        "Id": "0QLWC000002OeuQ4AS",
+        "QuoteId": "0Q0WC000001yWpF0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000001yWpF0AU"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002PBDd4AO"
+        },
+        "Id": "0QLWC000002PBDd4AO",
+        "QuoteId": "0Q0WC000002A5zl0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002A5zl0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 100
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002PGV34AO"
+        },
+        "Id": "0QLWC000002PGV34AO",
+        "QuoteId": "0Q0WC000002AHo10AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002AHo10AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002PGV44AO"
+        },
+        "Id": "0QLWC000002PGV44AO",
+        "QuoteId": "0Q0WC000002AHo10AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002AHo10AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 13.65,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Phzt4AC"
+        },
+        "Id": "0QLWC000002Phzt4AC",
+        "QuoteId": "0Q0WC000002AjKT0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002AjKT0A0"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD2BgYAL"
+          },
+          "ProductCode": "OS-CI-RSS-CIS_LIC"
+        },
+        "Fortra_Product_Type__c": "Software",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 369,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Pi014AC"
+        },
+        "Id": "0QLWC000002Pi014AC",
+        "QuoteId": "0Q0WC000002AjKX0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002AjKX0A0"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1ypYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Software",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 62,
+        "Quantity": 5
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QNz84AG"
+        },
+        "Id": "0QLWC000002QNz84AG",
+        "QuoteId": "0Q0WC000002BTvB0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BTvB0AW"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2180,
+        "Quantity": 200
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QS4N4AW"
+        },
+        "Id": "0QLWC000002QS4N4AW",
+        "QuoteId": "0Q0WC000002BUUg0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BUUg0AO"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 21,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QS4O4AW"
+        },
+        "Id": "0QLWC000002QS4O4AW",
+        "QuoteId": "0Q0WC000002BUUg0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BUUg0AO"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 13.65,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QSZ04AO"
+        },
+        "Id": "0QLWC000002QSZ04AO",
+        "QuoteId": "0Q0WC000002BV0v0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BV0v0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QSZ14AO"
+        },
+        "Id": "0QLWC000002QSZ14AO",
+        "QuoteId": "0Q0WC000002BV0v0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BV0v0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 13.65,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QTGY4A4"
+        },
+        "Id": "0QLWC000002QTGY4A4",
+        "QuoteId": "0Q0WC000002BSz80AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BSz80AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QTGZ4A4"
+        },
+        "Id": "0QLWC000002QTGZ4A4",
+        "QuoteId": "0Q0WC000002BSz80AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BSz80AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 13.65,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QWsl4AG"
+        },
+        "Id": "0QLWC000002QWsl4AG",
+        "QuoteId": "0Q0WC000002BYy60AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BYy60AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QWsm4AG"
+        },
+        "Id": "0QLWC000002QWsm4AG",
+        "QuoteId": "0Q0WC000002BYy60AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BYy60AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 13.65,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QYzO4AW"
+        },
+        "Id": "0QLWC000002QYzO4AW",
+        "QuoteId": "0Q0WC000002Bb9Z0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bb9Z0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QYzP4AW"
+        },
+        "Id": "0QLWC000002QYzP4AW",
+        "QuoteId": "0Q0WC000002Bb9Z0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bb9Z0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 13.65,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QaGP4A0"
+        },
+        "Id": "0QLWC000002QaGP4A0",
+        "QuoteId": "0Q0WC0000026Egf0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026Egf0AE"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QaGQ4A0"
+        },
+        "Id": "0QLWC000002QaGQ4A0",
+        "QuoteId": "0Q0WC0000026Egf0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026Egf0AE"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QdKj4AK"
+        },
+        "Id": "0QLWC000002QdKj4AK",
+        "QuoteId": "0Q0WC000002BdeS0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BdeS0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1JjYAL"
+          },
+          "ProductCode": "NW-INT-RNM-FLOWNE"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QdUP4A0"
+        },
+        "Id": "0QLWC000002QdUP4A0",
+        "QuoteId": "0Q0WC000002Bfeb0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bfeb0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD13sYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-ADS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QdUQ4A0"
+        },
+        "Id": "0QLWC000002QdUQ4A0",
+        "QuoteId": "0Q0WC000002Bfeb0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bfeb0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD20KYAT"
+          },
+          "ProductCode": "RPA-AUD-RSS-AFTPES"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 1000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Qdsb4AC"
+        },
+        "Id": "0QLWC000002Qdsb4AC",
+        "QuoteId": "0Q0WC000002Bft70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bft70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Qdsc4AC"
+        },
+        "Id": "0QLWC000002Qdsc4AC",
+        "QuoteId": "0Q0WC000002Bft70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bft70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QwvF4AS"
+        },
+        "Id": "0QLWC000002QwvF4AS",
+        "QuoteId": "0Q0WC000002BypJ0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BypJ0AS"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 2
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Qxo54AC"
+        },
+        "Id": "0QLWC000002Qxo54AC",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1RWYA1"
+          },
+          "ProductCode": "SM-ROM-RNM-MONINE"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QxrJ4AS"
+        },
+        "Id": "0QLWC000002QxrJ4AS",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1YVYA1"
+          },
+          "ProductCode": "SM-ROB-NRPS-RBCAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QxrK4AS"
+        },
+        "Id": "0QLWC000002QxrK4AS",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1YMYA1"
+          },
+          "ProductCode": "SM-ROA-NRPS-ROBOT"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QxrL4AS"
+        },
+        "Id": "0QLWC000002QxrL4AS",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1YkYAL"
+          },
+          "ProductCode": "SM-ROC-NRPS-ROCP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Qxsv4AC"
+        },
+        "Id": "0QLWC000002Qxsv4AC",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD20uYAD"
+          },
+          "ProductCode": "SM-ROB-RRM-RBCARM"
+        },
+        "Fortra_Product_Type__c": "Renewal Maintenance",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 151110,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Qxxl4AC"
+        },
+        "Id": "0QLWC000002Qxxl4AC",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Qxxm4AC"
+        },
+        "Id": "0QLWC000002Qxxm4AC",
+        "QuoteId": "0Q0WC000002Bzi90AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzi90AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QyDt4AK"
+        },
+        "Id": "0QLWC000002QyDt4AK",
+        "QuoteId": "0Q0WC000002Bzzt0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bzzt0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1RFYA1"
+          },
+          "ProductCode": "SM-MP-RSS-MPS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QyYs4AK"
+        },
+        "Id": "0QLWC000002QyYs4AK",
+        "QuoteId": "0Q0WC000002C0Ph0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002C0Ph0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QyYt4AK"
+        },
+        "Id": "0QLWC000002QyYt4AK",
+        "QuoteId": "0Q0WC000002C0Ph0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002C0Ph0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 14,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002R0ag4AC"
+        },
+        "Id": "0QLWC000002R0ag4AC",
+        "QuoteId": "0Q0WC000002C29l0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002C29l0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002R0ah4AC"
+        },
+        "Id": "0QLWC000002R0ah4AC",
+        "QuoteId": "0Q0WC000002C29l0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002C29l0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 14,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RJgY4AW"
+        },
+        "Id": "0QLWC000002RJgY4AW",
+        "QuoteId": "0Q0WC000002CLHG0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CLHG0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 31.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RJgb4AG"
+        },
+        "Id": "0QLWC000002RJgb4AG",
+        "QuoteId": "0Q0WC000002CLHG0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CLHG0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RQV84AO"
+        },
+        "Id": "0QLWC000002RQV84AO",
+        "QuoteId": "0Q0WC000002CSfJ0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CSfJ0AW"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MIYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAASRS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RREH4A4"
+        },
+        "Id": "0QLWC000002RREH4A4",
+        "QuoteId": "0Q0WC000002CSfJ0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CSfJ0AW"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Professional Service",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RU2T4AW"
+        },
+        "Id": "0QLWC000002RU2T4AW",
+        "QuoteId": "0Q0WC000002BNHu0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BNHu0AO"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVwYAL"
+          },
+          "ProductCode": "BI-ISA-RSS-INSISU"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RU2U4AW"
+        },
+        "Id": "0QLWC000002RU2U4AW",
+        "QuoteId": "0Q0WC000002BNHu0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BNHu0AO"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVxYAL"
+          },
+          "ProductCode": "BI-ISA-RSS-IACS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 1375,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY7i4AG"
+        },
+        "Id": "0QLWC000002RY7i4AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY7m4AG"
+        },
+        "Id": "0QLWC000002RY7m4AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY7n4AG"
+        },
+        "Id": "0QLWC000002RY7n4AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY7r4AG"
+        },
+        "Id": "0QLWC000002RY7r4AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY7s4AG"
+        },
+        "Id": "0QLWC000002RY7s4AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY7u4AG"
+        },
+        "Id": "0QLWC000002RY7u4AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY804AG"
+        },
+        "Id": "0QLWC000002RY804AG",
+        "QuoteId": "0Q0WC000002CbM10AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbM10AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RY9J4AW"
+        },
+        "Id": "0QLWC000002RY9J4AW",
+        "QuoteId": "0Q0WC000002AHkn0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002AHkn0AG"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": 2180,
+        "NetUnitPrice": 2179.52,
+        "Quantity": 49
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rafl4AC"
+        },
+        "Id": "0QLWC000002Rafl4AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rafp4AC"
+        },
+        "Id": "0QLWC000002Rafp4AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rafq4AC"
+        },
+        "Id": "0QLWC000002Rafq4AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rafu4AC"
+        },
+        "Id": "0QLWC000002Rafu4AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rafv4AC"
+        },
+        "Id": "0QLWC000002Rafv4AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rafx4AC"
+        },
+        "Id": "0QLWC000002Rafx4AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rag34AC"
+        },
+        "Id": "0QLWC000002Rag34AC",
+        "QuoteId": "0Q0WC000002CbIn0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CbIn0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraA4AS"
+        },
+        "Id": "0QLWC000002RraA4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraE4AS"
+        },
+        "Id": "0QLWC000002RraE4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraF4AS"
+        },
+        "Id": "0QLWC000002RraF4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraH4AS"
+        },
+        "Id": "0QLWC000002RraH4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraK4AS"
+        },
+        "Id": "0QLWC000002RraK4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraL4AS"
+        },
+        "Id": "0QLWC000002RraL4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraP4AS"
+        },
+        "Id": "0QLWC000002RraP4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RraV4AS"
+        },
+        "Id": "0QLWC000002RraV4AS",
+        "QuoteId": "0Q0WC000002Cs9y0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cs9y0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriE4AS"
+        },
+        "Id": "0QLWC000002RriE4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriI4AS"
+        },
+        "Id": "0QLWC000002RriI4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriJ4AS"
+        },
+        "Id": "0QLWC000002RriJ4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriL4AS"
+        },
+        "Id": "0QLWC000002RriL4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriO4AS"
+        },
+        "Id": "0QLWC000002RriO4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriP4AS"
+        },
+        "Id": "0QLWC000002RriP4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriT4AS"
+        },
+        "Id": "0QLWC000002RriT4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RriZ4AS"
+        },
+        "Id": "0QLWC000002RriZ4AS",
+        "QuoteId": "0Q0WC000002CsJe0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CsJe0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RsPl4AK"
+        },
+        "Id": "0QLWC000002RsPl4AK",
+        "QuoteId": "0Q0WC000002CZbx0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CZbx0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RsPm4AK"
+        },
+        "Id": "0QLWC000002RsPm4AK",
+        "QuoteId": "0Q0WC000002CZbx0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002CZbx0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtTt4AK"
+        },
+        "Id": "0QLWC000002RtTt4AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtTx4AK"
+        },
+        "Id": "0QLWC000002RtTx4AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtTy4AK"
+        },
+        "Id": "0QLWC000002RtTy4AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtU04AK"
+        },
+        "Id": "0QLWC000002RtU04AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtU34AK"
+        },
+        "Id": "0QLWC000002RtU34AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtU44AK"
+        },
+        "Id": "0QLWC000002RtU44AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtU84AK"
+        },
+        "Id": "0QLWC000002RtU84AK",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtUE4A0"
+        },
+        "Id": "0QLWC000002RtUE4A0",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtVV4A0"
+        },
+        "Id": "0QLWC000002RtVV4A0",
+        "QuoteId": "0Q0WC000002Ctij0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ctij0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 42,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtVW4A0"
+        },
+        "Id": "0QLWC000002RtVW4A0",
+        "QuoteId": "0Q0WC000002Ctij0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ctij0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 35,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtaL4AS"
+        },
+        "Id": "0QLWC000002RtaL4AS",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RtaM4AS"
+        },
+        "Id": "0QLWC000002RtaM4AS",
+        "QuoteId": "0Q0WC000002Cth70AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cth70AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxnd4AC"
+        },
+        "Id": "0QLWC000002Rxnd4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxnh4AC"
+        },
+        "Id": "0QLWC000002Rxnh4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxni4AC"
+        },
+        "Id": "0QLWC000002Rxni4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxnk4AC"
+        },
+        "Id": "0QLWC000002Rxnk4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxnn4AC"
+        },
+        "Id": "0QLWC000002Rxnn4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxno4AC"
+        },
+        "Id": "0QLWC000002Rxno4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxns4AC"
+        },
+        "Id": "0QLWC000002Rxns4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Rxny4AC"
+        },
+        "Id": "0QLWC000002Rxny4AC",
+        "QuoteId": "0Q0WC000002Cx6P0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Cx6P0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Ryjh4AC"
+        },
+        "Id": "0QLWC000002Ryjh4AC",
+        "QuoteId": "0Q0WC000002Bbj30AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bbj30AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Ryji4AC"
+        },
+        "Id": "0QLWC000002Ryji4AC",
+        "QuoteId": "0Q0WC000002Bbj30AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bbj30AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002RytN4AS"
+        },
+        "Id": "0QLWC000002RytN4AS",
+        "QuoteId": "0Q0WC000002Bbj30AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Bbj30AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MAYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAWRS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 12650,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SDvd4AG"
+        },
+        "Id": "0QLWC000002SDvd4AG",
+        "QuoteId": "0Q0WC000002DBqv0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DBqv0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SDve4AG"
+        },
+        "Id": "0QLWC000002SDve4AG",
+        "QuoteId": "0Q0WC000002DBqv0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DBqv0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SQzJ4AW"
+        },
+        "Id": "0QLWC000002SQzJ4AW",
+        "QuoteId": "0Q0WC000002DOub0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOub0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002STab4AG"
+        },
+        "Id": "0QLWC000002STab4AG",
+        "QuoteId": "0Q0WC000002DOub0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOub0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002STac4AG"
+        },
+        "Id": "0QLWC000002STac4AG",
+        "QuoteId": "0Q0WC000002DOub0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOub0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002STcD4AW"
+        },
+        "Id": "0QLWC000002STcD4AW",
+        "QuoteId": "0Q0WC000002DOsz0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOsz0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002STcE4AW"
+        },
+        "Id": "0QLWC000002STcE4AW",
+        "QuoteId": "0Q0WC000002DOsz0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOsz0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002STfR4AW"
+        },
+        "Id": "0QLWC000002STfR4AW",
+        "QuoteId": "0Q0WC000002DOsz0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOsz0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002STfS4AW"
+        },
+        "Id": "0QLWC000002STfS4AW",
+        "QuoteId": "0Q0WC000002DOsz0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DOsz0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8T4AW"
+        },
+        "Id": "0QLWC000002SU8T4AW",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8X4AW"
+        },
+        "Id": "0QLWC000002SU8X4AW",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8Y4AW"
+        },
+        "Id": "0QLWC000002SU8Y4AW",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8a4AG"
+        },
+        "Id": "0QLWC000002SU8a4AG",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8d4AG"
+        },
+        "Id": "0QLWC000002SU8d4AG",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8e4AG"
+        },
+        "Id": "0QLWC000002SU8e4AG",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8i4AG"
+        },
+        "Id": "0QLWC000002SU8i4AG",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SU8o4AG"
+        },
+        "Id": "0QLWC000002SU8o4AG",
+        "QuoteId": "0Q0WC000002DS8b0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DS8b0AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWmz4AG"
+        },
+        "Id": "0QLWC000002SWmz4AG",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWn34AG"
+        },
+        "Id": "0QLWC000002SWn34AG",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWn44AG"
+        },
+        "Id": "0QLWC000002SWn44AG",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWn64AG"
+        },
+        "Id": "0QLWC000002SWn64AG",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWn94AG"
+        },
+        "Id": "0QLWC000002SWn94AG",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.8,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWnA4AW"
+        },
+        "Id": "0QLWC000002SWnA4AW",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWnE4AW"
+        },
+        "Id": "0QLWC000002SWnE4AW",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SWnK4AW"
+        },
+        "Id": "0QLWC000002SWnK4AW",
+        "QuoteId": "0Q0WC000002DUVN0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DUVN0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 17.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SYaJ4AW"
+        },
+        "Id": "0QLWC000002SYaJ4AW",
+        "QuoteId": "0Q0WC000002DWKH0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DWKH0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 31.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SYaK4AW"
+        },
+        "Id": "0QLWC000002SYaK4AW",
+        "QuoteId": "0Q0WC000002DWKH0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DWKH0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SYdX4AW"
+        },
+        "Id": "0QLWC000002SYdX4AW",
+        "QuoteId": "0Q0WC000002DWNV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DWNV0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 31.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002SYdY4AW"
+        },
+        "Id": "0QLWC000002SYdY4AW",
+        "QuoteId": "0Q0WC000002DWNV0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DWNV0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 16.38,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002TDQX4A4"
+        },
+        "Id": "0QLWC000002TDQX4A4",
+        "QuoteId": "0Q0WC000002EByX0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002EByX0AW"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "ProductCode": "DM-WCU-NRPS-5250PE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 3575,
+        "Quantity": 3
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002TjJy4AK"
+        },
+        "Id": "0QLWC000002TjJy4AK",
+        "QuoteId": "0Q0WC000002DWKH0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002DWKH0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "ProductCode": "BI-ABS-RSS-ABSTSU"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 46,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UCll4AG"
+        },
+        "Id": "0QLWC000002UCll4AG",
+        "QuoteId": "0Q0WC000002A6z40AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002A6z40AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "ProductCode": "DM-WCU-NRPS-5250PE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 3675,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UWXZ4A4"
+        },
+        "Id": "0QLWC000002UWXZ4A4",
+        "QuoteId": "0Q0WC000002A6z40AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002A6z40AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UWXa4AO"
+        },
+        "Id": "0QLWC000002UWXa4AO",
+        "QuoteId": "0Q0WC000002A6z40AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002A6z40AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UWan4AG"
+        },
+        "Id": "0QLWC000002UWan4AG",
+        "QuoteId": "0Q0WC000002FYt30AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002FYt30AG"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": 19.2,
+        "NetUnitPrice": 19.2,
+        "Quantity": 200
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeD4AW"
+        },
+        "Id": "0QLWC000002UYeD4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MAYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAWRS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 12650,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeE4AW"
+        },
+        "Id": "0QLWC000002UYeE4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OPYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASFS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeF4AW"
+        },
+        "Id": "0QLWC000002UYeF4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OjYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASSS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeG4AW"
+        },
+        "Id": "0QLWC000002UYeG4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MAYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAWRS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 12650,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeH4AW"
+        },
+        "Id": "0QLWC000002UYeH4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OjYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASSS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeI4AW"
+        },
+        "Id": "0QLWC000002UYeI4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OPYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASFS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002V1eb4AC"
+        },
+        "Id": "0QLWC000002V1eb4AC",
+        "QuoteId": "0Q0WC0000028dHZ0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028dHZ0AY"
+          },
+          "Status": null,
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002V1ec4AC"
+        },
+        "Id": "0QLWC000002V1ec4AC",
+        "QuoteId": "0Q0WC0000028dHZ0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028dHZ0AY"
+          },
+          "Status": null,
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002V1hp4AC"
+        },
+        "Id": "0QLWC000002V1hp4AC",
+        "QuoteId": "0Q0WC0000028dHZ0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028dHZ0AY"
+          },
+          "Status": null,
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-INSIPE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002V1hq4AC"
+        },
+        "Id": "0QLWC000002V1hq4AC",
+        "QuoteId": "0Q0WC0000028dHZ0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028dHZ0AY"
+          },
+          "Status": null,
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "ProductCode": "BI-ISA-NRPS-IACP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VRh74AG"
+        },
+        "Id": "0QLWC000002VRh74AG",
+        "QuoteId": "0Q0WC000002GV1t0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002GV1t0AG"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "ProductCode": "DM-WCU-NRPS-5250PE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 3375,
+        "Quantity": 3
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZd4AO"
+        },
+        "Id": "0QLWC000002VXZd4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZh4AO"
+        },
+        "Id": "0QLWC000002VXZh4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZi4AO"
+        },
+        "Id": "0QLWC000002VXZi4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZk4AO"
+        },
+        "Id": "0QLWC000002VXZk4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZn4AO"
+        },
+        "Id": "0QLWC000002VXZn4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 41.55,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZo4AO"
+        },
+        "Id": "0QLWC000002VXZo4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZs4AO"
+        },
+        "Id": "0QLWC000002VXZs4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXZy4AO"
+        },
+        "Id": "0QLWC000002VXZy4AO",
+        "QuoteId": "0Q0WC000002Gakj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gakj0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 34.55,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXxp4AG"
+        },
+        "Id": "0QLWC000002VXxp4AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LyYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXxt4AG"
+        },
+        "Id": "0QLWC000002VXxt4AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXxu4AG"
+        },
+        "Id": "0QLWC000002VXxu4AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LwYAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXxw4AG"
+        },
+        "Id": "0QLWC000002VXxw4AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "ProductCode": "SM-AJS-RSS-AJSS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXxz4AG"
+        },
+        "Id": "0QLWC000002VXxz4AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yoYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 37.45,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXy04AG"
+        },
+        "Id": "0QLWC000002VXy04AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M0YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAARP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXy44AG"
+        },
+        "Id": "0QLWC000002VXy44AG",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1LqYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAFTS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VXyA4AW"
+        },
+        "Id": "0QLWC000002VXyA4AW",
+        "QuoteId": "0Q0WC000002Gb5h0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Gb5h0AC"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1yqYAD"
+          },
+          "ProductCode": null
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 30.45,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WdI14AK"
+        },
+        "Id": "0QLWC000002WdI14AK",
+        "QuoteId": "0Q0WC000002Hj1B0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj1B0AS"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WdI24AK"
+        },
+        "Id": "0QLWC000002WdI24AK",
+        "QuoteId": "0Q0WC000002Hj1B0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj1B0AS"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "ProductCode": "VM-DDL-RSL-ACTITH"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 9,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WdUv4AK"
+        },
+        "Id": "0QLWC000002WdUv4AK",
+        "QuoteId": "0Q0WC000002Hj9F0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj9F0AS"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "ProductCode": "DM-WCU-NRPS-5250PE"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 3375,
+        "Quantity": 3
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WfJp4AK"
+        },
+        "Id": "0QLWC000002WfJp4AK",
+        "QuoteId": "0Q0WC000002Hl2z0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hl2z0AC"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WfJq4AK"
+        },
+        "Id": "0QLWC000002WfJq4AK",
+        "QuoteId": "0Q0WC000002Hl2z0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hl2z0AC"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "ProductCode": "VM-DDL-RSL-ACTITH"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 9,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WgZF4A0"
+        },
+        "Id": "0QLWC000002WgZF4A0",
+        "QuoteId": "0Q0WC000002HmDZ0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002HmDZ0A0"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1M8YAL"
+          },
+          "ProductCode": "GOA-GAM-NRPS-GAAWRP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 26450,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X2I24AK"
+        },
+        "Id": "0QLWC000002X2I24AK",
+        "QuoteId": "0Q0WC000002IAJ70AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002IAJ70AO"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 2
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X39F4AS"
+        },
+        "Id": "0QLWC000002X39F4AS",
+        "QuoteId": "0Q0WC000002I9Gb0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002I9Gb0AK"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 2180,
+        "Quantity": 50
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X4YP4A0"
+        },
+        "Id": "0QLWC000002X4YP4A0",
+        "QuoteId": "0Q0WC000002IBVJ0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002IBVJ0A4"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X4YQ4A0"
+        },
+        "Id": "0QLWC000002X4YQ4A0",
+        "QuoteId": "0Q0WC000002IBVJ0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002IBVJ0A4"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "ProductCode": "VM-DDL-RSL-ACTITH"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 9,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X4uv4AC"
+        },
+        "Id": "0QLWC000002X4uv4AC",
+        "QuoteId": "0Q0WC000002IB0f0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002IB0f0AG"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X4uw4AC"
+        },
+        "Id": "0QLWC000002X4uw4AC",
+        "QuoteId": "0Q0WC000002IB0f0AG",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002IB0f0AG"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "ProductCode": "VM-DDL-RSL-ACTITH"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 9,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X68j4AC"
+        },
+        "Id": "0QLWC000002X68j4AC",
+        "QuoteId": "0Q0WC000002ICJJ0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002ICJJ0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X68k4AC"
+        },
+        "Id": "0QLWC000002X68k4AC",
+        "QuoteId": "0Q0WC000002ICJJ0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002ICJJ0A4"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "ProductCode": "VM-DDL-RSL-ACTITH"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 9,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X6Bx4AK"
+        },
+        "Id": "0QLWC000002X6Bx4AK",
+        "QuoteId": "0Q0WC000002ICMX0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002ICMX0A4"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002X6By4AK"
+        },
+        "Id": "0QLWC000002X6By4AK",
+        "QuoteId": "0Q0WC000002ICMX0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002ICMX0A4"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "ProductCode": "VM-DDL-RSL-ACTITH"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 9,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002Y0dx4AC"
+        },
+        "Id": "0QLWC000002Y0dx4AC",
+        "QuoteId": "0Q0WC000002IjWz0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002IjWz0AK"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCy0FYAT"
+          },
+          "ProductCode": "ES-SIG-RSS-SSSIGS_LIC"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 369,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002YTxh4AG"
+        },
+        "Id": "0QLWC000002YTxh4AG",
+        "QuoteId": "0Q0WC000002Jg7F0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Jg7F0AS"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCy0FYAT"
+          },
+          "ProductCode": "ES-SIG-RSS-SSSIGS_LIC"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": null,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ZmYU4A0"
+        },
+        "Id": "0QLWC000002ZmYU4A0",
+        "QuoteId": "0Q0WC000002L0wj0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002L0wj0AC"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSAAS"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": 2160,
+        "NetUnitPrice": 2160,
+        "Quantity": 49
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002aBwf4AE"
+        },
+        "Id": "0QLWC000002aBwf4AE",
+        "QuoteId": "0Q0WC000002LQUb0AO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002LQUb0AO"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 0
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002aEeP4AU"
+        },
+        "Id": "0QLWC000002aEeP4AU",
+        "QuoteId": "0Q0WC000002LSwD0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002LSwD0AW"
+          },
+          "Status": "Accepted",
+          "QuoteTypeText__c": "Renewal"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCy0FYAT"
+          },
+          "ProductCode": "ES-SIG-RSS-SSSIGS_LIC"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": null,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002bRcs4AE"
+        },
+        "Id": "0QLWC000002bRcs4AE",
+        "QuoteId": "0Q0WC000002M8SP0A0",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002M8SP0A0"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 0
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002dNlB4AU"
+        },
+        "Id": "0QLWC000002dNlB4AU",
+        "QuoteId": "0Q0WC000002NyvB0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002NyvB0AS"
+          },
+          "Status": "Ordered",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1OjYAL"
+          },
+          "ProductCode": "GOA-GAM-RSS-GASSS"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002o9zp4AA"
+        },
+        "Id": "0QLWC000002o9zp4AA",
+        "QuoteId": "0Q0WC000002THnV0AW",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002THnV0AW"
+          },
+          "Status": "Draft",
+          "QuoteTypeText__c": null
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Fortra_Product_Type__c": null,
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": 94000,
+        "Quantity": 0
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003DI9q4AG"
+        },
+        "Id": "0QLWC000003DI9q4AG",
+        "QuoteId": "0Q0WC000002QGTC0A4",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002QGTC0A4"
+          },
+          "Status": "Approved",
+          "QuoteTypeText__c": "New"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1y8YAD"
+          },
+          "ProductCode": "GS-GSE-RNM-WMSMNE"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Source_List_Price__c": null,
+        "Base_Price__c": null,
+        "NetUnitPrice": null,
+        "Quantity": 2
+      }
+    ],
+    "totalSize": 192,
+    "done": true
+  },
+  "warnings": []
+}

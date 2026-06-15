@@ -1,0 +1,20 @@
+{
+  "scenario_id": "BOKS-STAMP-FLOW",
+  "domain": "Stamp / data flow (BoKS)",
+  "title": "Stamp flow stamps BoKS Base_Price/COLACalc/priors/COLA% correctly",
+  "status": "pass",
+  "severity": "none",
+  "data_rooted": false,
+  "reason": "Live Stamp_Maintenance_Pricing_Inputs flow stamps all four field groups exactly right on the BoKS renewal-maint line and re-stamps deterministically after a Force reprice.",
+  "expected": "Base_Price__c=71 (prior OI carryforward); Prior_Partner_Discount__c=8.52 (=71x12%); Prior_Discretionary_Discount__c=0; COLA_Uplift_Percent__c=7.85 (COLA_Uplift_Rules__mdt 'Powertech IAM BoKS' default); COLACalculatedPrice__c=(71-8.52-0)x1.0785=67.38; UnitPrice=67.38; Fortra_Product_Type__c='Renewal Maintenance'.",
+  "actual": "QLI 0QLWC000003e2Sn4AI (PIA-PIA-RRM-PIAM) stamped Base_Price__c=71, Prior_Partner_Discount__c=8.52, Prior_Discretionary_Discount__c=0, COLA_Uplift_Percent__c=7.85, COLACalculatedPrice__c=67.38, UnitPrice=67.38, Fortra_Product_Type__c='Renewal Maintenance' - all exact; identical after live Force reprice (isSuccess=true). NetUnitPrice=60.64 is the separate downstream PartnerNetPricePosthook double-discount (RN-COLA-COMMIT), not a stamp-flow fault - stamp output 67.38 is correct.",
+  "evidence": [
+    "Canary quote 00781109 (0Q0WC0000038aXd0AI), QuoteTypeText__c=Renewal, ContractId=Renewal_Contract__c=800WC00000S5ub1YAB",
+    "QLI 0QLWC000003e2Sn4AI PIA-PIA-RRM-PIAM stamped: Base_Price__c=71, COLACalculatedPrice__c=67.38, COLA_Uplift_Percent__c=7.85, Prior_Partner_Discount__c=8.52, Prior_Discretionary_Discount__c=0, UnitPrice=67.38, Source_List_Price__c=355, Fortra_Product_Type__c='Renewal Maintenance'",
+    "Live flow Stamp_Maintenance_Pricing_Inputs (Active, RecordBeforeSave on QuoteLineItem): renewal path stamps Base_Price<-prior OrderItem.Base_Price; Prior_Partner/Discretionary<-null-safe formulas; COLA_Uplift_Percent<-Get_COLA_Rule.Default_Uplift_Percent (line-override else category default); COLACalculatedPrice & UnitPrice<-ComputedRenewalColaNet=(Base-PriorPartner-PriorDiscretionary)x(1+COLA%/100)",
+    "Prior activated-order OrderItem 802WC00000OgsuEYAR (Order 801WC00000kaGBpYAM, PIA-PIA-RRM-PIAM) source: Base_Price__c=71, Prior_Partner_Discount__c=8.52, Prior_Discretionary_Discount__c=0, PartnerDiscountPercent=12 -> carryforward exact",
+    "COLA_Uplift_Rules__mdt m0eWC000003G7vKYAS 'Powertech IAM BoKS' Solution_Category__c='Powertech Identity & Access Manager (BoKS)' Default_Uplift_Percent__c=7.85 Is_Active__c=true; BoKS maint Product2 01tWC00000DD1buYAD Solution_Category__c='Powertech Identity & Access Manager (BoKS)' -> resolves to 7.85",
+    "Numeric reconcile: (71-8.52-0)*(1+7.85/100)=67.3847 ->scale2 67.38 = stamped COLACalculatedPrice__c and UnitPrice",
+    "Live Force reprice (configurationPref Skip) on 0Q0WC0000038aXd0AI returned isSuccess=true, errorResponse=[]; post-reprice values identical to pre-reprice (deterministic re-stamp), line count unchanged at 1"
+  ]
+}

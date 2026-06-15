@@ -1,0 +1,260 @@
+/**
+ * @description Stamps renewal quote header fields when platform Asset Renew creates a bare quote.
+ *              Copies commercial / routing fields from the source order's quote on the contract
+ *              (Renewal_Contract__c, Legal Entity, partner, places, opportunity, etc.).
+ */
+public with sharing class RenewalQuoteHeaderHandler {
+
+    @TestVisible
+    private static Map<Id, Id> testSourceQuoteIdByContractId;
+
+    public static void applyRenewalQuoteHeaders(List<Quote> quotes) {
+        if (quotes == null || quotes.isEmpty()) {
+            return;
+        }
+
+        Map<Id, Quote> quotesByContractId = new Map<Id, Quote>();
+        for (Quote quote : quotes) {
+            if (!isRenewalQuoteContext(quote)) {
+                continue;
+            }
+
+            Id contractId = resolveContractId(quote);
+            if (contractId == null) {
+                continue;
+            }
+
+            if (quote.Renewal_Contract__c == null) {
+                quote.Renewal_Contract__c = contractId;
+            }
+
+            quotesByContractId.put(contractId, quote);
+        }
+
+        if (quotesByContractId.isEmpty()) {
+            return;
+        }
+
+        Map<Id, Quote> sourceQuotesByContractId = loadSourceQuotesByContractId(quotesByContractId.keySet());
+        for (Id contractId : quotesByContractId.keySet()) {
+            Quote sourceQuote = sourceQuotesByContractId.get(contractId);
+            if (sourceQuote == null) {
+                continue;
+            }
+            stampHeaderFields(quotesByContractId.get(contractId), sourceQuote);
+        }
+    }
+
+    @TestVisible
+    private static Boolean isRenewalQuoteContext(Quote quote) {
+        return quote != null && (
+            quote.OriginalActionType == QuoteRenewalTypeHandler.ORIGINAL_ACTION_RENEW
+            || quote.Quote_Type__c == QuoteRenewalTypeHandler.QUOTE_TYPE_RENEWAL
+        );
+    }
+
+    @TestVisible
+    private static Id resolveContractId(Quote quote) {
+        if (quote == null) {
+            return null;
+        }
+        if (quote.Renewal_Contract__c != null) {
+            return quote.Renewal_Contract__c;
+        }
+        return quote.ContractId;
+    }
+
+    @TestVisible
+    private static Map<Id, Quote> loadSourceQuotesByContractId(Set<Id> contractIds) {
+        Map<Id, Quote> sourceQuotesByContractId = new Map<Id, Quote>();
+        if (contractIds == null || contractIds.isEmpty()) {
+            return sourceQuotesByContractId;
+        }
+
+        Map<Id, Id> sourceQuoteIdByContractId = resolveSourceQuoteIdByContractId(contractIds);
+        Set<Id> sourceQuoteIds = new Set<Id>(sourceQuoteIdByContractId.values());
+        if (sourceQuoteIds.isEmpty()) {
+            return sourceQuotesByContractId;
+        }
+
+        Map<Id, Quote> sourceQuotesById = new Map<Id, Quote>(querySourceQuotes(sourceQuoteIds));
+        for (Id contractId : sourceQuoteIdByContractId.keySet()) {
+            Quote sourceQuote = sourceQuotesById.get(sourceQuoteIdByContractId.get(contractId));
+            if (sourceQuote != null) {
+                sourceQuotesByContractId.put(contractId, sourceQuote);
+            }
+        }
+        return sourceQuotesByContractId;
+    }
+
+    private static Map<Id, Id> resolveSourceQuoteIdByContractId(Set<Id> contractIds) {
+        Map<Id, Id> sourceQuoteIdByContractId = new Map<Id, Id>();
+
+        if (Test.isRunningTest() && testSourceQuoteIdByContractId != null) {
+            for (Id contractId : contractIds) {
+                if (testSourceQuoteIdByContractId.containsKey(contractId)) {
+                    sourceQuoteIdByContractId.put(contractId, testSourceQuoteIdByContractId.get(contractId));
+                }
+            }
+            return sourceQuoteIdByContractId;
+        }
+
+        for (Contract contract : [
+            SELECT Id, SourceQuoteId
+            FROM Contract
+            WHERE Id IN :contractIds
+              AND SourceQuoteId != null
+        ]) {
+            sourceQuoteIdByContractId.put(contract.Id, contract.SourceQuoteId);
+        }
+
+        Set<Id> contractsWithoutSource = new Set<Id>();
+        for (Id contractId : contractIds) {
+            if (!sourceQuoteIdByContractId.containsKey(contractId)) {
+                contractsWithoutSource.add(contractId);
+            }
+        }
+
+        if (!contractsWithoutSource.isEmpty()) {
+            for (Order sourceOrder : [
+                SELECT ContractId, QuoteId
+                FROM Order
+                WHERE ContractId IN :contractsWithoutSource
+                  AND QuoteId != null
+                ORDER BY CreatedDate DESC
+            ]) {
+                if (!sourceQuoteIdByContractId.containsKey(sourceOrder.ContractId)) {
+                    sourceQuoteIdByContractId.put(sourceOrder.ContractId, sourceOrder.QuoteId);
+                }
+            }
+        }
+
+        return sourceQuoteIdByContractId;
+    }
+
+    private static List<Quote> querySourceQuotes(Set<Id> sourceQuoteIds) {
+        return [
+            SELECT Id,
+                   OpportunityId,
+                   LegalEntityId,
+                   SalesTransactionTypeId,
+                   ContactId,
+                   BillToContactId,
+                   Bill_To_Place__c,
+                   Ship_To_Place__c,
+                   Primary_Place__c,
+                   End_User_Place__c,
+                   Install_Place__c,
+                   Service_Place__c,
+                   Regulatory_Place__c,
+                   Partner_Place__c,
+                   Billing_Partner__c,
+                   PartnerAccountId,
+                   Partner_Pricing_Model__c,
+                   Deal_Type__c,
+                   Reseller__c,
+                   Distributor__c,
+                   Referral_Partner__c,
+                   Net_Terms__c,
+                   Language__c,
+                   Payment_Portal__c,
+                   CurrencyIsoCode,
+                   BillingStreet,
+                   BillingCity,
+                   BillingState,
+                   BillingPostalCode,
+                   BillingCountry,
+                   BillingStateCode,
+                   BillingCountryCode,
+                   ShippingStreet,
+                   ShippingCity,
+                   ShippingState,
+                   ShippingPostalCode,
+                   ShippingCountry,
+                   ShippingStateCode,
+                   ShippingCountryCode,
+                   QuoteToStreet,
+                   QuoteToCity,
+                   QuoteToState,
+                   QuoteToPostalCode,
+                   QuoteToCountry,
+                   QuoteToStateCode,
+                   QuoteToCountryCode
+            FROM Quote
+            WHERE Id IN :sourceQuoteIds
+        ];
+    }
+
+    @TestVisible
+    private static void stampHeaderFields(Quote target, Quote source) {
+        if (target == null || source == null) {
+            return;
+        }
+
+        copyIdIfBlank(target, source, 'OpportunityId');
+        copyIdIfBlank(target, source, 'LegalEntityId');
+        copyIdIfBlank(target, source, 'SalesTransactionTypeId');
+        copyIdIfBlank(target, source, 'ContactId');
+        copyIdIfBlank(target, source, 'BillToContactId');
+        copyIdIfBlank(target, source, 'Bill_To_Place__c');
+        copyIdIfBlank(target, source, 'Ship_To_Place__c');
+        copyIdIfBlank(target, source, 'Primary_Place__c');
+        copyIdIfBlank(target, source, 'End_User_Place__c');
+        copyIdIfBlank(target, source, 'Install_Place__c');
+        copyIdIfBlank(target, source, 'Service_Place__c');
+        copyIdIfBlank(target, source, 'Regulatory_Place__c');
+        copyIdIfBlank(target, source, 'Partner_Place__c');
+        copyIdIfBlank(target, source, 'Billing_Partner__c');
+        copyIdIfBlank(target, source, 'PartnerAccountId');
+        copyStringIfBlank(target, source, 'Partner_Pricing_Model__c');
+        copyStringIfBlank(target, source, 'Deal_Type__c');
+        copyIdIfBlank(target, source, 'Reseller__c');
+        copyIdIfBlank(target, source, 'Distributor__c');
+        copyIdIfBlank(target, source, 'Referral_Partner__c');
+        copyStringIfBlank(target, source, 'Net_Terms__c');
+        copyStringIfBlank(target, source, 'Language__c');
+        copyStringIfBlank(target, source, 'Payment_Portal__c');
+        copyStringIfBlank(target, source, 'CurrencyIsoCode');
+        copyStringIfBlank(target, source, 'BillingStreet');
+        copyStringIfBlank(target, source, 'BillingCity');
+        copyStringIfBlank(target, source, 'BillingState');
+        copyStringIfBlank(target, source, 'BillingPostalCode');
+        copyStringIfBlank(target, source, 'BillingCountry');
+        copyStringIfBlank(target, source, 'BillingStateCode');
+        copyStringIfBlank(target, source, 'BillingCountryCode');
+        copyStringIfBlank(target, source, 'ShippingStreet');
+        copyStringIfBlank(target, source, 'ShippingCity');
+        copyStringIfBlank(target, source, 'ShippingState');
+        copyStringIfBlank(target, source, 'ShippingPostalCode');
+        copyStringIfBlank(target, source, 'ShippingCountry');
+        copyStringIfBlank(target, source, 'ShippingStateCode');
+        copyStringIfBlank(target, source, 'ShippingCountryCode');
+        copyStringIfBlank(target, source, 'QuoteToStreet');
+        copyStringIfBlank(target, source, 'QuoteToCity');
+        copyStringIfBlank(target, source, 'QuoteToState');
+        copyStringIfBlank(target, source, 'QuoteToPostalCode');
+        copyStringIfBlank(target, source, 'QuoteToCountry');
+        copyStringIfBlank(target, source, 'QuoteToStateCode');
+        copyStringIfBlank(target, source, 'QuoteToCountryCode');
+    }
+
+    private static void copyIdIfBlank(Quote target, Quote source, String fieldName) {
+        if (target.get(fieldName) != null) {
+            return;
+        }
+        Object sourceValue = source.get(fieldName);
+        if (sourceValue != null) {
+            target.put(fieldName, sourceValue);
+        }
+    }
+
+    private static void copyStringIfBlank(Quote target, Quote source, String fieldName) {
+        if (String.isNotBlank((String) target.get(fieldName))) {
+            return;
+        }
+        String sourceValue = (String) source.get(fieldName);
+        if (String.isNotBlank(sourceValue)) {
+            target.put(fieldName, sourceValue);
+        }
+    }
+}

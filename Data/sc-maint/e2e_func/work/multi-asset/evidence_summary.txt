@@ -1,0 +1,18 @@
+MULTI-ASSET renewal E2E - live FortraUAT 2026-06-14
+Quote 00781053 / 0Q0WC0000037muD0AQ (Draft, Renewal, USD)
+Active proc: V14 (Rev_Mgmt_Default_Pricing_Procedure_..._V140 status Active, sole active; V1-V13 inactive)
+
+Reprice: POST .../sales-transaction/actions/place {Force, configurationMethod:Skip} -> isSuccess:true
+Both QLI LastModifiedDate advanced to 2026-06-14T14:46:24Z (active re-commit, not stale)
+
+LEG 1 - Subscription beSECURE VM-BSL-RSL-BESECB 0QLWC000003cxzq4AA:
+  UnitPrice=5417.50 NetUnitPrice=4442.35 (=5417.50 x 0.82, 18% off) NetTotalPrice=4442.35
+  QuoteActionId=7ocWC00000u7tqlYAA Type='Renew'  -> CORRECT
+
+LEG 2 - Renewal Maintenance PIA-PIA-RRM-PIAM 0QLWC000003cy334AA:
+  COLACalculatedPrice__c=60.64 (= (71-8.52-6.25)x1.0785 CORRECT computation)
+  committed NetUnitPrice=54.58 (= 60.64 x 0.90 partner double-discount) UnitPrice=0  -> WRONG
+  PBE 01uWC000006XPPBYA4 IsDerived=true UnitPrice=0 (unpriced node)
+  QuoteActionId=null  (the differentiator: no 'Renew' action -> commit doesn't land)
+
+Quote GrandTotal=4496.93 = 4442.35 + 54.58 (carries wrong maint net; correct = 4502.99)

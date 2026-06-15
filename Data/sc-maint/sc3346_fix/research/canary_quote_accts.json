@@ -1,0 +1,95 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037AKH0A2"
+        },
+        "Id": "0Q0WC0000037AKH0A2",
+        "Name": "Renewal Quote",
+        "AccountId": "001WC00000kR6BnYAK",
+        "Account": {
+          "attributes": {
+            "type": "Account",
+            "url": "/services/data/v67.0/sobjects/Account/001WC00000kR6BnYAK"
+          },
+          "Name": "DPP New Nir Test Account 2026-06-09 10:11"
+        },
+        "Status": "Draft"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037XvB0AU"
+        },
+        "Id": "0Q0WC0000037XvB0AU",
+        "Name": "Renewal Quote",
+        "AccountId": "001WC00000kTYyNYAW",
+        "Account": {
+          "attributes": {
+            "type": "Account",
+            "url": "/services/data/v67.0/sobjects/Account/001WC00000kTYyNYAW"
+          },
+          "Name": "BoKS IAM Test Account 2026-06-10 00:18"
+        },
+        "Status": "Draft"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+        },
+        "Id": "0Q0WC0000037muD0AQ",
+        "Name": "Renewal Quote",
+        "AccountId": "001WC00000kVpYeYAK",
+        "Account": {
+          "attributes": {
+            "type": "Account",
+            "url": "/services/data/v67.0/sobjects/Account/001WC00000kVpYeYAK"
+          },
+          "Name": "DPP Test 1 2026-06-10 14:13"
+        },
+        "Status": "Draft"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000382MH0AY"
+        },
+        "Id": "0Q0WC00000382MH0AY",
+        "Name": "Renewal Quote",
+        "AccountId": "001WC00000kZKNxYAO",
+        "Account": {
+          "attributes": {
+            "type": "Account",
+            "url": "/services/data/v67.0/sobjects/Account/001WC00000kZKNxYAO"
+          },
+          "Name": "Nir DPP Test 2 2026-06-11 08:28"
+        },
+        "Status": "Draft"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038aXd0AI"
+        },
+        "Id": "0Q0WC0000038aXd0AI",
+        "Name": "Renewal Quote",
+        "AccountId": "001WC00000kTYyNYAW",
+        "Account": {
+          "attributes": {
+            "type": "Account",
+            "url": "/services/data/v67.0/sobjects/Account/001WC00000kTYyNYAW"
+          },
+          "Name": "BoKS IAM Test Account 2026-06-10 00:18"
+        },
+        "Status": "Draft"
+      }
+    ],
+    "totalSize": 5,
+    "done": true
+  },
+  "warnings": []
+}

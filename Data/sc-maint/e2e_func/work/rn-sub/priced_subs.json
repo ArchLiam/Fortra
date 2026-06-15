@@ -1,0 +1,626 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cxzq4AA"
+        },
+        "Id": "0QLWC000003cxzq4AA",
+        "QuoteId": "0Q0WC0000037muD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037muD0AQ"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-14T14:43:00.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 4442.35,
+        "UnitPrice": 5417.5,
+        "PartnerDiscountPercent": 18,
+        "Partner_Pricing_Source__c": "System Calculated (Post-Procedure)"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bGgp4AE"
+        },
+        "Id": "0QLWC000003bGgp4AE",
+        "QuoteId": "0Q0WC00000364Lm0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000364Lm0AI"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-13T22:01:16.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS"
+        },
+        "Quantity": 2,
+        "NetUnitPrice": 2674.85,
+        "UnitPrice": 2674.8475,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bGgr4AE"
+        },
+        "Id": "0QLWC000003bGgr4AE",
+        "QuoteId": "0Q0WC00000364Lm0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000364Lm0AI"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-13T22:01:16.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 2674.85,
+        "UnitPrice": 2674.8475,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bJOY4A2"
+        },
+        "Id": "0QLWC000003bJOY4A2",
+        "QuoteId": "0Q0WC000003671t0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003671t0AA"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-13T22:01:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "ProductCode": "BI-ABS-RSS-ABSTSU"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 4697.95,
+        "UnitPrice": 4697.946,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bJOX4A2"
+        },
+        "Id": "0QLWC000003bJOX4A2",
+        "QuoteId": "0Q0WC000003671t0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003671t0AA"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-13T22:01:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 929.25,
+        "UnitPrice": 929.25,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000031Ksb4AE"
+        },
+        "Id": "0QLWC0000031Ksb4AE",
+        "QuoteId": "0Q0WC000002BbXl0AK",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BbXl0AK"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-13T21:38:23.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCy0FYAT"
+          },
+          "ProductCode": "ES-SIG-RSS-SSSIGS_LIC"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 560.88,
+        "UnitPrice": 560.88,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bIAj4AM"
+        },
+        "Id": "0QLWC000003bIAj4AM",
+        "QuoteId": "0Q0WC00000365ph0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000365ph0AA"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-11T01:43:52.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS"
+        },
+        "Quantity": 2,
+        "NetUnitPrice": 2674.85,
+        "UnitPrice": 2674.8475,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aWhB4AU"
+        },
+        "Id": "0QLWC000003aWhB4AU",
+        "QuoteId": "0Q0WC0000035LA90AM",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035LA90AM"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-11T01:43:31.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD14lYAD"
+          },
+          "ProductCode": "RPA-AUD-RSS-AUPS"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 2674.85,
+        "UnitPrice": 2674.8475,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000034PsY4AU"
+        },
+        "Id": "0QLWC0000034PsY4AU",
+        "QuoteId": "0Q0WC000002iHNN0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002iHNN0A2"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-11T01:43:05.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BUYA1"
+          },
+          "ProductCode": "FIM-FIM-RSS-DPEEXS"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 334.75,
+        "UnitPrice": 341.25,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeD4AW"
+        },
+        "Id": "0QLWC000002UYeD4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-11T01:42:22.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MAYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAWRS"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 12650,
+        "UnitPrice": 8410.08390411,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002UYeG4AW"
+        },
+        "Id": "0QLWC000002UYeG4AW",
+        "QuoteId": "0Q0WC000002Fard0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-11T01:42:22.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1MAYA1"
+          },
+          "ProductCode": "GOA-GAM-RSS-GAAWRS"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 12650,
+        "UnitPrice": 8410.08390411,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003abKH4AY"
+        },
+        "Id": "0QLWC000003abKH4AY",
+        "QuoteId": "0Q0WC0000035P8v0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035P8v0AE"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-05T16:20:58.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "ProductCode": "DM-WCU-RSS-5250SU"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 2021.25,
+        "UnitPrice": 6548.85,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aVMw4AM"
+        },
+        "Id": "0QLWC000003aVMw4AM",
+        "QuoteId": "0Q0WC0000035Jt80AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035Jt80AE"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-05T12:45:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "ProductCode": "DM-WCU-RSS-5250SU"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 2021.25,
+        "UnitPrice": 6539.754375,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aHv34AE"
+        },
+        "Id": "0QLWC000003aHv34AE",
+        "QuoteId": "0Q0WC00000355yD0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000355yD0AQ"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-06-04T21:45:53.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "ProductCode": "DM-WCU-RSS-5250SU"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 2021.25,
+        "UnitPrice": 6306.3,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037ozF4AQ"
+        },
+        "Id": "0QLWC0000037ozF4AQ",
+        "QuoteId": "0Q0WC000002liFl0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002liFl0AI"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 94000,
+        "UnitPrice": 98700,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037n5V4AQ"
+        },
+        "Id": "0QLWC0000037n5V4AQ",
+        "QuoteId": "0Q0WC000002lgPF0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lgPF0AY"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 98700,
+        "UnitPrice": 98700,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037m2z4AA"
+        },
+        "Id": "0QLWC0000037m2z4AA",
+        "QuoteId": "0Q0WC000002lfOL0AY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lfOL0AY"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 98700,
+        "UnitPrice": 103400,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037ljd4AA"
+        },
+        "Id": "0QLWC0000037ljd4AA",
+        "QuoteId": "0Q0WC000002lf6b0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lf6b0AA"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 296100,
+        "UnitPrice": 296100,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037spx4AA"
+        },
+        "Id": "0QLWC0000037spx4AA",
+        "QuoteId": "0Q0WC000002lm6T0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lm6T0AQ"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 94000,
+        "UnitPrice": 96820,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000031OTB4A2"
+        },
+        "Id": "0QLWC0000031OTB4A2",
+        "QuoteId": "0Q0WC000002gYfF0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002gYfF0AU"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17QYAT"
+          },
+          "ProductCode": "HRM-HRM-RSL-CLSACH"
+        },
+        "Quantity": 1000,
+        "NetUnitPrice": 7567560,
+        "UnitPrice": 7567560,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037sd34AA"
+        },
+        "Id": "0QLWC0000037sd34AA",
+        "QuoteId": "0Q0WC000002lloj0AA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lloj0AA"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 96350,
+        "UnitPrice": 98700,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037qbF4AQ"
+        },
+        "Id": "0QLWC0000037qbF4AQ",
+        "QuoteId": "0Q0WC000002ljtN0AQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002ljtN0AQ"
+          },
+          "Name": "Renewal Quote",
+          "LastModifiedDate": "2026-05-07T18:00:11.000+0000"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "ProductCode": "ES-CEP-RSL-ACTIDB"
+        },
+        "Quantity": 1,
+        "NetUnitPrice": 96350,
+        "UnitPrice": 96350,
+        "PartnerDiscountPercent": null,
+        "Partner_Pricing_Source__c": null
+      }
+    ],
+    "totalSize": 22,
+    "done": true
+  },
+  "warnings": []
+}

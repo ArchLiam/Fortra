@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SC-3346 Maintenance (Derived) Pricing — load-bearing custom fields.
+  Staged from FortraUAT 2026-06-14 into force-app/main/default/objects/*/fields/.
+  These 13 fields exist in UAT but NOT in FortraProd, and are referenced by the
+  SC-3346 build (V14 pricing procedure + COLAUpliftPrehook / PartnerNetPricePosthook /
+  MaintenanceOrderDecompositionService / QuoteToOrderFieldMapper).
+  Deploy these BEFORE the SC-3346 Apex/procedure so prod references resolve.
+  NOTE: cross-ticket prod prerequisites (regional/attribute/rollup fields) are tracked
+  separately in 15_FIELD_PACKAGING.md — they are NOT SC-3346-owned.
+-->
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>QuoteLineItem.Source_List_Price__c</members>
+        <members>QuoteLineItem.Prior_Partner_Discount__c</members>
+        <members>QuoteLineItem.Prior_Discretionary_Discount__c</members>
+        <members>QuoteLineItem.Final_Year_COLA_Calculated_Price__c</members>
+        <members>QuoteLineItem.COLA_Outyear_Uplift_Percent__c</members>
+        <members>OrderItem.Source_List_Price__c</members>
+        <members>OrderItem.Base_Price__c</members>
+        <members>OrderItem.COLACalculatedPrice__c</members>
+        <members>OrderItem.COLA_Uplift_Percent__c</members>
+        <members>OrderItem.Prior_Partner_Discount__c</members>
+        <members>OrderItem.Prior_Discretionary_Discount__c</members>
+        <members>Order.Quote_Type__c</members>
+        <members>Order.QuoteTypeText__c</members>
+        <name>CustomField</name>
+    </types>
+    <version>65.0</version>
+</Package>

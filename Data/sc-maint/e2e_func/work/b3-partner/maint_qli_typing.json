@@ -1,0 +1,57 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "ptype": "New Maintenance",
+        "qtype": "New Maintenance",
+        "cnt": 68282
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "ptype": "Renewal Maintenance",
+        "qtype": null,
+        "cnt": 61244
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "ptype": "New Maintenance",
+        "qtype": "Software",
+        "cnt": 8
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "ptype": "Renewal Maintenance",
+        "qtype": "Renewal Maintenance",
+        "cnt": 485308
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "ptype": "New Maintenance",
+        "qtype": null,
+        "cnt": 68
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "ptype": "Renewal Maintenance",
+        "qtype": "Software",
+        "cnt": 1
+      }
+    ],
+    "totalSize": 6,
+    "done": true
+  }
+}
