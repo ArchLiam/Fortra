@@ -12,17 +12,27 @@ The Jira editor auto-converts pasted Markdown.
 
 ### Summary
 ```
-New-Maintenance line prices to $0 — auto-add creates the line with Quantity 0 and it cannot be corrected on an Accepted quote
+New-Maintenance line prices to $0 — asset-amendment/renewal births the line with Quantity 0 (no New-business quantity normalizer)
 ```
 
 ### Description
 
 > 🔴 **A New-Maintenance line nets $0** and stays $0 after **Reprice All**. Setting Quantity ≥ 1 + reprice *appears* not to help — because the quantity edit does **not save** on an Accepted quote. Raised by **Joe (Fortra)**.
 
-#### 🎯 Root cause
-The auto-added New-Maintenance companion line is **born with `Quantity = 0`**. Its **per-unit price is correct** ($355 × 20% = **$71**), but `$71 × 0 = $0`.
-- The line is auto-added by **`ProductConfigurationRule 14OWC0000022ULp2AM`** ("Year 1 Maintenance Sku added to Powertech IAM Perpetual"; Active; fires on license `PIA-PIA-NRPS-PIAP` + Quote Type = New). Its AutoAdd action has **no quantity parameter**, so the line is born qty 0 even though the source license/asset is qty 1 (`StartQuantity=1, EndQuantity=1, Quantity=0`).
-- The only quantity-normalizer in the build, `RenewalAssetQuantityHandler`, is **renewal-gated** and never fires on a New-quote maintenance line. **No New-business equivalent exists.**
+#### 🎯 Root cause (empirically confirmed 2026-06-15, live FortraUAT)
+The New-Maintenance line is **born with `Quantity = 0` only when it is created by an asset-copy QuoteAction** (`Type IN Amend / No Change / Renew`, off an existing maintenance Asset). Its **per-unit price is correct** ($355 × 20% = **$71**), but `$71 × 0 = $0`. The qty=0 is the *only* thing wrong.
+
+**Proven by controlled live tests — the discriminator is the asset-copy QuoteAction, NOT the AutoAdd rule:**
+
+| Creation path | QuoteAction? | Born qty | Net |
+|---|---|---|---|
+| Greenfield **Configurator AutoAdd** (rule `14OWC0000022ULp2AM`) | no | **1** | **$62.48** ✅ |
+| Manual add | no | **1** | $71 ✅ |
+| **Asset-copy (Amend / No-Change / Renew)** | **yes** | **0** | **$0** ❌ |
+
+- A fresh Draft quote with `PIA-PIA-NRPS-PIAP` auto-added the maintenance SKU at **qty 1 / $62.48** — so **the AutoAdd rule is fine and must NOT be edited.**
+- Joe's line (and the repro line) carry an **Amend / No-Change QuoteAction** off source Asset `02iWC000008DFvvYAG` (qty 1); the platform asset-copy clones it into a new line with `Quantity 0` (`StartQuantity=1`).
+- The only quantity-normalizer in the build, `RenewalAssetQuantityHandler`, is **renewal-gated** and never fires on an Amend/No-Change asset-copy. **No New-business / amend equivalent exists.**
 
 #### 🟠 Why "set Quantity = 1 + Reprice" doesn't work
 The maintenance line's field history shows **no Quantity change ever** — the qty=1 edit **never committed**. The quote is **`Accepted` + `IsSyncing`**, so the RLM line editor doesn't commit the change (it's *not* a field-level lock). **Quantity is the correct lever — it just must be set on a Draft quote.**
@@ -40,19 +50,21 @@ The maintenance line's field history shows **no Quantity change ever** — the q
 > ℹ️ `List Price = 0` is **normal** for derived maintenance lines — the price lands in the **Net** fields. The bug is purely **Net = $0** caused by **Quantity = 0**.
 
 #### 🔁 Steps to reproduce
-1. New quote → add perpetual license `PIA-PIA-NRPS-PIAP`.
-2. The `-NewMaintenance` line auto-adds alongside it (same instant) with **Quantity 0**.
-3. **Reprice All** → maintenance line **Net = $0**.
-4. Try to set Quantity = 1 on the (Accepted) quote + Reprice → **price does not change** and the quantity does not persist.
+1. Take a quote whose maintenance line was created by an **asset amendment / renewal / no-change** (i.e. the line carries a QuoteAction off an existing maintenance Asset) — e.g. Joe's `Q-Wren - Test Pricebook 2`.
+2. Observe the `-NewMaintenance` line is born **Quantity 0** (`StartQuantity=1, EndQuantity=1`).
+3. **Reprice All** → maintenance line **Net = $0** (per-unit $71 × 0 qty).
+4. Try to set Quantity = 1 on the **Accepted** quote + Reprice → **does not change / does not persist** (RLM editor won't commit on Accepted+IsSyncing).
+
+> ⚠️ A **greenfield** add (new Draft quote → add `PIA-PIA-NRPS-PIAP`) does **NOT** reproduce this — it births qty 1 / $62.48. The bug is specific to the asset-copy path.
 
 #### ✅ Expected vs ❌ Actual
 - **Expected:** auto-added maintenance line inherits the license quantity → Net/unit = $355 × 20% = **$71** (× qty, less partner discount).
 - **Actual:** born Quantity 0 → **$0**, and qty cannot be corrected on an Accepted quote.
 
-#### 🛠️ Proposed fix
-- **Option 1 (preferred, config):** add a **quantity parameter** to `ProductConfigurationRule 14OWC0000022ULp2AM` so the AutoAdd sets `Quantity = triggering license quantity` *(verify the Configurator AutoAdd action supports a qty/expression param)*.
-- **Option 2 (code):** add a New-Maintenance analog of `RenewalAssetQuantityHandler` (normalize qty from `StartQuantity`/`SourceAsset.Quantity` on insert), wired into the existing `QuoteLineItemTrigger` after-insert hook.
-- **Spec gate:** the intended New-Maintenance quantity rule is **not in the SDD** — confirm "maint qty = license qty" with Nir/Marc before building.
+#### 🛠️ Proposed fix — Apex normalizer (rule edit ruled out)
+- Generalize **`RenewalAssetQuantityHandler`** (or add a sibling) to normalize **any asset-copy line**: `QuoteAction.Type IN (Amend, No Change, Renew)` AND `Quantity <= 0` AND `StartQuantity > 0` → set `Quantity = StartQuantity` (the source-asset quantity). Wire into the existing `QuoteLineItemTrigger` after-insert hook. One place, covers all maintenance products.
+- ⛔ **Do NOT edit the AutoAdd rule** `14OWC0000022ULp2AM` (or the other 198) — greenfield auto-add already births qty 1 (proven). Config edits are unnecessary and don't address the asset-copy path.
+- **Spec gate:** the intended quantity rule is **not in the SDD** — confirm "maint qty = source asset/license qty" with Nir/Marc before building.
 
 #### 💥 Impact
 - New perpetual sales' first-year maintenance lands at **$0** → understated quote/order totals + downstream Workday revenue.

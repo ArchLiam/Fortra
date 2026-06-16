@@ -16,22 +16,32 @@ and must be a **separate ticket**.
 
 ## 1. Root Cause — three distinct defects (Joe's line = Mode A + A')
 
-### 🔴 Mode A — the maintenance line is *born* with Quantity = 0  ← Joe's blocker
-- Auto-added by **`ProductConfigurationRule 14OWC0000022ULp2AM`** ("Year 1 Maintenance Sku added to
-  Powertech Identity_Access Manager Perpetual"; Active; RuleType=Configurator; criteria
-  `ItemProductCode='PIA-PIA-NRPS-PIAP' AND QuoteTypeText__c='New'`).
-- Its AutoAdd action has **`actionParameters=[]` — no quantity parameter** → line born `Quantity=0`
-  even though the source license/asset is qty 1 (line carries `StartQuantity=1, EndQuantity=1, Quantity=0`).
-- The only quantity-normalizer in the build, **`RenewalAssetQuantityHandler.cls`**, is **triple-gated to
-  renewals** (`Quote_Type=Renewal`/`OriginalActionType=Renew` + `Fortra_Product_Type__c='Renewal Maintenance'`
-  + QuoteAction.Type whitelist that excludes `Amend`) → **never fires** on a New-quote maintenance line.
-  No New-business equivalent exists.
-- Net/unit is correct: PBEDP `182WC000000FN26YAG` (contributor = BoKS license, Formula `UnitPrice`, USD,
-  effective) seeds `Source_List_Price__c=355`; MTD attribute `Standard` → `Maintenance_Rate__mdt`=0.20 →
-  **$71/unit**. `$71 × 0 = $0`.
-- **Discriminator (live, 6/6 vs 28/28):** lines that came via the auto-add path carry a `QuoteAction`
-  (Amend/Asset-copy) → born qty 0; manually-added maintenance lines have `QuoteActionId=null` → born qty 1 → price fine.
-- `ListPrice=0` is **NORMAL** for ALL these derived lines (price lands in the **Net** fields, not List) — a red herring.
+### 🔴 Mode A — the maintenance line is *born* with Quantity = 0, ONLY on the asset-copy path  ← Joe's blocker
+**EMPIRICALLY PROVEN 2026-06-15 (live tests).** The qty=0 is born **iff the line is created by an asset-copy
+QuoteAction** (`Type IN Amend/No Change/Renew`, off an existing maintenance Asset, e.g. `02iWC000008DFvvYAG`) →
+born `StartQuantity=1, EndQuantity=1, Quantity=0` with a `QuoteActionId`. The other two creation paths BOTH
+birth qty=1 and price correctly:
+
+| Creation path | QuoteAction? | Born shape | Qty | Net |
+|---|---|---|---|---|
+| Greenfield **Configurator AutoAdd** (rule `14OWC0000022ULp2AM`) | no | sQ=0, eQ=1 | **1** | **$62.48** ✅ |
+| Manual add | no | sQ=0, eQ=1 | **1** | $71 ✅ |
+| **Asset-copy (Amend / No-Change / Renew)** | **yes** | sQ=1, eQ=1 | **0** | **$0** ❌ |
+
+- Proven greenfield: new Draft quote `0Q0WC0000039bwH0AQ` — adding `PIA-PIA-NRPS-PIAP` auto-added PIAMBK at
+  **qty 1 / net $62.48** with **no QuoteAction**. So the AutoAdd rule's `actionParameters=[]` is **NOT the bug**.
+- Joe's L2 and the test-bed qty=0 line both trace to the **same source Asset** `02iWC000008DFvvYAG` via QuoteActions
+  (L2 = Amend/FieldAmendment; test-bed = No Change). The platform asset-copy clones the source asset (qty 1) into a
+  new line with **Quantity 0**.
+- The only quantity-normalizer in the build, **`RenewalAssetQuantityHandler.cls`**, is **triple-gated to renewals**
+  (`Quote_Type=Renewal`/`OriginalActionType=Renew` + `Fortra_Product_Type__c='Renewal Maintenance'` + QuoteAction.Type
+  whitelist that excludes `Amend`) → **never fires** on an Amend/No-Change asset-copy. No New-business equivalent exists.
+- Net/unit is correct: PBEDP `182WC000000FN26YAG` seeds `Source_List_Price__c=355`; MTD `Standard` →
+  `Maintenance_Rate__mdt`=0.20 → **$71/unit**. `$71 × 0 = $0`.
+- `ListPrice=0` is **NORMAL** for ALL these derived lines (price lands in the **Net** fields) — a red herring.
+
+> ⛔ **DO NOT edit the AutoAdd rule** (`14OWC0000022ULp2AM`) or the other 198 maintenance rules — greenfield auto-add
+> already births qty 1. The fix is **the Apex normalizer ONLY** (see §2).
 
 ### 🟠 Mode A' — the qty=1 edit did not persist  ← compounds Joe's symptom
 - L2 `QuoteLineItemHistory` has **zero Quantity rows** (no `0→1→0` pair) → the user's qty=1 **never committed**
@@ -62,7 +72,7 @@ Earlier "13 / 4-Mode-B / 6,499" figures were stale/inflated (6,499 = lines with 
 
 | Mode | What must change | Type | Owner |
 |---|---|---|---|
-| **A** (Joe) | Auto-add must set `Quantity = source license qty`. **Opt 1 (preferred):** add a quantity parameter to PCR `14OWC0000022ULp2AM` *(verify the Configurator AutoAdd action supports a qty/expression param)*. **Opt 2:** a New-Maintenance analog of `RenewalAssetQuantityHandler`, wired to the existing after-insert trigger. | CONFIG or CODE | Nir |
+| **A** (Joe) | **Apex normalizer ONLY** (rule edit ruled out empirically). Generalize `RenewalAssetQuantityHandler` (or add a sibling) to normalize **any asset-copy line**: `QuoteAction.Type IN (Amend, No Change, Renew)` AND `Quantity <= 0` AND `StartQuantity > 0` → set `Quantity = StartQuantity` (source-asset qty). Wire into the existing `QuoteLineItemTrigger` after-insert hook. Covers all products in one place; **no rule/config edits.** | CODE | Nir |
 | **A'** (persistence) | Mostly dissolved by fixing A (no manual edit needed). If manual edits must work, edit on a **Draft** quote before accept/sync. | lifecycle | Nir |
 | **B** (separate) | Fix native contributor-binding in `DerivedProductsRenewals` (seq 5) for duplicate/anomalous companion lines + clean duplicate data. **Do NOT change `DerivedPricingFormula`.** | CODE/DATA (TBD) | Nir/Marc — own ticket |
 | **Spec gate** | Intended New-Maintenance quantity rule is **unspecified in the SDD**. "Maint qty = license qty" is the natural inference but needs sign-off before coding. | SPEC | Nir/Marc (business) |
@@ -83,10 +93,11 @@ Earlier "13 / 4-Mode-B / 6,499" figures were stale/inflated (6,499 = lines with 
 - Authoritative confirmation that New-Maintenance `Quantity = source license quantity`; confirm Mode B is separate.
 - **Gate:** written owner decision.
 
-**P2 — Choose the Mode-A fix mechanism** *(needs P0, P1)*
-- Check whether the Configurator AutoAdd action supports a quantity parameter → yes ⇒ Opt 1 (config); no ⇒ Opt 2 (Apex).
-  Draft the change under `Data/sc-maint/sc3346_fix/`.
-- **Gate:** mechanism chosen, change drafted, coverage plan defined.
+**P2 — Build the Mode-A Apex normalizer** *(needs P1; mechanism already decided)*
+- Mechanism is settled (P0 proved the rule is innocent): generalize `RenewalAssetQuantityHandler` (or sibling) to
+  cover asset-copy QuoteActions (Amend/No-Change/Renew), `Quantity<=0 AND StartQuantity>0 → Quantity=StartQuantity`.
+  Draft under `Data/sc-maint/sc3346_fix/`. Add test coverage (build at 43%, 4 red tests).
+- **Gate:** class + test drafted; renewal path regression-checked; coverage plan defined.
 
 **P3 — Implement & deploy Mode-A fix to UAT** *(needs P2 + deploy auth)*
 - Ship config or code. If Apex, add coverage (build is at 43% with red tests). Retrieve live before/after.
