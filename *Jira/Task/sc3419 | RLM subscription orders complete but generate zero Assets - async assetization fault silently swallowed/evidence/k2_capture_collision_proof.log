@@ -1,0 +1,64 @@
+Compiled successfully.
+Executed successfully.
+
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: // Keystone-2 sync capture: invoke createOrUpdateAssetFromOrder on 00095470, name the contended asset, ROLL BACK.
+Execute Anonymous: Map<Id,Asset> before = new Map<Id,Asset>([SELECT Id, Name, Product2.ProductCode, Status, SystemModstamp
+Execute Anonymous:   FROM Asset WHERE AccountId='001WC00000XiZP4YAN'
+Execute Anonymous:   AND Product2Id IN ('01tWC00000DD1bsYAD','01tWC00000DD1btYAD','01tWC00000DD1fiYAD','01tWC00000DD17PYAT')]);
+Execute Anonymous: for (Asset a : before.values()) System.debug('K2_PREASSET '+a.Id+' '+a.Product2.ProductCode+' status='+a.Status+' modstamp='+a.SystemModstamp);
+Execute Anonymous: System.debug('K2_PREASSET_COUNT '+before.size());
+Execute Anonymous: 
+Execute Anonymous: Savepoint sp = Database.setSavepoint();
+Execute Anonymous: String outcome;
+Execute Anonymous: try {
+Execute Anonymous:     Invocable.Action act = Invocable.Action.createStandardAction('createOrUpdateAssetFromOrder');
+Execute Anonymous:     act.setInvocationParameter('orderId','801WC00000kYmw8YAC');
+Execute Anonymous:     Integer ok=0, bad=0; String errs='';
+Execute Anonymous:     for (Invocable.Action.Result r : act.invoke()) {
+Execute Anonymous:         if (r.isSuccess()) ok++; else { bad++; errs += String.valueOf(r.getErrors())+' || '; }
+Execute Anonymous:     }
+Execute Anonymous:     outcome = 'ok='+ok+' bad='+bad+' errs='+errs;
+Execute Anonymous: } catch (Exception e) {
+Execute Anonymous:     outcome = 'EX '+e.getTypeName()+': '+e.getMessage();
+Execute Anonymous: }
+Execute Anonymous: // did any asset's modstamp change (the contended one) before rollback?
+Execute Anonymous: for (Asset a : [SELECT Id, Product2.ProductCode, SystemModstamp FROM Asset WHERE Id IN :before.keySet()]) {
+Execute Anonymous:     if (a.SystemModstamp != before.get(a.Id).SystemModstamp)
+Execute Anonymous:         System.debug('K2_CHANGED_ASSET '+a.Id+' '+a.Product2.ProductCode+' newmodstamp='+a.SystemModstamp);
+Execute Anonymous: }
+Execute Anonymous: System.debug('K2_OUTCOME '+outcome);
+Execute Anonymous: Database.rollback(sp);
+Execute Anonymous: System.debug('K2_ROLLED_BACK');
+19:33:00.289 (289605744)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+19:33:00.289 (289679615)|EXECUTION_STARTED
+19:33:00.289 (289727168)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+19:33:00.289 (349835222)|USER_DEBUG|[5]|DEBUG|K2_PREASSET 02iWC000007kLByYAM HRM-HRM-RSL-CLSAAS status=null modstamp=2026-05-07 15:11:58
+19:33:00.289 (349989007)|USER_DEBUG|[5]|DEBUG|K2_PREASSET 02iWC000007mWZfYAM HRM-HRM-RSL-CLSAAS status=null modstamp=2026-05-07 19:28:11
+19:33:00.289 (350083329)|USER_DEBUG|[5]|DEBUG|K2_PREASSET 02iWC000008DFvvYAG PIA-PIA-RNM-PIAMBK status=Installed modstamp=2026-06-15 20:31:36
+19:33:00.289 (350133801)|USER_DEBUG|[5]|DEBUG|K2_PREASSET 02iWC000008DFvxYAG PIA-PIA-NRPS-PIAP status=Installed modstamp=2026-06-09 16:39:24
+19:33:00.289 (350172401)|USER_DEBUG|[5]|DEBUG|K2_PREASSET 02iWC000008LagcYAC PIA-PIA-NRPS-PIAP status=Installed modstamp=2026-06-15 20:32:30
+19:33:00.289 (350236924)|USER_DEBUG|[6]|DEBUG|K2_PREASSET_COUNT 5
+19:33:03.256 (3256221084)|USER_DEBUG|[26]|DEBUG|K2_OUTCOME ok=0 bad=1 errs=(Error:[code=INVALID_API_INPUT, message=We couldn't process your request because the asset was updated by another process.]) &#124;&#124; 
+19:33:03.256 (3257369050)|USER_DEBUG|[28]|DEBUG|K2_ROLLED_BACK
+19:33:03.257 (3257457268)|CUMULATIVE_LIMIT_USAGE
+19:33:03.257 (3257457268)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 10 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+19:33:03.257 (3257457268)|CUMULATIVE_LIMIT_USAGE_END
+
+19:33:03.256 (3257558420)|CODE_UNIT_FINISHED|execute_anonymous_apex
+19:33:03.256 (3257581449)|EXECUTION_FINISHED
+

@@ -1,0 +1,1258 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sN2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTq5YAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvT2AU"
+          },
+          "AssetId": "02iWC0000087fedYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fedYAA"
+            },
+            "Name": "5250 Integrator",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sL2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTq6YAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvR2AU"
+          },
+          "AssetId": "02iWC0000087febYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087febYAA"
+            },
+            "Name": "Active Defense BEC Threat Intelligence Service",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": "2027-06-02T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sR2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTq7YAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvX2AU"
+          },
+          "AssetId": "02iWC0000087fehYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fehYAA"
+            },
+            "Name": "Accelerated",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sQ2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTq8YAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvW2AU"
+          },
+          "AssetId": "02iWC0000087fegYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fegYAA"
+            },
+            "Name": "EFT Expert Service Enterprise",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sH2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTq9YAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvN2AU"
+          },
+          "AssetId": "02iWC0000087feXYAQ",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feXYAQ"
+            },
+            "Name": "Implementation Partner Certification Fee",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sK2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqAYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvQ2AU"
+          },
+          "AssetId": "02iWC0000087feaYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feaYAA"
+            },
+            "Name": "Hourly Rate AfterHours Fee Upcharge T&M",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sU2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqBYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUva2AE"
+          },
+          "AssetId": "02iWC0000087fekYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fekYAA"
+            },
+            "Name": "EFT Arcus",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": "2027-06-02T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sJ2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqCYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvP2AU"
+          },
+          "AssetId": "02iWC0000087feZYAQ",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feZYAQ"
+            },
+            "Name": "Core IGA Recurring Ops Services",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": "2027-06-02T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sV2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqDYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvb2AE"
+          },
+          "AssetId": "02iWC0000087felYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087felYAA"
+            },
+            "Name": "Managed Services - Phishing Simulation",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sM2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqEYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvS2AU"
+          },
+          "AssetId": "02iWC0000087fecYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fecYAA"
+            },
+            "Name": "AIC Expert Services",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": "2027-06-02T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sT2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqFYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvZ2AU"
+          },
+          "AssetId": "02iWC0000087fejYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fejYAA"
+            },
+            "Name": "ActiveMetrics Enterprise Plus Edition",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sY2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqGYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUve2AE"
+          },
+          "AssetId": "02iWC0000087feoYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feoYAA"
+            },
+            "Name": "AS2 Client/Server",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sS2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqHYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvY2AU"
+          },
+          "AssetId": "02iWC0000087feiYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feiYAA"
+            },
+            "Name": "Advanced Security Module ASM",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sP2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqIYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvV2AU"
+          },
+          "AssetId": "02iWC0000087fefYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fefYAA"
+            },
+            "Name": "AFP Converter",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sX2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqJYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvd2AE"
+          },
+          "AssetId": "02iWC0000087fenYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087fenYAA"
+            },
+            "Name": "Arcus Hosting",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": "2027-06-02T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sW2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqKYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvc2AE"
+          },
+          "AssetId": "02iWC0000087femYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087femYAA"
+            },
+            "Name": "Advanced Authentication Modes",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sI2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqLYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvO2AU"
+          },
+          "AssetId": "02iWC0000087feYYAQ",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feYYAQ"
+            },
+            "Name": "Channel PS Certification Program",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC00000416sO2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OJTqMYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002xUvU2AU"
+          },
+          "AssetId": "02iWC0000087feeYAA",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC0000087feeYAA"
+            },
+            "Name": "Automate Expert Services",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-03T00:00:00.000+0000",
+        "EndDate": "2027-06-02T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq62AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3ZYAX",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtu2AE"
+          },
+          "AssetId": "02iWC000008CK3OYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3OYAW"
+            },
+            "Name": "HTTPS Server (includes Web client)",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpt2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3aYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMth2AE"
+          },
+          "AssetId": "02iWC000008CK3BYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3BYAW"
+            },
+            "Name": "EFT 8 Continuum-NewMaintenance",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq02AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3bYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMto2AE"
+          },
+          "AssetId": "02iWC000008CK3IYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3IYAW"
+            },
+            "Name": "FTPS Server",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpy2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3cYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtm2AE"
+          },
+          "AssetId": "02iWC000008CK3GYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3GYAW"
+            },
+            "Name": "Folder Monitor",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpz2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3dYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtn2AE"
+          },
+          "AssetId": "02iWC000008CK3HYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3HYAW"
+            },
+            "Name": "Scheduler",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq22AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3eYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtq2AE"
+          },
+          "AssetId": "02iWC000008CK3KYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3KYAW"
+            },
+            "Name": "Starter Bundle",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq12AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3fYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtp2AE"
+          },
+          "AssetId": "02iWC000008CK3JYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3JYAW"
+            },
+            "Name": "Secure Forms",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq42AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3gYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMts2AE"
+          },
+          "AssetId": "02iWC000008CK3MYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3MYAW"
+            },
+            "Name": "Enterprise Actions",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq32AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3hYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtr2AE"
+          },
+          "AssetId": "02iWC000008CK3LYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3LYAW"
+            },
+            "Name": "SFTP Server",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zq52AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3iYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtt2AE"
+          },
+          "AssetId": "02iWC000008CK3NYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3NYAW"
+            },
+            "Name": "Transfer Actions",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpx2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3jYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtl2AE"
+          },
+          "AssetId": "02iWC000008CK3FYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3FYAW"
+            },
+            "Name": "EFT 8 Continuum",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpw2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3kYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtk2AE"
+          },
+          "AssetId": "02iWC000008CK3EYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3EYAW"
+            },
+            "Name": "PGP Actions",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpv2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3lYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMtj2AE"
+          },
+          "AssetId": "02iWC000008CK3DYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3DYAW"
+            },
+            "Name": "Cloud Connector Actions",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000042zpu2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OWU3mYAH",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000002zMti2AE"
+          },
+          "AssetId": "02iWC000008CK3CYAW",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008CK3CYAW"
+            },
+            "Name": "Audit & Reporting",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-08T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044dN52AI"
+        },
+        "ReferenceEntityItemId": "802WC00000OfhSzYAJ",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000003107X2AQ"
+          },
+          "AssetId": "02iWC000008F71PYAS",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008F71PYAS"
+            },
+            "Name": "beSECURE - Cloud-Based",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-10T00:00:00.000+0000",
+        "EndDate": "2027-06-09T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044dN32AI"
+        },
+        "ReferenceEntityItemId": "802WC00000OfhT0YAJ",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000003107V2AQ"
+          },
+          "AssetId": "02iWC000008F71NYAS",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008F71NYAS"
+            },
+            "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-10T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044dN42AI"
+        },
+        "ReferenceEntityItemId": "802WC00000OfhT1YAJ",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC000003107W2AQ"
+          },
+          "AssetId": "02iWC000008F71OYAS",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008F71OYAS"
+            },
+            "Name": "Powertech Identity & Access Manager (BoKS)",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-10T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044hQf2AI"
+        },
+        "ReferenceEntityItemId": "802WC00000Og5qHYAR",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000313dF2AQ"
+          },
+          "AssetId": "02iWC000008FfRNYA0",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008FfRNYA0"
+            },
+            "Name": "Automate Enterprise",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": "2027-06-10T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044hQg2AI"
+        },
+        "ReferenceEntityItemId": "802WC00000Og5qIYAR",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000313dG2AQ"
+          },
+          "AssetId": "02iWC000008FfROYA0",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008FfROYA0"
+            },
+            "Name": "Automate Enterprise",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044jdm2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OgTnlYAF",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000315ry2AA"
+          },
+          "AssetId": "02iWC000008FcLZYA0",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008FcLZYA0"
+            },
+            "Name": "Powertech Identity & Access Manager (BoKS)",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044jdl2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OgTnmYAF",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000315rx2AA"
+          },
+          "AssetId": "02iWC000008FcLYYA0",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008FcLYYA0"
+            },
+            "Name": "Powertech Identity & Access Manager (BoKS)-NewMaintenance",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044jdn2AA"
+        },
+        "ReferenceEntityItemId": "802WC00000OgTnnYAF",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000315rz2AA"
+          },
+          "AssetId": "02iWC000008FcLaYAK",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008FcLaYAK"
+            },
+            "Name": "beSECURE - Cloud-Based",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": "2027-06-10T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044n9V2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OgsuDYAR",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000319M52AI"
+          },
+          "AssetId": "02iWC000008GKPZYA4",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008GKPZYA4"
+            },
+            "Name": "10 Languages and 50 Courses Included",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": "2027-06-10T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044n9W2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OgsuEYAR",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000319M62AI"
+          },
+          "AssetId": "02iWC000008GKPaYAO",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008GKPaYAO"
+            },
+            "Name": "Powertech Identity & Access Manager (BoKS)-RenewalMaintenance",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-06-11T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000044n9X2AQ"
+        },
+        "ReferenceEntityItemId": "802WC00000OgsuFYAR",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000319M72AI"
+          },
+          "AssetId": "02iWC000008FcLaYAK",
+          "Type": "Change",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008FcLaYAK"
+            },
+            "Name": "beSECURE - Cloud-Based",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2027-06-11T00:00:00.000+0000",
+        "EndDate": "2028-06-10T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000045HNh2AM"
+        },
+        "ReferenceEntityItemId": "802WC00000Ok2gvYAB",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC0000031df72AA"
+          },
+          "AssetId": "02iWC000008I4gTYAS",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008I4gTYAS"
+            },
+            "Name": "Automate Professional",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-01-01T00:00:00.000+0000",
+        "EndDate": null
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000046kNg2AI"
+        },
+        "ReferenceEntityItemId": "802WC00000Ou4xaYAB",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000336Dg2AI"
+          },
+          "AssetId": "02iWC000008MuWqYAK",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008MuWqYAK"
+            },
+            "Name": "SECURE Exchange Gateway",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-04-01T00:00:00.000+0000",
+        "EndDate": "2027-03-31T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000046kNe2AI"
+        },
+        "ReferenceEntityItemId": "802WC00000Ou4xbYAB",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000336De2AI"
+          },
+          "AssetId": "02iWC000008MuWoYAK",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008MuWoYAK"
+            },
+            "Name": "Structural Sanitization For SECURE Exchange Gateway",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-04-01T00:00:00.000+0000",
+        "EndDate": "2027-03-31T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000046kNf2AI"
+        },
+        "ReferenceEntityItemId": "802WC00000Ou4xcYAB",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000336Df2AI"
+          },
+          "AssetId": "02iWC000008MuWpYAK",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008MuWpYAK"
+            },
+            "Name": "OCR Feature For SECURE Exchange Gateway",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-04-01T00:00:00.000+0000",
+        "EndDate": "2027-03-31T23:59:59.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "AssetActionSource",
+          "url": "/services/data/v67.0/sobjects/AssetActionSource/4nMWC0000046kNd2AI"
+        },
+        "ReferenceEntityItemId": "802WC00000Ou4xdYAB",
+        "AssetAction": {
+          "attributes": {
+            "type": "AssetAction",
+            "url": "/services/data/v67.0/sobjects/AssetAction/4nLWC00000336Dd2AI"
+          },
+          "AssetId": "02iWC000008MuWnYAK",
+          "Type": "Generate",
+          "Subtype": null,
+          "Asset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008MuWnYAK"
+            },
+            "Name": "Data Redaction For SECURE Exchange Gateway",
+            "Status": "Installed"
+          }
+        },
+        "StartDate": "2026-04-01T00:00:00.000+0000",
+        "EndDate": "2027-03-31T23:59:59.000+0000"
+      }
+    ],
+    "totalSize": 48,
+    "done": true
+  },
+  "warnings": []
+}
