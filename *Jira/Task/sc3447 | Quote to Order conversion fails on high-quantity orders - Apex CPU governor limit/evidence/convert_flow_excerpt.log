@@ -1,0 +1,324 @@
+67.0 APEX_CODE,FINEST;APEX_PROFILING,FINEST;CALLOUT,FINEST;DATA_ACCESS,INFO;DB,FINEST;NBA,FINE;SYSTEM,FINE;VALIDATION,INFO;VISUALFORCE,FINER;WAVE,FINEST;WORKFLOW,FINER
+11:06:42.1 (1214299)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+11:06:42.1 (2674116)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF||301WC00000kSRnZ
+11:06:42.1 (3547824)|FLOW_CREATE_INTERVIEW_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|Fortra Quote to Order Conversion
+11:06:42.3 (3713812)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+11:06:42.3 (3722700)|EXECUTION_STARTED
+11:06:42.3 (3728543)|CODE_UNIT_STARTED|[EXTERNAL]|Flow: Fortra Quote to Order Conversion
+11:06:42.3 (3817934)|CODE_UNIT_FINISHED|Flow: Fortra Quote to Order Conversion
+11:06:42.3 (3822956)|EXECUTION_FINISHED
+11:06:42.4 (4630336)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+11:06:42.4 (5143503)|FLOW_START_INTERVIEW_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|Fortra Quote to Order Conversion
+11:06:42.4 (5205104)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 0 out of 100
+11:06:42.4 (5250033)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+11:06:42.4 (5254061)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+11:06:42.4 (5258287)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 0 out of 150
+11:06:42.4 (5262148)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 0 out of 10000
+11:06:42.4 (5266254)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 1 out of 15000
+11:06:42.4 (5277028)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+11:06:42.4 (5280764)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+11:06:42.4 (5284972)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+11:06:42.4 (5288470)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+11:06:42.4 (5292033)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+11:06:42.4 (5295637)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+11:06:42.4 (5399390)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|recordId|0Q0WC000003AuQb0AK
+11:06:42.4 (5722344)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowRecordLookup|Get_Quote_Details
+11:06:42.4 (6036290)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|1|100
+11:06:42.4 (31802611)|LIMIT_USAGE|[EXTERNAL]|SOQL_ROWS|1|50000
+11:06:42.4 (31817341)|LIMIT_USAGE|[EXTERNAL]|SOQL|1|100
+11:06:42.4 (31820920)|LIMIT_USAGE|[EXTERNAL]|AGGS|1|300
+11:06:42.4 (32891800)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|varQuoteRecord|{Id=0Q0WC000003AuQb0AK, Name=Q-Cypress Test Opportunity - 3prod-2026-06-18, QuoteNumber=00781200, AccountId=001WC00000WiR9YYAV, ContactId=003WC00000svbv1YAA, BillToContactId=003WC00000svbv1YAA, Pricebook2Id=01sWC0000022GHFYA2, OpportunityId=006WC00000RCgbpYAD, ContractId=null, Status=Accepted, BillingStreet=17719 Scottsdale Boulevard, BillingCity=Shaker Heights, BillingState=Ohio, BillingPostalCode=44122, BillingCountry=United States, ShippingStreet=17719 Scottsdale Boulevard, ShippingCity=Shaker Heights, ShippingState=Ohio, ShippingPostalCode=44122, ShippingCountry=United States, ExpirationDate=2026-07-18 00:00:00, QuoteToAddress=API address [ null, null, null, null, United States, null, US, null, null, null], QuoteToName=null, Email=null, Phone=null, Fax=null, Description=3prod, GrandTotal=1990187.0, TotalPrice=1990187.0, Discount=0.0, Tax=null, ALE__c=1990187.0, AWS_Marketplace_Agreement_ID__c=null, AWS_Marketplace_Offer_ID__c=null, Cross_Sale_Type__c=null, Disable_Export_Control__c=false, Payment_Portal__c=Fortra (default), Referral_Partner__c=null, Total_Discount_Amount__c=0.0, Bill_To_Place__c=a0lWC000004im8HYAQ, Ship_To_Place__c=a0lWC000004im8HYAQ, StartDate=2026-06-18 00:00:00, IsSyncing=true, Quote_Type__c=New, Renewal_Contract__c=null, CalculationStatus=CompletedWithPricing}
+11:06:42.4 (32916851)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Get_Quote_Details|true
+11:06:42.4 (32981394)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordLookup|Get_Quote_Details|1
+11:06:42.4 (33376008)|FLOW_ELEMENT_LIMIT_USAGE|1 SOQL queries, total 1 out of 100
+11:06:42.4 (33385715)|FLOW_ELEMENT_LIMIT_USAGE|1 SOQL query rows, total 1 out of 50000
+11:06:42.4 (33392936)|FLOW_ELEMENT_LIMIT_USAGE|13 ms CPU time, total 14 out of 15000
+11:06:42.4 (33421806)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowRecordLookup|Get_Quote_Details
+11:06:42.4 (33445226)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_IsSyncing
+11:06:42.4 (33567697)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Is_Syncing|true|false
+11:06:42.4 (33591408)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Is_Syncing|true
+11:06:42.4 (33614314)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_IsSyncing
+11:06:42.4 (33628777)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowRecordLookup|Get_Existing_Orders
+11:06:42.4 (33807883)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|2|100
+11:06:42.4 (52118365)|LIMIT_USAGE|[EXTERNAL]|SOQL_ROWS|1|50000
+11:06:42.4 (52139775)|LIMIT_USAGE|[EXTERNAL]|SOQL|2|100
+11:06:42.4 (52144932)|LIMIT_USAGE|[EXTERNAL]|AGGS|2|300
+11:06:42.4 (52205603)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|varExistingOrderRecord|
+11:06:42.4 (52213552)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Get_Existing_Orders|false
+11:06:42.4 (52232140)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordLookup|Get_Existing_Orders|0
+11:06:42.4 (52558450)|FLOW_ELEMENT_LIMIT_USAGE|1 SOQL queries, total 2 out of 100
+11:06:42.4 (52573358)|FLOW_ELEMENT_LIMIT_USAGE|7 ms CPU time, total 21 out of 15000
+11:06:42.4 (52625164)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowRecordLookup|Get_Existing_Orders
+11:06:42.4 (52654665)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_No_Existing_Order
+11:06:42.4 (52744834)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|No_Existing_Order|true|false
+11:06:42.4 (52770475)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|No_Existing_Order|true
+11:06:42.4 (52800013)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_No_Existing_Order
+11:06:42.4 (52809114)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_PricingStatus
+11:06:42.4 (53061143)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Pricing_Is_Complete|true|false
+11:06:42.4 (53081198)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Pricing_Is_Complete|true
+11:06:42.4 (53119315)|FLOW_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 22 out of 15000
+11:06:42.4 (53131211)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_PricingStatus
+11:06:42.4 (53143071)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_QuoteStatus
+11:06:42.4 (53223917)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Quote_Is_Accepted|true|false
+11:06:42.4 (53238779)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Quote_Is_Accepted|true
+11:06:42.4 (53276394)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_QuoteStatus
+11:06:42.4 (53285711)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_BillToContact
+11:06:42.4 (53333754)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_BillToContact|true|false
+11:06:42.4 (53345825)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_BillToContact|true
+11:06:42.4 (53365406)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_BillToContact
+11:06:42.4 (53373267)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_BillingAddress
+11:06:42.4 (53433760)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_BillingAddress|true|false
+11:06:42.4 (53447945)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_BillingAddress|true
+11:06:42.4 (53470259)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_BillingAddress
+11:06:42.4 (53479476)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_BillingStreet
+11:06:42.4 (53528206)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_BillingStreet|true|false
+11:06:42.4 (53542100)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_BillingStreet|true
+11:06:42.4 (53567356)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_BillingStreet
+11:06:42.4 (53575139)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_ShippingAddress
+11:06:42.4 (53620594)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_ShippingAddress|true|false
+11:06:42.4 (53636061)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Has_ShippingAddress|true
+11:06:42.4 (53656649)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_ShippingAddress
+11:06:42.4 (53720142)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowActionCall|Validate_Checklist_Complete
+11:06:42.153 (153657557)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000001wqaN|ChecklistValidationService.validateChecklistComplete(List<ChecklistValidationService.ValidationRequest>)
+11:06:42.153 (153968826)|HEAP_ALLOCATE|[95]|Bytes:3
+11:06:42.153 (154015771)|HEAP_ALLOCATE|[100]|Bytes:152
+11:06:42.153 (154032686)|HEAP_ALLOCATE|[417]|Bytes:408
+11:06:42.153 (154047556)|HEAP_ALLOCATE|[430]|Bytes:408
+11:06:42.153 (154076537)|HEAP_ALLOCATE|[317]|Bytes:6
+11:06:42.153 (154103929)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+11:06:42.153 (154117892)|VARIABLE_SCOPE_BEGIN|[76]|this|ChecklistValidationService.ValidationRequest|true|false
+11:06:42.153 (154221678)|VARIABLE_ASSIGNMENT|[76]|this|{}|0x26b99758
+11:06:42.153 (154236088)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:6
+11:06:42.153 (154276157)|STATEMENT_EXECUTE|[76]
+11:06:42.153 (154277854)|STATEMENT_EXECUTE|[78]
+11:06:42.153 (154317999)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (154321466)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+11:06:42.153 (154597880)|VARIABLE_ASSIGNMENT|[EXTERNAL]|this.quoteId|"0Q0WC000003AuQb0AK"|0x26b99758
+11:06:42.153 (154616047)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+11:06:42.153 (154696835)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:34
+11:06:42.153 (154702474)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+11:06:42.153 (154719283)|METHOD_ENTRY|[5]|01pWC000001wqaN|ChecklistValidationService.ChecklistValidationService()
+11:06:42.153 (154725776)|STATEMENT_EXECUTE|[5]
+11:06:42.153 (154730243)|STATEMENT_EXECUTE|[5]
+11:06:42.153 (154749320)|HEAP_ALLOCATE|[68]|Bytes:5
+11:06:42.153 (154778232)|HEAP_ALLOCATE|[74]|Bytes:5
+11:06:42.153 (154786062)|HEAP_ALLOCATE|[82]|Bytes:7
+11:06:42.153 (154808727)|SYSTEM_MODE_ENTER|false
+11:06:42.153 (154825055)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+11:06:42.153 (154828705)|STATEMENT_EXECUTE|[76]
+11:06:42.153 (154830227)|STATEMENT_EXECUTE|[81]
+11:06:42.153 (154835332)|SYSTEM_MODE_EXIT|false
+11:06:42.153 (154845767)|METHOD_EXIT|[5]|ChecklistValidationService
+11:06:42.153 (154888840)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+11:06:42.153 (154897979)|VARIABLE_SCOPE_BEGIN|[64]|requests|List<ChecklistValidationService.ValidationRequest>|true|false
+11:06:42.153 (155293985)|VARIABLE_ASSIGNMENT|[EXTERNAL]|this|{"quoteId":"0Q0WC000003AuQb0AK"}|0x26b99758
+11:06:42.153 (155364070)|VARIABLE_ASSIGNMENT|[64]|requests|"common.apex.runtime.impl.ScalarList@26b99777"|0x7d196adb
+11:06:42.153 (155381236)|SYSTEM_MODE_ENTER|false
+11:06:42.153 (155391850)|HEAP_ALLOCATE|[65]|Bytes:5
+11:06:42.153 (155396209)|STATEMENT_EXECUTE|[64]
+11:06:42.153 (155397586)|STATEMENT_EXECUTE|[65]
+11:06:42.153 (155414727)|HEAP_ALLOCATE|[65]|Bytes:4
+11:06:42.153 (155475933)|SYSTEM_CONSTRUCTOR_ENTRY|[65]|<init>()
+11:06:42.153 (155508793)|SYSTEM_CONSTRUCTOR_EXIT|[65]|<init>()
+11:06:42.153 (155513398)|VARIABLE_SCOPE_BEGIN|[65]|results|List<ChecklistValidationService.ValidationResult>|true|false
+11:06:42.153 (155541738)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (155578797)|VARIABLE_ASSIGNMENT|[65]|results|[]|0x17703177
+11:06:42.153 (155612433)|SYSTEM_METHOD_ENTRY|[67]|List<ChecklistValidationService.ValidationRequest>.iterator()
+11:06:42.153 (155757553)|SYSTEM_METHOD_EXIT|[67]|List<ChecklistValidationService.ValidationRequest>.iterator()
+11:06:42.153 (155779740)|SYSTEM_METHOD_ENTRY|[67]|system.ListIterator.hasNext()
+11:06:42.153 (155789948)|HEAP_ALLOCATE|[67]|Bytes:5
+11:06:42.153 (155796029)|SYSTEM_METHOD_EXIT|[67]|system.ListIterator.hasNext()
+11:06:42.153 (155808076)|HEAP_ALLOCATE|[67]|Bytes:8
+11:06:42.153 (155814873)|VARIABLE_SCOPE_BEGIN|[67]|request|ChecklistValidationService.ValidationRequest|true|false
+11:06:42.153 (155956240)|VARIABLE_ASSIGNMENT|[67]|request|{"quoteId":"0Q0WC000003AuQb0AK"}|0x26b99758
+11:06:42.153 (155962981)|STATEMENT_EXECUTE|[67]
+11:06:42.153 (155964632)|STATEMENT_EXECUTE|[68]
+11:06:42.153 (155983682)|METHOD_ENTRY|[68]|01pWC000001wqaN|ChecklistValidationService.validateChecklistForQuote(Id)
+11:06:42.153 (156003220)|VARIABLE_SCOPE_BEGIN|[12]|quoteId|Id|false|false
+11:06:42.153 (156057345)|VARIABLE_ASSIGNMENT|[12]|quoteId|"0Q0WC000003AuQb0AK"
+11:06:42.153 (156070256)|HEAP_ALLOCATE|[13]|Bytes:5
+11:06:42.153 (156073769)|STATEMENT_EXECUTE|[12]
+11:06:42.153 (156074966)|STATEMENT_EXECUTE|[13]
+11:06:42.153 (156090321)|HEAP_ALLOCATE|[13]|Bytes:24
+11:06:42.153 (156104454)|CONSTRUCTOR_ENTRY|[13]|01pWC000001wqaN|<init>()|ChecklistValidationService.ValidationResult
+11:06:42.153 (156129344)|VARIABLE_SCOPE_BEGIN|[81]|this|ChecklistValidationService.ValidationResult|true|false
+11:06:42.153 (156152092)|VARIABLE_ASSIGNMENT|[81]|this|{}|0x11dedf0c
+11:06:42.153 (156171031)|STATEMENT_EXECUTE|[81]
+11:06:42.153 (156172337)|STATEMENT_EXECUTE|[83]
+11:06:42.153 (156173677)|STATEMENT_EXECUTE|[86]
+11:06:42.153 (156174874)|STATEMENT_EXECUTE|[89]
+11:06:42.153 (156175944)|STATEMENT_EXECUTE|[92]
+11:06:42.153 (156177001)|STATEMENT_EXECUTE|[95]
+11:06:42.153 (156181803)|CONSTRUCTOR_EXIT|[13]|01pWC000001wqaN|<init>()|ChecklistValidationService.ValidationResult
+11:06:42.153 (156186352)|VARIABLE_SCOPE_BEGIN|[13]|result|ChecklistValidationService.ValidationResult|true|false
+11:06:42.153 (156198247)|VARIABLE_ASSIGNMENT|[13]|result|{}|0x11dedf0c
+11:06:42.153 (156202712)|STATEMENT_EXECUTE|[14]
+11:06:42.153 (156210052)|HEAP_ALLOCATE|[14]|Bytes:5
+11:06:42.153 (156227537)|VARIABLE_ASSIGNMENT|[14]|this.isComplete|false|0x11dedf0c
+11:06:42.153 (156231453)|STATEMENT_EXECUTE|[15]
+11:06:42.153 (156242789)|HEAP_ALLOCATE|[15]|Bytes:4
+11:06:42.153 (156251397)|SYSTEM_CONSTRUCTOR_ENTRY|[15]|<init>()
+11:06:42.153 (156262744)|SYSTEM_CONSTRUCTOR_EXIT|[15]|<init>()
+11:06:42.153 (156286407)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (156300277)|VARIABLE_ASSIGNMENT|[15]|this.incompleteItems|[]|0x11dedf0c
+11:06:42.153 (156302939)|STATEMENT_EXECUTE|[17]
+11:06:42.153 (156303737)|STATEMENT_EXECUTE|[17]
+11:06:42.153 (156304636)|STATEMENT_EXECUTE|[19]
+11:06:42.153 (156307747)|HEAP_ALLOCATE|[19]|Bytes:170
+11:06:42.153 (156322871)|HEAP_ALLOCATE|[19]|Bytes:4
+11:06:42.153 (156328968)|HEAP_ALLOCATE|[19]|Bytes:7
+11:06:42.153 (158012816)|SOQL_EXECUTE_BEGIN|[19]|Aggregations:0|SELECT Id, Item_Name__c, Is_Checked__c, Sort_Order__c FROM Quote_Checklist_Item__c WHERE Quote__c = :tmpVar1 WITH SECURITY_ENFORCED ORDER BY Sort_Order__c ASC NULLS FIRST
+11:06:42.153 (158042311)|LIMIT_USAGE|[19]|SOQL|3|100
+11:06:42.153 (158049283)|LIMIT_USAGE|[19]|AGGS|2|300
+11:06:42.153 (160626062)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (160894544)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (162901970)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (163049756)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (173804224)|SOQL_EXECUTE_EXPLAIN|[19]|Index on Quote_Checklist_Item__c : [Quote__c], cardinality: 0, sobjectCardinality: 5467, relativeCost 0
+11:06:42.153 (173821634)|SOQL_EXECUTE_END|[19]|Rows:1
+11:06:42.153 (173837519)|LIMIT_USAGE|[19]|SOQL_ROWS|2|50000
+11:06:42.153 (173847529)|HEAP_ALLOCATE|[19]|Bytes:8
+11:06:42.153 (173867901)|HEAP_ALLOCATE|[19]|Bytes:67
+11:06:42.153 (173942006)|HEAP_ALLOCATE|[19]|Bytes:8
+11:06:42.153 (173956500)|VARIABLE_SCOPE_BEGIN|[19]|allItems|List<Quote_Checklist_Item__c>|true|false
+11:06:42.153 (174039291)|VARIABLE_ASSIGNMENT|[19]|allItems|[{"Item_Name__c":"3","Id":"aGIWC000000CujB4AS","Is_Checked__c":true}]|0x1154e98f
+11:06:42.153 (174083696)|SYSTEM_METHOD_ENTRY|[27]|List<Quote_Checklist_Item__c>.isEmpty()
+11:06:42.153 (174105345)|SYSTEM_METHOD_EXIT|[27]|List<Quote_Checklist_Item__c>.isEmpty()
+11:06:42.153 (174110387)|STATEMENT_EXECUTE|[27]
+11:06:42.153 (174114484)|SYSTEM_METHOD_ENTRY|[33]|List<Quote_Checklist_Item__c>.iterator()
+11:06:42.153 (174175055)|SYSTEM_METHOD_EXIT|[33]|List<Quote_Checklist_Item__c>.iterator()
+11:06:42.153 (174187066)|SYSTEM_METHOD_ENTRY|[33]|system.ListIterator.hasNext()
+11:06:42.153 (174195630)|HEAP_ALLOCATE|[33]|Bytes:5
+11:06:42.153 (174199836)|SYSTEM_METHOD_EXIT|[33]|system.ListIterator.hasNext()
+11:06:42.153 (174211976)|HEAP_ALLOCATE|[33]|Bytes:16
+11:06:42.153 (174216750)|VARIABLE_SCOPE_BEGIN|[33]|item|Quote_Checklist_Item__c|true|false
+11:06:42.153 (174246592)|VARIABLE_ASSIGNMENT|[33]|item|{"Item_Name__c":"3","Id":"aGIWC000000CujB4AS","Is_Checked__c":true}|0x6737c03
+11:06:42.153 (174250412)|STATEMENT_EXECUTE|[33]
+11:06:42.153 (174270180)|STATEMENT_EXECUTE|[34]
+11:06:42.153 (174273746)|SYSTEM_METHOD_ENTRY|[33]|system.ListIterator.hasNext()
+11:06:42.153 (174276410)|HEAP_ALLOCATE|[33]|Bytes:5
+11:06:42.153 (174278723)|SYSTEM_METHOD_EXIT|[33]|system.ListIterator.hasNext()
+11:06:42.153 (174284221)|VARIABLE_ASSIGNMENT|[33]|item|null|
+11:06:42.153 (174287100)|STATEMENT_EXECUTE|[40]
+11:06:42.153 (174295837)|SYSTEM_METHOD_ENTRY|[40]|List<String>.isEmpty()
+11:06:42.153 (174302147)|SYSTEM_METHOD_EXIT|[40]|List<String>.isEmpty()
+11:06:42.153 (174306317)|HEAP_ALLOCATE|[40]|Bytes:5
+11:06:42.153 (174315994)|VARIABLE_ASSIGNMENT|[40]|this.isComplete|true|0x11dedf0c
+11:06:42.153 (174318397)|STATEMENT_EXECUTE|[41]
+11:06:42.153 (174320422)|SYSTEM_METHOD_ENTRY|[41]|List<Quote_Checklist_Item__c>.size()
+11:06:42.153 (174324791)|SYSTEM_METHOD_EXIT|[41]|List<Quote_Checklist_Item__c>.size()
+11:06:42.153 (174327966)|HEAP_ALLOCATE|[41]|Bytes:4
+11:06:42.153 (174333005)|VARIABLE_ASSIGNMENT|[41]|this.totalItems|1|0x11dedf0c
+11:06:42.153 (174335360)|STATEMENT_EXECUTE|[42]
+11:06:42.153 (174337067)|SYSTEM_METHOD_ENTRY|[42]|List<Quote_Checklist_Item__c>.size()
+11:06:42.153 (174340050)|SYSTEM_METHOD_EXIT|[42]|List<Quote_Checklist_Item__c>.size()
+11:06:42.153 (174343970)|SYSTEM_METHOD_ENTRY|[42]|List<String>.size()
+11:06:42.153 (174345932)|SYSTEM_METHOD_EXIT|[42]|List<String>.size()
+11:06:42.153 (174350322)|HEAP_ALLOCATE|[42]|Bytes:4
+11:06:42.153 (174353770)|VARIABLE_ASSIGNMENT|[42]|this.completedItems|1|0x11dedf0c
+11:06:42.153 (174357208)|STATEMENT_EXECUTE|[44]
+11:06:42.153 (174358572)|STATEMENT_EXECUTE|[53]
+11:06:42.153 (174368432)|METHOD_EXIT|[68]|01pWC000001wqaN|ChecklistValidationService.validateChecklistForQuote(Id)
+11:06:42.153 (174388733)|SYSTEM_METHOD_ENTRY|[68]|List<ChecklistValidationService.ValidationResult>.add(Object)
+11:06:42.153 (174397116)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+11:06:42.153 (174401663)|SYSTEM_METHOD_EXIT|[68]|List<ChecklistValidationService.ValidationResult>.add(Object)
+11:06:42.153 (174405332)|SYSTEM_METHOD_ENTRY|[67]|system.ListIterator.hasNext()
+11:06:42.153 (174408546)|HEAP_ALLOCATE|[67]|Bytes:5
+11:06:42.153 (174410870)|SYSTEM_METHOD_EXIT|[67]|system.ListIterator.hasNext()
+11:06:42.153 (174415707)|VARIABLE_ASSIGNMENT|[67]|request|null|
+11:06:42.153 (174418255)|STATEMENT_EXECUTE|[71]
+11:06:42.153 (174421162)|SYSTEM_MODE_EXIT|false
+11:06:42.174 (174536565)|CUMULATIVE_LIMIT_USAGE
+11:06:42.174 (174536565)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 22 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+11:06:42.174 (174536565)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+11:06:42.174 (174536565)|STATIC_VARIABLE_LIST|
+  int:BYTES:0
+  int:BYTES:0
+  byte[]:DigitOnes:0
+  byte[]:DigitTens:0
+  Boolean:FALSE:0
+  int:MAX_EXPONENT:0
+  double:MAX_VALUE:0
+  int:MAX_VALUE:0
+  int:MIN_EXPONENT:0
+  double:MIN_NORMAL:0
+  double:MIN_VALUE:0
+  int:MIN_VALUE:0
+  double:NEGATIVE_INFINITY:0
+  double:NaN:0
+  double:POSITIVE_INFINITY:0
+  int:PRECISION:0
+  int:SIZE:0
+  int:SIZE:0
+  Boolean:TRUE:0
+  String:__sfdcInnerTypes:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  char[]:digits:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+
+11:06:42.174 (174536565)|CUMULATIVE_LIMIT_USAGE_END
+
+11:06:42.153 (174650638)|CODE_UNIT_FINISHED|ChecklistValidationService.validateChecklistComplete(List<ChecklistValidationService.ValidationRequest>)
+11:06:42.4 (176024377)|FLOW_ACTIONCALL_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Validate_Checklist_Complete|Apex|ChecklistValidationService|true|
+11:06:42.4 (195912118)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Validate_Checklist_Complete|{totalItems=1, errorMessage=null, incompleteItems=[], completedItems=1, isComplete=true}
+11:06:42.4 (195995045)|FLOW_ACTIONCALL_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Validate_Checklist_Complete|Apex|ChecklistValidationService|true|
+11:06:42.4 (196120229)|FLOW_ELEMENT_LIMIT_USAGE|1 SOQL queries, total 3 out of 100
+11:06:42.4 (196131778)|FLOW_ELEMENT_LIMIT_USAGE|1 SOQL query rows, total 2 out of 50000
+11:06:42.4 (196140709)|FLOW_ELEMENT_LIMIT_USAGE|78 ms CPU time, total 100 out of 15000
+11:06:42.4 (196203824)|FLOW_ELEMENT_LIMIT_USAGE|1035 bytes heap size, total 1035 out of 6000000
+11:06:42.4 (196223710)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowActionCall|Validate_Checklist_Complete
+11:06:42.4 (196252270)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_ChecklistComplete
+11:06:42.4 (196381821)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Checklist_Is_Complete|true|false
+11:06:42.4 (196417582)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Checklist_Is_Complete|true
+11:06:42.4 (196464547)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Validate_ChecklistComplete
+11:06:42.4 (196477756)|FLOW_ELEMENT_BEGIN|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Is_Amendment
+11:06:42.4 (197171888)|FLOW_RULE_DETAIL|7063dc126ac03f541fa914d0559619edbe41e90-6777|Is_Amendment_Quote|false|false
+11:06:42.4 (197197614)|FLOW_VALUE_ASSIGNMENT|7063dc126ac03f541fa914d0559619edbe41e90-6777|Is_Amendment_Quote|false
+11:06:42.4 (197233824)|FLOW_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 101 out of 15000
+11:06:42.4 (197246687)|FLOW_ELEMENT_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|FlowDecision|Decision_Is_Amendment
+11:06:42.4 (201082754)|FLOW_START_INTERVIEW_END|7063dc126ac03f541fa914d0559619edbe41e90-6777|Fortra Quote to Order Conversion
+11:06:42.204 (204146314)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+11:06:42.213 (213697724)|CUMULATIVE_PROFILING_BEGIN
+11:06:42.213 (213697724)|CUMULATIVE_PROFILING|SOQL operations|
+Class.ChecklistValidationService.validateChecklistForQuote: line 19, column 1: [
+                SELECT Id, Item_Name__c, Is_Checked__c, Sort_Order__c
+                FROM Quote_Checklist_Item__c
+                WHERE Quote__c = :quoteId
+                WITH SECURITY_ENFORCED
+                ORDER BY Sort_Order__c ASC
+            ]: executed 1 time in 17 ms
+
+11:06:42.213 (213697724)|CUMULATIVE_PROFILING|No profiling information for SOSL operations
+11:06:42.213 (213697724)|CUMULATIVE_PROFILING|No profiling information for DML operations
+11:06:42.213 (213697724)|CUMULATIVE_PROFILING|method invocations|
+External entry point: public static List<ChecklistValidationService.ValidationResult> validateChecklistComplete(List<ChecklistValidationService.ValidationRequest>): executed 1 time in 20 ms
+Class.ChecklistValidationService.validateChecklistComplete: line 68, column 1: public static ChecklistValidationService.ValidationResult validateChecklistForQuote(Id): executed 2 times in 18 ms
+External entry point: global void <init>(): executed 1 time in 1 ms
+External entry point: global void <init>(): executed 1 time in 1 ms
+Class.ChecklistValidationService.validateChecklistComplete: line 65, column 1: global public List<ChecklistValidationService.ValidationResult>(): executed 1 time in 0 ms
+Class.ChecklistValidationService.validateChecklistForQuote: line 33, column 1: global public System.Iterator iterator(): executed 3 times in 0 ms
+Class.ChecklistValidationService.validateChecklistComplete: line 67, column 1: global public System.Iterator iterator(): executed 3 times in 0 ms
+Class.ChecklistValidationService.validateChecklistForQuote: line 40, column 1: global public Boolean isEmpty(): executed 1 time in 0 ms
+Class.ChecklistValidationService.validateChecklistForQuote: line 41, column 1: global public Integer size(): executed 1 time in 0 ms
+Class.ChecklistValidationService.validateChecklistForQuote: line 42, column 1: global public Integer size(): executed 2 times in 0 ms
+Class.ChecklistValidationService.validateChecklistForQuote: line 27, column 1: global public Boolean isEmpty(): executed 1 time in 0 ms
+
+11:06:42.213 (213697724)|CUMULATIVE_PROFILING_END
+

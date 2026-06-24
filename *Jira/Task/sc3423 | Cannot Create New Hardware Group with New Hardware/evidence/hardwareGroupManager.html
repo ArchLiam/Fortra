@@ -1,0 +1,676 @@
+<template>
+    <!-- Standard SLDS Modal Structure -->
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+
+            <!-- Modal Header -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close" title="Close" onclick={handleCancel}>
+                    <span class="close-icon" aria-hidden="true">×</span>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 class="slds-modal__title slds-hyphenate">{modalTitle}</h2>
+            </header>
+
+            <!-- Modal Body -->
+            <div class="slds-modal__content slds-p-around_none">
+
+                <!-- Wizard Progress Indicator (below header line) -->
+                <template if:true={showWizardProgress}>
+                    <div class="slds-p-horizontal_medium progress-indicator-wrapper">
+                        <lightning-progress-indicator
+                            current-step={currentStepValue}
+                            type="path"
+                            variant="base">
+                            <template for:each={wizardStages} for:item="stage">
+                                <lightning-progress-step
+                                    key={stage.key}
+                                    label={stage.label}
+                                    value={stage.key}>
+                                </lightning-progress-step>
+                            </template>
+                        </lightning-progress-indicator>
+                    </div>
+                </template>
+
+                <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." variant="brand"></lightning-spinner>
+        </template>
+
+        <!-- Mode Selection Screen -->
+        <template if:true={isModeSelection}>
+            <div class="slds-p-around_medium">
+                <div class="slds-text-heading_small slds-m-bottom_medium">
+                    What would you like to do?
+                </div>
+
+                <lightning-radio-group
+                    name="modeSelection"
+                    options={modeOptions}
+                    value={currentMode}
+                    onchange={handleModeSelection}
+                    type="radio">
+                </lightning-radio-group>
+            </div>
+
+            <!-- Modal Footer - Mode Selection -->
+            <footer class="slds-modal__footer">
+                <div class="slds-float_right">
+                    <lightning-button
+                        label="Cancel"
+                        onclick={handleCancel}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label="Continue"
+                        onclick={handleContinue}
+                        disabled={continueDisabled}>
+                    </lightning-button>
+                </div>
+            </footer>
+        </template>
+
+        <!-- Group Selection Screen (for Edit and Assign modes) -->
+        <template if:true={showGroupSelection}>
+            <div class="slds-p-around_medium">
+                <div class="slds-text-heading_small slds-m-bottom_medium">
+                    Select a Hardware Group
+                </div>
+
+                <!-- Groups Datatable -->
+                <lightning-datatable
+                    key-field="Id"
+                    data={existingGroups}
+                    columns={groupColumns}
+                    onrowselection={handleGroupSelection}
+                    max-row-selection="1">
+                </lightning-datatable>
+
+                <template if:false={existingGroups.length}>
+                    <div class="slds-text-align_center slds-m-vertical_large">
+                        <p class="slds-text-color_weak">No hardware groups found for this quote.</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Modal Footer - Group Selection -->
+            <footer class="slds-modal__footer">
+                <div class="slds-float_right">
+                    <lightning-button
+                        label="Back"
+                        onclick={handleBack}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <template if:true={isEditMode}>
+                        <lightning-button
+                            variant="brand"
+                            label="Next"
+                            onclick={handleNext}
+                            disabled={selectedGroupDisabled}>
+                        </lightning-button>
+                    </template>
+                    <template if:false={isEditMode}>
+                        <lightning-button
+                            variant="brand"
+                            label="Assign to Group"
+                            onclick={handleFinish}
+                            disabled={selectedGroupDisabled}>
+                        </lightning-button>
+                    </template>
+                </div>
+            </footer>
+        </template>
+
+        <!-- Hardware Selection Screen (for Assign and Create modes) -->
+        <template if:true={showHardwareSearch}>
+            <div class="slds-p-around_medium">
+
+                <!-- Hardware Search UI (reusing same component structure) -->
+                <template if:true={showAvailableHardware}>
+                    <div class="hardware-search-container">
+
+                        <!-- Hardware Selection Table (hidden when creating new) -->
+                        <template if:false={showCreateHardware}>
+                            <!-- Header -->
+                            <div class="slds-text-heading_small">
+                                Select or Create Hardware
+                            </div>
+                            <!-- Search Results -->
+                            <template if:true={hardwareRecords.length}>
+                                <div class="results-section slds-m-top_none">
+                                    <p class="slds-text-body_regular slds-m-bottom_medium">
+                                        Please choose one of the hardware records for this account not already assigned to this quote, or to create a new hardware record for this group, click the button below.
+                                    </p>
+                                    <lightning-datatable
+                                        key-field="Id"
+                                        data={hardwareRecords}
+                                        columns={hardwareColumns}
+                                        onrowselection={handleHardwareSelection}
+                                        max-row-selection="1">
+                                    </lightning-datatable>
+                                </div>
+                            </template>
+
+                            <!-- Create New Hardware Button -->
+                            <div class="slds-m-top_medium slds-text-align_right">
+                                <span class="slds-m-right_small slds-text-color_weak">Or . .</span>
+                                <lightning-button
+                                    label="Create New Hardware"
+                                    variant="neutral"
+                                    onclick={handleToggleCreateHardware}>
+                                </lightning-button>
+                            </div>
+                        </template>
+
+                        <!-- Create Hardware Form -->
+                        <template if:true={showCreateHardware}>
+                        <div class="slds-box slds-m-top_medium">
+                            <div class="slds-text-heading_small box-title">
+                                Create New Hardware
+                            </div>
+                            <div class="box-content">
+                            <!-- Hardware Name (First Field - Also used for Group Name) -->
+                            <div class="filter-row">
+                                <lightning-input
+                                    label="Hardware Name"
+                                    value={newHardware.hardwareName}
+                                    onchange={handleNewHardwareChange}
+                                    data-field="hardwareName"
+                                    placeholder="Enter a name for this hardware..."
+                                    required>
+                                </lightning-input>
+                            </div>
+
+                            <!-- Hardware Platform Selection -->
+                            <div class="filter-row">
+                                <lightning-combobox
+                                    label="Hardware Platform"
+                                    options={hardwarePlatformOptions}
+                                    value={newHardware.hardwarePlatform}
+                                    onchange={handleNewHardwareChange}
+                                    data-field="hardwarePlatform"
+                                    placeholder="Select Platform..."
+                                    required>
+                                </lightning-combobox>
+                            </div>
+
+                            <!-- iSeries-Specific Fields -->
+                            <template if:true={isISeries}>
+                                <div class="filter-row">
+                                    <lightning-input
+                                        label="Serial Number"
+                                        value={newHardware.serialNumber}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="serialNumber"
+                                        required>
+                                    </lightning-input>
+
+                                    <lightning-combobox
+                                        label="Model Number"
+                                        options={iSeriesModelOptions}
+                                        value={newHardware.iSeriesModel}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="iSeriesModel"
+                                        placeholder="Select Model..."
+                                        required>
+                                    </lightning-combobox>
+                                </div>
+
+                                <div class="filter-row">
+                                    <lightning-combobox
+                                        label="Feature Code"
+                                        options={featureCodeOptions}
+                                        value={newHardware.featureCode}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="featureCode"
+                                        placeholder="Select Feature Code..."
+                                        disabled={featureCodeDisabled}>
+                                    </lightning-combobox>
+
+                                    <lightning-input
+                                        type="number"
+                                        label="Number of Processors"
+                                        value={newHardware.processors}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="processors">
+                                    </lightning-input>
+
+                                    <lightning-combobox
+                                        label="P Group"
+                                        options={pGroupOptions}
+                                        value={newHardware.pGroup}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="pGroup"
+                                        placeholder="Select P Group...">
+                                    </lightning-combobox>
+                                </div>
+                            </template>
+
+                            <!-- Cross Platform-Specific Fields -->
+                            <template if:true={isCrossPlatform}>
+                                <div class="filter-row">
+                                    <lightning-input
+                                        label="Hostname"
+                                        value={newHardware.hostname}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="hostname"
+                                        required>
+                                    </lightning-input>
+
+                                    <lightning-input
+                                        label="Hardware ID"
+                                        value={newHardware.hardwareId}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="hardwareId"
+                                        required>
+                                    </lightning-input>
+                                </div>
+
+                                <div class="filter-row">
+                                    <lightning-combobox
+                                        label="Operating System"
+                                        options={operatingSystemOptions}
+                                        value={newHardware.operatingSystem}
+                                        onchange={handleNewHardwareChange}
+                                        data-field="operatingSystem"
+                                        placeholder="Select Operating System..."
+                                        required>
+                                    </lightning-combobox>
+                                </div>
+                            </template>
+
+                            <div class="action-buttons">
+                                <lightning-button
+                                    label="Cancel"
+                                    onclick={handleToggleCreateHardware}>
+                                </lightning-button>
+                                <lightning-button
+                                    variant="brand"
+                                    label="Create & Select"
+                                    onclick={handleCreateHardware}
+                                    disabled={isLoading}>
+                                </lightning-button>
+                            </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    </div>
+                </template>
+
+                <!-- Selected Hardware Summary -->
+                <template if:true={selectedHardware}>
+                    <div class="slds-box slds-m-top_medium">
+                        <div class="slds-text-heading_small box-title">Selected Hardware</div>
+                        <div class="box-content">
+                            <dl class="slds-dl_horizontal">
+                                <dt class="slds-dl_horizontal__label">Hardware ID:</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedHardware.Hardware_ID__c}</dd>
+                                <dt class="slds-dl_horizontal__label">Model:</dt>
+                                <dd class="slds-dl_horizontal__detail">{selectedHardware.Model_Number__c}</dd>
+                            </dl>
+                            <!-- Hardware Attributes for Configuration -->
+                            <template if:true={hasHardwareAttributes}>
+                                <div class="slds-m-top_medium slds-p-top_small slds-border_top">
+                                    <div class="slds-text-title_caps slds-m-bottom_x-small">Configuration Defaults</div>
+                                    <dl class="slds-dl_horizontal">
+                                        <dt class="slds-dl_horizontal__label">pGroup:</dt>
+                                        <dd class="slds-dl_horizontal__detail">{hardwarePGroupDisplay}</dd>
+                                    </dl>
+                                    <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                                        These values will be used as defaults when configuring products in this group.
+                                    </p>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- Modal Footer - Hardware Selection -->
+            <footer class="slds-modal__footer">
+                <div class="slds-float_right">
+                    <lightning-button
+                        label="Back"
+                        onclick={handleBack}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <!-- Assign mode: Next to group selection -->
+                    <template if:true={isAssignMode}>
+                        <lightning-button
+                            variant="brand"
+                            label="Next"
+                            onclick={handleNext}
+                            disabled={selectedHardwareDisabled}>
+                        </lightning-button>
+                    </template>
+                    <!-- Create mode: Finish with selected hardware -->
+                    <template if:false={isAssignMode}>
+                        <lightning-button
+                            variant="brand"
+                            label={finishButtonLabel}
+                            onclick={handleFinish}
+                            disabled={canFinishDisabled}>
+                        </lightning-button>
+                    </template>
+                </div>
+            </footer>
+        </template>
+
+        <!-- Group Configuration Screen (for Create and Edit modes) -->
+        <template if:true={showGroupConfig}>
+            <div class="slds-p-around_medium">
+
+                <!-- Group Information -->
+                <div class="slds-section slds-is-open">
+                    <h3 class="slds-section__title slds-text-heading_small">
+                        Group Information
+                    </h3>
+                    <div class="slds-section__content">
+                        <lightning-input
+                            data-id="groupNameInput"
+                            label="Group Name"
+                            value={groupName}
+                            onchange={handleGroupNameChange}
+                            required
+                            max-length="255">
+                        </lightning-input>
+
+                        <lightning-textarea
+                            label="Hardware Notes"
+                            value={hardwareNotes}
+                            onchange={handleHardwareNotesChange}
+                            placeholder="Notes for Order Management team..."
+                            max-length="32768">
+                        </lightning-textarea>
+                    </div>
+                </div>
+
+                <!-- Hardware Assignment Checkbox (Create Mode Only) -->
+                <template if:false={isEditMode}>
+                    <div class="slds-section slds-is-open slds-m-top_medium">
+                        <h3 class="slds-section__title slds-text-heading_small">
+                            Hardware Assignment
+                        </h3>
+                        <div class="slds-section__content">
+                            <lightning-input
+                                type="checkbox"
+                                label="Assign or change hardware"
+                                checked={assignHardwareNow}
+                                onchange={handleAssignHardwareNowChange}>
+                            </lightning-input>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Edit Mode: Show inline hardware assignment with search -->
+                <template if:true={isEditMode}>
+                    <div class="slds-section slds-is-open slds-m-top_medium">
+                        <h3 class="slds-section__title slds-text-heading_small">
+                            Hardware Assignment
+                        </h3>
+                        <div class="slds-section__content">
+                            <lightning-input
+                                type="checkbox"
+                                label="Assign or change hardware"
+                                checked={assignHardwareNow}
+                                onchange={handleAssignHardwareNowChange}>
+                            </lightning-input>
+
+                            <!-- Hardware Search/Create Section (Edit Mode) -->
+                            <template if:true={assignHardwareNow}>
+                                <template if:true={showAvailableHardware}>
+                                    <div class="hardware-search-container">
+
+                                        <!-- Hardware Selection Table (hidden when creating new) -->
+                                        <template if:false={showCreateHardware}>
+                                            <!-- Header -->
+                                            <div class="slds-text-heading_small">
+                                                Select or Create Hardware
+                                            </div>
+                                            <!-- Search Results -->
+                                            <template if:true={hardwareRecords.length}>
+                                                <div class="results-section slds-m-top_none">
+                                                    <p class="slds-text-body_regular slds-m-bottom_medium">
+                                                        Please choose one of the hardware records for this account not already assigned to this quote, or to create a new hardware record for this group, click the button below.
+                                                    </p>
+                                                    <lightning-datatable
+                                                        key-field="Id"
+                                                        data={hardwareRecords}
+                                                        columns={hardwareColumns}
+                                                        onrowselection={handleHardwareSelection}
+                                                        max-row-selection="1">
+                                                    </lightning-datatable>
+                                                </div>
+                                            </template>
+
+                                            <!-- Create New Hardware Button -->
+                                            <div class="slds-m-top_medium slds-text-align_right">
+                                                <span class="slds-m-right_small slds-text-color_weak">Or . .</span>
+                                                <lightning-button
+                                                    label="Create New Hardware"
+                                                    variant="neutral"
+                                                    onclick={handleToggleCreateHardware}>
+                                                </lightning-button>
+                                            </div>
+                                        </template>
+
+                                        <!-- Create Hardware Form -->
+                                        <template if:true={showCreateHardware}>
+                                    <div class="slds-box slds-m-top_medium">
+                                        <div class="slds-text-heading_small box-title">
+                                            Create New Hardware
+                                        </div>
+                                        <div class="box-content">
+                                        <!-- Hardware Name (First Field - Also used for Group Name) -->
+                                        <div class="filter-row">
+                                            <lightning-input
+                                                label="Hardware Name"
+                                                value={newHardware.hardwareName}
+                                                onchange={handleNewHardwareChange}
+                                                data-field="hardwareName"
+                                                placeholder="Enter a name for this hardware..."
+                                                required>
+                                            </lightning-input>
+                                        </div>
+
+                                        <!-- Hardware Platform Selection -->
+                                        <div class="filter-row">
+                                            <lightning-combobox
+                                                label="Hardware Platform"
+                                                options={hardwarePlatformOptions}
+                                                value={newHardware.hardwarePlatform}
+                                                onchange={handleNewHardwareChange}
+                                                data-field="hardwarePlatform"
+                                                placeholder="Select Platform..."
+                                                required>
+                                            </lightning-combobox>
+                                        </div>
+
+                                        <!-- iSeries-Specific Fields -->
+                                        <template if:true={isISeries}>
+                                            <div class="filter-row">
+                                                <lightning-input
+                                                    label="Serial Number"
+                                                    value={newHardware.serialNumber}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="serialNumber"
+                                                    required>
+                                                </lightning-input>
+
+                                                <lightning-combobox
+                                                    label="Model Number"
+                                                    options={iSeriesModelOptions}
+                                                    value={newHardware.iSeriesModel}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="iSeriesModel"
+                                                    placeholder="Select Model..."
+                                                    required>
+                                                </lightning-combobox>
+                                            </div>
+
+                                            <div class="filter-row">
+                                                <lightning-combobox
+                                                    label="Feature Code"
+                                                    options={featureCodeOptions}
+                                                    value={newHardware.featureCode}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="featureCode"
+                                                    placeholder="Select Feature Code..."
+                                                    disabled={featureCodeDisabled}>
+                                                </lightning-combobox>
+
+                                                <lightning-input
+                                                    type="number"
+                                                    label="Number of Processors"
+                                                    value={newHardware.processors}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="processors">
+                                                </lightning-input>
+
+                                                <lightning-combobox
+                                                    label="P Group"
+                                                    options={pGroupOptions}
+                                                    value={newHardware.pGroup}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="pGroup"
+                                                    placeholder="Select P Group...">
+                                                </lightning-combobox>
+                                            </div>
+                                        </template>
+
+                                        <!-- Cross Platform-Specific Fields -->
+                                        <template if:true={isCrossPlatform}>
+                                            <div class="filter-row">
+                                                <lightning-input
+                                                    label="Hostname"
+                                                    value={newHardware.hostname}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="hostname"
+                                                    required>
+                                                </lightning-input>
+
+                                                <lightning-input
+                                                    label="Hardware ID"
+                                                    value={newHardware.hardwareId}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="hardwareId"
+                                                    required>
+                                                </lightning-input>
+                                            </div>
+
+                                            <div class="filter-row">
+                                                <lightning-combobox
+                                                    label="Operating System"
+                                                    options={operatingSystemOptions}
+                                                    value={newHardware.operatingSystem}
+                                                    onchange={handleNewHardwareChange}
+                                                    data-field="operatingSystem"
+                                                    placeholder="Select Operating System..."
+                                                    required>
+                                                </lightning-combobox>
+                                            </div>
+                                        </template>
+
+                                        <div class="action-buttons">
+                                            <lightning-button
+                                                label="Cancel"
+                                                onclick={handleToggleCreateHardware}>
+                                            </lightning-button>
+                                            <lightning-button
+                                                variant="brand"
+                                                label="Create & Select"
+                                                onclick={handleCreateHardware}
+                                                disabled={isLoading}>
+                                            </lightning-button>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Selected Hardware Section (shown in Edit mode) -->
+                <template if:true={selectedHardware}>
+                    <template if:true={isEditMode}>
+                        <div class="slds-box slds-m-top_medium">
+                            <div class="slds-text-heading_small box-title">Selected Hardware</div>
+                            <div class="box-content">
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">Hardware ID:</dt>
+                                    <dd class="slds-dl_horizontal__detail">{selectedHardware.Hardware_ID__c}</dd>
+                                    <dt class="slds-dl_horizontal__label">Model:</dt>
+                                    <dd class="slds-dl_horizontal__detail">{selectedHardware.Model_Number__c}</dd>
+                                </dl>
+                                <!-- Hardware Attributes for Configuration -->
+                                <template if:true={hasHardwareAttributes}>
+                                    <div class="slds-m-top_medium slds-p-top_small slds-border_top">
+                                        <div class="slds-text-title_caps slds-m-bottom_x-small">Configuration Defaults</div>
+                                        <dl class="slds-dl_horizontal">
+                                            <dt class="slds-dl_horizontal__label">pGroup:</dt>
+                                            <dd class="slds-dl_horizontal__detail">{hardwarePGroupDisplay}</dd>
+                                        </dl>
+                                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                                            These values will be used as defaults when configuring products in this group.
+                                        </p>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+
+            </div>
+
+            <!-- Modal Footer - Group Configuration -->
+            <footer class="slds-modal__footer">
+                <div class="slds-float_right">
+                    <lightning-button
+                        label="Back"
+                        onclick={handleBack}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <lightning-button
+                        label="Cancel"
+                        onclick={handleCancel}
+                        class="slds-m-right_x-small">
+                    </lightning-button>
+                    <!-- Create Mode: Show Next button -->
+                    <template if:false={isEditMode}>
+                        <lightning-button
+                            variant="brand"
+                            label="Next"
+                            onclick={handleNext}>
+                        </lightning-button>
+                    </template>
+                    <!-- Edit Mode: Show Finish button -->
+                    <template if:true={isEditMode}>
+                        <lightning-button
+                            variant="brand"
+                            label={finishButtonLabel}
+                            onclick={handleFinish}
+                            disabled={canFinishDisabled}>
+                        </lightning-button>
+                    </template>
+                </div>
+            </footer>
+        </template>
+
+            </div>
+            <!-- End Modal Body -->
+
+        </div>
+    </section>
+
+    <!-- Modal Backdrop -->
+    <div class="slds-backdrop slds-backdrop_open"></div>
+
+</template>
