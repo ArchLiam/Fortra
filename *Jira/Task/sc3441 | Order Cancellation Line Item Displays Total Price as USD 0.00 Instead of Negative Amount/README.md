@@ -30,7 +30,8 @@ The native RLM waterfall produces **no priced row** for a cancel line (`PriceWat
 ---
 
 ## Current state (2026-06-25)
-- ✅ **Built + deployed:** `CancelNetUnitPrice__c` on OrderItem+QuoteLineItem (+FLS); context `SalesTransactionContextExt_v2` hydration on both nodes; `CancelLineNetSeedPrehook` (registered in Plan `Fortra_Pricing_PreHook`); procedure **V18** with `CancelNetSeedContainer` (seq 13) — sole active version.
+- ✅ **Built + deployed:** `CancelNetUnitPrice__c` on OrderItem+QuoteLineItem (+FLS); context `SalesTransactionContextExt_v2` hydration on both nodes; `CancelLineNetSeedPrehook` (registered in Plan `Fortra_Pricing_PreHook`); procedure **V18** (`9QBWC0000000o3F4AQ`, created 2026-06-25) with `CancelNetSeedContainer` (seq 13).
+- ⚠️ **DUAL-ACTIVE drift recurred (live 2026-06-25):** V16 was deactivated when V18 went active, but a live query found **both V16 (`9QBWC0000000niH4AQ`) and V18 (`9QBWC0000000o3F4AQ`) Active again**. RLM runs the highest (V18 executes), but V16 should be re-deactivated for determinism (don't delete — platform-blocked). Re-pull and re-confirm single-active before any edit.
 - ❌ **Not working yet:** reprice of the cancel line still errors at `StampBaseFilter` (criterion `NetUnitPrice > 0` on a still-null value) ⇒ `NetUnitPrice` is **still null** at seq 14 ⇒ the seed block didn't set it ⇒ likely the staging value `CancelNetUnitPrice__c` never reached runtime context (Path A republish failed) **or** the block didn't fire.
 - 🔬 **Both diagnostic tools are exhausted:** FINEST can't see RLM pricing internals (opaque external code unit); Simulate rejects `__c` input keys (can't inject the staging value).
 

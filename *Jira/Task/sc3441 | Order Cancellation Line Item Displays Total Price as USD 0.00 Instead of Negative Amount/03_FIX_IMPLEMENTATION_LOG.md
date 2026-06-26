@@ -65,7 +65,8 @@ Created on **BOTH** objects (shared-procedure rule; proven mandatory by the `Pre
 
 ## 4. Procedure delta — V18 (DEPLOYED + ACTIVE ✅)
 
-- Active version when work began drifted V14→V16; we cloned **V16 → V18 via the UI** (metadata clone V16→V17 failed: "ExpressionSetDefinitionVersion not found" cross-slot reference). V17 deprecated; **V18 is the sole active version** (user deactivated V16).
+- Active version when work began drifted V14→V16; we cloned **V16 → V18 via the UI** (metadata clone V16→V17 failed: "ExpressionSetDefinitionVersion not found" cross-slot reference). V17 deprecated. V18 = `9QBWC0000000o3F4AQ`, created 2026-06-25T04:15:46Z.
+- **Active-version state (live 2026-06-25 — CORRECTS the earlier "V18 sole active"):** user deactivated V16 when V18 went active, but a live `ExpressionSetDefinitionVersion` query found **both V16 (`9QBWC0000000niH4AQ`) and V18 (`9QBWC0000000o3F4AQ`) Active again** — the documented version-drift/oscillation recurred. RLM resolves to the highest number ⇒ **V18 executes**, but V16 should be re-deactivated for determinism (do NOT delete — platform-blocked). Always re-pull the live active-version list before any edit.
 - **New top-level ListGroup `CancelNetSeedContainer` (sequenceNumber 13)** — deliberately **before** `StampBaseFilter` (seq 14) and `QuantityPrice64` (seq 26). Children:
   1. `CancelNetSeedFilter` (AdvancedListFilter, seq 1) — gate.
   2. `CancelSeedNet` (AssignmentElement, seq 2): `CancelNetUnitPrice__c → NetUnitPrice`.

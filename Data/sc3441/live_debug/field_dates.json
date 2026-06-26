@@ -1,0 +1,31 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "CustomField",
+          "url": "/services/data/v67.0/tooling/sobjects/CustomField/00NWC000007CL4f2AG"
+        },
+        "Id": "00NWC000007CL4f2AG",
+        "DeveloperName": "CancelNetUnitPrice",
+        "TableEnumOrId": "OrderItem",
+        "CreatedDate": "2026-06-25T01:56:40.000+0000",
+        "LastModifiedDate": "2026-06-25T01:56:40.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "CustomField",
+          "url": "/services/data/v67.0/tooling/sobjects/CustomField/00NWC000007CL4g2AG"
+        },
+        "Id": "00NWC000007CL4g2AG",
+        "DeveloperName": "CancelNetUnitPrice",
+        "TableEnumOrId": "QuoteLineItem",
+        "CreatedDate": "2026-06-25T01:56:40.000+0000",
+        "LastModifiedDate": "2026-06-25T01:56:40.000+0000"
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  }
+}

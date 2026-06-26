@@ -75,4 +75,4 @@ The roadmap's preferred Option (native `Asset.PricingSource='LastTransaction'` c
 
 ## 5. Open, separate items (do NOT fold into SC-3441)
 - **2nd broken line `802WC00000OgXD4YAN`** (zero net AND zero list) — a data defect, separate ticket.
-- **Unconditional MAX clamp** `FormulaBasedPricing3` (seq 37) zeroes negative `TotalLineAmount` → will corrupt `Subtotal`/`ItemSubtotal` on cancel lines once `NetUnitPrice` is non-null. Fold the guard (`LineItemQuantity >= 0`) into the fix's validation (Roadmap Option D) — it is NOT the cause of the ticketed `TotalPrice=0`, but it bites next.
+- **Unconditional MAX clamp** `FormulaBasedPricing3` (seq **36 in V18**; was seq 37 in V16 — the clone renumbered it) zeroes negative `TotalLineAmount` → will corrupt `Subtotal`/`ItemSubtotal` on cancel lines once `NetUnitPrice` is non-null. Fold the guard (`LineItemQuantity >= 0`) into the fix's validation (Roadmap Option D) — it is NOT the cause of the ticketed `TotalPrice=0`, but it bites next.

@@ -1,0 +1,17 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC0000043n8LYAQ"
+        },
+        "Body": "/**\n * @description Trigger for QuoteLineItem object\n * @date 2025-01-23\n *\n * Handles:\n * - Automatic hardware assignment when quote lines are added to or removed from groups\n * - COLA (Cost of Living Adjustment) uplift for renewal quote lines\n */\ntrigger QuoteLineItemTrigger on QuoteLineItem (before insert, before update, after insert) {\n\n    if (Trigger.isAfter && (Trigger.isInsert || Trigger.isUpdate)) {\n        RenewalMaintenanceAutoAddHandler.enqueueIfNeeded(Trigger.new);\n    }\n\n    if (Trigger.isAfter && Trigger.isInsert) {\n        RenewalAssetQuantityHandler.enqueueQuantityNormalization(Trigger.new);\n    }\n\n    if (Trigger.isBefore) {\n        // Handle hardware linking on insert and update\n        if (Trigger.isInsert || Trigger.isUpdate) {\n            QuoteLineItemTriggerHandler.handleHardwareLinking(\n                Trigger.new,\n                Trigger.oldMap\n            );\n        }\n\n        // Handle COLA uplift for renewals\n        if (Trigger.isInsert) {\n            COLAUpliftHandler.handleBeforeInsert(Trigger.new);\n        }\n\n        if (Trigger.isUpdate) {\n            COLAUpliftHandler.handleBeforeUpdate(Trigger.new, Trigger.oldMap);\n        }\n    }\n}"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

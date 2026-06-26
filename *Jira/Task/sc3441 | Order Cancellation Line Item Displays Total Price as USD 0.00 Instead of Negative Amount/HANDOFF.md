@@ -4,7 +4,7 @@
 
 ## Where it stands
 - RCA is final (`01_RCA.md`): null `NetUnitPrice` field on cancel lines → `TotalPrice = null × −1 = 0`. Correct value = asset NET `AssetActionSource.NetUnitPrice` = 3000 (net==list here, coincidentally).
-- Fix built & deployed via **custom seed path** (`03_FIX_IMPLEMENTATION_LOG.md`): field `CancelNetUnitPrice__c` (OrderItem+QLI+FLS), context hydration on both nodes, prehook `CancelLineNetSeedPrehook` (in Plan `Fortra_Pricing_PreHook`), procedure **V18** `CancelNetSeedContainer` (seq 13). **V18 = sole active version.**
+- Fix built & deployed via **custom seed path** (`03_FIX_IMPLEMENTATION_LOG.md`): field `CancelNetUnitPrice__c` (OrderItem+QLI+FLS), context hydration on both nodes, prehook `CancelLineNetSeedPrehook` (in Plan `Fortra_Pricing_PreHook`), procedure **V18** (`9QBWC0000000o3F4AQ`) `CancelNetSeedContainer` (seq 13). **Active-version (live 2026-06-25): V16 + V18 BOTH Active again (drift recurred); V18 executes (highest); re-deactivate V16.**
 - **Still failing:** reprice errors at `StampBaseFilter` (`NetUnitPrice > 0` on null) ⇒ `NetUnitPrice` still null at seq 14 ⇒ seed block didn't set it ⇒ staging value almost certainly never reached runtime context (Path A republish did nothing) or block didn't fire.
 
 ## The wall
@@ -23,7 +23,7 @@
 ## Verified runtime facts (don't re-derive)
 - `802WC00000OugI7YAJ → OrderAction 8OAWC000002SxiL4AS (Cancel) → SourceAssetId 02iWC000008MpX7YAK → AssetActionSource 4nMWC0000046hkj2AA (Generate/Initial Sale) NetUnitPrice 3000 USD.`
 - Quote twin: `0QLWC000003fKAj4AM → QuoteAction 7ocWC00000upzpBYAQ → same asset.`
-- Active proc: **V18** (re-pull live before any edit — drifts). ExpressionSetDefinition `9QAWC0000003mg14AA`.
+- Active proc: **V18** `9QBWC0000000o3F4AQ` (re-pull live before any edit — drifts; V16 re-activated 06-25). ExpressionSetDefinition `9QAWC0000003mg14AA`.
 
 ## Separate tickets (don't fold in)
 - 2nd broken line `802WC00000OgXD4YAN` (zero net AND zero list) = data defect.

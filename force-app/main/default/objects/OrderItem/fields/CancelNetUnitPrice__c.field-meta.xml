@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CancelNetUnitPrice__c</fullName>
+    <description>SC-3441 staging field. Asset-net seed for cancellation/negative-quantity lines. Written into the pricing context by CancelLineNetSeedPrehook (from AssetActionSource.NetUnitPrice); consumed by the cancel-seed AssignmentElement to set NetUnitPrice on cancel lines. Not user-edited.</description>
+    <inlineHelpText>System: asset net price staged for a cancellation line.</inlineHelpText>
+    <label>Cancel Net Unit Price</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Currency</type>
+</CustomField>

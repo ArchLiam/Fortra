@@ -1,0 +1,788 @@
+67.0 APEX_CODE,FINEST;APEX_PROFILING,FINEST;CALLOUT,FINEST;DATA_ACCESS,INFO;DB,FINEST;NBA,FINE;SYSTEM,FINE;VALIDATION,INFO;VISUALFORCE,FINER;WAVE,FINEST;WORKFLOW,FINER
+08:53:52.0 (985119)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:52.0 (1036208)|EXECUTION_STARTED
+08:53:52.0 (1045234)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Order
+08:53:52.4 (4341343)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000LcvHO|301WC00000gukzh
+08:53:52.4 (4559545)|FLOW_CREATE_INTERVIEW_END|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:52.5 (5425511)|FLOW_START_INTERVIEWS_BEGIN|1
+08:53:52.5 (5501951)|FLOW_START_INTERVIEW_BEGIN|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:52.5 (5563734)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:52.5 (5623089)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:52.5 (5629912)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:52.5 (5635994)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:52.5 (5642028)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:52.5 (5647614)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 1 out of 15000
+08:53:52.5 (5659956)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:52.5 (5665340)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:52.5 (5671134)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:52.5 (5676284)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:52.5 (5681699)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:52.5 (5686756)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:53:52.5 (111714366)|FLOW_VALUE_ASSIGNMENT|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|$Record|{Id=801WC00000ktJPMYA2, OwnerId=005a500001J5WNBAA3, ContractId=800WC00000SP6oTYAT, AccountId=001WC00000WiR9YYAV, Pricebook2Id=01sWC0000022GHFYA2, OriginalOrderId=null, OpportunityId=006WC00000QbpscYAB, QuoteId=0Q0WC000003A8PB0A0, EffectiveDate=2026-06-16 00:00:00, EndDate=null, IsReductionOrder=false, Status=Order Complete, Description=null, CustomerAuthorizedById=null, CustomerAuthorizedDate=null, CompanyAuthorizedById=null, CompanyAuthorizedDate=null, Type=null, BillingStreet=17719 Scottsdale Boulevard, BillingCity=Shaker Heights, BillingState=Ohio, BillingPostalCode=44122, BillingCountry=United States, BillingStateCode=OH, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=17719 Scottsdale Boulevard, ShippingCity=Shaker Heights, ShippingState=Ohio, ShippingPostalCode=44122, ShippingCountry=United States, ShippingStateCode=OH, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, Name=Cancellation Quote, PoDate=null, PoNumber=null, OrderReferenceNumber=null, BillToContactId=003WC00000svbv1YAA, ShipToContactId=003WC00000svbv1YAA, ActivatedDate=2026-06-16 22:09:53, ActivatedById=005a500001J5WNBAA3, StatusCode=Activated, CurrencyIsoCode=USD, LegalEntityId=0fwWC000000034LYAQ, TaxLocaleType=null, OrderedDate=2026-06-16 00:00:00, BillingEmailAddress=null, BillingPhoneNumber=null, RelatedOrderId=null, SalesChannelId=null, OrderNumber=00095539, TotalAmount=0.0, TotalTaxAmount=0.0, GrandTotalAmount=0.0, TotalAdjustedProductAmount=0.0, TotalAdjustedDeliveryAmount=0.0, TotalProductAdjDistAmount=0.0, TotalDeliveryAdjDistAmount=0.0, TotalAdjustedProductTaxAmount=0.0, TotalAdjustedDeliveryTaxAmount=0.0, TotalProductAdjDistTaxAmount=0.0, TotalDeliveryAdjDistTaxAmount=0.0, TotalAdjProductAmtWithTax=0.0, TotalAdjDeliveryAmtWithTax=0.0, TotalProductAdjDistAmtWithTax=0.0, TotalDeliveryAdjDistAmtWithTax=0.0, PaymentTermId=null, LastPricedDate=null, FulfillmentPlanId=13VWC000001oxXN2AY, CalculationStatus=Saving, OrchestrationSbmsStatus=Completed, OriginalActionType=Cancel, ValidationResult=null, AdjustmentDistributionLogic=null, AppliedDiscountAmount=null, AppliedDiscount=null, TotalAmountOverride=null, SalesTransactionTypeId=null, PricingContractId=null, RelatedOrderType=null, TransactionType=Fortra_Advanced_Pricing, CreatedDate=2026-06-16 22:09:47, CreatedById=005a500001J5WNBAA3, LastModifiedDate=2026-06-25 14:42:27, LastModifiedById=005WC00000MgTN2YAN, IsDeleted=false, SystemModstamp=2026-06-25 14:42:27, LastViewedDate=null, LastReferencedDate=null, TotalRoundedLineAmount=null, DiscountPercent=null, Workday_Contract_ID__c=801WC00000ktJPMYA2, Workday_ID__c=00095539, Workday_Sync_Correlation_Id__c=51259e90-69d0-11f1-a80c-02c9adc31632, Workday_Sync_Message__c={
+  "status": "success",
+  "message": "Contract saved successfully",
+  "id": "bb8604953fbc100123af11a2b2800000"
+}, Workday_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, QuoteTypeText__c=null, Legacy_Id__c=null, Bill_To_Place__c=a0lWC000004im8HYAQ, Hubspot_Overall_Status__c=Overall Success, Ship_To_Place__c=a0lWC000004im8HYAQ, Order_NARR__c=null, Source_Opportunity_Id__c=006WC00000Qbpsc, Source_Order_Id__c=null, Bill_To_Account__c=001WC00000WiR9YYAV, Bill_To_Address__c=a0lWC000004im8HYAQ, Ship_To_Account__c=001WC00000WiR9YYAV, Ship_To_Address__c=a0lWC000004im8HYAQ, Clawback_Repaid_Date__c=null, Commission_Date__c=null, Contract_Start_Date__c=null, Currency_Locked__c=false, MSYears__c=null, New_Licenses__c=null, New_Maintenance__c=null, New_Pro_Services__c=null, Partner_Account__c=null, Reseller_PO__c=null, Sales_Rep__c=null, Source_Quote_Currency__c=USD, gsOrderID__c=null, gsShipDate__c=null, Order_Displaced_ARR__c=0.0, VAT_Number__c=null, DoNotInvoicePS__c=false, IsDR__c=false, IsNotificationSent__c=false, IsRenewal__c=false, IsTAM__c=null, Is_Reversed__c=false, New_SaaSEftCloud__c=null, Total_List_Price__c=null, Account_Specialist__c=null, Billing_Day_of_Month__c=null, Customer_Success_Manager__c=null, Date_Fulfilled__c=null, Deal_Origin__c=null, Disable_Export_Control__c=false, Enterprise_Representative__c=null, HARP_Contact__c=null, Invoice_Contact_2__c=null, Invoice_Contact__c=null, License_Key_Contact__c=null, ShowHide_Discounts__c=null, Solutions_Engineer__c=null, Total_Discount_Amount__c=0.0, PO_Sync_Correlation_Id__c=null, PO_Sync_Message__c=null, PO_Sync_Payload__c=null, PO_Sync_Status__c=Pending, PO_URL__c=null, ALE__c=null, AWS_Marketplace_Agreement_ID__c=null, AWS_Marketplace_Offer_ID__c=null, Account_NameText__c=Cypress, Billing_Frequency__c=null, Contact__c=null, Cross_Sale_Type__c=null, Cross_Sale_User__c=null, Description__c=null, Disable_Tax__c=false, DistributorReseller__c=null, Line_Items_Complete__c=false, Maintenance_Date__c=null, Mark_Inv_Migration_Change__c=false, On_Hold_Time__c=null, OrderOne__c=1.0, POC_Invoice_Contact_On_Billing_Account__c=null, Payment_Portal__c=Fortra (default), Purchasing_Agent_Account__c=null, Purchasing_Agent_Contact__c=null, RSM_2__c=null, RSM_3__c=null, RSM_4__c=null, RSM_5__c=null, RSM__c=null, Referral_Partner__c=null, Renewal_Maintenance_Quote__c=null, Renewals_Specialist__c=null, Requested_Delivery_Date__c=null, Reseller_Partner__c=null, SA__c=null, Secondary_License_Key_Contact__c=null, Share_With_AWS__c=false, SingleYearMS__c=null, Skip_Price_Calculation__c=false, Source_Campaign__c=null, Source_Quote_Id__c=null, Workday_Sync_Status__c=Success, HS_Sync_Correlation_Id__c=null, HS_Sync_Message__c=null, HS_Sync_Payload__c=null, HS_Sync_Status__c=null, Deal_Type__c=null, GSW__c=false, Quote_Type__c=null, Total_Services__c=null, Total_Software__c=null, Total_Subscription__c=null, Order_NARR_Calculated__c=0.0, Exchange_Rate_To_USD__c=null, Legacy_Sync_Correlation_Id__c=583c7ff1-69d0-11f1-a80c-02c9adc31632, Legacy_Sync_Message__c={
+  "tripwire": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a2YTI0000060YhN2AU"
+    }
+  },
+  "globalscape": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a1HOy000004YBI5MAO"
+    }
+  },
+  "dynamics": {
+    "status": "success",
+    "message": "Order and OrderLines  Created successfully",
+    "data": ""
+  }
+}, Legacy_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, Legacy_Sync_Status__c=Success, WorkdayReferenceID__c=COM003, Payment_Term_Workday_Reference_ID__c=null, Order_Integration_Error_Messages__c=null, Order_and_Related_Field_Status__c=Unknown, Legacy_Discount__c=null, Workday_Contract_Type__c=Master_Contract, Legacy_Overall_Status__c=Overall Success, Workday_Overall_Status__c=Not Success, Contract_Number_Text__c=00069316, MyCap__c=false}
+08:53:52.5 (111991585)|FLOW_ELEMENT_BEGIN|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|FlowDecision|Workday_Sync_Status_Decision
+08:53:52.5 (112027138)|FLOW_ELEMENT_DEFERRED|FlowDecision|Workday_Sync_Status_Decision
+08:53:52.5 (112110800)|FLOW_ELEMENT_LIMIT_USAGE|29 ms CPU time, total 30 out of 15000
+08:53:52.5 (112123675)|FLOW_ELEMENT_END|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|FlowDecision|Workday_Sync_Status_Decision
+08:53:52.5 (113813006)|FLOW_START_INTERVIEW_END|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:52.5 (114061897)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Workday_Sync_Status_Decision
+08:53:52.5 (114331589)|FLOW_RULE_DETAIL|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|NOT_Success_Workday_Sync_Status_Outcome|false|false
+08:53:52.5 (114365394)|FLOW_RULE_DETAIL|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Success_Workday_Sync_Status_Outcome|true|false
+08:53:52.5 (114391838)|FLOW_VALUE_ASSIGNMENT|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|NOT_Success_Workday_Sync_Status_Outcome|false
+08:53:52.5 (114396598)|FLOW_VALUE_ASSIGNMENT|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Success_Workday_Sync_Status_Outcome|true
+08:53:52.5 (114568661)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 31 out of 15000
+08:53:52.5 (114584322)|FLOW_BULK_ELEMENT_END|FlowDecision|Workday_Sync_Status_Decision|0|0
+08:53:52.5 (114648925)|FLOW_ELEMENT_BEGIN|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:52.5 (114663059)|FLOW_ELEMENT_DEFERRED|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:52.5 (114683417)|FLOW_ELEMENT_END|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:52.5 (114717041)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:52.5 (114838120)|FLOW_RULE_DETAIL|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Yes_Set_Legacy_Sync_Status_to_Pending_Outcome|false|false
+08:53:52.5 (114859002)|FLOW_VALUE_ASSIGNMENT|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Yes_Set_Legacy_Sync_Status_to_Pending_Outcome|false
+08:53:52.5 (114971289)|FLOW_BULK_ELEMENT_END|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision|0|0
+08:53:52.5 (115338317)|FLOW_START_INTERVIEWS_END|1
+08:53:52.5 (115627048)|FLOW_INTERVIEW_FINISHED|6800f629b1b679a3329c65e0bdd919eff7af53f-630b|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:52.5 (115667969)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:52.5 (115675131)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:52.5 (115680417)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:52.5 (115685406)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:52.5 (115689831)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:52.5 (115694044)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 31 out of 15000
+08:53:52.5 (115701463)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:52.5 (115706075)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:52.5 (115710209)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:52.5 (115714727)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:52.5 (115718914)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:52.0 (118473007)|CODE_UNIT_FINISHED|Flow:Order
+08:53:52.0 (118489943)|EXECUTION_FINISHED
+08:53:52.330 (330189338)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:52.330 (330216502)|EXECUTION_STARTED
+08:53:52.330 (330226778)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Order:801WC00000ktJPM
+08:53:52.330 (330239151)|VALIDATION_RULE|03dWC000001dRW1|Lock_Currency_At_Order_Activation
+08:53:52.330 (330867095)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+ ISCHANGED(CurrencyIsoCode),
+ OR(
+     ISPICKVAL(Status, 'Activated'),
+     ISPICKVAL(Status, 'In Fulfillment'),
+     ISPICKVAL(Status, 'Fulfilled'),
+     ISPICKVAL(Status, 'Completed'),
+     ISPICKVAL(Status, 'Closed')
+ )
+)|Status=Order Complete , $Permission.Data_Migration_Exclude_Business_Logic=false , CurrencyIsoCode=USD
+08:53:52.330 (330882908)|VALIDATION_PASS
+08:53:52.330 (330885141)|VALIDATION_RULE|03dWC000001pCD3|Order_BillToAddressAcct_Equal_OrderAcct
+08:53:52.330 (331220806)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Bill_To_Address__r.Account__c)),
+ Bill_To_Address__r.Account__c !=  AccountId 
+)|AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false , Bill_To_Address__r.Account__c=001WC00000WiR9Y
+08:53:52.330 (331230673)|VALIDATION_PASS
+08:53:52.330 (331232604)|VALIDATION_RULE|03dWC000001pCBR|Order_BillToContactAcct_Equal_OrderAcct
+08:53:52.330 (331706811)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(BillToContact.AccountId)),
+ BillToContact.AccountId !=  AccountId 
+)|AccountId=001WC00000WiR9Y , BillToContact.AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:52.330 (331718857)|VALIDATION_PASS
+08:53:52.330 (331721053)|VALIDATION_RULE|03dWC000001pC9p|Order_BillToPlaceAcct_Equal_OrderAcct
+08:53:52.330 (331997422)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Bill_To_Place__r.Account__c)),
+ Bill_To_Place__r.Account__c !=  AccountId 
+)|AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false , Bill_To_Place__r.Account__c=001WC00000WiR9Y
+08:53:52.330 (332006218)|VALIDATION_PASS
+08:53:52.330 (332008931)|VALIDATION_RULE|03dWC000001pC8D|Order_ShipToAddressAcct_Equal_OrderAcct
+08:53:52.330 (332215266)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Ship_To_Address__r.Account__c)),
+ Ship_To_Address__r.Account__c != AccountId
+)|AccountId=001WC00000WiR9Y , Ship_To_Address__r.Account__c=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:52.330 (332222229)|VALIDATION_PASS
+08:53:52.330 (332224264)|VALIDATION_RULE|03dWC000001pC6b|Order_ShipToContactAcct_Equal_OrderAcct
+08:53:52.330 (332426124)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(ShipToContact.AccountId)),
+ ShipToContact.AccountId  != AccountId
+)|AccountId=001WC00000WiR9Y , ShipToContact.AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:52.330 (332433470)|VALIDATION_PASS
+08:53:52.330 (332435134)|VALIDATION_RULE|03dWC000001pC4z|Order_ShipToPlaceAcct_Equal_OrderAcct
+08:53:52.330 (332637172)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Ship_To_Place__r.Account__c)),
+ Ship_To_Place__r.Account__c != AccountId 
+)|AccountId=001WC00000WiR9Y , Ship_To_Place__r.Account__c=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:52.330 (332643619)|VALIDATION_PASS
+08:53:52.330 (332653070)|CODE_UNIT_FINISHED|Validation:Order:801WC00000ktJPM
+08:53:52.330 (332661214)|EXECUTION_FINISHED
+08:53:52.368 (368751728)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:52.368 (368778641)|EXECUTION_STARTED
+08:53:52.368 (368788060)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Order
+08:53:52.371 (371952726)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000PgHIz|301WC00000guXcg
+08:53:52.371 (372050465)|FLOW_CREATE_INTERVIEW_END|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:52.372 (372761415)|FLOW_START_INTERVIEWS_BEGIN|1
+08:53:52.372 (372803072)|FLOW_START_INTERVIEW_BEGIN|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:52.372 (372849791)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:52.372 (372858795)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:52.372 (372864563)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:52.372 (372870181)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:52.372 (372875665)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:52.372 (372880787)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 208 out of 15000
+08:53:52.372 (372892749)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:52.372 (372897948)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:52.372 (372902862)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:52.372 (372907799)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:52.372 (372912894)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:52.372 (372917721)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:53:52.372 (377147032)|FLOW_VALUE_ASSIGNMENT|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|$Record|{Id=801WC00000ktJPMYA2, OwnerId=005a500001J5WNBAA3, ContractId=800WC00000SP6oTYAT, AccountId=001WC00000WiR9YYAV, Pricebook2Id=01sWC0000022GHFYA2, OriginalOrderId=null, OpportunityId=006WC00000QbpscYAB, QuoteId=0Q0WC000003A8PB0A0, EffectiveDate=2026-06-16 00:00:00, EndDate=null, IsReductionOrder=false, Status=Order Complete, Description=null, CustomerAuthorizedById=null, CustomerAuthorizedDate=null, CompanyAuthorizedById=null, CompanyAuthorizedDate=null, Type=null, BillingStreet=17719 Scottsdale Boulevard, BillingCity=Shaker Heights, BillingState=Ohio, BillingPostalCode=44122, BillingCountry=United States, BillingStateCode=OH, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=17719 Scottsdale Boulevard, ShippingCity=Shaker Heights, ShippingState=Ohio, ShippingPostalCode=44122, ShippingCountry=United States, ShippingStateCode=OH, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, Name=Cancellation Quote, PoDate=null, PoNumber=null, OrderReferenceNumber=null, BillToContactId=003WC00000svbv1YAA, ShipToContactId=003WC00000svbv1YAA, ActivatedDate=2026-06-16 22:09:53, ActivatedById=005a500001J5WNBAA3, StatusCode=Activated, CurrencyIsoCode=USD, LegalEntityId=0fwWC000000034LYAQ, TaxLocaleType=null, OrderedDate=2026-06-16 00:00:00, BillingEmailAddress=null, BillingPhoneNumber=null, RelatedOrderId=null, SalesChannelId=null, OrderNumber=00095539, TotalAmount=0.0, TotalTaxAmount=0.0, GrandTotalAmount=0.0, TotalAdjustedProductAmount=0.0, TotalAdjustedDeliveryAmount=0.0, TotalProductAdjDistAmount=0.0, TotalDeliveryAdjDistAmount=0.0, TotalAdjustedProductTaxAmount=0.0, TotalAdjustedDeliveryTaxAmount=0.0, TotalProductAdjDistTaxAmount=0.0, TotalDeliveryAdjDistTaxAmount=0.0, TotalAdjProductAmtWithTax=0.0, TotalAdjDeliveryAmtWithTax=0.0, TotalProductAdjDistAmtWithTax=0.0, TotalDeliveryAdjDistAmtWithTax=0.0, PaymentTermId=null, LastPricedDate=null, FulfillmentPlanId=13VWC000001oxXN2AY, CalculationStatus=Saving, OrchestrationSbmsStatus=Completed, OriginalActionType=Cancel, ValidationResult=null, AdjustmentDistributionLogic=null, AppliedDiscountAmount=null, AppliedDiscount=null, TotalAmountOverride=null, SalesTransactionTypeId=null, PricingContractId=null, RelatedOrderType=null, TransactionType=Fortra_Advanced_Pricing, CreatedDate=2026-06-16 22:09:47, CreatedById=005a500001J5WNBAA3, LastModifiedDate=2026-06-25 15:53:52, LastModifiedById=005WC00000MgTN2YAN, IsDeleted=false, SystemModstamp=2026-06-25 15:53:52, LastViewedDate=null, LastReferencedDate=null, TotalRoundedLineAmount=null, DiscountPercent=null, Workday_Contract_ID__c=801WC00000ktJPMYA2, Workday_ID__c=00095539, Workday_Sync_Correlation_Id__c=51259e90-69d0-11f1-a80c-02c9adc31632, Workday_Sync_Message__c={
+  "status": "success",
+  "message": "Contract saved successfully",
+  "id": "bb8604953fbc100123af11a2b2800000"
+}, Workday_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, QuoteTypeText__c=null, Legacy_Id__c=null, Bill_To_Place__c=a0lWC000004im8HYAQ, Hubspot_Overall_Status__c=Overall Success, Ship_To_Place__c=a0lWC000004im8HYAQ, Order_NARR__c=null, Source_Opportunity_Id__c=006WC00000Qbpsc, Source_Order_Id__c=null, Bill_To_Account__c=001WC00000WiR9YYAV, Bill_To_Address__c=a0lWC000004im8HYAQ, Ship_To_Account__c=001WC00000WiR9YYAV, Ship_To_Address__c=a0lWC000004im8HYAQ, Clawback_Repaid_Date__c=null, Commission_Date__c=null, Contract_Start_Date__c=null, Currency_Locked__c=false, MSYears__c=null, New_Licenses__c=null, New_Maintenance__c=null, New_Pro_Services__c=null, Partner_Account__c=null, Reseller_PO__c=null, Sales_Rep__c=null, Source_Quote_Currency__c=USD, gsOrderID__c=null, gsShipDate__c=null, Order_Displaced_ARR__c=0.0, VAT_Number__c=null, DoNotInvoicePS__c=false, IsDR__c=false, IsNotificationSent__c=false, IsRenewal__c=false, IsTAM__c=null, Is_Reversed__c=false, New_SaaSEftCloud__c=null, Total_List_Price__c=null, Account_Specialist__c=null, Billing_Day_of_Month__c=null, Customer_Success_Manager__c=null, Date_Fulfilled__c=null, Deal_Origin__c=null, Disable_Export_Control__c=false, Enterprise_Representative__c=null, HARP_Contact__c=null, Invoice_Contact_2__c=null, Invoice_Contact__c=null, License_Key_Contact__c=null, ShowHide_Discounts__c=null, Solutions_Engineer__c=null, Total_Discount_Amount__c=0.0, PO_Sync_Correlation_Id__c=null, PO_Sync_Message__c=null, PO_Sync_Payload__c=null, PO_Sync_Status__c=Pending, PO_URL__c=null, ALE__c=null, AWS_Marketplace_Agreement_ID__c=null, AWS_Marketplace_Offer_ID__c=null, Account_NameText__c=Cypress, Billing_Frequency__c=null, Contact__c=null, Cross_Sale_Type__c=null, Cross_Sale_User__c=null, Description__c=null, Disable_Tax__c=false, DistributorReseller__c=null, Line_Items_Complete__c=false, Maintenance_Date__c=null, Mark_Inv_Migration_Change__c=false, On_Hold_Time__c=null, OrderOne__c=1.0, POC_Invoice_Contact_On_Billing_Account__c=null, Payment_Portal__c=Fortra (default), Purchasing_Agent_Account__c=null, Purchasing_Agent_Contact__c=null, RSM_2__c=null, RSM_3__c=null, RSM_4__c=null, RSM_5__c=null, RSM__c=null, Referral_Partner__c=null, Renewal_Maintenance_Quote__c=null, Renewals_Specialist__c=null, Requested_Delivery_Date__c=null, Reseller_Partner__c=null, SA__c=null, Secondary_License_Key_Contact__c=null, Share_With_AWS__c=false, SingleYearMS__c=null, Skip_Price_Calculation__c=false, Source_Campaign__c=null, Source_Quote_Id__c=null, Workday_Sync_Status__c=Success, HS_Sync_Correlation_Id__c=null, HS_Sync_Message__c=null, HS_Sync_Payload__c=null, HS_Sync_Status__c=null, Deal_Type__c=null, GSW__c=false, Quote_Type__c=null, Total_Services__c=null, Total_Software__c=null, Total_Subscription__c=null, Order_NARR_Calculated__c=0.0, Exchange_Rate_To_USD__c=null, Legacy_Sync_Correlation_Id__c=583c7ff1-69d0-11f1-a80c-02c9adc31632, Legacy_Sync_Message__c={
+  "tripwire": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a2YTI0000060YhN2AU"
+    }
+  },
+  "globalscape": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a1HOy000004YBI5MAO"
+    }
+  },
+  "dynamics": {
+    "status": "success",
+    "message": "Order and OrderLines  Created successfully",
+    "data": ""
+  }
+}, Legacy_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, Legacy_Sync_Status__c=Success, WorkdayReferenceID__c=COM003, Payment_Term_Workday_Reference_ID__c=null, Order_Integration_Error_Messages__c=null, Order_and_Related_Field_Status__c=Unknown, Legacy_Discount__c=null, Workday_Contract_Type__c=Master_Contract, Legacy_Overall_Status__c=Overall Success, Workday_Overall_Status__c=Not Success, Contract_Number_Text__c=00069316, MyCap__c=false}
+08:53:52.372 (377367491)|FLOW_ELEMENT_BEGIN|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|FlowDecision|Order_Completed_Decision
+08:53:52.372 (377391443)|FLOW_ELEMENT_DEFERRED|FlowDecision|Order_Completed_Decision
+08:53:52.372 (377442533)|FLOW_ELEMENT_LIMIT_USAGE|5 ms CPU time, total 213 out of 15000
+08:53:52.372 (377450758)|FLOW_ELEMENT_END|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|FlowDecision|Order_Completed_Decision
+08:53:52.372 (378326149)|FLOW_START_INTERVIEW_END|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:52.372 (378383501)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Order_Completed_Decision
+08:53:52.372 (378545498)|FLOW_RULE_DETAIL|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Yes_Order_Completed_Outcome|false|false
+08:53:52.372 (378574272)|FLOW_VALUE_ASSIGNMENT|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Yes_Order_Completed_Outcome|false
+08:53:52.372 (378732967)|FLOW_BULK_ELEMENT_END|FlowDecision|Order_Completed_Decision|0|0
+08:53:52.372 (378792991)|FLOW_ELEMENT_BEGIN|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:52.372 (378806054)|FLOW_ELEMENT_DEFERRED|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:52.372 (378826278)|FLOW_ELEMENT_END|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:52.372 (378858650)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:52.372 (378997220)|FLOW_RULE_DETAIL|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Yes_Order_Complete_and_WD_Status_is_Success_Outcome|false|false
+08:53:52.372 (379015851)|FLOW_VALUE_ASSIGNMENT|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Yes_Order_Complete_and_WD_Status_is_Success_Outcome|false
+08:53:52.372 (379175094)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 214 out of 15000
+08:53:52.372 (379184189)|FLOW_BULK_ELEMENT_END|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision|0|0
+08:53:52.372 (379223671)|FLOW_ELEMENT_BEGIN|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|FlowDecision|PO_URL_Changed_Decision
+08:53:52.372 (379234417)|FLOW_ELEMENT_DEFERRED|FlowDecision|PO_URL_Changed_Decision
+08:53:52.372 (379248760)|FLOW_ELEMENT_END|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|FlowDecision|PO_URL_Changed_Decision
+08:53:52.372 (379276024)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|PO_URL_Changed_Decision
+08:53:52.372 (379399106)|FLOW_RULE_DETAIL|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Yes_PO_URL_Changed_Outcome|false|false
+08:53:52.372 (379417136)|FLOW_VALUE_ASSIGNMENT|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Yes_PO_URL_Changed_Outcome|false
+08:53:52.372 (379514799)|FLOW_BULK_ELEMENT_END|FlowDecision|PO_URL_Changed_Decision|0|0
+08:53:52.372 (379695742)|FLOW_START_INTERVIEWS_END|1
+08:53:52.372 (379917462)|FLOW_INTERVIEW_FINISHED|6803f629b1b679a3329c65e0bdd919eff7af53f-6308|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:52.372 (379944837)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:52.372 (379951143)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:52.372 (379955815)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:52.372 (379960587)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:52.372 (379965188)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:52.372 (379969305)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 214 out of 15000
+08:53:52.372 (379975903)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:52.372 (379980698)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:52.372 (379984959)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:52.372 (379989334)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:52.372 (379993292)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:52.368 (381893416)|CODE_UNIT_FINISHED|Flow:Order
+08:53:52.368 (381908402)|EXECUTION_FINISHED
+08:53:52.385 (385127701)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:52.385 (385160435)|EXECUTION_STARTED
+08:53:52.385 (385168880)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Order
+08:53:52.385 (385332730)|CODE_UNIT_FINISHED|Flow:Order
+08:53:52.385 (385340870)|EXECUTION_FINISHED
+08:53:52.954 (954219893)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:52.954 (954240581)|EXECUTION_STARTED
+08:53:52.954 (954248589)|CODE_UNIT_STARTED|[EXTERNAL]|Get context price for context id and record id ...252ea7:801WC00000ktJPMYA2
+08:53:52.954 (1019181449)|RLM_PRICING_BEGIN|PriceBooks={801WC00000ktJPMYA2=01sWC0000022GHFYA2}, 
+LineItemQuantity={802WC00000OugI7YAJ=-1.0}, 
+AttributeValue={15vWC000005wvxVYAQ=Production, 15vWC000005wvxWYAQ=Advanced Workflow Engine, 15vWC000005wvxXYAQ=Hosted}, 
+Product={802WC00000OugI7YAJ=01tWC00000DD11IYAT}, 
+StartProrationPeriodMonth={802WC00000OugI7YAJ=6}, 
+Total_Discount_Amount__c={801WC00000ktJPMYA2=0.0}, 
+ListPrice={802WC00000OugI7YAJ=3000.0}, 
+ItemIsDerived__std={802WC00000OugI7YAJ=false}, 
+StartProrationPeriod={802WC00000OugI7YAJ=DayOfPeriod}, 
+AllowPartialProrationPeriods={802WC00000OugI7YAJ=true}, 
+Has_Attribute_Adjustment__c={802WC00000OugI7YAJ=false}, 
+Discount__std={801WC00000ktJPMYA2=0.0}, 
+Subtotal={801WC00000ktJPMYA2=0.0}, 
+CurrencyIsoCode={801WC00000ktJPMYA2=USD}, 
+PriceImpactingAttribute={15vWC000005wvxVYAQ=true, 15vWC000005wvxWYAQ=true, 15vWC000005wvxXYAQ=true}, 
+PricingTermCount={802WC00000OugI7YAJ=1.0}, 
+ItemSalesTransactionAction={802WC00000OugI7YAJ=8OAWC000002SxiL4AS}, 
+SalesTransactionActionType={802WC00000OugI7YAJ=Cancel}, 
+PricingTermUnit={802WC00000OugI7YAJ=Annual}, 
+ProductSellingModel={802WC00000OugI7YAJ=0jPWC000000060b2AA}, 
+Attribute={15vWC000005wvxVYAQ=Server_Type, 15vWC000005wvxWYAQ=Feature_Options, 15vWC000005wvxXYAQ=Deployment_Option}, 
+ItemPricebookEntry={802WC00000OugI7YAJ=01uWC000005wrrCYAQ}, 
+ItemTotalAdjustmentAmount={802WC00000OugI7YAJ=0.0}, 
+SellingModelType={802WC00000OugI7YAJ=TermDefined}, 
+AllowRegionalPricing__c={802WC00000OugI7YAJ=false}, 
+CancelNetUnitPrice__c={802WC00000OugI7YAJ=3000.0}, 
+TotalLineAmount={802WC00000OugI7YAJ=0.0}, 
+GSW__c={801WC00000ktJPMYA2=false}, 
+StartProrationPeriodDay={802WC00000OugI7YAJ=16}, 
+LineItem={802WC00000OugI7YAJ=802WC00000OugI7YAJ}, 
+TotalAmount={801WC00000ktJPMYA2=0.0}, 
+ItemNetTotalPrice={802WC00000OugI7YAJ=0.0}, 
+SalesTransactionSource={801WC00000ktJPMYA2=801WC00000ktJPMYA2}, 
+EffectiveFrom={802WC00000OugI7YAJ=2026-06-16T00:00:00.000Z}, 
+ItemTotalPrice={802WC00000OugI7YAJ=0.0}, 
+EffectiveDate={801WC00000ktJPMYA2=2026-06-16T00:00:00.000Z}
+08:53:52.954 (1019245704)|RLM_PRICING_BEGIN|Pricing beginning, line procedure plan setup=false, header procedure plan setup=false
+08:53:53.982 (1982096535)|CODE_UNIT_FINISHED|Get context price for context id and record id ...252ea7:801WC00000ktJPMYA2
+08:53:53.982 (1982122808)|EXECUTION_FINISHED
+08:53:54.10 (2010946857)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:54.10 (2010962194)|EXECUTION_STARTED
+08:53:54.10 (2010969787)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Order
+08:53:54.11 (2011054977)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000LcvHO|301WC00000gukzh
+08:53:54.11 (2011094607)|FLOW_CREATE_INTERVIEW_END|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:54.11 (2011554363)|FLOW_START_INTERVIEWS_BEGIN|1
+08:53:54.11 (2011576839)|FLOW_START_INTERVIEW_BEGIN|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:54.11 (2011605829)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:54.11 (2011611321)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:54.11 (2011615162)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:54.11 (2011619357)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:54.11 (2011622747)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:54.11 (2011625990)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 1285 out of 15000
+08:53:54.11 (2011634570)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:54.11 (2011637855)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:54.11 (2011640984)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:54.11 (2011644112)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:54.11 (2011647387)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:54.11 (2011650678)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:53:54.11 (2130277674)|FLOW_VALUE_ASSIGNMENT|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|$Record|{Id=801WC00000ktJPMYA2, OwnerId=005a500001J5WNBAA3, ContractId=800WC00000SP6oTYAT, AccountId=001WC00000WiR9YYAV, Pricebook2Id=01sWC0000022GHFYA2, OriginalOrderId=null, OpportunityId=006WC00000QbpscYAB, QuoteId=0Q0WC000003A8PB0A0, EffectiveDate=2026-06-16 00:00:00, EndDate=null, IsReductionOrder=false, Status=Order Complete, Description=null, CustomerAuthorizedById=null, CustomerAuthorizedDate=null, CompanyAuthorizedById=null, CompanyAuthorizedDate=null, Type=null, BillingStreet=17719 Scottsdale Boulevard, BillingCity=Shaker Heights, BillingState=Ohio, BillingPostalCode=44122, BillingCountry=United States, BillingStateCode=OH, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=17719 Scottsdale Boulevard, ShippingCity=Shaker Heights, ShippingState=Ohio, ShippingPostalCode=44122, ShippingCountry=United States, ShippingStateCode=OH, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, Name=Cancellation Quote, PoDate=null, PoNumber=null, OrderReferenceNumber=null, BillToContactId=003WC00000svbv1YAA, ShipToContactId=003WC00000svbv1YAA, ActivatedDate=2026-06-16 22:09:53, ActivatedById=005a500001J5WNBAA3, StatusCode=Activated, CurrencyIsoCode=USD, LegalEntityId=0fwWC000000034LYAQ, TaxLocaleType=null, OrderedDate=2026-06-16 00:00:00, BillingEmailAddress=null, BillingPhoneNumber=null, RelatedOrderId=null, SalesChannelId=null, OrderNumber=00095539, TotalAmount=0.0, TotalTaxAmount=0.0, GrandTotalAmount=0.0, TotalAdjustedProductAmount=0.0, TotalAdjustedDeliveryAmount=0.0, TotalProductAdjDistAmount=0.0, TotalDeliveryAdjDistAmount=0.0, TotalAdjustedProductTaxAmount=0.0, TotalAdjustedDeliveryTaxAmount=0.0, TotalProductAdjDistTaxAmount=0.0, TotalDeliveryAdjDistTaxAmount=0.0, TotalAdjProductAmtWithTax=0.0, TotalAdjDeliveryAmtWithTax=0.0, TotalProductAdjDistAmtWithTax=0.0, TotalDeliveryAdjDistAmtWithTax=0.0, PaymentTermId=null, LastPricedDate=null, FulfillmentPlanId=13VWC000001oxXN2AY, CalculationStatus=PriceCalculationFailed, OrchestrationSbmsStatus=Completed, OriginalActionType=Cancel, ValidationResult=null, AdjustmentDistributionLogic=null, AppliedDiscountAmount=null, AppliedDiscount=null, TotalAmountOverride=null, SalesTransactionTypeId=null, PricingContractId=null, RelatedOrderType=null, TransactionType=Fortra_Advanced_Pricing, CreatedDate=2026-06-16 22:09:47, CreatedById=005a500001J5WNBAA3, LastModifiedDate=2026-06-25 15:53:52, LastModifiedById=005WC00000MgTN2YAN, IsDeleted=false, SystemModstamp=2026-06-25 15:53:52, LastViewedDate=null, LastReferencedDate=null, TotalRoundedLineAmount=null, DiscountPercent=null, Workday_Contract_ID__c=801WC00000ktJPMYA2, Workday_ID__c=00095539, Workday_Sync_Correlation_Id__c=51259e90-69d0-11f1-a80c-02c9adc31632, Workday_Sync_Message__c={
+  "status": "success",
+  "message": "Contract saved successfully",
+  "id": "bb8604953fbc100123af11a2b2800000"
+}, Workday_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, QuoteTypeText__c=null, Legacy_Id__c=null, Bill_To_Place__c=a0lWC000004im8HYAQ, Hubspot_Overall_Status__c=Overall Success, Ship_To_Place__c=a0lWC000004im8HYAQ, Order_NARR__c=null, Source_Opportunity_Id__c=006WC00000Qbpsc, Source_Order_Id__c=null, Bill_To_Account__c=001WC00000WiR9YYAV, Bill_To_Address__c=a0lWC000004im8HYAQ, Ship_To_Account__c=001WC00000WiR9YYAV, Ship_To_Address__c=a0lWC000004im8HYAQ, Clawback_Repaid_Date__c=null, Commission_Date__c=null, Contract_Start_Date__c=null, Currency_Locked__c=false, MSYears__c=null, New_Licenses__c=null, New_Maintenance__c=null, New_Pro_Services__c=null, Partner_Account__c=null, Reseller_PO__c=null, Sales_Rep__c=null, Source_Quote_Currency__c=USD, gsOrderID__c=null, gsShipDate__c=null, Order_Displaced_ARR__c=0.0, VAT_Number__c=null, DoNotInvoicePS__c=false, IsDR__c=false, IsNotificationSent__c=false, IsRenewal__c=false, IsTAM__c=null, Is_Reversed__c=false, New_SaaSEftCloud__c=null, Total_List_Price__c=null, Account_Specialist__c=null, Billing_Day_of_Month__c=null, Customer_Success_Manager__c=null, Date_Fulfilled__c=null, Deal_Origin__c=null, Disable_Export_Control__c=false, Enterprise_Representative__c=null, HARP_Contact__c=null, Invoice_Contact_2__c=null, Invoice_Contact__c=null, License_Key_Contact__c=null, ShowHide_Discounts__c=null, Solutions_Engineer__c=null, Total_Discount_Amount__c=0.0, PO_Sync_Correlation_Id__c=null, PO_Sync_Message__c=null, PO_Sync_Payload__c=null, PO_Sync_Status__c=Pending, PO_URL__c=null, ALE__c=null, AWS_Marketplace_Agreement_ID__c=null, AWS_Marketplace_Offer_ID__c=null, Account_NameText__c=Cypress, Billing_Frequency__c=null, Contact__c=null, Cross_Sale_Type__c=null, Cross_Sale_User__c=null, Description__c=null, Disable_Tax__c=false, DistributorReseller__c=null, Line_Items_Complete__c=false, Maintenance_Date__c=null, Mark_Inv_Migration_Change__c=false, On_Hold_Time__c=null, OrderOne__c=1.0, POC_Invoice_Contact_On_Billing_Account__c=null, Payment_Portal__c=Fortra (default), Purchasing_Agent_Account__c=null, Purchasing_Agent_Contact__c=null, RSM_2__c=null, RSM_3__c=null, RSM_4__c=null, RSM_5__c=null, RSM__c=null, Referral_Partner__c=null, Renewal_Maintenance_Quote__c=null, Renewals_Specialist__c=null, Requested_Delivery_Date__c=null, Reseller_Partner__c=null, SA__c=null, Secondary_License_Key_Contact__c=null, Share_With_AWS__c=false, SingleYearMS__c=null, Skip_Price_Calculation__c=false, Source_Campaign__c=null, Source_Quote_Id__c=null, Workday_Sync_Status__c=Success, HS_Sync_Correlation_Id__c=null, HS_Sync_Message__c=null, HS_Sync_Payload__c=null, HS_Sync_Status__c=null, Deal_Type__c=null, GSW__c=false, Quote_Type__c=null, Total_Services__c=null, Total_Software__c=null, Total_Subscription__c=null, Order_NARR_Calculated__c=0.0, Exchange_Rate_To_USD__c=null, Legacy_Sync_Correlation_Id__c=583c7ff1-69d0-11f1-a80c-02c9adc31632, Legacy_Sync_Message__c={
+  "tripwire": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a2YTI0000060YhN2AU"
+    }
+  },
+  "globalscape": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a1HOy000004YBI5MAO"
+    }
+  },
+  "dynamics": {
+    "status": "success",
+    "message": "Order and OrderLines  Created successfully",
+    "data": ""
+  }
+}, Legacy_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, Legacy_Sync_Status__c=Success, WorkdayReferenceID__c=COM003, Payment_Term_Workday_Reference_ID__c=null, Order_Integration_Error_Messages__c=null, Order_and_Related_Field_Status__c=Unknown, Legacy_Discount__c=null, Workday_Contract_Type__c=Master_Contract, Legacy_Overall_Status__c=Overall Success, Workday_Overall_Status__c=Not Success, Contract_Number_Text__c=00069316, MyCap__c=false}
+08:53:54.11 (2155406026)|FLOW_ELEMENT_BEGIN|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|FlowDecision|Workday_Sync_Status_Decision
+08:53:54.11 (2155475832)|FLOW_ELEMENT_DEFERRED|FlowDecision|Workday_Sync_Status_Decision
+08:53:54.11 (2155551139)|FLOW_ELEMENT_LIMIT_USAGE|13 ms CPU time, total 1298 out of 15000
+08:53:54.11 (2155557330)|FLOW_ELEMENT_END|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|FlowDecision|Workday_Sync_Status_Decision
+08:53:54.11 (2155623853)|FLOW_START_INTERVIEW_END|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:54.11 (2155657771)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Workday_Sync_Status_Decision
+08:53:54.11 (2155774954)|FLOW_RULE_DETAIL|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|NOT_Success_Workday_Sync_Status_Outcome|false|false
+08:53:54.11 (2155790408)|FLOW_RULE_DETAIL|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Success_Workday_Sync_Status_Outcome|true|false
+08:53:54.11 (2155808646)|FLOW_VALUE_ASSIGNMENT|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|NOT_Success_Workday_Sync_Status_Outcome|false
+08:53:54.11 (2155811170)|FLOW_VALUE_ASSIGNMENT|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Success_Workday_Sync_Status_Outcome|true
+08:53:54.11 (2155975216)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 1299 out of 15000
+08:53:54.11 (2155981869)|FLOW_BULK_ELEMENT_END|FlowDecision|Workday_Sync_Status_Decision|0|0
+08:53:54.11 (2156020730)|FLOW_ELEMENT_BEGIN|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:54.11 (2156028912)|FLOW_ELEMENT_DEFERRED|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:54.11 (2156039343)|FLOW_ELEMENT_END|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:54.11 (2156072093)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision
+08:53:54.11 (2156155280)|FLOW_RULE_DETAIL|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Yes_Set_Legacy_Sync_Status_to_Pending_Outcome|false|false
+08:53:54.11 (2156166344)|FLOW_VALUE_ASSIGNMENT|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Yes_Set_Legacy_Sync_Status_to_Pending_Outcome|false
+08:53:54.11 (2156225710)|FLOW_BULK_ELEMENT_END|FlowDecision|Set_Legacy_Sync_Status_to_Pending_Decision|0|0
+08:53:54.11 (2156542004)|FLOW_START_INTERVIEWS_END|1
+08:53:54.11 (2156714847)|FLOW_INTERVIEW_FINISHED|6955f629b1b679a3329c65e0bdd919eff7af53f-6266|Fortra &#124; Order &#124; Before Insert/Update - Sync Status
+08:53:54.11 (2156731848)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:54.11 (2156749013)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:54.11 (2156752285)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:54.11 (2156755292)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:54.11 (2156757945)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:54.11 (2156760365)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 1299 out of 15000
+08:53:54.11 (2156764575)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:54.11 (2156767260)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:54.11 (2156769710)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:54.11 (2156772325)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:54.11 (2156774647)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:54.10 (2161593850)|CODE_UNIT_FINISHED|Flow:Order
+08:53:54.10 (2161606323)|EXECUTION_FINISHED
+08:53:54.188 (2188764909)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:54.188 (2188780035)|EXECUTION_STARTED
+08:53:54.188 (2188786512)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Order:801WC00000ktJPM
+08:53:54.188 (2188793702)|VALIDATION_RULE|03dWC000001dRW1|Lock_Currency_At_Order_Activation
+08:53:54.188 (2189197421)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+ ISCHANGED(CurrencyIsoCode),
+ OR(
+     ISPICKVAL(Status, 'Activated'),
+     ISPICKVAL(Status, 'In Fulfillment'),
+     ISPICKVAL(Status, 'Fulfilled'),
+     ISPICKVAL(Status, 'Completed'),
+     ISPICKVAL(Status, 'Closed')
+ )
+)|Status=Order Complete , $Permission.Data_Migration_Exclude_Business_Logic=false , CurrencyIsoCode=USD
+08:53:54.188 (2189206657)|VALIDATION_PASS
+08:53:54.188 (2189208166)|VALIDATION_RULE|03dWC000001pCD3|Order_BillToAddressAcct_Equal_OrderAcct
+08:53:54.188 (2189829523)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Bill_To_Address__r.Account__c)),
+ Bill_To_Address__r.Account__c !=  AccountId 
+)|AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false , Bill_To_Address__r.Account__c=001WC00000WiR9Y
+08:53:54.188 (2189843798)|VALIDATION_PASS
+08:53:54.188 (2189846408)|VALIDATION_RULE|03dWC000001pCBR|Order_BillToContactAcct_Equal_OrderAcct
+08:53:54.188 (2190182017)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(BillToContact.AccountId)),
+ BillToContact.AccountId !=  AccountId 
+)|AccountId=001WC00000WiR9Y , BillToContact.AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:54.188 (2190191854)|VALIDATION_PASS
+08:53:54.188 (2190193879)|VALIDATION_RULE|03dWC000001pC9p|Order_BillToPlaceAcct_Equal_OrderAcct
+08:53:54.188 (2190442476)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Bill_To_Place__r.Account__c)),
+ Bill_To_Place__r.Account__c !=  AccountId 
+)|AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false , Bill_To_Place__r.Account__c=001WC00000WiR9Y
+08:53:54.188 (2190448992)|VALIDATION_PASS
+08:53:54.188 (2190450668)|VALIDATION_RULE|03dWC000001pC8D|Order_ShipToAddressAcct_Equal_OrderAcct
+08:53:54.188 (2190589222)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Ship_To_Address__r.Account__c)),
+ Ship_To_Address__r.Account__c != AccountId
+)|AccountId=001WC00000WiR9Y , Ship_To_Address__r.Account__c=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:54.188 (2190593485)|VALIDATION_PASS
+08:53:54.188 (2190594564)|VALIDATION_RULE|03dWC000001pC6b|Order_ShipToContactAcct_Equal_OrderAcct
+08:53:54.188 (2190742783)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(ShipToContact.AccountId)),
+ ShipToContact.AccountId  != AccountId
+)|AccountId=001WC00000WiR9Y , ShipToContact.AccountId=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:54.188 (2190746846)|VALIDATION_PASS
+08:53:54.188 (2190747811)|VALIDATION_RULE|03dWC000001pC4z|Order_ShipToPlaceAcct_Equal_OrderAcct
+08:53:54.188 (2190954256)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),NOT(ISBLANK(Ship_To_Place__r.Account__c)),
+ Ship_To_Place__r.Account__c != AccountId 
+)|AccountId=001WC00000WiR9Y , Ship_To_Place__r.Account__c=001WC00000WiR9Y , $Permission.Data_Migration_Exclude_Business_Logic=false
+08:53:54.188 (2190960690)|VALIDATION_PASS
+08:53:54.188 (2190967016)|CODE_UNIT_FINISHED|Validation:Order:801WC00000ktJPM
+08:53:54.188 (2190972596)|EXECUTION_FINISHED
+08:53:54.212 (2212009161)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:54.212 (2212025586)|EXECUTION_STARTED
+08:53:54.212 (2212031329)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Order
+08:53:54.212 (2212701875)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000PgHIz|301WC00000guXcg
+08:53:54.212 (2212749805)|FLOW_CREATE_INTERVIEW_END|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:54.213 (2213313032)|FLOW_START_INTERVIEWS_BEGIN|1
+08:53:54.213 (2213341201)|FLOW_START_INTERVIEW_BEGIN|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:54.213 (2213374209)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:54.213 (2213380067)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:54.213 (2213383768)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:54.213 (2213387644)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:54.213 (2213391258)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:54.213 (2213394848)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 1327 out of 15000
+08:53:54.213 (2213404492)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:54.213 (2213408183)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:54.213 (2213411283)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:54.213 (2213414593)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:54.213 (2213417655)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:54.213 (2213420821)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:53:54.213 (2216525585)|FLOW_VALUE_ASSIGNMENT|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|$Record|{Id=801WC00000ktJPMYA2, OwnerId=005a500001J5WNBAA3, ContractId=800WC00000SP6oTYAT, AccountId=001WC00000WiR9YYAV, Pricebook2Id=01sWC0000022GHFYA2, OriginalOrderId=null, OpportunityId=006WC00000QbpscYAB, QuoteId=0Q0WC000003A8PB0A0, EffectiveDate=2026-06-16 00:00:00, EndDate=null, IsReductionOrder=false, Status=Order Complete, Description=null, CustomerAuthorizedById=null, CustomerAuthorizedDate=null, CompanyAuthorizedById=null, CompanyAuthorizedDate=null, Type=null, BillingStreet=17719 Scottsdale Boulevard, BillingCity=Shaker Heights, BillingState=Ohio, BillingPostalCode=44122, BillingCountry=United States, BillingStateCode=OH, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=17719 Scottsdale Boulevard, ShippingCity=Shaker Heights, ShippingState=Ohio, ShippingPostalCode=44122, ShippingCountry=United States, ShippingStateCode=OH, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, Name=Cancellation Quote, PoDate=null, PoNumber=null, OrderReferenceNumber=null, BillToContactId=003WC00000svbv1YAA, ShipToContactId=003WC00000svbv1YAA, ActivatedDate=2026-06-16 22:09:53, ActivatedById=005a500001J5WNBAA3, StatusCode=Activated, CurrencyIsoCode=USD, LegalEntityId=0fwWC000000034LYAQ, TaxLocaleType=null, OrderedDate=2026-06-16 00:00:00, BillingEmailAddress=null, BillingPhoneNumber=null, RelatedOrderId=null, SalesChannelId=null, OrderNumber=00095539, TotalAmount=0.0, TotalTaxAmount=0.0, GrandTotalAmount=0.0, TotalAdjustedProductAmount=0.0, TotalAdjustedDeliveryAmount=0.0, TotalProductAdjDistAmount=0.0, TotalDeliveryAdjDistAmount=0.0, TotalAdjustedProductTaxAmount=0.0, TotalAdjustedDeliveryTaxAmount=0.0, TotalProductAdjDistTaxAmount=0.0, TotalDeliveryAdjDistTaxAmount=0.0, TotalAdjProductAmtWithTax=0.0, TotalAdjDeliveryAmtWithTax=0.0, TotalProductAdjDistAmtWithTax=0.0, TotalDeliveryAdjDistAmtWithTax=0.0, PaymentTermId=null, LastPricedDate=null, FulfillmentPlanId=13VWC000001oxXN2AY, CalculationStatus=PriceCalculationFailed, OrchestrationSbmsStatus=Completed, OriginalActionType=Cancel, ValidationResult=null, AdjustmentDistributionLogic=null, AppliedDiscountAmount=null, AppliedDiscount=null, TotalAmountOverride=null, SalesTransactionTypeId=null, PricingContractId=null, RelatedOrderType=null, TransactionType=Fortra_Advanced_Pricing, CreatedDate=2026-06-16 22:09:47, CreatedById=005a500001J5WNBAA3, LastModifiedDate=2026-06-25 15:53:54, LastModifiedById=005WC00000MgTN2YAN, IsDeleted=false, SystemModstamp=2026-06-25 15:53:54, LastViewedDate=null, LastReferencedDate=null, TotalRoundedLineAmount=null, DiscountPercent=null, Workday_Contract_ID__c=801WC00000ktJPMYA2, Workday_ID__c=00095539, Workday_Sync_Correlation_Id__c=51259e90-69d0-11f1-a80c-02c9adc31632, Workday_Sync_Message__c={
+  "status": "success",
+  "message": "Contract saved successfully",
+  "id": "bb8604953fbc100123af11a2b2800000"
+}, Workday_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, QuoteTypeText__c=null, Legacy_Id__c=null, Bill_To_Place__c=a0lWC000004im8HYAQ, Hubspot_Overall_Status__c=Overall Success, Ship_To_Place__c=a0lWC000004im8HYAQ, Order_NARR__c=null, Source_Opportunity_Id__c=006WC00000Qbpsc, Source_Order_Id__c=null, Bill_To_Account__c=001WC00000WiR9YYAV, Bill_To_Address__c=a0lWC000004im8HYAQ, Ship_To_Account__c=001WC00000WiR9YYAV, Ship_To_Address__c=a0lWC000004im8HYAQ, Clawback_Repaid_Date__c=null, Commission_Date__c=null, Contract_Start_Date__c=null, Currency_Locked__c=false, MSYears__c=null, New_Licenses__c=null, New_Maintenance__c=null, New_Pro_Services__c=null, Partner_Account__c=null, Reseller_PO__c=null, Sales_Rep__c=null, Source_Quote_Currency__c=USD, gsOrderID__c=null, gsShipDate__c=null, Order_Displaced_ARR__c=0.0, VAT_Number__c=null, DoNotInvoicePS__c=false, IsDR__c=false, IsNotificationSent__c=false, IsRenewal__c=false, IsTAM__c=null, Is_Reversed__c=false, New_SaaSEftCloud__c=null, Total_List_Price__c=null, Account_Specialist__c=null, Billing_Day_of_Month__c=null, Customer_Success_Manager__c=null, Date_Fulfilled__c=null, Deal_Origin__c=null, Disable_Export_Control__c=false, Enterprise_Representative__c=null, HARP_Contact__c=null, Invoice_Contact_2__c=null, Invoice_Contact__c=null, License_Key_Contact__c=null, ShowHide_Discounts__c=null, Solutions_Engineer__c=null, Total_Discount_Amount__c=0.0, PO_Sync_Correlation_Id__c=null, PO_Sync_Message__c=null, PO_Sync_Payload__c=null, PO_Sync_Status__c=Pending, PO_URL__c=null, ALE__c=null, AWS_Marketplace_Agreement_ID__c=null, AWS_Marketplace_Offer_ID__c=null, Account_NameText__c=Cypress, Billing_Frequency__c=null, Contact__c=null, Cross_Sale_Type__c=null, Cross_Sale_User__c=null, Description__c=null, Disable_Tax__c=false, DistributorReseller__c=null, Line_Items_Complete__c=false, Maintenance_Date__c=null, Mark_Inv_Migration_Change__c=false, On_Hold_Time__c=null, OrderOne__c=1.0, POC_Invoice_Contact_On_Billing_Account__c=null, Payment_Portal__c=Fortra (default), Purchasing_Agent_Account__c=null, Purchasing_Agent_Contact__c=null, RSM_2__c=null, RSM_3__c=null, RSM_4__c=null, RSM_5__c=null, RSM__c=null, Referral_Partner__c=null, Renewal_Maintenance_Quote__c=null, Renewals_Specialist__c=null, Requested_Delivery_Date__c=null, Reseller_Partner__c=null, SA__c=null, Secondary_License_Key_Contact__c=null, Share_With_AWS__c=false, SingleYearMS__c=null, Skip_Price_Calculation__c=false, Source_Campaign__c=null, Source_Quote_Id__c=null, Workday_Sync_Status__c=Success, HS_Sync_Correlation_Id__c=null, HS_Sync_Message__c=null, HS_Sync_Payload__c=null, HS_Sync_Status__c=null, Deal_Type__c=null, GSW__c=false, Quote_Type__c=null, Total_Services__c=null, Total_Software__c=null, Total_Subscription__c=null, Order_NARR_Calculated__c=0.0, Exchange_Rate_To_USD__c=null, Legacy_Sync_Correlation_Id__c=583c7ff1-69d0-11f1-a80c-02c9adc31632, Legacy_Sync_Message__c={
+  "tripwire": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a2YTI0000060YhN2AU"
+    }
+  },
+  "globalscape": {
+    "status": "success",
+    "message": "Operation successful",
+    "data": {
+      "Id": "a1HOy000004YBI5MAO"
+    }
+  },
+  "dynamics": {
+    "status": "success",
+    "message": "Order and OrderLines  Created successfully",
+    "data": ""
+  }
+}, Legacy_Sync_Payload__c={
+  "sfContractId": "801WC00000ktJPMYA2",
+  "orderId": "801WC00000ktJPMYA2",
+  "sfAccountId": "001WC00000WiR9YYAV",
+  "fortraSfdcExternalId": "801WC00000ktJPMYA2",
+  "orderNumber": "00095539",
+  "name": "Cancellation Quote",
+  "opportunityId": "006WC00000QbpscYAB",
+  "totalAmount": 0,
+  "currencyIsoCode": "USD",
+  "contractReferenceId": "801WC00000ktJPMYA2",
+  "contractStatus": "Order Complete",
+  "companyReference": "COM003",
+  "currencyID": "USD",
+  "shipToCustomerID": "124206",
+  "soldToCustomerID": "124206",
+  "billToCustomerID": "124206",
+  "customerContractType": "Master_Contract",
+  "contractEffectiveDate": "2026-06-16",
+  "salespersonReference": "005a500001J5WNBAA3",
+  "currentContractAmount": 0,
+  "multipleElementRevenueAllocation": false,
+  "contractLineData": [
+    {
+      "billingLineTemplate": "Yearly_Billing_Template",
+      "contractLineReference": "802WC00000OugI7YAJ",
+      "lineNumber": 1,
+      "contractLineTypeID": "FIXED AMOUNT",
+      "salesItemID": "GS-EFA-RSSH-ARCUS",
+      "endDate": "2027-06-15",
+      "serviceDate": "2026-06-16",
+      "quantity": -1,
+      "extendedAmount": 0,
+      "billingScheduleFromDate": "2026-06-16",
+      "billingScheduleToDate": "2027-06-15",
+      "shipToCustomerID": "124206",
+      "shipToAddressID": "001WC00000WIR9YYAV_17719SCOTTSDALEBOULEVARD_SHAKERHEIGHTS_OH_44122_US"
+    }
+  ]
+}, Legacy_Sync_Status__c=Success, WorkdayReferenceID__c=COM003, Payment_Term_Workday_Reference_ID__c=null, Order_Integration_Error_Messages__c=null, Order_and_Related_Field_Status__c=Unknown, Legacy_Discount__c=null, Workday_Contract_Type__c=Master_Contract, Legacy_Overall_Status__c=Overall Success, Workday_Overall_Status__c=Not Success, Contract_Number_Text__c=00069316, MyCap__c=false}
+08:53:54.213 (2216665913)|FLOW_ELEMENT_BEGIN|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|FlowDecision|Order_Completed_Decision
+08:53:54.213 (2216681851)|FLOW_ELEMENT_DEFERRED|FlowDecision|Order_Completed_Decision
+08:53:54.213 (2216717624)|FLOW_ELEMENT_LIMIT_USAGE|3 ms CPU time, total 1330 out of 15000
+08:53:54.213 (2216722199)|FLOW_ELEMENT_END|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|FlowDecision|Order_Completed_Decision
+08:53:54.213 (2216760510)|FLOW_START_INTERVIEW_END|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:54.213 (2216786537)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Order_Completed_Decision
+08:53:54.213 (2216866742)|FLOW_RULE_DETAIL|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Yes_Order_Completed_Outcome|false|false
+08:53:54.213 (2216881183)|FLOW_VALUE_ASSIGNMENT|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Yes_Order_Completed_Outcome|false
+08:53:54.213 (2217004064)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 1331 out of 15000
+08:53:54.213 (2217009651)|FLOW_BULK_ELEMENT_END|FlowDecision|Order_Completed_Decision|0|0
+08:53:54.213 (2217044678)|FLOW_ELEMENT_BEGIN|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:54.213 (2217054043)|FLOW_ELEMENT_DEFERRED|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:54.213 (2217066479)|FLOW_ELEMENT_END|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:54.213 (2217084640)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision
+08:53:54.213 (2217157347)|FLOW_RULE_DETAIL|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Yes_Order_Complete_and_WD_Status_is_Success_Outcome|false|false
+08:53:54.213 (2217167448)|FLOW_VALUE_ASSIGNMENT|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Yes_Order_Complete_and_WD_Status_is_Success_Outcome|false
+08:53:54.213 (2217225476)|FLOW_BULK_ELEMENT_END|FlowDecision|Order_Complete_and_WD_Status_is_Success_Decision|0|0
+08:53:54.213 (2217241233)|FLOW_ELEMENT_BEGIN|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|FlowDecision|PO_URL_Changed_Decision
+08:53:54.213 (2217247696)|FLOW_ELEMENT_DEFERRED|FlowDecision|PO_URL_Changed_Decision
+08:53:54.213 (2217256973)|FLOW_ELEMENT_END|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|FlowDecision|PO_URL_Changed_Decision
+08:53:54.213 (2217270413)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|PO_URL_Changed_Decision
+08:53:54.213 (2217332169)|FLOW_RULE_DETAIL|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Yes_PO_URL_Changed_Outcome|false|false
+08:53:54.213 (2217340384)|FLOW_VALUE_ASSIGNMENT|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Yes_PO_URL_Changed_Outcome|false
+08:53:54.213 (2217384091)|FLOW_BULK_ELEMENT_END|FlowDecision|PO_URL_Changed_Decision|0|0
+08:53:54.213 (2217491011)|FLOW_START_INTERVIEWS_END|1
+08:53:54.213 (2217665372)|FLOW_INTERVIEW_FINISHED|6956f629b1b679a3329c65e0bdd919eff7af53f-6265|Fortra &#124; Order &#124; After Update - Platform Event (Workday)
+08:53:54.213 (2217683481)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 0 out of 100
+08:53:54.213 (2217687712)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:53:54.213 (2217690405)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:53:54.213 (2217693295)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 0 out of 150
+08:53:54.213 (2217696115)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 0 out of 10000
+08:53:54.213 (2217698721)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 1331 out of 15000
+08:53:54.213 (2217702509)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 0 out of 6000000
+08:53:54.213 (2217705087)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:53:54.213 (2217707473)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:53:54.213 (2217709697)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:53:54.213 (2217712160)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:53:54.212 (2219018409)|CODE_UNIT_FINISHED|Flow:Order
+08:53:54.212 (2219029198)|EXECUTION_FINISHED
+08:53:54.223 (2223337394)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:53:54.223 (2223351733)|EXECUTION_STARTED
+08:53:54.223 (2223356720)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Order
+08:53:54.223 (2223422967)|CODE_UNIT_FINISHED|Flow:Order
+08:53:54.223 (2223427105)|EXECUTION_FINISHED
+08:53:54.274 (2274568482)|CUMULATIVE_PROFILING_BEGIN
+08:53:54.274 (2274568482)|CUMULATIVE_PROFILING|No profiling information for SOQL operations
+08:53:54.274 (2274568482)|CUMULATIVE_PROFILING|No profiling information for SOSL operations
+08:53:54.274 (2274568482)|CUMULATIVE_PROFILING|No profiling information for DML operations
+08:53:54.274 (2274568482)|CUMULATIVE_PROFILING|No profiling information for method invocations
+08:53:54.274 (2274568482)|CUMULATIVE_PROFILING_END
+
