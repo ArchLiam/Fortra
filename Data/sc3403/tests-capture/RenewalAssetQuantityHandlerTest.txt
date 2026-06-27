@@ -1,0 +1,81 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+=== Test Results
+TEST NAME                                                                                            OUTCOME  MESSAGE  RUNTIME (MS)
+───────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_noOpWhenNoZeroQtyCandidates            Pass              4504        
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_noOpWhenNotRenewalQuote                Pass              1167        
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_noOpWhenNullOrEmpty                    Pass              342         
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_normalizesNewMaintenanceAmendLine      Pass              2829        
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_normalizesNewMaintenanceNoChangeLine   Pass              2162        
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_normalizesRenewLineWithoutActionFlip   Pass              2247        
+RenewalAssetQuantityHandlerTest.applyAssetQuantitiesForQuotes_normalizesZeroQtyRenewalLineFromAsset  Pass              2196        
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_flipsNewMaintenanceNoChangeToAmend         Pass              255         
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_flipsNoChangeAndCopiesAssetQuantity        Pass              259         
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_normalizesNewMaintenanceAmendWithoutFlip   Pass              256         
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_nullAndEmptyReturnEmptyUpdates             Pass              262         
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_skipsLineThatDoesNotNeedNormalization      Pass              272         
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_skipsUnsupportedQuoteActionTypes           Pass              272         
+RenewalAssetQuantityHandlerTest.buildNormalizationUpdates_updatesRenewLineWithoutQuoteActionChange   Pass              256         
+RenewalAssetQuantityHandlerTest.enqueueQuantityNormalization_noOpWhenLinesHaveNoQuoteId              Pass              269         
+RenewalAssetQuantityHandlerTest.enqueueQuantityNormalization_noOpWhenNullOrEmpty                     Pass              257         
+RenewalAssetQuantityHandlerTest.enqueueQuantityNormalization_runsForRenewalQuoteInTestContext        Pass              1224        
+RenewalAssetQuantityHandlerTest.needsQuantityNormalization_falseForNullLineOrSource                  Pass              277         
+RenewalAssetQuantityHandlerTest.needsQuantityNormalization_falseForWrongProductType                  Pass              258         
+RenewalAssetQuantityHandlerTest.needsQuantityNormalization_falseWhenQuantityAlreadySet               Pass              264         
+RenewalAssetQuantityHandlerTest.needsQuantityNormalization_falseWithoutQuoteAction                   Pass              250         
+RenewalAssetQuantityHandlerTest.needsQuantityNormalization_trueForZeroQtyNewMaintenance              Pass              254         
+RenewalAssetQuantityHandlerTest.needsQuantityNormalization_trueForZeroQtyRenewalMaintenance          Pass              243         
+RenewalAssetQuantityHandlerTest.queueable_executesHandler                                            Pass              1248        
+RenewalAssetQuantityHandlerTest.resolveRenewalQuoteIds_includesRenewalQuotes                         Pass              1067        
+RenewalAssetQuantityHandlerTest.resolveSourceQuantity_allNullOrNonPositiveReturnsNull                Pass              258         
+RenewalAssetQuantityHandlerTest.resolveSourceQuantity_fallsBackToEndThenStart                        Pass              266         
+RenewalAssetQuantityHandlerTest.resolveSourceQuantity_nullLineReturnsNull                            Pass              276         
+RenewalAssetQuantityHandlerTest.resolveSourceQuantity_prefersAssetQuantity                           Pass              265         
+
+
+=== Apex Code Coverage by Class
+CLASSES                           PERCENT  UNCOVERED LINES        
+────────────────────────────────  ───────  ───────────────────────
+QuoteLineItemTriggerHandler       41%      34,40,46,47,48,...     
+AssetContractQueryHelper          19%      31,46,49,52,57,...     
+COLAUpliftHandler                 93%      133,134,135,183,200,...
+OpportunityTriggerHandler         19%      35,36,37,38,39,...     
+QuoteSyncingTriggerHandler        29%      20,25,35,37,40,...     
+DatedConversionRateLookup         46%      31,34,42,45,46,...     
+AssetMigrationQueueClearHandler   32%      22,23,28,29,32,...     
+QuoteRenewalTypeHandler           70%      13,26,27               
+RenewalQuoteLineHandler           78%      38,43,51,57,58,...     
+RenewalQuoteHeaderHandler         100%                            
+RenewalAssetQuantityHandler       96%      48,113,114,136         
+RenewalAssetQuantityQueueable     100%                            
+RenewalMaintenanceAutoAddHandler  6%       24,37,38,39,42,...     
+QuoteLineItemTrigger              100%                            
+OpportunityTrigger                71%      16,21                  
+QuoteLineGroupTrigger             0%       11,12,13,14            
+OrderValidationTrigger            100%                            
+QuoteSyncingTrigger               100%                            
+QuoteLineItemExchangeRateTrigger  83%      63,64,65,66,75         
+FortraBillingEventItemTrigger     0%       8,9,10                 
+LicenseKeyTrigger                 0%       4,6,8,9,10,...         
+AssetMigrationQueueClearTrigger   100%                            
+QuoteTrigger                      100%                            
+
+
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            29                         
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id                                     
+Test Setup Time      0 ms                       
+Test Execution Time  55479 ms                   
+Test Total Time      55479 ms                   
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    38%                        
+

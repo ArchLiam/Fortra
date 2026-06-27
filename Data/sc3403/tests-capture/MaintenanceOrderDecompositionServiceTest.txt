@@ -1,0 +1,94 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+=== Test Results
+TEST NAME                                                                                                 OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+MaintenanceOrderDecompositionServiceTest.backfillCarryForwardFields_updatesBaseWithoutUnitPrice           Pass              4484        
+MaintenanceOrderDecompositionServiceTest.buildCommercialPatchesFromWork_appliesAllLinkedLines             Pass              1976        
+MaintenanceOrderDecompositionServiceTest.buildPatchesFromWork_infersTierWhenAttributesMissing             Pass              2102        
+MaintenanceOrderDecompositionServiceTest.buildPatchesFromWork_matchesBuildPatches                         Pass              1036        
+MaintenanceOrderDecompositionServiceTest.buildPatchesFromWork_usesProductTypeWhenDerivedPbeConfigMissing  Pass              1896        
+MaintenanceOrderDecompositionServiceTest.buildPatches_newBusinessEmptyOrder                               Pass              1025        
+MaintenanceOrderDecompositionServiceTest.buildPatches_persistsDecompositionForDerivedLine                 Pass              680         
+MaintenanceOrderDecompositionServiceTest.buildPatches_returnsEmptyWhenOrderIdNull                         Pass              184         
+MaintenanceOrderDecompositionServiceTest.buildPatches_skipsNonDerivedPricebookEntry                       Pass              1948        
+MaintenanceOrderDecompositionServiceTest.buildPatches_skipsNonNewBusinessQuote                            Pass              1025        
+MaintenanceOrderDecompositionServiceTest.buildRenewalCarryForwardPatches_computesNetWhenQuoteNetIsZero    Pass              2015        
+MaintenanceOrderDecompositionServiceTest.buildRenewalCarryForwardPatches_persistsQliInputsOnOrderItem     Pass              1993        
+MaintenanceOrderDecompositionServiceTest.compute_derivedMaintenanceUsesNetUnitPriceWhenUnitPriceZero      Pass              183         
+MaintenanceOrderDecompositionServiceTest.compute_invalidSourceBaseReturnsZeros                            Pass              179         
+MaintenanceOrderDecompositionServiceTest.compute_matchesWorkedExample                                     Pass              177         
+MaintenanceOrderDecompositionServiceTest.compute_noDiscounts                                              Pass              180         
+MaintenanceOrderDecompositionServiceTest.compute_partnerOnly                                              Pass              180         
+MaintenanceOrderDecompositionServiceTest.compute_premierTierRate                                          Pass              184         
+MaintenanceOrderDecompositionServiceTest.compute_professionalTierRate                                     Pass              171         
+MaintenanceOrderDecompositionServiceTest.compute_unknownTierSkipsDecomposition                            Pass              367         
+MaintenanceOrderDecompositionServiceTest.inferTierFromPricing_findsStandardFor355PartnerNet               Pass              250         
+MaintenanceOrderDecompositionServiceTest.loadDerivedPricebookEntryIds_findsOrgDerivedEntries              Pass              247         
+MaintenanceOrderDecompositionServiceTest.loadDerivedPricebookEntryIds_returnsEmptyForEmptyInput           Pass              212         
+MaintenanceOrderDecompositionServiceTest.loadMaintenanceTierByQliId_prefersMaintenanceTypeDefn            Pass              4132        
+MaintenanceOrderDecompositionServiceTest.loadMaintenanceTierByQliId_resolvesStandardTier                  Pass              4288        
+MaintenanceOrderDecompositionServiceTest.loadMaintenanceTierByQliId_returnsEmptyForEmptyInput             Pass              169         
+MaintenanceOrderDecompositionServiceTest.loadWorkBulk_loadsMultipleOrdersInSharedQueries                  Pass              1230        
+MaintenanceOrderDecompositionServiceTest.loadWork_returnsEmptyForNullOrderId                              Pass              177         
+MaintenanceOrderDecompositionServiceTest.normalizeTierValue_isCaseInsensitive                             Pass              175         
+MaintenanceOrderDecompositionServiceTest.persistPatches_returnsZeroForNullOrder                           Pass              172         
+MaintenanceOrderDecompositionServiceTest.prepareForReprice_returnsWorkAfterSeeding                        Pass              2490        
+MaintenanceOrderDecompositionServiceTest.quoteMapper_mapsQuoteLineFieldsToOrderItem                       Pass              1880        
+MaintenanceOrderDecompositionServiceTest.quoteMapper_mergeOrderItemPatches_addsStandalonePatch            Pass              1223        
+MaintenanceOrderDecompositionServiceTest.quoteMapper_mergeOrderItemPatches_includesCommercialNet          Pass              1210        
+MaintenanceOrderDecompositionServiceTest.quoteMapper_rejectsNullOrderId                                   Pass              176         
+MaintenanceOrderDecompositionServiceTest.quoteMapper_skipsWhenOrderHasNoQuoteLineItemLink                 Pass              1396        
+MaintenanceOrderDecompositionServiceTest.resolveNetPrice_prefersUnitPriceWhenPositive                     Pass              174         
+MaintenanceOrderDecompositionServiceTest.resolveNewMaintenanceNet_prefersContributorBaseOverSourceList    Pass              194         
+MaintenanceOrderDecompositionServiceTest.resolveTierRate_unknownTierReturnsZero                           Pass              188         
+MaintenanceOrderDecompositionServiceTest.seedFromWork_copiesCommercialPricingFromQuote                    Pass              2450        
+MaintenanceOrderDecompositionServiceTest.seedFromWork_skipsRenewalQuote                                   Pass              1054        
+
+
+=== Apex Code Coverage by Class
+CLASSES                               PERCENT  UNCOVERED LINES        
+────────────────────────────────────  ───────  ───────────────────────
+QuoteLineItemTriggerHandler           41%      34,40,46,47,48,...     
+COLAUpliftHandler                     92%      133,134,135,183,200,...
+OpportunityTriggerHandler             19%      35,36,37,38,39,...     
+ChecklistValidationService            56%      28,29,35,45,46,...     
+OrderValidationTriggerHandler         83%      12,37,38               
+QuoteSyncingTriggerHandler            29%      20,25,35,37,40,...     
+DatedConversionRateLookup             46%      31,34,42,45,46,...     
+QuoteToOrderFieldMapper               65%      85,91,103,111,112,...  
+QuoteRenewalTypeHandler               70%      13,26,27               
+RenewalQuoteLineHandler               77%      38,43,51,57,58,...     
+MaintenanceOrderDecompositionService  78%      49,56,77,80,86,...     
+RenewalQuoteHeaderHandler             15%      13,27,28,31,38,...     
+RenewalAssetQuantityHandler           24%      35,40,48,56,76,...     
+RenewalMaintenanceAutoAddHandler      6%       24,37,38,39,42,...     
+QuoteLineItemTrigger                  100%                            
+OpportunityTrigger                    71%      16,21                  
+QuoteLineGroupTrigger                 0%       11,12,13,14            
+OrderValidationTrigger                100%                            
+QuoteSyncingTrigger                   100%                            
+QuoteLineItemExchangeRateTrigger      83%      63,64,65,66,75         
+FortraBillingEventItemTrigger         0%       8,9,10                 
+LicenseKeyTrigger                     0%       4,6,8,9,10,...         
+AssetMigrationQueueClearTrigger       100%                            
+QuoteTrigger                          100%                            
+
+
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            41                         
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id                                     
+Test Setup Time      0 ms                       
+Test Execution Time  106543 ms                  
+Test Total Time      106543 ms                  
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    35%                        
+

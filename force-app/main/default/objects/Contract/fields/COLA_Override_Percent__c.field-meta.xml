@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COLA_Override_Percent__c</fullName>
+    <description>Optional COLA override percentage for all Assets under this Contract. If set, this value is used instead of the default CMDT lookup for renewal pricing.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a COLA override percentage to apply to all renewals for Assets under this Contract. Leave blank to use the default rates from the Product&apos;s Solution Category.</inlineHelpText>
+    <label>COLA Override Percent</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,65 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+=== Test Results
+TEST NAME                                                                                            OUTCOME  MESSAGE  RUNTIME (MS)
+───────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_bulkStampsMultipleRenewalQuotes               Pass              4750        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_copiesBlankFieldsFromSourceQuote              Pass              1411        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_doesNotOverwriteExistingValues                Pass              1375        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_noOpWhenNullOrEmpty                           Pass              115         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_resolvesSourceQuoteFromContractSourceQuoteId  Pass              1436        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_resolvesSourceQuoteFromOrder                  Pass              2009        
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_runsForOriginalActionRenewContext             Pass              614         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_setsRenewalContractFromContractId             Pass              517         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_skipsNonRenewalQuotes                         Pass              522         
+RenewalQuoteHeaderHandlerTest.applyRenewalQuoteHeaders_skipsRenewalQuoteWithoutContract              Pass              122         
+RenewalQuoteHeaderHandlerTest.isRenewalQuoteContext_acceptsRenewalTypeWithoutOriginalAction          Pass              112         
+RenewalQuoteHeaderHandlerTest.isRenewalQuoteContext_falseForNullAndNonRenewal                        Pass              109         
+RenewalQuoteHeaderHandlerTest.loadSourceQuotesByContractId_returnsEmptyForNullOrEmpty                Pass              120         
+RenewalQuoteHeaderHandlerTest.loadSourceQuotesByContractId_returnsEmptyWhenNoSourceResolved          Pass              539         
+RenewalQuoteHeaderHandlerTest.quoteTrigger_stampsHeaderOnRenewalInsert                               Pass              1836        
+RenewalQuoteHeaderHandlerTest.resolveContractId_fallsBackToContractId                                Pass              521         
+RenewalQuoteHeaderHandlerTest.resolveContractId_prefersRenewalContractField                          Pass              869         
+RenewalQuoteHeaderHandlerTest.resolveContractId_returnsNullForNullQuote                              Pass              116         
+RenewalQuoteHeaderHandlerTest.stampHeaderFields_isolatedCopyLogic                                    Pass              970         
+RenewalQuoteHeaderHandlerTest.stampHeaderFields_noOpForNullTargetOrSource                            Pass              121         
+
+
+=== Apex Code Coverage by Class
+CLASSES                           PERCENT  UNCOVERED LINES   
+────────────────────────────────  ───────  ──────────────────
+OpportunityTriggerHandler         19%      35,36,37,38,39,...
+ChecklistValidationService        56%      28,29,35,45,46,...
+OrderValidationTriggerHandler     83%      12,37,38          
+DatedConversionRateLookup         46%      31,34,42,45,46,...
+QuoteRenewalTypeHandler           70%      13,26,27          
+RenewalQuoteHeaderHandler         100%                       
+QuoteLineItemTrigger              100%                       
+OpportunityTrigger                71%      16,21             
+QuoteLineGroupTrigger             0%       11,12,13,14       
+OrderValidationTrigger            100%                       
+QuoteSyncingTrigger               100%                       
+QuoteLineItemExchangeRateTrigger  83%      63,64,65,66,75    
+FortraBillingEventItemTrigger     0%       8,9,10            
+LicenseKeyTrigger                 0%       4,6,8,9,10,...    
+AssetMigrationQueueClearTrigger   100%                       
+QuoteTrigger                      100%                       
+
+
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            20                         
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id                                     
+Test Setup Time      0 ms                       
+Test Execution Time  45919 ms                   
+Test Total Time      45919 ms                   
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    38%                        
+

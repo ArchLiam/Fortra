@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SC-3403 Re-Review · SC-3346 Maintenance (Derived) Pricing</title>
+<style>
+  :root{
+    --bg:#0b0e14; --panel:#141925; --panel2:#1b2230; --line:#283142;
+    --ink:#e6edf6; --mut:#93a1b5; --dim:#6b7a90;
+    --pass:#2ea043; --pass-bg:#0f2a17; --pass-br:#1f5c30;
+    --fail:#e5484d; --fail-bg:#2c1416; --fail-br:#6e2327;
+    --part:#e3a008; --part-bg:#2c2410; --part-br:#6b5414;
+    --oos:#6b7a90;  --oos-bg:#1a2030;  --oos-br:#33415a;
+    --accent:#4c8dff; --accent2:#9a7cff;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1200px 600px at 70% -10%,#16203a 0%,var(--bg) 55%);color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;padding:32px 18px 80px}
+  .wrap{max-width:1080px;margin:0 auto}
+  .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:var(--dim);font-weight:700}
+  h1{font-size:30px;margin:6px 0 4px;line-height:1.15;font-weight:800}
+  .sub{color:var(--mut);font-size:14px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .chip{background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:4px 11px;font-size:12px;color:var(--mut)}
+  .chip b{color:var(--ink);font-weight:600}
+
+  /* verdict hero */
+  .hero{margin:22px 0;border-radius:18px;padding:22px 24px;border:1px solid var(--part-br);
+    background:linear-gradient(135deg,var(--part-bg),#161b27 70%);position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;
+    background:radial-gradient(circle,rgba(227,160,8,.22),transparent 70%)}
+  .verdict{display:flex;align-items:center;gap:16px}
+  .vbadge{font-size:13px;font-weight:800;letter-spacing:.08em;padding:9px 16px;border-radius:10px;white-space:nowrap;
+    background:var(--part);color:#1a1300;border:1px solid #f4c244}
+  .vhead{font-size:18px;font-weight:700;line-height:1.35}
+  .vsplit{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  @media(max-width:680px){.vsplit{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)!important}}
+  .vcard{border-radius:12px;padding:13px 15px;border:1px solid var(--line);background:rgba(20,25,37,.7)}
+  .vcard .t{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-bottom:6px}
+  .vgo{border-color:var(--pass-br);background:linear-gradient(180deg,var(--pass-bg),rgba(20,25,37,.6))}
+  .vno{border-color:var(--fail-br);background:linear-gradient(180deg,var(--fail-bg),rgba(20,25,37,.6))}
+  .vcard .d{font-size:13.5px;color:var(--ink)}
+  .vcard .d b{font-weight:700}
+
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 15px}
+  .kpi .n{font-size:26px;font-weight:800;letter-spacing:-.02em}
+  .kpi .l{font-size:11.5px;color:var(--mut);margin-top:3px}
+  .kpi .s{font-size:11px;color:var(--dim);margin-top:2px}
+  .green{color:var(--pass)} .red{color:var(--fail)} .amber{color:var(--part)} .blue{color:var(--accent)}
+
+  section{margin:30px 0}
+  h2{font-size:17px;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:9px}
+  h2 .bar{width:3px;height:17px;border-radius:2px;background:var(--accent)}
+  .h2sub{color:var(--dim);font-size:12.5px;margin:0 0 14px 12px}
+
+  .changes{display:grid;gap:9px}
+  .change{display:flex;gap:11px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);
+    border-left:3px solid var(--pass);border-radius:10px;padding:11px 14px}
+  .change.warn{border-left-color:var(--part)}
+  .change .ic{font-size:15px;line-height:1.4;flex:0 0 auto}
+  .change .tx{font-size:13.5px;color:var(--ink)}
+  .change .tx b{font-weight:700}
+  .change .tx code{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12px;color:#cdd9ea}
+
+  table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);
+    padding:10px 13px;background:var(--panel2);border-bottom:1px solid var(--line)}
+  td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--mut)}
+  tr:last-child td{border-bottom:none}
+  td.id{color:var(--ink);font-weight:700;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+  td.it{color:var(--ink)}
+  .pill{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.04em;padding:3px 9px;border-radius:999px;white-space:nowrap}
+  .p-pass{background:var(--pass-bg);color:#5fd37a;border:1px solid var(--pass-br)}
+  .p-fail{background:var(--fail-bg);color:#ff7b7f;border:1px solid var(--fail-br)}
+  .p-part{background:var(--part-bg);color:#f3c24b;border:1px solid var(--part-br)}
+  .p-oos{background:var(--oos-bg);color:#9fb0c6;border:1px solid var(--oos-br)}
+  .sev{font-size:10px;color:var(--dim);margin-left:6px}
+
+  .blockers{display:grid;gap:11px}
+  .bk{background:linear-gradient(180deg,var(--fail-bg),var(--panel));border:1px solid var(--fail-br);border-radius:12px;padding:14px 16px}
+  .bk .h{font-weight:700;color:#ff8d90;font-size:14px;margin-bottom:4px;display:flex;gap:8px;align-items:center}
+  .bk .n{font-size:13px;color:var(--mut)}
+  .bk .n b{color:var(--ink);font-weight:600}
+
+  .open{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  @media(max-width:680px){.open{grid-template-columns:1fr}}
+  .oi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 13px;font-size:12.5px;color:var(--mut)}
+  .oi b{color:var(--ink);font-weight:600}
+
+  .comment{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0;overflow:hidden}
+  .comment .top{display:flex;align-items:center;gap:9px;padding:11px 15px;background:var(--panel2);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mut)}
+  .comment .top .av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
+  .comment .body{padding:15px 17px;font-size:13px;color:#cdd9ea;line-height:1.6}
+  .comment .body b{color:var(--ink)}
+  .comment .body code{background:var(--panel2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12px}
+  .foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--dim);font-size:11.5px;text-align:center}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 0;font-size:11.5px;color:var(--dim)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Peer Review · SC-3403 · Revenue Cloud Advanced / RLM · FortraUAT</div>
+  <h1>SC-3346 — Maintenance (Derived) Pricing</h1>
+  <div class="sub">Production-readiness <b>re-review</b> · 61-agent read-only workflow vs live FortraUAT · 2026-06-26</div>
+  <div class="meta">
+    <span class="chip">Build <b>SC-3346</b></span>
+    <span class="chip">Peer review <b>SC-3403</b></span>
+    <span class="chip">Owner <b>Nir Kailash</b></span>
+    <span class="chip">Reviewer <b>Liam Jeong</b></span>
+    <span class="chip">Active proc <b>V16</b></span>
+    <span class="chip">Priority <b>Blocker</b></span>
+    <span class="chip">Method <b>read-only · no org changes</b></span>
+  </div>
+
+  <!-- VERDICT -->
+  <div class="hero">
+    <div class="verdict">
+      <div class="vbadge">🟡 CONDITIONAL-GO</div>
+      <div class="vhead">UAT BoKS maintenance pricing logic is correct and demonstrably works — production deployment is a hard NO-GO.</div>
+    </div>
+    <div class="vsplit">
+      <div class="vcard vgo">
+        <div class="t">✅ Works in UAT (BoKS sanctioned scope)</div>
+        <div class="d">New-business derivation reproduced live: <b>Base $355 → Net $71</b> (×0.20), Premier → <b>$106.50</b>. V16 encodes all <b>7 tiers</b>; SC-3404 native-pull override structurally fixed; <b>302/302</b> maintenance tests green.</div>
+      </div>
+      <div class="vcard vno">
+        <div class="t">🔴 Not production-deployable</div>
+        <div class="d">From-zero packaging (PROD has <b>3 of 11</b> classes, proc <b>V1 vs V16</b>); two classes <b>&lt;75%</b> coverage; the renewal commit is <b>unproven E2E</b> on V16.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpis">
+    <div class="kpi"><div class="n green">13<span style="font-size:15px;color:var(--dim)"> / 15</span></div><div class="l">Acceptance criteria PASS</div><div class="s">AC12 + AC13 fail</div></div>
+    <div class="kpi"><div class="n blue">302<span style="font-size:15px;color:var(--dim)"> / 302</span></div><div class="l">Maintenance tests green</div><div class="s">COLAUpliftTest drift gone</div></div>
+    <div class="kpi"><div class="n red">59.5%</div><div class="l">PartnerNetPricePosthook cov.</div><div class="s">&lt; 75% gate · Q2OMapper 65.2%</div></div>
+    <div class="kpi"><div class="n red">3<span style="font-size:15px;color:var(--dim)"> / 11</span></div><div class="l">SC-3346 classes in PROD</div><div class="s">from-zero cutover</div></div>
+  </div>
+
+  <!-- WHAT CHANGED -->
+  <section>
+    <h2><span class="bar"></span>What changed since the last review (06-11 / 06-13)</h2>
+    <div class="changes">
+      <div class="change"><div class="ic">🟢</div><div class="tx"><b>SC-3404 root cause structurally fixed in V16.</b> Native <code>DerivedProductsRenewals</code> (resultIncluded=true) is now scoped <i>out</i> of renewal lines by the <code>DerivedProductsNonRenewal</code> filter; <code>List Container 2</code> (<code>COLACalculatedPrice__c → NetUnitPrice</code>) is the last writer. Done as list-scope — <b>not</b> the risky resultIncluded flip that threatened ~536K lines.</div></div>
+      <div class="change"><div class="ic">🟢</div><div class="tx"><b>NB-DERIVED-TIER resolved.</b> V16 <code>DerivedPricingFormula</code> encodes all 7 tiers matching <code>Maintenance_Rate__mdt</code> (was 3-of-7 in V14, zeroing the rest).</div></div>
+      <div class="change"><div class="ic">🟢</div><div class="tx"><b>M-2 dead competing formula gone</b> from the active proc (0 <code>Source_List_Price__c</code> / <code>platinum</code> refs); one formula reading the stamped <code>Base_Price__c</code>.</div></div>
+      <div class="change"><div class="ic">🟢</div><div class="tx"><b>B-3 fixed</b> (partner map-miss falls through, no hard <code>'Software'</code>) · <b>SC-3410/3412 born-zero fix live</b> (21 BoKS lines 355→71) · <b>COLAUpliftTest 41-error drift gone</b>.</div></div>
+      <div class="change warn"><div class="ic">🟠</div><div class="tx"><b>RenewalMaintenanceFlip was de-wired</b> on the 2026-06-24 republish — <code>Fortra_Create_Renewal_Quote</code> V7 called it; active V8 dropped that node (SC-3371 lost-fix pattern). Renewal now commits via <code>RenewalMaintenancePricingService</code>; Flip is dead-wired but still in the org.</div></div>
+    </div>
+  </section>
+
+  <!-- ACCEPTANCE CRITERIA -->
+  <section>
+    <h2><span class="bar"></span>Acceptance criteria</h2>
+    <div class="h2sub">13 PASS · 2 FAIL</div>
+    <table>
+      <thead><tr><th style="width:64px">AC</th><th>Criterion</th><th style="width:120px">Verdict</th><th>Evidence</th></tr></thead>
+      <tbody>
+        <tr><td class="id">AC1</td><td class="it">Base = source pre-discount UnitPrice × tier</td><td><span class="pill p-pass">PASS</span></td><td>21 live BoKS lines 355→71 (0.20)</td></tr>
+        <tr><td class="id">AC2</td><td class="it">Base discount-immune</td><td><span class="pill p-pass">PASS</span></td><td>3 layers key on pre-discount source fields</td></tr>
+        <tr><td class="id">AC3</td><td class="it">Base tracks attribute change ($325→$468)</td><td><span class="pill p-pass">PASS</span></td><td>source attribute-priced before LC9 captures it</td></tr>
+        <tr><td class="id">AC4</td><td class="it">Discounts apply after base (200→140)</td><td><span class="pill p-pass">PASS</span></td><td>LC9 (seq 17) then discount group (seq 21)</td></tr>
+        <tr><td class="id">AC5</td><td class="it">Stable across 3 reprices (no shrinkage)</td><td><span class="pill p-pass">PASS</span></td><td>multiplies stamped base, never own NetUnitPrice</td></tr>
+        <tr><td class="id">AC6</td><td class="it">Tier change Standard→Premier 0.20→0.30</td><td><span class="pill p-pass">PASS</span></td><td>both APVs present; data-driven</td></tr>
+        <tr><td class="id">AC7</td><td class="it">Selling-model backfill prices, not $0/error</td><td><span class="pill p-pass">PASS</span></td><td>BoKS chain aligned; both maint PBEs have PBEDP</td></tr>
+        <tr><td class="id">AC8</td><td class="it">Renewal 3-component carry-forward × (1+COLA)</td><td><span class="pill p-pass">PASS</span></td><td>67.38 = 62.48×1.0785 · <i>skeptic overturned PARTIAL</i></td></tr>
+        <tr><td class="id">AC9</td><td class="it">Renewal overrides native pull</td><td><span class="pill p-pass">PASS</span></td><td>native pull filtered out; LC2 last writer</td></tr>
+        <tr><td class="id">AC10</td><td class="it">COLA + components from Flow; no double-discount</td><td><span class="pill p-pass">PASS</span></td><td>Apex guard returns null for COLA-owned lines</td></tr>
+        <tr><td class="id">AC11</td><td class="it">Branch partition by QuoteTypeText__c</td><td><span class="pill p-pass">PASS</span></td><td>every shared step gated on 'Renewal'</td></tr>
+        <tr><td class="id">AC12</td><td class="it">No Apex prehook on maint line; one Flow only<span class="sev">minor</span></td><td><span class="pill p-fail">FAIL</span></td><td>2 stamp flows + Apex prehook+posthook write net (doc deviation, no mispricing)</td></tr>
+        <tr><td class="id">AC13</td><td class="it">Fallback / straggler tiers decided<span class="sev">major · latent</span></td><td><span class="pill p-fail">FAIL</span></td><td><code>GS-GSE-RRM-EFSMB</code> defaults to off-list 'platinum' (no rate) → silent $0</td></tr>
+        <tr><td class="id">AC14</td><td class="it">Source 'Unit Volume' attribute wired/removed</td><td><span class="pill p-pass">PASS</span></td><td>wired & functional · <i>skeptic overturned PARTIAL</i></td></tr>
+        <tr><td class="id">AC15</td><td class="it">Decision tables refreshed</td><td><span class="pill p-pass">PASS</span></td><td>all V16-consumed tables refreshed 06-25 · <i>skeptic overturned PARTIAL</i></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- PRIOR FINDINGS -->
+  <section>
+    <h2><span class="bar" style="background:var(--accent2)"></span>Prior findings reconciled to today</h2>
+    <div class="h2sub">7 PASS · 2 PARTIAL · 3 FAIL · 2 OUT-OF-SCOPE</div>
+    <table>
+      <thead><tr><th style="width:120px">Finding</th><th style="width:130px">Verdict</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="id">B-3</td><td><span class="pill p-pass">PASS</span></td><td>partner map-miss falls through (class 06-21)</td></tr>
+        <tr><td class="id">B-4</td><td><span class="pill p-pass">PASS</span></td><td>renewal null-guard + carry-forward QLI→OI</td></tr>
+        <tr><td class="id">B-5</td><td><span class="pill p-oos">OUT-OF-SCOPE</span></td><td>AssetActionSource table Failed (real) but not in V16 maint path · <i>skeptic overturned FAIL</i></td></tr>
+        <tr><td class="id">B-6</td><td><span class="pill p-pass">PASS</span></td><td>all 6,162 live New-Maint OIs stamp maintenance base · <i>skeptic overturned PARTIAL</i></td></tr>
+        <tr><td class="id">M-1</td><td><span class="pill p-fail">FAIL<span class="sev">minor</span></span></td><td>4 Apex automations touch maint pricing — SDD must be reconciled</td></tr>
+        <tr><td class="id">M-2</td><td><span class="pill p-pass">PASS</span></td><td>dead formula gone from V16 · <i>skeptic overturned PARTIAL</i></td></tr>
+        <tr><td class="id">M-3</td><td><span class="pill p-fail">FAIL<span class="sev">prod</span></span></td><td>PROD lacks <code>SalesTransactionContextExt_v2</code> (posthook hard-codes it)</td></tr>
+        <tr><td class="id">M-4</td><td><span class="pill p-pass">PASS</span></td><td>Source_List_Price__c Q2O mapping live; 8/8 OIs match</td></tr>
+        <tr><td class="id">M-5</td><td><span class="pill p-part">PARTIAL<span class="sev">major</span></span></td><td>197/1889 derived maint PBEs covered (~89.6% uncovered); BoKS fine, broad rollout gated on Marc crosswalk</td></tr>
+        <tr><td class="id">M-6</td><td><span class="pill p-oos">OUT-OF-SCOPE</span></td><td>prod prehook stale (PROD 39,956 vs UAT 47,235 chars)</td></tr>
+        <tr><td class="id">M-7</td><td><span class="pill p-fail">FAIL<span class="sev">blocker</span></span></td><td>Posthook 59.5% + Q2OMapper 65.2% &lt; 75% · <i>skeptic overturned PARTIAL</i></td></tr>
+        <tr><td class="id">SC-3404</td><td><span class="pill p-part">PARTIAL<span class="sev">major</span></span></td><td>structurally fixed but UNPROVEN E2E — instrumented lines predate V16, 5/6 still 60.64/0</td></tr>
+        <tr><td class="id">NB-DERIVED-TIER</td><td><span class="pill p-pass">PASS</span></td><td>all 7 tiers in V16</td></tr>
+        <tr><td class="id">FLIP-WIRING</td><td><span class="pill p-fail">FAIL<span class="sev">hygiene</span></span></td><td>Flip dropped from active flow V8; dead class left in org</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- BLOCKERS -->
+  <section>
+    <h2><span class="bar" style="background:var(--fail)"></span>Production blockers</h2>
+    <div class="h2sub">each independently prevents a prod deploy</div>
+    <div class="blockers">
+      <div class="bk"><div class="h">🔴 B-2 · Packaging — from-zero, non-deployable bundle</div>
+        <div class="n">PROD has <b>3 of 11</b> classes (all stale 2026-06-11), <b>0</b> SC-3346 triggers, no <b>SalesTransactionContextExt_v2</b>, <b>Maintenance_Rate__mdt = 0 rows</b>, proc <b>V1 vs V16</b>, <b>23 QLI + 32 OI</b> fields absent. force-app holds none of the build classes, a stale Q2O mapper, a V1–V3 proc XML, and a deploy-blocking <b>rca_diagnostic.cls-meta.xml</b> orphan.</div></div>
+      <div class="bk"><div class="h">🔴 M-7 · Coverage gate</div>
+        <div class="n"><b>PartnerNetPricePosthook 59.5%</b> (765/1286) and <b>QuoteToOrderFieldMapper 65.2%</b> (73/112) below 75%. The 521 uncovered posthook lines are the newly-absorbed regional / multi-currency / SC-3441 paths on the class that writes the production net.</div></div>
+      <div class="bk"><div class="h">🔴 SC-3404 · Verification gap</div>
+        <div class="n">The fix is structurally real but every instrumented BoKS renewal-maintenance line <b>predates V16</b> and 5 of 6 still show <b>60.64 / 0</b>. Needs <b>one live V16 renewal reprice committing 67.38</b> to TotalPrice before it can close.</div></div>
+    </div>
+  </section>
+
+  <!-- OPEN ITEMS -->
+  <section>
+    <h2><span class="bar" style="background:var(--part)"></span>Open items &amp; follow-ups</h2>
+    <div class="open">
+      <div class="oi"><b>AC13 platinum straggler</b> — <code>GS-GSE-RRM-EFSMB</code> defaults to off-list 'platinum' → silent $0; decide fallback, re-tag / retire 3 APVs.</div>
+      <div class="oi"><b>FLIP de-wiring</b> — confirm RenewalMaintenanceFlip retired for RenewalMaintenancePricingService; remove the dead class + usage header.</div>
+      <div class="oi"><b>Year-2 PCR 14OWC0000022Eyb2AE</b> is Active — confirm the design pivoted to the AutoAdd-PCR model (old "Flip deactivates PCR" step is void).</div>
+      <div class="oi"><b>Single source of truth</b> — 3-component renewal COLA math triplicated across prehook / posthook / RMPS and beginning to diverge; consolidate.</div>
+      <div class="oi"><b>Interactive vs migration reprice</b> — Apex backstop wired only into Fortra_Quote_Reprice; confirm interactive reprice commits 67.38 via LC2 alone.</div>
+      <div class="oi"><b>M-5 PBEDP backfill</b> (~1,692 rows) staged but not applied; broad non-BoKS rollout gated on Marc crosswalk + DML auth.</div>
+    </div>
+  </section>
+
+  <!-- TICKET COMMENT -->
+  <section>
+    <h2><span class="bar" style="background:var(--accent)"></span>Ready-to-post ticket comment</h2>
+    <div class="comment">
+      <div class="top"><span class="av">LJ</span> Liam Jeong → Nir Kailash · SC-3403</div>
+      <div class="body">
+        Nir — SC-3403 re-review (read-only, FortraUAT 2026-06-26). <b>CONDITIONAL-GO.</b> BoKS maintenance logic is correct in UAT and reproduced live (Base 355→Net 71; Premier→106.50; proc <b>V16</b> now encodes all 7 tiers; SC-3404 native-pull override structurally fixed; B-3/B-4/B-6/M-2/M-4 closed; 302/302 maintenance tests green).<br><br>
+        <b>Not production-deployable:</b> (1) from-zero packaging — PROD missing 8/11 classes, all triggers, <code>_v2</code> context, V16 proc, 7 rate rows, 55 fields; force-app holds none of it + the <code>rca_diagnostic</code> orphan; (2) <code>PartnerNetPricePosthook</code> 59.5% / <code>QuoteToOrderFieldMapper</code> 65.2% below the 75% gate; (3) SC-3404 needs one live V16 renewal commit of 67.38 captured E2E.<br><br>
+        Two hygiene items: <code>RenewalMaintenanceFlip</code> got dropped from <code>Fortra_Create_Renewal_Quote</code> V8 (confirm retired for <code>RenewalMaintenancePricingService</code>); and <code>GS-GSE-RRM-EFSMB</code> still defaults to off-list 'platinum' → $0 (open half of AC13). Happy to pair on the deploy manifest.
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--pass)"></span> PASS</span>
+    <span><span class="dot" style="background:var(--part)"></span> PARTIAL</span>
+    <span><span class="dot" style="background:var(--fail)"></span> FAIL</span>
+    <span><span class="dot" style="background:var(--oos)"></span> OUT-OF-SCOPE</span>
+  </div>
+  <div class="foot">61-agent read-only workflow · 47 verdicts adversarially verified (10 overturned) · Active proc Rev_Mgmt_Default_Pricing V16 · No org changes made · Evidence: Data/sc3403/retrieve/V16.xml</div>
+
+</div>
+</body>
+</html>

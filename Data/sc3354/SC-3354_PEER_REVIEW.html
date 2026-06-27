@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC-3354 Peer Review — COLA Renewal Pricing</title>
+<style>
+  :root{
+    --bg:#0d1117; --card:#161b22; --card2:#1c2330; --line:#30363d; --line2:#21262d;
+    --text:#e6edf3; --mut:#9aa4af; --mut2:#7d8590;
+    --green:#3fb950; --greenL:#7ee787; --blue:#79c0ff; --orange:#db6d28;
+    --red:#ff7b72; --redD:#2a1416; --amber:#e3b341; --amberD:#2d2606; --greenD:#0e2a18;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:38px 26px 80px}
+  code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;
+    background:#0a0e14;border:1px solid var(--line2);border-radius:5px;padding:1px 6px;color:#b9c4d0}
+  a{color:var(--blue)}
+  h1{font-size:27px;margin:0 0 4px;letter-spacing:-.3px}
+  .sub{color:var(--mut);font-size:13.5px;margin-bottom:26px}
+  .sub b{color:#c9d1d9;font-weight:600}
+  .sech{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;color:var(--mut2);
+    font-weight:800;margin:42px 0 14px}
+  /* Verdict banner */
+  .verdict{display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+    background:linear-gradient(110deg,#23121420,#2a141680);
+    border:1px solid #5b2326;border-left:6px solid var(--red);
+    border-radius:16px;padding:22px 26px;margin:6px 0 4px}
+  .badge{font-size:34px;font-weight:900;color:var(--red);letter-spacing:.5px;white-space:nowrap}
+  .badge .dot{font-size:22px;vertical-align:middle;margin-right:8px}
+  .verdict p{margin:0;font-size:15px;color:#dfe6ee;flex:1;min-width:280px}
+  /* KPI */
+  .kpis{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0 4px}
+  .kpi{flex:1;min-width:165px;background:var(--card);border:1px solid var(--line);
+    border-radius:13px;padding:17px 16px;text-align:center}
+  .kpi .n{font-size:30px;font-weight:850;line-height:1.05}
+  .kpi .l{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--mut2);
+    margin-top:7px;font-weight:600}
+  /* cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px;margin-bottom:14px}
+  .card h3{font-size:16.5px;margin:0 0 4px;color:#fff;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .card .body{font-size:14.5px;color:#adbac7}
+  .card .body p{margin:8px 0}
+  /* pills */
+  .pill{display:inline-block;font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:20px;
+    letter-spacing:.3px;text-transform:uppercase}
+  .p-bad{color:var(--red);background:var(--redD)}
+  .p-warn{color:var(--amber);background:var(--amberD)}
+  .p-ok{color:var(--greenL);background:var(--greenD)}
+  /* timeline */
+  .tl{position:relative;margin:6px 0 0;padding-left:6px}
+  .tl .step{position:relative;padding:0 0 16px 26px;border-left:2px solid var(--line)}
+  .tl .step:last-child{border-left-color:transparent}
+  .tl .step::before{content:"";position:absolute;left:-7px;top:2px;width:12px;height:12px;
+    border-radius:50%;background:var(--bg);border:2px solid var(--mut2)}
+  .tl .step.bad::before{border-color:var(--red);background:var(--red)}
+  .tl .step.ok::before{border-color:var(--green);background:var(--green)}
+  .tl .when{font-size:11.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut2);font-weight:700}
+  .tl .what{font-size:14px;color:#c9d1d9;margin-top:2px}
+  /* tables */
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:4px}
+  th{text-align:left;padding:9px 11px;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;
+    color:var(--mut2);border-bottom:2px solid var(--line);font-weight:700}
+  td{padding:10px 11px;border-bottom:1px solid var(--line2);vertical-align:top;color:#c9d1d9}
+  tr:last-child td{border-bottom:none}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:ui-monospace,monospace}
+  .zero{color:var(--red);font-weight:800}
+  .calc{color:var(--greenL)}
+  /* recs */
+  .rec{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line2)}
+  .rec:last-child{border-bottom:none}
+  .rtag{flex:0 0 auto;font-size:11px;font-weight:900;padding:3px 10px;border-radius:7px;margin-top:1px}
+  .r0{color:#fff;background:#9e1c24}
+  .r1{color:#1a1205;background:var(--amber)}
+  .r2{color:#cfe;background:#173a52}
+  .rec .rt{font-size:14.5px;color:#d7dee6}
+  .rec .rt b{color:#fff}
+  .muted{color:var(--mut)}
+  .foot{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--mut2)}
+  .callout{background:var(--card2);border:1px solid var(--line);border-left:4px solid var(--amber);
+    border-radius:10px;padding:14px 18px;margin:8px 0;font-size:14px;color:#cdd6df}
+  .strike{opacity:.62}
+  .strike .pill{opacity:.85}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Peer Review — COLA Pricing: Renewal Quotes Not Priced Correctly</h1>
+  <div class="sub">
+    Board ticket <b>SC-3350</b> · Peer-review subtask <b>SC-3354</b> &nbsp;·&nbsp;
+    Org <b>FortraUAT</b> <code>00DWC000006eUFF2A2</code> &nbsp;·&nbsp;
+    <b>2026-06-26</b> &nbsp;·&nbsp; Method: read-only (12-agent verification + independent confirm, zero org mutation)
+  </div>
+
+  <!-- VERDICT -->
+  <div class="verdict">
+    <div class="badge"><span class="dot">●</span>NO-GO</div>
+    <p>The SC-3350 <code>NetUnitPrice</code> seed — the only mechanism ever <i>proven</i> to commit the
+       COLA-adjusted net to a non-derived license/subscription renewal line — was deleted from live when the
+       co-owned <code>COLAUpliftPrehook</code> was reworked for <b>SC-3346</b>. No surviving live mechanism
+       commits it. <b>Defect&nbsp;#1 reproduces at 100% on every renewal created since the rework.</b></p>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n" style="color:var(--red)">9 / 9</div><div class="l">Fresh renewals at&nbsp;$0</div></div>
+    <div class="kpi"><div class="n" style="color:var(--red)">100%</div><div class="l">Post-rework failure</div></div>
+    <div class="kpi"><div class="n" style="color:var(--amber)">26%</div><div class="l">"Correct" — all stale residue</div></div>
+    <div class="kpi"><div class="n" style="color:var(--amber)">~36%</div><div class="l">Renewal lines · null description</div></div>
+    <div class="kpi"><div class="n" style="color:var(--greenL)">125/125</div><div class="l">Tests green · 0 net-commit asserts</div></div>
+  </div>
+
+  <!-- REGRESSION -->
+  <div class="sech">The regression — how the fix disappeared</div>
+  <div class="card">
+    <div class="body">
+      <div class="tl">
+        <div class="step ok">
+          <div class="when">2026-06-09 / 10</div>
+          <div class="what">Dossier review = NO-GO. Both defects reproduce. The $0-net root cause is cracked:
+            on a non-derived renewal line, only a <b>direct</b> <code>NetUnitPrice</code> write in an isolated
+            <code>updateContextAttributes</code> batch commits — a ListGroup Formula/Assignment write does not.</div>
+        </div>
+        <div class="step ok">
+          <div class="when">2026-06-11 ~01:00Z &nbsp;— fix deployed &amp; working</div>
+          <div class="what"><code>COLAUpliftPrehook</code> seed added (<code>buildNetUnitPriceUpdate</code> /
+            <code>pendingNetUnitPriceUpdates</code>). Proven live: quote <code>0Q0WC000003671t0AA</code>
+            net <b>$0 → 4697.95 / 929.25</b>, GrandTotal <b>$0 → $5,627.20</b>.</div>
+        </div>
+        <div class="step bad">
+          <div class="when">2026-06-13 / 14 &nbsp;— silent clobber</div>
+          <div class="what">The <b>same class</b> is reworked for a <b>different ticket, SC-3346</b>
+            (renewal-maintenance), realigned to a "v1.1" baseline. <b>The SC-3350 net-seed is deleted entirely.</b>
+            Green tests miss it — no test asserts a committed net.</div>
+        </div>
+        <div class="step bad">
+          <div class="when">2026-06-26 &nbsp;— this review</div>
+          <div class="what">Live <code>COLAUpliftPrehook</code> = 1378 L, <code>@version 1.1</code>;
+            grep = <b>0</b> for <code>NetUnitPrice</code> / <code>buildNetUnitPriceUpdate</code> / <code>seed</code> / <code>SC-3350</code>.
+            For renewals it now writes only audit attrs (<code>COLACalculatedPrice__c</code>, …) — never the net.
+            Defect&nbsp;#1 is back.</div>
+        </div>
+      </div>
+      <div class="callout">
+        <b>Why V16 doesn't save it:</b> the active procedure <code>Rev_Mgmt_Default_Pricing_Procedure&nbsp;V16</code>
+        has a step "COLA Uplift Net on Renewal" (<code>COLACalculatedPrice__c → NetUnitPrice</code>), correctly
+        gated — but it lives inside <code>ListContainer2</code>, the exact ListGroup scope proven unable to flush a
+        <code>NetUnitPrice</code> write. The one quote that still prices correctly
+        (<code>0Q0WC000003671t0AA</code>) is a <b>frozen 06-11 residue</b>, not a live reprice.
+      </div>
+    </div>
+  </div>
+
+  <!-- DEFECTS -->
+  <div class="sech">Defect status</div>
+
+  <div class="card">
+    <h3>Defect&nbsp;#1 — priced at $0 / list instead of prior × (1 + COLA%) <span class="pill p-bad">FAIL · blocker</span></h3>
+    <div class="body">
+      <p>COLA computes correctly into <code>UnitPrice</code> / <code>COLACalculatedPrice__c</code>; it simply
+         never commits to <code>NetUnitPrice</code>. Confirmed live + independently re-queried:</p>
+      <table>
+        <thead><tr><th>Line</th><th>Product</th><th>Created</th><th class="num">Computed</th><th class="num">NetUnitPrice</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">0QLWC000003eofV4AQ</td><td>EFT 8 Enterprise</td><td>06-15</td><td class="num calc">18,192.57</td><td class="num zero">0</td></tr>
+          <tr><td class="mono">0QLWC000003g2uw4AA</td><td>Outflank (OST)</td><td>06-18</td><td class="num calc">10,089.00</td><td class="num zero">0</td></tr>
+          <tr><td class="mono">0QLWC000003g4Ld4AI</td><td>Active Defense BEC</td><td>06-18</td><td class="num calc">98,700.00</td><td class="num zero">0</td></tr>
+          <tr><td class="mono">0QLWC000003iZ0M4AU</td><td>beSECURE — Cloud-Based</td><td>06-24</td><td class="num calc">7,110.41</td><td class="num zero">0</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:12px"><b>Not a "drafts not yet repriced" artifact:</b> quote
+        <code>0Q0WC0000039cfR0AQ</code> is <b>Status = Accepted, GrandTotal = $0.00</b>.
+        The dossier's own repro line <code>0QLWC000003bHpl4AE</code> is also broken now (net 0, COLA fields null).</p>
+      <p class="muted">Buckets across all 58 non-maintenance renewal lines: ZERO 19 (33%) · CORRECT 15 (26%, all
+        ≤ 06-07 frozen residue) · AT-LIST 10 (17%) · NET-NULL 7 (12%) · OTHER 5 (9%) · NET=CALC 2 (3%).
+        Nothing created/repriced after the 06-14 seed removal is correct.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Defect&nbsp;#2 — Line Item Description not populated on renewal lines <span class="pill p-warn">FAIL · high</span></h3>
+    <div class="body">
+      <p><code>QLDescriptionGeneratorPrehook</code> (live <code>@version 8.0</code>) has zero renewal awareness and
+        no self-triggered reprice — it writes a description only when an external reprice happens to run the line
+        through it. <b>~36%</b> of attribute-bearing renewal lines ship with a null description (feeds the quote PDF).</p>
+      <table>
+        <thead><tr><th>Cohort (post-fix window)</th><th class="num">Description populated</th></tr></thead>
+        <tbody>
+          <tr><td>Regular Add</td><td class="num">82.9%</td></tr>
+          <tr><td>Amend</td><td class="num">78.6%</td></tr>
+          <tr><td><b>Renew</b></td><td class="num" style="color:var(--amber)"><b>56.3%</b></td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:10px">Cleanest repro: four 06-24 beSECURE renewals with the full attribute
+        set — the one re-saved 48 min after creation got a description; the three never-repriced stayed null.
+        Gap is broader than renewals (some Add lines also null) — fix the orchestration, not just the renewal branch.</p>
+    </div>
+  </div>
+
+  <!-- BLOCKERS -->
+  <div class="sech">Blockers — verification-upheld only</div>
+  <table>
+    <thead><tr><th>#</th><th>Issue</th><th>Sev</th><th>Blocks</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">B-1</td><td>No live mechanism commits the COLA'd net for non-derived renewals — Apex seed removed; V16 net step inert in ListGroup scope</td><td><span class="pill p-bad">blocker</span></td><td class="zero">Yes</td></tr>
+      <tr><td class="mono">B-2</td><td>Defect&nbsp;#1 reproduces: 9/9 fresh post-rework renewals commit <code>NetUnitPrice=0</code>; one already Accepted at GrandTotal&nbsp;$0</td><td><span class="pill p-bad">blocker</span></td><td class="zero">Yes</td></tr>
+      <tr><td class="mono">B-3</td><td>Defect&nbsp;#2 reproduces: ~36% of attribute-bearing renewal lines ship null Line Item Description</td><td><span class="pill p-warn">high</span></td><td class="zero">Yes</td></tr>
+      <tr><td class="mono">B-4</td><td>Not promotable from <code>force-app</code>: 0/5 COLA Apex classes staged; both CMDT types + 22 records absent</td><td><span class="pill p-bad">blocker</span></td><td class="zero">Yes</td></tr>
+      <tr><td class="mono">B-5</td><td><code>COLA_Source__c</code> in force-app is restricted, missing <code>MyCAP Default</code> (10 live rows use it) → <code>INVALID_OR_NULL_FOR_RESTRICTED_PICKLIST</code> on deploy</td><td><span class="pill p-bad">blocker</span></td><td class="zero">Yes</td></tr>
+      <tr><td class="mono">B-6</td><td>Prehook catch returns SUCCESS on any exception → COLA failures are silent, line stays uncommitted</td><td><span class="pill p-warn">high</span></td><td class="zero">Yes</td></tr>
+      <tr><td class="mono">B-7</td><td>Rule match is Solution-<b>Category</b> grain (spec = Solution-<b>Name</b>): 2 structurally wrong rates (Systems Mgmt 7.85 vs 12.00; Cybersecurity 7.85 vs 4.70), ~34 products</td><td><span class="pill p-warn">high</span></td><td class="zero">Yes</td></tr>
+    </tbody>
+  </table>
+
+  <!-- REFUTED -->
+  <div class="sech">Refuted / downgraded during verification — do not carry forward</div>
+  <div class="card strike">
+    <div class="body">
+      <p><span class="pill p-ok">closed</span> &nbsp;<b>B8 — TEMP BoKS rule strands ~17 products.</b>
+        "Powertech IAM BoKS" is a permanent, spec-conformant rule at 7.85; 17 products correctly served.</p>
+      <p><span class="pill p-ok">out of scope</span> &nbsp;<b>Out-year / MyCAP / multi-year COLA.</b>
+        Spec is single-year; not a defect (broken inert <code>Final_Year_COLA_Calculated_Price__c</code> = cleanup).</p>
+      <p><span class="pill p-ok">overstated</span> &nbsp;<b>"~77% uncommitted".</b>
+        Conflated 89 SC-3346 maintenance/derived lines (excluded by V16's <code>DerivedPricingAttribute=false</code> gate).
+        True SC-3350 figure = ~28% all-time, <b>100% on fresh post-rework lines</b> (the decisive number).</p>
+      <p><span class="pill p-ok">false</span> &nbsp;<b>"Quote/QLI not queryable via <code>sf data query</code>".</b>
+        Cosmetic method error — all three objects query fine; underlying data correct.</p>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="sech">Recommended actions for the author</div>
+  <div class="card">
+    <div class="body">
+      <div class="rec"><span class="rtag r0">P0</span><div class="rt"><b>Restore the committed-net path</b> (closes B-1/B-2). Re-add the proven Apex <code>NetUnitPrice</code> seed (with the stored-net&nbsp;&gt;&nbsp;0 guard) <i>or</i> move the V16 net step out of <code>ListContainer2</code>. <b>Validate on a fresh reprice</b> — never against the frozen <code>0Q0WC000003671t0AA</code> quote.</div></div>
+      <div class="rec"><span class="rtag r0">P0</span><div class="rt"><b>Guarantee a reprice (or direct write) on the renewal path</b> (closes B-3) so descriptions populate. Fix the orchestration, not just the renewal branch.</div></div>
+      <div class="rec"><span class="rtag r0">P0</span><div class="rt"><b>Close packaging gaps before any promotion</b> (closes B-4/B-5): stage the 5 reconciled COLA classes + CMDT type & 22 records; add <code>MyCAP Default</code> to the force-app <code>COLA_Source__c</code> picklist; promote V16 via the deactivate→deploy→reactivate UI dance, not the stale repo file.</div></div>
+      <div class="rec"><span class="rtag r1">P1</span><div class="rt"><b>Surface COLA failures instead of swallowing them</b> (closes B-6) — replace the unconditional SUCCESS in the catch block.</div></div>
+      <div class="rec"><span class="rtag r1">P1</span><div class="rt"><b>Decide the rule-match grain</b> (closes B-7) — re-key from <code>Solution_Category__c</code> to Solution-Name. Design call (Marc / German) — escalate.</div></div>
+      <div class="rec"><span class="rtag r2">P2</span><div class="rt"><b>Add an end-to-end net-commit test</b> — insert a renewal QLI, reprice, assert persisted <code>NetUnitPrice == prior × (1 + COLA%)</code>. The green suite never asserts a committed net, which is exactly why this regression shipped.</div></div>
+      <div class="rec"><span class="rtag r2">P2</span><div class="rt"><b>Latent / cleanup</b> — fix <code>AssetContractQueryHelper</code> multi-asset collapse (key by <code>(ContractId, AssetId)</code>); remove the broken inert out-year field.</div></div>
+    </div>
+  </div>
+
+  <div class="callout" style="border-left-color:var(--red);margin-top:22px">
+    <b>Root lesson for the team:</b> SC-3350 and SC-3346 co-own <code>COLAUpliftPrehook</code>. The SC-3346 rework
+    silently overwrote the SC-3350 fix, and with no test asserting a committed net, the green build hid it.
+  </div>
+
+  <div class="foot">
+    All findings independently re-verified against live FortraUAT (read-only — <code>sf data query</code>,
+    <code>sf project retrieve</code>, <code>sf apex run test</code>; zero DML/deploy). The NO-GO is driven by
+    B-1/B-2: the proven commit mechanism is gone and 100% of fresh renewals price the COLA net at $0.
+    &nbsp;·&nbsp; Source report: <code>Data/sc3354/SC-3354_PEER_REVIEW_2026-06-26.md</code>.
+  </div>
+
+</div>
+</body>
+</html>

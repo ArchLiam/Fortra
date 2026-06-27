@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Stores COLA (Cost of Living Adjustment) uplift percentages by Solution Category for renewal pricing</description>
+    <fields>
+        <fullName>Default_Uplift_Percent__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>COLA percentage to apply (e.g., 7.85 for 7.85% increase)</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Default Uplift Percent</label>
+        <precision>5</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Administrative notes about this COLA rule</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Description</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Effective_End_Date__c</fullName>
+        <description>Date until which this COLA rule is effective (optional)</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Effective End Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Effective_Start_Date__c</fullName>
+        <description>Date from which this COLA rule becomes effective</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Effective Start Date</label>
+        <required>false</required>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Is_Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Enable or disable this COLA rule without deleting it</description>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Is Active</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Solution_Category__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>ProductCategory.Name for Solution Category level - used to match products for COLA lookup</description>
+        <externalId>true</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Solution Category</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <label>COLA Uplift Rules</label>
+    <pluralLabel>COLA Uplift Rules</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

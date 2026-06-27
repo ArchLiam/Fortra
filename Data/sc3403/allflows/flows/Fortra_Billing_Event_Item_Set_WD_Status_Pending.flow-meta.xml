@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assignment_1</name>
+        <label>Update Current Item WD Status Pending</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CurrentBillingEventItem.Workday_Sync_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assignment_2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assignment_2</name>
+        <label>Add Current Item to Update List</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>AllBillingEventItems</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>CurrentBillingEventItem</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Billing_Event_Items</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assignment_3</name>
+        <label>Get Current Item</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>CurrentBillingEventItem</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_through_Billing_Event_Items</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assignment_1</targetReference>
+        </connector>
+    </assignments>
+    <description>Check for Billing Event Items being released, and sets the WD Sync Status to &apos;Pending&apos;.  This will then trigger the Platform Event to fire to push data to Workday.</description>
+    <environments>Default</environments>
+    <interviewLabel>Fortra | Billing Event Item | Set WD Status Pending {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Billing Event Item | Set WD Status Pending</label>
+    <loops>
+        <name>Loop_through_Billing_Event_Items</name>
+        <label>Loop through Billing Event Items</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Billing_Event_Items</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assignment_3</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Records_1</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Get Billing Event Items that have not been sent to Workday</description>
+        <name>Get_Billing_Event_Items</name>
+        <label>Get Billing Event Items</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_through_Billing_Event_Items</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Workday_Sync_Status__c</field>
+            <operator>EqualTo</operator>
+        </filters>
+        <filters>
+            <field>pse__Billing_Event__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>pse__Billing_Event_Item__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Records_1</name>
+        <label>Update Billing Event Items</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>AllBillingEventItems</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Billing_Event_Items</targetReference>
+        </connector>
+        <filterFormula>AND(
+    {!$Record.pse__Is_Released__c} == True,
+    OR(
+        ISBLANK({!$Record__Prior.Id}),
+       {!$Record__Prior.pse__Is_Released__c} &lt;&gt; True
+    )
+)</filterFormula>
+        <object>pse__Billing_Event__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>AllBillingEventItems</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pse__Billing_Event_Item__c</objectType>
+    </variables>
+    <variables>
+        <name>CurrentBillingEventItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>pse__Billing_Event_Item__c</objectType>
+    </variables>
+</Flow>

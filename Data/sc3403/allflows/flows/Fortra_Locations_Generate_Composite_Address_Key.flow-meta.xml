@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Generate_Composite_Key</name>
+        <label>Generate Composite Key</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Composite_Address_Key__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Generated_Composite_Address_Key</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Key_Generation_Needed</name>
+        <label>Check Key Generation Needed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Generate_Composite_Key</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Skip</defaultConnectorLabel>
+        <rules>
+            <name>Generate_Key</name>
+            <conditionLogic>1 OR 2</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Composite_Address_Key__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Address__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Generate_Composite_Key</targetReference>
+            </connector>
+            <label>Generate Key</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>Generated_Composite_Address_Key</name>
+        <dataType>String</dataType>
+        <expression>UPPER(
+  SUBSTITUTE(
+    SUBSTITUTE(
+      SUBSTITUTE(
+        {!$Record.Account__c} + &quot;_&quot; +
+        {!$Record.Address__Street__s} + &quot;_&quot; +
+        {!$Record.Address__City__s} + &quot;_&quot; +
+        TEXT({!$Record.Address__StateCode__s}) + &quot;_&quot; +
+        {!$Record.Address__PostalCode__s} + &quot;_&quot; +
+        TEXT({!$Record.Address__CountryCode__s}),
+      &quot; &quot;, &quot;&quot;),
+    &quot;.&quot;, &quot;&quot;),
+  &quot;,&quot;, &quot;&quot;)
+)</expression>
+    </formulas>
+    <interviewLabel>Fortra | Locations | Generate Composite Address Key {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Locations | Generate Composite Address Key</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Key_Generation_Needed</targetReference>
+        </connector>
+        <object>Places__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

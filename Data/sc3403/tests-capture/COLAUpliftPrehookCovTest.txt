@@ -1,0 +1,50 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+=== Test Results
+TEST NAME                                                     OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+COLAUpliftPrehookCovTest.testMyCAP_SubTerm_And_PrepaidLookup  Pass              5080        
+
+
+=== Apex Code Coverage by Class
+CLASSES                           PERCENT  UNCOVERED LINES        
+────────────────────────────────  ───────  ───────────────────────
+QuoteLineItemTriggerHandler       41%      34,40,46,47,48,...     
+COLAUpliftHandler                 94%      133,134,135,183,200,...
+COLAUpliftPrehook                 76%      31,32,35,36,37,...     
+OpportunityTriggerHandler         19%      35,36,37,38,39,...     
+QuoteSyncingTriggerHandler        29%      20,25,35,37,40,...     
+DatedConversionRateLookup         46%      31,34,42,45,46,...     
+QuoteRenewalTypeHandler           70%      13,26,27               
+RenewalQuoteLineHandler           95%      38,43,51,80,89,...     
+RenewalQuoteHeaderHandler         100%                            
+RenewalAssetQuantityHandler       96%      48,113,114,136         
+RenewalMaintenanceAutoAddHandler  6%       24,37,38,39,42,...     
+QuoteLineItemTrigger              100%                            
+OpportunityTrigger                71%      16,21                  
+QuoteLineGroupTrigger             0%       11,12,13,14            
+OrderValidationTrigger            100%                            
+QuoteSyncingTrigger               100%                            
+QuoteLineItemExchangeRateTrigger  83%      63,64,65,66,75         
+FortraBillingEventItemTrigger     0%       8,9,10                 
+LicenseKeyTrigger                 0%       4,6,8,9,10,...         
+AssetMigrationQueueClearTrigger   100%                            
+QuoteTrigger                      100%                            
+
+
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            1                          
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id                                     
+Test Setup Time      0 ms                       
+Test Execution Time  8073 ms                    
+Test Total Time      8073 ms                    
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+Org Wide Coverage    42%                        

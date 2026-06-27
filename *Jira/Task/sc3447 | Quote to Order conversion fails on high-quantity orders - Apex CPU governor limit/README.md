@@ -3,7 +3,24 @@
 **Status:** Root cause confirmed against live FortraUAT (read-only) · roadmap ready · **no code/data changes made**
 **Priority:** Blocker · **Reporter:** Joe Romo · **Assignee:** Liam Jeong · **Label:** CRM-Revenue-Cloud
 **Component:** Quote → Order conversion (`Fortra Quote to Order Conversion` flow → `PowerOrderSplittingService`)
-**Researched:** 2026-06-18
+**Researched:** 2026-06-18 · **Re-verified live 2026-06-26**
+
+---
+
+> ### ⚠️ 2026-06-26 RE-VERIFICATION — two corrections to the notes below
+> Full deep-research report (live-verified): **`Data/sc3447/00_DEEP_RESEARCH_REPORT.md`** (+ data in `01_LIVE_EVIDENCE_DATA.md`).
+> 1. **The "(Deprecated) Autolaunched Set Workday Contract Line Type" subflow is now INACTIVE** (no active
+>    version; SC-3366 deactivated it 2026-06-08) and **no live flow invokes it.** So the per-clone load today is
+>    **2 flows, not 3** — the "remove the deprecated subflow" item is already done. The 1,293-interview / ~400-clone
+>    figures below came from a **pre-2026-06-08 log**; the CPU ceiling has since moved up and the Abstract @ 456
+>    repro **may now convert** (re-test to find the current threshold). The architectural defect is unchanged.
+> 2. **Bigger scope than "Abstract is mis-tagged test data":** `Power` is a real 3,406-product catalog group and
+>    live Power `Quantity` is routinely a **user/seat count in the thousands** (Powertech Password Self Help @ 7,500;
+>    MFA @ 9,900) or an **"unlimited" sentinel** (9,999 / 99,999 / **999,999**; 134 lines at 999,999). Per-unit
+>    splitting is **conceptually wrong** for these, not just slow. Also: only **1 of 3,406** Power products uses the
+>    `Order Line and Hardware` split type — the hardware-clone branch is effectively dead.
+> 3. **Clones are NOT reliably pre-stamped** (live sample shows null line-type/dates on some split lines) — so any
+>    fix that suppresses the per-clone flows **must explicitly stamp** line-type/dates/PTC on clones in Apex.
 
 ---
 

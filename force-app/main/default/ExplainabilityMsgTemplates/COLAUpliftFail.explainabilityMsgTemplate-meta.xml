@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExplainabilityMsgTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <evaluationResult>Failed</evaluationResult>
+    <expressionSetStepType>BusinessElement</expressionSetStepType>
+    <expsSetProcessType>DefaultPricing</expsSetProcessType>
+    <isDefault>false</isDefault>
+    <masterLabel>COLA Uplift Not Applied</masterLabel>
+    <message>COLA Uplift pricing not applicable for this product</message>
+</ExplainabilityMsgTemplate>

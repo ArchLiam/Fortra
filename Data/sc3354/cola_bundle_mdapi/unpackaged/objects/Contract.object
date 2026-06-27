@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>COLA_Override_Percent__c</fullName>
+        <description>Optional COLA override percentage for all Assets under this Contract. If set, this value is used instead of the default CMDT lookup for renewal pricing.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a COLA override percentage to apply to all renewals for Assets under this Contract. Leave blank to use the default rates from the Product&apos;s Solution Category.</inlineHelpText>
+        <label>COLA Override Percent</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>COLA_Override_Persist_Until__c</fullName>
+        <description>Date until which the COLA Override Percent applies. If set to a future date, the override is used for multiple renewal cycles until this date. If left blank (null), the override applies to the next renewal only (one-time use).</description>
+        <inlineHelpText>Enter a future date to apply the COLA override for multiple renewal cycles until that date. Leave blank to apply the override for the next renewal only (one-time).</inlineHelpText>
+        <label>COLA Override Persist Until</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+</CustomObject>

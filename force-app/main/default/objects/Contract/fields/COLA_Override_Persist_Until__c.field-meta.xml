@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>COLA_Override_Persist_Until__c</fullName>
+    <description>Date until which the COLA Override Percent applies. If set to a future date, the override is used for multiple renewal cycles until this date. If left blank (null), the override applies to the next renewal only (one-time use).</description>
+    <inlineHelpText>Enter a future date to apply the COLA override for multiple renewal cycles until that date. Leave blank to apply the override for the next renewal only (one-time).</inlineHelpText>
+    <label>COLA Override Persist Until</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Date</type>
+</CustomField>

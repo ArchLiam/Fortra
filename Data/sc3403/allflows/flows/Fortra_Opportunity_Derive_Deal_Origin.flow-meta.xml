@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Channel_Originated</name>
+        <label>Assign Channel Originated</label>
+        <locationX>50</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Deal_Origin__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Channel Originated</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Fortra_Originated</name>
+        <label>Assign Fortra Originated</label>
+        <locationX>314</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Deal_Origin__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Fortra Originated</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Derive_Deal_Origin</name>
+        <label>Derive Deal Origin</label>
+        <locationX>314</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Fortra_Originated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Fortra Originated</defaultConnectorLabel>
+        <rules>
+            <name>Channel_Originated</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Distributor__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Reseller__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Referral_Partner__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Channel_Originated</targetReference>
+            </connector>
+            <label>Channel Originated</label>
+        </rules>
+    </decisions>
+    <description>Before-save derivation: computes Opportunity.Deal_Origin__c from Distributor__c, Reseller__c, and Referral_Partner__c. Runs on insert and when any of those three fields change. If ANY partner field is populated, sets &quot;Channel Originated&quot;. Otherwise sets &quot;Fortra Originated&quot;.</description>
+    <environments>Default</environments>
+    <interviewLabel>Fortra Opportunity Derive Deal Origin {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra Opportunity Derive Deal Origin</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Derive_Deal_Origin</targetReference>
+        </connector>
+        <filterFormula>OR(
+    ISNEW(),
+    ISCHANGED({!$Record.Distributor__c}),
+    ISCHANGED({!$Record.Reseller__c}),
+    ISCHANGED({!$Record.Referral_Partner__c})
+)</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>
