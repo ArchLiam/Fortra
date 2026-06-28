@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customErrors>
+        <name>Cannot_delete_Order_Product</name>
+        <label>Cannot delete Order Product</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>The Service Globalscape Integration user may not delete Order Products.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <description>The Globalscape user needs to update two fields on an Order Product for Order it does not own. This requires Modify All on the Order object, which includes Delete. This is inherited via Master/Detail. This flow prevents deletes for any user with the GlobalscapeNoDelete custom permission.</description>
+    <environments>Default</environments>
+    <interviewLabel>Order Product - Disallow delete for Globalscape Integration User {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Order Product - Disallow delete for Globalscape Integration User</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Cannot_delete_Order_Product</targetReference>
+        </connector>
+        <filterFormula>{!$Permission.GlobalscapeNoDelete}</filterFormula>
+        <object>OrderItem</object>
+        <recordTriggerType>Delete</recordTriggerType>
+        <triggerType>RecordBeforeDelete</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

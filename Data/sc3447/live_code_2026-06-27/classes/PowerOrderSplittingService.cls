@@ -18,15 +18,6 @@ public with sharing class PowerOrderSplittingService {
     private static final String SPLIT_TYPE_ORDER_LINE_AND_HARDWARE = 'Order Line and Hardware';
     private static final String SOLUTION_GROUP_POWER = 'Power';
 
-    // SC-3447 guardrail: the maximum number of split OrderItem clones the synchronous Quote-to-Order
-    // convert can safely create (across all orders in one invocable call) before it risks the Apex
-    // CPU / 10,000-DML-row governor limits and rolls the whole convert back. Above this we fail fast
-    // with a clear message instead of a governor crash. High Power quantities are usually seat/site
-    // license counts (often thousands, or an "unlimited" sentinel like 999,999) that should NOT be
-    // split into per-unit lines at all; the largest split that has ever succeeded org-wide is single
-    // digits, so 200 is generous headroom. Adjust this one value if the business sets a different cap.
-    private static final Integer MAX_SYNC_CLONES = 200;
-
     // Cached field describe for OrderItem
     private static Map<String, Schema.SObjectField> orderItemFieldMap;
 
@@ -122,28 +113,6 @@ public with sharing class PowerOrderSplittingService {
             System.debug('PowerOrderSplittingService: Qualifying items to split: ' + itemsToSplit.size());
 
             if (itemsToSplit.isEmpty()) {
-                return;
-            }
-
-            // SC-3447 guardrail: count the clones this split would create (Σ(qty-1) across all
-            // qualifying lines). If it exceeds the supported synchronous maximum, stop now and
-            // return a clear, catchable error instead of expanding into thousands of OrderItems and
-            // breaching the Apex CPU / DML-row limits (which would silently roll the convert back).
-            // No DML has run yet, so the savepoint above is a harmless no-op on this path.
-            Integer totalClones = 0;
-            for (OrderItem oi : itemsToSplit) {
-                totalClones += (Integer.valueOf(oi.Quantity) - 1);
-            }
-            if (totalClones > MAX_SYNC_CLONES) {
-                String msg = 'This quote has a Power line quantity too large to split into individual '
-                    + 'order lines (' + totalClones + ' lines would be created; the supported maximum '
-                    + 'is ' + MAX_SYNC_CLONES + '). High Power quantities usually represent seat or '
-                    + 'site licenses and should be kept on a single line. Please contact your '
-                    + 'administrator.';
-                for (SplitResult result : resultByOrderId.values()) {
-                    result.success = false;
-                    result.errorMessage = msg;
-                }
                 return;
             }
 
@@ -378,21 +347,11 @@ public with sharing class PowerOrderSplittingService {
         queryFields.add('Product2.Name');
 
         String solGroup = SOLUTION_GROUP_POWER;
-        String splitTypeOLH = SPLIT_TYPE_ORDER_LINE_AND_HARDWARE;
-        // SC-3447 (P3): only split lines that have a genuine PER-MACHINE artifact to clone — a
-        // Partition (the dominant "Order Line Only" path clones one Partition per unit) or, for the
-        // "Order Line and Hardware" split type, a Hardware record. A high Power Quantity is a
-        // seat/site license count (routinely thousands, or an "unlimited" sentinel such as 999,999),
-        // NOT a machine count, and those lines carry no Partition/Hardware. Such lines must stay as a
-        // single Quantity=N OrderItem (which Workday and RLM accept natively) instead of exploding
-        // into one line per unit and breaching the Apex CPU / 10,000-DML-row governor limits.
         String soql = 'SELECT ' + String.join(queryFields, ', ')
             + ' FROM OrderItem'
             + ' WHERE OrderId IN :orderIds'
             + ' AND Product2.Solution_Group__c = :solGroup'
             + ' AND Quantity > 1'
-            + ' AND (Partition_Record__c != null'
-            + '      OR (Product2.Power_Split_Type__c = :splitTypeOLH AND Hardware__c != null))'
             + ' ORDER BY OrderId, Id';
 
         return Database.query(soql);

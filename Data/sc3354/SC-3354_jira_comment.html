@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC-3354 — Peer Review Comment</title>
+<style>
+  :root{
+    --bg:#0d1117; --card:#161b22; --card2:#1c2330; --line:#30363d; --line2:#21262d;
+    --text:#e6edf3; --mut:#9aa4af; --mut2:#7d8590;
+    --green:#3fb950; --greenL:#7ee787; --blue:#79c0ff;
+    --red:#ff7b72; --redD:#2a1416; --amber:#e3b341; --amberD:#2d2606; --greenD:#0e2a18;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:920px;margin:0 auto;padding:34px 24px 70px}
+  code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85em;
+    background:#0a0e14;border:1px solid var(--line2);border-radius:5px;padding:1px 6px;color:#b9c4d0}
+  h1{font-size:23px;margin:0 0 4px;letter-spacing:-.2px}
+  .meta{color:var(--mut);font-size:13px;margin-bottom:22px}
+  .meta b{color:#c9d1d9;font-weight:600}
+  .sech{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mut2);font-weight:800;margin:30px 0 12px}
+  /* verdict strip */
+  .verdict{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:linear-gradient(110deg,#2a240680,#1c2330);border:1px solid #6b551f;border-left:5px solid var(--amber);
+    border-radius:13px;padding:16px 20px}
+  .vfrom{font-size:15px;font-weight:800;color:var(--red);text-decoration:line-through;opacity:.8}
+  .varr{color:var(--mut2);font-size:18px}
+  .vto{font-size:22px;font-weight:900;color:var(--amber);letter-spacing:.4px}
+  .vnote{flex:1;min-width:240px;font-size:13.5px;color:#cdd6df}
+  .jobtag{display:inline-block;font-family:ui-monospace,monospace;font-size:11.5px;background:#0a0e14;
+    border:1px solid var(--line);border-radius:6px;padding:3px 9px;color:#9fb4c9}
+  /* pills */
+  .pill{display:inline-block;font-size:10px;font-weight:800;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+  .p-bad{color:var(--red);background:var(--redD)} .p-warn{color:var(--amber);background:var(--amberD)} .p-ok{color:var(--greenL);background:var(--greenD)}
+  /* cards/tables */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:16px 20px;margin-bottom:12px}
+  .card.aA{border-left:4px solid var(--amber)}
+  .card p{margin:7px 0;font-size:14px;color:#adbac7}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{text-align:left;padding:8px 10px;font-size:10px;letter-spacing:.8px;text-transform:uppercase;color:var(--mut2);border-bottom:2px solid var(--line);font-weight:700}
+  td{padding:9px 10px;border-bottom:1px solid var(--line2);vertical-align:top;color:#c9d1d9}
+  tr:last-child td{border-bottom:none}
+  .ok{color:var(--greenL);font-weight:700} .bad{color:var(--red);font-weight:700} .warn{color:var(--amber);font-weight:700}
+  .trace{list-style:none;margin:6px 0;padding:0}
+  .trace li{padding:5px 0;font-size:13.5px;color:#c9d1d9;border-bottom:1px dashed var(--line2)}
+  .trace li:last-child{border-bottom:none}
+  .trace .v{float:right;font-family:ui-monospace,monospace}
+  .decision{background:var(--card2);border:1px solid var(--line);border-left:4px solid var(--amber);border-radius:10px;padding:13px 16px;margin:8px 0;font-size:13.5px;color:#cdd6df}
+  .opt{margin:6px 0}
+  .rec{color:var(--greenL);font-weight:700}
+  .foot{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:#adbac7}
+  .cascade{font-family:ui-monospace,monospace;color:var(--red)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Peer Review (re-run) — COLA Renewal Pricing</h1>
+  <div class="meta">Board <b>SC-3350</b> · Peer-review subtask <b>SC-3354</b> · Org <b>FortraUAT</b> · <b>2026-06-26</b> · PROD promotion deferred</div>
+
+  <div class="verdict">
+    <span class="vfrom">NO-GO</span><span class="varr">→</span><span class="vto">◑ CONDITIONAL</span>
+    <span class="vnote">Headline regression fixed &amp; live for non-partner renewals. Not yet GO: a new partner-line cascade needs a pricing decision + 3 high-severity items remain.</span>
+  </div>
+  <div style="margin:10px 0 0"><span class="jobtag">deploy 0AfWC00000GZHnx0AH · 48/48 components · 129/129 tests green</span></div>
+
+  <div class="sech">Root cause (recap)</div>
+  <div class="card">
+    <p>The original SC-3350 fix — a <code>COLAUpliftPrehook</code> isolated <code>NetUnitPrice</code> seed, the only mechanism proven to commit the COLA net for non-derived renewal lines — was <b>deleted</b> when the co-owned class was reworked for <b>SC-3346</b> on 06-13/14. Defect #1 then reproduced at <b class="bad">100%</b> (9/9 fresh renewals at <code>NetUnitPrice = 0</code>; one Accepted at GrandTotal $0). Green tests missed it — <b>no test asserted a committed net</b>.</p>
+  </div>
+
+  <div class="sech">Fixed &amp; deployed to UAT</div>
+  <table>
+    <thead><tr><th>#</th><th>Item</th><th>Sev</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">B-1/B-2</td><td>Re-grafted the isolated <code>NetUnitPrice</code> seed onto the <b>current</b> v1.2 prehook (maintenance-excluded — can't re-clobber SC-3346). Confirmed firing in the live debug log; commits the COLA net.</td><td><span class="pill p-bad">blocker</span></td><td class="ok">✅ fixed (non-partner)</td></tr>
+      <tr><td class="mono">B-4</td><td>Full COLA bundle staged in <code>force-app</code> + validated deployable (9 classes, 2 CMDT types + 22 records, Contract fields, PS, 2 templates). Dropped shared trigger + <code>rca_diagnostic</code> orphan; managed <code>ffscpq</code> excluded.</td><td><span class="pill p-bad">blocker</span></td><td class="ok">✅ closed</td></tr>
+      <tr><td class="mono">B-5</td><td>Added <code>MyCAP Default</code> to <code>COLA_Source__c</code> — removes the restricted-picklist deploy trap.</td><td><span class="pill p-bad">blocker</span></td><td class="ok">✅ closed</td></tr>
+      <tr><td class="mono">C-1</td><td>Added 3 net-seed tests (the gap that let the regression ship silently).</td><td><span class="pill p-warn">high</span></td><td class="ok">✅ closed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sech">New finding — partner-line cascade (blocker)</div>
+  <div class="card aA">
+    <p>Repricing a <b>partner</b> renewal (beSECURE, 18% partner discount) surfaced a defect the $0 had masked. Debug-log trace of one reprice:</p>
+    <ul class="trace">
+      <li><code>PartnerPricingPrehook</code> stamps the partner % <span class="v">18.00%</span></li>
+      <li>COLA seed fires ✅ <span class="v ok">7,110.41</span></li>
+      <li>V16 procedure re-applies 18% to the <i>stored</i> net <span class="v bad">→ 4,781.04</span></li>
+      <li>Posthook tries to reset to the pure COLA net — write <b>no-ops</b> <span class="v warn">wants 7,110.41</span></li>
+    </ul>
+    <p>Net cascades every reprice: <span class="cascade">$0 → 5,830.54 → 4,781.04 → …</span> (×0.82 each). Non-partner renewals are unaffected.</p>
+    <div class="decision">
+      <b>Open decision (business rule, revenue-impacting — Nir/Marc):</b> does a partner subscription renewal get the partner discount re-applied <i>on top of</i> the COLA'd prior net, or is the COLA'd prior net the final price?
+      <div class="opt"><span class="rec">▸ Recommended: COLA net final = 7,110.41</span> — no re-discount (asset price is the prior net, already partner-discounted, like SC-3346's 62.48; posthook already intends this).</div>
+      <div class="opt">▸ Alternative: partner discount once = 5,830.54 (if asset price is a list/pre-partner figure).</div>
+      Either answer is a co-owned fix (<code>PartnerPricingPrehook</code> / V16), not the B-1 seed. <b>Holding for the decision.</b>
+    </div>
+  </div>
+
+  <div class="sech">Still open</div>
+  <table>
+    <thead><tr><th>Item</th><th>Sev</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Partner-line cascade</td><td><span class="pill p-warn">blocker (new)</span></td><td>Needs the business-rule decision above + co-owned fix</td></tr>
+      <tr><td>Defect #2 — descriptions (B-3)</td><td><span class="pill p-warn">high</span></td><td>~36% of attribute-bearing renewal lines still null; not started</td></tr>
+      <tr><td>Prehook fail-silent (B-6)</td><td><span class="pill p-warn">high</span></td><td>Catch returns SUCCESS on any exception; not started</td></tr>
+      <tr><td>Rate grain (B-7)</td><td><span class="pill p-warn">high</span></td><td>Systems Mgmt 7.85 vs 12.00; Cybersecurity 7.85 vs 4.70 — staged as-is</td></tr>
+      <tr><td>B-1 live proof</td><td><span class="pill p-ok">verify</span></td><td>Reprice a non-partner line (OST / Active Defense) to confirm a clean, stable commit</td></tr>
+      <tr><td>B-1 edges</td><td><span class="pill p-ok">low</span></td><td>~3 null-asset-price lines (scoped out); 1 Accepted $0 quote needs forward-only remediation</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    <b>Verdict:</b> of the 4 hard blockers, <b class="ok">B-4 and B-5 are fully closed</b> and <b class="ok">B-1/B-2 is fixed &amp; live</b> for the common (non-partner) case — the 100%-reproduction regression is resolved there. A partner-line cascade (new) needs a pricing decision, and high-severity B-3/B-6/B-7 remain. <b>Not yet go-live.</b>
+  </div>
+
+</div>
+</body>
+</html>

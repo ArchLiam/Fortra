@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Has_Order_Products</name>
+        <label>Has Order Products?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Order Products</defaultConnectorLabel>
+        <rules>
+            <name>Has_Order_Products_Outcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Order_Products</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Call_Set_Workday_Contract_Line_Type</targetReference>
+            </connector>
+            <label>Has Order Products</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Status_Changed_to_Order_Complete</name>
+        <label>Status Changed to Order Complete?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Not Order Complete</defaultConnectorLabel>
+        <rules>
+            <name>Order_Complete_Outcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Order Complete</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record__Prior.Status</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Order Complete</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Order_Products</targetReference>
+            </connector>
+            <label>Order Complete</label>
+        </rules>
+    </decisions>
+    <description>When Order status changes to Order Complete, sets Workday Contract Line Type on all related Order Products via autolaunched subflow.</description>
+    <environments>Default</environments>
+    <interviewLabel>Fortra | Order | Set Workday Contract Line Type {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Order | Set Workday Contract Line Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Order_Products</name>
+        <label>Get Order Products</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Has_Order_Products</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OrderId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OrderItem</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Product2Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Status_Changed_to_Order_Complete</targetReference>
+        </connector>
+        <object>Order</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <subflows>
+        <name>Call_Set_Workday_Contract_Line_Type</name>
+        <label>Set Workday Contract Line Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <flowName>Fortra_Autolaunched_Set_Workday_Contract_Line_Type</flowName>
+        <inputAssignments>
+            <name>records</name>
+            <value>
+                <elementReference>Get_Order_Products</elementReference>
+            </value>
+        </inputAssignments>
+    </subflows>
+    <triggerOrder>350</triggerOrder>
+</Flow>

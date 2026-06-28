@@ -1,0 +1,1554 @@
+67.0 APEX_CODE,FINEST;APEX_PROFILING,FINEST;CALLOUT,FINEST;DATA_ACCESS,INFO;DB,FINEST;NBA,FINE;SYSTEM,FINE;VALIDATION,INFO;VISUALFORCE,FINER;WAVE,FINEST;WORKFLOW,FINER
+08:18:03.1 (1669824)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:18:03.1 (3960982)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000Skvw2|301WC00000lYah9
+08:18:03.1 (4053549)|FLOW_CREATE_INTERVIEW_END|1474b1973252d4685157c6baa5819f097e0edd-56a9|Fortra &#124; Contract Create Renewal Opportunity
+08:18:03.5 (5821147)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:18:03.5 (5900354)|FLOW_START_INTERVIEWS_BEGIN|1
+08:18:03.5 (6010342)|FLOW_START_INTERVIEW_BEGIN|1474b1973252d4685157c6baa5819f097e0edd-56a9|Fortra &#124; Contract Create Renewal Opportunity
+08:18:03.5 (6071649)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 0 out of 200
+08:18:03.5 (6121807)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 0 out of 50000
+08:18:03.5 (6126078)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:03.5 (6131108)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 0 out of 150
+08:18:03.5 (6134872)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 0 out of 10000
+08:18:03.5 (6139619)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 4 out of 65000
+08:18:03.5 (6149806)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 0 out of 12000000
+08:18:03.5 (6153856)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:03.5 (6157551)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:03.5 (6161490)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:03.5 (6165059)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:03.5 (6168984)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:18:03.5 (6243123)|FLOW_VALUE_ASSIGNMENT|1474b1973252d4685157c6baa5819f097e0edd-56a9|start__scheduledPath|_0
+08:18:03.5 (6247274)|FLOW_VALUE_ASSIGNMENT|1474b1973252d4685157c6baa5819f097e0edd-56a9|start__scheduledPathType|AsyncAfterCommit
+08:18:03.5 (13563759)|FLOW_VALUE_ASSIGNMENT|1474b1973252d4685157c6baa5819f097e0edd-56a9|$Record|{Id=800WC00000SrYt4YAF, AccountId=001WC00000gVLfxYAG, CurrencyIsoCode=USD, Pricebook2Id=null, OwnerExpirationNotice=null, StartDate=2026-06-26 00:00:00, EndDate=2027-06-25 00:00:00, BillingStreet=null, BillingCity=null, BillingState=null, BillingPostalCode=null, BillingCountry=United States, BillingStateCode=null, BillingCountryCode=US, BillingLatitude=null, BillingLongitude=null, BillingGeocodeAccuracy=null, ShippingStreet=null, ShippingCity=null, ShippingState=null, ShippingPostalCode=null, ShippingCountry=United States, ShippingStateCode=null, ShippingCountryCode=US, ShippingLatitude=null, ShippingLongitude=null, ShippingGeocodeAccuracy=null, ContractTerm=12, OwnerId=005a500001J5WNBAA3, Status=Activated, CompanySignedId=null, CompanySignedDate=null, CustomerSignedId=null, CustomerSignedTitle=null, CustomerSignedDate=null, SpecialTerms=null, ActivatedById=005WC00000MgTN2YAN, ActivatedDate=2026-06-27 15:17:56, StatusCode=Activated, Description=null, RecordTypeId=012WC000001CtUnYAK, Name=null, PreviousContractId=null, AmendedContractId=null, ParentContractId=null, SourceOpportunityId=null, SourceOrderId=null, SourceQuoteId=null, RenewalObjectName=null, RenewalNotificationTermUnit=null, RenewalNotificationTerm=null, LocaleCode=null, IsStandard=false, IsRenewalProcessEnabled=false, RenewalNotificationDate=null, TerminationDateTime=null, ExternalContractReference=null, ContractDocumentVersionId=null, ContractDocVersionCount=null, TerminationType=null, TerminationReason=null, ContractType=Default, IsAssociatedWithClm=false, RenewalTerm2=null, RenewalTermUnit=null, PricingSource=null, IsPricingContract=false, AggregationStrategy=null, HasContractCotermination=false, UnitPriceUplift=null, IsDeleted=false, ContractNumber=00069388, LastApprovedDate=null, CreatedDate=2026-06-26 20:19:16, CreatedById=005a500001J5WNBAA3, LastModifiedDate=2026-06-27 15:17:56, LastModifiedById=005WC00000MgTN2YAN, SystemModstamp=2026-06-27 15:17:56, LastActivityDate=null, ActivityMetricId=null, LastViewedDate=null, LastReferencedDate=null, Renewal_Type__c=Direct, Expected_Ren_Amount__c=null, Single_Year_MSAmount_Rollup__c=null, COLA_Override_Percent__c=null, COLA_Override_Persist_Until__c=null, Expiring_InMonth__c=2027-6, Legacy_Id__c=null, Amendment_ARR_Impact__c=null, Amendment_Count__c=0.0, Amendment_Reason__c=null, Auto_Renew__c=true, Cancellation_Date__c=null, Cancellation_Reason__c=null, Contract_ARR__c=null, Credit_Amount__c=null, Days_Until_Expiry__c=363.0, Deal_Type__c=null, Early_Termination_Fee__c=null, Legal_Entity__c=null, Original_Contract__c=null, Partner__c=null, Renewal_Status__c=null, Solution_Group__c=null, Within_Renewal_Window__c=false, Co_Term_Overridden__c=false, Parent_Contract_End_Date__c=null, Migration_Created__c=false, Renewal_Opportunity__c=null}
+08:18:03.5 (13722568)|FLOW_ELEMENT_BEGIN|1474b1973252d4685157c6baa5819f097e0edd-56a9|FlowActionCall|Calculate_Renewal_Amount
+08:18:03.5 (13773123)|FLOW_ELEMENT_DEFERRED|FlowActionCall|Calculate_Renewal_Amount
+08:18:03.5 (13847352)|FLOW_ELEMENT_LIMIT_USAGE|4 ms CPU time, total 8 out of 65000
+08:18:03.5 (13906245)|FLOW_ELEMENT_END|1474b1973252d4685157c6baa5819f097e0edd-56a9|FlowActionCall|Calculate_Renewal_Amount
+08:18:03.5 (14654195)|FLOW_START_INTERVIEW_END|1474b1973252d4685157c6baa5819f097e0edd-56a9|Fortra &#124; Contract Create Renewal Opportunity
+08:18:03.5 (14851453)|FLOW_BULK_ELEMENT_BEGIN|FlowActionCall|Calculate_Renewal_Amount
+08:18:03.53 (53428995)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002ZzIn|RenewalForecastAmount.calculate(List<RenewalForecastAmount.Request>)
+08:18:03.53 (53884327)|HEAP_ALLOCATE|[95]|Bytes:3
+08:18:03.53 (53950024)|HEAP_ALLOCATE|[100]|Bytes:152
+08:18:03.53 (53966673)|HEAP_ALLOCATE|[417]|Bytes:408
+08:18:03.53 (53980802)|HEAP_ALLOCATE|[430]|Bytes:408
+08:18:03.53 (54005528)|HEAP_ALLOCATE|[317]|Bytes:6
+08:18:03.53 (54030031)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+08:18:03.53 (54045693)|VARIABLE_SCOPE_BEGIN|[19]|this|RenewalForecastAmount.Request|true|false
+08:18:03.53 (54149241)|VARIABLE_ASSIGNMENT|[19]|this|{}|0x86b6638
+08:18:03.53 (54163162)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:6
+08:18:03.53 (54202321)|STATEMENT_EXECUTE|[19]
+08:18:03.53 (54204014)|STATEMENT_EXECUTE|[21]
+08:18:03.53 (54240612)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:03.53 (54243744)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+08:18:03.53 (54441060)|VARIABLE_ASSIGNMENT|[EXTERNAL]|this.contractId|"800WC00000SrYt4YAF"|0x86b6638
+08:18:03.53 (54452038)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+08:18:03.53 (54514183)|VARIABLE_SCOPE_BEGIN|[17]|RenewalForecastAmount.STANDARD_DEFAULT_COLA_PCT|Decimal|false|true
+08:18:03.53 (54620516)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:16
+08:18:03.53 (54624651)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:13
+08:18:03.53 (54638311)|METHOD_ENTRY|[14]|01pWC000002ZzIn|RenewalForecastAmount.RenewalForecastAmount()
+08:18:03.53 (54643452)|STATEMENT_EXECUTE|[14]
+08:18:03.53 (54648156)|STATEMENT_EXECUTE|[14]
+08:18:03.53 (54663774)|HEAP_ALLOCATE|[68]|Bytes:5
+08:18:03.53 (54685121)|HEAP_ALLOCATE|[74]|Bytes:5
+08:18:03.53 (54690604)|HEAP_ALLOCATE|[82]|Bytes:7
+08:18:03.53 (56452696)|SYSTEM_MODE_ENTER|false
+08:18:03.53 (56483869)|HEAP_ALLOCATE|[17]|Bytes:5
+08:18:03.53 (56490393)|STATEMENT_EXECUTE|[17]
+08:18:03.53 (56537474)|HEAP_ALLOCATE|[17]|Bytes:28
+08:18:03.53 (56539713)|HEAP_ALLOCATE|[17]|Bytes:28
+08:18:03.53 (56567839)|VARIABLE_ASSIGNMENT|[17]|RenewalForecastAmount.STANDARD_DEFAULT_COLA_PCT|3
+08:18:03.53 (56570550)|STATEMENT_EXECUTE|[19]
+08:18:03.53 (56571489)|STATEMENT_EXECUTE|[23]
+08:18:03.53 (56577787)|SYSTEM_MODE_EXIT|false
+08:18:03.53 (56591731)|METHOD_EXIT|[14]|RenewalForecastAmount
+08:18:03.53 (56631120)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+08:18:03.53 (56636597)|VARIABLE_SCOPE_BEGIN|[30]|requests|List<RenewalForecastAmount.Request>|true|false
+08:18:03.53 (56799980)|VARIABLE_ASSIGNMENT|[EXTERNAL]|this|{"contractId":"800WC00000SrYt4YAF"}|0x86b6638
+08:18:03.53 (56842100)|VARIABLE_ASSIGNMENT|[30]|requests|"common.apex.runtime.impl.ScalarList@86b6657"|0x534070d7
+08:18:03.53 (56852716)|SYSTEM_MODE_ENTER|false
+08:18:03.53 (56856546)|HEAP_ALLOCATE|[31]|Bytes:5
+08:18:03.53 (56859061)|STATEMENT_EXECUTE|[30]
+08:18:03.53 (56860007)|STATEMENT_EXECUTE|[31]
+08:18:03.53 (56870203)|HEAP_ALLOCATE|[31]|Bytes:4
+08:18:03.53 (56953442)|SYSTEM_CONSTRUCTOR_ENTRY|[31]|<init>()
+08:18:03.53 (57015023)|SYSTEM_CONSTRUCTOR_EXIT|[31]|<init>()
+08:18:03.53 (57023564)|VARIABLE_SCOPE_BEGIN|[31]|results|List<RenewalForecastAmount.Response>|true|false
+08:18:03.53 (57049028)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:03.53 (57056590)|VARIABLE_ASSIGNMENT|[31]|results|[]|0x2eb36f88
+08:18:03.53 (57100478)|SYSTEM_METHOD_ENTRY|[32]|List<RenewalForecastAmount.Request>.isEmpty()
+08:18:03.53 (57125992)|SYSTEM_METHOD_EXIT|[32]|List<RenewalForecastAmount.Request>.isEmpty()
+08:18:03.53 (57138367)|STATEMENT_EXECUTE|[32]
+08:18:03.53 (57139682)|STATEMENT_EXECUTE|[36]
+08:18:03.53 (57154340)|HEAP_ALLOCATE|[36]|Bytes:4
+08:18:03.53 (57172658)|SYSTEM_CONSTRUCTOR_ENTRY|[36]|<init>(Integer)
+08:18:03.53 (57181753)|SYSTEM_CONSTRUCTOR_EXIT|[36]|<init>(Integer)
+08:18:03.53 (57184082)|VARIABLE_SCOPE_BEGIN|[36]|contractIds|Set<Id>|true|false
+08:18:03.53 (57206318)|VARIABLE_ASSIGNMENT|[36]|contractIds|[]|0x229bba9c
+08:18:03.53 (57212505)|SYSTEM_METHOD_ENTRY|[37]|List<RenewalForecastAmount.Request>.iterator()
+08:18:03.53 (57316788)|SYSTEM_METHOD_EXIT|[37]|List<RenewalForecastAmount.Request>.iterator()
+08:18:03.53 (57332288)|SYSTEM_METHOD_ENTRY|[37]|system.ListIterator.hasNext()
+08:18:03.53 (57341244)|HEAP_ALLOCATE|[37]|Bytes:5
+08:18:03.53 (57346453)|SYSTEM_METHOD_EXIT|[37]|system.ListIterator.hasNext()
+08:18:03.53 (57355531)|HEAP_ALLOCATE|[37]|Bytes:8
+08:18:03.53 (57360276)|VARIABLE_SCOPE_BEGIN|[37]|r|RenewalForecastAmount.Request|true|false
+08:18:03.53 (57415652)|VARIABLE_ASSIGNMENT|[37]|r|{"contractId":"800WC00000SrYt4YAF"}|0x86b6638
+08:18:03.53 (57419851)|STATEMENT_EXECUTE|[37]
+08:18:03.53 (57426093)|STATEMENT_EXECUTE|[38]
+08:18:03.53 (57426981)|STATEMENT_EXECUTE|[39]
+08:18:03.53 (57445417)|SYSTEM_METHOD_ENTRY|[39]|Set<Id>.add(Object)
+08:18:03.53 (57453392)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:03.53 (57458128)|SYSTEM_METHOD_EXIT|[39]|Set<Id>.add(Object)
+08:18:03.53 (57461654)|SYSTEM_METHOD_ENTRY|[37]|system.ListIterator.hasNext()
+08:18:03.53 (57464392)|HEAP_ALLOCATE|[37]|Bytes:5
+08:18:03.53 (57466756)|SYSTEM_METHOD_EXIT|[37]|system.ListIterator.hasNext()
+08:18:03.53 (57472118)|VARIABLE_ASSIGNMENT|[37]|r|null|
+08:18:03.53 (57475116)|STATEMENT_EXECUTE|[44]
+08:18:03.53 (57551669)|HEAP_ALLOCATE|[44]|Bytes:4
+08:18:03.53 (57556158)|HEAP_ALLOCATE|[44]|Bytes:101
+08:18:03.53 (57563209)|HEAP_ALLOCATE|[44]|Bytes:4
+08:18:03.53 (57570852)|HEAP_ALLOCATE|[44]|Bytes:7
+08:18:03.53 (58016453)|SOQL_EXECUTE_BEGIN|[44]|Aggregations:0|SELECT Id, COLA_Override_Percent__c, COLA_Override_Persist_Until__c FROM Contract WHERE Id = :tmpVar1
+08:18:03.53 (58041631)|LIMIT_USAGE|[44]|SOQL|1|200
+08:18:03.53 (58046634)|LIMIT_USAGE|[44]|AGGS|0|600
+08:18:03.53 (73797083)|SOQL_EXECUTE_EXPLAIN|[44]|Index on Contract : [Id], cardinality: 1, sobjectCardinality: 29410, relativeCost 0
+08:18:03.53 (73816923)|SOQL_EXECUTE_END|[44]|Rows:1
+08:18:03.53 (73832795)|LIMIT_USAGE|[44]|SOQL_ROWS|1|50000
+08:18:03.53 (73842793)|HEAP_ALLOCATE|[44]|Bytes:8
+08:18:03.53 (73859233)|HEAP_ALLOCATE|[44]|Bytes:29
+08:18:03.53 (73918809)|HEAP_ALLOCATE|[44]|Bytes:8
+08:18:03.53 (73987213)|HEAP_ALLOCATE|[44]|Bytes:8
+08:18:03.53 (74000088)|HEAP_ALLOCATE|[44]|Bytes:4
+08:18:03.53 (74009854)|VARIABLE_SCOPE_BEGIN|[44]|contractsById|Map<Id,Contract>|true|false
+08:18:03.53 (74073136)|VARIABLE_ASSIGNMENT|[44]|contractsById|{"800WC00000SrYt4YAF":{"Id":"800WC00000SrYt4YAF"}}|0xda83afb
+08:18:03.53 (74077643)|STATEMENT_EXECUTE|[51]
+08:18:03.53 (74110777)|HEAP_ALLOCATE|[51]|Bytes:4
+08:18:03.53 (74123919)|VARIABLE_SCOPE_BEGIN|[51]|mrrsByContractId|Map<Id,List<Decimal>>|true|false
+08:18:03.53 (74134220)|VARIABLE_ASSIGNMENT|[51]|mrrsByContractId|{}|0x20c32a8d
+08:18:03.53 (74140636)|HEAP_ALLOCATE|[52]|Bytes:94
+08:18:03.53 (74146841)|HEAP_ALLOCATE|[52]|Bytes:4
+08:18:03.53 (75067094)|SOQL_EXECUTE_BEGIN|[52]|Aggregations:0|SELECT ContractId, Asset.CurrentMrr FROM AssetContractRelationship WHERE ContractId = :tmpVar1
+08:18:03.53 (75084719)|LIMIT_USAGE|[52]|SOQL|2|200
+08:18:03.53 (75089380)|LIMIT_USAGE|[52]|AGGS|0|600
+08:18:03.53 (90561020)|SOQL_EXECUTE_EXPLAIN|[52]|No explain plan is available
+08:18:03.53 (90576379)|SOQL_EXECUTE_END|[52]|Rows:0
+08:18:03.53 (90650544)|SYSTEM_METHOD_ENTRY|[52]|Database.QueryLocator.iterator()
+08:18:03.53 (90790993)|HEAP_ALLOCATE|[52]|Bytes:54
+08:18:03.53 (90798902)|HEAP_ALLOCATE|[52]|Bytes:8
+08:18:03.53 (90811336)|SYSTEM_METHOD_ENTRY|[7]|QueryLocatorIterator.QueryLocatorIterator()
+08:18:03.53 (90814064)|STATEMENT_EXECUTE|[7]
+08:18:03.53 (90822026)|SYSTEM_METHOD_EXIT|[7]|QueryLocatorIterator
+08:18:03.53 (90829410)|HEAP_ALLOCATE|[52]|Bytes:28
+08:18:03.53 (90837922)|HEAP_ALLOCATE|[52]|Bytes:8
+08:18:03.53 (90839474)|HEAP_ALLOCATE|[52]|Bytes:8
+08:18:03.53 (90843447)|VARIABLE_SCOPE_BEGIN|[15]|this|Database.QueryLocatorIterator|true|false
+08:18:03.53 (90884297)|VARIABLE_ASSIGNMENT|[15]|this|{}|0x55d218d7
+08:18:03.53 (90887771)|VARIABLE_SCOPE_BEGIN|[15]|values|List<SObject>|true|false
+08:18:03.53 (90894015)|VARIABLE_ASSIGNMENT|[15]|values|null|
+08:18:03.53 (90896273)|VARIABLE_SCOPE_BEGIN|[15]|ql|Database.QueryLocator|true|false
+08:18:03.53 (90917015)|VARIABLE_ASSIGNMENT|[15]|ql|{"query":"SELECT ContractId, A (74 more) ..."}|0x7d19cb5
+08:18:03.53 (90919997)|VARIABLE_SCOPE_BEGIN|[15]|totalNumRecords|Integer|false|false
+08:18:03.53 (90925234)|VARIABLE_ASSIGNMENT|[15]|totalNumRecords|0
+08:18:03.53 (90927256)|VARIABLE_SCOPE_BEGIN|[15]|queryMoreSize|Integer|false|false
+08:18:03.53 (90930818)|VARIABLE_ASSIGNMENT|[15]|queryMoreSize|49999
+08:18:03.53 (91008595)|HEAP_ALLOCATE|[52]|Bytes:28
+08:18:03.53 (91014081)|SYSTEM_METHOD_EXIT|[52]|Database.QueryLocator.iterator()
+08:18:03.53 (91031530)|METHOD_ENTRY|[52]||Database.QueryLocatorIterator.hasNext()
+08:18:03.53 (91047993)|METHOD_EXIT|[52]||Database.QueryLocatorIterator.hasNext()
+08:18:03.53 (91109674)|VARIABLE_ASSIGNMENT|[52]|acr|null|
+08:18:03.53 (91114629)|STATEMENT_EXECUTE|[52]
+08:18:03.53 (91235892)|STATEMENT_EXECUTE|[65]
+08:18:03.53 (91258881)|METHOD_ENTRY|[65]|01pWC000002ZzIn|RenewalForecastAmount.resolveDefaultColaPct()
+08:18:03.53 (91313585)|HEAP_ALLOCATE|[125]|Bytes:5
+08:18:03.53 (91319257)|STATEMENT_EXECUTE|[124]
+08:18:03.53 (91320297)|STATEMENT_EXECUTE|[125]
+08:18:03.53 (91323694)|HEAP_ALLOCATE|[125]|Bytes:6
+08:18:03.53 (91492344)|SYSTEM_METHOD_ENTRY|[125]|MyCAP_Rules__mdt.getInstance(String)
+08:18:03.53 (93427566)|SYSTEM_METHOD_EXIT|[125]|MyCAP_Rules__mdt.getInstance(String)
+08:18:03.53 (93441426)|VARIABLE_SCOPE_BEGIN|[125]|globalRule|MyCAP_Rules__mdt|true|false
+08:18:03.53 (93488896)|VARIABLE_ASSIGNMENT|[125]|globalRule|{"IsProtected":false,"Default_Out_Year_Uplift_Percent__c":3.0,"Label":"Global","MasterLabel":"Global","Minimum_Out_Year_Uplift_Percent__c":3.0,"SystemModstamp":"2026-04-15T01:43:15.000Z","Is_Active__c":true,"Language":"en_US","ManageableState":"U","QualifiedApiName":"Global","Id":"m0yWC000002JZLt","DeveloperName":"Global"}|0x3d69368f
+08:18:03.53 (93553035)|STATEMENT_EXECUTE|[127]
+08:18:03.53 (93554573)|STATEMENT_EXECUTE|[128]
+08:18:03.53 (93568536)|METHOD_EXIT|[65]|01pWC000002ZzIn|RenewalForecastAmount.resolveDefaultColaPct()
+08:18:03.53 (93574209)|VARIABLE_SCOPE_BEGIN|[65]|defaultColaPct|Decimal|false|false
+08:18:03.53 (93585376)|VARIABLE_ASSIGNMENT|[65]|defaultColaPct|3.0
+08:18:03.53 (93600422)|SYSTEM_METHOD_ENTRY|[67]|List<RenewalForecastAmount.Request>.iterator()
+08:18:03.53 (93622167)|SYSTEM_METHOD_EXIT|[67]|List<RenewalForecastAmount.Request>.iterator()
+08:18:03.53 (93630560)|SYSTEM_METHOD_ENTRY|[67]|system.ListIterator.hasNext()
+08:18:03.53 (93638644)|HEAP_ALLOCATE|[67]|Bytes:5
+08:18:03.53 (93644897)|SYSTEM_METHOD_EXIT|[67]|system.ListIterator.hasNext()
+08:18:03.53 (93652218)|HEAP_ALLOCATE|[67]|Bytes:8
+08:18:03.53 (93658345)|VARIABLE_SCOPE_BEGIN|[67]|r|RenewalForecastAmount.Request|true|false
+08:18:03.53 (93730309)|VARIABLE_ASSIGNMENT|[67]|r|{"contractId":"800WC00000SrYt4YAF"}|0x86b6638
+08:18:03.53 (93734617)|STATEMENT_EXECUTE|[67]
+08:18:03.53 (93735547)|STATEMENT_EXECUTE|[68]
+08:18:03.53 (93754657)|HEAP_ALLOCATE|[68]|Bytes:8
+08:18:03.53 (93791000)|CONSTRUCTOR_ENTRY|[68]|01pWC000002ZzIn|<init>()|RenewalForecastAmount.Response
+08:18:03.53 (93816457)|VARIABLE_SCOPE_BEGIN|[23]|this|RenewalForecastAmount.Response|true|false
+08:18:03.53 (93827962)|VARIABLE_ASSIGNMENT|[23]|this|{}|0x4e258420
+08:18:03.53 (93842267)|STATEMENT_EXECUTE|[23]
+08:18:03.53 (93843213)|STATEMENT_EXECUTE|[25]
+08:18:03.53 (93862312)|CONSTRUCTOR_EXIT|[68]|01pWC000002ZzIn|<init>()|RenewalForecastAmount.Response
+08:18:03.53 (93865715)|VARIABLE_SCOPE_BEGIN|[68]|resp|RenewalForecastAmount.Response|true|false
+08:18:03.53 (93872508)|VARIABLE_ASSIGNMENT|[68]|resp|{}|0x4e258420
+08:18:03.53 (93879903)|STATEMENT_EXECUTE|[69]
+08:18:03.53 (93880820)|STATEMENT_EXECUTE|[70]
+08:18:03.53 (93904042)|SYSTEM_METHOD_ENTRY|[70]|Map<Id,Contract>.get(Object)
+08:18:03.53 (93921002)|SYSTEM_METHOD_EXIT|[70]|Map<Id,Contract>.get(Object)
+08:18:03.53 (93932088)|METHOD_ENTRY|[70]|01pWC000002ZzIn|RenewalForecastAmount.resolveContractColaPct(Contract)
+08:18:03.53 (93936340)|VARIABLE_SCOPE_BEGIN|[108]|c|Contract|true|false
+08:18:03.53 (93982673)|VARIABLE_ASSIGNMENT|[108]|c|{"Id":"800WC00000SrYt4YAF"}|0x29b9ddfb
+08:18:03.53 (93991413)|HEAP_ALLOCATE|[109]|Bytes:5
+08:18:03.53 (93993866)|STATEMENT_EXECUTE|[108]
+08:18:03.53 (94000594)|STATEMENT_EXECUTE|[109]
+08:18:03.53 (94002103)|STATEMENT_EXECUTE|[110]
+08:18:03.53 (94006895)|METHOD_EXIT|[70]|01pWC000002ZzIn|RenewalForecastAmount.resolveContractColaPct(Contract)
+08:18:03.53 (94010145)|VARIABLE_SCOPE_BEGIN|[70]|contractColaPct|Decimal|false|false
+08:18:03.53 (94014997)|VARIABLE_ASSIGNMENT|[70]|contractColaPct|null
+08:18:03.53 (94017046)|STATEMENT_EXECUTE|[71]
+08:18:03.53 (94025277)|SYSTEM_METHOD_ENTRY|[71]|Map<Id,List<Decimal>>.get(Object)
+08:18:03.53 (94032417)|SYSTEM_METHOD_EXIT|[71]|Map<Id,List<Decimal>>.get(Object)
+08:18:03.53 (94043590)|METHOD_ENTRY|[71]|01pWC000002ZzIn|RenewalForecastAmount.computeAmount(List<Decimal>, Decimal, Decimal)
+08:18:03.53 (94047118)|VARIABLE_SCOPE_BEGIN|[86]|assetMonthlyRecurring|List<Decimal>|true|false
+08:18:03.53 (94050839)|VARIABLE_ASSIGNMENT|[86]|assetMonthlyRecurring|null|
+08:18:03.53 (94052990)|VARIABLE_SCOPE_BEGIN|[86]|contractColaPct|Decimal|false|false
+08:18:03.53 (94056338)|VARIABLE_ASSIGNMENT|[86]|contractColaPct|null
+08:18:03.53 (94058554)|VARIABLE_SCOPE_BEGIN|[86]|defaultColaPct|Decimal|false|false
+08:18:03.53 (94063389)|VARIABLE_ASSIGNMENT|[86]|defaultColaPct|3.0
+08:18:03.53 (94068397)|HEAP_ALLOCATE|[87]|Bytes:5
+08:18:03.53 (94070443)|STATEMENT_EXECUTE|[86]
+08:18:03.53 (94071378)|STATEMENT_EXECUTE|[87]
+08:18:03.53 (94085118)|HEAP_ALLOCATE|[87]|Bytes:28
+08:18:03.53 (94086936)|HEAP_ALLOCATE|[87]|Bytes:28
+08:18:03.53 (94089152)|VARIABLE_SCOPE_BEGIN|[87]|annualRecurring|Decimal|false|false
+08:18:03.53 (94094157)|VARIABLE_ASSIGNMENT|[87]|annualRecurring|0
+08:18:03.53 (94096601)|STATEMENT_EXECUTE|[88]
+08:18:03.53 (94097771)|STATEMENT_EXECUTE|[95]
+08:18:03.53 (94099131)|VARIABLE_SCOPE_BEGIN|[95]|colaPct|Decimal|false|false
+08:18:03.53 (94103048)|VARIABLE_ASSIGNMENT|[95]|colaPct|3.0
+08:18:03.53 (94105353)|STATEMENT_EXECUTE|[96]
+08:18:03.53 (94106213)|STATEMENT_EXECUTE|[99]
+08:18:03.53 (94109024)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94110756)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94114590)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94134021)|SYSTEM_METHOD_ENTRY|[99]|Decimal.divide(Decimal)
+08:18:03.53 (94182111)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94183816)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94188279)|SYSTEM_METHOD_EXIT|[99]|Decimal.divide(Decimal)
+08:18:03.53 (94193956)|SYSTEM_METHOD_ENTRY|[99]|Decimal.add(Decimal)
+08:18:03.53 (94199980)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94203441)|SYSTEM_METHOD_EXIT|[99]|Decimal.add(Decimal)
+08:18:03.53 (94207799)|SYSTEM_METHOD_ENTRY|[99]|Decimal.multiply(Decimal)
+08:18:03.53 (94212917)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94214586)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94218169)|SYSTEM_METHOD_EXIT|[99]|Decimal.multiply(Decimal)
+08:18:03.53 (94289158)|SYSTEM_METHOD_ENTRY|[99]|Decimal.setScale(Integer, System.RoundingMode)
+08:18:03.53 (94303010)|HEAP_ALLOCATE|[99]|Bytes:28
+08:18:03.53 (94307040)|SYSTEM_METHOD_EXIT|[99]|Decimal.setScale(Integer, System.RoundingMode)
+08:18:03.53 (94312149)|METHOD_EXIT|[71]|01pWC000002ZzIn|RenewalForecastAmount.computeAmount(List<Decimal>, Decimal, Decimal)
+08:18:03.53 (94339400)|VARIABLE_ASSIGNMENT|[71]|this.amount|0.00|0x4e258420
+08:18:03.53 (94343145)|STATEMENT_EXECUTE|[75]
+08:18:03.53 (94350471)|SYSTEM_METHOD_ENTRY|[75]|List<RenewalForecastAmount.Response>.add(Object)
+08:18:03.53 (94359743)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:03.53 (94364867)|SYSTEM_METHOD_EXIT|[75]|List<RenewalForecastAmount.Response>.add(Object)
+08:18:03.53 (94369632)|SYSTEM_METHOD_ENTRY|[67]|system.ListIterator.hasNext()
+08:18:03.53 (94374000)|HEAP_ALLOCATE|[67]|Bytes:5
+08:18:03.53 (94377411)|SYSTEM_METHOD_EXIT|[67]|system.ListIterator.hasNext()
+08:18:03.53 (94381555)|VARIABLE_ASSIGNMENT|[67]|r|null|
+08:18:03.53 (94384762)|STATEMENT_EXECUTE|[77]
+08:18:03.53 (94388360)|SYSTEM_MODE_EXIT|false
+08:18:03.94 (94444207)|CUMULATIVE_LIMIT_USAGE
+08:18:03.94 (94444207)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 200
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 8 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:18:03.94 (94444207)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+08:18:03.94 (94444207)|STATIC_VARIABLE_LIST|
+  int:BYTES:0
+  int:BYTES:0
+  byte[]:DigitOnes:0
+  byte[]:DigitTens:0
+  Boolean:FALSE:0
+  int:MAX_EXPONENT:0
+  double:MAX_VALUE:0
+  int:MAX_VALUE:0
+  int:MIN_EXPONENT:0
+  double:MIN_NORMAL:0
+  double:MIN_VALUE:0
+  int:MIN_VALUE:0
+  double:NEGATIVE_INFINITY:0
+  double:NaN:0
+  double:POSITIVE_INFINITY:0
+  int:PRECISION:0
+  int:SIZE:0
+  int:SIZE:0
+  Boolean:TRUE:0
+  String:__sfdcInnerTypes:0
+  String:__sfdcParameterizedTypes:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  Decimal:_static_STANDARD_DEFAULT_COLA_PCT:0
+  char[]:digits:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+
+08:18:03.94 (94444207)|CUMULATIVE_LIMIT_USAGE_END
+
+08:18:03.53 (94617888)|CODE_UNIT_FINISHED|RenewalForecastAmount.calculate(List<RenewalForecastAmount.Request>)
+08:18:03.5 (95383664)|FLOW_ACTIONCALL_DETAIL|1474b1973252d4685157c6baa5819f097e0edd-56a9|Calculate_Renewal_Amount|Apex|RenewalForecastAmount|true|
+08:18:03.5 (109286669)|FLOW_VALUE_ASSIGNMENT|1474b1973252d4685157c6baa5819f097e0edd-56a9|Calculate_Renewal_Amount|{amount=0.00}
+08:18:03.5 (109407931)|FLOW_ACTIONCALL_DETAIL|1474b1973252d4685157c6baa5819f097e0edd-56a9|Calculate_Renewal_Amount|Apex|RenewalForecastAmount|true|
+08:18:03.5 (109594731)|FLOW_BULK_ELEMENT_LIMIT_USAGE|2 SOQL queries, total 2 out of 200
+08:18:03.5 (109602313)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 SOQL query rows, total 1 out of 50000
+08:18:03.5 (109608756)|FLOW_BULK_ELEMENT_LIMIT_USAGE|54 ms CPU time, total 62 out of 65000
+08:18:03.5 (109645856)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1337 bytes heap size, total 1337 out of 12000000
+08:18:03.5 (109684221)|FLOW_BULK_ELEMENT_END|FlowActionCall|Calculate_Renewal_Amount|0|24
+08:18:03.5 (109762668)|FLOW_ELEMENT_BEGIN|1474b1973252d4685157c6baa5819f097e0edd-56a9|FlowRecordCreate|Create_Renewal_Opportunity
+08:18:03.5 (109786967)|FLOW_ELEMENT_DEFERRED|FlowRecordCreate|Create_Renewal_Opportunity
+08:18:03.5 (109811702)|FLOW_ELEMENT_END|1474b1973252d4685157c6baa5819f097e0edd-56a9|FlowRecordCreate|Create_Renewal_Opportunity
+08:18:03.5 (120511763)|FLOW_BULK_ELEMENT_BEGIN|FlowRecordCreate|Create_Renewal_Opportunity
+08:18:03.5 (121591804)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|1|100
+08:18:03.5 (121689907)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordCreate|Create_Renewal_Opportunity|1
+08:18:03.5 (121699937)|LIMIT_USAGE|[EXTERNAL]|DML|1|150
+08:18:03.5 (121704641)|LIMIT_USAGE|[EXTERNAL]|DML_ROWS|1|10000
+08:18:05.528 (2528425077)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Opportunity
+08:18:05.657 (2657593402)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000M7qbZ|301WC00000b2z5n
+08:18:05.657 (2657671352)|FLOW_CREATE_INTERVIEW_END|3484b1973252d4685157c6baa5819f097e0edd-5772|Fortra &#124;  Opportunity &#124; Before Insert/Update - Sync Status
+08:18:05.657 (2657896399)|FLOW_START_INTERVIEWS_BEGIN|1
+08:18:05.657 (2657962712)|FLOW_START_INTERVIEW_BEGIN|3484b1973252d4685157c6baa5819f097e0edd-5772|Fortra &#124;  Opportunity &#124; Before Insert/Update - Sync Status
+08:18:05.657 (2658010287)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 2 out of 200
+08:18:05.657 (2658017788)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:05.657 (2658022705)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:05.657 (2658027183)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 1 out of 150
+08:18:05.657 (2658031384)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 1 out of 10000
+08:18:05.657 (2658035333)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 71 out of 65000
+08:18:05.657 (2658072160)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 1337 out of 12000000
+08:18:05.657 (2658076730)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:05.657 (2658080690)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:05.657 (2658085135)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:05.657 (2658088869)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:05.657 (2658093046)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:18:05.657 (2675253886)|FLOW_VALUE_ASSIGNMENT|3484b1973252d4685157c6baa5819f097e0edd-5772|$Record|{Id=null, IsDeleted=false, AccountId=001WC00000gVLfxYAG, IsPrivate=false, Name=Renewal Forecast - PAGANI SPA (00069388), Description=null, StageName=Renewal Forecast, Amount=0.0, Probability=0.0, ExpectedRevenue=null, TotalOpportunityQuantity=null, CloseDate=2027-06-25 00:00:00, Type=null, NextStep=null, LeadSource=null, IsClosed=false, IsWon=false, ForecastCategory=Omitted, ForecastCategoryName=Omitted, CurrencyIsoCode=USD, CampaignId=null, HasOpportunityLineItem=false, IsSplit=false, Pricebook2Id=null, OwnerId=005WC00000MgTN2YAN, CreatedDate=null, AgeInDays=null, CreatedById=null, LastModifiedDate=null, LastModifiedById=null, SystemModstamp=null, LastActivityDate=null, LastActivityInDays=null, PushCount=null, LastStageChangeDate=null, LastStageChangeInDays=null, FiscalYear=null, FiscalQuarter=null, ContactId=null, LastViewedDate=null, LastReferencedDate=null, PartnerAccountId=null, SyncedQuoteId=null, ContractId=null, HasOpenActivity=false, HasOverdueTask=false, IqScore=null, LastAmountChangedHistoryId=null, LastCloseDateChangedHistoryId=null, IsPriorityRecord=false, ActivityMetricId=null, AWS_Account_Manager_Email__c=null, AWS_Account_Manager_Name__c=null, AWS_Marketplace_Offer_ID__c=null, AWS_PSM_Email__c=null, LID__LinkedIn_Company_Id__c=null, Corporate_Currency_Amount__c=0.0, Disable_Automation__c=false, AWS_PSM_Name__c=null, Conversion_Rate__c=1.0, ALE_Amount_View__c=null, Number_of_Distributors__c=0.0, Number_of_Resellers__c=0.0, Bypass_Partner_Validation__c=false, BDR__c=null, Opportunity_Owner_Name_Formula__c=Liam Jeong, Referral_Partner__c=null, Channel_Account_Manager__c=null, CloseDate__c=null, Cross_Sell_User__c=null, Deal_Origin__c=Fortra Originated, Deal_Registration_Date_Approved__c=null, Deal_Registration_Notes__c=null, Implementation_Owner__c=null, Displaced_ARR_old__c=null, Distributor__c=null, Domain__c=null, Existing_Customer_of_Partner__c=null, Quote_Count__c=0.0, Expected_Renewal_Amount__c=null, Expected_Renewal_Date__c=null, First_Touch_Date__c=null, Follow_up_date__c=null, HS_Sync_Correlation_Id__c=null, Forecast_Notes__c=null, Fortra_Partner_Marketing_Involvement__c=null, Help_Sell_User__c=null, HS_Sync_Message__c=null, Incumbent_Competitor_Renewal_Date__c=null, HS_Sync_Payload__c=null, Is_Branded__c=false, Last_Sales_Activity_Date__c=null, HS_Sync_Status__c=null, Lead_Created_Date__c=null, HS_Deal_Id__c=null, Displaced_ARR__c=0.0, Opportunity_NARR__c=null, Number_of_Activities_Logged__c=null, Opportunity_NARR_Calculated__c=0.0, PCTA_Type__c=null, Paid_Search_Term__c=null, Pains_and_Challenges__c=null, Dynamic_Conversion_Rate__c=null, Partner_Deal_Status__c=null, Partner_MDF_Activity_ID__c=null, Partner_Sales_Activity_with_End_Customer__c=null, Positive_Business_Outcomes__c=null, Primary_Renewal_Risk_Reason__c=null, Cross_Sale_Type__c=null, Products_of_Interest__c=null, Project_Timeline__c=null, Running_User_Opportunity_Owner__c=true, Re_Opened_Date__c=null, RecordTypeId__c=null, Renewal_Risk_Explanation__c=null, Renewal_Risk__c=null, Renewed_Contract__c=null, Reseller__c=null, SALES_INQUIRY_LOOKUP__c=null, SQL_Date__c=null, Sale_Type__c=null, Secondary_Renewal_Risk_Reason__c=null, Secondary_Rep__c=null, Value_Drivers__c=null, Subscription_Term__c=12.0, Technical_Closure_Complete__c=null, Exchange_Rate_To_USD__c=null, Partner_Account_Name__c=null, Legacy_Discount__c=null, Closed_Lost_Detail__c=null, Closed_Lost_Reason__c=null, Closed_Lost_Sub_Reason__c=null, Inquiry_Created_Date__c=null, salesintelio__Attempted_Enrichment_Disposition__c=null, salesintelio__Attempted_Enrichment__c=false, salesintelio__First_Enriched_Date__c=null, salesintelio__Last_Attempted_Enrichment__c=null, salesintelio__Last_Enriched_Date__c=null, salesintelio__Last_Matched_Date__c=null, salesintelio__SalesIntel_Enriched__c=false, salesintelio__SalesIntel_Exported__c=false, salesintelio__SalesIntel_Up_to_Date__c=false, Budget_Allocated__c=null, Distributor_Text__c=null, RFP__c=null, AWS_Marketplace_Agreement_ID__c=null, Bill_To_Place__c=null, Champion_Identified__c=null, Deal_Registration_Expiration_Date__c=null, Deal_Registration_ID__c=null, Demo_Completed__c=null, Discovery_Call_Completed__c=null, Economic_Buyer_Identified__c=null, Final_Pricing_Confirmed__c=null, Incumbent_Competitor__c=null, Legal_Entity__c=null, Legal_Review_Completed__c=null, Legal_Review_Started__c=null, Negative_Consequences__c=null, Number_of_Deal_Registration_Extensions__c=null, POC_Complete__c=null, POC_Needed__c=null, Partner_Portal_Deal_Registration__c=null, Proactive_Trial__c=null, Required_Capabilities__c=null, Sales_Activities_Partner_Completed__c=null, Ship_To_Place__c=null, Technical_Win_Confirmed__c=null, Territory__c=null, Trial_Date_Confirmed__c=null, Trial_End_Date__c=null, Trial_Manager__c=null, Trial_Notes__c=null, Trial_Start_Date__c=null, Trial_Status__c=null, Reseller_Text__c=null, LE_Change_In_Progress__c=false, ffr__BatchProcess__c=null, c2g__CODAUnitOfWork__c=null, pse__Forecast_Curve__c=null, pse__Group__c=null, pse__IsParentOpportunityServices__c=false, pse__Is_Change_Request__c=false, pse__Is_Services_Opportunity__c=false, pse__Parent_Opportunity__c=null, pse__Practice__c=null, pse__PreBilledAmount__c=null, pse__Pre_Billed_Amount__c=null, pse__Primary_Project__c=null, pse__Rate_Card_Discount_Limit__c=null, pse__Rate_Card_Percentage_Discount__c=null, pse__Rate_Card_Set__c=null, pse__Region__c=null, pse__Services_Attached_From_Products__c=0.0, pse__Services_Attached_Percent_From_Products__c=0.0, AccountName__c=PAGANI SPA, Part_of_a_Marketing_Initiative__c=null, Product_of_Interest__c=null, Run_Assignment__c=false, AWS_Account_Number__c=null, AWS_Marketplace__c=null, AWS_Sales_Stage__c=null, Approval_Status__c=null, Total_Services__c=null, Upsell_Opportunity__c=null, ARR_Last_Updated__c=null, AWS_Score__c=null, Total_ARR__c=null, Deal_Registration_Submitter__c=null, User_Registered_Deal__c=false, Deal_Cycle_Time_Days__c=null, No_Territory_Found__c=false, Legacy_Id__c=null, Execute_Auto_Project_Creation_Process__c=false, Project_Creation_Processed__c=false, Project_Check_Override__c=false, Services_Help_Requested_Date__c=null}
+08:18:05.657 (2675406174)|FLOW_ELEMENT_BEGIN|3484b1973252d4685157c6baa5819f097e0edd-5772|FlowDecision|Set_Hubspot_Sync_Status_to_Pending_Decision
+08:18:05.657 (2675466917)|FLOW_ELEMENT_DEFERRED|FlowDecision|Set_Hubspot_Sync_Status_to_Pending_Decision
+08:18:05.657 (2675520232)|FLOW_ELEMENT_LIMIT_USAGE|7 ms CPU time, total 78 out of 65000
+08:18:05.657 (2675539428)|FLOW_ELEMENT_END|3484b1973252d4685157c6baa5819f097e0edd-5772|FlowDecision|Set_Hubspot_Sync_Status_to_Pending_Decision
+08:18:05.657 (2704479846)|FLOW_START_INTERVIEW_END|3484b1973252d4685157c6baa5819f097e0edd-5772|Fortra &#124;  Opportunity &#124; Before Insert/Update - Sync Status
+08:18:05.657 (2704552434)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Set_Hubspot_Sync_Status_to_Pending_Decision
+08:18:05.657 (2704819208)|FLOW_RULE_DETAIL|3484b1973252d4685157c6baa5819f097e0edd-5772|No_Set_Hubspot_Sync_Status_to_Pending_Outcome|false|false
+08:18:05.657 (2704851499)|FLOW_VALUE_ASSIGNMENT|3484b1973252d4685157c6baa5819f097e0edd-5772|No_Set_Hubspot_Sync_Status_to_Pending_Outcome|false
+08:18:05.657 (2705001829)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 79 out of 65000
+08:18:05.657 (2705028954)|FLOW_BULK_ELEMENT_END|FlowDecision|Set_Hubspot_Sync_Status_to_Pending_Decision|0|0
+08:18:05.657 (2705077832)|FLOW_ELEMENT_BEGIN|3484b1973252d4685157c6baa5819f097e0edd-5772|FlowDecision|Is_New_Decision
+08:18:05.657 (2705094942)|FLOW_ELEMENT_DEFERRED|FlowDecision|Is_New_Decision
+08:18:05.657 (2705192992)|FLOW_ELEMENT_END|3484b1973252d4685157c6baa5819f097e0edd-5772|FlowDecision|Is_New_Decision
+08:18:05.657 (2705219135)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Is_New_Decision
+08:18:05.657 (2705408131)|FLOW_RULE_DETAIL|3484b1973252d4685157c6baa5819f097e0edd-5772|Yes_Is_New_Outcome|true|false
+08:18:05.657 (2705422987)|FLOW_VALUE_ASSIGNMENT|3484b1973252d4685157c6baa5819f097e0edd-5772|Yes_Is_New_Outcome|true
+08:18:05.657 (2705514280)|FLOW_BULK_ELEMENT_END|FlowDecision|Is_New_Decision|0|0
+08:18:05.657 (2705541611)|FLOW_ELEMENT_BEGIN|3484b1973252d4685157c6baa5819f097e0edd-5772|FlowAssignment|Set_Hubspot_Sync_Status_to_Pending
+08:18:05.657 (2705555377)|FLOW_ELEMENT_DEFERRED|FlowAssignment|Set_Hubspot_Sync_Status_to_Pending
+08:18:05.657 (2705571414)|FLOW_ELEMENT_END|3484b1973252d4685157c6baa5819f097e0edd-5772|FlowAssignment|Set_Hubspot_Sync_Status_to_Pending
+08:18:05.657 (2705592925)|FLOW_BULK_ELEMENT_BEGIN|FlowAssignment|Set_Hubspot_Sync_Status_to_Pending
+08:18:05.657 (2705770903)|FLOW_ASSIGNMENT_DETAIL|3484b1973252d4685157c6baa5819f097e0edd-5772|$Record.HS_Sync_Status__c|ASSIGN|Pending
+08:18:05.657 (2707068153)|FLOW_VALUE_ASSIGNMENT|3484b1973252d4685157c6baa5819f097e0edd-5772|$Record|{Id=null, IsDeleted=false, AccountId=001WC00000gVLfxYAG, IsPrivate=false, Name=Renewal Forecast - PAGANI SPA (00069388), Description=null, StageName=Renewal Forecast, Amount=0.0, Probability=0.0, ExpectedRevenue=null, TotalOpportunityQuantity=null, CloseDate=2027-06-25 00:00:00, Type=null, NextStep=null, LeadSource=null, IsClosed=false, IsWon=false, ForecastCategory=Omitted, ForecastCategoryName=Omitted, CurrencyIsoCode=USD, CampaignId=null, HasOpportunityLineItem=false, IsSplit=false, Pricebook2Id=null, OwnerId=005WC00000MgTN2YAN, CreatedDate=null, AgeInDays=null, CreatedById=null, LastModifiedDate=null, LastModifiedById=null, SystemModstamp=null, LastActivityDate=null, LastActivityInDays=null, PushCount=null, LastStageChangeDate=null, LastStageChangeInDays=null, FiscalYear=null, FiscalQuarter=null, ContactId=null, LastViewedDate=null, LastReferencedDate=null, PartnerAccountId=null, SyncedQuoteId=null, ContractId=null, HasOpenActivity=false, HasOverdueTask=false, IqScore=null, LastAmountChangedHistoryId=null, LastCloseDateChangedHistoryId=null, IsPriorityRecord=false, ActivityMetricId=null, AWS_Account_Manager_Email__c=null, AWS_Account_Manager_Name__c=null, AWS_Marketplace_Offer_ID__c=null, AWS_PSM_Email__c=null, LID__LinkedIn_Company_Id__c=null, Corporate_Currency_Amount__c=0.0, Disable_Automation__c=false, AWS_PSM_Name__c=null, Conversion_Rate__c=1.0, ALE_Amount_View__c=null, Number_of_Distributors__c=0.0, Number_of_Resellers__c=0.0, Bypass_Partner_Validation__c=false, BDR__c=null, Opportunity_Owner_Name_Formula__c=Liam Jeong, Referral_Partner__c=null, Channel_Account_Manager__c=null, CloseDate__c=null, Cross_Sell_User__c=null, Deal_Origin__c=Fortra Originated, Deal_Registration_Date_Approved__c=null, Deal_Registration_Notes__c=null, Implementation_Owner__c=null, Displaced_ARR_old__c=null, Distributor__c=null, Domain__c=null, Existing_Customer_of_Partner__c=null, Quote_Count__c=0.0, Expected_Renewal_Amount__c=null, Expected_Renewal_Date__c=null, First_Touch_Date__c=null, Follow_up_date__c=null, HS_Sync_Correlation_Id__c=null, Forecast_Notes__c=null, Fortra_Partner_Marketing_Involvement__c=null, Help_Sell_User__c=null, HS_Sync_Message__c=null, Incumbent_Competitor_Renewal_Date__c=null, HS_Sync_Payload__c=null, Is_Branded__c=false, Last_Sales_Activity_Date__c=null, HS_Sync_Status__c=Pending, Lead_Created_Date__c=null, HS_Deal_Id__c=null, Displaced_ARR__c=0.0, Opportunity_NARR__c=null, Number_of_Activities_Logged__c=null, Opportunity_NARR_Calculated__c=0.0, PCTA_Type__c=null, Paid_Search_Term__c=null, Pains_and_Challenges__c=null, Dynamic_Conversion_Rate__c=null, Partner_Deal_Status__c=null, Partner_MDF_Activity_ID__c=null, Partner_Sales_Activity_with_End_Customer__c=null, Positive_Business_Outcomes__c=null, Primary_Renewal_Risk_Reason__c=null, Cross_Sale_Type__c=null, Products_of_Interest__c=null, Project_Timeline__c=null, Running_User_Opportunity_Owner__c=true, Re_Opened_Date__c=null, RecordTypeId__c=null, Renewal_Risk_Explanation__c=null, Renewal_Risk__c=null, Renewed_Contract__c=null, Reseller__c=null, SALES_INQUIRY_LOOKUP__c=null, SQL_Date__c=null, Sale_Type__c=null, Secondary_Renewal_Risk_Reason__c=null, Secondary_Rep__c=null, Value_Drivers__c=null, Subscription_Term__c=12.0, Technical_Closure_Complete__c=null, Exchange_Rate_To_USD__c=null, Partner_Account_Name__c=null, Legacy_Discount__c=null, Closed_Lost_Detail__c=null, Closed_Lost_Reason__c=null, Closed_Lost_Sub_Reason__c=null, Inquiry_Created_Date__c=null, salesintelio__Attempted_Enrichment_Disposition__c=null, salesintelio__Attempted_Enrichment__c=false, salesintelio__First_Enriched_Date__c=null, salesintelio__Last_Attempted_Enrichment__c=null, salesintelio__Last_Enriched_Date__c=null, salesintelio__Last_Matched_Date__c=null, salesintelio__SalesIntel_Enriched__c=false, salesintelio__SalesIntel_Exported__c=false, salesintelio__SalesIntel_Up_to_Date__c=false, Budget_Allocated__c=null, Distributor_Text__c=null, RFP__c=null, AWS_Marketplace_Agreement_ID__c=null, Bill_To_Place__c=null, Champion_Identified__c=null, Deal_Registration_Expiration_Date__c=null, Deal_Registration_ID__c=null, Demo_Completed__c=null, Discovery_Call_Completed__c=null, Economic_Buyer_Identified__c=null, Final_Pricing_Confirmed__c=null, Incumbent_Competitor__c=null, Legal_Entity__c=null, Legal_Review_Completed__c=null, Legal_Review_Started__c=null, Negative_Consequences__c=null, Number_of_Deal_Registration_Extensions__c=null, POC_Complete__c=null, POC_Needed__c=null, Partner_Portal_Deal_Registration__c=null, Proactive_Trial__c=null, Required_Capabilities__c=null, Sales_Activities_Partner_Completed__c=null, Ship_To_Place__c=null, Technical_Win_Confirmed__c=null, Territory__c=null, Trial_Date_Confirmed__c=null, Trial_End_Date__c=null, Trial_Manager__c=null, Trial_Notes__c=null, Trial_Start_Date__c=null, Trial_Status__c=null, Reseller_Text__c=null, LE_Change_In_Progress__c=false, ffr__BatchProcess__c=null, c2g__CODAUnitOfWork__c=null, pse__Forecast_Curve__c=null, pse__Group__c=null, pse__IsParentOpportunityServices__c=false, pse__Is_Change_Request__c=false, pse__Is_Services_Opportunity__c=false, pse__Parent_Opportunity__c=null, pse__Practice__c=null, pse__PreBilledAmount__c=null, pse__Pre_Billed_Amount__c=null, pse__Primary_Project__c=null, pse__Rate_Card_Discount_Limit__c=null, pse__Rate_Card_Percentage_Discount__c=null, pse__Rate_Card_Set__c=null, pse__Region__c=null, pse__Services_Attached_From_Products__c=0.0, pse__Services_Attached_Percent_From_Products__c=0.0, AccountName__c=PAGANI SPA, Part_of_a_Marketing_Initiative__c=null, Product_of_Interest__c=null, Run_Assignment__c=false, AWS_Account_Number__c=null, AWS_Marketplace__c=null, AWS_Sales_Stage__c=null, Approval_Status__c=null, Total_Services__c=null, Upsell_Opportunity__c=null, ARR_Last_Updated__c=null, AWS_Score__c=null, Total_ARR__c=null, Deal_Registration_Submitter__c=null, User_Registered_Deal__c=false, Deal_Cycle_Time_Days__c=null, No_Territory_Found__c=false, Legacy_Id__c=null, Execute_Auto_Project_Creation_Process__c=false, Project_Creation_Processed__c=false, Project_Check_Override__c=false, Services_Help_Requested_Date__c=null}
+08:18:05.657 (2707234791)|FLOW_BULK_ELEMENT_LIMIT_USAGE|2 ms CPU time, total 81 out of 65000
+08:18:05.657 (2707268423)|FLOW_BULK_ELEMENT_END|FlowAssignment|Set_Hubspot_Sync_Status_to_Pending|0|1
+08:18:05.657 (2707584688)|FLOW_START_INTERVIEWS_END|1
+08:18:05.657 (2707804979)|FLOW_INTERVIEW_FINISHED|3484b1973252d4685157c6baa5819f097e0edd-5772|Fortra &#124;  Opportunity &#124; Before Insert/Update - Sync Status
+08:18:05.657 (2707840526)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 2 out of 200
+08:18:05.657 (2707846037)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:05.657 (2707849856)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:05.657 (2707853267)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 1 out of 150
+08:18:05.657 (2707856334)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 1 out of 10000
+08:18:05.657 (2707859693)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 81 out of 65000
+08:18:05.657 (2707878041)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 1337 out of 12000000
+08:18:05.657 (2707881469)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:05.657 (2707884415)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:05.657 (2707887658)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:05.657 (2707890659)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:05.528 (2710067733)|CODE_UNIT_FINISHED|Flow:Opportunity
+08:18:05.754 (2754874763)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000005ZCoD|OpportunityTrigger on Opportunity trigger event BeforeInsert|__sfdc_trigger/OpportunityTrigger
+08:18:05.754 (2754935697)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+08:18:05.754 (2755069052)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2755079914)|VARIABLE_SCOPE_BEGIN|[10]|this|OpportunityTrigger|true|false
+08:18:05.754 (2755154599)|VARIABLE_ASSIGNMENT|[10]|this|{}|0x7609fdc7
+08:18:05.754 (2755189966)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2755193445)|VARIABLE_SCOPE_BEGIN|[10]|this|OpportunityTrigger|true|false
+08:18:05.754 (2755199749)|VARIABLE_ASSIGNMENT|[10]|this|{}|0x7609fdc7
+08:18:05.754 (2755204366)|STATEMENT_EXECUTE|[10]
+08:18:05.754 (2755225570)|STATEMENT_EXECUTE|[11]
+08:18:05.754 (2755230042)|STATEMENT_EXECUTE|[12]
+08:18:05.754 (2755231112)|STATEMENT_EXECUTE|[13]
+08:18:05.754 (2778559941)|VARIABLE_SCOPE_BEGIN|[15]|OpportunityTriggerHandler.STAGE_CLOSED_LOST|String|false|true
+08:18:05.754 (2778575421)|VARIABLE_SCOPE_BEGIN|[16]|OpportunityTriggerHandler.STAGE_ORDER_PROCESSING|String|false|true
+08:18:05.754 (2778579178)|VARIABLE_SCOPE_BEGIN|[18]|OpportunityTriggerHandler.STATUS_ACTIVE|String|false|true
+08:18:05.754 (2778583632)|VARIABLE_SCOPE_BEGIN|[17]|OpportunityTriggerHandler.STATUS_QUOTING|String|false|true
+08:18:05.754 (2778606162)|HEAP_ALLOCATE|[13]|Bytes:19
+08:18:05.754 (2778615948)|HEAP_ALLOCATE|[13]|Bytes:11
+08:18:05.754 (2778634636)|VARIABLE_ASSIGNMENT|[13]|OpportunityTriggerHandler.STAGE_CLOSED_LOST|"Closed Lost"
+08:18:05.754 (2778637329)|HEAP_ALLOCATE|[13]|Bytes:16
+08:18:05.754 (2778640978)|VARIABLE_ASSIGNMENT|[13]|OpportunityTriggerHandler.STAGE_ORDER_PROCESSING|"Order Processing"
+08:18:05.754 (2778643028)|HEAP_ALLOCATE|[13]|Bytes:6
+08:18:05.754 (2778646127)|VARIABLE_ASSIGNMENT|[13]|OpportunityTriggerHandler.STATUS_ACTIVE|"Active"
+08:18:05.754 (2778648068)|HEAP_ALLOCATE|[13]|Bytes:7
+08:18:05.754 (2778650821)|VARIABLE_ASSIGNMENT|[13]|OpportunityTriggerHandler.STATUS_QUOTING|"Quoting"
+08:18:05.754 (2778679954)|METHOD_ENTRY|[13]|01pWC000001wZoB|OpportunityTriggerHandler.OpportunityTriggerHandler()
+08:18:05.754 (2778684384)|STATEMENT_EXECUTE|[13]
+08:18:05.754 (2778688294)|STATEMENT_EXECUTE|[13]
+08:18:05.754 (2780517558)|SYSTEM_MODE_ENTER|false
+08:18:05.754 (2780551555)|HEAP_ALLOCATE|[13]|Bytes:5
+08:18:05.754 (2780567651)|SYSTEM_MODE_EXIT|false
+08:18:05.754 (2780588665)|METHOD_EXIT|[13]|OpportunityTriggerHandler
+08:18:05.754 (2780633386)|METHOD_ENTRY|[13]|01pWC000001wZoB|OpportunityTriggerHandler.handleBeforeInsert(List<Opportunity>)
+08:18:05.754 (2780689262)|VARIABLE_SCOPE_BEGIN|[25]|newOpportunities|List<Opportunity>|true|false
+08:18:05.754 (2784510700)|VARIABLE_ASSIGNMENT|[25]|newOpportunities|[{"Is_Branded__c":false,"AccountId":"001WC00000gVLfxYAG","HasOpportunityLineItem":false,"Number_of_Resellers__c":0,"pse__Is_Change_Request__c":false,"HS_Sync_Status__c":"Pending","ForecastCategory":"Omitted","No_Territory_Found__c":false,"CloseDate":"2027-06-25T00:00:00.000Z","Name":"Renewal Forecast - P (20 more) ...","HasOpenActivity":false,"Subscription_Term__c":12,"Displaced_ARR__c":0.00,"Opportunity_NARR_Calculated__c":0.00,"IsDeleted":false,"pse__Services_Attached_From_Products__c":0.00,"Run_Assignment__c":false,"CurrencyIsoCode":"USD","salesintelio__Attempted_Enrichment__c":false,"HasOverdueTask":false,"salesintelio__SalesIntel_Up_to_Date__c":false,"LE_Change_In_Progress__c":false,"Conversion_Rate__c":1.0000000000,"Running_User_Opportunity_Owner__c":true,"ForecastCategoryName":"Omitted","Deal_Origin__c":"Fortra Originated","Project_Check_Override__c":false,"Project_Creation_Processed__c":false,"Disable_Automation__c":false,"pse__Services_Attached_Percent_From_Products__c":0.00,"salesintelio__SalesIntel_Exported__c":false,"IsClosed":false,"pse__IsParentOpportunityServices__c":false,"OwnerId":"005WC00000MgTN2YAN","IsWon":false,"IsSplit":false,"IsPriorityRecord":false,"Corporate_Currency_Amount__c":0.00,"Bypass_Partner_Validation__c":false,"pse__Is_Services_Opportunity__c":false,"StageName":"Renewal Forecast","Amount":0.00,"Probability":0,"Execute_Auto_Project_Creation_Process__c":false,"User_Registered_Deal__c":false,"salesintelio__SalesIntel_Enriched__c":false,"Quote_Count__c":0,"Number_of_Distributors__c":0,"Opportunity_Owner_Name_Formula__c":"Liam Jeong","IsPrivate":false,"AccountName__c":"PAGANI SPA"}]|0x7598c21d
+08:18:05.754 (2784556380)|SYSTEM_MODE_ENTER|false
+08:18:05.754 (2784570706)|HEAP_ALLOCATE|[26]|Bytes:5
+08:18:05.754 (2784580264)|STATEMENT_EXECUTE|[25]
+08:18:05.754 (2784581958)|STATEMENT_EXECUTE|[26]
+08:18:05.754 (2784615123)|METHOD_ENTRY|[26]|01pWC000001wZoB|OpportunityTriggerHandler.setExchangeRates(List<Opportunity>)
+08:18:05.754 (2784678056)|VARIABLE_SCOPE_BEGIN|[53]|opportunities|List<Opportunity>|true|false
+08:18:05.754 (2786487754)|VARIABLE_ASSIGNMENT|[53]|opportunities|[{"Is_Branded__c":false,"AccountId":"001WC00000gVLfxYAG","HasOpportunityLineItem":false,"Number_of_Resellers__c":0,"pse__Is_Change_Request__c":false,"HS_Sync_Status__c":"Pending","ForecastCategory":"Omitted","No_Territory_Found__c":false,"CloseDate":"2027-06-25T00:00:00.000Z","Name":"Renewal Forecast - P (20 more) ...","HasOpenActivity":false,"Subscription_Term__c":12,"Displaced_ARR__c":0.00,"Opportunity_NARR_Calculated__c":0.00,"IsDeleted":false,"pse__Services_Attached_From_Products__c":0.00,"Run_Assignment__c":false,"CurrencyIsoCode":"USD","salesintelio__Attempted_Enrichment__c":false,"HasOverdueTask":false,"salesintelio__SalesIntel_Up_to_Date__c":false,"LE_Change_In_Progress__c":false,"Conversion_Rate__c":1.0000000000,"Running_User_Opportunity_Owner__c":true,"ForecastCategoryName":"Omitted","Deal_Origin__c":"Fortra Originated","Project_Check_Override__c":false,"Project_Creation_Processed__c":false,"Disable_Automation__c":false,"pse__Services_Attached_Percent_From_Products__c":0.00,"salesintelio__SalesIntel_Exported__c":false,"IsClosed":false,"pse__IsParentOpportunityServices__c":false,"OwnerId":"005WC00000MgTN2YAN","IsWon":false,"IsSplit":false,"IsPriorityRecord":false,"Corporate_Currency_Amount__c":0.00,"Bypass_Partner_Validation__c":false,"pse__Is_Services_Opportunity__c":false,"StageName":"Renewal Forecast","Amount":0.00,"Probability":0,"Execute_Auto_Project_Creation_Process__c":false,"User_Registered_Deal__c":false,"salesintelio__SalesIntel_Enriched__c":false,"Quote_Count__c":0,"Number_of_Distributors__c":0,"Opportunity_Owner_Name_Formula__c":"Liam Jeong","IsPrivate":false,"AccountName__c":"PAGANI SPA"}]|0x7598c21d
+08:18:05.754 (2786535891)|HEAP_ALLOCATE|[54]|Bytes:5
+08:18:05.754 (2786542814)|STATEMENT_EXECUTE|[53]
+08:18:05.754 (2786544244)|STATEMENT_EXECUTE|[54]
+08:18:05.754 (2802304466)|HEAP_ALLOCATE|[54]|Bytes:4
+08:18:05.754 (2802384546)|SYSTEM_CONSTRUCTOR_ENTRY|[54]|<init>()
+08:18:05.754 (2802418890)|SYSTEM_CONSTRUCTOR_EXIT|[54]|<init>()
+08:18:05.754 (2802423099)|VARIABLE_SCOPE_BEGIN|[54]|requests|List<DatedConversionRateLookup.Request>|true|false
+08:18:05.754 (2802455123)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2802468446)|VARIABLE_ASSIGNMENT|[54]|requests|[]|0x3c86a9f5
+08:18:05.754 (2802471581)|STATEMENT_EXECUTE|[55]
+08:18:05.754 (2802478344)|HEAP_ALLOCATE|[55]|Bytes:4
+08:18:05.754 (2802493945)|SYSTEM_CONSTRUCTOR_ENTRY|[55]|<init>()
+08:18:05.754 (2802499104)|SYSTEM_CONSTRUCTOR_EXIT|[55]|<init>()
+08:18:05.754 (2802500965)|VARIABLE_SCOPE_BEGIN|[55]|oppsToRate|List<Opportunity>|true|false
+08:18:05.754 (2802506210)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2802509585)|VARIABLE_ASSIGNMENT|[55]|oppsToRate|[]|0x690a6b26
+08:18:05.754 (2802526501)|SYSTEM_METHOD_ENTRY|[57]|List<Opportunity>.iterator()
+08:18:05.754 (2802616213)|SYSTEM_METHOD_EXIT|[57]|List<Opportunity>.iterator()
+08:18:05.754 (2802630886)|SYSTEM_METHOD_ENTRY|[57]|system.ListIterator.hasNext()
+08:18:05.754 (2802643324)|HEAP_ALLOCATE|[57]|Bytes:5
+08:18:05.754 (2802649257)|SYSTEM_METHOD_EXIT|[57]|system.ListIterator.hasNext()
+08:18:05.754 (2802684474)|HEAP_ALLOCATE|[57]|Bytes:4
+08:18:05.754 (2802691735)|VARIABLE_SCOPE_BEGIN|[57]|opp|Opportunity|true|false
+08:18:05.754 (2803874449)|VARIABLE_ASSIGNMENT|[57]|opp|{"Is_Branded__c":false,"AccountId":"001WC00000gVLfxYAG","HasOpportunityLineItem":false,"Number_of_Resellers__c":0,"pse__Is_Change_Request__c":false,"HS_Sync_Status__c":"Pending","ForecastCategory":"Omitted","No_Territory_Found__c":false,"CloseDate":"2027-06-25T00:00:00.000Z","Name":"Renewal Forecast - P (20 more) ...","HasOpenActivity":false,"Subscription_Term__c":12,"Displaced_ARR__c":0.00,"Opportunity_NARR_Calculated__c":0.00,"IsDeleted":false,"pse__Services_Attached_From_Products__c":0.00,"Run_Assignment__c":false,"CurrencyIsoCode":"USD","salesintelio__Attempted_Enrichment__c":false,"HasOverdueTask":false,"salesintelio__SalesIntel_Up_to_Date__c":false,"LE_Change_In_Progress__c":false,"Conversion_Rate__c":1.0000000000,"Running_User_Opportunity_Owner__c":true,"ForecastCategoryName":"Omitted","Deal_Origin__c":"Fortra Originated","Project_Check_Override__c":false,"Project_Creation_Processed__c":false,"Disable_Automation__c":false,"pse__Services_Attached_Percent_From_Products__c":0.00,"salesintelio__SalesIntel_Exported__c":false,"IsClosed":false,"pse__IsParentOpportunityServices__c":false,"OwnerId":"005WC00000MgTN2YAN","IsWon":false,"IsSplit":false,"IsPriorityRecord":false,"Corporate_Currency_Amount__c":0.00,"Bypass_Partner_Validation__c":false,"pse__Is_Services_Opportunity__c":false,"StageName":"Renewal Forecast","Amount":0.00,"Probability":0,"Execute_Auto_Project_Creation_Process__c":false,"User_Registered_Deal__c":false,"salesintelio__SalesIntel_Enriched__c":false,"Quote_Count__c":0,"Number_of_Distributors__c":0,"Opportunity_Owner_Name_Formula__c":"Liam Jeong","IsPrivate":false,"AccountName__c":"PAGANI SPA"}|0x7d7cd9bc
+08:18:05.754 (2803896806)|STATEMENT_EXECUTE|[57]
+08:18:05.754 (2803968812)|SYSTEM_METHOD_ENTRY|[58]|String.isNotBlank(String)
+08:18:05.754 (2804002148)|SYSTEM_METHOD_EXIT|[58]|String.isNotBlank(String)
+08:18:05.754 (2804006021)|STATEMENT_EXECUTE|[58]
+08:18:05.754 (2804007100)|STATEMENT_EXECUTE|[59]
+08:18:05.754 (2804035176)|HEAP_ALLOCATE|[59]|Bytes:12
+08:18:05.754 (2804070337)|CONSTRUCTOR_ENTRY|[59]|01pWC0000021FLd|<init>()|DatedConversionRateLookup.Request
+08:18:05.754 (2804091783)|VARIABLE_SCOPE_BEGIN|[90]|this|DatedConversionRateLookup.Request|true|false
+08:18:05.754 (2804156649)|VARIABLE_ASSIGNMENT|[90]|this|{}|0x343e87a7
+08:18:05.754 (2804178340)|STATEMENT_EXECUTE|[90]
+08:18:05.754 (2804179529)|STATEMENT_EXECUTE|[93]
+08:18:05.754 (2804180539)|STATEMENT_EXECUTE|[97]
+08:18:05.754 (2804184447)|CONSTRUCTOR_EXIT|[59]|01pWC0000021FLd|<init>()|DatedConversionRateLookup.Request
+08:18:05.754 (2804188218)|VARIABLE_SCOPE_BEGIN|[59]|req|DatedConversionRateLookup.Request|true|false
+08:18:05.754 (2804213351)|VARIABLE_ASSIGNMENT|[59]|req|{}|0x343e87a7
+08:18:05.754 (2804216036)|STATEMENT_EXECUTE|[60]
+08:18:05.754 (2804250525)|VARIABLE_ASSIGNMENT|[60]|this.currencyIsoCode|"USD"|0x343e87a7
+08:18:05.754 (2804253507)|STATEMENT_EXECUTE|[61]
+08:18:05.754 (2804268811)|SYSTEM_METHOD_ENTRY|[61]|List<DatedConversionRateLookup.Request>.add(Object)
+08:18:05.754 (2804280353)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2804286845)|SYSTEM_METHOD_EXIT|[61]|List<DatedConversionRateLookup.Request>.add(Object)
+08:18:05.754 (2804288882)|STATEMENT_EXECUTE|[62]
+08:18:05.754 (2804293258)|SYSTEM_METHOD_ENTRY|[62]|List<Opportunity>.add(Object)
+08:18:05.754 (2804298575)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2804301673)|SYSTEM_METHOD_EXIT|[62]|List<Opportunity>.add(Object)
+08:18:05.754 (2804308393)|SYSTEM_METHOD_ENTRY|[57]|system.ListIterator.hasNext()
+08:18:05.754 (2804317453)|HEAP_ALLOCATE|[57]|Bytes:5
+08:18:05.754 (2804321597)|SYSTEM_METHOD_EXIT|[57]|system.ListIterator.hasNext()
+08:18:05.754 (2804328864)|VARIABLE_ASSIGNMENT|[57]|opp|null|
+08:18:05.754 (2804334356)|SYSTEM_METHOD_ENTRY|[66]|List<DatedConversionRateLookup.Request>.isEmpty()
+08:18:05.754 (2804340027)|SYSTEM_METHOD_EXIT|[66]|List<DatedConversionRateLookup.Request>.isEmpty()
+08:18:05.754 (2804344967)|STATEMENT_EXECUTE|[66]
+08:18:05.754 (2804345998)|STATEMENT_EXECUTE|[67]
+08:18:05.754 (2804818757)|HEAP_ALLOCATE|[67]|Bytes:14
+08:18:05.754 (2804823763)|HEAP_ALLOCATE|[67]|Bytes:2
+08:18:05.754 (2804838800)|METHOD_ENTRY|[12]|01pWC0000021FLd|DatedConversionRateLookup.DatedConversionRateLookup()
+08:18:05.754 (2804841585)|STATEMENT_EXECUTE|[12]
+08:18:05.754 (2804843963)|STATEMENT_EXECUTE|[12]
+08:18:05.754 (2804849032)|HEAP_ALLOCATE|[67]|Bytes:5
+08:18:05.754 (2804851095)|STATEMENT_EXECUTE|[90]
+08:18:05.754 (2804851952)|STATEMENT_EXECUTE|[100]
+08:18:05.754 (2804858181)|METHOD_EXIT|[12]|DatedConversionRateLookup
+08:18:05.754 (2804875129)|METHOD_ENTRY|[67]|01pWC0000021FLd|DatedConversionRateLookup.getExchangeRates(List<DatedConversionRateLookup.Request>)
+08:18:05.754 (2804954030)|VARIABLE_SCOPE_BEGIN|[17]|requests|List<DatedConversionRateLookup.Request>|true|false
+08:18:05.754 (2804978299)|VARIABLE_ASSIGNMENT|[17]|requests|[{"currencyIsoCode":"USD"}]|0x3c86a9f5
+08:18:05.754 (2804987314)|HEAP_ALLOCATE|[18]|Bytes:5
+08:18:05.754 (2804990725)|STATEMENT_EXECUTE|[17]
+08:18:05.754 (2804991745)|STATEMENT_EXECUTE|[18]
+08:18:05.754 (2805001852)|HEAP_ALLOCATE|[18]|Bytes:4
+08:18:05.754 (2805052648)|SYSTEM_CONSTRUCTOR_ENTRY|[18]|<init>()
+08:18:05.754 (2805080763)|SYSTEM_CONSTRUCTOR_EXIT|[18]|<init>()
+08:18:05.754 (2805084682)|VARIABLE_SCOPE_BEGIN|[18]|results|List<DatedConversionRateLookup.Result>|true|false
+08:18:05.754 (2805110906)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2805117750)|VARIABLE_ASSIGNMENT|[18]|results|[]|0x128651a2
+08:18:05.754 (2805121735)|STATEMENT_EXECUTE|[23]
+08:18:05.754 (2805137290)|HEAP_ALLOCATE|[23]|Bytes:4
+08:18:05.754 (2805154461)|SYSTEM_CONSTRUCTOR_ENTRY|[23]|<init>(Integer)
+08:18:05.754 (2805165675)|SYSTEM_CONSTRUCTOR_EXIT|[23]|<init>(Integer)
+08:18:05.754 (2805168695)|VARIABLE_SCOPE_BEGIN|[23]|isoCodes|Set<String>|true|false
+08:18:05.754 (2805192388)|VARIABLE_ASSIGNMENT|[23]|isoCodes|[]|0x39addf0
+08:18:05.754 (2805196492)|STATEMENT_EXECUTE|[24]
+08:18:05.754 (2805213120)|SYSTEM_METHOD_ENTRY|[24]|System.today()
+08:18:05.754 (2805260830)|HEAP_ALLOCATE|[24]|Bytes:4
+08:18:05.754 (2805267301)|SYSTEM_METHOD_EXIT|[24]|System.today()
+08:18:05.754 (2805280073)|VARIABLE_SCOPE_BEGIN|[24]|maxDate|Date|false|false
+08:18:05.754 (2805297195)|VARIABLE_ASSIGNMENT|[24]|maxDate|"2026-06-27T00:00:00.000Z"
+08:18:05.754 (2805306549)|SYSTEM_METHOD_ENTRY|[26]|List<DatedConversionRateLookup.Request>.iterator()
+08:18:05.754 (2805390186)|SYSTEM_METHOD_EXIT|[26]|List<DatedConversionRateLookup.Request>.iterator()
+08:18:05.754 (2805408326)|SYSTEM_METHOD_ENTRY|[26]|system.ListIterator.hasNext()
+08:18:05.754 (2805419925)|HEAP_ALLOCATE|[26]|Bytes:5
+08:18:05.754 (2805425859)|SYSTEM_METHOD_EXIT|[26]|system.ListIterator.hasNext()
+08:18:05.754 (2805435901)|HEAP_ALLOCATE|[26]|Bytes:12
+08:18:05.754 (2805442451)|VARIABLE_SCOPE_BEGIN|[26]|req|DatedConversionRateLookup.Request|true|false
+08:18:05.754 (2805473210)|VARIABLE_ASSIGNMENT|[26]|req|{"currencyIsoCode":"USD"}|0x343e87a7
+08:18:05.754 (2805478265)|STATEMENT_EXECUTE|[26]
+08:18:05.754 (2805483633)|STATEMENT_EXECUTE|[27]
+08:18:05.754 (2805484854)|STATEMENT_EXECUTE|[28]
+08:18:05.754 (2805490681)|SYSTEM_METHOD_ENTRY|[28]|System.today()
+08:18:05.754 (2805517246)|HEAP_ALLOCATE|[28]|Bytes:4
+08:18:05.754 (2805521835)|SYSTEM_METHOD_EXIT|[28]|System.today()
+08:18:05.754 (2805551674)|VARIABLE_ASSIGNMENT|[28]|this.lookupDate|"2026-06-27T00:00:00.000Z"|0x343e87a7
+08:18:05.754 (2805590042)|SYSTEM_METHOD_ENTRY|[30]|com.salesforce.api.interop.apex.bcl.DateMethods.compareTo(Date)
+08:18:05.754 (2805606713)|SYSTEM_METHOD_EXIT|[30]|com.salesforce.api.interop.apex.bcl.DateMethods.compareTo(Date)
+08:18:05.754 (2805612603)|STATEMENT_EXECUTE|[30]
+08:18:05.754 (2805622972)|SYSTEM_METHOD_ENTRY|[33]|String.isNotBlank(String)
+08:18:05.754 (2805633364)|SYSTEM_METHOD_EXIT|[33]|String.isNotBlank(String)
+08:18:05.754 (2805640004)|HEAP_ALLOCATE|[33]|Bytes:3
+08:18:05.754 (2805658480)|STATEMENT_EXECUTE|[33]
+08:18:05.754 (2805662850)|SYSTEM_METHOD_ENTRY|[26]|system.ListIterator.hasNext()
+08:18:05.754 (2805668788)|HEAP_ALLOCATE|[26]|Bytes:5
+08:18:05.754 (2805673227)|SYSTEM_METHOD_EXIT|[26]|system.ListIterator.hasNext()
+08:18:05.754 (2805679992)|VARIABLE_ASSIGNMENT|[26]|req|null|
+08:18:05.754 (2805685362)|STATEMENT_EXECUTE|[39]
+08:18:05.754 (2805703495)|HEAP_ALLOCATE|[39]|Bytes:4
+08:18:05.754 (2805714082)|VARIABLE_SCOPE_BEGIN|[39]|rateMap|Map<String,Decimal>|true|false
+08:18:05.754 (2805730975)|VARIABLE_ASSIGNMENT|[39]|rateMap|{}|0x2a57d027
+08:18:05.754 (2805739980)|SYSTEM_METHOD_ENTRY|[41]|Set<String>.isEmpty()
+08:18:05.754 (2805750082)|SYSTEM_METHOD_EXIT|[41]|Set<String>.isEmpty()
+08:18:05.754 (2805754037)|STATEMENT_EXECUTE|[41]
+08:18:05.754 (2805759188)|SYSTEM_METHOD_ENTRY|[73]|List<DatedConversionRateLookup.Request>.iterator()
+08:18:05.754 (2805766268)|SYSTEM_METHOD_EXIT|[73]|List<DatedConversionRateLookup.Request>.iterator()
+08:18:05.754 (2805771012)|SYSTEM_METHOD_ENTRY|[73]|system.ListIterator.hasNext()
+08:18:05.754 (2805775435)|HEAP_ALLOCATE|[73]|Bytes:5
+08:18:05.754 (2805779355)|SYSTEM_METHOD_EXIT|[73]|system.ListIterator.hasNext()
+08:18:05.754 (2805785188)|HEAP_ALLOCATE|[73]|Bytes:12
+08:18:05.754 (2805789658)|VARIABLE_SCOPE_BEGIN|[73]|req|DatedConversionRateLookup.Request|true|false
+08:18:05.754 (2805820820)|VARIABLE_ASSIGNMENT|[73]|req|{"currencyIsoCode":"USD","lookupDate":"2026-06-27T00:00:00.000Z"}|0x343e87a7
+08:18:05.754 (2805824589)|STATEMENT_EXECUTE|[73]
+08:18:05.754 (2805825560)|STATEMENT_EXECUTE|[74]
+08:18:05.754 (2805836803)|HEAP_ALLOCATE|[74]|Bytes:8
+08:18:05.754 (2805857789)|CONSTRUCTOR_ENTRY|[74]|01pWC0000021FLd|<init>()|DatedConversionRateLookup.Result
+08:18:05.754 (2805874636)|VARIABLE_SCOPE_BEGIN|[100]|this|DatedConversionRateLookup.Result|true|false
+08:18:05.754 (2805903061)|VARIABLE_ASSIGNMENT|[100]|this|{}|0x506a80bf
+08:18:05.754 (2805917579)|STATEMENT_EXECUTE|[100]
+08:18:05.754 (2805918435)|STATEMENT_EXECUTE|[103]
+08:18:05.754 (2805921988)|CONSTRUCTOR_EXIT|[74]|01pWC0000021FLd|<init>()|DatedConversionRateLookup.Result
+08:18:05.754 (2805925126)|VARIABLE_SCOPE_BEGIN|[74]|res|DatedConversionRateLookup.Result|true|false
+08:18:05.754 (2805931321)|VARIABLE_ASSIGNMENT|[74]|res|{}|0x506a80bf
+08:18:05.754 (2805944101)|SYSTEM_METHOD_ENTRY|[76]|String.isBlank(String)
+08:18:05.754 (2805952675)|SYSTEM_METHOD_EXIT|[76]|String.isBlank(String)
+08:18:05.754 (2805962348)|STATEMENT_EXECUTE|[76]
+08:18:05.754 (2805963153)|STATEMENT_EXECUTE|[77]
+08:18:05.754 (2805965190)|HEAP_ALLOCATE|[77]|Bytes:3
+08:18:05.754 (2805979338)|HEAP_ALLOCATE|[77]|Bytes:28
+08:18:05.754 (2805997992)|VARIABLE_ASSIGNMENT|[77]|this.exchangeRate|1.0|0x506a80bf
+08:18:05.754 (2806001185)|STATEMENT_EXECUTE|[84]
+08:18:05.754 (2806011270)|SYSTEM_METHOD_ENTRY|[84]|List<DatedConversionRateLookup.Result>.add(Object)
+08:18:05.754 (2806018296)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+08:18:05.754 (2806022655)|SYSTEM_METHOD_EXIT|[84]|List<DatedConversionRateLookup.Result>.add(Object)
+08:18:05.754 (2806025730)|SYSTEM_METHOD_ENTRY|[73]|system.ListIterator.hasNext()
+08:18:05.754 (2806028600)|HEAP_ALLOCATE|[73]|Bytes:5
+08:18:05.754 (2806031159)|SYSTEM_METHOD_EXIT|[73]|system.ListIterator.hasNext()
+08:18:05.754 (2806034862)|VARIABLE_ASSIGNMENT|[73]|req|null|
+08:18:05.754 (2806037360)|STATEMENT_EXECUTE|[87]
+08:18:05.754 (2806044765)|METHOD_EXIT|[67]|01pWC0000021FLd|DatedConversionRateLookup.getExchangeRates(List<DatedConversionRateLookup.Request>)
+08:18:05.754 (2806047901)|VARIABLE_SCOPE_BEGIN|[67]|results|List<DatedConversionRateLookup.Result>|true|false
+08:18:05.754 (2806059686)|VARIABLE_ASSIGNMENT|[67]|results|[{"exchangeRate":1.0}]|0x128651a2
+08:18:05.754 (2806062929)|STATEMENT_EXECUTE|[68]
+08:18:05.754 (2806064604)|VARIABLE_SCOPE_BEGIN|[68]|i|Integer|false|false
+08:18:05.754 (2806068749)|HEAP_ALLOCATE|[68]|Bytes:4
+08:18:05.754 (2806072341)|VARIABLE_ASSIGNMENT|[68]|i|0
+08:18:05.754 (2806077365)|SYSTEM_METHOD_ENTRY|[68]|List<Opportunity>.size()
+08:18:05.754 (2806083112)|SYSTEM_METHOD_EXIT|[68]|List<Opportunity>.size()
+08:18:05.754 (2806085925)|STATEMENT_EXECUTE|[68]
+08:18:05.754 (2806086723)|STATEMENT_EXECUTE|[69]
+08:18:05.754 (2806092545)|HEAP_ALLOCATE|[69]|Bytes:8
+08:18:05.754 (2806101598)|HEAP_ALLOCATE|[69]|Bytes:4
+08:18:05.754 (2807239303)|VARIABLE_ASSIGNMENT|[69]|this.Exchange_Rate_To_USD__c|1.0|0x7d7cd9bc
+08:18:05.754 (2807254692)|HEAP_ALLOCATE|[68]|Bytes:4
+08:18:05.754 (2807266653)|VARIABLE_ASSIGNMENT|[68]|i|1
+08:18:05.754 (2807281198)|SYSTEM_METHOD_ENTRY|[68]|List<Opportunity>.size()
+08:18:05.754 (2807289109)|SYSTEM_METHOD_EXIT|[68]|List<Opportunity>.size()
+08:18:05.754 (2807301432)|METHOD_EXIT|[26]|01pWC000001wZoB|OpportunityTriggerHandler.setExchangeRates(List<Opportunity>)
+08:18:05.754 (2807308529)|SYSTEM_MODE_EXIT|false
+08:18:05.754 (2807315649)|METHOD_EXIT|[13]|01pWC000001wZoB|OpportunityTriggerHandler.handleBeforeInsert(List<Opportunity>)
+08:18:05.754 (2807335029)|STATEMENT_EXECUTE|[15]
+08:18:05.754 (2807342731)|STATEMENT_EXECUTE|[20]
+08:18:05.807 (2807352155)|CUMULATIVE_LIMIT_USAGE
+08:18:05.807 (2807352155)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 200
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 81 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:18:05.807 (2807352155)|TOTAL_EMAIL_RECIPIENTS_QUEUED|0
+08:18:05.807 (2807352155)|STATIC_VARIABLE_LIST|
+  int:BYTES:0
+  int:BYTES:0
+  byte[]:DigitOnes:0
+  byte[]:DigitTens:0
+  Boolean:FALSE:0
+  int:MAX_EXPONENT:0
+  double:MAX_VALUE:0
+  int:MAX_VALUE:0
+  int:MIN_EXPONENT:0
+  double:MIN_NORMAL:0
+  double:MIN_VALUE:0
+  int:MIN_VALUE:0
+  double:NEGATIVE_INFINITY:0
+  double:NaN:0
+  double:POSITIVE_INFINITY:0
+  int:PRECISION:0
+  int:SIZE:0
+  int:SIZE:0
+  Boolean:TRUE:0
+  String:__sfdcInnerTypes:0
+  String:__sfdcInnerTypes:0
+  String:__sfdcParameterizedTypes:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_sfdcAdditionalCodeLocations:0
+  String:_static_STAGE_CLOSED_LOST:0
+  String:_static_STAGE_ORDER_PROCESSING:0
+  Decimal:_static_STANDARD_DEFAULT_COLA_PCT:0
+  String:_static_STATUS_ACTIVE:0
+  String:_static_STATUS_QUOTING:0
+  char[]:digits:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+  long:serialVersionUID:0
+
+08:18:05.807 (2807352155)|CUMULATIVE_LIMIT_USAGE_END
+
+08:18:05.754 (2807948308)|CODE_UNIT_FINISHED|OpportunityTrigger on Opportunity trigger event BeforeInsert|__sfdc_trigger/OpportunityTrigger
+08:18:05.867 (2867091125)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Opportunity:new
+08:18:05.867 (2867138753)|VALIDATION_RULE|03dWC000000mx5s|Check_Company_Id_Value
+08:18:05.867 (2867319453)|VALIDATION_FORMULA|AND(
+	(LID__LinkedIn_Company_Id__c <> NULL),
+	NOT(ISNUMBER(LID__LinkedIn_Company_Id__c))
+)|LID__LinkedIn_Company_Id__c=null
+08:18:05.867 (2867326181)|VALIDATION_PASS
+08:18:05.867 (2867327674)|VALIDATION_RULE|03dWC000001ORzN|Closed_Detail_If_Fortra_Product_Swap
+08:18:05.867 (2867583656)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+   ISPICKVAL(Closed_Lost_Reason__c, "Fortra Product Swap"),
+   ISBLANK(Closed_Lost_Detail__c)
+)|Closed_Lost_Detail__c=null , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2867589198)|VALIDATION_PASS
+08:18:05.867 (2867590346)|VALIDATION_RULE|03dWC000001ORzO|Closed_Detail_If_No_Interest_or_Need
+08:18:05.867 (2867701964)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+   ISPICKVAL(Closed_Lost_Reason__c, "No Interest or Need"),
+   ISBLANK(Closed_Lost_Detail__c)
+)|Closed_Lost_Detail__c=null , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2867706051)|VALIDATION_PASS
+08:18:05.867 (2867707286)|VALIDATION_RULE|03dWC000001ORzP|Closed_Lost_Detail_If_Lost_To_Competitor
+08:18:05.867 (2867804220)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+   ISPICKVAL(Closed_Lost_Reason__c, "Lost to competitor"),
+   ISBLANK(Closed_Lost_Detail__c)
+)|Closed_Lost_Detail__c=null , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2867807844)|VALIDATION_PASS
+08:18:05.867 (2867808897)|VALIDATION_RULE|03dWC000001ORzQ|Closed_Lost_Detail_If_Process_Failure
+08:18:05.867 (2867901858)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+   ISPICKVAL(Closed_Lost_Reason__c, "Process Failure"),
+   ISBLANK(Closed_Lost_Detail__c)
+)|Closed_Lost_Detail__c=null , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2867905503)|VALIDATION_PASS
+08:18:05.867 (2867906639)|VALIDATION_RULE|03dWC000001ORzR|Closed_Lost_Detail_If_Product_Features
+08:18:05.867 (2867997532)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+   ISPICKVAL(Closed_Lost_Reason__c, "Product Features"),
+   ISBLANK(Closed_Lost_Detail__c)
+)|Closed_Lost_Detail__c=null , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2868000831)|VALIDATION_PASS
+08:18:05.867 (2868002760)|VALIDATION_RULE|03dWC0000017T7x|Require_Closed_Lost_Reason
+08:18:05.867 (2868153097)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  ISPICKVAL(StageName, "Closed Lost"),
+  ISBLANK(TEXT(Closed_Lost_Reason__c)),
+  NOT($Permission.Bypass_Validation_Rules)
+)|StageName=Renewal Forecast , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true , $Permission.Bypass_Validation_Rules=false
+08:18:05.867 (2868157778)|VALIDATION_PASS
+08:18:05.867 (2868158958)|VALIDATION_RULE|03dWC0000017T7y|Require_Competitor_on_Competitive_Loss
+08:18:05.867 (2868306726)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  ISPICKVAL(StageName, "Closed Lost"),
+  ISPICKVAL(Closed_Lost_Reason__c, "Lost to Competitor"),
+  ISBLANK(Incumbent_Competitor__c)
+)|Incumbent_Competitor__c=null , StageName=Renewal Forecast , Closed_Lost_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2868312081)|VALIDATION_PASS
+08:18:05.867 (2868313215)|VALIDATION_RULE|03dWC0000017T7z|Require_Expected_Renewal_Date
+08:18:05.867 (2868421087)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  ISPICKVAL(Type, "Renewal"),
+  ISBLANK(Expected_Renewal_Date__c)
+)|Type=null , $Permission.Data_Migration_Exclude_Business_Logic=true , Expected_Renewal_Date__c=null
+08:18:05.867 (2868424672)|VALIDATION_PASS
+08:18:05.867 (2868425778)|VALIDATION_RULE|03dWC0000017T80|Require_Renewed_Contract
+08:18:05.867 (2868666829)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  ISPICKVAL(Type, "Renewal"),
+  ISBLANK(Renewed_Contract__c),
+ $User.LastName <>"Migration"
+)|Type=null , $User.LastName=Jeong , $Permission.Data_Migration_Exclude_Business_Logic=true , Renewed_Contract__c=null
+08:18:05.867 (2868673325)|VALIDATION_PASS
+08:18:05.867 (2868674456)|VALIDATION_RULE|03dWC0000017T82|Require_Risk_Explanation
+08:18:05.867 (2868900961)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  $User.LastName <>"Migration",
+  ISPICKVAL(Type, "Renewal"),
+  OR(
+    ISPICKVAL(Renewal_Risk__c, "Medium Risk"),
+    ISPICKVAL(Renewal_Risk__c, "High Risk"),
+    ISPICKVAL(Renewal_Risk__c, "Notified Lost")
+  ),
+  ISBLANK(Renewal_Risk_Explanation__c)
+)|Type=null , Renewal_Risk_Explanation__c=null , $User.LastName=Jeong , $Permission.Data_Migration_Exclude_Business_Logic=true , Renewal_Risk__c=null
+08:18:05.867 (2868907980)|VALIDATION_PASS
+08:18:05.867 (2868909256)|VALIDATION_RULE|03dWC0000017T83|Require_Risk_Reason_for_Renewals
+08:18:05.867 (2869092624)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  
+  $User.LastName <>"Migration",
+  ISPICKVAL(Type, "Renewal"),
+  OR(
+    ISPICKVAL(Renewal_Risk__c, "Medium Risk"),
+    ISPICKVAL(Renewal_Risk__c, "High Risk"),
+    ISPICKVAL(Renewal_Risk__c, "Notified Lost")
+  ),
+  ISBLANK(TEXT(Primary_Renewal_Risk_Reason__c))
+)|Type=null , $User.LastName=Jeong , Primary_Renewal_Risk_Reason__c=null , $Permission.Data_Migration_Exclude_Business_Logic=true , Renewal_Risk__c=null
+08:18:05.867 (2869102086)|VALIDATION_PASS
+08:18:05.867 (2869103600)|VALIDATION_RULE|03dWC0000017T84|Require_Secondary_Risk_Reason
+08:18:05.867 (2869286075)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  $User.LastName <>"Migration",
+  ISPICKVAL(Type, "Renewal"),
+  OR(
+    ISPICKVAL(Renewal_Risk__c, "Medium Risk"),
+    ISPICKVAL(Renewal_Risk__c, "High Risk"),
+    ISPICKVAL(Renewal_Risk__c, "Notified Lost")
+  ),
+  ISBLANK(TEXT(Secondary_Renewal_Risk_Reason__c))
+)|Secondary_Renewal_Risk_Reason__c=null , Type=null , $User.LastName=Jeong , $Permission.Data_Migration_Exclude_Business_Logic=true , Renewal_Risk__c=null
+08:18:05.867 (2869292447)|VALIDATION_PASS
+08:18:05.867 (2869293485)|VALIDATION_RULE|03dWC000001pgXh|Require_Source_for_Type_New
+08:18:05.867 (2869442541)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+  $User.LastName <>"Migration",
+  ISPICKVAL(Type, "New"),
+  ISBLANK(TEXT(LeadSource ))
+)|Type=null , $User.LastName=Jeong , LeadSource=null , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2869447024)|VALIDATION_PASS
+08:18:05.867 (2869448299)|VALIDATION_RULE|03dWC000001ogBZ|APC_Manual_Trigger_Validation
+08:18:05.867 (2869577946)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+ Execute_Auto_Project_Creation_Process__c = TRUE,
+OR(
+ISPICKVAL(StageName, "Pre-Qualified"),
+ISPICKVAL(StageName, "Sales Qualified")
+)
+)|Execute_Auto_Project_Creation_Process__c=0 , StageName=Renewal Forecast , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2869582298)|VALIDATION_PASS
+08:18:05.867 (2869583521)|VALIDATION_RULE|03dWC000001aPXB|Close_Opportunities
+08:18:05.867 (2869736147)|VALIDATION_FORMULA|AND (NOT($Permission.Data_Migration_Exclude_Business_Logic),
+ISCHANGED(StageName),
+ISPICKVAL(StageName, "Closed Won"),
+NOT($Permission.Close_Opportunities),
+NOT($Permission.Bypass_Validation_Rules)
+)|StageName=Renewal Forecast , $Permission.Close_Opportunities=false , $Permission.Data_Migration_Exclude_Business_Logic=true , $Permission.Bypass_Validation_Rules=false
+08:18:05.867 (2869740540)|VALIDATION_PASS
+08:18:05.867 (2869741568)|VALIDATION_RULE|03dWC000001WlZV|One_Distributor_Per_Opportunity
+08:18:05.867 (2869853431)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+NOT(Bypass_Partner_Validation__c),
+Number_of_Distributors__c > 1
+)|Bypass_Partner_Validation__c=0 , Number_of_Distributors__c=0 , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2869857112)|VALIDATION_PASS
+08:18:05.867 (2869858249)|VALIDATION_RULE|03dWC000001WlZW|One_Reseller_Per_Opportunity
+08:18:05.867 (2869946543)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic), 
+NOT(Bypass_Partner_Validation__c), 
+Number_of_Resellers__c > 1
+)|Bypass_Partner_Validation__c=0 , Number_of_Resellers__c=0 , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:05.867 (2869949741)|VALIDATION_PASS
+08:18:05.867 (2869950812)|VALIDATION_RULE|03dWC000001H9hY|Opp_Rate_Card_Set_Currency_Mismatch
+08:18:05.867 (2870162996)|VALIDATION_FORMULA|(pse__Rate_Card_Set__c <> NULL) &&(ISPICKVAL(CurrencyIsoCode, '') &#124;&#124;
+		ISPICKVAL(pse__Rate_Card_Set__r.CurrencyIsoCode , '') &#124;&#124;
+		(TEXT(pse__Rate_Card_Set__r.CurrencyIsoCode) <> TEXT(CurrencyIsoCode)))|pse__Rate_Card_Set__r.CurrencyIsoCode=null , pse__Rate_Card_Set__c=null , CurrencyIsoCode=USD
+08:18:05.867 (2870170038)|VALIDATION_PASS
+08:18:05.867 (2870192914)|CODE_UNIT_FINISHED|Validation:Opportunity:new
+08:18:06.330 (3330735145)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3429298745)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3442434399)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3442681887)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444602259)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444678109)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444704123)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444725594)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444857730)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444876988)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444889563)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444902633)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444913825)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3444994886)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3445112797)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3459038796)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3460754303)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3460867934)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3461314645)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3461348223)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3462192603)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3462270926)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3462490245)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3462627336)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3462653127)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3463754417)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3463820259)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3463918062)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3478300748)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3478473994)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3478740390)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3478805036)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3478959704)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479013420)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479152488)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479202982)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479227573)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479270144)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479410458)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479459539)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479528555)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479574622)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479636594)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479683740)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479744797)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479790528)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479851300)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479896526)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3479955554)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480000386)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480061647)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480106431)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480165812)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480227961)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480335073)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480385382)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480455985)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480502112)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480569444)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480614591)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480683674)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480728563)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480794939)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480839769)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480906285)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3480962734)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481055876)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481070373)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481087353)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481151680)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481169647)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481180326)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481506660)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481571133)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481636017)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481645901)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3481659188)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3518801081)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3518922757)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3518945602)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519054342)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519111645)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519132617)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519154021)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519166936)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519211610)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519229243)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519252888)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3519593556)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3520658044)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3520709975)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3520724853)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3520775852)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3520854454)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3520906125)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521211110)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521249396)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521299099)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521347083)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521406203)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521427626)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521490034)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521511240)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521553396)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521573728)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521614490)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521633439)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521673551)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521694004)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521734772)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521754394)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521794829)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521814094)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521854464)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521873963)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521914567)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521933982)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521974430)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3521993042)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522033192)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522052991)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522093397)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522112562)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522153039)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522171671)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522211546)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522230331)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522270469)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522290794)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522352937)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522380557)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522423300)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522442907)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522483133)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522502419)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522623875)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522675821)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522698558)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522727266)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522741071)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522791232)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522848228)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3522985962)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3523198085)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3523901264)|SOQL_EXECUTE_BEGIN|[59]|Aggregations:0|SELECT createddate, id, lastmodifieddate, name, account_auto_update__c, account_manual_enrichment__c, contact_auto_update__c, contact_manual_enrichment__c, is_main_setting__c, lead_auto_update__c, lead_manual_enrichment__c, opportunity_auto_update__c, technographics_selections__c, technographics_writeback_style__c, technographics_target_field__c, useremail__c, old_contact__c, new_contact__c, currencyisocode FROM salesintelio__SalesIntel_Update_Settings__c WHERE salesintelio__Is_Main_Setting__c = TRUE  WITH SYSTEM_MODE ORDER BY LastModifiedDate DESC NULLS FIRST 
+08:18:06.330 (3548133109)|SOQL_EXECUTE_EXPLAIN|[59]|No explain plan is available
+08:18:06.330 (3548149874)|SOQL_EXECUTE_END|[59]|Rows:1
+08:18:06.330 (3548539166)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3548593681)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3548639985)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550388550)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550418888)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550572848)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550595662)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550614694)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550629787)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550640791)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550707731)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550763488)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550783374)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550799698)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550819337)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550830208)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550910757)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3550971148)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3551060988)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3551138201)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3551158006)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3553925403)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3553990596)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3554068245)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3574478685)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3574630873)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575028620)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575110988)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575254943)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575322042)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575524141)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575614218)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575804584)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3575874120)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576005928)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576062876)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576144377)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576206224)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576295080)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576345288)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576511476)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576572011)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576650511)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576697914)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576827995)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3576899525)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577057028)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577112672)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577216738)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577268097)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577348775)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577396717)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577490588)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577540139)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577613476)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577660873)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577733489)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577780448)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577886974)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3577941842)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578015190)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578063856)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578146681)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578195255)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578261254)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578308095)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578368707)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578414105)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578472395)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578536716)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578605748)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578653675)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578728436)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578785952)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578855669)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578901936)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3578962737)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579008018)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579106936)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579156370)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579242470)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579297275)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579376894)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579427597)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579525238)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579587118)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579667196)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579721453)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579815276)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579865016)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579935912)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3579996485)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580142107)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580218801)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580354570)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580410925)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580512753)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580562511)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580659229)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580709144)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580783973)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580848027)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3580981160)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581033753)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581119118)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581167414)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581233005)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581285512)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581350700)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581403930)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581474438)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581521605)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581585524)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581631571)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581690991)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581751044)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581817917)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581864067)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581935170)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3581981885)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582059371)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582109568)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582191744)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582238832)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582308647)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582360904)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582435735)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582540495)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582620131)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582668921)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582752688)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582801201)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582859013)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582873571)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582884914)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582931973)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582944665)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3582994805)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3583078651)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3583128125)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3583137672)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3583146494)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3583993812)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584037027)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584052002)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584099174)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584143161)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584157066)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584170733)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584188207)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584212060)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584227311)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584239380)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3584393881)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585014461)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585048652)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585059427)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585103346)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585155544)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585198330)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585717706)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585748934)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585813432)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585851513)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585908194)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585931364)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585974241)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3585994209)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586034919)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586055053)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586102531)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586124270)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586165528)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586186069)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586227264)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586246562)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586287110)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586306505)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586347107)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586422676)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586480759)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586503752)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586565672)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586598551)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586640746)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586661934)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586702171)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586721993)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586762232)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586781714)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586828014)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586848357)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586889171)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586908240)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586948090)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3586967413)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587007538)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587026955)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587072791)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587093377)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587133741)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587153017)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587204539)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587234697)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587282657)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587303601)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587351353)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587372744)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587419310)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587439905)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587480275)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587500162)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587540078)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587578592)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587626755)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587647081)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587704010)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587736776)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587778835)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587798900)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587846072)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587871827)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587913617)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587933858)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3587982371)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588009206)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588052721)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588087057)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588140667)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588162205)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588213935)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588234624)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588275678)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588295406)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588350939)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588371401)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588412262)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588431527)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588478269)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588498838)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588556051)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588576488)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588617013)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588648507)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588689670)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588715202)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588761403)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588781881)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588822098)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588870083)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588912883)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588933861)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588974318)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3588993774)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589033617)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589052758)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589092252)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589116637)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589162978)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589183158)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589252003)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589274290)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589317325)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589338202)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589379156)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589399419)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589439859)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589459716)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589500899)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589521649)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589606269)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589682975)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589734102)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589764942)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589776002)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589806340)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3589971346)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590020460)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590040736)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590094885)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590108412)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590146527)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590198715)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590413304)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3590527645)|ENTERING_MANAGED_PKG|salesintelio
+08:18:06.330 (3591707444)|SOQL_EXECUTE_BEGIN|[99]|Aggregations:0|SELECT id, createddate, lastmodifieddate, name, accountdayofweek__c, accountrecurrencedays__c, accountrecurrencetype__c, accountstarttime__c, accountweekofmonth__c, contactdayofweek__c, contactrecurrencedays__c, contactrecurrencetype__c, contactstarttime__c, contactweekofmonth__c, duplicateresolution__c, isaccountautoupdate__c, isaccountautoupdatetechnographics__c, isaccountimmediateupdate__c, isaccountimmediateupdatetechnographics__c, iscontactautoupdate__c, iscontactimmediateupdate__c, isimmediateupdate__c, isleadautoupdate__c, isleadautoupdatetechnographics__c, isleadimmediateupdate__c, isleadimmediateupdatetechnographics__c, ismainsetting__c, on_changed_job__c, isopportunityautoupdate__c, isopportunityimmediateupdate__c, leaddayofweek__c, leadrecurrencedays__c, leadrecurrencetype__c, leadstarttime__c, leadweekofmonth__c, opportunitydayofweek__c, opportunityrecurrencedays__c, opportunityrecurrencetype__c, opportunitystarttime__c, opportunityweekofmonth__c, is_account_schedule_filter__c, is_account_trigger_filter__c, is_contact_schedule_filter__c, is_contact_trigger_filter__c, is_lead_schedule_filter__c, is_lead_trigger_filter__c, is_opportunity_schedule_filter__c, is_opportunity_trigger_filter__c, bce_schedule_accuracy_tier__c, bce_schedule_maximum_contacts_per_group__c, bce_schedule_selected_persona_groups__c, bce_trigger_accuracy_tier__c, bce_trigger_maximum_contacts_per_group__c, bce_trigger_selected_persona_groups__c, currencyisocode, lastmodifiedby.name FROM salesintelio__SalesIntel_AutoUpdateSetting__c WHERE salesintelio__IsMainSetting__c = TRUE  WITH SYSTEM_MODE ORDER BY LastModifiedDate DESC NULLS FIRST 
+08:18:06.330 (3636517269)|SOQL_EXECUTE_EXPLAIN|[99]|No explain plan is available
+08:18:06.330 (3636538426)|SOQL_EXECUTE_END|[99]|Rows:1
+08:18:06.636 (3636962558)|CUMULATIVE_LIMIT_USAGE
+08:18:06.636 (3636962558)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 200
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 287 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:18:06.636 (3636962558)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 200
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 60000
+  Maximum heap size: 0 out of 12000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:18:06.636 (3636962558)|CUMULATIVE_LIMIT_USAGE_END
+
+08:18:06.642 (3642867129)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:Opportunity
+08:18:06.642 (3642931134)|CODE_UNIT_FINISHED|Workflow:Opportunity
+08:18:06.643 (3643173943)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Opportunity
+08:18:06.790 (3790672034)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000M7qbY|301WC00000b2z5l
+08:18:06.790 (3790753014)|FLOW_CREATE_INTERVIEW_END|4494b1973252d4685157c6baa5819f097e0edd-57d7|Fortra &#124; Opportunity &#124; After Insert/Update - Platform Events
+08:18:06.791 (3791020962)|FLOW_START_INTERVIEWS_BEGIN|1
+08:18:06.791 (3791109023)|FLOW_START_INTERVIEW_BEGIN|4494b1973252d4685157c6baa5819f097e0edd-57d7|Fortra &#124; Opportunity &#124; After Insert/Update - Platform Events
+08:18:06.791 (3791163768)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 2 out of 200
+08:18:06.791 (3791171515)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:06.791 (3791176412)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:06.791 (3791180626)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 1 out of 150
+08:18:06.791 (3791184340)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 1 out of 10000
+08:18:06.791 (3791188235)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 341 out of 65000
+08:18:06.791 (3791352133)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:06.791 (3791357235)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:06.791 (3791361797)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:06.791 (3791365833)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:06.791 (3791369522)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:06.791 (3791373472)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:18:06.791 (3793707792)|FLOW_VALUE_ASSIGNMENT|4494b1973252d4685157c6baa5819f097e0edd-57d7|$Record|{Id=006WC00000RWbrJYAT, IsDeleted=false, AccountId=001WC00000gVLfxYAG, IsPrivate=false, Name=Renewal Forecast - PAGANI SPA (00069388), Description=null, StageName=Renewal Forecast, Amount=0.0, Probability=0.0, ExpectedRevenue=0.0, TotalOpportunityQuantity=null, CloseDate=2027-06-25 00:00:00, Type=null, NextStep=null, LeadSource=null, IsClosed=false, IsWon=false, ForecastCategory=Omitted, ForecastCategoryName=Omitted, CurrencyIsoCode=USD, CampaignId=null, HasOpportunityLineItem=false, IsSplit=true, Pricebook2Id=null, OwnerId=005WC00000MgTN2YAN, CreatedDate=2026-06-27 15:18:06, AgeInDays=null, CreatedById=005WC00000MgTN2YAN, LastModifiedDate=2026-06-27 15:18:06, LastModifiedById=005WC00000MgTN2YAN, SystemModstamp=2026-06-27 15:18:06, LastActivityDate=null, LastActivityInDays=null, PushCount=null, LastStageChangeDate=null, LastStageChangeInDays=null, FiscalYear=null, FiscalQuarter=null, ContactId=null, LastViewedDate=null, LastReferencedDate=null, PartnerAccountId=null, SyncedQuoteId=null, ContractId=null, HasOpenActivity=false, HasOverdueTask=false, IqScore=null, LastAmountChangedHistoryId=null, LastCloseDateChangedHistoryId=null, IsPriorityRecord=false, ActivityMetricId=null, AWS_Account_Manager_Email__c=null, AWS_Account_Manager_Name__c=null, AWS_Marketplace_Offer_ID__c=null, AWS_PSM_Email__c=null, LID__LinkedIn_Company_Id__c=null, Corporate_Currency_Amount__c=0.0, Disable_Automation__c=false, AWS_PSM_Name__c=null, Conversion_Rate__c=1.0, ALE_Amount_View__c=null, Number_of_Distributors__c=0.0, Number_of_Resellers__c=0.0, Bypass_Partner_Validation__c=false, BDR__c=null, Opportunity_Owner_Name_Formula__c=Liam Jeong, Referral_Partner__c=null, Channel_Account_Manager__c=null, CloseDate__c=null, Cross_Sell_User__c=null, Deal_Origin__c=Fortra Originated, Deal_Registration_Date_Approved__c=null, Deal_Registration_Notes__c=null, Implementation_Owner__c=null, Displaced_ARR_old__c=null, Distributor__c=null, Domain__c=null, Existing_Customer_of_Partner__c=null, Quote_Count__c=0.0, Expected_Renewal_Amount__c=null, Expected_Renewal_Date__c=null, First_Touch_Date__c=null, Follow_up_date__c=null, HS_Sync_Correlation_Id__c=null, Forecast_Notes__c=null, Fortra_Partner_Marketing_Involvement__c=null, Help_Sell_User__c=null, HS_Sync_Message__c=null, Incumbent_Competitor_Renewal_Date__c=null, HS_Sync_Payload__c=null, Is_Branded__c=false, Last_Sales_Activity_Date__c=null, HS_Sync_Status__c=Pending, Lead_Created_Date__c=null, HS_Deal_Id__c=null, Displaced_ARR__c=0.0, Opportunity_NARR__c=null, Number_of_Activities_Logged__c=null, Opportunity_NARR_Calculated__c=0.0, PCTA_Type__c=null, Paid_Search_Term__c=null, Pains_and_Challenges__c=null, Dynamic_Conversion_Rate__c=null, Partner_Deal_Status__c=null, Partner_MDF_Activity_ID__c=null, Partner_Sales_Activity_with_End_Customer__c=null, Positive_Business_Outcomes__c=null, Primary_Renewal_Risk_Reason__c=null, Cross_Sale_Type__c=null, Products_of_Interest__c=null, Project_Timeline__c=null, Running_User_Opportunity_Owner__c=true, Re_Opened_Date__c=null, RecordTypeId__c=null, Renewal_Risk_Explanation__c=null, Renewal_Risk__c=null, Renewed_Contract__c=null, Reseller__c=null, SALES_INQUIRY_LOOKUP__c=null, SQL_Date__c=null, Sale_Type__c=null, Secondary_Renewal_Risk_Reason__c=null, Secondary_Rep__c=null, Value_Drivers__c=null, Subscription_Term__c=12.0, Technical_Closure_Complete__c=null, Exchange_Rate_To_USD__c=1.0, Partner_Account_Name__c=null, Legacy_Discount__c=null, Closed_Lost_Detail__c=null, Closed_Lost_Reason__c=null, Closed_Lost_Sub_Reason__c=null, Inquiry_Created_Date__c=null, salesintelio__Attempted_Enrichment_Disposition__c=null, salesintelio__Attempted_Enrichment__c=false, salesintelio__First_Enriched_Date__c=null, salesintelio__Last_Attempted_Enrichment__c=null, salesintelio__Last_Enriched_Date__c=null, salesintelio__Last_Matched_Date__c=null, salesintelio__SalesIntel_Enriched__c=false, salesintelio__SalesIntel_Exported__c=false, salesintelio__SalesIntel_Up_to_Date__c=false, Budget_Allocated__c=null, Distributor_Text__c=null, RFP__c=null, AWS_Marketplace_Agreement_ID__c=null, Bill_To_Place__c=null, Champion_Identified__c=null, Deal_Registration_Expiration_Date__c=null, Deal_Registration_ID__c=DR-468463, Demo_Completed__c=null, Discovery_Call_Completed__c=null, Economic_Buyer_Identified__c=null, Final_Pricing_Confirmed__c=null, Incumbent_Competitor__c=null, Legal_Entity__c=null, Legal_Review_Completed__c=null, Legal_Review_Started__c=null, Negative_Consequences__c=null, Number_of_Deal_Registration_Extensions__c=null, POC_Complete__c=null, POC_Needed__c=null, Partner_Portal_Deal_Registration__c=null, Proactive_Trial__c=null, Required_Capabilities__c=null, Sales_Activities_Partner_Completed__c=null, Ship_To_Place__c=null, Technical_Win_Confirmed__c=null, Territory__c=null, Trial_Date_Confirmed__c=null, Trial_End_Date__c=null, Trial_Manager__c=null, Trial_Notes__c=null, Trial_Start_Date__c=null, Trial_Status__c=null, Reseller_Text__c=null, LE_Change_In_Progress__c=false, ffr__BatchProcess__c=null, c2g__CODAUnitOfWork__c=null, pse__Forecast_Curve__c=null, pse__Group__c=null, pse__IsParentOpportunityServices__c=false, pse__Is_Change_Request__c=false, pse__Is_Services_Opportunity__c=false, pse__Parent_Opportunity__c=null, pse__Practice__c=null, pse__PreBilledAmount__c=null, pse__Pre_Billed_Amount__c=null, pse__Primary_Project__c=null, pse__Rate_Card_Discount_Limit__c=null, pse__Rate_Card_Percentage_Discount__c=null, pse__Rate_Card_Set__c=null, pse__Region__c=null, pse__Services_Attached_From_Products__c=0.0, pse__Services_Attached_Percent_From_Products__c=0.0, AccountName__c=PAGANI SPA, Part_of_a_Marketing_Initiative__c=null, Product_of_Interest__c=null, Run_Assignment__c=false, AWS_Account_Number__c=null, AWS_Marketplace__c=null, AWS_Sales_Stage__c=null, Approval_Status__c=null, Total_Services__c=null, Upsell_Opportunity__c=null, ARR_Last_Updated__c=null, AWS_Score__c=null, Total_ARR__c=null, Deal_Registration_Submitter__c=null, User_Registered_Deal__c=false, Deal_Cycle_Time_Days__c=363.0, No_Territory_Found__c=false, Legacy_Id__c=null, Execute_Auto_Project_Creation_Process__c=false, Project_Creation_Processed__c=false, Project_Check_Override__c=false, Services_Help_Requested_Date__c=null}
+08:18:06.791 (3793854527)|FLOW_ELEMENT_BEGIN|4494b1973252d4685157c6baa5819f097e0edd-57d7|FlowDecision|New_Opportunity_Decision
+08:18:06.791 (3794016217)|FLOW_ELEMENT_DEFERRED|FlowDecision|New_Opportunity_Decision
+08:18:06.791 (3794122714)|FLOW_ELEMENT_LIMIT_USAGE|3 ms CPU time, total 344 out of 65000
+08:18:06.791 (3794161940)|FLOW_ELEMENT_END|4494b1973252d4685157c6baa5819f097e0edd-57d7|FlowDecision|New_Opportunity_Decision
+08:18:06.791 (3813553763)|FLOW_START_INTERVIEW_END|4494b1973252d4685157c6baa5819f097e0edd-57d7|Fortra &#124; Opportunity &#124; After Insert/Update - Platform Events
+08:18:06.791 (3813634214)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|New_Opportunity_Decision
+08:18:06.791 (3814027243)|FLOW_RULE_DETAIL|4494b1973252d4685157c6baa5819f097e0edd-57d7|Yes_New_Opportunity_Outcome|true|false
+08:18:06.791 (3814055971)|FLOW_VALUE_ASSIGNMENT|4494b1973252d4685157c6baa5819f097e0edd-57d7|Yes_New_Opportunity_Outcome|true
+08:18:06.791 (3814190124)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 345 out of 65000
+08:18:06.791 (3814253128)|FLOW_BULK_ELEMENT_END|FlowDecision|New_Opportunity_Decision|0|0
+08:18:06.791 (3814305456)|FLOW_ELEMENT_BEGIN|4494b1973252d4685157c6baa5819f097e0edd-57d7|FlowDecision|HubSpot_Pending_Decision2
+08:18:06.791 (3814338644)|FLOW_ELEMENT_DEFERRED|FlowDecision|HubSpot_Pending_Decision2
+08:18:06.791 (3814382305)|FLOW_ELEMENT_END|4494b1973252d4685157c6baa5819f097e0edd-57d7|FlowDecision|HubSpot_Pending_Decision2
+08:18:06.791 (3814407040)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|HubSpot_Pending_Decision2
+08:18:06.791 (3814543534)|FLOW_RULE_DETAIL|4494b1973252d4685157c6baa5819f097e0edd-57d7|Yes_HubSpot_Pending_Outcome2|true|false
+08:18:06.791 (3814555820)|FLOW_VALUE_ASSIGNMENT|4494b1973252d4685157c6baa5819f097e0edd-57d7|Yes_HubSpot_Pending_Outcome2|true
+08:18:06.791 (3814639791)|FLOW_BULK_ELEMENT_END|FlowDecision|HubSpot_Pending_Decision2|0|0
+08:18:06.791 (3814660232)|FLOW_ELEMENT_BEGIN|4494b1973252d4685157c6baa5819f097e0edd-57d7|FlowRecordCreate|HS_Contact_Created_Platform_Event
+08:18:06.791 (3814683363)|FLOW_ELEMENT_DEFERRED|FlowRecordCreate|HS_Contact_Created_Platform_Event
+08:18:06.791 (3814694653)|FLOW_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 346 out of 65000
+08:18:06.791 (3814712988)|FLOW_ELEMENT_END|4494b1973252d4685157c6baa5819f097e0edd-57d7|FlowRecordCreate|HS_Contact_Created_Platform_Event
+08:18:06.791 (3814740332)|FLOW_BULK_ELEMENT_BEGIN|FlowRecordCreate|HS_Contact_Created_Platform_Event
+08:18:06.791 (3814906574)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|2|100
+08:18:06.791 (3814954819)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordCreate|HS_Contact_Created_Platform_Event|1
+08:18:06.791 (3814960511)|LIMIT_USAGE|[EXTERNAL]|DML|2|150
+08:18:06.791 (3814963835)|LIMIT_USAGE|[EXTERNAL]|DML_ROWS|2|10000
+08:18:06.791 (3836601663)|FLOW_VALUE_ASSIGNMENT|4494b1973252d4685157c6baa5819f097e0edd-57d7|HS_Contact_Created_Platform_Event|e0Jxx0000000001EAA
+08:18:06.791 (3836762517)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 DML statements, total 2 out of 150
+08:18:06.791 (3836768368)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 DML rows, total 2 out of 10000
+08:18:06.791 (3836772593)|FLOW_BULK_ELEMENT_LIMIT_USAGE|10 ms CPU time, total 356 out of 65000
+08:18:06.791 (3836909716)|FLOW_BULK_ELEMENT_END|FlowRecordCreate|HS_Contact_Created_Platform_Event|1|21
+08:18:06.791 (3837094707)|FLOW_START_INTERVIEWS_END|1
+08:18:06.791 (3837234026)|FLOW_INTERVIEW_FINISHED|4494b1973252d4685157c6baa5819f097e0edd-57d7|Fortra &#124; Opportunity &#124; After Insert/Update - Platform Events
+08:18:06.791 (3837275606)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 2 out of 200
+08:18:06.791 (3837280462)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:06.791 (3837284079)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:06.791 (3837288415)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 2 out of 150
+08:18:06.791 (3837291588)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 2 out of 10000
+08:18:06.791 (3837294469)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 356 out of 65000
+08:18:06.791 (3837341950)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:06.791 (3837345684)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:06.791 (3837348539)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:06.791 (3837352205)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:06.791 (3837355365)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:07.81 (4081525531)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000RqAtQ|301WC00000kDa83
+08:18:07.81 (4081604279)|FLOW_CREATE_INTERVIEW_END|4504b1973252d4685157c6baa5819f097e0edd-57d8|PSA RTF Opportunity Created Update Practice
+08:18:07.81 (4081849135)|FLOW_START_INTERVIEWS_BEGIN|1
+08:18:07.81 (4081884394)|FLOW_START_INTERVIEW_BEGIN|4504b1973252d4685157c6baa5819f097e0edd-57d8|PSA RTF Opportunity Created Update Practice
+08:18:07.81 (4081938067)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 2 out of 200
+08:18:07.81 (4081945636)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:07.81 (4081950787)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:07.81 (4081955243)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 2 out of 150
+08:18:07.81 (4081959348)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 2 out of 10000
+08:18:07.81 (4081963422)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 358 out of 65000
+08:18:07.81 (4082104294)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:07.81 (4082110422)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:07.81 (4082114627)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:07.81 (4082118746)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:07.81 (4082122957)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:07.81 (4082126813)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:18:07.81 (4084407748)|FLOW_VALUE_ASSIGNMENT|4504b1973252d4685157c6baa5819f097e0edd-57d8|$Record|{Id=006WC00000RWbrJYAT, IsDeleted=false, AccountId=001WC00000gVLfxYAG, IsPrivate=false, Name=Renewal Forecast - PAGANI SPA (00069388), Description=null, StageName=Renewal Forecast, Amount=0.0, Probability=0.0, ExpectedRevenue=0.0, TotalOpportunityQuantity=null, CloseDate=2027-06-25 00:00:00, Type=null, NextStep=null, LeadSource=null, IsClosed=false, IsWon=false, ForecastCategory=Omitted, ForecastCategoryName=Omitted, CurrencyIsoCode=USD, CampaignId=null, HasOpportunityLineItem=false, IsSplit=true, Pricebook2Id=null, OwnerId=005WC00000MgTN2YAN, CreatedDate=2026-06-27 15:18:06, AgeInDays=null, CreatedById=005WC00000MgTN2YAN, LastModifiedDate=2026-06-27 15:18:06, LastModifiedById=005WC00000MgTN2YAN, SystemModstamp=2026-06-27 15:18:06, LastActivityDate=null, LastActivityInDays=null, PushCount=null, LastStageChangeDate=null, LastStageChangeInDays=null, FiscalYear=null, FiscalQuarter=null, ContactId=null, LastViewedDate=null, LastReferencedDate=null, PartnerAccountId=null, SyncedQuoteId=null, ContractId=null, HasOpenActivity=false, HasOverdueTask=false, IqScore=null, LastAmountChangedHistoryId=null, LastCloseDateChangedHistoryId=null, IsPriorityRecord=false, ActivityMetricId=null, AWS_Account_Manager_Email__c=null, AWS_Account_Manager_Name__c=null, AWS_Marketplace_Offer_ID__c=null, AWS_PSM_Email__c=null, LID__LinkedIn_Company_Id__c=null, Corporate_Currency_Amount__c=0.0, Disable_Automation__c=false, AWS_PSM_Name__c=null, Conversion_Rate__c=1.0, ALE_Amount_View__c=null, Number_of_Distributors__c=0.0, Number_of_Resellers__c=0.0, Bypass_Partner_Validation__c=false, BDR__c=null, Opportunity_Owner_Name_Formula__c=Liam Jeong, Referral_Partner__c=null, Channel_Account_Manager__c=null, CloseDate__c=null, Cross_Sell_User__c=null, Deal_Origin__c=Fortra Originated, Deal_Registration_Date_Approved__c=null, Deal_Registration_Notes__c=null, Implementation_Owner__c=null, Displaced_ARR_old__c=null, Distributor__c=null, Domain__c=null, Existing_Customer_of_Partner__c=null, Quote_Count__c=0.0, Expected_Renewal_Amount__c=null, Expected_Renewal_Date__c=null, First_Touch_Date__c=null, Follow_up_date__c=null, HS_Sync_Correlation_Id__c=null, Forecast_Notes__c=null, Fortra_Partner_Marketing_Involvement__c=null, Help_Sell_User__c=null, HS_Sync_Message__c=null, Incumbent_Competitor_Renewal_Date__c=null, HS_Sync_Payload__c=null, Is_Branded__c=false, Last_Sales_Activity_Date__c=null, HS_Sync_Status__c=Pending, Lead_Created_Date__c=null, HS_Deal_Id__c=null, Displaced_ARR__c=0.0, Opportunity_NARR__c=null, Number_of_Activities_Logged__c=null, Opportunity_NARR_Calculated__c=0.0, PCTA_Type__c=null, Paid_Search_Term__c=null, Pains_and_Challenges__c=null, Dynamic_Conversion_Rate__c=null, Partner_Deal_Status__c=null, Partner_MDF_Activity_ID__c=null, Partner_Sales_Activity_with_End_Customer__c=null, Positive_Business_Outcomes__c=null, Primary_Renewal_Risk_Reason__c=null, Cross_Sale_Type__c=null, Products_of_Interest__c=null, Project_Timeline__c=null, Running_User_Opportunity_Owner__c=true, Re_Opened_Date__c=null, RecordTypeId__c=null, Renewal_Risk_Explanation__c=null, Renewal_Risk__c=null, Renewed_Contract__c=null, Reseller__c=null, SALES_INQUIRY_LOOKUP__c=null, SQL_Date__c=null, Sale_Type__c=null, Secondary_Renewal_Risk_Reason__c=null, Secondary_Rep__c=null, Value_Drivers__c=null, Subscription_Term__c=12.0, Technical_Closure_Complete__c=null, Exchange_Rate_To_USD__c=1.0, Partner_Account_Name__c=null, Legacy_Discount__c=null, Closed_Lost_Detail__c=null, Closed_Lost_Reason__c=null, Closed_Lost_Sub_Reason__c=null, Inquiry_Created_Date__c=null, salesintelio__Attempted_Enrichment_Disposition__c=null, salesintelio__Attempted_Enrichment__c=false, salesintelio__First_Enriched_Date__c=null, salesintelio__Last_Attempted_Enrichment__c=null, salesintelio__Last_Enriched_Date__c=null, salesintelio__Last_Matched_Date__c=null, salesintelio__SalesIntel_Enriched__c=false, salesintelio__SalesIntel_Exported__c=false, salesintelio__SalesIntel_Up_to_Date__c=false, Budget_Allocated__c=null, Distributor_Text__c=null, RFP__c=null, AWS_Marketplace_Agreement_ID__c=null, Bill_To_Place__c=null, Champion_Identified__c=null, Deal_Registration_Expiration_Date__c=null, Deal_Registration_ID__c=DR-468463, Demo_Completed__c=null, Discovery_Call_Completed__c=null, Economic_Buyer_Identified__c=null, Final_Pricing_Confirmed__c=null, Incumbent_Competitor__c=null, Legal_Entity__c=null, Legal_Review_Completed__c=null, Legal_Review_Started__c=null, Negative_Consequences__c=null, Number_of_Deal_Registration_Extensions__c=null, POC_Complete__c=null, POC_Needed__c=null, Partner_Portal_Deal_Registration__c=null, Proactive_Trial__c=null, Required_Capabilities__c=null, Sales_Activities_Partner_Completed__c=null, Ship_To_Place__c=null, Technical_Win_Confirmed__c=null, Territory__c=null, Trial_Date_Confirmed__c=null, Trial_End_Date__c=null, Trial_Manager__c=null, Trial_Notes__c=null, Trial_Start_Date__c=null, Trial_Status__c=null, Reseller_Text__c=null, LE_Change_In_Progress__c=false, ffr__BatchProcess__c=null, c2g__CODAUnitOfWork__c=null, pse__Forecast_Curve__c=null, pse__Group__c=null, pse__IsParentOpportunityServices__c=false, pse__Is_Change_Request__c=false, pse__Is_Services_Opportunity__c=false, pse__Parent_Opportunity__c=null, pse__Practice__c=null, pse__PreBilledAmount__c=null, pse__Pre_Billed_Amount__c=null, pse__Primary_Project__c=null, pse__Rate_Card_Discount_Limit__c=null, pse__Rate_Card_Percentage_Discount__c=null, pse__Rate_Card_Set__c=null, pse__Region__c=null, pse__Services_Attached_From_Products__c=0.0, pse__Services_Attached_Percent_From_Products__c=0.0, AccountName__c=PAGANI SPA, Part_of_a_Marketing_Initiative__c=null, Product_of_Interest__c=null, Run_Assignment__c=false, AWS_Account_Number__c=null, AWS_Marketplace__c=null, AWS_Sales_Stage__c=null, Approval_Status__c=null, Total_Services__c=null, Upsell_Opportunity__c=null, ARR_Last_Updated__c=null, AWS_Score__c=null, Total_ARR__c=null, Deal_Registration_Submitter__c=null, User_Registered_Deal__c=false, Deal_Cycle_Time_Days__c=363.0, No_Territory_Found__c=false, Legacy_Id__c=null, Execute_Auto_Project_Creation_Process__c=false, Project_Creation_Processed__c=false, Project_Check_Override__c=false, Services_Help_Requested_Date__c=null}
+08:18:07.81 (4084547845)|FLOW_ELEMENT_BEGIN|4504b1973252d4685157c6baa5819f097e0edd-57d8|FlowRecordLookup|Get_Opportunity_Products
+08:18:07.81 (4084673374)|FLOW_ELEMENT_DEFERRED|FlowRecordLookup|Get_Opportunity_Products
+08:18:07.81 (4084711011)|FLOW_ELEMENT_LIMIT_USAGE|3 ms CPU time, total 361 out of 65000
+08:18:07.81 (4084747671)|FLOW_ELEMENT_END|4504b1973252d4685157c6baa5819f097e0edd-57d8|FlowRecordLookup|Get_Opportunity_Products
+08:18:07.81 (4101119835)|FLOW_START_INTERVIEW_END|4504b1973252d4685157c6baa5819f097e0edd-57d8|PSA RTF Opportunity Created Update Practice
+08:18:07.81 (4101319901)|FLOW_BULK_ELEMENT_BEGIN|FlowRecordLookup|Get_Opportunity_Products
+08:18:07.81 (4101615836)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|3|100
+08:18:07.81 (4122420743)|LIMIT_USAGE|[EXTERNAL]|SOQL_ROWS|1|50000
+08:18:07.81 (4122434188)|LIMIT_USAGE|[EXTERNAL]|SOQL|3|200
+08:18:07.81 (4122437631)|LIMIT_USAGE|[EXTERNAL]|AGGS|1|600
+08:18:07.81 (4122474284)|FLOW_VALUE_ASSIGNMENT|4504b1973252d4685157c6baa5819f097e0edd-57d8|Get_Opportunity_Products|
+08:18:07.81 (4122520826)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordLookup|Get_Opportunity_Products|0
+08:18:07.81 (4122863189)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 SOQL queries, total 3 out of 200
+08:18:07.81 (4122870951)|FLOW_BULK_ELEMENT_LIMIT_USAGE|9 ms CPU time, total 370 out of 65000
+08:18:07.81 (4122998203)|FLOW_BULK_ELEMENT_END|FlowRecordLookup|Get_Opportunity_Products|0|6
+08:18:07.81 (4123056814)|FLOW_ELEMENT_BEGIN|4504b1973252d4685157c6baa5819f097e0edd-57d8|FlowDecision|Did_we_get_OPLI_Records
+08:18:07.81 (4123097479)|FLOW_ELEMENT_DEFERRED|FlowDecision|Did_we_get_OPLI_Records
+08:18:07.81 (4123136867)|FLOW_ELEMENT_END|4504b1973252d4685157c6baa5819f097e0edd-57d8|FlowDecision|Did_we_get_OPLI_Records
+08:18:07.81 (4123171347)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Did_we_get_OPLI_Records
+08:18:07.81 (4123241402)|FLOW_RULE_DETAIL|4504b1973252d4685157c6baa5819f097e0edd-57d8|Yes|false|false
+08:18:07.81 (4123260395)|FLOW_VALUE_ASSIGNMENT|4504b1973252d4685157c6baa5819f097e0edd-57d8|Yes|false
+08:18:07.81 (4123330924)|FLOW_BULK_ELEMENT_END|FlowDecision|Did_we_get_OPLI_Records|0|0
+08:18:07.81 (4123476723)|FLOW_START_INTERVIEWS_END|1
+08:18:07.81 (4123632289)|FLOW_INTERVIEW_FINISHED|4504b1973252d4685157c6baa5819f097e0edd-57d8|PSA RTF Opportunity Created Update Practice
+08:18:07.81 (4123680843)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 3 out of 200
+08:18:07.81 (4123689702)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:07.81 (4123696952)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:07.81 (4123704362)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 2 out of 150
+08:18:07.81 (4123711449)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 2 out of 10000
+08:18:07.81 (4123760124)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 370 out of 65000
+08:18:07.81 (4123820066)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:07.81 (4123828403)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:07.81 (4123835647)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:07.81 (4123842798)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:07.81 (4123850014)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:07.255 (4255127553)|FLOW_CREATE_INTERVIEW_BEGIN|00DWC000006eUFF|300WC00000RiheP|301WC00000kDIkn
+08:18:07.255 (4255206608)|FLOW_CREATE_INTERVIEW_END|4514b1973252d4685157c6baa5819f097e0edd-57d9|PSA RTF Opportunity Created or Updated for Is service Opportunity
+08:18:07.255 (4255449622)|FLOW_START_INTERVIEWS_BEGIN|1
+08:18:07.255 (4255481563)|FLOW_START_INTERVIEW_BEGIN|4514b1973252d4685157c6baa5819f097e0edd-57d9|PSA RTF Opportunity Created or Updated for Is service Opportunity
+08:18:07.255 (4255531054)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL queries: 3 out of 200
+08:18:07.255 (4255539108)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:07.255 (4255543945)|FLOW_START_INTERVIEW_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:07.255 (4255548288)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML statements: 2 out of 150
+08:18:07.255 (4255552449)|FLOW_START_INTERVIEW_LIMIT_USAGE|DML rows: 2 out of 10000
+08:18:07.255 (4255556322)|FLOW_START_INTERVIEW_LIMIT_USAGE|CPU time in ms: 372 out of 65000
+08:18:07.255 (4255699464)|FLOW_START_INTERVIEW_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:07.255 (4255704298)|FLOW_START_INTERVIEW_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:07.255 (4255708734)|FLOW_START_INTERVIEW_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:07.255 (4255712832)|FLOW_START_INTERVIEW_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:07.255 (4255716514)|FLOW_START_INTERVIEW_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:07.255 (4255720463)|FLOW_START_INTERVIEW_LIMIT_USAGE|Push notifications: 0 out of 10
+08:18:07.255 (4258096319)|FLOW_VALUE_ASSIGNMENT|4514b1973252d4685157c6baa5819f097e0edd-57d9|$Record|{Id=006WC00000RWbrJYAT, IsDeleted=false, AccountId=001WC00000gVLfxYAG, IsPrivate=false, Name=Renewal Forecast - PAGANI SPA (00069388), Description=null, StageName=Renewal Forecast, Amount=0.0, Probability=0.0, ExpectedRevenue=0.0, TotalOpportunityQuantity=null, CloseDate=2027-06-25 00:00:00, Type=null, NextStep=null, LeadSource=null, IsClosed=false, IsWon=false, ForecastCategory=Omitted, ForecastCategoryName=Omitted, CurrencyIsoCode=USD, CampaignId=null, HasOpportunityLineItem=false, IsSplit=true, Pricebook2Id=null, OwnerId=005WC00000MgTN2YAN, CreatedDate=2026-06-27 15:18:06, AgeInDays=null, CreatedById=005WC00000MgTN2YAN, LastModifiedDate=2026-06-27 15:18:06, LastModifiedById=005WC00000MgTN2YAN, SystemModstamp=2026-06-27 15:18:06, LastActivityDate=null, LastActivityInDays=null, PushCount=null, LastStageChangeDate=null, LastStageChangeInDays=null, FiscalYear=null, FiscalQuarter=null, ContactId=null, LastViewedDate=null, LastReferencedDate=null, PartnerAccountId=null, SyncedQuoteId=null, ContractId=null, HasOpenActivity=false, HasOverdueTask=false, IqScore=null, LastAmountChangedHistoryId=null, LastCloseDateChangedHistoryId=null, IsPriorityRecord=false, ActivityMetricId=null, AWS_Account_Manager_Email__c=null, AWS_Account_Manager_Name__c=null, AWS_Marketplace_Offer_ID__c=null, AWS_PSM_Email__c=null, LID__LinkedIn_Company_Id__c=null, Corporate_Currency_Amount__c=0.0, Disable_Automation__c=false, AWS_PSM_Name__c=null, Conversion_Rate__c=1.0, ALE_Amount_View__c=null, Number_of_Distributors__c=0.0, Number_of_Resellers__c=0.0, Bypass_Partner_Validation__c=false, BDR__c=null, Opportunity_Owner_Name_Formula__c=Liam Jeong, Referral_Partner__c=null, Channel_Account_Manager__c=null, CloseDate__c=null, Cross_Sell_User__c=null, Deal_Origin__c=Fortra Originated, Deal_Registration_Date_Approved__c=null, Deal_Registration_Notes__c=null, Implementation_Owner__c=null, Displaced_ARR_old__c=null, Distributor__c=null, Domain__c=null, Existing_Customer_of_Partner__c=null, Quote_Count__c=0.0, Expected_Renewal_Amount__c=null, Expected_Renewal_Date__c=null, First_Touch_Date__c=null, Follow_up_date__c=null, HS_Sync_Correlation_Id__c=null, Forecast_Notes__c=null, Fortra_Partner_Marketing_Involvement__c=null, Help_Sell_User__c=null, HS_Sync_Message__c=null, Incumbent_Competitor_Renewal_Date__c=null, HS_Sync_Payload__c=null, Is_Branded__c=false, Last_Sales_Activity_Date__c=null, HS_Sync_Status__c=Pending, Lead_Created_Date__c=null, HS_Deal_Id__c=null, Displaced_ARR__c=0.0, Opportunity_NARR__c=null, Number_of_Activities_Logged__c=null, Opportunity_NARR_Calculated__c=0.0, PCTA_Type__c=null, Paid_Search_Term__c=null, Pains_and_Challenges__c=null, Dynamic_Conversion_Rate__c=null, Partner_Deal_Status__c=null, Partner_MDF_Activity_ID__c=null, Partner_Sales_Activity_with_End_Customer__c=null, Positive_Business_Outcomes__c=null, Primary_Renewal_Risk_Reason__c=null, Cross_Sale_Type__c=null, Products_of_Interest__c=null, Project_Timeline__c=null, Running_User_Opportunity_Owner__c=true, Re_Opened_Date__c=null, RecordTypeId__c=null, Renewal_Risk_Explanation__c=null, Renewal_Risk__c=null, Renewed_Contract__c=null, Reseller__c=null, SALES_INQUIRY_LOOKUP__c=null, SQL_Date__c=null, Sale_Type__c=null, Secondary_Renewal_Risk_Reason__c=null, Secondary_Rep__c=null, Value_Drivers__c=null, Subscription_Term__c=12.0, Technical_Closure_Complete__c=null, Exchange_Rate_To_USD__c=1.0, Partner_Account_Name__c=null, Legacy_Discount__c=null, Closed_Lost_Detail__c=null, Closed_Lost_Reason__c=null, Closed_Lost_Sub_Reason__c=null, Inquiry_Created_Date__c=null, salesintelio__Attempted_Enrichment_Disposition__c=null, salesintelio__Attempted_Enrichment__c=false, salesintelio__First_Enriched_Date__c=null, salesintelio__Last_Attempted_Enrichment__c=null, salesintelio__Last_Enriched_Date__c=null, salesintelio__Last_Matched_Date__c=null, salesintelio__SalesIntel_Enriched__c=false, salesintelio__SalesIntel_Exported__c=false, salesintelio__SalesIntel_Up_to_Date__c=false, Budget_Allocated__c=null, Distributor_Text__c=null, RFP__c=null, AWS_Marketplace_Agreement_ID__c=null, Bill_To_Place__c=null, Champion_Identified__c=null, Deal_Registration_Expiration_Date__c=null, Deal_Registration_ID__c=DR-468463, Demo_Completed__c=null, Discovery_Call_Completed__c=null, Economic_Buyer_Identified__c=null, Final_Pricing_Confirmed__c=null, Incumbent_Competitor__c=null, Legal_Entity__c=null, Legal_Review_Completed__c=null, Legal_Review_Started__c=null, Negative_Consequences__c=null, Number_of_Deal_Registration_Extensions__c=null, POC_Complete__c=null, POC_Needed__c=null, Partner_Portal_Deal_Registration__c=null, Proactive_Trial__c=null, Required_Capabilities__c=null, Sales_Activities_Partner_Completed__c=null, Ship_To_Place__c=null, Technical_Win_Confirmed__c=null, Territory__c=null, Trial_Date_Confirmed__c=null, Trial_End_Date__c=null, Trial_Manager__c=null, Trial_Notes__c=null, Trial_Start_Date__c=null, Trial_Status__c=null, Reseller_Text__c=null, LE_Change_In_Progress__c=false, ffr__BatchProcess__c=null, c2g__CODAUnitOfWork__c=null, pse__Forecast_Curve__c=null, pse__Group__c=null, pse__IsParentOpportunityServices__c=false, pse__Is_Change_Request__c=false, pse__Is_Services_Opportunity__c=false, pse__Parent_Opportunity__c=null, pse__Practice__c=null, pse__PreBilledAmount__c=null, pse__Pre_Billed_Amount__c=null, pse__Primary_Project__c=null, pse__Rate_Card_Discount_Limit__c=null, pse__Rate_Card_Percentage_Discount__c=null, pse__Rate_Card_Set__c=null, pse__Region__c=null, pse__Services_Attached_From_Products__c=0.0, pse__Services_Attached_Percent_From_Products__c=0.0, AccountName__c=PAGANI SPA, Part_of_a_Marketing_Initiative__c=null, Product_of_Interest__c=null, Run_Assignment__c=false, AWS_Account_Number__c=null, AWS_Marketplace__c=null, AWS_Sales_Stage__c=null, Approval_Status__c=null, Total_Services__c=null, Upsell_Opportunity__c=null, ARR_Last_Updated__c=null, AWS_Score__c=null, Total_ARR__c=null, Deal_Registration_Submitter__c=null, User_Registered_Deal__c=false, Deal_Cycle_Time_Days__c=363.0, No_Territory_Found__c=false, Legacy_Id__c=null, Execute_Auto_Project_Creation_Process__c=false, Project_Creation_Processed__c=false, Project_Check_Override__c=false, Services_Help_Requested_Date__c=null}
+08:18:07.255 (4258242243)|FLOW_ELEMENT_BEGIN|4514b1973252d4685157c6baa5819f097e0edd-57d9|FlowRecordLookup|Get_Is_service_Product_line_Opportunity_Product
+08:18:07.255 (4258370632)|FLOW_ELEMENT_DEFERRED|FlowRecordLookup|Get_Is_service_Product_line_Opportunity_Product
+08:18:07.255 (4258410039)|FLOW_ELEMENT_LIMIT_USAGE|2 ms CPU time, total 374 out of 65000
+08:18:07.255 (4258440324)|FLOW_ELEMENT_END|4514b1973252d4685157c6baa5819f097e0edd-57d9|FlowRecordLookup|Get_Is_service_Product_line_Opportunity_Product
+08:18:07.255 (4276721552)|FLOW_START_INTERVIEW_END|4514b1973252d4685157c6baa5819f097e0edd-57d9|PSA RTF Opportunity Created or Updated for Is service Opportunity
+08:18:07.255 (4276812149)|FLOW_BULK_ELEMENT_BEGIN|FlowRecordLookup|Get_Is_service_Product_line_Opportunity_Product
+08:18:07.255 (4277100677)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|4|100
+08:18:07.255 (4292268368)|LIMIT_USAGE|[EXTERNAL]|SOQL_ROWS|1|50000
+08:18:07.255 (4292282443)|LIMIT_USAGE|[EXTERNAL]|SOQL|4|200
+08:18:07.255 (4292285722)|LIMIT_USAGE|[EXTERNAL]|AGGS|2|600
+08:18:07.255 (4292314440)|FLOW_VALUE_ASSIGNMENT|4514b1973252d4685157c6baa5819f097e0edd-57d9|Get_Is_service_Product_line_Opportunity_Product|
+08:18:07.255 (4292329783)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordLookup|Get_Is_service_Product_line_Opportunity_Product|0
+08:18:07.255 (4292526332)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 SOQL queries, total 4 out of 200
+08:18:07.255 (4292533679)|FLOW_BULK_ELEMENT_LIMIT_USAGE|6 ms CPU time, total 380 out of 65000
+08:18:07.255 (4292658350)|FLOW_BULK_ELEMENT_END|FlowRecordLookup|Get_Is_service_Product_line_Opportunity_Product|0|6
+08:18:07.255 (4292727484)|FLOW_ELEMENT_BEGIN|4514b1973252d4685157c6baa5819f097e0edd-57d9|FlowDecision|Did_we_get_Is_service_product_line_opp_product
+08:18:07.255 (4292773878)|FLOW_ELEMENT_DEFERRED|FlowDecision|Did_we_get_Is_service_product_line_opp_product
+08:18:07.255 (4292790576)|FLOW_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 381 out of 65000
+08:18:07.255 (4292817557)|FLOW_ELEMENT_END|4514b1973252d4685157c6baa5819f097e0edd-57d9|FlowDecision|Did_we_get_Is_service_product_line_opp_product
+08:18:07.255 (4292852595)|FLOW_BULK_ELEMENT_BEGIN|FlowDecision|Did_we_get_Is_service_product_line_opp_product
+08:18:07.255 (4292918554)|FLOW_RULE_DETAIL|4514b1973252d4685157c6baa5819f097e0edd-57d9|Yes|false|false
+08:18:07.255 (4292934011)|FLOW_VALUE_ASSIGNMENT|4514b1973252d4685157c6baa5819f097e0edd-57d9|Yes|false
+08:18:07.255 (4293017725)|FLOW_BULK_ELEMENT_END|FlowDecision|Did_we_get_Is_service_product_line_opp_product|0|0
+08:18:07.255 (4293166398)|FLOW_START_INTERVIEWS_END|1
+08:18:07.255 (4293291220)|FLOW_INTERVIEW_FINISHED|4514b1973252d4685157c6baa5819f097e0edd-57d9|PSA RTF Opportunity Created or Updated for Is service Opportunity
+08:18:07.255 (4293314798)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 4 out of 200
+08:18:07.255 (4293319519)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 1 out of 50000
+08:18:07.255 (4293323418)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:07.255 (4293326840)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 2 out of 150
+08:18:07.255 (4293329988)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 2 out of 10000
+08:18:07.255 (4293333095)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 381 out of 65000
+08:18:07.255 (4293360589)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:07.255 (4293364721)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:07.255 (4293367833)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:07.255 (4293371740)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:07.255 (4293374899)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:06.643 (4294090144)|CODE_UNIT_FINISHED|Flow:Opportunity
+08:18:07.294 (4294231937)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Opportunity
+08:18:07.294 (4294255317)|CODE_UNIT_FINISHED|Flow:Opportunity
+08:18:07.303 (4303900299)|FLOW_VALUE_ASSIGNMENT|1474b1973252d4685157c6baa5819f097e0edd-56a9|Create_Renewal_Opportunity|006WC00000RWbrJYAT
+08:18:07.303 (4304093620)|FLOW_BULK_ELEMENT_LIMIT_USAGE|2 SOQL queries, total 4 out of 200
+08:18:07.303 (4304103958)|FLOW_BULK_ELEMENT_LIMIT_USAGE|2 DML statements, total 2 out of 150
+08:18:07.303 (4304110027)|FLOW_BULK_ELEMENT_LIMIT_USAGE|2 DML rows, total 2 out of 10000
+08:18:07.303 (4304115447)|FLOW_BULK_ELEMENT_LIMIT_USAGE|321 ms CPU time, total 383 out of 65000
+08:18:07.303 (4304259865)|FLOW_BULK_ELEMENT_LIMIT_USAGE|5675 bytes heap size, total 7012 out of 12000000
+08:18:07.303 (4304276362)|FLOW_BULK_ELEMENT_END|FlowRecordCreate|Create_Renewal_Opportunity|1|18
+08:18:07.303 (4304347323)|FLOW_ELEMENT_BEGIN|1474b1973252d4685157c6baa5819f097e0edd-56a9|FlowRecordUpdate|Stamp_Contract
+08:18:07.303 (4304397002)|FLOW_ELEMENT_DEFERRED|FlowRecordUpdate|Stamp_Contract
+08:18:07.303 (4304417349)|FLOW_ELEMENT_LIMIT_USAGE|1 ms CPU time, total 384 out of 65000
+08:18:07.303 (4304451835)|FLOW_ELEMENT_END|1474b1973252d4685157c6baa5819f097e0edd-56a9|FlowRecordUpdate|Stamp_Contract
+08:18:07.303 (4304496594)|FLOW_BULK_ELEMENT_BEGIN|FlowRecordUpdate|Stamp_Contract
+08:18:07.303 (4304760998)|LIMIT_USAGE|[EXTERNAL]|FIELDSETS_DESCRIBES|5|100
+08:18:07.303 (4320129289)|LIMIT_USAGE|[EXTERNAL]|SOQL_ROWS|2|50000
+08:18:07.303 (4320142667)|LIMIT_USAGE|[EXTERNAL]|SOQL|5|200
+08:18:07.303 (4320145866)|LIMIT_USAGE|[EXTERNAL]|AGGS|3|600
+08:18:07.303 (4320292030)|FLOW_BULK_ELEMENT_DETAIL|FlowRecordUpdate|Stamp_Contract|1
+08:18:07.303 (4320302526)|LIMIT_USAGE|[EXTERNAL]|DML|3|150
+08:18:07.303 (4320306031)|LIMIT_USAGE|[EXTERNAL]|DML_ROWS|3|10000
+08:18:07.356 (4356209674)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Contract
+08:18:07.356 (4356244779)|CODE_UNIT_FINISHED|Flow:Contract
+08:18:07.387 (4387066199)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Contract:800WC00000SrYt4
+08:18:07.387 (4387094393)|VALIDATION_RULE|03dWC000001XhlZ|Sales_Cannot_Amend_Downsell
+08:18:07.387 (4392141558)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+    NOT(ISBLANK(TEXT(Amendment_Reason__c))),
+    OR(
+        ISPICKVAL(Amendment_Reason__c, 'Downsell'),
+        ISPICKVAL(Amendment_Reason__c, 'Full Cancellation'),
+        ISPICKVAL(Amendment_Reason__c, 'Withholding Tax'),
+        ISPICKVAL(Amendment_Reason__c, 'Billing Correction'),
+        ISPICKVAL(Amendment_Reason__c, 'Partner Change'),
+        ISPICKVAL(Amendment_Reason__c, 'Currency Change'),
+        ISPICKVAL(Amendment_Reason__c, 'Billing Entity Change'),
+        ISPICKVAL(Amendment_Reason__c, 'Other')
+    ),
+    NOT(CONTAINS($UserRole.Name, 'Customer Ops')),
+    NOT(CONTAINS($UserRole.Name, 'Operations'))
+)|Amendment_Reason__c=null , $UserRole.Name=System Admin , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:07.387 (4392169819)|VALIDATION_PASS
+08:18:07.387 (4392172021)|VALIDATION_RULE|03dWC000001Xhla|Sales_Renewal_Window_Restriction
+08:18:07.387 (4392682453)|VALIDATION_FORMULA|AND(NOT($Permission.Data_Migration_Exclude_Business_Logic),
+    Within_Renewal_Window__c = TRUE,
+    NOT(ISBLANK(TEXT(Amendment_Reason__c))),
+    NOT(
+        OR(
+            ISPICKVAL(Amendment_Reason__c, 'Upsell'),
+            ISPICKVAL(Amendment_Reason__c, 'Cross-sell')
+        )
+    ),
+    NOT(CONTAINS($UserRole.Name, 'Customer Ops')),
+    NOT(CONTAINS($UserRole.Name, 'Operations'))
+)|Amendment_Reason__c=null , $UserRole.Name=System Admin , Within_Renewal_Window__c=0 , $Permission.Data_Migration_Exclude_Business_Logic=true
+08:18:07.387 (4392694326)|VALIDATION_PASS
+08:18:07.387 (4392701595)|CODE_UNIT_FINISHED|Validation:Contract:800WC00000SrYt4
+08:18:07.414 (4414172629)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Contract
+08:18:07.414 (4414374357)|CODE_UNIT_FINISHED|Flow:Contract
+08:18:07.414 (4414510442)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Contract
+08:18:07.414 (4417232656)|CODE_UNIT_FINISHED|Flow:Contract
+08:18:07.303 (4422638954)|FLOW_VALUE_ASSIGNMENT|1474b1973252d4685157c6baa5819f097e0edd-56a9|Stamp_Contract|true
+08:18:07.303 (4422853179)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 SOQL queries, total 5 out of 200
+08:18:07.303 (4422870064)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 SOQL query rows, total 2 out of 50000
+08:18:07.303 (4422876570)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 DML statements, total 3 out of 150
+08:18:07.303 (4422882197)|FLOW_BULK_ELEMENT_LIMIT_USAGE|1 DML rows, total 3 out of 10000
+08:18:07.303 (4422887717)|FLOW_BULK_ELEMENT_LIMIT_USAGE|28 ms CPU time, total 412 out of 65000
+08:18:07.303 (4423072237)|FLOW_BULK_ELEMENT_END|FlowRecordUpdate|Stamp_Contract|1|74
+08:18:07.303 (4423334956)|FLOW_START_INTERVIEWS_END|1
+08:18:07.303 (4423489327)|FLOW_INTERVIEW_FINISHED|1474b1973252d4685157c6baa5819f097e0edd-56a9|Fortra &#124; Contract Create Renewal Opportunity
+08:18:07.303 (4423525539)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL queries: 5 out of 200
+08:18:07.303 (4423532519)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOQL query rows: 2 out of 50000
+08:18:07.303 (4423538081)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|SOSL queries: 0 out of 20
+08:18:07.303 (4423542976)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML statements: 3 out of 150
+08:18:07.303 (4423547765)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|DML rows: 3 out of 10000
+08:18:07.303 (4423552154)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|CPU time in ms: 412 out of 65000
+08:18:07.303 (4423654726)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Heap size in bytes: 7012 out of 12000000
+08:18:07.303 (4423661695)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Callouts: 0 out of 100
+08:18:07.303 (4423667410)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Email invocations: 0 out of 10
+08:18:07.303 (4423672777)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Future calls: 0 out of 50
+08:18:07.303 (4423677988)|FLOW_INTERVIEW_FINISHED_LIMIT_USAGE|Jobs in queue: 0 out of 50
+08:18:07.563 (4563337344)|CUMULATIVE_PROFILING_BEGIN
+08:18:07.563 (4563337344)|CUMULATIVE_PROFILING|SOQL operations|
+Class.RenewalForecastAmount.calculate: line 44, column 1: [
+            SELECT Id, COLA_Override_Percent__c, COLA_Override_Persist_Until__c
+            FROM Contract
+            WHERE Id IN :contractIds
+        ]: executed 1 time in 16 ms
+Class.RenewalForecastAmount.calculate: line 52, column 1: [
+            SELECT ContractId, Asset.CurrentMrr
+            FROM AssetContractRelationship
+            WHERE ContractId IN :contractIds
+        ]: executed 3 times in 16 ms
+
+08:18:07.563 (4563337344)|CUMULATIVE_PROFILING|No profiling information for SOSL operations
+08:18:07.563 (4563337344)|CUMULATIVE_PROFILING|No profiling information for DML operations
+08:18:07.563 (4563337344)|CUMULATIVE_PROFILING|method invocations|
+External entry point: public void invoke(): executed 1 time in 52 ms
+External entry point: public static List<RenewalForecastAmount.Response> calculate(List<RenewalForecastAmount.Request>): executed 1 time in 40 ms
+Trigger.OpportunityTrigger: line 13, column 1: public static void handleBeforeInsert(List<Opportunity>): executed 1 time in 27 ms
+Class.OpportunityTriggerHandler.handleBeforeInsert: line 26, column 1: private static void setExchangeRates(List<Opportunity>): executed 1 time in 23 ms
+Class.RenewalForecastAmount.calculate: line 65, column 1: static Decimal resolveDefaultColaPct(): executed 1 time in 2 ms
+Class.RenewalForecastAmount.resolveDefaultColaPct: line 125, column 1: global public static MyCAP_Rules__mdt getInstance(String): executed 1 time in 2 ms
+Class.RenewalForecastAmount.calculate: line 71, column 1: global public Object get(Object): executed 2 times in 1 ms
+External entry point: global void <init>(): executed 1 time in 1 ms
+Class.OpportunityTriggerHandler.setExchangeRates: line 67, column 1: public static List<DatedConversionRateLookup.Result> getExchangeRates(List<DatedConversionRateLookup.Request>): executed 1 time in 1 ms
+Class.OpportunityTriggerHandler.setExchangeRates: line 59, column 1: global DatedConversionRateLookup.Request(): executed 1 time in 1 ms
+External entry point: global void <init>(): executed 1 time in 1 ms
+
+08:18:07.563 (4563337344)|CUMULATIVE_PROFILING_END
+

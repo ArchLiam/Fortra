@@ -372,9 +372,7 @@ private class PowerOrderSplittingServiceTest {
     }
 
     /**
-     * @description SC-3447 (P3): a Power line with NO Partition/Hardware is a seat/license-count
-     * line, not a per-machine line, so it must NOT be split — it stays as a single Quantity=N
-     * OrderItem (which Workday and RLM accept natively).
+     * @description Test splitting without hardware or partition references
      */
     @isTest
     static void testSplitWithoutHardwarePartition() {
@@ -413,21 +411,20 @@ private class PowerOrderSplittingServiceTest {
 
         Test.stopTest();
 
-        // SC-3447 (P3): with no Partition/Hardware to clone, the line is NOT split.
+        // Verify results
         PowerOrderSplittingService.SplitResult result = results[0];
         System.assertEquals(true, result.success, 'Operation should succeed');
-        System.assertEquals(0, result.linesCreated, 'Should NOT split a line with no Partition/Hardware (P3)');
-        System.assertEquals(0, result.hardwareCloned, 'Should not clone hardware');
-        System.assertEquals(0, result.partitionsCloned, 'Should not clone partitions');
+        System.assertEquals(1, result.linesCreated, 'Should create 1 new line');
+        System.assertEquals(0, result.hardwareCloned, 'Should not clone hardware (none to clone)');
+        System.assertEquals(0, result.partitionsCloned, 'Should not clone partitions (none to clone)');
 
-        // The line is left untouched as a single Quantity=2 OrderItem.
+        // Verify order items
         List<OrderItem> allOrderItems = [
             SELECT Id, Quantity, Is_Split_Line__c
             FROM OrderItem
             WHERE OrderId = :testOrder.Id
         ];
-        System.assertEquals(1, allOrderItems.size(), 'Should still have 1 order item (not split)');
-        System.assertEquals(2, allOrderItems[0].Quantity, 'Quantity should be unchanged');
+        System.assertEquals(2, allOrderItems.size(), 'Should have 2 order items');
     }
 
     /**
@@ -624,96 +621,5 @@ private class PowerOrderSplittingServiceTest {
         // headroom rather than pinning the raw service count.
         System.assert(soqlUsed < 50, 'Bulk batch should stay well under the SOQL limit, used ' + soqlUsed);
         System.assert(dmlUsed < 50, 'Bulk batch should stay well under the DML limit, used ' + dmlUsed);
-    }
-
-    /**
-     * @description SC-3447 guardrail: a Power line whose quantity would create more split clones than
-     * the supported synchronous maximum (MAX_SYNC_CLONES) must fail fast — success=false with a clear
-     * errorMessage — WITHOUT creating any clones, instead of breaching the Apex CPU/DML governor limits
-     * and rolling the whole convert back. The convert flow reads success and shows the message.
-     */
-    @isTest
-    static void testHighQuantityCapBlocksSplit() {
-        Account testAccount = [SELECT Id FROM Account LIMIT 1];
-        Product2 powerProduct = [SELECT Id FROM Product2 WHERE ProductCode = 'POWER-OLO-001' LIMIT 1];
-        PricebookEntry pbe = [SELECT Id FROM PricebookEntry WHERE Product2Id = :powerProduct.Id LIMIT 1];
-        Partition__c partition = [SELECT Id FROM Partition__c LIMIT 1];
-
-        Order testOrder = new Order(
-            AccountId = testAccount.Id,
-            Status = 'Draft',
-            EffectiveDate = Date.today(),
-            Pricebook2Id = Test.getStandardPricebookId()
-        );
-        insert testOrder;
-
-        // A genuine per-machine line (has a Partition, so P3 lets it split) but with a Quantity well
-        // above MAX_SYNC_CLONES (200), so the guardrail trips. NOTE: this is a single OrderItem
-        // carrying a large Quantity field — it does NOT create 250 records.
-        OrderItem orderItem = new OrderItem(
-            OrderId = testOrder.Id,
-            PricebookEntryId = pbe.Id,
-            Product2Id = powerProduct.Id,
-            Quantity = 250,
-            UnitPrice = 1000.00,
-            Partition_Record__c = partition.Id
-        );
-        insert orderItem;
-
-        Test.startTest();
-        PowerOrderSplittingService.SplitResult result = PowerOrderSplittingService.processOrder(testOrder.Id);
-        Test.stopTest();
-
-        System.assertEquals(false, result.success, 'Split should be blocked when the clone count exceeds the cap');
-        System.assert(String.isNotBlank(result.errorMessage), 'A friendly error message should be returned');
-        System.assertEquals(0, result.linesCreated, 'No split lines should be created when capped');
-
-        // Bailed before any DML: no clones inserted and the original line is untouched.
-        List<OrderItem> items = [SELECT Id, Quantity, Is_Split_Line__c FROM OrderItem WHERE OrderId = :testOrder.Id];
-        System.assertEquals(1, items.size(), 'No split clones should have been inserted');
-        System.assertEquals(250, items[0].Quantity, 'Original line quantity should be unchanged');
-        System.assertEquals(false, items[0].Is_Split_Line__c, 'Original line should not be marked as split');
-    }
-
-    /**
-     * @description SC-3447 (P3) headline case: a high-quantity Power "seat/site license" line (no
-     * Partition/Hardware — e.g. an "unlimited" 9,999 sentinel) is NOT split and converts as a single
-     * Quantity=N OrderItem, instead of erroring or exploding into thousands of records.
-     */
-    @isTest
-    static void testSeatCountLineNotSplit() {
-        Account testAccount = [SELECT Id FROM Account LIMIT 1];
-        Product2 powerProduct = [SELECT Id FROM Product2 WHERE ProductCode = 'POWER-OLO-001' LIMIT 1];
-        PricebookEntry pbe = [SELECT Id FROM PricebookEntry WHERE Product2Id = :powerProduct.Id LIMIT 1];
-
-        Order testOrder = new Order(
-            AccountId = testAccount.Id,
-            Status = 'Draft',
-            EffectiveDate = Date.today(),
-            Pricebook2Id = Test.getStandardPricebookId()
-        );
-        insert testOrder;
-
-        // A seat/site license line: large Quantity, NO Partition/Hardware — a single OrderItem.
-        OrderItem orderItem = new OrderItem(
-            OrderId = testOrder.Id,
-            PricebookEntryId = pbe.Id,
-            Product2Id = powerProduct.Id,
-            Quantity = 9999,
-            UnitPrice = 1000.00
-        );
-        insert orderItem;
-
-        Test.startTest();
-        PowerOrderSplittingService.SplitResult result = PowerOrderSplittingService.processOrder(testOrder.Id);
-        Test.stopTest();
-
-        // Not split, and NOT a cap error — it simply stays as one Quantity=9999 line so the convert proceeds.
-        System.assertEquals(true, result.success, 'Seat-count line should pass (not error)');
-        System.assertEquals(0, result.linesCreated, 'Seat-count line must NOT be split');
-
-        List<OrderItem> items = [SELECT Id, Quantity, Is_Split_Line__c FROM OrderItem WHERE OrderId = :testOrder.Id];
-        System.assertEquals(1, items.size(), 'Should remain a single OrderItem');
-        System.assertEquals(9999, items[0].Quantity, 'Quantity=N should be preserved on the single line');
     }
 }
