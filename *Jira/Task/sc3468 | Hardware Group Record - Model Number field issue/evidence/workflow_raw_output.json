@@ -1,0 +1,522 @@
+{
+  "summary": "Deep research SC-3468 Hardware Group Model Number field mis-mapping; produce RCA + fix-direction dossier",
+  "agentCount": 9,
+  "logs": [
+    "parallel[0] failed: agent({schema}): StructuredOutput retry cap (5) exceeded — 5 failed calls with no valid output"
+  ],
+  "result": {
+    "lwc": {
+      "createFormBindings": [
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html",
+          "line": 210,
+          "label": "Model Number",
+          "dataField": "iSeriesModel",
+          "boundProperty": "newHardware.iSeriesModel",
+          "optionsSource": "iSeriesModelOptions"
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html",
+          "line": 504,
+          "label": "Model Number",
+          "dataField": "iSeriesModel",
+          "boundProperty": "newHardware.iSeriesModel",
+          "optionsSource": "iSeriesModelOptions"
+        }
+      ],
+      "unusedModelNumberState": "DEAD/UNUSED. The `modelNumber` JS state is NOT wired to ANY input. It is declared in the @track newHardware initializer at js line 73 (`modelNumber: '',` under the comment '// Legacy fields (hidden from new form)') and re-declared identically in the handleToggleCreateHardware reset block at js line 577. handleNewHardwareChange contains `case 'modelNumber':` at js line 652 which sets `this.newHardware.modelNumber = value;` at js line 653. However, this switch case can NEVER fire because no HTML element carries `data-field=\\\"modelNumber\\\"` — a full read of the template shows the only Model-labeled controls (html 210 and html 504) both carry `data-field=\\\"iSeriesModel\\\"`. Crucially, `newHardware.modelNumber` is never read anywhere either: handleCreateHardware (js 728-760) builds hardwareData from serialNumber/iSeriesModel/featureCode/processors/pGroup (iSeries) and hostname/hardwareId/operatingSystem (Cross Platform), plus serverType/usersPerPartition — it never references modelNumber and never sets hardwareData.Model_Number__c. So the create form has no path that produces Model_Number__c.",
+      "displayReads": [
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.js",
+          "line": 121,
+          "field": "Hardware__r.Model_Number__c"
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.js",
+          "line": 130,
+          "field": "Model_Number__c"
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html",
+          "line": 312,
+          "field": "selectedHardware.Model_Number__c"
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html",
+          "line": 611,
+          "field": "selectedHardware.Model_Number__c"
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.js",
+          "line": 822,
+          "field": "Model_Number__c (selectedHardware hydration in handleGroupSelection from selectedGroup.Hardware__r.Model_Number__c)"
+        }
+      ],
+      "writePaths": [
+        "js line 737: hardwareData.iSeries_Model__c = this.newHardware.iSeriesModel;  — the ONLY model-field write from the create form, inside the if(this.isISeries) branch of handleCreateHardware. No hardwareData.Model_Number__c assignment exists anywhere in the .js (confirmed by full read of handleCreateHardware lines 728-760 and the entire file). No path writes newHardware.modelNumber to hardwareData either."
+      ],
+      "verdict": "CONFIRMED from the LWC layer: the reporter's hypothesis is correct that the UI value lands in iSeries_Model__c, and the LWC is the proximate cause. The \"Model Number\" picklist exists in TWO create-form blocks (html 210-218 and html 504-512), both labeled `label=\\\"Model Number\\\"` and BOTH hard-bound to `value={newHardware.iSeriesModel}` / `data-field=\\\"iSeriesModel\\\"` / `options={iSeriesModelOptions}`. When the user selects a value, handleNewHardwareChange hits `case 'iSeriesModel'` (js 622-631) writing `this.newHardware.iSeriesModel`. On save, handleCreateHardware sets ONLY `hardwareData.iSeries_Model__c = this.newHardware.iSeriesModel;` (js 737). Nothing in the component ever sets `Model_Number__c`, so a newly created iSeries hardware always has Model_Number__c=NULL and iSeries_Model__c populated — exactly matching live record a0nWC000001wRldYAE (iSeries_Model__c=500, Model_Number__c=NULL) and the 46-row iSeries-only population pattern. The `modelNumber` JS state (js 73/577, case js 652-654) is fully dead: no input carries data-field=\\\"modelNumber\\\" and the value is never read, so it is NOT an alternate write path — it is legacy residue. Model_Number__c is only ever READ for display (js datatable columns 121/130, html Selected-Hardware cards 312/611, and edit-mode hydration js 822); it is never written by this LWC. Given the ticket's stated business decision (\\\"we believe iSeries_Model__c is the correct field to keep\\\"), the binding is functionally pointing at the intended DB field — the defect is that the picklist is LABELED \\\"Model Number\\\" while persisting to iSeries_Model__c, and that downstream production readers key off Model_Number__c (which stays NULL). The fix is a relabel/aliasing or label-vs-field reconciliation decision, not a value-binding change; the LWC writes exactly one model field and it is iSeries_Model__c.",
+      "evidence": [
+        "html 210-218 (block 1, iSeries section, Hardware Selection Screen): <lightning-combobox\\n    label=\"Model Number\"\\n    options={iSeriesModelOptions}\\n    value={newHardware.iSeriesModel}\\n    onchange={handleNewHardwareChange}\\n    data-field=\"iSeriesModel\"\\n    placeholder=\"Select Model...\"\\n    required>",
+        "html 504-512 (block 2, iSeries section, Edit-mode inline Group Config): <lightning-combobox\\n    label=\"Model Number\"\\n    options={iSeriesModelOptions}\\n    value={newHardware.iSeriesModel}\\n    onchange={handleNewHardwareChange}\\n    data-field=\"iSeriesModel\"\\n    placeholder=\"Select Model...\"\\n    required>",
+        "js 61: iSeriesModel: '',  (active state, written by case 'iSeriesModel')",
+        "js 73: modelNumber: '',  // under comment '// Legacy fields (hidden from new form)' — UNUSED",
+        "js 577: modelNumber: '',  (same dead field re-set in handleToggleCreateHardware reset)",
+        "js 622-631: case 'iSeriesModel':\\n    this.newHardware.iSeriesModel = value;\\n    this.newHardware.featureCode = ''; // Reset feature code\\n    if (value) { this.loadFeatureCodeOptions(value); } else { this.featureCodeOptions = []; }\\n    break;",
+        "js 652-654: case 'modelNumber':\\n    this.newHardware.modelNumber = value;\\n    break;  (dead — no data-field=\"modelNumber\" in HTML)",
+        "js 734-737: if (this.isISeries) {\\n    hardwareData.Serial_Number__c = this.newHardware.serialNumber;\\n    hardwareData.iSeries_Model__c = this.newHardware.iSeriesModel;  (ONLY model write; no Model_Number__c set)",
+        "js 121: { label: 'Model', fieldName: 'Hardware__r.Model_Number__c', type: 'text' }  (groupColumns READ)",
+        "js 130: { label: 'Model', fieldName: 'Model_Number__c', type: 'text' }  (hardwareColumns READ)",
+        "html 311-312 & 610-611: <dt ...>Model:</dt>\\n<dd ...>{selectedHardware.Model_Number__c}</dd>  (Selected Hardware card READ, both Hardware Selection and Edit screens)",
+        "js 822: Model_Number__c: this.selectedGroup.Hardware__r?.Model_Number__c,  (edit-mode selectedHardware hydration READ)",
+        "Cross Platform sections (html 252-282 and 546-576) contain ONLY Hostname/Hardware ID/Operating System comboboxes+inputs — NO 'Model Number' control exists outside the iSeries blocks."
+      ]
+    },
+    "apex": {
+      "saveMethod": "`createHardwareRecord(Map<String, Object> hardwareData, Id accountId)` — `@AuraEnabled public static Id`, defined at HardwareGroupController.cls:138-139. It receives the LWC's `hardwareData` map (built in hardwareGroupManager.js:729-732, passed at .js:763-766 as `{ hardwareData, accountId }`), constructs a fresh `Hardware__c newHardware` (line 149), key-gates each field assignment off `hardwareData.containsKey(...)`, then `insert newHardware;` at line 215 and `return newHardware.Id;` at line 243. It also auto-creates a `Partition__c` for iSeries/Cross Platform (lines 217-241).",
+      "fieldAssignments": [
+        "Account__c = accountId (unconditional, from the accountId param) — HardwareGroupController.cls:150",
+        "Hardware_ID__c = generateHardwareId() (unconditional default) — line 151; OVERRIDDEN if key 'Hardware_ID__c' present (Cross Platform path) — lines 187-190",
+        "Status__c = 'Quoting' (unconditional, hard-coded; comment at 207 explicitly forbids override from hardwareData) — line 156",
+        "Hardware_Name__c <- key 'Hardware_Name__c' — lines 159-161",
+        "Hardware_Platform__c <- key 'Hardware_Platform__c' — lines 162-164",
+        "Serial_Number__c <- key 'Serial_Number__c' — lines 167-169",
+        "iSeries_Model__c <- key 'iSeries_Model__c' — lines 170-172  (THIS is where the Model Number combobox value lands)",
+        "iSeries_Feature_Code__c <- key 'iSeries_Feature_Code__c' — lines 173-175",
+        "Number_of_Processors__c <- key 'Number_of_Processors__c' (cast Decimal) — lines 176-178",
+        "P_Group_List__c <- key 'P_Group_List__c' — lines 179-181",
+        "Hostname__c <- key 'Hostname__c' — lines 184-186",
+        "Host_Operating_System__c <- key 'Host_Operating_System__c' — lines 191-193",
+        "Server_Type__c <- key 'Server_Type__c' — lines 196-198",
+        "Users_Per_Partition__c <- key 'Users_Per_Partition__c' (cast Decimal) — lines 199-201",
+        "Model_Number__c <- key 'Model_Number__c' (cast String), labeled 'Legacy fields (kept for backward compatibility)' — lines 203-206; DEAD on this path, LWC never sends this key",
+        "Storage_TB__c <- key 'Storage_TB__c' (cast Decimal) — lines 208-210",
+        "Installation_Date__c <- key 'Installation_Date__c' (cast Date) — lines 211-213"
+      ],
+      "picklistProvider": "The 'Model Number' combobox in the modal is bound to `options={iSeriesModelOptions}` (LWC), whose options come from `picklistOptions.iSeriesModel` (hardwareGroupManager.js:191-192). That key is populated by the Apex provider `getPicklistOptions()` (HardwareGroupController.cls:417-461): it describes the Hardware__c sObject (line 423), gets the field map, and at lines 437-439 does `if (fieldMap.containsKey('iSeries_Model__c')) picklistOptions.put('iSeriesModel', getPicklistValues(fieldMap.get('iSeries_Model__c')))`. So the dropdown's label is literally 'Model Number' but its options are described from the **iSeries_Model__c** field (NOT Model_Number__c). `getPicklistValues` (lines 603-619) returns active entries as label/value maps. Model_Number__c is never described for any picklist here. This is the root cause: the field labeled 'Model Number' in the UI is sourced from, and writes back to, iSeries_Model__c.",
+      "dependentPicklist": "Controlling field = iSeries_Model__c; dependent field = iSeries_Feature_Code__c. In `getFeatureCodeOptions(String modelValue)` (HardwareGroupController.cls:468-533): controllingField = `fieldMap.get('iSeries_Model__c')` (line 486), dependentField = `fieldMap.get('iSeries_Feature_Code__c')` (line 487). It reads the dependent field's validFor base64 bitmap per entry (getValidForBitmap, lines 540-549), maps each controlling value to an index (lines 497-502), finds the selected model's index (line 505), and includes only dependent (Feature Code) entries whose validFor bit is set for that index (isValidForIndex, lines 557-577). So iSeries_Model__c controls iSeries_Feature_Code__c — confirming iSeries_Model__c is wired as a real controlling picklist in the org metadata.",
+      "crossPlatformHandling": "For the Cross Platform path, the LWC sets no model field at all (hardwareGroupManager.js:748-753 sends only Hostname__c, Hardware_ID__c, Host_Operating_System__c). The `isISeries` template gate means the 'Model Number' combobox (data-field='iSeriesModel', writing iSeries_Model__c) only renders for iSeries. So Cross Platform records get neither iSeries_Model__c nor Model_Number__c from this modal. Model_Number__c is set on NO platform path through createHardwareRecord via this LWC.",
+      "verdict": "CONFIRMED: Model_Number__c can NEVER be set through this create path as currently wired. The Apex guard at HardwareGroupController.cls:204-205 only assigns Model_Number__c when `hardwareData.containsKey('Model_Number__c')`, but the LWC's hardwareData map (hardwareGroupManager.js:729-760) never adds a 'Model_Number__c' key on any branch — the UI 'Model Number' combobox writes to newHardware.iSeriesModel and is sent as key 'iSeries_Model__c' (.js:737), which Apex assigns to iSeries_Model__c (line 171). The reporter's symptom and hypothesis are EXACT: the modal's 'Model Number' field is label-mislabeled but data-bound end-to-end to iSeries_Model__c (combobox options also described from iSeries_Model__c at line 437-438), so every iSeries record created here lands in iSeries_Model__c with Model_Number__c=NULL — matching live record a0nWC000001wRldYAE (iSeries_Model__c=500, Model_Number__c=NULL) and the org-wide pattern (only 46 records have iSeries_Model__c, all iSeries with Model_Number__c=NULL). The Model_Number__c assignment block is dead code labeled 'Legacy fields (kept for backward compatibility)'. NOTE for fix scoping: if the intent is to KEEP iSeries_Model__c (reporter's stated preference), the correct remediation is UI-only (relabel/clarify), not changing the Apex mapping — and 29,192 historical records carry Model_Number__c while only 46 carry iSeries_Model__c, so downstream readers of Model_Number__c (listed pricing/order/email/LKG classes) will NOT see values written by this modal.",
+      "evidence": [
+        "HardwareGroupController.cls:138-139 — method signature `public static Id createHardwareRecord(Map<String, Object> hardwareData, Id accountId)`",
+        "HardwareGroupController.cls:170-172 — `if (hardwareData.containsKey('iSeries_Model__c')) { newHardware.iSeries_Model__c = (String) hardwareData.get('iSeries_Model__c'); }`",
+        "HardwareGroupController.cls:203-206 — `// Legacy fields (kept for backward compatibility)` then `if (hardwareData.containsKey('Model_Number__c')) { newHardware.Model_Number__c = (String) hardwareData.get('Model_Number__c'); }` (guard never true via this LWC)",
+        "HardwareGroupController.cls:215 / 243 — `insert newHardware;` ... `return newHardware.Id;`",
+        "HardwareGroupController.cls:437-438 — `if (fieldMap.containsKey('iSeries_Model__c')) { picklistOptions.put('iSeriesModel', getPicklistValues(fieldMap.get('iSeries_Model__c')));` (the 'Model Number' combobox options come from iSeries_Model__c describe)",
+        "HardwareGroupController.cls:486-487 — `Schema.SObjectField controllingField = fieldMap.get('iSeries_Model__c');` / `Schema.SObjectField dependentField = fieldMap.get('iSeries_Feature_Code__c');` (controlling->dependent)",
+        "hardwareGroupManager.js:729-737 — `const hardwareData = { Hardware_Name__c:..., Hardware_Platform__c:... };` then `hardwareData.iSeries_Model__c = this.newHardware.iSeriesModel;` (no Model_Number__c key anywhere in 729-760)",
+        "hardwareGroupManager.js:763-766 — `await createHardwareRecord({ hardwareData: hardwareData, accountId: this.quoteAccountId })`",
+        "hardwareGroupManager.js:191-192 — `get iSeriesModelOptions() { return this.picklistOptions.iSeriesModel || []; }` (UI 'Model Number' dropdown bound to the iSeries_Model__c-sourced options)",
+        "hardwareGroupManager.js:73 & 653 — state has unused `modelNumber: ''` and `case 'modelNumber'` handler, but the create form never wires data-field='modelNumber', so it is never populated or sent"
+      ]
+    },
+    "consumersModel": {
+      "field": "Model_Number__c",
+      "consumers": [
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/BSSOrderInfoRestService.cls",
+          "lines": "104 (SELECT Hardware_ID__r.Model_Number__c), 183/198 (this.model = item.Hardware_ID__r?.Model_Number__c)",
+          "usage": "read-output",
+          "wouldBreakIfBlank": true,
+          "note": "HIGHEST-IMPACT real consumer. Outbound BSS REST API. Model_Number__c is serialized as OrderInfoItem.model in the JSON payload returned to the external BSS/billing system for every hardware OrderItem on the order. The query has NO Hardware_Platform__c filter, so iSeries hardware IS included. If the canonical value is diverted to iSeries_Model__c, the BSS payload emits model=null/blank for exactly the iSeries records that the bug already created. This class does NOT read iSeries_Model__c at all, so the value would be silently dropped from the integration. Concrete downstream break for iSeries order lines."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/PowerOrderSplittingService.cls",
+          "lines": "410 (SELECT ... Model_Number__c), 424 (cloned.Model_Number__c = original.Model_Number__c)",
+          "usage": "write",
+          "wouldBreakIfBlank": true,
+          "note": "Real data-fidelity break. During Power-line order splitting it clones Hardware__c records and copies Model_Number__c to the clone. iSeries_Model__c is NOT in the SELECT (410) and NOT copied (424), so splitting a diverted iSeries hardware record produces clones with BOTH Model_Number__c blank AND iSeries_Model__c blank -> permanent model loss on the split children. Note: iSeries hardware on Power-split orders may be uncommon, but the loss is silent and unrecoverable."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareGroupController.cls",
+          "lines": "58 (Hardware__r.Model_Number__c in group SELECT), 103 (WHERE Model_Number__c LIKE :modelFilter), 116 (search SELECT), 204-205 (write Model_Number__c only if key present), 395 (unassigned-hardware SELECT)",
+          "usage": "read-filter",
+          "wouldBreakIfBlank": true,
+          "note": "The controller behind the SC-3468 LWC itself. Line 103: the hardware search 'model' filter does WHERE Model_Number__c LIKE -> users filtering by model will NOT find iSeries records whose value was diverted. Lines 58/116/395: returns Model_Number__c for datatable/card display, blank for iSeries. Lines 204-205 write Model_Number__c only when the LWC sends that key, which (per established facts) it never does for the create form -> the write path is effectively dead for new iSeries hardware. iSeries_Model__c IS separately read/written here (170-171, 437-438) and is the controlling field for the Feature Code dependent picklist (486)."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareManagementController.cls",
+          "lines": "209-211 (conditionally add Model_Number__c to dynamic SELECT), 324-325 (Model_Number__c LIKE :searchPattern in OR search clause)",
+          "usage": "read-filter",
+          "wouldBreakIfBlank": true,
+          "note": "Account-scoped hardware search/list (hardwareManagementModal backing controller). 324-325: free-text search matches against Model_Number__c. iSeries records with the diverted value will not surface when a user searches by their model code (e.g. '500', '22A'). 209-211 also outputs the field for display. iSeries_Model__c is not part of this search."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareAttributePricingPrehook.cls",
+          "lines": "530 (SELECT Model_Number__c), 629 (String model = hardware.Model_Number__c), 674 (detail.model = model)",
+          "usage": "read-output",
+          "wouldBreakIfBlank": false,
+          "note": "PRICING IS SAFE. Despite being the pricing prehook, Model_Number__c is NOT a pricing input. The adjusted price is computed only from P_Group_List__c, Server_Type__c, and Users_Per_Partition__c (lines 586-627). Model is captured solely into the HardwarePricingDetail.model audit field serialized to Hardware_Pricing_Detail__c JSON (674/755). Blank model -> audit JSON shows model:null, but the calculated price, multipliers, and all waterfall tags are unchanged. No pricing regression."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareProductEligibilityService.cls",
+          "lines": "46 (SELECT ... Model_Number__c)",
+          "usage": "read-output",
+          "wouldBreakIfBlank": false,
+          "note": "ELIGIBILITY IS SAFE. Model_Number__c is SELECTed into the hardware context but evaluateProductEligibility (80-150) bases eligibility ONLY on Number_of_Processors__c (Rule 1) and Feature_Code__c (Rules 2/3) plus Product2.Type (Rule 4). Model_Number__c is never read in any rule. It only rides along into the EligibilityResult.hardware record for display. Blank model does not change which products are eligible."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareProductSelectorController.cls",
+          "lines": "42 (SELECT Model_Number__c), 132 (this.modelNumber = hardware.Model_Number__c in HardwareContextWrapper)",
+          "usage": "read-output",
+          "wouldBreakIfBlank": false,
+          "note": "Display-only. Surfaces Model_Number__c as HardwareContextWrapper.modelNumber back to the hardwareProductSelector LWC for header context. Not used in addProductsToQuote logic (QLI creation uses PricebookEntry + Hardware lookup only). Blank model -> blank header text for iSeries, but no functional/logic break."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.js",
+          "lines": "121 (datatable col Hardware__r.Model_Number__c), 130 (datatable col Model_Number__c), 822 (Model_Number__c: this.selectedGroup.Hardware__r?.Model_Number__c)",
+          "usage": "read-output",
+          "wouldBreakIfBlank": true,
+          "note": "The SC-3468 LWC. Datatable 'Model' columns (121/130) and the selected-group mapping (822) read Model_Number__c. For iSeries records these render BLANK in the manager grid even though the user just picked a model in the modal -> this is the user-visible face of the bug. Note the create form writes iSeries_Model__c (737) but the display reads Model_Number__c, so the chosen value never appears. The unused modelNumber:'' state (73) and case 'modelNumber' (652) are dead wiring."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html",
+          "lines": "312 and 611 ({selectedHardware.Model_Number__c} detail cards); model combobox at 210-218 and ~500-510 binds value to newHardware.iSeriesModel / data-field=iSeriesModel",
+          "usage": "read-output",
+          "wouldBreakIfBlank": true,
+          "note": "Two near-identical hardware detail cards display selectedHardware.Model_Number__c -> blank for iSeries. The 'Model Number' combobox (inside if:true={isISeries}) is wired to iSeriesModel, options={iSeriesModelOptions}, which is the actual mis-mapping the reporter saw: label says 'Model Number' but the binding targets the iSeries field."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareManagementModal/hardwareManagementModal.html",
+          "lines": "239-240 (<template if:true={hw.Model_Number__c}> Model: {hw.Model_Number__c})",
+          "usage": "read-output",
+          "wouldBreakIfBlank": true,
+          "note": "Display-only conditional. For iSeries hardware Model_Number__c is blank, so the 'Model: ...' line is suppressed entirely (the if:true gates it out). Cosmetic loss, no logic break, but reinforces that iSeries model info is invisible everywhere that reads Model_Number__c."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/flows/Hardware_Selection_Screen.flow-meta.xml",
+          "lines": "115 (placeholder display-text node listing intended datatable Columns: Name, Serial_Number__c, Model_Number__c, Status__c)",
+          "usage": "schema/layout",
+          "wouldBreakIfBlank": false,
+          "note": "NOT a live consumer. This is a [PLACEHOLDER] screen-text component instructing a developer to manually add a Data Table with Model_Number__c as a column; the flow does not actually read the field yet. If/when implemented, the selection grid would show blank model for iSeries, but today it does nothing."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/FortraDemoDataFactory.cls",
+          "lines": "410/423 (Model_Number__c set), 411/424 (iSeries_Model__c set)",
+          "usage": "test-only",
+          "wouldBreakIfBlank": false,
+          "note": "Demo/seed data factory. Sets BOTH Model_Number__c (full marketing name e.g. 'IBM Power E1080') and iSeries_Model__c (short code e.g. '9080-M9S') on the same record. Notable as evidence of the INTENDED data model: the two fields are semantically distinct (full name vs iSeries short model code), not interchangeable. Not a production runtime consumer."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/LicenseKeyEmailHandler.cls + LkgRecordCreator{LegacyIbm,HalcyonIbm,Sequel,Robot,Powertech}.cls + LkgRequestBuilder{Robot,Sequel,PowerTech}.cls",
+          "lines": "LicenseKeyEmailHandler:54; LkgRecordCreatorLegacyIbm:8; HalcyonIbm:5; Powertech:8; Robot:8; Sequel:8 (+ Builder ModelNumber refs)",
+          "usage": "other",
+          "wouldBreakIfBlank": false,
+          "note": "FALSE POSITIVES for this audit. Every one of these references LPAR_Model_Number__c on the License_Key__c object, sourced from the inbound LKG JSON request payload (keyData.Model / .ModelNumber), NOT from Hardware__c.Model_Number__c. Different field, different object, no FK to the hardware model field. Changing Hardware__c.Model_Number__c canonicality has zero effect on license-key model handling."
+        },
+        {
+          "file": "/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/QuoteLineItemTriggerHandler.cls + OpportunityTriggerHandler.cls",
+          "lines": "QLI handler & Opp handler production code: NO Model_Number__c reference. Hits were only QuoteLineItemTriggerHandlerTest.cls:80 and OpportunityTriggerHandlerTest.cls:69/80/296 (test data setup).",
+          "usage": "test-only",
+          "wouldBreakIfBlank": false,
+          "note": "Confirmed NOT consumers. QuoteLineItemTriggerHandler keys off the QuoteLineGroup/QLI Hardware__c lookup and Hardware_Group_Type__c to stamp Hardware__c onto lines. OpportunityTriggerHandler manages Hardware Status__c (Quoting->Active / Closed-Lost delete) via the Hardware lookup. Neither reads Model_Number__c. The grep hits are purely 'Model_Number__c = MODEL-' + i' test fixtures."
+        }
+      ],
+      "breakageAssessment": "If iSeries_Model__c becomes canonical (value diverted out of Model_Number__c), the breakage is concentrated and asymmetric: it only affects Hardware_Platform__c = iSeries records (today exactly the 46 rows the bug already created, and all future iSeries records). The reporter's hypothesis that 'iSeries_Model__c is the correct field to keep' is WRONG as a blanket statement, because multiple production readers consult Model_Number__c and NONE of them fall back to iSeries_Model__c. Concrete silent breaks: (1) BSSOrderInfoRestService emits model=blank for iSeries hardware in the outbound BSS/billing integration payload (genuine downstream system break, not just UI). (2) PowerOrderSplittingService loses the model entirely on cloned iSeries hardware during Power-line splits (iSeries_Model__c not in the clone path). (3) All search/filter paths -- HardwareGroupController model filter (line 103) and HardwareManagementController free-text search (324-325) -- fail to find iSeries hardware by model. (4) Every display surface (hardwareGroupManager datatable+cards, hardwareManagementModal, HardwareProductSelector context, HardwareGroupController group cards) shows blank model for iSeries. Notably SAFE: pricing (HardwareAttributePricingPrehook uses P_Group/Server_Type/Users only -- model is audit-JSON only) and product eligibility (HardwareProductEligibilityService uses processors + feature codes only). The two trigger handlers and the entire License-Key/LKG stack are not consumers at all (different field LPAR_Model_Number__c on License_Key__c). Root architectural finding: Model_Number__c is a free-text length-100 field holding the full model name (e.g. 'IBM Power E1080'), while iSeries_Model__c is a constrained picklist of iSeries short codes (150/170/500/22A/M9S...) and is the CONTROLLING field for the iSeries_Feature_Code__c dependent picklist. They are semantically DISTINCT (FortraDemoDataFactory populates both with different values). The picklist combobox in the LWC is mislabeled 'Model Number' but bound to iSeriesModel; the real-data problem is that the iSeries-model picklist value is the only model captured, while every consumer reads the general Model_Number__c text field.",
+      "verdict": "DO NOT make iSeries_Model__c the canonical/only field, and do NOT simply blank-promote it over Model_Number__c. Model_Number__c is the field actually consumed by production logic (outbound BSS integration, Power-split clone copy, both search filters, all display surfaces); iSeries_Model__c has NO downstream consumers beyond the LWC's own create flow, its dependent-picklist control of iSeries_Feature_Code__c, and a list view. The two fields are semantically different (free-text full model name vs constrained iSeries short-code picklist), so they are not drop-in substitutes. Recommended fix direction: in the 'Create New Hardware Group' modal, the picklist value chosen must ALSO populate Model_Number__c (the canonical, integration-facing field), not only iSeries_Model__c. Either (a) write the chosen value to BOTH fields (keep iSeries_Model__c for the dependent Feature Code picklist AND set Model_Number__c so BSS/search/display work), or (b) re-point the modal's write to Model_Number__c and drive the dependent picklist differently. Whatever the choice, a backfill is required for the 46 already-diverted records (copy iSeries_Model__c -> Model_Number__c) or they will continue to break the BSS payload and search. Pricing and eligibility need no changes. Treat the LkgRecordCreator/LicenseKeyEmailHandler/QLI-handler/Opp-handler hits as out of scope (false positives).\""
+    },
+    "iseriesMeta": {
+      "modelNumberField": "Hardware__c.Model_Number__c — Type=Text, length=100, NOT a picklist (no value set, no controlling/dependent), required=false, NO default. label=\"Model Number\". Live FortraUAT FieldDefinition confirms Text(100). File: /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/objects/Hardware__c/fields/Model_Number__c.field-meta.xml (12 lines). This is free-text legacy field. Live data: 29,192 of 79,042 Hardware rows populated. It is the field the LWC detail cards DISPLAY (selectedHardware.Model_Number__c, html lines 312 & 611) — so the bug record HW-0717956 shows blank because the modal never writes here.",
+      "iSeriesModelField": "Hardware__c.iSeries_Model__c — Type=Picklist, label=\"iSeries Model\" (NOT \"Model Number\"). Inline valueSet/valueSetDefinition (sorted=false), ~95 IBM Power model values: 150,170,200,250,270,300,400,500,510,515,520,525,530,550,570,595,600,620,640,650,720,730,740,800,810,820,825,830,840,870,890,20S,21A,21B,22A,22B,22G,22H,22X,23A,23X,24X,40S,41A,41B,41G,42A,42G,42H,42X,43X,50S,53S,60X,61X,70Y,71Y,E1C,E1D,E2B,E2C,E2D,E4A,E4B,E4C,E4D,E6B,E6C,E6D,E8A,E8B,E8D,E8E,EMA,FHA,FHB,HEU,HEX,M15,M25,M50,M9S,MHB,MHC,MHD,MHE,MMA,MMB,MMC,MMD,MME,RMD. NO global value set (inline only). required=false, NO default. Live FieldDefinition=Picklist(255). File: /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/objects/Hardware__c/fields/iSeries_Model__c.field-meta.xml (477 lines). Live data: ONLY 46 of 79,042 rows populated — all are Hardware_Platform__c=iSeries with Model_Number__c=NULL (the bug-diverted rows). This is the field the modal combobox (mislabeled \"Model Number\") actually WRITES to.",
+      "dependentPicklist": "YES — iSeries_Model__c IS a controlling field. It controls the dependent picklist iSeries_Feature_Code__c (Feature Code). Confirmed two ways: (1) iSeries_Feature_Code__c.field-meta.xml line 12 has <controllingField>iSeries_Model__c</controllingField> (type Picklist, inline valueSet with ~3,000+ feature-code values gated by valueSettings/controllingFieldValue per model); (2) HardwareGroupController.getFeatureCodeOptions (cls lines 469-509) reads controllingField=iSeries_Model__c, dependentField=iSeries_Feature_Code__c and maps controlling-index to valid feature codes. Model_Number__c (free text) controls NOTHING — it has no dependent. CONSEQUENCE FOR THE FIX: if SC-3468 re-points the modal to write Model_Number__c (text) instead of iSeries_Model__c (picklist), the iSeries Feature Code dependent picklist would lose its controller and break, because the Feature Code dependency is wired to iSeries_Model__c, not Model_Number__c. The two fields do NOT share picklist values — Model_Number__c is free text with no value set at all.",
+      "layoutsAndListViews": [
+        "No Hardware__c page layout exists in repo — objects/Hardware__c has only listViews, fields, validationRules, compactLayouts (NO layouts/ dir, NO Hardware flexipage). Neither Model field is surfaced via any classic page layout.",
+        "objects/Hardware__c/listViews/All_Hardware.listView-meta.xml — uses iSeries_Model__c ONLY as a FILTER (field=iSeries_Model__c, operation=notEqual, lines 12-15), NOT as a displayed column. Columns are NAME, Serial_Number__c, Legacy_Id__c. Neither Model field is a column labeled 'Model Number'.",
+        "objects/Hardware__c/compactLayouts/Hardware_Compact_Layout.compactLayout-meta.xml — fields: Name, Serial_Number__c, Account__c, Status__c. Neither Model field appears.",
+        "lwc/hardwareGroupManager/hardwareGroupManager.html — the ONLY place labeling iSeries_Model__c as 'Model Number': lightning-combobox label='Model Number' value={newHardware.iSeriesModel} data-field='iSeriesModel' at lines 211-215 (create form) and DUPLICATE at lines 505-509 (second block). The detail-view cards instead DISPLAY {selectedHardware.Model_Number__c} at lines 312 & 611 — the read/write mismatch that hides the saved value.",
+        "flows/Fortra_Hardware_Hardware_Management_Orchestrator.flow-meta.xml line 388 — screen field fieldText='iSeries Model' (correctly labeled, NOT 'Model Number'); dynamicChoiceSet ISeriesModelChoices (lines 216-223) sources picklistField=iSeries_Model__c."
+      ],
+      "childRelationships": "All three are LOOKUP fields to Hardware__c (whole-record references), NOT references to the iSeries_Model__c picklist or Model_Number__c text field — they point at the Hardware record itself. (1) ModelOrderItems__r = OrderItem.Model__c, Lookup(Hardware__c), relationshipName=ModelOrderItems, label 'Model', deleteConstraint SetNull (objects/OrderItem/fields/Model__c.field-meta.xml). (2) PriorModelOrderItems__r = OrderItem.Prior_Model__c, Lookup(Hardware__c), relationshipName=PriorModelOrderItems, label 'Prior Model' (objects/OrderItem/fields/Prior_Model__c.field-meta.xml). (3) Quote_Line_Items_Model__r = QuoteLineItem.Model__c, Lookup(Hardware__c), relationshipName=Quote_Line_Items_Model, description='Needed for issuing license keys. Also an attribute driving price for Power products.' (objects/QuoteLineItem/fields/Model__c.field-meta.xml). Downstream consumers (LkgRecordCreator*, LicenseKeyEmailHandler, HardwareProductSelectorController, PowerOrderSplittingService etc.) traverse Model__r.* / Hardware__r.* to reach the Hardware then read Model_Number__c (and/or iSeries_Model__c) from it — so the picklist value diverted to iSeries_Model__c is reachable via traversal, but anything reading Hardware__r.Model_Number__c for these 46 bug rows gets NULL.",
+      "verdict": "field='iSeries_Model__c' in consumers. THE 6 CONSUMERS OF iSeries_Model__c (grep -rn): (1) lwc/hardwareGroupManager/hardwareGroupManager.js:737 hardwareData.iSeries_Model__c = this.newHardware.iSeriesModel — the ONLY model write from the create form; sources the combobox mislabeled 'Model Number' (html 211/505). Does NOT break if blank (field is optional), but LWC JS lines 702-704 require iSeriesModel non-blank for iSeries before create, so a blank fails client validation with a toast, not an exception. (2) classes/HardwareGroupController.cls:170-171 sets newHardware.iSeries_Model__c only if key present — null-safe, does NOT break if blank. Lines 437-438 build the 'iSeriesModel' picklist options from the iSeries_Model__c describe (provider). Line 486 uses iSeries_Model__c as the CONTROLLING field in getFeatureCodeOptions; if blank/null modelValue, getFeatureCodeOptions returns [] early (lines 473-475) — no break. (3) classes/FortraDemoDataFactory.cls:411 & 424 hard-code iSeries_Model__c='9080-M9S' / '9105-22A' on seed Hardware (test/demo data); line 565 is only a COMMENT noting Hardware__r.iSeries_Model__c traversal. Blank would not break (optional); these are literals. (4) flows/Fortra_Hardware_Hardware_Creation_Subflow.flow-meta.xml:158 assigns varNewHardware.iSeries_Model__c = varISeriesModel — optional assignment, blank does NOT break (subflow inserts the record; a blank just leaves the picklist empty). (5) flows/Fortra_Hardware_Hardware_Management_Orchestrator.flow-meta.xml:221 ISeriesModelChoices dynamicChoiceSet sources picklistField=iSeries_Model__c (screen field labeled 'iSeries Model' line 388) — blank just means no selection, no break. (6) objects/Hardware__c/listViews/All_Hardware.listView-meta.xml:13 filter iSeries_Model__c notEqual (i.e. 'not blank') — used as a filter; if a row has iSeries_Model__c blank it is simply EXCLUDED from this list view (behavioral, not an error). NONE of the consumers throw on blank iSeries_Model__c. ROOT CAUSE CONFIRMED (matches reporter): the modal combobox is labeled 'Model Number' but is bound to data-field='iSeriesModel' which writes Hardware__c.iSeries_Model__c, while the detail cards display Model_Number__c — so the picklist value saves to the iSeries_Model__c picklist and never appears where the UI shows 'Model Number'. The reporter's hypothesis ('iSeries_Model__c is the correct field to keep') is SOUND from a data-model standpoint: iSeries_Model__c is the proper typed IBM-Power picklist AND the controller for the Feature Code dependent picklist; Model_Number__c is legacy free text controlling nothing. RECOMMENDED FIX DIRECTION: keep writing iSeries_Model__c (do NOT repoint to Model_Number__c — that would orphan the Feature Code dependency) and fix the DISPLAY mismatch (make the detail cards / any 'Model Number' read render iSeries_Model__c for iSeries platform, or relabel) so the saved value is visible. The unused LWC state modelNumber:'' (js line 73) and case 'modelNumber' (652) plus the Apex Model_Number__c branch (cls 204-205) are dead paths the create form never exercises. Note unrelated future-cleanup risk: HardwareGroupController.getFeatureCodeOptions reuses the (Text-only) free-text Model_Number__c nowhere, but the dual-block duplication in the HTML (lines 211 & 505) means any relabel/rebind must be applied in BOTH combobox blocks."
+    },
+    "live": {
+      "fieldDescribe": "Live describe of Hardware__c (FortraUAT, 2026-06-28) via `sf sobject describe -s Hardware__c -o FortraUAT --json`:\n\n- Model_Number__c: type=STRING (free text), NOT a picklist. picklistValues=0, dependentPicklist=false, controllerName=null, restrictedPicklist=false. This is the key surprise: it cannot be the data home for a UI picklist in the schema sense -- it is a free-text field.\n- iSeries_Model__c: type=PICKLIST, 92 active values, dependentPicklist=false, controllerName=null, restrictedPicklist=false. Values are the IBM iSeries model codes: 150,170,200,250,270,300,400,500,510,515,520,525,530,550,570,595,600,620,640,650,720,730,740,800,810,820,825,830,840,870,890, plus 3-char codes (20S,21A,21B,22A,22B,...,E1C,E2B,E4A,E6B,E8A,MMA,MHB,RMD, etc.).\n- Hardware_Platform__c: picklist, only 2 values: 'iSeries', 'Cross Platform' (not dependent).\n- DEPENDENCY (corrects the \"Feature Code\" wording in the established facts): the dependent picklist on Hardware__c is iSeries_Feature_Code__c, controllerName=iSeries_Model__c. (Plain Feature_Code__c on Hardware__c is type=string, no dependency.) So iSeries_Model__c IS a controlling field for a true dependent picklist -- the modal's model->feature-code chain is wired through iSeries_Model__c.\n\nSOQL/describe used: `sf sobject describe -s Hardware__c -o FortraUAT --json` then filtered fields Model_Number__c, iSeries_Model__c, Hardware_Platform__c, Feature_Code__c, iSeries_Feature_Code__c.",
+      "populationSplit": "SOQL: `SELECT Hardware_Platform__c, COUNT(Id) total, COUNT(Model_Number__c) mn, COUNT(iSeries_Model__c) ism FROM Hardware__c GROUP BY Hardware_Platform__c ORDER BY COUNT(Id) DESC`\n\nResult (FortraUAT 2026-06-28):\n- Platform NULL: 78,992 total | 29,191 with Model_Number__c | 2 with iSeries_Model__c\n- iSeries: 44 total | 1 with Model_Number__c | 44 with iSeries_Model__c\n- Cross Platform: 6 total | 0 | 0\nGrand total 79,042 Hardware__c. Model_Number__c populated = 29,191 (all but 1 on platform-NULL rows). iSeries_Model__c populated = 46.\n\nCRITICAL CONTENT FINDING (changes the framing): Model_Number__c is the historical field-of-record by ROW COUNT, but its CONTENT is not model codes. SOQL `SELECT Model_Number__c, COUNT(Id) ... GROUP BY` shows 29,188 of 29,191 populated values are GUIDs (`SELECT COUNT(Id) FROM Hardware__c WHERE Model_Number__c LIKE '________-____-____-____-____________'` = 29,188), e.g. 'DEB80F77-BD25-E511-80C4-005056840EFE'. Only 4 non-GUID values exist: 'IBM Power S1022','IBM Power E1080','EP12','1223'. So Model_Number__c is effectively a migrated EXTERNAL-KEY/GUID string column, NOT a model-code picklist. iSeries_Model__c (46 rows) is the field actually holding clean iSeries model codes. This undercuts the reporter's premise that the picklist is \"mapped to the wrong DB field\" -- Model_Number__c was never a model-code picklist.",
+      "divertedRecords": "SOQL: `SELECT Id,Name,Hardware_Platform__c,Model_Number__c,iSeries_Model__c,iSeries_Feature_Code__c,CreatedDate,CreatedById FROM Hardware__c WHERE iSeries_Model__c != null ORDER BY CreatedDate` (46 rows) and `SELECT COUNT(Id),MIN(CreatedDate),MAX(CreatedDate) ... WHERE iSeries_Model__c != null`.\n\n46 rows total. NOT a clean homogeneous set:\n- Platform: 44 = iSeries, 2 = NULL (HW-0717915, HW-0717916).\n- Model_Number__c NULL on 43; ALSO populated on 3: HW-0717915 (MN='IBM Power E1080', ISM='9080-M9S'), HW-0717916 (MN='IBM Power S1022', ISM='9105-22A'), HW-0717935 (MN='EP12', ISM='170').\n- CreatedDate MIN=2026-02-01T19:30:01Z, MAX=2026-06-26T16:03:45Z. So NOT purely \"recently diverted\": only 7 rows created on/after 2026-06-20 (HW-0717950/951/953/954/955/956/957 -- includes the screenshot record HW-0717956 ISM=500). The other 39 date back to Feb 2026. iSeries_Model__c has been used since well before the SC-3423/SC-3468 LWC window; the create-form path has been writing to it consistently, not a new regression.\n- 12 distinct CreatedById values.\n- Picklist validity: 2 values are NOT current iSeries_Model__c picklist members: '9080-M9S','9105-22A' (the 2 platform-NULL rows -- legacy/loaded, not modal-entered). The other 44 use valid picklist codes.\n- Are these values valid as Model_Number__c too? Model_Number__c is free-text string, so any value is storable, BUT none of the diverted codes (150,170,200,...,42A) currently exist as a Model_Number__c value anywhere (`...WHERE Model_Number__c IN ('150',...,'42A')` = 0 rows). Model_Number__c content is GUIDs/full names, a different namespace from the iSeries picklist codes.\n- iSeries_Feature_Code__c (the dependent picklist) is populated on 35 of 46 -- confirming the modal's controlling->dependent picklist chain functions through iSeries_Model__c.",
+      "downstreamData": "Lookup discovery: OrderItem, QuoteLineItem, Asset each have Hardware__c lookups. Hardware lookups found: OrderItem.{Hardware__c,Hardware_ID__c,Model__c,System_Type__c,Serial_Number__c,Partition__c,Prior_*...}; QuoteLineItem.{Hardware__c,Hardware_Reference__c,Hardware_ID__c,Model__c,...}; Asset.Hardware__c. Note OrderItem.Model__c and QLI.Model__c are themselves Hardware__c LOOKUPS, not text snapshots (no text model-snapshot field exists on these objects; Asset has none).\n\nReference counts against the 46 diverted HW (subquery `... WHERE <lookup> IN (SELECT Id FROM Hardware__c WHERE iSeries_Model__c != null)`):\n- OrderItem.Hardware__c = 24; OrderItem.Model__c = 2\n- QuoteLineItem.Hardware__c = 18; QuoteLineItem.Hardware_Reference__c = 7\n- Asset.Hardware__c = 25\n\nImpact sample (`SELECT ..., Hardware__r.Model_Number__c, Hardware__r.iSeries_Model__c FROM <obj> WHERE Hardware__c IN (...)`):\n- 24/24 OrderItems point at HW whose Model_Number__c is NULL (iSeries_Model__c set).\n- 24/25 Assets point at HW with Model_Number__c NULL (1 is the both-populated row).\n- 15/18 QLIs point at HW with Model_Number__c NULL.\nSo any downstream class deriving model from Hardware.Model_Number__c (HardwareAttributePricingPrehook, HardwareProductSelectorController, PowerOrderSplittingService, LkgRecordCreator*, etc.) yields BLANK/NULL model for these lines today. BUT this is true for ALL 46 (incl. the 39 older rows), not just the recent 7 -- so it is a pre-existing data condition, not a fresh SC-3468 regression. Caveat: I did not trace each Apex class line-by-line; impact inferred from field semantics + null population.",
+      "verdict": "Reporter's hypothesis (\"UI mapped to wrong DB field; iSeries_Model__c is the field to keep\") is HALF RIGHT and should be implemented with eyes open -- but the stated rationale is wrong and there is a data-cleanup tail.\n\nWhat the live org proves:\n1. iSeries_Model__c IS the correct, well-formed home for iSeries model codes: it is a proper PICKLIST (92 values) AND it is the CONTROLLING field for the dependent picklist iSeries_Feature_Code__c (populated on 35/46). The modal already saves into it correctly and the model->feature-code chain works. Keeping iSeries_Model__c is sound.\n2. The reporter's premise that the value \"should\" be in Model_Number__c is NOT supported: Model_Number__c is a free-text STRING (not a picklist) and 29,188/29,191 of its values are migration GUIDs (e.g. DEB80F77-BD25-...), with only 4 real model strings. It is effectively a legacy external-key column, never an iSeries model-code picklist. Routing the modal picklist into it would put clean codes into a GUID namespace and break nothing-but-also-help-nothing. So the bug is NOT \"wrong field mapping causing data loss\"; the modal is writing to the RIGHT field. The real user-visible defect is likely a DISPLAY mismatch: cards/datatable (js 312/611, cols 121/130) READ Model_Number__c, which is null for iSeries HW, so the model the user picked \"disappears\" from the UI even though it saved to iSeries_Model__c.\n\nRecommended direction (for SC-3468): (a) Keep persisting to iSeries_Model__c (no DB remap needed). (b) Fix the DISPLAY/read path so cards+datatable show iSeries_Model__c (with Model_Number__c fallback) for iSeries platform -- this is the actual \"value didn't save\" symptom. (c) Confirm with downstream owners whether the pricing/LKG/splitter classes that read Hardware.Model_Number__c must also read iSeries_Model__c for iSeries lines; today 24 OrderItems / 25 Assets / 18 QLIs reference the 46 HW and would derive a blank model from Model_Number__c. (d) Clean up the 3 dual-populated rows and 2 off-picklist legacy values (9080-M9S, 9105-22A) separately.\n\nDo NOT proceed on the assumption this is a one-line data-field rename. Recommend confirming the display-vs-storage framing with the reporter before any change. All findings are read-only SELECT/describe in FortraUAT; no DML performed."
+    },
+    "verifiers": [
+      {
+        "lens": "FIX-DIRECTION (which field should be canonical; minimal correct fix; blast radius)",
+        "rootCauseHolds": false,
+        "fixDirection": "iSeries_Model__c SHOULD remain canonical for the iSeries model code, and the modal should KEEP writing it — the reporter's instinct (\"keep iSeries_Model__c\") lands on the right field even though their stated root cause is wrong. Three facts from the live org decide this against the \"rebind to Model_Number__c\" reading:\n\n(1) Schema/coupling is irreversible toward iSeries_Model__c. iSeries_Model__c is a real Picklist (92 values) and is the CONTROLLING field for the dependent picklist iSeries_Feature_Code__c (verified: iSeries_Feature_Code__c.ControllingFieldDefinitionId points at iSeries_Model__c, fragment 00NWC000004heJF; Model_Number__c is Text(100) and controls nothing). Re-pointing the modal to persist into Model_Number__c would orphan the model->feature-code dependency that HardwareGroupController.getFeatureCodeOptions (cls 486-487) and the create form already depend on. That makes \"rebind the combobox to write Model_Number__c\" the WRONG, higher-blast fix.\n\n(2) Content kills the \"wrong field\" premise. Model_Number__c is NOT a model-code field: 29,188 of 29,192 populated values are migration GUIDs (e.g. DEB80F77-BD25-E511-...); only 4 are real model strings. It is a legacy external-key/free-text column, never an iSeries model-code picklist. So this is NOT data loss from a mis-bound field — the modal is writing clean codes to the correct typed field. The \"mis-bound combobox\" root cause does not hold: the WRITE is correct; the defect is a DISPLAY/read mismatch (cards js 312/611 and datatable cols 121/130 read Model_Number__c, which is null for iSeries, so the saved code \"disappears\" from the UI).\n\n(3) The strongest \"Model_Number__c is canonical\" argument (BSSOrderInfoRestService.cls:198 emits Hardware_ID__r.Model_Number__c as outbound `model`, no iSeries fallback) is real in shape but empty in fact: every OrderItem today on a null/iSeries platform HW has Model_Number__c=null (0 of 8), and fleet-wide the field is GUIDs — BSS has never carried a meaningful iSeries model and would emit GUID garbage if it did. So no live BSS regression exists from keeping iSeries_Model__c.\n\nMinimal correct fix (UI/read layer, no DB remap, no Apex write change): (a) keep persisting iSeries_Model__c; (b) fix the read surfaces to show iSeries_Model__c (with Model_Number__c fallback) for Hardware_Platform__c=iSeries — hardwareGroupManager detail cards (html 312/611), datatable cols (js 121/130), selectedHardware hydration (js 822), and hardwareManagementModal (html 239-240); (c) relabel the combobox or accept it, but apply any change in BOTH duplicated blocks (html 210 and 504); (d) delete the dead modelNumber paths (js 73/577/652, Apex Model_Number__c branch cls 203-206) to prevent future confusion. Do NOT touch pricing (HardwareAttributePricingPrehook uses P_Group/Server_Type/Users only — model is audit-JSON) or eligibility (processors+feature codes only); both are SAFE.",
+        "dataMigrationNeeded": "No Model_Number__c -> iSeries_Model__c migration, and explicitly do NOT backfill iSeries codes INTO Model_Number__c (that would mix clean codes into a 29,188-row GUID namespace and still help no consumer). Required cleanup is narrow: (1) The 46 iSeries_Model__c-populated rows are correct as-is and need no migration; their iSeries_Model__c value is the canonical model. (2) Reconcile the 3 dual-populated rows (HW-0717915 MN='IBM Power E1080'/ISM='9080-M9S'; HW-0717916 MN='IBM Power S1022'/ISM='9105-22A'; HW-0717935 MN='EP12'/ISM='170') and the 2 off-picklist legacy values 9080-M9S/9105-22A (not current picklist members, on the 2 platform-NULL rows) — decide whether these are picklist-add candidates or load artifacts. (3) The 29,192 historical Model_Number__c rows are out of scope: they are GUID external keys, not model codes — leave them; do not coerce. (4) IF (and only if) a downstream owner confirms BSS/search MUST surface iSeries model for these lines, the correct change is to teach those consumers to read iSeries_Model__c for iSeries platform — not to mutate data. This is a consumer-code decision to confirm, not a migration to run now.",
+        "risksOrGaps": [
+          "Dependent-picklist trap: any fix that rebinds/relabels the combobox must NOT detach iSeries_Model__c, or the iSeries_Feature_Code__c dependency (35/46 populated) and getFeatureCodeOptions break. This is the single biggest blast-radius landmine and rules out the 'write Model_Number__c instead' direction.",
+          "Duplication hazard: the 'Model Number' combobox exists in TWO identical HTML blocks (lines 210-218 and 504-512); a relabel/read-fix applied to only one will leave a partial fix. Same for the two near-identical detail cards (312/611).",
+          "BSS/search consumers do read Model_Number__c with no iSeries fallback (BSSOrderInfoRestService:198, HardwareGroupController model filter:103, HardwareManagementController search:324-325). They are NOT breaking today (data is null/GUID), but if the business later expects iSeries model to flow to BSS or be searchable, those readers need an iSeries_Model__c branch — a follow-up decision with a downstream owner, not part of this UI fix.",
+          "PowerOrderSplittingService (410/424) clones Model_Number__c only; if an iSeries HW is ever Power-split, iSeries_Model__c is not copied -> model lost on clones. Low frequency, but a latent fidelity gap independent of SC-3468; flag, don't necessarily fix here.",
+          "Reporter's stated rationale ('UI mapped to wrong DB field causing the value to not save') is factually wrong — the value DOES save to iSeries_Model__c. Confirm the display-vs-storage framing with the reporter before any change so the ticket isn't 'fixed' by a harmful rebind.",
+          "LkgRecordCreator*/LicenseKeyEmailHandler/QLI+Opp trigger handlers are FALSE POSITIVES (LPAR_Model_Number__c on License_Key__c, or test fixtures) — exclude from scope to avoid wasted blast-radius accounting."
+        ],
+        "confidence": "high"
+      },
+      {
+        "lens": "DATA-MIGRATION & REGRESSION",
+        "rootCauseHolds": false,
+        "fixDirection": "iSeries_Model__c must remain canonical for iSeries model codes — and the root-cause framing (\"combobox mis-bound to the wrong DB field\") does NOT survive this lens. Live UAT proves the modal already writes to the RIGHT field: iSeries_Model__c is a proper 92-value picklist AND the metadata controllingField for the dependent iSeries_Feature_Code__c picklist (35/46 diverted rows have Feature Codes set through that chain). Model_Number__c is a free-text STRING that controls nothing, and 29,188 of its 29,191 populated values are migration GUIDs (only 4 are real model strings) — it was never a model-code home. So \"make Model_Number__c canonical\" is wrong: it would (a) orphan the Feature Code dependent picklist (its controllingField is hard-wired to iSeries_Model__c, not Model_Number__c), and (b) dump clean codes into a GUID namespace. The actual defect is a DISPLAY/read mismatch: the detail cards (html 312/611) and datatable cols (js 121/130, hydration js 822) READ Model_Number__c, which is null for iSeries, so the saved value \"disappears.\" Correct fix = keep persisting iSeries_Model__c (no DB remap) and fix the read/display path to render iSeries_Model__c (with Model_Number__c fallback) for iSeries platform, plus relabel the combobox from \"Model Number\" to \"iSeries Model\" in BOTH duplicated HTML blocks (211 and 505). This is a UI-only change with near-zero regression surface and requires NO data migration of the 46 rows.",
+        "dataMigrationNeeded": "Under the recommended fix (keep iSeries_Model__c canonical, fix display): NO backfill of the 46 rows is required — they are already stored correctly in iSeries_Model__c; the display fix surfaces them. Do NOT copy iSeries_Model__c -> Model_Number__c (that pollutes a 99.99%-GUID free-text column and the consumersModel agent's backfill recommendation is rejected under live evidence). Only targeted cleanup of 5 anomalous rows: (1) the 2 NULL-platform legacy rows HW-0717915/HW-0717916 carry OFF-PICKLIST iSeries_Model__c values '9080-M9S'/'9105-22A' (not in the 92-value set) and were loaded, not modal-entered — set Hardware_Platform__c='iSeries' or leave as documented data debt; (2) the 3 dual-populated rows (HW-0717915 MN='IBM Power E1080', HW-0717916 MN='IBM Power S1022', HW-0717935 MN='EP12'/ISM='170') are internally inconsistent — decide per-row whether Model_Number__c free-text or iSeries_Model__c code is intended, since the display fallback would show conflicting values. Concrete migration steps if you nonetheless choose to dual-write Model_Number__c for integration parity: (a) export the 46 via SELECT Id,iSeries_Model__c WHERE iSeries_Model__c!=null AND Model_Number__c=null (43 rows, excludes the 3 dual), (b) sf data update / Bulk upsert Model_Number__c=iSeries_Model__c on those 43, (c) re-verify the All_Hardware listView (filter iSeries_Model__c notEqual) and the dependent Feature Code chain are unaffected (they read iSeries_Model__c, untouched), (d) leave the 29,188 GUID rows alone. The 29,192 historical rows need NO migration under either direction — they are platform-NULL non-iSeries and have no iSeries model concept. CRITICAL live finding on downstream exposure: of the 24 OrderItems / 25 Assets / 18 QLIs referencing the 46 HW, the only true integration consumer (BSSOrderInfoRestService) traverses Hardware_ID__c, which reaches just 2 OrderItems, and BOTH are on DRAFT orders (00000632, 00000639, same HW-0717884) — i.e. ZERO diverted records are on activated orders transmitting to BSS today, so there is no live integration data-loss firefight. The 25 Assets are all Installed but Asset has no model consumer.",
+        "risksOrGaps": [
+          "BSS regression risk is LOW, not high: BSSOrderInfoRestService reads Hardware_ID__r.Model_Number__c (the Hardware_ID__c lookup), NOT Hardware__c. Only 2 OrderItems reach the 46 HW via Hardware_ID__c and both are Draft. The consumersModel agent overstated this as a 'genuine downstream system break' by conflating the Hardware__c (24) and Hardware_ID__c (2) lookups; live counts show the BSS-reachable set is 2 Draft lines. Still worth dual-writing Model_Number__c IF BSS must emit iSeries model codes for future activated iSeries orders — confirm with BSS owner whether model=null is acceptable for iSeries.",
+          "PowerOrderSplitting loss risk is REAL but rare and EXISTS UNDER EITHER DIRECTION: PowerOrderSplittingService clones Hardware and copies only Model_Number__c (line 424), not iSeries_Model__c — splitting a diverted iSeries HW loses the model on clones silently AND drops the Feature Code controller. This is a latent bug independent of SC-3468's display fix; flag as a separate ticket (add iSeries_Model__c + iSeries_Feature_Code__c to the SELECT at 410 and the clone copy at 424). If the display fix ships without this, split children of iSeries HW still show blank.",
+          "ROLLBACK asymmetry: the recommended display/relabel fix is trivially reversible (revert LWC). A Model_Number__c backfill is NOT cleanly reversible — once 43 codes are written into the GUID column, distinguishing them from any future legitimate Model_Number__c writes requires the iSeries_Model__c value as the source of truth anyway, so prefer NOT backfilling.",
+          "Search/filter gap persists regardless: HardwareGroupController.cls:103 (WHERE Model_Number__c LIKE) and HardwareManagementController.cls:324-325 free-text search key off Model_Number__c, so users searching by iSeries code won't find these 46 unless those queries are extended to also match iSeries_Model__c. Display fix alone does not fix search. Decide whether search parity is in SC-3468 scope.",
+          "Dependent-picklist break is the decisive regression argument against the consumersModel/iseriesMeta 'repoint to Model_Number__c' option: iSeries_Feature_Code__c.controllingField=iSeries_Model__c is metadata-locked; repointing the write to free-text Model_Number__c orphans 35/46 rows' Feature Code dependency and breaks getFeatureCodeOptions. This alone disqualifies that fix direction.",
+          "Data-debt tail not closed by code: 2 off-picklist ISM values (9080-M9S, 9105-22A) and 3 dual-populated rows need a manual data decision; the display fallback will render whichever field is chosen, so these 3 could show inconsistent model text vs code until reconciled.",
+          "Scope clarity needed from reporter: the reporter's stated premise ('value should be in Model_Number__c') is factually wrong per live data; before any build, confirm the symptom is 'picked model not visible in cards' (display fix) vs 'BSS needs the code' (dual-write) — these are different fixes with different migration footprints."
+        ],
+        "confidence": "high"
+      }
+    ],
+    "synthesis": {
+      "executiveSummary": "SC-3468 reporter is RIGHT about the destination but WRONG about the mechanism. The \"Create New Hardware Group\" modal's \"Model Number\" picklist already saves correctly to Hardware__c.iSeries_Model__c — that is the proper field and must be kept. The reporter's premise that the value \"does not save\" / is \"mapped to the wrong DB field\" does not survive the evidence: the write succeeds (HardwareGroupController.cls:171), and live UAT confirms the screenshot record HW-0717956 holds iSeries_Model__c=500. The true defect is a DISPLAY/READ MISMATCH: the create combobox is mislabeled \"Model Number\" and WRITES iSeries_Model__c, while the detail cards and datatable columns READ Model_Number__c (which is NULL for iSeries) — so the value the user just picked \"disappears\" from the UI. Making Model_Number__c canonical (the literal reading of the reporter's ask) is the wrong fix: it would orphan the iSeries_Feature_Code__c dependent picklist (controllerName=iSeries_Model__c, metadata-locked) and dump clean codes into a column that is 29,188/29,192 migration GUIDs. Recommended fix is UI/read-only: keep persisting iSeries_Model__c, relabel the combobox to \"iSeries Model\", and make the read surfaces render iSeries_Model__c (Model_Number__c fallback) for iSeries platform. No DB remap, no backfill of the 46 records (they are already stored correctly). Pricing and eligibility are unaffected. Live BSS integration is NOT impacted today (only 2 OrderItems reach the 46 HW via the BSS lookup, both on Draft orders).",
+      "rootCause": "Read/write field asymmetry in the hardwareGroupManager LWC, not a wrong DB mapping. WRITE: the \"Model Number\" combobox is bound to data-field=\"iSeriesModel\" (hardwareGroupManager.html:210-218 and the duplicate at :505-509), whose options are described from iSeries_Model__c (HardwareGroupController.cls:437-438). handleCreateHardware sends hardwareData.iSeries_Model__c (hardwareGroupManager.js:737), and HardwareGroupController.cls:170-171 assigns it to Hardware__c.iSeries_Model__c. The Model_Number__c key is never sent, so the Apex \"Legacy fields (kept for backward compatibility)\" branch at HardwareGroupController.cls:204-205 is dead, and new iSeries records always have Model_Number__c=NULL. READ: the Selected-Hardware detail cards display {selectedHardware.Model_Number__c} (hardwareGroupManager.html:312 and :611), the datatable columns read Model_Number__c (hardwareGroupManager.js:121 and :130), and edit-mode hydration reads it (hardwareGroupManager.js:822). Because the write target (iSeries_Model__c) and the read target (Model_Number__c) differ, the saved code is invisible — the user-visible symptom. The label \"Model Number\" on an iSeries_Model__c-bound control is the cosmetic trigger that made the reporter conclude \"wrong field.\" Net: the modal is wired to the correct field; the bug is that the display reads a different, NULL field.",
+      "evidenceChain": [
+        "WRITE binding: hardwareGroupManager.html:210-218 <lightning-combobox label=\"Model Number\" options={iSeriesModelOptions} value={newHardware.iSeriesModel} data-field=\"iSeriesModel\" required> — and an identical duplicate at html:505-509 (verified both carry label=\"Model Number\" + data-field=\"iSeriesModel\").",
+        "WRITE path: handleNewHardwareChange case 'iSeriesModel' (hardwareGroupManager.js:622-631) sets newHardware.iSeriesModel; handleCreateHardware sends ONLY hardwareData.iSeries_Model__c = this.newHardware.iSeriesModel (hardwareGroupManager.js:737); no Model_Number__c key is built anywhere in js:729-760.",
+        "Apex persist: HardwareGroupController.cls:170-171 assigns iSeries_Model__c when the key is present; the Model_Number__c branch at cls:204-205 (comment 'Legacy fields (kept for backward compatibility)', cls:203) is dead because the LWC never sends that key.",
+        "READ mismatch: detail cards display {selectedHardware.Model_Number__c} at html:312 and html:611; datatable columns read Hardware__r.Model_Number__c (js:121) and Model_Number__c (js:130); edit hydration reads Model_Number__c (js:822). Write target != read target.",
+        "Dependent-picklist lock (live describe, FortraUAT 2026-06-28): iSeries_Feature_Code__c dependentPicklist=True, controllerName=iSeries_Model__c, 686 values; metadata controllingField confirmed at objects/Hardware__c/fields/iSeries_Feature_Code__c.field-meta.xml:12. iSeries_Model__c is a 92-value picklist; Model_Number__c is type=string, picklistValues=0, controllerName=None. HardwareGroupController.getFeatureCodeOptions (cls:486) uses iSeries_Model__c as the controlling field. => Re-pointing the write to Model_Number__c would orphan the Feature Code dependency.",
+        "Content finding (live, FortraUAT 2026-06-28): Hardware__c totals 79,042; Model_Number__c populated=29,192, of which 29,188 are migration GUIDs (LIKE '________-____-____-____-____________'); only 4 are real model strings ('1223','IBM Power E1080','IBM Power S1022','EP12'). iSeries_Model__c populated=46. => Model_Number__c was never a model-code field; it is a legacy external-key/GUID column.",
+        "Diverted set (live): 46 rows with iSeries_Model__c — 44 Hardware_Platform__c=iSeries + 2 platform-NULL legacy (off-picklist codes 9080-M9S/9105-22A); 3 dual-populated (HW-0717915 MN='IBM Power E1080'/ISM='9080-M9S', HW-0717916 MN='IBM Power S1022'/ISM='9105-22A', HW-0717935 MN='EP12'/ISM='170'); 35 have iSeries_Feature_Code__c (dependent chain works); CreatedDate spans 2026-02-01 to 2026-06-26 (pre-existing, not a fresh regression).",
+        "Screenshot record (live): HW-0717956 (a0nWC000001wRldYAE) Hardware_Platform__c=iSeries, iSeries_Model__c=500, Model_Number__c=NULL — saved correctly to iSeries_Model__c, invisible because the card reads Model_Number__c.",
+        "BSS blast radius (live): BSSOrderInfoRestService reads Hardware_ID__r.Model_Number__c (cls:104, mapped to outbound this.model at cls:198) via the Hardware_ID__c lookup, NOT Hardware__c. Only 2 OrderItems reach the 46 diverted HW via Hardware_ID__c, and BOTH are on Draft orders (ISM=150, MN=null). => No live BSS data-loss firefight; the consumersModel agent overstated this by conflating the Hardware__c (24) and Hardware_ID__c (2) lookups.",
+        "Pricing/eligibility SAFE: HardwareAttributePricingPrehook computes price from P_Group_List__c/Server_Type__c/Users_Per_Partition__c only (model is audit-JSON at cls:674); HardwareProductEligibilityService evaluates Number_of_Processors__c + Feature_Code__c + Product2.Type only (cls:80-150). Neither reads model for logic.",
+        "False positives excluded: LkgRecordCreator*/LicenseKeyEmailHandler reference LPAR_Model_Number__c on License_Key__c (different object/field, no FK to Hardware model); QuoteLineItemTriggerHandler/OpportunityTriggerHandler hits are test fixtures only."
+      ],
+      "impactAndBlastRadius": "Scope is narrow and asymmetric: only Hardware_Platform__c=iSeries records (the 46 existing rows + all future iSeries hardware created via this modal). Cross Platform and platform-NULL records are unaffected. USER-VISIBLE (the actual ticket): hardwareGroupManager datatable 'Model' columns (js:121/130), Selected-Hardware detail cards (html:312/611), edit-mode hydration (js:822), and hardwareManagementModal (html:239-240) all render BLANK model for iSeries because they read Model_Number__c. SEARCH (latent, out of immediate scope): HardwareGroupController model filter WHERE Model_Number__c LIKE (cls:103) and HardwareManagementController free-text search (cls:324-325) won't find iSeries records by code — display fix alone does not fix search. INTEGRATION (BSS): structurally reads Model_Number__c with no iSeries fallback (BSSOrderInfoRestService:198), but live data shows ZERO diverted records on activated orders — only 2 Draft OrderItems reach the set via Hardware_ID__c — so NO live regression today; becomes relevant only if/when an iSeries order activates and BSS must carry the model. POWER-SPLIT (latent, independent of SC-3468): PowerOrderSplittingService clones only Model_Number__c (cls:410/424), not iSeries_Model__c — splitting a diverted iSeries HW loses the model AND the Feature Code controller on clones; rare, flag as separate ticket. SAFE: pricing and product eligibility (no model-based logic). NOT consumers: License-Key/LKG stack, QLI/Opp trigger handlers. Regression surface of the recommended UI fix itself is near-zero (LWC-only, trivially reversible).",
+      "recommendedFix": "UI/read-layer fix only — keep iSeries_Model__c as the persisted field; do NOT change the Apex write or remap the DB. Concrete changes in Org Data/_src/lwc/hardwareGroupManager/: (1) RELABEL both comboboxes from label=\\\"Model Number\\\" to label=\\\"iSeries Model\\\" at hardwareGroupManager.html:211 AND hardwareGroupManager.html:505 (apply to BOTH duplicated blocks or the fix is partial). (2) FIX THE READ SURFACES so iSeries model shows for iSeries platform. Simplest robust approach: add a computed field on each datatable row and on selectedHardware that resolves model as iSeries_Model__c ?? Model_Number__c, and bind the display to that resolved value: datatable columns at hardwareGroupManager.js:121 and :130 (point fieldName at the resolved property, e.g. modelDisplay, populated where rows are built in searchHardware/handleGroupSelection); detail cards at hardwareGroupManager.html:312 and :611 (bind {selectedHardware.modelDisplay}); and set selectedHardware.modelDisplay during hydration near hardwareGroupManager.js:822. Mirror the same iSeries_Model__c-fallback display in hardwareManagementModal.html:239-240. (3) Ensure the Apex selectors that feed the grid include iSeries_Model__c alongside Model_Number__c so the LWC can compute the fallback: add iSeries_Model__c to the SELECTs at HardwareGroupController.cls:58, :116, and :395 (Model_Number__c is already selected there). (4) DEAD-CODE CLEANUP to prevent recurrence of this exact confusion: remove the unused modelNumber:'' state (hardwareGroupManager.js:73 and the reset at :577), the unreachable case 'modelNumber' (js:652-654), and the dead Apex Model_Number__c branch (HardwareGroupController.cls:203-206). WHY this direction over the reporter's literal ask (rebind the modal to write Model_Number__c): two hard blockers. First, iSeries_Feature_Code__c.controllerName=iSeries_Model__c is metadata-locked (verified via describe) and getFeatureCodeOptions (cls:486) depends on it — repointing the write would orphan the dependent Feature Code picklist (35/46 rows populated through it). Second, Model_Number__c is a free-text column whose live content is 29,188/29,192 migration GUIDs, so it is the wrong semantic home for clean iSeries codes. The display fix surfaces the already-correct data with zero data risk and is trivially reversible.",
+      "alternativeConsidered": "Reporter-preferred framing: keep iSeries_Model__c. ACCEPTED on the destination field, REJECTED on the literal implementation. The reporter's instinct that iSeries_Model__c is the field to keep is correct and well-founded: it is the typed 92-value IBM-Power picklist and the controlling field for the iSeries_Feature_Code__c dependent picklist; the modal already writes it correctly. What is REJECTED is the reporter's stated root cause and its implied fix ('the UI is mapped to the wrong DB field; the value should land in Model_Number__c'). That is disproven three ways: (a) the value DOES save to iSeries_Model__c (HW-0717956 iSeries_Model__c=500 in live UAT), so there is no data loss to 'fix' by remapping; (b) re-pointing the write to Model_Number__c would orphan the dependent Feature Code picklist whose controllerName is metadata-locked to iSeries_Model__c; (c) Model_Number__c is a 99.99% GUID free-text column, not a model-code picklist, so it cannot be the correct destination. Also REJECTED: the consumersModel agent's recommendation to backfill iSeries_Model__c -> Model_Number__c for the 46 rows — it pollutes a GUID namespace, helps no consumer (BSS has no live activated-order exposure), and is not cleanly reversible. The net resolution honors the reporter's preferred field while correcting the mechanism: keep iSeries_Model__c, fix the read/display.",
+      "dataMigration": "No migration of the 46 records is required — they are already stored correctly in iSeries_Model__c, and the display fix surfaces them. Explicitly do NOT copy iSeries_Model__c -> Model_Number__c (pollutes the 29,188-row GUID namespace, helps no live consumer, not cleanly reversible). Leave the 29,192 historical Model_Number__c rows untouched — they are legacy GUID external keys on non-iSeries records, out of scope. Targeted manual cleanup of 5 anomalous rows, as data decisions (not a code change): (1) the 2 platform-NULL legacy rows HW-0717915 / HW-0717916 carry OFF-PICKLIST iSeries_Model__c values '9080-M9S' / '9105-22A' (not in the 92-value set; loaded, not modal-entered) — set Hardware_Platform__c='iSeries' and decide whether those codes should be added to the picklist, or document as load artifacts; (2) the 3 dual-populated rows (HW-0717915, HW-0717916, HW-0717935 MN='EP12'/ISM='170') are internally inconsistent — pick which value is canonical per row, since the iSeries_Model__c-first display fallback will render the code over the free-text name. Optional/conditional ONLY if a downstream owner later confirms BSS must emit iSeries model on activated orders: dual-write Model_Number__c=iSeries_Model__c going forward (in Apex create) and one-time update the ~43 single-populated rows — but this is a consumer decision to confirm, NOT a migration to run now (current BSS exposure = 2 Draft OrderItems, zero activated).",
+      "testPlan": [
+        "Unit/manual: In the Create New Hardware Group modal, select Hardware Platform=iSeries, pick an iSeries Model (e.g. 500), pick a dependent Feature Code, save. Confirm the new Hardware__c has iSeries_Model__c=500 and the Selected-Hardware card + datatable now DISPLAY '500' (previously blank).",
+        "Dependent-picklist regression: confirm that after relabel, selecting an iSeries Model still populates the Feature Code dropdown (getFeatureCodeOptions still controlled by iSeries_Model__c) — pick a model with known feature codes and verify the list filters correctly.",
+        "Both-blocks coverage: exercise the relabel/display in BOTH the Hardware Selection screen path (html:210/312) AND the inline Edit-mode Group Config path (html:505/611) to ensure neither block was missed.",
+        "Fallback display: open an EXISTING diverted record (e.g. HW-0717956, iSeries_Model__c=500, Model_Number__c=NULL) in the manager — confirm the grid/cards now show 500 via the iSeries_Model__c fallback.",
+        "Dual-populated row: open HW-0717935 (MN='EP12', ISM='170') and confirm the resolved display shows the chosen canonical value (170) without throwing.",
+        "Cross Platform regression: create a Cross Platform hardware record and confirm no model field is required/shown and nothing regressed (model display simply blank, as before).",
+        "Apex selector change: deploy validate HardwareGroupController with iSeries_Model__c added to SELECTs (cls:58/116/395) and run existing HardwareGroupControllerTest to confirm no field/SOQL break; confirm createHardwareRecord and getPicklistOptions tests still pass.",
+        "Pricing/eligibility no-op check: run a hardware-attribute pricing scenario and a product-eligibility scenario on an iSeries line to confirm prices/eligible products are unchanged (model is not a pricing/eligibility input).",
+        "Dead-code removal: confirm removing modelNumber state (js:73/577), case 'modelNumber' (js:652-654), and the Apex Model_Number__c branch (cls:203-206) does not break the create flow (no element binds data-field=\"modelNumber\")."
+      ],
+      "openQuestions": [
+        "Confirm with reporter (Dawn Krauss) the symptom reframe: the value DOES save to iSeries_Model__c; the defect is that the UI reads Model_Number__c so it looks unsaved. Is the goal simply 'show the picked model in the card/grid' (display fix, recommended) or does business need the code in Model_Number__c specifically for an integration?",
+        "BSS owner: must the outbound BSS payload (BSSOrderInfoRestService.model) carry the iSeries model code for activated iSeries orders? If yes, scope a follow-up to give that reader (and the two search filters) an iSeries_Model__c branch — today exposure is 2 Draft OrderItems, zero activated.",
+        "Search parity: should HardwareGroupController model filter (cls:103) and HardwareManagementController free-text search (cls:324-325) also match iSeries_Model__c so users can find iSeries hardware by code? In SC-3468 scope or a follow-up?",
+        "Data steward: decision on the 3 dual-populated rows (which value is canonical) and the 2 off-picklist legacy codes 9080-M9S/9105-22A (add to picklist vs document as artifacts; set Hardware_Platform__c=iSeries on the 2 NULL rows).",
+        "Separate ticket: PowerOrderSplittingService (cls:410/424) clones only Model_Number__c — should iSeries_Model__c + iSeries_Feature_Code__c be added to the clone path to prevent silent model loss when iSeries hardware is Power-split? Independent of SC-3468.",
+        "Combobox label: confirm 'iSeries Model' is the desired label (matches the screen field in Fortra_Hardware_Hardware_Management_Orchestrator flow:388), vs keeping 'Model Number' for user familiarity."
+      ],
+      "jiraComment": "RCA — SC-3468 (Hardware Group Record - Model Number field issue)\n\nConclusion: the reporter's instinct to KEEP iSeries_Model__c is correct, but the stated root cause ('UI mapped to the wrong DB field / value not saving') is not what's happening. The modal already saves correctly to Hardware__c.iSeries_Model__c — verified in UAT on the screenshot record HW-0717956 (iSeries_Model__c=500). The real defect is a DISPLAY/READ MISMATCH: the create combobox is labeled 'Model Number' but is bound to iSeries_Model__c (hardwareGroupManager.html:210-218 and the duplicate at :505-509; persisted at HardwareGroupController.cls:171), while the detail cards and datatable READ Model_Number__c (html:312/611, js:121/130), which is NULL for iSeries. So the picked model saves but 'disappears' from the UI.\n\nWe are NOT making Model_Number__c canonical (the literal reading of the request). Two hard blockers: (1) iSeries_Feature_Code__c is a dependent picklist whose controller is metadata-locked to iSeries_Model__c (confirmed via describe) — repointing the write would orphan the Feature Code dropdown; (2) Model_Number__c is free text whose live content is 29,188 of 29,192 migration GUIDs — it was never a model-code field. iSeries_Model__c is the correct, typed home (92-value picklist + Feature Code controller).\n\nRecommended fix (UI/read-only, no DB remap, no backfill): keep persisting iSeries_Model__c; relabel both comboboxes to 'iSeries Model' (html:211 AND :505); make the read surfaces show iSeries_Model__c (Model_Number__c fallback) for iSeries platform (cards html:312/611, datatable js:121/130, hydration js:822, hardwareManagementModal:239-240); add iSeries_Model__c to the controller SELECTs (cls:58/116/395); and delete the dead modelNumber paths (js:73/577/652, cls:203-206). The 46 existing records need NO migration — the display fix surfaces them.\n\nBlast radius: pricing and eligibility are SAFE (no model-based logic). BSS integration is NOT impacted today — only 2 OrderItems reach the 46 records via the BSS lookup and both are on Draft orders. Out of scope / follow-ups to confirm with owners: BSS must-carry-model on activation, search-by-code parity (cls:103, 324-325), PowerOrderSplittingService clone copy (cls:410/424), and a small data cleanup of 3 dual-populated + 2 off-picklist legacy rows. Please confirm the display-vs-storage reframe before build."
+    }
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Research"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Synthesize"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "lwc-binding",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "agentId": "ad88ddce5b8ab455e",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659551806,
+      "queuedAt": 1782659551766,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "DEAD/UNUSED. The `modelNumber` JS state is NOT wired to ANY…",
+      "promptPreview": "You are analyzing the LWC layer of SC-3468. Repo at /Users/liamjeong/Documents/Code/Fortra. Read in full:\n- /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html\n- /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.js\nGoal: document EXACTLY how the \"Model Number\" UI control is bound, prove whether it …",
+      "lastProgressAt": 1782659598841,
+      "tokens": 45711,
+      "toolCalls": 3,
+      "durationMs": 47035,
+      "resultPreview": "{\"createFormBindings\":[{\"file\":\"/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html\",\"line\":210,\"label\":\"Model Number\",\"dataField\":\"iSeriesModel\",\"boundProperty\":\"newHardware.iSeriesModel\",\"optionsSource\":\"iSeriesModelOptions\"},{\"file\":\"/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/lwc/hardwareGroupManager/hardwareGroupManager.html\",\"line\"…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "apex-path",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "agentId": "ad10bf8652075feba",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659551814,
+      "queuedAt": 1782659551766,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "`createHardwareRecord(Map<String, Object> hardwareData, Id …",
+      "promptPreview": "You are analyzing the Apex controller layer of SC-3468. Repo at /Users/liamjeong/Documents/Code/Fortra. Read in full:\n- /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareGroupController.cls\n- /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/HardwareManagementController.cls\nGoal: document the create/save method that persists Hardware__c from the LWC's hardwareData map…",
+      "lastProgressAt": 1782659604913,
+      "tokens": 42018,
+      "toolCalls": 5,
+      "durationMs": 53099,
+      "resultPreview": "{\"saveMethod\":\"`createHardwareRecord(Map<String, Object> hardwareData, Id accountId)` — `@AuraEnabled public static Id`, defined at HardwareGroupController.cls:138-139. It receives the LWC's `hardwareData` map (built in hardwareGroupManager.js:729-732, passed at .js:763-766 as `{ hardwareData, accountId }`), constructs a fresh `Hardware__c newHardware` (line 149), key-gates each field assignment o…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "consumers-model-number",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "agentId": "af36f2693e185bd0f",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659551819,
+      "queuedAt": 1782659551766,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Model_Number__c",
+      "promptPreview": "You are auditing every PRODUCTION consumer of Hardware__c.Model_Number__c for SC-3468. Repo at /Users/liamjeong/Documents/Code/Fortra, source /Users/liamjeong/Documents/Code/Fortra/Org Data/_src. Run: grep -rn \"Model_Number__c\" \"/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes\" \"/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/flows\" \"/Users/liamjeong/Documents/Code/Fortra/Org Data…",
+      "lastProgressAt": 1782659713268,
+      "tokens": 58055,
+      "toolCalls": 19,
+      "durationMs": 161448,
+      "resultPreview": "{\"field\":\"Model_Number__c\",\"consumers\":[{\"file\":\"/Users/liamjeong/Documents/Code/Fortra/Org Data/_src/classes/BSSOrderInfoRestService.cls\",\"lines\":\"104 (SELECT Hardware_ID__r.Model_Number__c), 183/198 (this.model = item.Hardware_ID__r?.Model_Number__c)\",\"usage\":\"read-output\",\"wouldBreakIfBlank\":true,\"note\":\"HIGHEST-IMPACT real consumer. Outbound BSS REST API. Model_Number__c is serialized as Order…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "iseries+metadata",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "agentId": "a9b82458007ed24ab",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659551824,
+      "queuedAt": 1782659551766,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Hardware__c.Model_Number__c — Type=Text, length=100, NOT a …",
+      "promptPreview": "Two jobs for SC-3468. Repo /Users/liamjeong/Documents/Code/Fortra, source /Users/liamjeong/Documents/Code/Fortra/Org Data/_src.\n(1) Audit every consumer of Hardware__c.iSeries_Model__c (grep -rn iSeries_Model__c). For each: file, lines, usage, and whether it breaks if iSeries_Model__c is blank. Cover HardwareGroupController, FortraDemoDataFactory, flows Fortra_Hardware_Hardware_Creation_Subflow & …",
+      "lastProgressAt": 1782659681172,
+      "tokens": 65414,
+      "toolCalls": 25,
+      "durationMs": 129348,
+      "resultPreview": "{\"modelNumberField\":\"Hardware__c.Model_Number__c — Type=Text, length=100, NOT a picklist (no value set, no controlling/dependent), required=false, NO default. label=\\\"Model Number\\\". Live FortraUAT FieldDefinition confirms Text(100). File: /Users/liamjeong/Documents/Code/Fortra/Org Data/_src/objects/Hardware__c/fields/Model_Number__c.field-meta.xml (12 lines). This is free-text legacy field. Live …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "live-verify",
+      "phaseIndex": 1,
+      "phaseTitle": "Research",
+      "agentId": "af5a955319e2fac5e",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659551828,
+      "queuedAt": 1782659551766,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "Live describe of Hardware__c (FortraUAT, 2026-06-28) via `s…",
+      "promptPreview": "You are doing LIVE read-only verification in FortraUAT (sf CLI, alias FortraUAT, default org). NO DML, NO deploy — SELECT/describe only. Repo /Users/liamjeong/Documents/Code/Fortra. Tasks:\n1. Describe both picklist fields: `sf sobject describe -s Hardware__c -o FortraUAT` then extract Model_Number__c and iSeries_Model__c — list picklistValues, whether dependentPicklist=true, controllerName. (You c…",
+      "lastProgressAt": 1782659759642,
+      "tokens": 32852,
+      "toolCalls": 12,
+      "durationMs": 207814,
+      "resultPreview": "{\"fieldDescribe\":\"Live describe of Hardware__c (FortraUAT, 2026-06-28) via `sf sobject describe -s Hardware__c -o FortraUAT --json`:\\n\\n- Model_Number__c: type=STRING (free text), NOT a picklist. picklistValues=0, dependentPicklist=false, controllerName=null, restrictedPicklist=false. This is the key surprise: it cannot be the data home for a UI picklist in the schema sense -- it is a free-text fi…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "verify-correctness",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a842e37d047cff5c3",
+      "model": "claude-opus-4-8[1m]",
+      "state": "error",
+      "startedAt": 1782659759661,
+      "queuedAt": 1782659759645,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "No bulk migration of the ~29192 Model_Number__c rows; they …",
+      "promptPreview": "SC-3468 adversarial verification, CORRECTNESS lens. Below are the research findings. Try to REFUTE the claimed root cause (the \"Model Number\" combobox is mis-bound to iSeries_Model__c while display/downstream use Model_Number__c). Is there any reading where the current binding is intentional/correct? Then judge the fix direction strictly on code+data correctness. Default to skeptical.\nFINDINGS:\n{\n…",
+      "lastProgressAt": 1782659944499,
+      "error": "agent({schema}): StructuredOutput retry cap (5) exceeded — 5 failed calls with no valid output",
+      "tokens": 60532,
+      "toolCalls": 20,
+      "durationMs": 184838
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "verify-fixdir",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "abb7f1bbb905e33a5",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659759662,
+      "queuedAt": 1782659759645,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "FIX-DIRECTION (which field should be canonical; minimal cor…",
+      "promptPreview": "SC-3468 adversarial verification, FIX-DIRECTION lens. The reporter wants iSeries_Model__c kept as canonical. But ~29192 historical Hardware use Model_Number__c, only 46 use iSeries_Model__c, and many production classes (pricing, eligibility, license-key, power-split, Workday/BSS) READ Model_Number__c. Argue which field SHOULD be canonical and what the minimal correct fix is (e.g., rebind the combo…",
+      "lastProgressAt": 1782659843129,
+      "tokens": 41240,
+      "toolCalls": 7,
+      "durationMs": 83467,
+      "resultPreview": "{\"lens\":\"FIX-DIRECTION (which field should be canonical; minimal correct fix; blast radius)\",\"rootCauseHolds\":false,\"fixDirection\":\"iSeries_Model__c SHOULD remain canonical for the iSeries model code, and the modal should KEEP writing it — the reporter's instinct (\\\"keep iSeries_Model__c\\\") lands on the right field even though their stated root cause is wrong. Three facts from the live org decide …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "verify-migration",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a008d7f844df82e16",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659759662,
+      "queuedAt": 1782659759645,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "DATA-MIGRATION & REGRESSION",
+      "promptPreview": "SC-3468 adversarial verification, DATA-MIGRATION & REGRESSION lens. Focus on: the 46 already-diverted records (iSeries_Model__c populated, Model_Number__c null) — do they need backfill into Model_Number__c? Could any of the 46 be tied to live Quotes/Orders/Assets that are now missing a model? Does the dependent Feature Code picklist (controlled by iSeries_Model__c) complicate moving canonical to M…",
+      "lastProgressAt": 1782659909811,
+      "tokens": 46716,
+      "toolCalls": 12,
+      "durationMs": 150149,
+      "resultPreview": "{\"lens\":\"DATA-MIGRATION & REGRESSION\",\"rootCauseHolds\":false,\"fixDirection\":\"iSeries_Model__c must remain canonical for iSeries model codes — and the root-cause framing (\\\"combobox mis-bound to the wrong DB field\\\") does NOT survive this lens. Live UAT proves the modal already writes to the RIGHT field: iSeries_Model__c is a proper 92-value picklist AND the metadata controllingField for the depend…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "synthesis",
+      "phaseIndex": 3,
+      "phaseTitle": "Synthesize",
+      "agentId": "aea502aff9c71a6c8",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782659944517,
+      "queuedAt": 1782659944504,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "SC-3468 reporter is RIGHT about the destination but WRONG a…",
+      "promptPreview": "You are the lead engineer writing the SC-3468 conclusion. Merge the research findings and the 3 adversarial verdicts into a decisive RCA + recommendation. Resolve the central tension: the reporter wants iSeries_Model__c kept, but the evidence (29192 Model_Number__c vs 46 iSeries_Model__c records; production pricing/eligibility/license-key/Workday code reading Model_Number__c; the record page & dat…",
+      "lastProgressAt": 1782660113779,
+      "tokens": 56076,
+      "toolCalls": 13,
+      "durationMs": 169262,
+      "resultPreview": "{\"executiveSummary\":\"SC-3468 reporter is RIGHT about the destination but WRONG about the mechanism. The \\\"Create New Hardware Group\\\" modal's \\\"Model Number\\\" picklist already saves correctly to Hardware__c.iSeries_Model__c — that is the proper field and must be kept. The reporter's premise that the value \\\"does not save\\\" / is \\\"mapped to the wrong DB field\\\" does not survive the evidence: the wr…"
+    }
+  ],
+  "totalTokens": 448614,
+  "totalToolCalls": 116
+}
