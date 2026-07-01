@@ -1,0 +1,35 @@
+{
+ "id": "K-01",
+ "category": "K. Edge Cases",
+ "name": "Cancellation negative credit at asset NET (not $0)",
+ "priority": "P0",
+ "what_it_tests": "A cancellation line (Qty=-1) must produce a NEGATIVE TotalPrice credit equal to the asset NET unit price (not list, not $0); the native waterfall seeds no NetUnitPrice for cancel lines so a custom seed supplies it",
+ "proc_mechanism": "CancelNetUnitPrice__c seed (from AssetActionSource/SourceAsset NetUnitPrice) + V18 seed step; CancelLineCreditPosthook writes NetUnitPrice/TotalPrice/Subtotal via field-API names; Quantity*Price; Null-Safe Line Adjustment",
+ "expected_behavior": "NetUnitPrice=asset net (e.g. 3000); TotalPrice = NetUnitPrice x -1 = -3000; quote/order header rolls up the negative credit",
+ "test_setup": "Cancel quote/order, line Qty=-1, asset list 3000 no discount, CancelNetUnitPrice__c populated, expect -3000",
+ "defect_provenance": "SC-3441",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "Force-reprice ERRORS at StampBaseFilter#1 (SF-Pricing-00006 / SF-BRE-00004). Both fresh cancel QLIs stay NetUnitPrice=null, TotalPrice=0, Subtotal=0 (NOT -15000). Quote headers CalculationStatus=PriceCalculationFailed. Reproduced on 2 independent fresh quotes.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ290AG/view (QLI 0QLWC000003kiab4AA) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ3l0AG/view (QLI 0QLWC000003kicD4AQ) ; V21 meta Data/sc3473/v21_check",
+  "recordIds": [
+   "0Q0WC000003FZ290AG",
+   "0QLWC000003kiab4AA",
+   "0Q0WC000003FZ3l0AG",
+   "0QLWC000003kicD4AQ"
+  ],
+  "defectStep": "StampBaseFilter (parent StampContributorBasePreDiscount): criterion #5 NetUnitPrice GreaterThan 0 is not null-safe; condition logic (1 OR 2) AND 3 AND 4 AND 5 has no IsNull guard on NetUnitPrice. A fresh cancel line has NetUnitPrice=null so the rules engine cannot evaluate GreaterThan -> SF-BRE-00004, aborting the whole reprice before CancelLineCreditPosthook can seed the credit.",
+  "regression": "SC-3441",
+  "rootCause": null,
+  "notes": "K-08 derived-cancel quote 0Q0WC000003FbLh0AK got -71 and prior 0Q0WC000003EQtl0AG got -15000 ONLY because their NetUnitPrice was already non-null (71 / 15000) so they cleared StampBaseFilter. Active runtime + design = Rev_Mgmt_Default_Pricing_Procedure V21 sole-active (ExpressionSetVersion 9QMWC00000025LN4AY). CancelLineCreditPosthook class 01pWC000002awnVYAQ present/api65.",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

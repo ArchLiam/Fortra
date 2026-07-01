@@ -1,0 +1,15 @@
+{
+  "id": "E-03",
+  "category": "E. Deal / Customer Type",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "new-script",
+  "recordIds": ["0Q0WC000003FWCM0A4", "0QLWC000003kgXC4AY"],
+  "expected": "One-Time/Perpetual partner line applies partner discount to FINAL net: NetUnitPrice = InputUnitPrice x (1-PartnerDiscountPercent) = 2008 x (1-0.15) = 1706.8; NetTotalPrice 1706.8; discount persisted through SubscriptionPricing.",
+  "actual": "Force-reprice (isSuccess=true, x2) of fixture quote 00781440 CCM Limited Scan Engine Perpetual/OneTime qty1 list2008 on Channel-Originated Discount partner (AB Test, 15% SW): PartnerDiscountPercent=15 RESOLVED (Partner_Margin_Detail marginPercent=15.00, Source='System Calculated (Pre-Procedure, Percent Only)') but NetUnitPrice=0, NetTotalPrice=0, TotalPrice=0 while TotalLineAmount=2008 (list) and Subtotal=2008. Discount calculated, NOT applied to net (net zeroed). TermDefined control (same partner, beSECURE Premise list824 pct18) correctly nets 675.68=824x0.82.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FWCM0A4/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kgXC4AY/view ; reprice log scratchpad/reprice_e03.json (isSuccess true)",
+  "defectStep": "Subscription Pricing (One-Time branch, V9 SubscriptionPricing74 seq24)",
+  "proposedFix": "On the One-Time SubscriptionPricing branch, write the discounted net to NetUnitPrice (INPUT NetUnitPrice<-NetUnitPrice + OUTPUT SubscriptionNetUnitPrice<-NetUnitPrice) instead of re-reading un-discounted InputUnitPrice, mirroring the TermDefined branch; preserve TotalLineAmount=list via a deliberate list-amount seeder (per SC-3359 corrected RCA, the 3-mapping README flip is unsafe). NOT applied (validation-only).",
+  "regression": "",
+  "notes": "Reproduces SC-3359 on active V21 (active proc confirmed V21/ctx V23). Failure mode in V21 = net ZEROED (0) rather than leaking to list (2008 in the V9-era README); same root: partner % calculated but One-Time branch overwrites net from un-discounted input. defect_provenance=SC-3359 (open defect, not a cross-ticket regression). TermDefined/Services branch unaffected (control passes). Fixture: scripts/apex/setupPartnerOneTimeQuoteTestData.compact.apex."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "I-01",
+  "verdict": "FAIL",
+  "category": "I. Proration",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "expected": "Fresh Force-reprice of a well-configured TermDefined line (SubscriptionTerm=1, PeriodBoundary=Anniversary) derives PricingTermCount=1 via the Proration step; carries to OrderItem on convert.",
+  "actual": "After 3 Force-reprices on V21, PricingTermCount stays NULL on two well-configured TermDefined lines: Cobalt Strike Qty5 (0QLWC000003kmBB4AY) and beSECURE Qty3 (0QLWC000003kmJF4AY), both SubTerm=1/PeriodBoundary=Anniversary/EndDate set. Org-wide TermDefined Draft lines modified today split 40 null vs 46 set (writer fires intermittently). EndDate present only because set at insert, not derived.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcmP0AS/view ; LineA https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kmBB4AY/view ; beSECURE https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kmJF4AY/view",
+  "defectStep": "Proration (V21 steps 97/121/122/123: Term-Defined proration filter Line level + List Operation + Proration) — PricingTermCount write-back not persisting on fresh reprice",
+  "proposedFix": "Re-verify/rebuild the guarded TermDefined Proration writer in active V21 (guard SellingModelType=TermDefined AND StartProrationPeriod IsNotNull AND ItemSubscriptionTerm IsNotNull) and confirm its output binds ProrationMultiplier -> PricingTermCount with context write-back persisting; co-owned proc has regressed/oscillated since the SC-3420 V16 deploy. NOT applied (validation-only).",
+  "regression": "SC-3420",
+  "recordIds": ["0Q0WC000003FcmP0AS", "0QLWC000003kmBB4AY", "0QLWC000003kmJF4AY"],
+  "notes": "Active proc = Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). Reprice REST 'place' returned isSuccess=true all 3 times. Net price came out 0 on these lines (catalog list 5900/0) but I-01 asserts on PTC/EndDate, not net. Order-tier Fortra_OrderItem_Set_Dates V6 backstop masks this in UAT at convert; root quote-tier derivation still broken. Defect_provenance SC-3420/3411/3406/3415 = regression of the SC-3420 quote-tier PTC fix."
+}

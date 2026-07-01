@@ -1,0 +1,15 @@
+{
+  "id": "K-02",
+  "category": "K. Edge Cases",
+  "verdict": "FAIL",
+  "dataSource": "named-script",
+  "priority": "P0",
+  "expected": "Derived maint line with no contributor on cart: formula tries Base_Price/Pre_Partner/InputUnitPrice fallbacks; if all 0, net=0 SURFACED as missing contributor (ValidationResult/banner), not silently accepted.",
+  "actual": "Force-reprice (isSuccess=true, errorResponse=[]) left lone derived line PIA-PIA-RNM-PIAMBK at NetUnitPrice=null, NetTotalPrice=null, TotalLineAmount=null; Base_Price__c=null, Pre_Partner_Price__c=null; Quote Subtotal/TotalPrice/GrandTotal/ALE__c all 0. ValidationResult=null, Partner_Pricing_Warning__c=null. No missing-contributor flag anywhere.",
+  "defectStep": "Derived Pricing Formula / Stamp Contributor Base (no MissingContributor handling step exists in V21)",
+  "proposedFix": "Add a MissingContributor surfacing step in V21 (e.g. when ItemIsDerived AND no contributor resolved AND NetUnitPrice null/0, write ValidationResult/Partner_Pricing_Warning) so the $0 is flagged not silent. NOT applied (validation only).",
+  "regression": "",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fd8z0AC/view ; line 0QLWC000003kmaz4AA ; V21 formula Data/sc3473/v21_check/.../...V210.expressionSetVersion:2546 (fallback chain present); grep MissingContributor=0 hits",
+  "recordIds": ["0Q0WC000003Fd8z0AC", "0QLWC000003kmaz4AA"],
+  "notes": "Active proc V21 (9QBWC0000000oWH4AY) confirmed. Fixture setupK02MissingContributorTestData.compact.apex. Formula fallback chain IS in V21 (line 2546: tier * IF(Base_Price>0,Base_Price,IF(Pre_Partner_Price>0,Pre_Partner_Price,IF(InputUnitPrice>0,InputUnitPrice,0)))) and writes NetUnitPrice; with contributor absent all 3 fallbacks are null/0 and native contributor-keyed pull skips the line, so NetUnitPrice never written (stays null). PBEDP config 182WC000000FN26YAG (PIA-PIA-RNM-PIAMBK<-NRPS license) exists but license not on cart. Line has 0 QLIAs so MaintType tier IF also =0. Fallback half PASSES; the missing-contributor SURFACING half FAILS - $0/null is silently accepted. defect_provenance SC-3346(MissingContributor)/SC-3372 = pre-existing architectural gap (no-priced-node derived lines silently $0), NOT a V21 regression."
+}

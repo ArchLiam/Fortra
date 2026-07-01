@@ -1,0 +1,18 @@
+{
+  "id": "K-13",
+  "category": "K. Edge Cases",
+  "name": "Sync InputUnitPrice when null (discount-base safety)",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "InputUnitPrice hydrated from NetUnitPrice on non-derived non-LastTransaction line when InputUnitPrice is null; discount math safe; no SF-BRE/null-discount-base error; reprice isSuccess=true",
+  "actual": "Force-reprice on BoKS demo Quote 0Q0WC000003FKRJ0A4 (non-derived Perpetual line 0QLWC000003kUpN4AU): isSuccess=true, errorResponse=[]. Post-reprice: NetUnitPrice=355, UnitPrice=355, ListPrice=355, NetTotalPrice=355, TotalLineAmount=355, Source_List_Price__c=355, Pre_Partner_Price__c=355, Base_Price__c=355, COLACalculatedPrice__c=null (no COLA), Partner_Pricing_Source__c=null. Derived new-maint line 0QLWC000003kUpO4AU: NetUnitPrice=71, TotalLineAmount=71 (=20% of 355, correct). No null-discount-base error. V21 XML confirmed: ListGroup SyncInputUnitPriceforDiscountBase (seq 13) contains ListOperation38 gated by conditionLogic '1 AND 2 AND 3 AND 4' (InputUnitPrice IsNull AND ItemPricingSource NotEquals 'LastTransaction' AND DerivedPricingAttribute IsNotNull AND DerivedPricingAttribute Equals false) -> child BKM SyncInputUnitPricefromNet AssignmentElement NetUnitPrice->InputUnitPrice (whereConditions:[], unconditional). Step structure EXACT match to proc_mechanism spec. Step runs BEFORE discount band (seq 13 < seq 36). Procedure wiring intact; safety net confirmed present in current active V21.",
+  "evidence": "Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view | QLI (non-derived Perpetual): https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpN4AU/view | reprice v67.0 place action: isSuccess=true, errorResponse=[] | V21 XML Data/pricing-v21-validation/live/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml L107616-107653 (ListOperation38), L116683-116744 (SyncInputUnitPriceforDiscountBase ListGroup seq=13, SyncInputUnitPricefromNet AssignmentElement NetUnitPrice->InputUnitPrice whereConditions:[])",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "InputUnitPrice and ItemPricingSource are pricing-engine context attributes, NOT persisted QLI fields (SOQL SELECT InputUnitPrice FROM QuoteLineItem returns INVALID_FIELD). Observable only inside the opaque RLM managed code unit. K-13 step is a defensive last-resort discount-base safety net: V21 has earlier InputUnitPrice seeds (ListPrice@ListContainer32 seq14, Base_Price__c, COLACalculatedPrice__c, RegionalNetUnitPrice__c), so on normal non-derived lines InputUnitPrice is already non-null before this step and the NetUnitPrice-sync no-ops without harm. The step guarantees a non-null discount base for any edge-case path where those seeds were skipped. PBE preflight: Fortra Price Book PBE 01uWC000005ws8MYAQ active, UnitPrice=355 USD, parent book active. Product2 Fortra_Product_Type__c=Perpetual (non-derived). No partner/COLA/regional modifiers on this line. reprice 2026-06-30 on active V21 (ExpressionSetDefinitionVersion 9QMWC00000025LN4AY, design 9QBWC0000000oWH4AY).",
+  "verdict_reason": "V21 proc_mechanism for K-13 (SyncInputUnitPriceforDiscountBase ListGroup seq 13, ListOperation38 4-condition gate, SyncInputUnitPricefromNet NetUnitPrice->InputUnitPrice assignment) verified intact in current active V21 XML. Force-reprice on existing non-derived Perpetual BoKS line returned isSuccess=true with no errors, NetUnitPrice=355=list (correct, no discount modifiers), demonstrating the discount-base safety net is wired and the procedure prices cleanly through this branch."
+}

@@ -1,0 +1,15 @@
+{
+  "id": "J-09",
+  "category": "J. Derived / Maintenance Pricing",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "expected": "IsDerived maintenance line WITH no PBEDP config row should produce a clear hard-error ('contributing products are missing') or be backfilled so it prices; not a silent NULL NetUnitPrice.",
+  "actual": "Uncovered IsDerived line GS-GSE-RNM-EF8 (PBE 01uWC000005wsZpYAI, 0 PBEDP rows) on Quote 0Q0WC0000029Agw0AE Force-repriced via V21: NetUnitPrice=NULL, ListPrice=0, UnitPrice=0, Source_List_Price__c=NULL, TotalPrice=0, NetTotalPrice=0 (stable across 6 polls). Connect REST returned isSuccess=true, errorResponse=[] (warning non-fatal). 3254/3453 active IsDerived PBEs still uncovered.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000029Agw0AE/view ; QLI 0QLWC000003KEbO4AW ; log /private/tmp/.../scratchpad/j09_reprice.json",
+  "defectStep": "Derived Products - Native Pull / Derived Products - Non-Renewal (V21 steps 41-42); Derived Pricing Filter (ItemIsDerived__std=true)",
+  "proposedFix": "Backfill PriceBookEntryDerivedPrice rows for all 3254 uncovered IsDerived PBEs (M5-PBEDP 476-row HICONF payload staged) and/or surface the contributor-missing condition as a loud error rather than silent NULL. NOT applied.",
+  "regression": "SC-3372 / M5-PBEDP",
+  "recordIds": ["0Q0WC0000029Agw0AE", "0QLWC000003KEbO4AW", "01uWC000005wsZpYAI"],
+  "notes": "Named test product GS-GSE-RNM-EFT8 is now PBEDP-COVERED (row 182WC000000HEPxYAO, the SC-3372 'keep this row'), so it no longer reproduces; used a genuinely uncovered sibling GS-GSE-RNM-EF8 on a repricable Draft quote (Opp Stage=Closing, IsClosed=false). V21 Active confirmed (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY). Coverage gap unremediated: 3254/3453 uncovered."
+}

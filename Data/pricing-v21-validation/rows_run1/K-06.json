@@ -1,0 +1,16 @@
+{
+  "id": "K-06",
+  "category": "K. Edge Cases",
+  "name": "Zero-dollar / null-missing pricing line safe handling",
+  "verdict": "PASS",
+  "dataSource": "new-script",
+  "priority": "P0",
+  "expected": "$0 bundled line displays 0.00 with NO validation error and stays included; line with no active PricebookEntry (retired/legacy SKU) is handled gracefully (warn 'No pricing found' or default $0) with NO null-reference exception thrown by the pricing engine.",
+  "actual": "LEG-1 ($0 bundled): new quote 0Q0WC000003FZWn0AO, Metrics Catalog PS-AM (CM-TQO-NRPS-MCPAPE, active $0-list non-derived PBE 01uWC000005wo3GYAQ) beside a priced BoKS perpetual (PIA-PIA-NRPS-PIAP, list 355). V21 Force-reprice REST isSuccess=true, errorResponse=[]. $0 line: UnitPrice=0 NetUnitPrice=0 ListPrice=0 NetTotalPrice=0 TotalLineAmount=0 ValidationResult=null - clean 0.00, no error, stays on quote, does NOT corrupt sibling (BoKS TotalLineAmount=355, Subtotal=355). LEG-2 (no active PBE): adding DCS Advanced Bundle OLD (inactive PBE 01uWC000005wrUAYAY) rejected at cart-add with standard FIELD_INTEGRITY_EXCEPTION 'The price book entry is inactive. Ask your Salesforce admin for help.' - graceful, NO NPE; engine reprice never errors.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZWn0AO/view ($0 line 0QLWC... CM-TQO-NRPS-MCPAPE net=0, BoKS PIA-PIA-NRPS-PIAP TotalLineAmount=355) ; first run https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZOj0AO/view ; inactive-PBE reject log scratchpad/k06_leg_probe.apex (FIELD_INTEGRITY_EXCEPTION)",
+  "recordIds": ["0Q0WC000003FZWn0AO", "0Q0WC000003FZOj0AO", "01uWC000005wo3GYAQ", "01uWC000005wrUAYAY"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Active proc = Rev_Mgmt_Default_Pricing_Procedure V21, confirmed Active 2026-06-29. Both K-06 legs are null-safe. Traced V21 step 4 'All Lines Null Safe Filter' and steps 85/86 'Null-Check for Line Adjustment' / 'Null-Safe Line Adjustment' (sourceField NetUnitPrice / InclusivePrice): the $0 line passes through with all price fields = 0.00 and ValidationResult null, never blocking or throwing. Retired SKU never reaches the engine - the platform blocks the inactive-PBE QLI at DML with a clear standard message (no engine NPE), satisfying the 'graceful / no exception' design intent. CONFOUND CONTROLLED: both perpetual lines (NSS SNMP $2800 anchor and BoKS $355) also returned NetUnitPrice=0 / Discount=100% on a bare Draft quote; an ANCHOR-ONLY control quote 0Q0WC000003FZRx0AO reproduced the identical net=0 with NO $0/missing line present, proving this perpetual-net=0 is a SEPARATE pre-existing perpetual-net-seeding behavior (SC-3345/SC-3347 net-vs-list family, gated on deal-type/origin attributes absent here - F-01 shows the same BoKS line nets to 355 on a Fortra-Originated quote) and is NOT caused by - and does not corrupt - the K-06 edge lines. defect_provenance SC-3345/SC-3347 ($0-line origin) - no K-06 regression. VALIDATION ONLY: created test fixtures (scripts/apex/setupK06ZeroAndMissingPbeTestData.compact.apex + probe/control/proof in scratchpad) + REST Force-reprice; no deploys, no proc/flow/Apex edits."
+}

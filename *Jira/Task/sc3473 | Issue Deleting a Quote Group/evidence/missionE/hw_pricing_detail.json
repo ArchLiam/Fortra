@@ -1,0 +1,103 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iwHt4AI"
+        },
+        "Id": "0QLWC000003iwHt4AI",
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1YkYAL"
+          },
+          "Name": "Robot Console"
+        },
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096Sn0AI"
+          },
+          "Name": "test partitions",
+          "Hardware_Group_Type__c": false
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 7604.56,
+        "Pre_Hardware_Price__c": null,
+        "HardwareCalculatedPrice_c__c": null,
+        "Hardware_Pricing_Applied__c": false,
+        "Hardware_Price_Multiplier__c": null,
+        "Hardware_Attributes_Synced__c": false,
+        "Hardware_Pricing_Source__c": "Combined"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1",
+          "Hardware_Group_Type__c": true
+        },
+        "NetUnitPrice": 29060,
+        "ListPrice": 2850,
+        "Pre_Hardware_Price__c": null,
+        "HardwareCalculatedPrice_c__c": null,
+        "Hardware_Pricing_Applied__c": false,
+        "Hardware_Price_Multiplier__c": null,
+        "Hardware_Attributes_Synced__c": false,
+        "Hardware_Pricing_Source__c": "Combined"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1",
+          "Hardware_Group_Type__c": true
+        },
+        "NetUnitPrice": 4356,
+        "ListPrice": 46,
+        "Pre_Hardware_Price__c": null,
+        "HardwareCalculatedPrice_c__c": null,
+        "Hardware_Pricing_Applied__c": false,
+        "Hardware_Price_Multiplier__c": null,
+        "Hardware_Attributes_Synced__c": false,
+        "Hardware_Pricing_Source__c": "Combined"
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

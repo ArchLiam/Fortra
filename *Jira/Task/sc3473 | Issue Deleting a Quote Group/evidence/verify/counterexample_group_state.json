@@ -1,0 +1,97 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096J70AI"
+        },
+        "Id": "1C9WC00000096J70AI",
+        "Name": "06/22 HW-1.2 Group",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003CTVx0AO"
+          },
+          "Status": "Accepted",
+          "LineItemCount": 4
+        },
+        "QuoteLineItems": {
+          "totalSize": 4,
+          "done": true,
+          "records": [
+            {
+              "attributes": {
+                "type": "QuoteLineItem",
+                "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003hg5W4AQ"
+              },
+              "Id": "0QLWC000003hg5W4AQ",
+              "ProductSellingModel": {
+                "attributes": {
+                  "type": "ProductSellingModel",
+                  "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+                },
+                "SellingModelType": "TermDefined"
+              },
+              "NetUnitPrice": 17463.9,
+              "ListPrice": 2324.15
+            },
+            {
+              "attributes": {
+                "type": "QuoteLineItem",
+                "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003hhG54AI"
+              },
+              "Id": "0QLWC000003hhG54AI",
+              "ProductSellingModel": {
+                "attributes": {
+                  "type": "ProductSellingModel",
+                  "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+                },
+                "SellingModelType": "TermDefined"
+              },
+              "NetUnitPrice": 2324.15,
+              "ListPrice": 2324.15
+            },
+            {
+              "attributes": {
+                "type": "QuoteLineItem",
+                "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003i0KM4AY"
+              },
+              "Id": "0QLWC000003i0KM4AY",
+              "ProductSellingModel": {
+                "attributes": {
+                  "type": "ProductSellingModel",
+                  "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+                },
+                "SellingModelType": "TermDefined"
+              },
+              "NetUnitPrice": 2324.15,
+              "ListPrice": 2324.15
+            },
+            {
+              "attributes": {
+                "type": "QuoteLineItem",
+                "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003i13V4AQ"
+              },
+              "Id": "0QLWC000003i13V4AQ",
+              "ProductSellingModel": {
+                "attributes": {
+                  "type": "ProductSellingModel",
+                  "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+                },
+                "SellingModelType": "TermDefined"
+              },
+              "NetUnitPrice": 2324.15,
+              "ListPrice": 2324.15
+            }
+          ]
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

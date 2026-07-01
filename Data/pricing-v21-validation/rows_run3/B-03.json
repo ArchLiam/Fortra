@@ -1,0 +1,18 @@
+{
+  "id": "B-03",
+  "category": "B. Selling Model",
+  "name": "Tiered subscription volume tier",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "NetUnitPrice = tier OverrideAmount ($400) for attribute 'Number of Units'='1-50' (Lower=26/Upper=50 tier); NetTotalPrice = Qty(1) x PricingTermCount(1) x 400 = 400; Quote Subtotal=400, TotalPrice=400",
+  "actual": "After Force-reprice (REST place v67.0, isSuccess=true) on V21 active 9QBWC0000000oWH4AY: QLI NetUnitPrice=400, UnitPrice=400, ListPrice=325, NetTotalPrice=400, Qty=1, PricingTermCount=1; Source_List_Price__c=400, Pre_Partner_Price__c=400, Base_Price__c=400, COLACalculatedPrice__c=null, Has_Attribute_Adjustment__c=true, Attribute_Price_Mode__c='Unit Price'; Quote Subtotal=400, TotalPrice=400. Matched live tier row aGoWC00000047Od0AI (Lower=26/Upper=50, Tier_Type=OverrideAmount, Tier_Value=400, Attribute_Name='Number of Units'). QLIA 'Number of Units'='1-50' (IsPriceImpacting=true), QLIA 'Unit Volume'='30.0' (IsPriceImpacting=true). Product Fortra_Product_Type__c=Subscription. PBE active in Fortra Price Book at $325 (non-zero). No regression vs run2.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FXpy0AG/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khjO4AQ/view ; tier row aGoWC00000047Od0AI (Attribute_Tier_Pricing_Storage__c); reprice API returned isSuccess=true, errorResponse=[]",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 path: AttributeVolumePricingPrehook gated on Has_Attribute_Adjustment__c=true + Attribute_Price_Mode__c='Unit Price', performed CalculationMatrix tier lookup over Attribute_Tier_Pricing_Storage__c for attribute value '1-50' (in 26-50 band) -> OverrideAmount $400 stamped as NetUnitPrice. Subscription Pricing + Aggregate steps computed NetTotalPrice=400 (Qty=1 x PTC=1 x $400). USD path only (no SC-3384 multicurrency exposure). SC-3390 two-click staleness is a UI side-panel-commit artifact; headless engine path is deterministic. Prior run2 PASS reproduced on today's in-place V21 edit with identical output.",
+  "verdict_reason": "Reprice isSuccess=true. NetUnitPrice=$400 = tier OverrideAmount for 'Number of Units'='1-50' (Lower=26, Upper=50). NetTotalPrice=$400 = 1 x 1 x $400. All preflight gates passed. Branch trace confirms AttributeVolumePricingPrehook fired on valid inputs."
+}

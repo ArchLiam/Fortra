@@ -1,0 +1,29 @@
+{
+ "id": "K-16",
+ "category": "K. Edge Cases",
+ "name": "Delete-group / sparse-context robustness (no proc-side NPE)",
+ "priority": "P2",
+ "what_it_tests": "Procedure execution within a quote-group delete or sparse-context scenario must null-safe its filters and not NPE on a missing context node; the native RLM Map.get NPE is platform-side, not proc-side",
+ "proc_mechanism": "Null-Check for Line Adjustment; Null-Safe Line Adjustment; All Lines Null Safe Filter",
+ "expected_behavior": "No procedure-side NPE on a missing context node; the 'Delete Group' Map.get NPE is platform-side (config/context edge), not fixable in the procedure",
+ "test_setup": "Quote group with a deleted group, reprice remaining lines",
+ "defect_provenance": "SC-3473",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Force-reprice (pricingPref:Force, configurationMethod:Skip) of canonical SC-3473 repro quote 0Q0WC000002U2020AC via v67.0 place API returned isSuccess:true, errorResponse:[], CalculationStatus=CompletedWithPricing. All 4 QLIs priced: 2x Suspicious Email Intelligence (TermDefined) NetUnitPrice=20000, PTC=1, EndDate=2027-03-17; Advanced Job Scheduler (OneTime, grouped) NetUnitPrice=29060; Abstract (TermDefined, grouped) NetUnitPrice=4356, PTC=1, EndDate=2027-06-25. Zero proc-side NPE. NullSafeLineAdjustment and AllLinesNullSafeFilter confirmed present in fresh V21 run3 retrieve (32 occurrences, 2026-06-30 08:15). The native DeleteGroup Map.get NPE is platform-side per SC-3473 analysis.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002U2020AC/view ; V21 place API response: isSuccess:true, errorResponse:[], salesTransactionId=0Q0WC000002U2020AC; CalculationStatus=CompletedWithPricing; QLI 0QLWC000003jN8P4AU Abstract NetUnitPrice=4356 PTC=1 EndDate=2027-06-25; V21 null-safe steps: Data/pricing-v21-validation/v21_run3/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml (32 NullSafeLineAdjustment/AllLinesNullSafeFilter occurrences)",
+  "recordIds": [
+   "0Q0WC000002U2020AC",
+   "0QLWC000003jN8P4AU",
+   "0Q0WC000003FbQX0A0",
+   "1C9WC00000098rB0AQ",
+   "0Q0WC000003FbS90AK"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Preflight PASS: canonical SC-3473 repro quote 0Q0WC000002U2020AC confirmed alive (Status=Accepted, 4 QLIs, correct grouping state). V21 proc is active (9QBWC0000000oWH4AY). Null-safe steps NullSafeLineAdjustment and AllLinesNullSafeFilter confirmed in fresh 2026-06-30 run3 retrieve (32 hits). Force-reprice via v67.0 place API completes without any NPE or error. The native RLM Map.get NPE on the DeleteGroup action is a platform-side issue per project_sc3473_delete_group_npe memory note \u2014 not a pr\u2026"
+ },
+ "fixture_scripts": []
+}

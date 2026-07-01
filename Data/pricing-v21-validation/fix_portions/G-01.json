@@ -1,0 +1,18 @@
+{
+  "id": "G-01",
+  "title": "Unit Price Display step double-applies FX on every reprice",
+  "primarySurface": "V21-PROCEDURE",
+  "artifacts": [
+    {
+      "type": "proc-step",
+      "identifier": "ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY (V21, Active) — step 'Currency Conversion - Unit Price Display' (name=CurrencyConversionUnitPriceDisplay, sequenceNumber=40, arrayIndex=38). The formula-section-0-input parameter currently reads: InputUnitPrice * IF(STICurrencyIsoCode='EUR',0.9346,...,1.0). The formula-section-0-output parameter writes back to: InputUnitPrice. Fix: change formula-section-0-input to read NetUnitPrice instead of InputUnitPrice (i.e. NetUnitPrice * IF(STICurrencyIsoCode='EUR',0.9346,...,1.0)), so the display field derives from the freshly-computed net base each run rather than the persisted stale UnitPrice.",
+      "editable": true
+    }
+  ],
+  "deployMechanism": "In-place V21 proc edit via RLM canvas (FortraUAT) + activate from Versions list (do NOT create a new version). Only one work-stream may hold the canvas at a time; coordinate with K-01, F-12, F-09, G-02, J-06 which all edit the same ESDV 9QBWC0000000oWH4AY.",
+  "fixBrief": "In the active V21 pricing procedure (ESDV 9QBWC0000000oWH4AY), open the 'Currency Conversion - Unit Price Display' step (sequenceNumber=40, name=CurrencyConversionUnitPriceDisplay). The formula-section-0-input currently is 'InputUnitPrice * IF(STICurrencyIsoCode=\\'EUR\\',0.9346,...)'; because InputUnitPrice is NOT re-seeded from base for plain Perpetual lines (the only writers — AttributeValuePricingCalculatedMode, GSAPricing, etc. — are gated off), it carries the previous run's already-converted value and compounds the FX multiplier on every reprice. Change the input variable from InputUnitPrice to NetUnitPrice (which IS rebuilt from scratch each run via ResetNetToPrePartnerBase + CurrencyConversionNetUnitPrice), so the formula becomes 'NetUnitPrice * IF(STICurrencyIsoCode=\\'EUR\\',0.9346,...)' with output still mapped to InputUnitPrice (the persisted UnitPrice field). After deploying and repricing the evidence QLI 0QLWC000003kmG14AI on Quote 0Q0WC000003FcrF0AS (EUR, AAM Perpetual Qty=1), verify UnitPrice=1471.995 (= 1575 × 0.9346) and that a second Force-reprice leaves UnitPrice at 1471.995 rather than descending further.",
+  "sharesArtifactWith": ["K-01", "F-12", "F-09", "G-02", "J-06"],
+  "blockingDeps": [],
+  "effort": "S",
+  "notes": "The net sibling steps (CurrencyConversionNetUnitPrice seq=39, CurrencyConversionNetTotalSubtotal seq=41, CurrencyConversionTotalLineAmount seq=42) all read their respective already-fresh fields (NetUnitPrice, ItemNetTotalPrice, TotalLineAmount) so they correctly produce ×0.9346^1. Only the Unit Price Display step reads a stale persisted field, causing the runaway compound. Switching its input to NetUnitPrice is safe because at seq=40 the net currency step (seq=39) has already run and NetUnitPrice holds the correctly FX-converted value. No data backfill is needed; the fix is purely a one-field formula change inside the proc."
+}

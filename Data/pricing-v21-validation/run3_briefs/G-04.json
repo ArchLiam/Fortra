@@ -1,0 +1,33 @@
+{
+ "id": "G-04",
+ "category": "G. Multi-Currency / Regional",
+ "name": "Regional services country multiplier (AllowRegionalPricing, LIST channel only)",
+ "priority": "P0",
+ "what_it_tests": "A services line with AllowRegionalPricing__c=true applies the country multiplier to the LIST channel (CEILING(List x mult /5)x5) while NET stays catalog, producing a structural TotalLineAmount != NetTotalPrice; applies on new quote + amendment, NOT renewal",
+ "proc_mechanism": "RegionalServicesPricingPrehook reads Services_Regional_Pricing__mdt (e.g. Italy 0.64, India 0.4, LATAM 0.5); RegionalServicesPrice27 assignment RegionalNetUnitPrice__c -> InputUnitPrice (list channel)",
+ "expected_behavior": "List/TotalLineAmount scaled by regional multiplier and rounded to nearest 5; NetTotalPrice from catalog (structural list!=net) per documented design",
+ "test_setup": "Services line, AllowRegionalPricing__c=true, Italy (0.64) catalog 2400 -> 1540, or India 0.4 list 1000 -> 400; Qty=1, new/amend",
+ "defect_provenance": "SC-3374 / SC-3393 / regional services",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "named-script",
+  "actual": "Repriced (V21, Force, REST place), STABLE across 3 repricings on Italy fixture 0Q0WC000003FYdx0AG: ListPrice=55000, UnitPrice=35200, TotalLineAmount=35200 (multiplier correct), but NetUnitPrice=35200 AND NetTotalPrice=35200 (net reconciled to regional, NOT 55000). list==net==35200, not list!=net. Regional_NetUnit_Price__c=35200.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FYdx0AG/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kiHF4AY/view",
+  "recordIds": [
+   "0Q0WC000003FYdx0AG",
+   "0QLWC000003kiHF4AY"
+  ],
+  "defectStep": "Regional Services Price (RegionalServicesPricingPrehook v13.3 UnitPrice write) + absent V9 LIST-only isolation",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Multiplier math is CORRECT (55000x0.64=35200, already multiple of 5). Divergence is purely the NET channel: catalog expects net=55000/list!=net (V9 LIST-only design); V21 produces net=list=35200. V21 retrieve (d01_v21_fresh.json) has NO RegionalNetReconcile group/gate (0 hits) - the net follows the prehook UnitPrice write directly. Per memory project_sc3374_workday_regional_pricing, net was deliberately reconciled DOWN to regional to fix Workday list!=net sync failures, so V21 net==list is likely the intended corrected behavior and the catalog expected is stale. Recording FAIL strictly vs docu\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

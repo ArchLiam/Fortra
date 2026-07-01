@@ -1,0 +1,63 @@
+/**
+ * @description Handler for QuoteSyncingTrigger - initializes checklist when IsSyncing changes to true
+ */
+public with sharing class QuoteSyncingTriggerHandler {
+
+    /**
+     * @description Handle after update to check if IsSyncing changed to true
+     * @param newQuotes List of updated Quote records
+     * @param oldQuoteMap Map of old Quote records
+     */
+    public static void handleAfterUpdate(List<Quote> newQuotes, Map<Id, Quote> oldQuoteMap) {
+        // Collect Opportunity IDs where Quote IsSyncing changed to true
+        Set<Id> opportunityIds = new Set<Id>();
+
+        for (Quote newQuote : newQuotes) {
+            Quote oldQuote = oldQuoteMap.get(newQuote.Id);
+
+            // Check if IsSyncing changed from false to true
+            if (newQuote.IsSyncing && !oldQuote.IsSyncing && newQuote.OpportunityId != null) {
+                opportunityIds.add(newQuote.OpportunityId);
+            }
+        }
+
+        if (!opportunityIds.isEmpty()) {
+            processOpportunities(opportunityIds);
+        }
+    }
+
+    /**
+     * @description Process opportunities to initialize checklists
+     * @param opportunityIds Set of Opportunity IDs to process
+     * Note: This method is @TestVisible to allow testing without IsSyncing field (which is read-only)
+     */
+    @TestVisible
+    private static void processOpportunities(Set<Id> opportunityIds) {
+        // Query Opportunities to check if they're in Order Processing stage
+        List<Opportunity> oppsInOrderProcessing = [
+            SELECT Id
+            FROM Opportunity
+            WHERE Id IN :opportunityIds
+            AND StageName = 'Order Processing'
+            WITH SECURITY_ENFORCED
+        ];
+
+        if (oppsInOrderProcessing.isEmpty()) {
+            return;
+        }
+
+        // Prepare requests for ChecklistInitializationService
+        List<ChecklistInitializationService.InitializeRequest> requests =
+            new List<ChecklistInitializationService.InitializeRequest>();
+
+        for (Opportunity opp : oppsInOrderProcessing) {
+            ChecklistInitializationService.InitializeRequest request =
+                new ChecklistInitializationService.InitializeRequest();
+            request.opportunityId = opp.Id;
+            requests.add(request);
+        }
+
+        // Initialize checklist for these opportunities
+        ChecklistInitializationService.initializeChecklistForQuote(requests);
+    }
+}

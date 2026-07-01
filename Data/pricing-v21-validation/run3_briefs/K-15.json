@@ -1,0 +1,39 @@
+{
+ "id": "K-15",
+ "category": "K. Edge Cases",
+ "name": "Context-definition version parity quote vs order (shared SalesTransactionContextExt_v2)",
+ "priority": "P1",
+ "what_it_tests": "The pricing and discovery procedures share one context definition; quote and order paths must use the same version and the ContextAttributeMapping field API names must match the persist schema (NetUnitPrice not ItemNetTotalPrice), else fields fail to hydrate/persist or throw 'Specify contextDefinitionName'",
+ "proc_mechanism": "SalesTransactionContextExt_v2 ContextAttribute mappings (QuoteEntitiesMapping / OrderEntitiesMapping); context version tracked in PricingActionParameters; in-place edits to a live active proc require re-syncing context",
+ "expected_behavior": "Quote and converted order both use the same context version; field API names match schema; re-sync context if fields not hydrating; no contextDefinition gack",
+ "test_setup": "Price a quote and its converted order, verify both use SalesTransactionContextExt_v2 and fields hydrate",
+ "defect_provenance": "SC-3384 / reprice contextDef",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "config-query",
+  "actual": "Single shared context: SalesTransactionContextExt_v2 (11OWC000002m21Z2AQ) has exactly ONE active ContextDefinitionVersion = v23 (11pWC000002TjF7YAK, IsActive=true), bound to the single Active pricing proc V21 (9QBWC0000000oWH4AY). PricingActionParameters carries exactly the 2 expected bindings (Quote_1782043660424 + Order_1782043618980). Live-retrieved context def: all 15 V21 staging context-attributes hydrate from BOTH QuoteLineItem AND OrderItem to the SAME context attribute (Base_Price__c, Pre_Partner_Price__c, Partner_Pricing_Source__c, Source_List_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, COLACalculatedPrice__c, COLA_Uplift_Percent__c, CancelNetUnitPrice__c, AllowRegionalPricing__c, RegionalNetUnitPrice__c, Attribute_Price_Mode__c, Has_Attribute_Adjustment__c, Fortra_Product_Type__c, GSA__c = all BOTH-OK; the QLI/OI physical-name divergences Allow_Regiona\u2026",
+  "evidence": "Live ctx retrieve Data/pricing-v21-validation/k15_ctx/contextDefinitions/SalesTransactionContextExt_v2.contextDefinition-meta.xml (v23 active; NetUnitPrice<-QLI.NetUnitPrice+OI.NetUnitPrice; ItemNetTotalPrice 0 refs). Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FO1u0AG/view (reprice isSuccess:true). Converted Order: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000ltoJNYAY/view (00095650, parity-identical staging). Draft Order reprice: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lXvCaYAK/view (00095575, isSuccess:true). PricingActionParameters: Quote_1782043660424 + Order_1782043618980.",
+  "recordIds": [
+   "11OWC000002m21Z2AQ",
+   "11pWC000002TjF7YAK",
+   "9QBWC0000000oWH4AY",
+   "0Q0WC000003FO1u0AG",
+   "0QLWC000003kbnd4AA",
+   "801WC00000ltoJNYAY",
+   "802WC00000PW8XCYA1",
+   "801WC00000lXvCaYAK"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Config/parity scenario (no DML fixture) per brief. Active proc Rev_Mgmt_Default_Pricing_Procedure V21 single-Active, bound to SalesTransactionContextExt_v2 v23 single-Active ContextDefinitionVersion = quote+order version parity holds. The 15 V21 staging fields that historically broke order-side context-fetch (project_v16_order_pricing_contextfetch_incident: Pre_Partner_Price__c/Partner_Pricing_Source__c added QLI-only; project_reprice_contextdef_error: Prior_Partner_Discount__c/Prior_Discretionary_Discount__c missing on OrderEntitiesMapping) are now ALL mapped on BOTH item nodes -> both fixes \u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

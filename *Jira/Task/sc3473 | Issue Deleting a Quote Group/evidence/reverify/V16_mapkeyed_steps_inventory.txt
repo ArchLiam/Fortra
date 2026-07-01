@@ -1,0 +1,37 @@
+V16 ACTIVE PROCEDURE — MAP-KEYED / LOOKUP STEPS INVENTORY (read-only trace)
+Active version: Rev_Mgmt_Default_Pricing_Procedure_Rev_Mgmt_Default_Pricing_V160 (status Active)
+Retrieved live 2026-06-28 via MDAPI api 67.
+
+step[  1] GroupingAndAggregatePricing 'Aggregate Price'
+         KEY/LOOKUP: group key = SalesTransactionItemGroup (Text); cond SalesTransactionItemGroup isNotNull -> EXCLUDES null-group survivors
+step[  7] AttributeDiscount 'Attribute-Based Price'
+         KEY/LOOKUP: decision-table lookup keyed on (Product, ProductSellingModel, Attribute, AttributeValue, EffectiveFrom/To); gated by Has_Attribute_Adjustment__c (FALSE on all 4 lines)
+step[  8] AttributeDiscount 'Attribute Discount Entries'
+         KEY/LOOKUP: same key family; gated Attribute Pricing Filter
+step[ 17] BundleDiscount 'Bundle Based Adjustment Entries'
+         KEY/LOOKUP: keyed on (Product, PSM, ParentProduct, RootBundle, RootPSM); gated InclusivePrice=true (no bundles here)
+step[ 31] DerivedPricing 'Derived Products - Renewals'
+         KEY/LOOKUP: keyed on Contributor / ContributorProduct / ContributorSource / ContributorScope; gated ItemIsDerived__std=true (survivors NOT derived)
+step[ 85] Proration 'Proration'
+         KEY/LOOKUP: BKM keyed on PricingTermUnit + EffectiveFrom + itemTransientEndDate (from EndDate) -> outputs PricingTermCount; RUNS for TermDefined lines
+step[ 91] GroupingAndAggregatePricing 'Services Aggregate'
+         KEY/LOOKUP: FLAT SUM ItemNetTotalPrice -> Total_Services__c; parent filter Fortra_Product_Type__c='Services'; UNGUARDED where-condition-count=0
+step[ 92] GroupingAndAggregatePricing 'Software Aggregate'
+         KEY/LOOKUP: FLAT SUM -> Total_Software__c; cond ItemNetTotalPrice isNotNull
+step[ 97] GroupingAndAggregatePricing 'Subscription Aggregate'
+         KEY/LOOKUP: FLAT SUM -> Total_Subscription__c; cond ItemNetTotalPrice isNotNull; SURVIVORS are Subscription -> RUN
+step[ 98] SubscriptionPricing 'Subscription Pricing'
+         KEY/LOOKUP: reads ProrationMultiplier<-PricingTermCount; RUNS for TermDefined
+step[ 99] SubscriptionPricing 'Subscription Pricing'
+         KEY/LOOKUP: reads PricingTermCountValueOneConstant
+step[100] SubscriptionPricing 'Subscription Pricing'
+         KEY/LOOKUP: reads ProrationMultiplier<-PricingTermCount
+step[103] GroupingAndAggregatePricing 'Total Amount'
+         KEY/LOOKUP: FLAT SUM -> TotalAmount; cond ItemNetTotalPrice isNotNull AND DerivedPricingAttribute isNotNull AND isFalse
+step[107] VolumeDiscount 'Volume Discount Entries'
+         KEY/LOOKUP: keyed on (Product, PSM, qty bounds); gated IsContracted/IsNull
+
+KEY FINDINGS:
+- Only step[1] keys on the GROUP id and is isNotNull-guarded -> ungrouped survivors excluded; deleted group is gone. No stale-group map persists.
+- Category-aggregate FILTERS (steps 104/105/106) only route Services/Software/Subscription. Fortra_Product_Type__c values Perpetual / Renewal Maintenance / New Maintenance / null are NOT routed to any category total -> config gap, not a throw.
+- The Proration BKM (step 85) consumes itemTransientEndDate (derived from EndDate). The DELETED Abstract line is TermDefined with EndDate=null AND PricingTermCount=null (malformed term created during the 2026-06-26 HW-group add). Proration date-range map lookup can return null -> .toString() NPE. This is a RUNTIME null, not a static mapping gap.

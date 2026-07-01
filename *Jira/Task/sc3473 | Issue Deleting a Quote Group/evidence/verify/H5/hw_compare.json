@@ -1,0 +1,44 @@
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Hardware__c",
+          "url": "/services/data/v67.0/sobjects/Hardware__c/a0nWC000001uZvNYAU"
+        },
+        "Id": "a0nWC000001uZvNYAU",
+        "Name": "HW-0717933",
+        "P_Group_List__c": "P05",
+        "Group_Number_List__c": null,
+        "iSeries_Model__c": "400",
+        "Hardware_Platform__c": "iSeries"
+      },
+      {
+        "attributes": {
+          "type": "Hardware__c",
+          "url": "/services/data/v67.0/sobjects/Hardware__c/a0nWC000001w61FYAQ"
+        },
+        "Id": "a0nWC000001w61FYAQ",
+        "Name": "HW-0717951",
+        "P_Group_List__c": "P40",
+        "Group_Number_List__c": null,
+        "iSeries_Model__c": "620",
+        "Hardware_Platform__c": "iSeries"
+      },
+      {
+        "attributes": {
+          "type": "Hardware__c",
+          "url": "/services/data/v67.0/sobjects/Hardware__c/a0nWC000001wdV3YAI"
+        },
+        "Id": "a0nWC000001wdV3YAI",
+        "Name": "HW-0717957",
+        "P_Group_List__c": "P20",
+        "Group_Number_List__c": null,
+        "iSeries_Model__c": "170",
+        "Hardware_Platform__c": "iSeries"
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  }
+}

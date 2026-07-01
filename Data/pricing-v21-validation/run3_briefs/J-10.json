@@ -1,0 +1,36 @@
+{
+ "id": "J-10",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Derived maintenance renewal crossed with partner AND COLA AND non-USD simultaneously (four-factor stack)",
+ "priority": "P0",
+ "what_it_tests": "A single renewal maintenance line that is derived, partner-discounted, COLA-uplifted, AND non-USD must apply each factor exactly once in the correct order (prior-net base \u00d7 COLA \u00d7 partner-once \u00d7 FX) without the J-05 oscillation/double-discount or G-02 currency-blind lookup; the maximal interaction cell is uncovered",
+ "proc_mechanism": "DerivedProductsRenewals committer + COLA Uplift Net on Renewal + PartnerNetPricePosthook v1.5 (skip deferred path when COLA-owned) + Currency Conversion Net Unit Price; PartnerNetPricePosthook must not re-discount already-netted COLA base; FX must apply to the final net once",
+ "expected_behavior": "Net = priorAssetNet \u00d7 (1+COLA%) \u00d7 (1\u2212partner% if not already in base) \u00d7 currencyMult, applied once each; stable across multiple reprices; no oscillation, no double-discount, no USD-value leak",
+ "test_setup": "Renewal RRM maintenance line, ItemIsDerived=true, Deal_Type='Channel Originated' 12% prior-netted, COLA 7.85%, EUR (0.9346), reprice 3\u00d7 and compare",
+ "defect_provenance": "SC-3346 / SC-3384 / SC-3359 (completeness-gap cross)",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "Maint line PIA-PIA-RNM-PIAMBK (EUR) repriced to NetUnitPrice=0, NetTotalPrice=0, UnitPrice=0, ListPrice=0 across 3 Force reprices (stable, no oscillation). Seed Base_Price__c=3400/Pre_Partner=3400/COLA=7.85/Partner=12 ignored. Same SKU prices to 71 net in USD. License line NetTotal=15888.2 OK.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZN70AO/view (Quote#00781510); maint QLI 0QLWC000003kinW4AQ; USD-derived comparator QLI 0QLWC000003kiZ04AI net=71",
+  "recordIds": [
+   "0Q0WC000003FZN70AO",
+   "0QLWC000003kinW4AQ",
+   "0QLWC000003kinV4AQ"
+  ],
+  "defectStep": "Derived Products - Renewals (V21 step 43) / COLA Uplift Net on Renewal (step 26) / Derived Maintenance Net Filter (step 37)",
+  "regression": "SC-3384",
+  "rootCause": null,
+  "notes": "Active proc V21 (ExpressionSetVersion 9QMWC00000025LN4AY, IsActive=true) confirmed. Root cause = derived path currency-gated: only USD Fortra PBE 01uWC000005wsbUYAQ has IsDerived=true; EUR PBE 01uWC000005wzX8YAI used by line has IsDerived=false, so ItemIsDerived__std=false and steps 26/37/43 never engage. Maximal interaction cell (derived x partner x COLA x non-USD) uncovered = SC-3384 currency-blind/IsDerived completeness gap crossed with SC-3346 derived maint. QLIA Maintenance Type Defn=Standard present. Result stable (no J-05 oscillation) but stably $0.",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ10FourFactorTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

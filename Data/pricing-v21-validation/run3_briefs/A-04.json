@@ -1,0 +1,35 @@
+{
+ "id": "A-04",
+ "category": "A. Pricing Source / Channel",
+ "name": "Contracted/asset-sourced line stamps PricingDate",
+ "priority": "P1",
+ "what_it_tests": "A line tied to an existing contract/asset stamps PricingDate=EffectiveDate so contracted pricing is honored on its effective date rather than a fresh catalog lookup",
+ "proc_mechanism": "Contacted Pricing (IsContracted IsNotNull AND IsContracted=true AND PricingDate IsNull -> set PricingDate=EffectiveDate)",
+ "expected_behavior": "PricingDate set from EffectiveDate; contracted price effective-date alignment applied",
+ "test_setup": "Software contracted asset line, IsContracted=true, PricingDate=null, Txn=Amend on existing contract",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "BLOCKED",
+  "dataSource": "existing",
+  "actual": "V21 source CONFIRMS the branch is present and correctly wired: ListContainer73 (seq24) -> filter ContactedPricing [IsContracted IsNotNull AND IsContracted=true AND PricingDate IsNull] -> assignment ContactedPricing75 [PricingDate := EffectiveDate]; exactly matches proc_mechanism. A real Type=Amend quote (0Q0WC000003FNXF0A4, contract 800WC00000Sxz49YAB Activated, CAD, CompletedWithPricing) Force-reprices through V21 cleanly (isSuccess:true, errorResponse:[]) and its AA-Modes line holds a contracted UnitPrice (30526.02, then 58886.01 after reprice) that is NOT the catalog ListPrice 4375.035 -> contracted/asset sourcing IS honored. BUT the scenario's specific output (PricingDate=EffectiveDate) and its gating field (IsContracted) are pricing-CONTEXT TRANSIENTS with NO persisted column on QuoteLineItem/OrderItem (describe: IsContracted/PricingDate/EffectiveDate/EffectiveFrom all ABSENT), the \u2026",
+  "evidence": "V21 source ContactedPricing/ContactedPricing75 steps: Data/cola-v16-v20-reconcile/verify_v21/unpackaged/unpackaged/expressionSetVersion/Rev_Mgmt_Default_Pricing_Procedure_Rev_Mgmt_Default_Pricing_V210.expressionSetVersion lines 1983-2065 (filter+assign) and PricingEffectiveDates default lines 4462-4511. Real amend quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FNXF0A4/view (QuoteAction 7ocWC00000wzkVxYAI Type=Amend; line 0QLWC000003kXyX4AU UnitPrice 58886.01 vs ListPrice 4375.035, PricingContractId=null). Force-reprice resp Data/sc3473/v21_validation_a04/reprice_resp.json (isSuccess:true). Describe proof: QuoteLineItem has NO IsContracted/PricingDate/EffectiveDate/EffectiveFrom field; 0 QLIs org-wide with PricingContractId set. Active version confirmed V21 9QBWC0000000oWH4AY (tooling query).",
+  "recordIds": [
+   "0Q0WC000003FNXF0A4",
+   "0QLWC000003kXyX4AU",
+   "7ocWC00000wzkVxYAI",
+   "800WC00000Sxz49YAB"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "BLOCKED (unobservable), NOT a defect. The Contacted Pricing branch is present and correctly built in active V21 (filter IsContracted=true AND PricingDate IsNull -> assign PricingDate=EffectiveDate), preflight passed on a real UI-priced Amend quote tied to an Activated contract, and the quote Force-reprices cleanly through V21 with contracted (non-catalog) UnitPrice honored. The specific assertion PricingDate=EffectiveDate cannot be smoke-tested: (1) PricingDate/EffectiveDate/IsContracted are RLM pricing-context transients with no persisted/queryable column on QLI or OrderItem (verified via des\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

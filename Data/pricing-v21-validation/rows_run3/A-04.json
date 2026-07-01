@@ -1,0 +1,18 @@
+{
+  "id": "A-04",
+  "category": "A. Pricing Source / Channel",
+  "name": "Contracted line pricing source",
+  "priority": "P1",
+  "verdict": "BLOCKED",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "PricingDate set from EffectiveDate; contracted price (not catalog list) applied on Amend quote tied to Activated contract",
+  "actual": "V21 ContactedPricing branch present and correctly wired (ListContainer73 seq24: filter IsContracted IsNotNull AND IsContracted=true AND PricingDate IsNull -> ContactedPricing75 assigns PricingDate:=EffectiveDate). Force-reprice isSuccess:true, errorResponse:[]. Amend quote QLI UnitPrice=113593.66 (pre-reprice 81786.78) vs ListPrice=4375.035 — contracted/asset sourcing IS honored; price is NOT catalog list. But PricingDate/IsContracted/EffectiveDate are RLM pricing-context transients with no persisted column on QuoteLineItem (confirmed via describe: these fields absent); cannot query PricingDate post-reprice to assert =EffectiveDate. PricingContractId=null on QLI (also not set by this branch).",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FNXF0A4/view (CAD, Draft, QuoteAction 7ocWC00000wzkVxYAI Type=Amend). QLI 0QLWC000003kXyX4AU: Product=Advanced Authentication Modes (Perpetual), UnitPrice=113593.66, ListPrice=4375.035, NetUnitPrice=113593.66, Pre_Partner_Price__c=81786.78, Base_Price__c=81786.78. Contract 800WC00000Sxz49YAB Status=Activated. Force-reprice v67.0 isSuccess:true. V21 source ContactedPricing/ContactedPricing75 steps confirmed at Data/cola-v16-v20-reconcile/verify_v21/unpackaged/unpackaged/expressionSetVersion/Rev_Mgmt_Default_Pricing_Procedure_Rev_Mgmt_Default_Pricing_V210.expressionSetVersion lines 1983-2057. QLI describe: IsContracted/PricingDate/EffectiveDate/EffectiveFrom absent; PricingContractId present but null.",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "BLOCKED (unobservable), NOT a defect. The ContactedPricing branch is present and correctly built in active V21: filter IsContracted=true AND PricingDate IsNull -> assign PricingDate=EffectiveDate. A real UI-priced Amend quote tied to an Activated contract Force-reprices cleanly through V21 (isSuccess:true) with contracted UnitPrice (113593.66) far exceeding catalog ListPrice (4375.035), confirming contracted/asset sourcing is honored. The specific assertion PricingDate=EffectiveDate cannot be smoke-tested: PricingDate/IsContracted/EffectiveDate are RLM pricing-context transients with no persisted/queryable column on QuoteLineItem (verified via describe). 0 QLIs org-wide have PricingContractId set. Active version confirmed V21 9QBWC0000000oWH4AY. Prior run1 conclusion re-confirmed on re-measure 2026-06-30.",
+  "verdict_reason": "The V21 ContactedPricing branch is correctly built and the contracted UnitPrice is honored on Force-reprice. However, the specific output (PricingDate=EffectiveDate) is an in-flight context transient — IsContracted, PricingDate, and EffectiveDate have no persisted column on QuoteLineItem (describe-confirmed), making the primary assertion unobservable. Verdict is BLOCKED (unobservable), not FAIL."
+}

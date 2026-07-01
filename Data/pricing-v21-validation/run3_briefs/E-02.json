@@ -1,0 +1,35 @@
+{
+ "id": "E-02",
+ "category": "E. Deal / Customer Type",
+ "name": "Channel/Reseller/Distributor partner discount on standard line",
+ "priority": "P0",
+ "what_it_tests": "A non-Fortra-Originated (partner) non-derived line receives the resolved partner discount percent from Partner_Pricing_Model__c, selected by product type and hierarchy (Solution Category->Group->Unit); discount-model uses billing partner only, guaranteed-margin stacks all partners",
+ "proc_mechanism": "Partner Discount (Deal_Type__c NotEquals 'Fortra Originated' AND (ItemIsDerived IsNull OR =false)); Resolve Partner Discount Percent; Partner Percent Resolved Filter (PartnerDiscountPercent IsNotNull AND >0)",
+ "expected_behavior": "Discount model: Net = List x (1-BillingPartner%); Guaranteed Margin: Net = List x (1-A%) x (1-B%); net != list",
+ "test_setup": "Deal_Type__c='Channel Originated', reseller (Optiv Diamond 20% SW) or 2-tier distributor (M.Tech 40% SW), ItemIsDerived=false, Qty=3",
+ "defect_provenance": "SC-3359",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Quote 00781440 / QLI 0QLWC000003kgXC4AY (CCM Limited Scan Engine, Software, Qty 1). After Force-reprice on live V21: List=2008, PartnerDiscountPercent=15, Pre_Partner_Price__c=2008, NetUnitPrice=1706.8, NetTotalPrice=1706.8 (=2008*0.85), TotalLineAmount=2008, header TotalPrice=1706.8, Subtotal=2008. Net!=list.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FWCM0A4/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kgXC4AY/view ; REST place isSuccess=true",
+  "recordIds": [
+   "0Q0WC000003FWCM0A4",
+   "0QLWC000003kgXC4AY"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Force-reprice via /connect/rev/sales-transaction/actions/place returned isSuccess=true, no errors; re-query confirms numbers are live-procedure-generated, not stale. V21 gate: Partner Discount (Deal_Type Channel Originated != Fortra Originated AND ItemIsDerived false) -> Resolve Partner Discount Percent (15%) -> Partner Percent Resolved Filter (>0). Discount-model uses billing-partner % only. Notably this is a Perpetual/Software (One-Time) line: SC-3359 regression (SubscriptionPricing74 overwriting discounted net on One-Time/Perpetual) does NOT reproduce on V21 - the partner-discounted net 170\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupE02PartnerDiscountTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

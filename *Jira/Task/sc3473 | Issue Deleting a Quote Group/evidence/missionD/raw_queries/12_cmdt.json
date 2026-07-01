@@ -1,0 +1,555 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K7Ge"
+        },
+        "QualifiedApiName": "c2g__ffhyb_HybridConfiguration__mdt",
+        "Label": "Hybrid Configuration"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K7Dh"
+        },
+        "QualifiedApiName": "c2g__PaletteSections__mdt",
+        "Label": "zDeprecated:Palette Section"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K7EJ"
+        },
+        "QualifiedApiName": "c2g__SDAPrivateKey__mdt",
+        "Label": "SDA Private Key"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001XaVa"
+        },
+        "QualifiedApiName": "COLA_Uplift_Rules__mdt",
+        "Label": "COLA Uplift Rules"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001Xne5"
+        },
+        "QualifiedApiName": "Country_Crosswalk__mdt",
+        "Label": "Country Crosswalk"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001PYNn"
+        },
+        "QualifiedApiName": "Currency_Conversion_Formula__mdt",
+        "Label": "Currency Conversion Formula"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000026VXp"
+        },
+        "QualifiedApiName": "Duns_Matching_Threshold__mdt",
+        "Label": "Duns Matching Threshold"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8dZ"
+        },
+        "QualifiedApiName": "erpws__SMC_Settings__mdt",
+        "Label": "SMC Settings"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001mbr8"
+        },
+        "QualifiedApiName": "Export_License_Expiration_Settings__mdt",
+        "Label": "Export License Expiration Setting"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8PL"
+        },
+        "QualifiedApiName": "ffbf__ffsda_SDAPrivateKey__mdt",
+        "Label": "SDA Private Key"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K5zL"
+        },
+        "QualifiedApiName": "fferpcore__ConfigurationItem__mdt",
+        "Label": "Foundations Configuration Item"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K5zf"
+        },
+        "QualifiedApiName": "fferpcore__FeatureConsoleFeature__mdt",
+        "Label": "Feature"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K5zd"
+        },
+        "QualifiedApiName": "fferpcore__FeatureConsoleFeatureParameter__mdt",
+        "Label": "Feature Parameter"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K5ze"
+        },
+        "QualifiedApiName": "fferpcore__FeatureConsoleFeatureStep__mdt",
+        "Label": "Feature Step"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60f"
+        },
+        "QualifiedApiName": "fferpcore__ffhyb_HybridConfiguration__mdt",
+        "Label": "Hybrid Configuration"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K5zy"
+        },
+        "QualifiedApiName": "fferpcore__Plugin__mdt",
+        "Label": "FDN Plugin"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60H"
+        },
+        "QualifiedApiName": "fferpcore__Sequence__mdt",
+        "Label": "Sequence"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60D"
+        },
+        "QualifiedApiName": "fferpcore__SequenceField__mdt",
+        "Label": "Sequence Field"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60F"
+        },
+        "QualifiedApiName": "fferpcore__SequencePart__mdt",
+        "Label": "Sequence Part"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60I"
+        },
+        "QualifiedApiName": "fferpcore__SlackChannelSetting__mdt",
+        "Label": "Slack Channel Configuration"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60Y"
+        },
+        "QualifiedApiName": "fferpcore__UserManagementTemplate__mdt",
+        "Label": "User Management Template"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60X"
+        },
+        "QualifiedApiName": "fferpcore__UserManagementTemplateData__mdt",
+        "Label": "User Management Template Data"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60Z"
+        },
+        "QualifiedApiName": "fferpcore__VirtualDataObjectProviderFactory__mdt",
+        "Label": "Virtual Object Provider Factory"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60a"
+        },
+        "QualifiedApiName": "fferpcore__VirtualDataObjectSourceMapping__mdt",
+        "Label": "Virtual Data Object Source Mapping"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K60b"
+        },
+        "QualifiedApiName": "fferpcore__VirtualDataObjectTargetMapping__mdt",
+        "Label": "Virtual Data Object Target Mapping"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K63t"
+        },
+        "QualifiedApiName": "ffr__AccountingIntegration__mdt",
+        "Label": "Accounting Integration"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K63w"
+        },
+        "QualifiedApiName": "ffr__AvailableAction__mdt",
+        "Label": "Available Action"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K63x"
+        },
+        "QualifiedApiName": "ffr__AvailableSummarizationObjects__mdt",
+        "Label": "Available Summarization Object"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K63y"
+        },
+        "QualifiedApiName": "ffr__CannedDataview__mdt",
+        "Label": "Canned Dataview"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K640"
+        },
+        "QualifiedApiName": "ffr__CommonNamePicklistField__mdt",
+        "Label": "Common Name Picklist Field"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K64A"
+        },
+        "QualifiedApiName": "ffr__GoogleAPI__mdt",
+        "Label": "Google API"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K64Q"
+        },
+        "QualifiedApiName": "ffr__PaletteSections__mdt",
+        "Label": "Palette Section"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K64u"
+        },
+        "QualifiedApiName": "ffr__TaskPath__mdt",
+        "Label": "Task Path"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8SU"
+        },
+        "QualifiedApiName": "ffvat__ffsda_SDAPrivateKey__mdt",
+        "Label": "SDA Private Key"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8SI"
+        },
+        "QualifiedApiName": "ffvat__HMRCCredentials__mdt",
+        "Label": "HMRC Credentials"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001kHA9"
+        },
+        "QualifiedApiName": "InterPayment_Settings__mdt",
+        "Label": "InterPayment Setting"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ptl3"
+        },
+        "QualifiedApiName": "Legal_Entity_Currency__mdt",
+        "Label": "Legal Entity Currency"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000016fMX"
+        },
+        "QualifiedApiName": "LID__Sales_Navigator_Setting__mdt",
+        "Label": "Sales Navigator Setting"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIb"
+        },
+        "QualifiedApiName": "LKG_Brand__mdt",
+        "Label": "LKG Brand"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIc"
+        },
+        "QualifiedApiName": "LKG_Email_Template_Place_Holder__mdt",
+        "Label": "LKG Email Template Place Holder"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000024Lfp"
+        },
+        "QualifiedApiName": "LKG_Intersect__mdt",
+        "Label": "LKG Intersect"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijId"
+        },
+        "QualifiedApiName": "LKG_Key_Type__mdt",
+        "Label": "LKG Key Type"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIe"
+        },
+        "QualifiedApiName": "LKG_Product__mdt",
+        "Label": "LKG Product"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000024Lfq"
+        },
+        "QualifiedApiName": "LKG_Setting__mdt",
+        "Label": "LKG Setting"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIf"
+        },
+        "QualifiedApiName": "LKG_Silo__mdt",
+        "Label": "LKG Silo"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIi"
+        },
+        "QualifiedApiName": "LKG_Solution__mdt",
+        "Label": "LKG Solution"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIg"
+        },
+        "QualifiedApiName": "LKG_Solution_Category__mdt",
+        "Label": "LKG Solution Category"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIh"
+        },
+        "QualifiedApiName": "LKG_Solution_Group__mdt",
+        "Label": "LKG Solution Group"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIk"
+        },
+        "QualifiedApiName": "LKG_UI_Field__mdt",
+        "Label": "LKG UI Field"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ijIj"
+        },
+        "QualifiedApiName": "LKG_UI_Field_Option__mdt",
+        "Label": "LKG UI Field Option"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001rsOH"
+        },
+        "QualifiedApiName": "Maintenance_Rate__mdt",
+        "Label": "Maintenance Rate"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001g5ab"
+        },
+        "QualifiedApiName": "Migration_Field_Default__mdt",
+        "Label": "Migration Field Default"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001r60H"
+        },
+        "QualifiedApiName": "MyCAP_Rules__mdt",
+        "Label": "MyCAP Rules"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000014w6Z"
+        },
+        "QualifiedApiName": "omnistudio__DocumentTemplateSetting__mdt",
+        "Label": "Document Template Setting"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000014w6b"
+        },
+        "QualifiedApiName": "omnistudio__PDFTronEncryptionKey__mdt",
+        "Label": "PDFTron Encryption Key"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ZXJt"
+        },
+        "QualifiedApiName": "Operations_Checklist_Config__mdt",
+        "Label": "Operations Checklist Config"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001rZrt"
+        },
+        "QualifiedApiName": "Order_Submit_Validation__mdt",
+        "Label": "Order_Submit_Validation"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001WXjR"
+        },
+        "QualifiedApiName": "Partner_Checklist_Definition__mdt",
+        "Label": "Partner Checklist Definition"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8z3"
+        },
+        "QualifiedApiName": "pse__Concur_Expense_Type_Mapping__mdt",
+        "Label": "Concur Expense Type Mapping"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8zS"
+        },
+        "QualifiedApiName": "pse__External_API_Credential__mdt",
+        "Label": "DEPRECATED: External API Credential"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8zu"
+        },
+        "QualifiedApiName": "pse__IHC_Mapping_Concur_to_PSA__mdt",
+        "Label": "IHC Mapping Concur to PSA"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001K8zv"
+        },
+        "QualifiedApiName": "pse__IHC_Mapping_Jira_to_PSA__mdt",
+        "Label": "IHC Mapping Jira to PSA"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000027Nl7"
+        },
+        "QualifiedApiName": "QL_Description_Attribute__mdt",
+        "Label": "QL Description Attribute"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000026m0n"
+        },
+        "QualifiedApiName": "Renewal_Automation_Settings__mdt",
+        "Label": "Renewal Automation Settings"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC0000016fL5"
+        },
+        "QualifiedApiName": "salesintelio__SalesIntel_State_List__mdt",
+        "Label": "SalesIntel State List"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001Yes6"
+        },
+        "QualifiedApiName": "Services_Regional_Pricing__mdt",
+        "Label": "Services Regional Pricing"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001ZbVa"
+        },
+        "QualifiedApiName": "UOM_Categories__mdt",
+        "Label": "UOM Categories"
+      },
+      {
+        "attributes": {
+          "type": "EntityDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/EntityDefinition/01IWC000001YxUw"
+        },
+        "QualifiedApiName": "Workday_Base_URL__mdt",
+        "Label": "Workday Base URL"
+      }
+    ],
+    "totalSize": 68,
+    "done": true
+  },
+  "warnings": []
+}

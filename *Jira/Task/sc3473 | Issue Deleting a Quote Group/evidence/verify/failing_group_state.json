@@ -1,0 +1,47 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineItems": {
+          "totalSize": 2,
+          "done": true,
+          "records": [
+            {
+              "attributes": {
+                "type": "QuoteLineItem",
+                "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+              },
+              "Id": "0QLWC000003jN6n4AE"
+            },
+            {
+              "attributes": {
+                "type": "QuoteLineItem",
+                "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+              },
+              "Id": "0QLWC000003jN8P4AU"
+            }
+          ]
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

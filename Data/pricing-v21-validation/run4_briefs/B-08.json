@@ -1,0 +1,28 @@
+{
+ "id": "B-08",
+ "category": "B. Selling Model",
+ "name": "Neither Evergreen nor Term-Defined (one-time) excluded from proration filters",
+ "priority": "P2",
+ "what_it_tests": "A One-Time/Perpetual line (SellingModelType neither Evergreen nor TermDefined) is excluded from both proration line filters and gets one-time treatment",
+ "proc_mechanism": "ListOperation87 (SellingModelType NotEquals 'Evergreen' AND NotEquals 'TermDefined')",
+ "expected_behavior": "No proration applied; one-time treatment",
+ "test_setup": "Software Perpetual, SellingModelType='OneTime', Qty=3",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Fixture QLI 0QLWC000003kjrd4AA (Quote 0Q0WC000003FaMP0A0, Product=Abstract, Fortra_Product_Type__c=Perpetual, SellingModelType=OneTime, Qty=3): V21 Force-reprice isSuccess=true, NetUnitPrice=2200, NetTotalPrice=6600 (=2200x3 exactly, no proration), TotalLineAmount=6600, PricingTermCount=0, EndDate=null. Control OrderItem 802WC00000OdgjBYAR (Order 00095467, Product=Automate Enterprise, Perpetual, SMT=OneTime, Qty=3): NetUnitPrice=7000, NetTotalPrice=21000 (=7000x3 exactly), TotalLineAmount=21000, PricingTermCount=0, EndDate=null. Both records confirm zero proration multiplier on OneTime SMT.",
+  "evidence": "Fixture quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FaMP0A0/view (QLI 0QLWC000003kjrd4AA); Control OI https://fortra--uat.sandbox.lightning.force.com/lightning/r/OrderItem/802WC00000OdgjBYAR/view (Order 00095467 https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kVBgBYAW/view); V21 reprice v67.0 isSuccess=true, errorResponse=[]; QLI post-reprice: SellingModelType=OneTime, PricingTermCount=0, EndDate=null, NetUnitPrice=2200, NetTotalPrice=6600=2200x3.",
+  "recordIds": [
+   "0Q0WC000003FaMP0A0",
+   "0QLWC000003kjrd4AA",
+   "802WC00000OdgjBYAR",
+   "801WC00000kVBgBYAW"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Mechanism = ListOperation87 (SellingModelType NotEquals 'Evergreen' AND NotEquals 'TermDefined') feeding the two proration line filters at V21 steps 45 (Evergreen) + 121 (Term-Defined). SellingModelType=OneTime is excluded from both filter lists; line receives pure one-time treatment (no term multiplication). Fixture note: prior run NetUnitPrice=0 was the known headless Apex-insert seed artifact; after V21 Force-reprice NetUnitPrice hydrated to 2200 (=list from PBE), confirming the procedure cor\u2026"
+ },
+ "fixture_scripts": []
+}

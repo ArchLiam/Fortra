@@ -1,0 +1,17 @@
+{
+  "id": "I-03",
+  "title": "Mid-term TermDefined net not multiplied by fractional PTC",
+  "primarySurface": "DATA-RECORDS",
+  "artifacts": [
+    {
+      "type": "other",
+      "identifier": "QuoteLineItem stale test data — lines 0QLWC000002LCwH4AW and 0QLWC000002SYdV4AW on stale quotes; retire and replace with a fresh UI-built mid-term TermDefined line",
+      "editable": false
+    }
+  ],
+  "deployMechanism": "No deploy. Retire stale proof lines. Re-test by adding a fresh mid-term TermDefined product via the Configure Products UI on a new Quote, repricing once via the UI or REST v67 reprice endpoint, then reading TotalLineAmount (not NetTotalPrice) from the resulting QuoteLineItem to verify PTC fractional multiplication.",
+  "fixBrief": "BLOCKED — not a procedure defect. V21 already contains SubscriptionPricing95 (parentStep=ListContainer93, filter ListOperation94 SellingModelType IN ('TermDefined','Evergreen')) which computes NetUnitPrice * Quantity * PricingTermCount -> TotalLineAmount for TermDefined lines. The executor's cited proof line 0QLWC000002LCwH4AW/0QLWC000002SYdV4AW both have SubTerm=1, meaning their PTC is persisted-not-derived and the quotes were never freshly repriced by V21. The executor also measured NetTotalPrice when the TermDefined leg writes TotalLineAmount (NetTotalPrice is mapped from the Evergreen leg via ItemNetTotalPrice). Action required before a FAIL verdict can be issued: add a brand-new mid-term TermDefined product line through the Configure Products UI, trigger a single reprice, and measure TotalLineAmount on the resulting QLI. No proc/flow/Apex/metadata edit is authorized or needed at this time.",
+  "sharesArtifactWith": [],
+  "blockingDeps": [],
+  "effort": "S"
+}

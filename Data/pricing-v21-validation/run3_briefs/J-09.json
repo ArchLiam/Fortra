@@ -1,0 +1,36 @@
+{
+ "id": "J-09",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Native derived pull requires contributing-product config (PBEDP)",
+ "priority": "P0",
+ "what_it_tests": "An IsDerived PBE routes through the native DerivedProducts element which requires a PriceBookEntryDerivedPrice config row; a missing row hard-errors 'contributing products are missing' before the formula can price (incomplete rollout backfilled only 199/3453)",
+ "proc_mechanism": "Native RLM DerivedProducts/DerivedProductsRenewals element maps ContributingProduct<-ContributorProduct via PBEDP config; no row = hard-error; Derived Pricing Filter (ItemIsDerived=true)",
+ "expected_behavior": "Backfill PBEDP rows for all IsDerived PBEs, or remove the native element after confirming the formula suffices; clear error not silent null",
+ "test_setup": "IsDerived maintenance line without PBEDP config row (e.g. GS-GSE-RNM-EFT8), reprice",
+ "defect_provenance": "SC-3372 / M5-PBEDP",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "Uncovered IsDerived line GS-GSE-RNM-EF8 (PBE 01uWC000005wsZpYAI, 0 PBEDP rows) on Quote 0Q0WC0000029Agw0AE Force-repriced via V21: NetUnitPrice=NULL, ListPrice=0, UnitPrice=0, Source_List_Price__c=NULL, TotalPrice=0, NetTotalPrice=0 (stable across 6 polls). Connect REST returned isSuccess=true, errorResponse=[] (warning non-fatal). 3254/3453 active IsDerived PBEs still uncovered.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000029Agw0AE/view ; QLI 0QLWC000003KEbO4AW ; log /private/tmp/.../scratchpad/j09_reprice.json",
+  "recordIds": [
+   "0Q0WC0000029Agw0AE",
+   "0QLWC000003KEbO4AW",
+   "01uWC000005wsZpYAI"
+  ],
+  "defectStep": "Derived Products - Native Pull / Derived Products - Non-Renewal (V21 steps 41-42); Derived Pricing Filter (ItemIsDerived__std=true)",
+  "regression": "SC-3372 / M5-PBEDP",
+  "rootCause": null,
+  "notes": "Named test product GS-GSE-RNM-EFT8 is now PBEDP-COVERED (row 182WC000000HEPxYAO, the SC-3372 'keep this row'), so it no longer reproduces; used a genuinely uncovered sibling GS-GSE-RNM-EF8 on a repricable Draft quote (Opp Stage=Closing, IsClosed=false). V21 Active confirmed (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY). Coverage gap unremediated: 3254/3453 uncovered.",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ09DerivedNoPbedpTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

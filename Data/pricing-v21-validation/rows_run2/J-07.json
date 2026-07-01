@@ -1,0 +1,15 @@
+{
+  "id": "J-07",
+  "verdict": "PASS",
+  "category": "J. Derived / Maintenance Pricing",
+  "priority": "P0",
+  "dataSource": "existing",
+  "recordIds": ["0Q0WC000003FZ0X0AW", "0QLWC000003kiZ04AI", "0QLWC000003kiYz4AI"],
+  "expected": "New-Maintenance line where procedure leaves NetUnitPrice $0/null: posthook fallback sets Net = Source_List_Price(355) x Maintenance_Rate(Standard 0.20) x (1-partner%) x (1-software%) = 71 (no partner). Partner_Pricing_Source = Post-Procedure.",
+  "actual": "After Force-reprice on V21: maint line PIA-PIA-RNM-PIAMBK Fortra_Product_Type=New Maintenance, Source_List_Price=355, QLIA Maintenance Type Defn=Standard(0.20), UnitPrice/ListPrice=0 (procedure $0), NetUnitPrice=71, NetTotalPrice=71, TotalLineAmount=71, Partner_Pricing_Source=System Calculated (Post-Procedure). 355x0.20=71 exact. License contributor net=355.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ0X0AW/view ; maint QLI 0QLWC000003kiZ04AI; REST place reprice isSuccess=true; LastModifiedDate 2026-06-30T03:10:49Z post-reprice",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "PartnerNetPricePosthook (live 01pWC000002VmiLYAS) buildNewMaintenanceUpdate fired: gates NetUnitPrice null/<=0 AND (Base_Price>0 OR Source_List_Price>0) AND Fortra_Product_Type=New Maintenance AND QLIA Maintenance Type Defn tier present. Net = contributorNetPrice(=license net 355) x rate 0.20. defect_provenance SC-3412/SC-3410 fix verified working on fresh reprice."
+}

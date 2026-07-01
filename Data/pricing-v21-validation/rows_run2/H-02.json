@@ -1,0 +1,15 @@
+{
+  "id": "H-02",
+  "category": "H. Discounts",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "named-script",
+  "expected": "Net = List x (1 - 0.30). Insite Analytics - Core Perpetual, list=2500, Qty=4, Discount=30% => NetUnitPrice=1750, NetTotalPrice=7000. Approval routing (>25% AE) is an approval-process layer, not a pricing-proc step.",
+  "actual": "Post Force-reprice QLI 0QLWC000003kjy64AA: NetUnitPrice=1750, TotalPrice=7000, NetTotalPrice=7000 (=1750x4). UnitPrice/ListPrice=2500, TotalLineAmount=Subtotal=10000 (pre-discount list x qty). Discount=30, Qty=4. Reprice isSuccess=true.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FaSs0AK/view (Quote #00781555); QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kjy64AA/view",
+  "recordIds": ["0Q0WC000003FaSs0AK", "0QLWC000003kjy64AA"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 gate 'Manual Quote Level Discount' (ItemSalesTransactionAction in {Add,Amend,null} AND ItemPricingSource!='LastTransaction' AND ItemIsDerived null/false) routed the NEW Add line to 'Manual Quote Level Percentage-Based (Line-Level)' which applied DiscountPercent=30 -> NetUnitPrice=List x (1-0.30). Math exact. No 'Sales Rule Broken'/approval field exists on QuoteLineItem (0 matching FieldDefinitions) -> approval routing is outside pricing-proc scope and not smoke-testable here. DG Management Console seeds net=0 (DG list->net seed failure, unrelated), so script uses Insite Analytics - Core for an observable discount."
+}

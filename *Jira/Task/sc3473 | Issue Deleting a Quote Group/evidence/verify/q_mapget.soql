@@ -1,0 +1,1 @@
+SELECT Id, CreatedDate, Category, PrimaryRecordId, PrimaryTextRecord, ErrorMessage FROM RevenueTransactionErrorLog WHERE ErrorMessage LIKE '%Map.get%' ORDER BY CreatedDate DESC LIMIT 10

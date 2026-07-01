@@ -1,0 +1,19 @@
+{
+  "id": "F-11",
+  "category": "F. Transaction Type",
+  "name": "Amend quantity change",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Amend line eligible for manual quote-level discount; co-term net carried via AmendNetCarry group; new-business partner band (NOT renewal band) applied to New Maintenance Amend line; reprice isSuccess=true, CalculationStatus=CompletedWithPricing",
+  "actual": "Quote 0Q0WC0000039Vm10AE (USD, Deal_Type=Channel Originated, Partner=001WC00000ZtazZYAR, Guaranteed Margin). New-Maint Amend QLI 0QLWC000003ehR84AI: NetUnitPrice=60.35 (=71x0.85, 15% Software/contributor-carry band via posthook), NOT renewal band (10%->63.90). Perpetual QLI 0QLWC000003ehR74AI: NetUnitPrice=301.75 (15% Software). Subscription QLI 0QLWC000003ehSj4AI: NetUnitPrice=77080 (18%). Two force-reprices both isSuccess=true, values stable across both passes. CalculationStatus=CompletedWithPricing. V21 metadata confirms: ManualQuoteLevelDiscount AdvancedListFilter logic '1 AND (2 OR 3 OR 4) AND (5 OR 6)' includes criterion 2 ItemSalesTransactionAction Equals 'Amend' (Amend explicitly eligible). AmendFilter (seq1 in AmendNetCarry group seq39) gates ItemPricingSource=LastTransaction AND ItemSalesTransactionAction=Amend AND DerivedPricingAttribute=false -> AmendSeedNetUnit carries prior net (co-term carryover intact). Total V21 steps=123 (unchanged).",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000039Vm10AE/view ; New-Maint Amend QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003ehR84AI/view (NetUnitPrice=60.35, FPT=New Maintenance, QuoteAction.Type=Amend, Partner_Discount_Percent=15, Partner_Pricing_Source=System Calculated Post-Procedure) ; reprice pass1 isSuccess=true errorResponse=[] ; reprice pass2 isSuccess=true errorResponse=[] (stable fixed-point) ; V21 metadata d01_v21_fresh.json step ManualQuoteLevelDiscount criterion 2 = ItemSalesTransactionAction Equals Amend ; AmendFilter parent=AmendNetCarry ; proc active versionNumber=21",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Re-measured on active V21 (2026-06-30). Two force-reprices via /services/data/v67.0/connect/rev/sales-transaction/actions/place both returned isSuccess=true. New-Maint Amend line stable at NetUnitPrice=60.35 = 71x(1-0.15). The 15% is the Software/contributor-carry band from PartnerNetPricePosthook.buildDerivedMaintenanceSequentialDiscountUpdate (carries contributor license partner percent), not the renewal band (10%). This is the same documented posthook carry-forward design from SC-3412/SC-3359/F-07 family - not a defect. Renewal band (10%->63.90) never fires on non-renewal quote. V21 ManualQuoteLevelDiscount step explicitly includes Amend lines as eligible. AmendNetCarry group structurally intact (AmendFilter + AmendSeedNetUnit/AmendSeedNetTotal). Co-term full exercise blocked on headless-only records (noted in prior run), not exercised here but same limitation noted in prior A-02.",
+  "verdict_reason": "All three F-11 claims validated on a real UI-priced Amend record repriced live through current V21: (1) Amend eligible for ManualQuoteLevelDiscount = PASS by proc filter (criterion 2 confirmed in V21 metadata); (2) new-business band applied NOT renewal = PASS empirically (NetUnitPrice=60.35 via 15% Software/contributor-carry, not 10% renewal); (3) AmendNetCarry group intact in V21. Two consecutive force-reprices stable, CalculationStatus=CompletedWithPricing. No defect found.",
+  "from": "run3"
+}

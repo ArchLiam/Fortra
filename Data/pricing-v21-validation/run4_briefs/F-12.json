@@ -1,0 +1,27 @@
+{
+ "id": "F-12",
+ "category": "F. Transaction Type",
+ "name": "Amend mid-term REMOVE/downgrade produces prorated negative delta (not cancellation, not full credit)",
+ "priority": "P1",
+ "what_it_tests": "An Amend that REMOVES seats/downgrades mid-term (ItemSalesTransactionAction='Amend', qty decrease) must compute a prorated negative delta for the unused remaining term, distinct from a full Qty=\u22121 cancellation (K-01) and distinct from an add-amend (F-11)",
+ "proc_mechanism": "Manual Quote Level Discount (Amend) + Term-Defined/Evergreen proration computing remaining-term fraction \u00d7 removed-qty \u00d7 net; not the CancelNetUnitPrice seed path",
+ "expected_behavior": "Credit = removed qty \u00d7 net \u00d7 remaining-term fraction (e.g. remove 50 of 100 users at 6mo into 12mo term -> \u2212(50\u00d7net\u00d70.5)); not full-price, not full-term, not $0",
+ "test_setup": "ItemSalesTransactionAction='Amend', QuoteTypeText='Amendment', TermDefined annual, remove 50 users 6mo in, expect prorated negative delta",
+ "defect_provenance": "none / completeness-gap",
+ "run3_result": {
+  "verdict": "FAIL",
+  "rootCause": "PROCEDURE-DEFECT",
+  "dataSource": "existing",
+  "actual": "Force-reprice (v67 place API, pricingPref=Force, configurationMethod=Skip) aborts: isSuccess=false, SF-Pricing-00006 / SF-BRE-00004 at StampBaseFilter#1. QLI post-reprice: Qty=-50000, NetUnitPrice=null, TotalPrice=0, NetTotalPrice=null, PricingTermCount=null. No proration delta produced.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FapR0AS/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kkKf4AI/view ; Source Asset 02iWC000007ms1MYAQ (DMARC Protection, Qty=100000, Price=150000, active). Reprice response: Data/pricing-v21-validation/evidence/f12_reprice_run3.json (isSuccess=false, SF-Pricing-00006/SF-BRE-00004 @StampBaseFilter#1). V21 active ESV 9QMWC00000025LN4AY LastModified 2026-06-30T05:56:48Z. Live V21 has 6 StampBaseFilter instances: lines 85590/97330/103241 patched to conditionLogic '(1 OR 2) AND 3 AND 4 AND (5 OR 6)' (null-safe, adds IsNull criterion 6); lines 109632/116550/123457 still have old '(1 OR 2) AND 3 AND 4 AND 5' (GreaterThan 0 only, crashes on null NetUnitPrice). AmendNetCarry group (seq 43, AmendSeedNetUnit formula IF(NetUnitPrice>0,NetUnitPrice,InputUnitPrice)) is sequenced AFTER StampContributorBasePreDiscount in the V20 block path, so the abort at StampBaseFilter prevents the seed step from ever running.",
+  "recordIds": [
+   "0Q0WC000003FapR0AS",
+   "0QLWC000003kkKf4AI",
+   "02iWC000007ms1MYAQ"
+  ],
+  "defectStep": "StampBaseFilter (sequenceNumber=1 inside StampContributorBasePreDiscount) \u2014 3 of 6 instances in V21 (at block lines ~109632, ~116550, ~123457) retain the null-unsafe conditionLogic '(1 OR 2) AND 3 AND 4 AND 5' where criterion 5 = 'NetUnitPrice GreaterThan 0'; this aborts evaluation when NetUnitPrice is null on fresh amend-remove lines. V21 in-place edit (2026-06-30T05:56) partially patched 3 instances but left the amendment execution path's instances unpatched.",
+  "proposedFix": "Apply the same null-safe fix to all remaining StampBaseFilter instances: change conditionLogic from '(1 OR 2) AND 3 AND 4 AND 5' to '(1 OR 2) AND 3 AND 4 AND (5 OR 6)' and add criterion 6 (NetUnitPrice IsNull) to the three un-patched instances at lines ~109632, ~116550, ~123457 in the live V21 expressionSetDefinition-meta.xml. Additionally confirm AmendNetCarry group runs before StampContributorBa\u2026",
+  "notes": "Preflight PASS: QuoteTypeText__c=Amendment, QuoteAction Type=Amend (7ocWC00000x4rVBYAY), SourceAsset=02iWC000007ms1MYAQ (positive net 1.5), TermDefined Annual selling model (DMARC Protection Fortra_Product_Type__c=Subscription), active non-zero PBE (ListPrice=2600 on Fortra Price Book), CancelNetUnitPrice__c=1.5 set, StartDate=2026-03-01/EndDate=2026-09-01, currency USD. V21 (9QMWC00000025LN4AY) active confirmed. NOT a headless born-net $0 artifact: the failure is a deterministic SF-Pricing-0000\u2026"
+ },
+ "fixture_scripts": []
+}

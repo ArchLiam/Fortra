@@ -1,0 +1,17 @@
+{
+  "id": "I-01",
+  "category": "I. Proration",
+  "name": "Term-Defined line derives PricingTermCount via Proration step",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "expected": "Fresh reprice of a TermDefined line derives read-only PricingTermCount=1 and EndDate automatically via the V21 Proration element; both carry to OrderItem on convert; order activates without REQUIRED_FIELD_MISSING.",
+  "actual": "Force-repriced quote 0Q0WC000003FPvd0AG under active V21 (isSuccess=true). Both TermDefined lines hold PricingTermCount=1 and EndDate=2027-06-28 (Start 2026-06-29 + 1yr Annual, PeriodBoundary=Anniversary): Cobalt Strike net 5900, beSECURE-Cloud net 206 (LastModified 2026-06-30T00:22:10 from this reprice). B-02 row recorded the same lines deriving PTC null->1 + EndDate null->2027-06-28 on original fresh reprice. Converted to Order 00095648 (801WC00000ltkEFYAY, Status=Activated): OrderItems carry IDENTICAL PTC=1 + EndDate 2027-06-28 (Cobalt Strike OI 802WC00000PWB3ZYAX UnitPrice 5900; beSECURE OI 802WC00000PWB3aYAH UnitPrice 206). No REQUIRED_FIELD_MISSING; order Activated.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FPvd0AG/view ; QLI Cobalt https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kaUz4AI/view ; Order https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000ltkEFYAY/view ; OrderItem https://fortra--uat.sandbox.lightning.force.com/lightning/r/OrderItem/802WC00000PWB3ZYAX/view",
+  "recordIds": ["0Q0WC000003FPvd0AG", "0QLWC000003kaUz4AI", "0QLWC000003kaQ94AI", "801WC00000ltkEFYAY", "802WC00000PWB3ZYAX", "802WC00000PWB3aYAH"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 active confirmed (ESDV 9QBWC0000000oWH4AY, VersionNumber 21, Status Active). SC-3420 PTC writer is LIVE in V21: steps 121 Term-Defined proration filter (Line level) -> 122 List Operation -> 123 Proration, guard SellingModelType=TermDefined AND StartProrationPeriod IsNotNull AND ItemSubscriptionTerm IsNotNull. The V11->V12 deletion (defect_provenance SC-3420/3411/3406/3415) is RESOLVED - writer rebuilt + active per project_sc3420 memory (deployed via SC-3473 work 2026-06-29). PTC is platform read-only (cannot null via DML), so derivation proven by fresh Force-reprice persisting PTC=1+EndDate and by the OrderItem carry on the already-converted+Activated Order 00095648. Convert/activation block (SC-3406/3415) does NOT reproduce here.",
+  "evidenceLog": "Reprice REST /connect/rev/sales-transaction/actions/place isSuccess=true 2026-06-30T00:22Z; pre/post SOQL on QLI + OrderItem in conversation"
+}

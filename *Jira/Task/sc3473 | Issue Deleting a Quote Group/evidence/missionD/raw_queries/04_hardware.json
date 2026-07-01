@@ -1,0 +1,40 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Hardware__c",
+          "url": "/services/data/v67.0/sobjects/Hardware__c/a0nWC000001wdV3YAI"
+        },
+        "Id": "a0nWC000001wdV3YAI",
+        "Name": "HW-0717957",
+        "Hardware_ID__c": "HW000045",
+        "Hardware_Name__c": "Test HW1",
+        "Account__c": "001WC00000XiZP4YAN",
+        "Hardware_Platform__c": "iSeries",
+        "Hardware_Type__c": null,
+        "Hardware_Value__c": null,
+        "CPW__c": null,
+        "Product__c": null,
+        "Product__r": null,
+        "Price_Book__c": null,
+        "P_Group_List__c": "P20",
+        "Group_Number_List__c": null,
+        "Quote_Line_Group__c": null,
+        "Primary_Quote__c": null,
+        "Auto_Created_Group__c": false,
+        "Mcp_System_Type__c": null,
+        "Os2200_System_Type__c": null,
+        "iSeries_Model__c": "170",
+        "Number_of_Processors__c": 10,
+        "Users_Per_Partition__c": null,
+        "CurrencyIsoCode": "USD"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

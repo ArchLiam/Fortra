@@ -1,0 +1,29 @@
+{
+ "id": "E-08",
+ "category": "E. Deal / Customer Type",
+ "name": "Partner percent resolved zero/null - no discount applied",
+ "priority": "P2",
+ "what_it_tests": "A partner deal where the resolved PartnerDiscountPercent is null or not >0 (incl. incomplete product hierarchy falling back to 0%) yields no discount",
+ "proc_mechanism": "Partner Percent Resolved Filter (PartnerDiscountPercent IsNotNull AND GreaterThan 0) negative branch; hierarchy fallback Solution Category->Group->Unit->0%",
+ "expected_behavior": "No partner discount; net unchanged at list",
+ "test_setup": "Deal_Type__c='Partner Originated', PartnerDiscountPercent=0/null or product missing Solution_Category__c",
+ "defect_provenance": "SC-3359",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "NEG case (quote 00734224, QLI 0QLWC000002ykbV4AQ): PartnerDiscountPercent=null, Fortra_Product_Type__c=Subscription, Deal_Type__c='Distributor - Fortra Originated', Product Solution_Category__c=null. After V21 Force-reprice (isSuccess=true, errorResponse:[]): NetUnitPrice=250=ListPrice=UnitPrice=Pre_Partner_Price__c=Base_Price__c=250, NetTotalPrice=250, TotalLineAmount=250, Partner_Pricing_Source__c=null. No discount applied. POSITIVE CONTROL (quote 00780845, PartnerDiscountPercent=18, Deal_Type__c='Channel Originated'): Additional Threat Assessments list=10000->NetUnitPrice=8200 (10000*0.82); Automate Professional list=2400->NetUnitPrice=1968 (2400*0.82). Both repriced isSuccess=true. Partner_Pricing_Source__c='System Calculated (Pre-Procedure, Percent Only)' on both control lines.",
+  "evidence": "NEG case: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002dr050AA/view (Quote 00734224, QLI 0QLWC000002ykbV4AQ, PartnerDiscountPercent=null, NetUnitPrice=250=list). Reprice body: Data/pricing-v21-validation/e08/body_734224.json (isSuccess:true). POSITIVE CONTROL: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003507J0AQ/view (Quote 00780845, pct=18, NetUnitPrice=list*0.82). Reprice body: Data/pricing-v21-validation/e08/body_780845.json (isSuccess:true). V21 mechanism: Partner Percent Resolved Filter (conditionLogic '1 AND 2 AND 3' = Deal_Type NotEquals 'Fortra Originated' AND PartnerDiscountPercent IsNotNull AND PartnerDiscountPercent GreaterThan 0); when pct=null filter fails -> ManualDiscount PartnerDiscount13 yields 0% adjustment -> net=list.",
+  "recordIds": [
+   "0Q0WC000002dr050AA",
+   "0QLWC000002ykbV4AQ",
+   "0Q0WC000003507J0AQ"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Negative branch of E-02/E-03. V21 Partner Percent Resolved Filter correctly gates on PartnerDiscountPercent IsNotNull AND GreaterThan 0. When null: pre-procedure prehook cannot resolve a percent for this product (Solution_Category__c=null), filter condition 2 fails (IsNotNull=FALSE), no discount step fires, net stays at list (250). Positive control proves the discount branch fires correctly when pct=18 (net=list*0.82). Both reprices through active V21 (9QBWC0000000oWH4AY, context SalesTransactio\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupE08PartnerNullPercentTestData.compact.apex"
+ ]
+}

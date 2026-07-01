@@ -1,0 +1,80 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027oGf0AI"
+        },
+        "Id": "0Q0WC0000027oGf0AI",
+        "Status": "In Review",
+        "CurrencyIsoCode": "USD",
+        "LineItemCount": 3
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+        },
+        "Id": "0Q0WC000002Ly1d0AC",
+        "Status": "Denied",
+        "CurrencyIsoCode": "AUD",
+        "LineItemCount": 3
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+        },
+        "Id": "0Q0WC000002U2020AC",
+        "Status": "Accepted",
+        "CurrencyIsoCode": "USD",
+        "LineItemCount": 4
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+        },
+        "Id": "0Q0WC0000035N0f0AE",
+        "Status": "Ordered",
+        "CurrencyIsoCode": "USD",
+        "LineItemCount": 6
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038GFZ0A2"
+        },
+        "Id": "0Q0WC0000038GFZ0A2",
+        "Status": "Draft",
+        "CurrencyIsoCode": "USD",
+        "LineItemCount": 3
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039E8T0AU"
+        },
+        "Id": "0Q0WC0000039E8T0AU",
+        "Status": "Accepted",
+        "CurrencyIsoCode": "USD",
+        "LineItemCount": 3
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+        },
+        "Id": "0Q0WC000003AaoT0AS",
+        "Status": "Draft",
+        "CurrencyIsoCode": "EUR",
+        "LineItemCount": 5
+      }
+    ],
+    "totalSize": 7,
+    "done": true
+  },
+  "warnings": []
+}

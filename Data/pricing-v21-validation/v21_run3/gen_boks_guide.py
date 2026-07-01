@@ -1,0 +1,182 @@
+#!/usr/bin/env python3
+# V21_BOKS_FIX_GUIDE.html + .jsx — high-visibility fix guide for BoKS attribute pricing.
+import json, html, os
+OUT='Data/pricing-v21-validation'
+def esc(s): return html.escape(str(s if s is not None else ''))
+
+DATA = {
+ "meta": {"title":"BoKS Attribute-Based Pricing — Fix Guide",
+   "sub":"FortraUAT · Quote \"Pricing Test 10 Nir\" 0Q0WC000003GLTN0A4 · 2026-07-01",
+   "lede":"The BoKS license line has everything needed to hit the attribute override, yet prices at list. Config + line data are correct — it's a match failure, and NOT from the currency/Portion-1 fixes (those steps are unchanged). Step 1 tells you which of two sub-causes it is."},
+ "evidence": [
+   ["Feature Options attribute","100 Node Bundle · IsPriceImpacting = true","ok","matches the ABA row exactly"],
+   ["Product","Powertech IAM (BoKS) 01tWC00000DD1btYAD","ok","matches ABA ProductId"],
+   ["Selling model","One Time 0jPWC00000005yz2AA","ok","matches ABA ProductSellingModelId"],
+   ["ABA rule 00010533","Feature Options 100 Node Bundle → Override 20000","ok","configured, active, USD"],
+   ["Actual result","NetUnitPrice = 355 (list) · Has_Attribute_Adjustment = false","bad","override NOT applied"],
+ ],
+ "stray": [
+   ["Unit Volume","(blank)","IsPriceImpacting = false"],
+   ["Maintenance Type Defn","Standard","IsPriceImpacting = false  — the A-07 attribute, on a license line"],
+ ],
+ "steps": [
+   {"num":"1","tag":"CONFIRM","color":"#0b6bcb","title":"Confirm which sub-cause (~5 min, on a clone)",
+    "why":"The fix differs by sub-cause — do not skip. Use a throwaway clone so Nir's quote is untouched.",
+    "todo":[
+      "Clone quote 0Q0WC000003GLTN0A4 (or add a fresh BoKS line to a new test quote, Feature Options = 100 Node Bundle).",
+      "On the cloned BoKS license line, open the configurator / Edit Attributes and CLEAR the Maintenance Type Defn and Unit Volume attributes so only Feature Options = 100 Node Bundle remains. Save.",
+      "Reprice the quote (your Reprice / Calculate Prices action).",
+      "Read the line result (command below)."],
+    "cmd":"sf data query -o FortraUAT -q \"SELECT NetUnitPrice, Has_Attribute_Adjustment__c FROM QuoteLineItem WHERE Id='<clonedLineId>'\"",
+    "decision":[
+      ["NetUnitPrice → 20000, flag = true","Sub-cause A — the extra attributes break the match. → Step 2A","#16794d"],
+      ["Still 355 / false","Sub-cause B — the decision table isn't matching BoKS. → Step 2B","#b3261e"]]},
+   {"num":"2A","tag":"FIX (likely)","color":"#16794d","title":"Extra attributes break the match — remove at source",
+    "why":"Maintenance Type Defn does not belong on the BoKS license/Perpetual product — it belongs on the New-Maintenance product. It's almost certainly a side effect of the A-07 backfill (which added it to ~91 products). Fix the data, not the native hashing.",
+    "todo":[
+      "2A.1 — Find where the stray attribute comes from (product-level vs classification):"],
+    "cmd":"sf data query -o FortraUAT -q \"SELECT Id, AttributeDefinition.Name, AttributeCategory FROM ProductAttributeDefinition WHERE Product2Id='01tWC00000DD1btYAD' ORDER BY AttributeDefinition.Name\"",
+    "todo2":[
+      "If a Maintenance Type Defn row (AttributeDefinitionId 0tjWC000000096bYAA) is present → delete it (Setup → product → Product Attributes → remove). If not on the product, it's from the Product Classification/bundle — remove it there.",
+      "2A.2 — Fix the blast radius: list every non-maintenance product the A-07 backfill wrongly tagged, and remove the attribute from each:"],
+    "cmd2":"sf data query -o FortraUAT -q \"SELECT Product2Id, Product2.Name, Product2.Fortra_Product_Type__c FROM ProductAttributeDefinition WHERE AttributeDefinitionId='0tjWC000000096bYAA' AND Product2.Fortra_Product_Type__c != 'New Maintenance'\"",
+    "todo3":[
+      "2A.3 — (Belt-and-suspenders) The Attribute-Based Price and Attribute Discount Entries steps should key only on IsPriceImpacting = true attributes. If Step 1 proved that clearing non-impacting attributes changed the result, the match isn't honoring that flag — the durable fix is keeping stray attributes off the product (2A.1/2A.2). Do NOT hand-edit the native ABA hashing."]},
+   {"num":"2B","tag":"FIX (alt)","color":"#c77700","title":"Decision table out of sync — re-publish",
+    "why":"If a clean single-attribute line still doesn't price, the Attribute-Based Adjustment decision table (0lDa50000007BEuEAM) doesn't contain / is stale vs the BoKS Override rows.",
+    "todo":[
+      "Setup → Pricing / Attribute-Based Adjustments for the BoKS product → re-activate / re-publish (this recomputes each row's AttributeAdjConditionsHash and rebuilds the decision-table dataset).",
+      "Confirm rows 00010531 / 00010532 / 00010533 are present after publish; their LastModifiedDate should advance."]},
+   {"num":"3","tag":"VERIFY","color":"#5b3fb0","title":"Verify the general case (not just happy path)",
+    "why":"Confirm every Feature value resolves to its override, and nothing else regressed.",
+    "todo":[
+      "Reprice a BoKS quote (place action), then read the lines. Expected: 100 Node Bundle → 20000 · Standard → 355 · Entry → 250 · Has_Attribute_Adjustment = true on each · beSECURE and other attribute products unchanged."],
+    "cmd":"sf data query -o FortraUAT -q \"SELECT Product2.Name, NetUnitPrice, Has_Attribute_Adjustment__c FROM QuoteLineItem WHERE QuoteId='<quoteId>'\""},
+ ],
+ "refs":[
+   "BoKS Perpetual product 01tWC00000DD1btYAD · New-Maint product 01tWC00000DD1bsYAD",
+   "ABA rows 00010531 (Standard→355) · 00010532 (Entry→250) · 00010533 (100 Node Bundle→20000) — OneTime, USD",
+   "Maintenance Type Defn attr 0tjWC000000096bYAA · Feature Options attr 0tjWC000000096ZYAQ",
+   "Decision table 0lDa50000007BEuEAM · Nir's quote 0Q0WC000003GLTN0A4 · BoKS license line 0QLWC000003lXek4AE"],
+}
+DATA_JS=json.dumps(DATA, ensure_ascii=False)
+
+CSS='''*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#1a1f29;background:#eef1f5;line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px 80px}
+header{background:linear-gradient(120deg,#10243e,#1c3a5e);color:#fff;padding:28px 18px}h1{margin:0 0 4px;font-size:26px}.sub{color:#bcd3ec;font-size:13.5px}
+section{background:#fff;border-radius:12px;padding:22px 24px;margin:20px 0;box-shadow:0 1px 3px rgba(16,36,62,.08)}
+h2{font-size:18px;margin:0 0 14px;padding-bottom:9px;border-bottom:2px solid #eef1f5}
+.lede{font-size:15.5px;background:#f8fafc;border-left:5px solid #0b6bcb;padding:13px 16px;border-radius:8px;margin-bottom:16px}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{text-align:left;padding:8px 10px;border-bottom:1px solid #eef1f5;vertical-align:top}
+th{font-size:10.5px;text-transform:uppercase;color:#7a8696;background:#fafbfc}
+.st{font-weight:800;font-size:11px;padding:2px 8px;border-radius:5px;color:#fff}
+.mono{font-family:ui-monospace,Menlo,monospace}
+.stray{background:#fdf6e8;border:1px solid #f0dca8;border-radius:9px;padding:10px 14px;font-size:13px;margin-top:6px}
+.step{border:1px solid #e7ecf2;border-radius:13px;padding:0;margin:16px 0;overflow:hidden}
+.step-h{display:flex;align-items:center;gap:11px;padding:14px 18px;color:#fff}
+.snum{font-size:20px;font-weight:800;background:rgba(255,255,255,.22);border-radius:9px;padding:2px 12px}
+.stag{font-size:11px;font-weight:800;letter-spacing:.5px;opacity:.9}
+.stitle{font-size:16px;font-weight:700;margin-left:2px}
+.step-b{padding:16px 20px}
+.why{font-size:13.5px;color:#5b6675;margin-bottom:12px;font-style:italic}
+ol.todo{margin:0 0 6px;padding-left:22px;font-size:13.5px}ol.todo li{margin-bottom:7px}
+pre{background:#0f1c2e;color:#e6f0ff;border-radius:9px;padding:12px 14px;overflow-x:auto;font-size:12px;margin:8px 0}
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.bx{border-radius:10px;padding:12px 14px;font-size:13px;color:#fff}
+.bx .r{font-weight:800;font-size:12.5px;margin-bottom:4px}
+.refs{font-size:12px;color:#5b6675;line-height:1.7}
+.refs code{background:#eef1f5;border-radius:4px;padding:1px 5px;font-size:11.5px}
+@media(max-width:720px){.branch{grid-template-columns:1fr}}'''
+
+def esc_pre(s): return esc(s)
+
+def render_steps_html():
+    out=[]
+    for s in DATA["steps"]:
+        c=s["color"]
+        todo=''.join(f'<li>{esc(t)}</li>' for t in s.get("todo",[]))
+        cmd=f'<pre>{esc(s["cmd"])}</pre>' if s.get("cmd") else ''
+        todo2=''.join(f'<li>{esc(t)}</li>' for t in s.get("todo2",[]))
+        block2=(f'<ol class="todo">{todo2}</ol>' if todo2 else '')
+        cmd2=f'<pre>{esc(s["cmd2"])}</pre>' if s.get("cmd2") else ''
+        todo3=''.join(f'<li>{esc(t)}</li>' for t in s.get("todo3",[]))
+        block3=(f'<ol class="todo">{todo3}</ol>' if todo3 else '')
+        dec=''
+        if s.get("decision"):
+            cells=''.join(f'<div class="bx" style="background:{col}"><div class="r">{esc(res)}</div><div>{esc(act)}</div></div>' for res,act,col in s["decision"])
+            dec=f'<div class="branch">{cells}</div>'
+        out.append(f'''<div class="step" style="border-left:6px solid {c}">
+  <div class="step-h" style="background:{c}"><span class="snum">{esc(s["num"])}</span>
+    <span><div class="stag">{esc(s["tag"])}</div><div class="stitle">{esc(s["title"])}</div></span></div>
+  <div class="step-b"><div class="why">{esc(s["why"])}</div>
+    <ol class="todo">{todo}</ol>{cmd}{block2}{cmd2}{block3}{dec}</div></div>''')
+    return ''.join(out)
+
+ev_rows=''.join(
+  f'<tr><td><b>{esc(a)}</b></td><td class="mono">{esc(b)}</td>'
+  f'<td><span class="st" style="background:{"#16794d" if st=="ok" else "#b3261e"}">{"✓ OK" if st=="ok" else "✗ FAIL"}</span></td>'
+  f'<td>{esc(note)}</td></tr>' for a,b,st,note in DATA["evidence"])
+stray_rows=''.join(f'<div class="stray"><b>{esc(a)}</b> = {esc(b)} — <span class="mono">{esc(c)}</span></div>' for a,b,c in DATA["stray"])
+refs=''.join(f'<div>• {esc(r)}</div>' for r in DATA["refs"])
+
+HTMLDOC=f'''<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{esc(DATA["meta"]["title"])}</title><style>{CSS}</style></head><body>
+<header><div style="max-width:1000px;margin:0 auto"><h1>{esc(DATA["meta"]["title"])}</h1><div class="sub">{esc(DATA["meta"]["sub"])}</div></div></header>
+<div class="wrap">
+<section><h2>What's confirmed (by data, not assumed)</h2>
+<div class="lede">{esc(DATA["meta"]["lede"])}</div>
+<table><thead><tr><th>Fact</th><th>Value</th><th>Status</th><th>Note</th></tr></thead><tbody>{ev_rows}</tbody></table>
+<div style="font-size:13px;color:#5b6675;margin:12px 0 4px"><b>The line also carries two extra attributes the single-attribute rule doesn't expect:</b></div>
+{stray_rows}</section>
+<section><h2>The fix — step by step</h2>{render_steps_html()}</section>
+<section><h2>Reference IDs</h2><div class="refs">{refs}</div></section>
+</div></body></html>'''
+open(f'{OUT}/V21_BOKS_FIX_GUIDE.html','w').write(HTMLDOC)
+print('wrote V21_BOKS_FIX_GUIDE.html', len(HTMLDOC))
+
+JSX='''import React from "react";
+/** BoKS Attribute-Pricing Fix Guide. Drop-in: <BoksFixGuide />. */
+const D = __DATAJSON__;
+const SCOL = (st)=> st==="ok" ? "#16794d" : "#b3261e";
+export default function BoksFixGuide(){
+  const S={page:{fontFamily:"-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif",color:"#1a1f29",background:"#eef1f5",margin:0,lineHeight:1.55},
+    wrap:{maxWidth:1000,margin:"0 auto",padding:"0 18px 80px"},
+    section:{background:"#fff",borderRadius:12,padding:"22px 24px",margin:"20px 0",boxShadow:"0 1px 3px rgba(16,36,62,.08)"},
+    h2:{fontSize:18,margin:"0 0 14px",paddingBottom:9,borderBottom:"2px solid #eef1f5"},
+    td:{textAlign:"left",padding:"8px 10px",borderBottom:"1px solid #eef1f5",verticalAlign:"top",fontSize:13},
+    pre:{background:"#0f1c2e",color:"#e6f0ff",borderRadius:9,padding:"12px 14px",overflowX:"auto",fontSize:12,margin:"8px 0",fontFamily:"ui-monospace,Menlo,monospace"}};
+  return <div style={S.page}>
+    <div style={{background:"linear-gradient(120deg,#10243e,#1c3a5e)",color:"#fff",padding:"28px 18px"}}><div style={{maxWidth:1000,margin:"0 auto"}}>
+      <h1 style={{margin:"0 0 4px",fontSize:26}}>{D.meta.title}</h1><div style={{color:"#bcd3ec",fontSize:13.5}}>{D.meta.sub}</div></div></div>
+    <div style={S.wrap}>
+      <div style={S.section}><h2 style={S.h2}>What's confirmed (by data, not assumed)</h2>
+        <div style={{fontSize:15.5,background:"#f8fafc",borderLeft:"5px solid #0b6bcb",padding:"13px 16px",borderRadius:8,marginBottom:16}}>{D.meta.lede}</div>
+        <table style={{width:"100%",borderCollapse:"collapse",fontSize:13}}><thead><tr>{["Fact","Value","Status","Note"].map(h=><th key={h} style={{...S.td,fontSize:10.5,textTransform:"uppercase",color:"#7a8696",background:"#fafbfc"}}>{h}</th>)}</tr></thead>
+          <tbody>{D.evidence.map((r,i)=><tr key={i}><td style={{...S.td,fontWeight:700}}>{r[0]}</td><td style={{...S.td,fontFamily:"ui-monospace,Menlo,monospace"}}>{r[1]}</td>
+            <td style={S.td}><span style={{fontWeight:800,fontSize:11,padding:"2px 8px",borderRadius:5,color:"#fff",background:SCOL(r[2])}}>{r[2]==="ok"?"\\u2713 OK":"\\u2717 FAIL"}</span></td><td style={S.td}>{r[3]}</td></tr>)}</tbody></table>
+        <div style={{fontSize:13,color:"#5b6675",margin:"12px 0 4px",fontWeight:700}}>The line also carries two extra attributes the single-attribute rule doesn't expect:</div>
+        {D.stray.map((r,i)=><div key={i} style={{background:"#fdf6e8",border:"1px solid #f0dca8",borderRadius:9,padding:"10px 14px",fontSize:13,marginTop:6}}><b>{r[0]}</b> = {r[1]} — <span style={{fontFamily:"ui-monospace,Menlo,monospace"}}>{r[2]}</span></div>)}
+      </div>
+      <div style={S.section}><h2 style={S.h2}>The fix — step by step</h2>
+        {D.steps.map((s,i)=><div key={i} style={{border:"1px solid #e7ecf2",borderLeft:`6px solid ${s.color}`,borderRadius:13,margin:"16px 0",overflow:"hidden"}}>
+          <div style={{display:"flex",alignItems:"center",gap:11,padding:"14px 18px",color:"#fff",background:s.color}}>
+            <span style={{fontSize:20,fontWeight:800,background:"rgba(255,255,255,.22)",borderRadius:9,padding:"2px 12px"}}>{s.num}</span>
+            <span><div style={{fontSize:11,fontWeight:800,letterSpacing:".5px",opacity:.9}}>{s.tag}</div><div style={{fontSize:16,fontWeight:700}}>{s.title}</div></span></div>
+          <div style={{padding:"16px 20px"}}>
+            <div style={{fontSize:13.5,color:"#5b6675",marginBottom:12,fontStyle:"italic"}}>{s.why}</div>
+            <ol style={{margin:"0 0 6px",paddingLeft:22,fontSize:13.5}}>{(s.todo||[]).map((t,j)=><li key={j} style={{marginBottom:7}}>{t}</li>)}</ol>
+            {s.cmd && <pre style={S.pre}>{s.cmd}</pre>}
+            {s.todo2 && <ol style={{margin:"0 0 6px",paddingLeft:22,fontSize:13.5}}>{s.todo2.map((t,j)=><li key={j} style={{marginBottom:7}}>{t}</li>)}</ol>}
+            {s.cmd2 && <pre style={S.pre}>{s.cmd2}</pre>}
+            {s.todo3 && <ol style={{margin:"0 0 6px",paddingLeft:22,fontSize:13.5}}>{s.todo3.map((t,j)=><li key={j} style={{marginBottom:7}}>{t}</li>)}</ol>}
+            {s.decision && <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginTop:12}}>{s.decision.map((d,j)=>
+              <div key={j} style={{borderRadius:10,padding:"12px 14px",fontSize:13,color:"#fff",background:d[2]}}><div style={{fontWeight:800,fontSize:12.5,marginBottom:4}}>{d[0]}</div><div>{d[1]}</div></div>)}</div>}
+          </div></div>)}
+      </div>
+      <div style={S.section}><h2 style={S.h2}>Reference IDs</h2><div style={{fontSize:12,color:"#5b6675",lineHeight:1.7}}>{D.refs.map((r,i)=><div key={i}>• {r}</div>)}</div></div>
+    </div></div>;
+}
+'''
+JSX=JSX.replace('__DATAJSON__',DATA_JS)
+open(f'{OUT}/V21_BOKS_FIX_GUIDE.jsx','w').write(JSX)
+print('wrote V21_BOKS_FIX_GUIDE.jsx', len(JSX))

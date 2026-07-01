@@ -1,0 +1,15 @@
+{
+  "id": "J-06",
+  "category": "J. Derived / Maintenance Pricing",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "new-script",
+  "expected": "Derived New-Maintenance (BoKS PIAMBK) on a partner Channel-Originated NEW USD quote: pre-partner derived list net = 355*0.20 = 71; partner New_Maintenance band applied ONCE -> maint NetUnitPrice = 71*(1-0.12) = 62.48 (active Discount PPM-00028 New_Maintenance_Percent=12). No double discount.",
+  "actual": "Maint NetUnitPrice settled = 60.35 = 71*(1-0.15): partner discount applied ONCE (good, base 71 from license PRE-partner 355 = no double discount) BUT wrong band - used contributor/license Software 15% instead of New Maintenance 12% (expected 62.48). Also one-cycle lag: reprice#1=71 (no discount), reprice#2/#3=60.35. License net 301.75=355*0.85 correct. Header TotalPrice=362.1.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FdCD0A0/view (Q-00781573); maint QLI 0QLWC000003kmeE4AQ NetUnitPrice 60.35; lic QLI 0QLWC000003kmeD4AQ net 301.75",
+  "recordIds": ["0Q0WC000003FdCD0A0", "0QLWC000003kmeE4AQ", "0QLWC000003kmeD4AQ"],
+  "defectStep": "Partner Discount - Derived Maintenance / Stamp Partner Unit Price - Derived Maintenance (V21 steps 89-91, 108) + PartnerNetPricePosthook contributor carry-forward",
+  "proposedFix": "In PartnerNetPricePosthook.loadNewMaintenanceLines, resolve the derived-maintenance partner percent via PartnerPricingService.getMarginForProductType(billingModel,'New Maintenance') (12%), not contributor.partnerPercent (license Software 15%). Also force a settle-cycle so the discount lands on the first reprice (currently one-cycle lag leaves maint at 71). NOT applied.",
+  "regression": "",
+  "notes": "SC-3346/SC-3359 lineage. Two issues: (1) wrong partner band (Software 15% carried from license contributor vs New Maintenance 12%) -> over-discounts maint 60.35 vs 62.48; (2) one-cycle stale-context lag (first reprice net=71 undiscounted). The literal 'applied once / no double discount' AC passes (base 71 = pre-partner 355*0.20, single 15% application), but resolved value is wrong. Fixture: scripts/apex/setupJ06PartnerDerivedMaintTestData.compact.apex; QLIA added via REST (lic Feature Options=Standard, mnt Maintenance Type Defn=Standard); Force-reprice via /connect/rev/sales-transaction/actions/place."
+}

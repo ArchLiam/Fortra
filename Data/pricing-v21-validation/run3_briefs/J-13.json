@@ -1,0 +1,30 @@
+{
+ "id": "J-13",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Derived maintenance net filter aggregation",
+ "priority": "P1",
+ "what_it_tests": "Derived maintenance lines (ItemIsDerived=true) are filtered for net aggregation separately into the correct bucket",
+ "proc_mechanism": "Derived Maintenance Net Filter (ItemIsDerived Equals true)",
+ "expected_behavior": "Derived maintenance net captured in the correct aggregate bucket",
+ "test_setup": "Derived maintenance line set, ItemIsDerived=true",
+ "defect_provenance": "SC-3346",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Fresh Force-reprice via V21 (REST place isSuccess:true, errorResponse:[], LastModified 2026-06-30T02:00:51Z). Quote 0Q0WC000003FKRJ0A4: license PIA-PIA-NRPS-PIAP (Fortra_Product_Type=Perpetual, PBE IsDerived=false) NetUnitPrice=NetTotalPrice=355 (excluded from derived formula); derived maint PIA-PIA-RNM-PIAMBK (Fortra_Product_Type=New Maintenance, USD PBE 01uWC000005wsbUYAQ IsDerived=true) UnitPrice=0 -> NetUnitPrice=NetTotalPrice=71 (=0.20x355 via Derived Pricing Formula), Source_List_Price=355. GrandTotal=Subtotal=TotalPrice=ALE=426=355+71 -> derived net captured in the net aggregate bucket. Multi-derived control 0Q0WC000003FYaj0AG (1 non-derived license 355 + 8 derived New-Maint lines: 124.25/106.5/106.5/85.2/71/71/53.25/0/0) aggregates to GrandTotal=Subtotal=ALE=972.7 exact (sum of all NetTotalPrice incl. non-derived) -> each derived line's net routed separately and summed correctly;\u2026",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view (license 0QLWC000003kUpN4AU net 355 non-derived; derived maint 0QLWC000003kUpO4AU net 71); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FYaj0AG/view (8-derived aggregate 972.7). Reprice log Data/sc3473/j13_v21/reprice/result.json (isSuccess:true). Live V21 ESD Data/sc3473/j13_v21/unpackaged/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition step DerivedMaintenanceNetFilter (line 113396, AdvancedListFilter, parentStep=ListContainer9, criteria ItemIsDerived__std Equals true). PBE IsDerived flags: license=false, RNM-PIAMBK USD=true.",
+  "recordIds": [],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Active proc=Rev_Mgmt_Default_Pricing_Procedure V21 (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY, Status=Active, confirmed via SOQL; metadata-API status lags showing V20 Active but V21 block carries <status>Active</status> with label 'Rev Mgmt Default Pricing V21'). V21 path: 'Derived Maintenance Net Filter' (name=DerivedMaintenanceNetFilter, stepType=AdvancedListFilter, criteria ItemIsDerived__std Equals true, resultIncluded=false) scopes ListContainer9 (ListGroup seq17) whose seq-2 child 'Derived Pricing Formula' = IF(QuoteTypeText=Renewal, NetUnitPrice, tier(AttributeValue: Premier .30\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

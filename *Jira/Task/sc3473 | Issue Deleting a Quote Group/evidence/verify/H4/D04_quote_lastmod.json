@@ -1,0 +1,94 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027oGf0AI"
+        },
+        "Id": "0Q0WC0000027oGf0AI",
+        "Status": "In Review",
+        "Name": "Q-MTC Test (do not delete!)",
+        "LastModifiedDate": "2026-06-12T08:54:45.000+0000",
+        "LineItemCount": 3,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+        },
+        "Id": "0Q0WC000002Ly1d0AC",
+        "Status": "Denied",
+        "Name": "Test JAC Quote",
+        "LastModifiedDate": "2026-06-25T18:15:39.000+0000",
+        "LineItemCount": 3,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+        },
+        "Id": "0Q0WC000002U2020AC",
+        "Status": "Accepted",
+        "Name": "Test Wren - Order Processing",
+        "LastModifiedDate": "2026-06-26T16:25:03.000+0000",
+        "LineItemCount": 4,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+        },
+        "Id": "0Q0WC0000035N0f0AE",
+        "Status": "Ordered",
+        "Name": "Rev Migration validation - 06/05/2026-1",
+        "LastModifiedDate": "2026-06-05T15:01:52.000+0000",
+        "LineItemCount": 6,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038GFZ0A2"
+        },
+        "Id": "0Q0WC0000038GFZ0A2",
+        "Status": "Draft",
+        "Name": "Q-MTC Test (do not delete!) Copy",
+        "LastModifiedDate": "2026-06-16T23:32:20.000+0000",
+        "LineItemCount": 3,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039E8T0AU"
+        },
+        "Id": "0Q0WC0000039E8T0AU",
+        "Status": "Accepted",
+        "Name": "UAT Quote to Order Conversion Test Copy Copy",
+        "LastModifiedDate": "2026-06-18T09:44:56.000+0000",
+        "LineItemCount": 3,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+        },
+        "Id": "0Q0WC000003AaoT0AS",
+        "Status": "Draft",
+        "Name": "Q-Wren - Test Currencies-2026-06-09 Copy",
+        "LastModifiedDate": "2026-06-22T17:06:36.000+0000",
+        "LineItemCount": 5,
+        "CurrencyIsoCode": "EUR"
+      }
+    ],
+    "totalSize": 7,
+    "done": true
+  },
+  "warnings": []
+}

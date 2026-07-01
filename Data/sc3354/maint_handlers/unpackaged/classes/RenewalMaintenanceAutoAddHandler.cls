@@ -1,0 +1,184 @@
+/**
+ * @description Programmatic fallback for Year 2 BoKS config rule: when a renewal quote has
+ *              BoKS perpetual and no Renewal Maintenance line, add RRM then run carryover cleanup.
+ *
+ *              Production trigger path no longer calls this handler. RRM must be added by the
+ *              Year 2 Product Configuration Rule when perpetual is configured in TLE; carryover
+ *              cleanup runs only after that configured RRM line exists.
+ */
+public with sharing class RenewalMaintenanceAutoAddHandler {
+
+    @TestVisible
+    private static final String BOKS_PERPETUAL_PRODUCT_CODE = 'PIA-PIA-NRPS-PIAP';
+    @TestVisible
+    private static final String RENEWAL_MAINTENANCE_PRODUCT_CODE = 'PIA-PIA-RRM-PIAM';
+    @TestVisible
+    private static final String RENEWAL_MAINTENANCE_BILLING_FREQUENCY = 'Annual';
+
+    /**
+     * @description Defers carryover cleanup until after Place Sales Transaction completes.
+     *              RRM must be added by the Year 2 Product Configuration Rule in TLE, not here.
+     */
+    public static void enqueueIfNeeded(List<QuoteLineItem> lines) {
+        if (shouldSkipCarryoverCleanupForTriggerContext()) {
+            return;
+        }
+        RenewalQuoteLineHandler.enqueueCarryoverCleanup(lines);
+    }
+
+    @TestVisible
+    private static Boolean shouldSkipCarryoverCleanupForTriggerContext() {
+        return Trigger.isExecuting && !Trigger.isInsert;
+    }
+
+    /**
+     * @description Adds RRM when BoKS perpetual is on a renewal quote without renewal maintenance.
+     */
+    public static void ensureRenewalMaintenancePresent(Set<Id> quoteIds) {
+        if (quoteIds == null || quoteIds.isEmpty()) {
+            return;
+        }
+
+        Set<Id> renewalQuoteIds = RenewalQuoteLineHandler.resolveRenewalQuoteIds(quoteIds);
+        if (renewalQuoteIds.isEmpty()) {
+            return;
+        }
+
+        Map<Id, QuoteContext> contextByQuoteId = loadQuoteContexts(renewalQuoteIds);
+        List<QuoteAction> newActions = new List<QuoteAction>();
+        List<PendingLine> pendingLines = new List<PendingLine>();
+
+        for (Id quoteId : renewalQuoteIds) {
+            QuoteContext context = contextByQuoteId.get(quoteId);
+            if (context == null || context.hasRenewalMaintenance || !context.hasBoksPerpetual) {
+                continue;
+            }
+            if (context.renewalMaintenancePbeId == null) {
+                continue;
+            }
+
+            QuoteAction action = new QuoteAction(
+                QuoteId = quoteId,
+                Type = 'Add'
+            );
+            newActions.add(action);
+            pendingLines.add(new PendingLine(quoteId, context.renewalMaintenancePbeId));
+        }
+
+        if (newActions.isEmpty()) {
+            return;
+        }
+
+        insert newActions;
+
+        List<QuoteLineItem> inserts = new List<QuoteLineItem>();
+        for (Integer i = 0; i < newActions.size(); i++) {
+            inserts.add(new QuoteLineItem(
+                QuoteId = pendingLines[i].quoteId,
+                QuoteActionId = newActions[i].Id,
+                PricebookEntryId = pendingLines[i].pricebookEntryId,
+                Quantity = 1,
+                BillingFrequency = RENEWAL_MAINTENANCE_BILLING_FREQUENCY
+            ));
+        }
+        insert inserts;
+    }
+
+    @TestVisible
+    private static Map<Id, QuoteContext> loadQuoteContexts(Set<Id> quoteIds) {
+        Map<Id, QuoteContext> contextByQuoteId = new Map<Id, QuoteContext>();
+        for (Quote quote : [
+            SELECT Id, Pricebook2Id, CurrencyIsoCode
+            FROM Quote
+            WHERE Id IN :quoteIds
+        ]) {
+            contextByQuoteId.put(
+                quote.Id,
+                new QuoteContext(quote.Id, quote.Pricebook2Id, quote.CurrencyIsoCode)
+            );
+        }
+
+        Set<Id> pricebookIds = new Set<Id>();
+        for (QuoteContext context : contextByQuoteId.values()) {
+            if (context.pricebook2Id != null) {
+                pricebookIds.add(context.pricebook2Id);
+            }
+        }
+
+        Map<String, Id> renewalPbeByPricebookAndCurrency = new Map<String, Id>();
+        if (!pricebookIds.isEmpty()) {
+            for (PricebookEntry pbe : [
+                SELECT Id, Pricebook2Id, CurrencyIsoCode, Product2.ProductCode
+                FROM PricebookEntry
+                WHERE Pricebook2Id IN :pricebookIds
+                  AND Product2.ProductCode = :RENEWAL_MAINTENANCE_PRODUCT_CODE
+                  AND IsActive = true
+                ORDER BY CurrencyIsoCode ASC, Id ASC
+            ]) {
+                String pbeKey = renewalPbeKey(pbe.Pricebook2Id, pbe.CurrencyIsoCode);
+                if (!renewalPbeByPricebookAndCurrency.containsKey(pbeKey)) {
+                    renewalPbeByPricebookAndCurrency.put(pbeKey, pbe.Id);
+                }
+            }
+        }
+
+        for (QuoteLineItem line : [
+            SELECT QuoteId, Product2.ProductCode, Product2.Fortra_Product_Type__c
+            FROM QuoteLineItem
+            WHERE QuoteId IN :quoteIds
+        ]) {
+            QuoteContext context = contextByQuoteId.get(line.QuoteId);
+            if (context == null) {
+                continue;
+            }
+            if (line.Product2?.ProductCode == BOKS_PERPETUAL_PRODUCT_CODE) {
+                context.hasBoksPerpetual = true;
+            }
+            if (line.Product2?.ProductCode == RENEWAL_MAINTENANCE_PRODUCT_CODE
+                || line.Product2?.Fortra_Product_Type__c == RenewalQuoteLineHandler.PRODUCT_TYPE_RENEWAL_MAINTENANCE) {
+                context.hasRenewalMaintenance = true;
+            }
+        }
+
+        for (QuoteContext context : contextByQuoteId.values()) {
+            if (context.pricebook2Id != null) {
+                context.renewalMaintenancePbeId = renewalPbeByPricebookAndCurrency.get(
+                    renewalPbeKey(context.pricebook2Id, context.currencyIsoCode)
+                );
+            }
+        }
+
+        return contextByQuoteId;
+    }
+
+    @TestVisible
+    private static String renewalPbeKey(Id pricebook2Id, String currencyIsoCode) {
+        return String.valueOf(pricebook2Id) + '|' + String.valueOf(currencyIsoCode);
+    }
+
+    @TestVisible
+    private class QuoteContext {
+        public Id quoteId;
+        public Id pricebook2Id;
+        public String currencyIsoCode;
+        public Id renewalMaintenancePbeId;
+        public Boolean hasBoksPerpetual = false;
+        public Boolean hasRenewalMaintenance = false;
+
+        public QuoteContext(Id quoteId, Id pricebook2Id, String currencyIsoCode) {
+            this.quoteId = quoteId;
+            this.pricebook2Id = pricebook2Id;
+            this.currencyIsoCode = currencyIsoCode;
+        }
+    }
+
+    private class PendingLine {
+        public Id quoteId;
+        public Id pricebookEntryId;
+
+        public PendingLine(Id quoteId, Id pricebookEntryId) {
+            this.quoteId = quoteId;
+            this.pricebookEntryId = pricebookEntryId;
+        }
+    }
+}

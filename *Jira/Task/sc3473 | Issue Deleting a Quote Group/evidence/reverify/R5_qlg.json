@@ -1,0 +1,35 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Hardware_Group_Type__c": true,
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "SummarySubtotal": 33416,
+        "SummaryTotalAmount": null,
+        "TotalAdjustment": null,
+        "TotalCost": null,
+        "TotalMargin": null,
+        "CreatedDate": "2026-06-26T16:03:48.000+0000",
+        "LastModifiedDate": "2026-06-26T16:06:12.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005a500001SfRd7AAF"
+          },
+          "Name": "German Wren"
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,32 @@
+{
+ "id": "F-01",
+ "category": "F. Transaction Type",
+ "name": "New quote standard pricing (full waterfall)",
+ "priority": "P0",
+ "what_it_tests": "A brand-new quote line (QuoteTypeText != Renewal, action Add/null) runs the full catalog + attribute + discount waterfall, stamps contributor base, and is eligible for services regional pricing; no asset inheritance, no COLA",
+ "proc_mechanism": "Manual Quote Level Discount (ItemSalesTransactionAction 'Add' OR IsNull) AND non-derived; Stamp Base Filter (QuoteTypeText NotEquals 'Renewal'); start-date defaulting rules",
+ "expected_behavior": "Full pricing waterfall; contributor base stamped; full list applied; subject to new-sale approval matrix",
+ "test_setup": "QuoteTypeText='New', ItemSalesTransactionAction='Add', new customer (e.g. Terranova SAT 1000-user annual), Qty=5",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "BLOCKED",
+  "rootCause": "TEST-DATA-ARTIFACT",
+  "dataSource": "named-script",
+  "actual": "Adversarial re-verification REFUTES the PROCEDURE-DEFECT. Fresh Force-reprice of the disputed Software line 0QLWC000003l0cL4AQ via active V21 (isSuccess=true, errorResponse=[]) reproduced PTC=null, NetUnitPrice=0, all contributor stamps null. BUT a CONTROLLED experiment overturns the product-type root cause: a Subscription-type TermDefined line (5250 Integrator, PBE 01uWC000005wrr7YAA, list=2021.25) inserted via the SAME Apex DML path onto the SAME quote (0Q0WC000003Fqar0AC) and repriced in the SAME Force session ALSO returned NetUnitPrice=0, PricingTermCount=null, Base_Price__c=null (controlled line 0QLWC000003l0HO4AY, since deleted). Product type is NOT the differentiator; the insert/hydration path is. The executor's 'passing control' 0QLWC000003kZFb4AM (Subscription, net=2021.25, PTC=1) was created by German Wren via the UI 'Add Products' flow, NOT the Apex fixture \u2014 an uncontrolled c\u2026",
+  "evidence": "Disputed line 0QLWC000003l0cL4AQ (Software, TermDefined, list=20500, net=0, PTC=null) on Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fqar0AC/view . Controlled same-quote/same-Apex-path Subscription line 0QLWC000003l0HO4AY ALSO net=0/PTC=null after identical Force reprice (deleted post-test). Executor 'control' 0QLWC000003kZFb4AM created by German Wren via UI (CreatedDate 2026-06-29T17:24:26). Counterexample 0QLWC000003khWT4AY = Software line with PTC=1 still net=0. Active V21 = ExpressionSetVersion 9QMWC00000025LN4AY (VersionNumber 21, IsActive=true); grep of the V21 expressionSetDefinition block: Fortra_Product_Type__c appears only in TotalServices/TotalSoftware/TotalSubscription aggregate steps. Org-wide 0 Software-type QLIs net>0 \u2014 but every one was Apex/Data-Migration inserted, never UI-priced.",
+  "recordIds": [
+   "0QLWC000003l0cL4AQ",
+   "0Q0WC000003Fqar0AC",
+   "0QLWC000003l0HO4AY",
+   "0QLWC000003kZFb4AM",
+   "0QLWC000003khWT4AY",
+   "01uWC000005wrr7YAA",
+   "0Q0WC000003Fco10AC",
+   "0QLWC000003kmCn4AI"
+  ],
+  "defectStep": "",
+  "proposedFix": "None \u2014 no V21 procedure change warranted. To smoke-test F-01 validly, price a Software TermDefined line through the UI 'Add Products' flow (or a fixture that drives the connect/rev addProducts action) so list->NetUnitPrice hydrates, THEN Force-reprice and measure. The Apex-DML-insert + headless-reprice path produces spurious $0 nets for ANY product type (Software AND Subscription), so it cannot di\u2026",
+  "notes": "Three independent refutations of the PROCEDURE-DEFECT/SC-3420 theory: (1) controlled experiment \u2014 Subscription line via same Apex path on same quote also nets $0; (2) record counterexample \u2014 Software line 0QLWC000003khWT4AY has PTC=1 and still nets $0; (3) procedure structure \u2014 active V21 has no Fortra_Product_Type gate on PTC/net steps (only on category-rollup aggregates). The executor's comparison was uncontrolled (UI-priced Subscription control vs Apex-inserted Software fixture). Reprice isSu\u2026"
+ },
+ "fixture_scripts": []
+}

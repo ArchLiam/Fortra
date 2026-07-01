@@ -1,0 +1,36 @@
+{
+ "id": "A-05",
+ "category": "A. Pricing Source / Channel",
+ "name": "Derived non-derived exclusion from derived filters",
+ "priority": "P1",
+ "what_it_tests": "A standard line (ItemIsDerived=false/null) must NOT enter Derived Pricing Filter, Derived Maintenance Net Filter, or Stamp Contributor Base derived branches; standard waterfall applies",
+ "proc_mechanism": "Derived Pricing Filter / Derived Maintenance Net Filter (ItemIsDerived Equals true) exclude it; Stamp Base Filter ((ItemIsDerived IsNull OR =false)) includes it",
+ "expected_behavior": "Standard waterfall applies; derived formula skipped",
+ "test_setup": "Software line, ItemIsDerived=false, Qty=3, New quote",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Static trace of LIVE V21 metadata confirmed the three derived gates are exactly ItemIsDerived__std Equals true and Stamp Base Filter is (IsNull OR =false) AND QuoteTypeText__c!='Renewal' AND ItemPricingSource!='LastTransaction' AND NetUnitPrice>0. Live Force-reprice of a real new-business standard non-derived Subscription line (BP-ETM-RMS-ADDITH, PBE 01uWC000005wrrIYAQ IsDerived=false, Fortra Price Book active, list 10000 USD, QuoteTypeText__c='New') through Active V21: isSuccess:true, errorResponse:[]; result NetUnitPrice=ListPrice=Base_Price__c=Pre_Partner_Price__c=10000, Source_List_Price__c=null -> standard waterfall ran (Stamp Base branch), derived branches skipped. Inverse control: real derived maintenance lines (PIA-PIA-RNM-PIAMBK, ItemIsDerived=true) carry Source_List_Price__c=355 and Base_Price__c=null (derived branch ran, standard skipped) -> the field split is the genuine disc\u2026",
+  "evidence": "Active proc V21 9QBWC0000000oWH4AY (VersionNumber 21, Active). Reprice POST /services/data/v64.0/connect/rev/sales-transaction/actions/place -> isSuccess:true (Data/pricing-v21-validation/a05/reprice_resp.json). Control line https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kdnp4AA/view (BP-ETM-RMS-ADDITH, net=list=base=prePartner=10000, srcList=null) on quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FTJJ0A4/view (QuoteTypeText__c='New'). Metadata gating dump Data/pricing-v21-validation/a05/v21_meta_only.json: Derived Pricing Filter[40] & Derived Maintenance Net Filter[39] criteria = {ItemIsDerived__std Equals true}; Stamp Base Filter[107] (parentStep=StampContributorBasePreDiscount) = (1 OR 2) AND 3 AND 4 AND 5 over [ItemIsDerived__std IsNull | =false; QuoteTypeText__c!='Renewal'; ItemPricingSource!='LastTransaction'; NetUnitPrice>0]. Inverse derived control QLI 0QLWC000003kiyo4AA (srcList=355, base=null).",
+  "recordIds": [
+   "0Q0WC000003FTJJ0A4",
+   "0QLWC000003kdnp4AA",
+   "01uWC000005wrrIYAQ",
+   "0QLWC000003kiyo4AA",
+   "0QLWC000003ka0M4AQ"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Config/parity-style scenario validated per brief (existing real records + proc metadata + one live Force-reprice), no DML fixture. The gate field ItemIsDerived__std is sourced from PricebookEntry.IsDerived; all standard software/subscription/perpetual PBEs confirmed IsDerived=false. Quantity (test_setup says Qty=3) is immaterial to the routing claim - the gate is ItemIsDerived__std, not quantity; TotalPrice scales as NetUnitPrice*Qty regardless. Avoided the A-01/A-02 headless base-seed gap by using a UI-priced existing line rather than an Apex-inserted fresh line; the live Force-reprice preser\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

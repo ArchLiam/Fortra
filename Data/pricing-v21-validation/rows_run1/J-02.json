@@ -1,0 +1,16 @@
+{
+  "id": "J-02",
+  "verdict": "PASS",
+  "category": "J. Derived / Maintenance Pricing",
+  "priority": "P0",
+  "dataSource": "new-script",
+  "expected": "Each Maintenance Type Defn AttributeValue derives correct percent x Source_List_Price (355): Basic .15=53.25, Professional .20=71, Standard .20=71, Premium .24=85.20, Express .30=106.50, Premier .30=106.50, Expert .35=124.25; platinum/missing-MTD -> 0 (no MDT rate). All 7 Maintenance_Rate__mdt tiers must be covered (no silent $0).",
+  "actual": "Live V21 Force-reprice priced all 7 tiers to the cent on PIA-PIA-RNM-PIAMBK derived lines: Basic 53.25, Professional 71, Standard 71, Premium 85.20, Express 106.50, Premier 106.50, Expert 124.25 (=0.35x355). platinum=0 (no MDT rate, correct else). No-MTD line=0 (no tier data, config-gated, not a formula defect). License net 355.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FYaj0AG/view",
+  "recordIds": ["0Q0WC000003FYaj0AG", "0QLWC000003kiE24AI", "0QLWC000003kiE34AI", "0QLWC000003kiKT4AY", "0QLWC000003kiKU4AY", "0QLWC000003kiKV4AY", "0QLWC000003kiKW4AY", "0QLWC000003kiKX4AY"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Active proc=Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). The Tooling-API ExpressionSetDefinitionVersion.Metadata formula text for 'Derived Pricing Formula' lists ONLY 3 tiers (Premier/Standard/Professional, else 0), but the LIVE COMPILED runtime applies all 7 tiers correctly (proven on real data). Static snapshot is misleading/stale vs runtime - smoke-test is authoritative. NB-DERIVED-TIER/SC-3346/SC-3372 7-tier completeness defect NOT reproducing in V21. Smoke-tested via scripts/apex/setupJ02DerivedTierTestData.compact.apex + REST QLIA binds + Force reprice. missing-MTD/platinum $0 is documented/expected (no tier data / no MDT rate), per project_newmaint_derivation_inconsistency + project_derived_pricing_demo_recipe.",
+  "dataScript": "scripts/apex/setupJ02DerivedTierTestData.compact.apex"
+}

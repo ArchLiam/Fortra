@@ -1,0 +1,35 @@
+{
+ "id": "J-08",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Contributor base stamping (pre-discount) for non-derived non-renewal",
+ "priority": "P0",
+ "what_it_tests": "A non-derived, non-renewal, non-LastTransaction line with NetUnitPrice>0 stamps Base_Price__c/Pre_Partner_Price__c from net so its derived children have a contributor base; multi-product asset renewals can anchor secondaries' maintenance on the primary",
+ "proc_mechanism": "Stamp Contributor Base (Pre-Discount); Stamp Base Filter ((ItemIsDerived IsNull OR =false) AND QuoteTypeText NotEquals 'Renewal' AND ItemPricingSource NotEquals 'LastTransaction' AND NetUnitPrice > 0); Stamp Base_Price and Pre_Partner from Net",
+ "expected_behavior": "Base_Price__c/Pre_Partner_Price__c stamped from net for downstream derived lines",
+ "test_setup": "Non-derived license line, New quote, NetUnitPrice>0, not LastTransaction (e.g. bundle license anchoring add-on maint)",
+ "defect_provenance": "SC-3346 (contributor base)",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "named-script",
+  "actual": "Fresh license line PIA-PIA-NRPS-PIAP (Perpetual, New quote): born Base_Price__c=null/Pre_Partner_Price__c=null; after Force-reprice NetUnitPrice=355, Base_Price__c=355, Pre_Partner_Price__c=355 (stamped from net). Pre-existing seeded J-07 quote 0Q0WC000003FZ0X0AW confirms downstream derive: maint NetUnitPrice=71=0.20x355.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fd7N0AS/view (license QLI 0QLWC000003kmZN4AY); steady-state ref https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ0X0AW/view",
+  "recordIds": [
+   "0Q0WC000003Fd7N0AS",
+   "0QLWC000003kmZN4AY",
+   "0QLWC000003kmZO4AY",
+   "0Q0WC000003FZ0X0AW"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "V21 active (9QMWC00000025LN4AY) confirmed. Branch traced: ListGroup 'Stamp Contributor Base (Pre-Discount)' (step 107) > 'Stamp Base Filter' (step 105) gate ((ItemIsDerived__std IsNull OR =false) AND QuoteTypeText__c NotEquals 'Renewal' AND ItemPricingSource NotEquals 'LastTransaction' AND NetUnitPrice>0) > 'Stamp Base_Price and Pre_Partner from Net' (step 106) writes NetUnitPrice->Base_Price__c and ->Pre_Partner_Price__c. Verified live from v20_fresh proc retrieve, same step set as V21 skeleton. Durability note: first reprice on a freshly-born line left Base_Price__c null (one-cycle stale-con\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

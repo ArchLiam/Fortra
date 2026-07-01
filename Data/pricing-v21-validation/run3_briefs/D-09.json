@@ -1,0 +1,30 @@
+{
+ "id": "D-09",
+ "category": "D. Pricing Mode",
+ "name": "Attribute mode crossed with currency \u2014 Total-Price tier matrix in non-USD",
+ "priority": "P1",
+ "what_it_tests": "A Total-Price-mode attribute line (Base_Price__c = exact matrix tier price) in a non-USD quote must read a currency-matched tier value, not a USD tier value then FX-multiply (which would double-apply or mismatch); ties D-02/D-05 attribute modes to G-03 currency-blind ABA/ATPS gap at the mode level",
+ "proc_mechanism": "Attribute Value Pricing - Total Price Mode (Base_Price__c -> InputUnitPrice) + CalculationMatrix PriceModelType='Total Price' keyed WITH CurrencyIsoCode; must not FX-convert an already-currency-native tier nor read USD tier",
+ "expected_behavior": "Tier price read from the EUR/GBP matrix row directly (no FX double-apply); if only USD tier exists, surfaced as no-match/error not silent USD value",
+ "test_setup": "Alert Logic MDR 100-node Total-Price tier, EUR quote, verify net = EUR tier (not USD tier \u00d7 0.9346 and not raw USD)",
+ "defect_provenance": "SC-3384 / SC-3393 (completeness-gap cross)",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "Live V21 Force-reprice (REST place isSuccess=true, errorResponse=[], LastMod 2026-06-30T01:40:19Z) of EUR Total-Price line 0QLWC000003cE8H4AU (CLSAAS All Star, Attribute_Price_Mode__c='Total Price', Has_Attribute_Adjustment__c=true): UnitPrice=1268.43912 = 1357.2 (USD ATPS Total-Price tier) \u00d7 0.9346 (EUR FX) EXACTLY to 5 decimals \u2014 the USD tier read then FX-multiplied, NOT the native EUR tier 1248.62. Overcharge = +19.82 EUR/unit on the Total-Price (UnitPrice/TotalLineAmount) channel. TotalLineAmount=1268.43912. The net channel also compounds the FX non-deterministically across reprices: NetUnitPrice=NetTotalPrice=TotalPrice drifted 845.33 (G-02 capture) -> 790.04 (this reprice); Base_Price__c drifted 904.48 -> 845.33. ListPrice=2037.428 (correct EUR catalog list, currency key present on PBE) is unused by the configured tier. Source_List_Price__c=null.",
+  "evidence": "EUR quote 'Q-Wren - Test Currencies' https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000036xy90AA/view ; EUR Total-Price QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003cE8H4AU/view ; reprice place API isSuccess:true errorResponse:[] ; arithmetic 1357.2*0.9346=1268.43912 == live UnitPrice; native EUR tier 1248.62 (delta +19.81912). EUR PBE 01uWC000005wyVjYAI active on active Fortra Price Book (EUR list 2037.428 == line ListPrice).",
+  "recordIds": [],
+  "defectStep": "Attribute Value Pricing - Total Price Mode (V21 steps 17-20: Has_Attribute_Adjustment__c=true AND Attribute_Price_Mode__c='Total Price' -> Base_Price__c -> InputUnitPrice via AttributeVolumePricingPrehook composite key) feeding Currency Conversion - Net Unit Price / Unit Price Display / Net Total / Total Line Amount (V21 steps 33-36). The Total-Price tier composite key omits CurrencyIsoCode, so the USD CalculationMatrix tier row is matched; the Currency Conversion steps then FX-multiply that USD-anchored base by 0.9346.",
+  "regression": "SC-3384",
+  "rootCause": "PROCEDURE-DEFECT",
+  "notes": "D-09 is the mode-level cross of D-02 (USD Total-Price mode, PASS: Base_Price->NetUnitPrice exact) and G-02/G-03 (EUR configured-pricing currency-blind, FAIL). Confirmed on REAL data, not statically reasoned: I re-ran the live Force-reprice on the existing EUR repro quote and the USD-tier\u00d7FX value reproduced exactly on the current active V21 proc. The Alert Logic MDR 100-node tier named in test_setup was unavailable as a pre-built EUR Total-Price line; the CLSAAS All Star Managed-Service Total-Price tier (Attribute_Price_Mode__c='Total Price') is an exact equivalent of the same mechanism and is\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

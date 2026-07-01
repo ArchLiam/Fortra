@@ -1,0 +1,28 @@
+{
+ "id": "E-04",
+ "category": "E. Deal / Customer Type",
+ "name": "Fortra-Originated partner discount band (Non_Orig_* percents)",
+ "priority": "P1",
+ "what_it_tests": "A Deal_Type__c='Fortra Originated' partner deal pulls its discount from the Non_Orig_* columns (typically lower tier than channel-originated)",
+ "proc_mechanism": "Partner_Pricing_Model__c Non_Orig_Software_Pct__c / Non_Orig_Subscription_Pct__c etc.; Deal Origin picklist drives column set",
+ "expected_behavior": "Net = List x (1 - Non_Orig_Discount%); lower discount than channel-originated (e.g. 12% vs 20%)",
+ "test_setup": "Partner A (20% channel orig / 12% fortra orig), Deal_Type='Fortra Originated' -> 12%",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "FAIL",
+  "rootCause": "ORG-CONFIG-DEFECT",
+  "dataSource": "existing",
+  "actual": "Quote 0Q0WC0000039bwH0AQ (Deal_Type__c='Fortra Originated', PartnerAccount='AB Test Partner Account', PPM-00028, BoKS Perpetual). After Force-reprice on live V21 (isSuccess=true, no errors): BoKS Perpetual QLI (0QLWC000003eoAr4AI) Qty=1, ListPrice=355, NetUnitPrice=301.75 = 355 x 0.85 (15% channel column Software_Percent__c). Partner_Pricing_Source__c='System Calculated (Pre-Procedure, Percent Only)'. Deal_Type has ZERO effect: active prehook PartnerPricingPrehook V1 calls PartnerPricingService.getMarginForProductType(model, productType) with NO dealType argument and reads only Software_Percent__c. The Non_Orig routing exists only in the DORMANT PartnerPricingServiceV2.getMarginForProductType(model, productType, dealType). Additionally, ALL 30 PPM records have Non_Orig_Software_Pct__c=null (SOQL COUNT=0), so even if V2 were active the Non_Orig band would return 0%.",
+  "evidence": "Fortra-Orig quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000039bwH0AQ/view ; QLI 0QLWC000003eoAr4AI NetUnitPrice=301.75=355*0.85 ; REST place /services/data/v67.0/connect/rev/sales-transaction/actions/place isSuccess:true errorResponse:[] ; Live PartnerPricingService.getMarginForProductType signature has 2 args (model, productType) \u2014 no dealType \u2014 reads Software_Percent__c unconditionally ; PartnerPricingServiceV2.getMarginForProductType has 3 args (model, productType, dealType) with Non_Orig routing but class is dormant (not wired into V21 procedure); SOQL COUNT on Partner_Pricing_Model__c WHERE Non_Orig_Software_Pct__c != null = 0 (all 30 rows null) ; Channel-Orig control E-02 quote 0Q0WC000003FO1u0AG also reads same channel column via same V1 prehook \u2014 confirming deal-type blindness is structural",
+  "recordIds": [
+   "0Q0WC0000039bwH0AQ",
+   "0QLWC000003eoAr4AI",
+   "0Q0WC000003FO1u0AG",
+   "001WC00000ZtazZYAR"
+  ],
+  "defectStep": "Not a V21 procedure step. Defect is in the Apex partner prehook layer that feeds PartnerDiscountPercent into V21: active processor = PartnerPricingPrehook V1 -> PartnerPricingService.getMarginForProductType(model, productType) is Deal_Type-blind (reads channel columns only). V21 'Partner Discount' / 'Resolve Partner Discount Percent' steps merely consume the pre-stamped PDP. Compounded by empty Non_Orig_* config on all 30 PPM rows.",
+  "proposedFix": "Two-part fix required: (1) Replace active PartnerPricingPrehook V1 with V2 (or upgrade V1 to pass dealType to getMarginForProductType, routing to Non_Orig_* columns when Deal_Type__c='Fortra Originated'). (2) Populate Non_Orig_Software_Pct__c / Non_Orig_Subscription_Pct__c / Non_Orig_New_Maint_Pct__c / Non_Orig_Ren_Maint_Pct__c / Non_Orig_Services_Pct__c on all relevant Partner_Pricing_Model__c re\u2026",
+  "notes": "Re-measured on V21 ACTIVE as of 2026-06-30 (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY). Preflight passed: quote is UI-built (not headless), CalculationStatus=CompletedWithPricing, valid active PPM-00028 (Software_Percent__c=15 non-zero), BoKS Perpetual List=355 (non-zero), PBE active on Fortra Price Book USD. Deal_Type__c='Fortra Originated' confirmed on quote header. PartnerAccount='AB Test Partner Account' (001WC00000ZtazZYAR). Branch confirmed via Partner_Pricing_Source__c='System Cal\u2026"
+ },
+ "fixture_scripts": []
+}

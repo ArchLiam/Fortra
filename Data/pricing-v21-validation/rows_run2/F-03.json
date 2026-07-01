@@ -1,0 +1,15 @@
+{
+  "id": "F-03",
+  "verdict": "FAIL",
+  "category": "F. Transaction Type",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "COLA renewal: COLACalculatedPrice stamped to BOTH InputUnitPrice AND NetUnitPrice on every reprice; net = (discounted)PreCOLA x (1+COLA%). PreCOLA x 1.062 e.g. 6695.3 x 1.062 = 7110.41 must land in NetUnitPrice too.",
+  "actual": "InputUnitPrice(UnitPrice)=COLACalc holds on all lines. NetUnitPrice INCONSISTENT: line 0QLWC000003kcQM4AY (beSECURE, Q 0Q0WC000003FRuD0AW) after TWO live Force-reprices keeps NetUnitPrice=5830.54 (=OLD PreCOLA 5490.15 x1.062) while current COLACalc=7110.41 (=6695.3 x1.062) NOT applied to net. Net stays stale, not re-uplifted. FY2r lines (net was 0) pass: Cobalt 5900x1.062=6265.8 & beSECURE 206x1.062=218.77 = NetUnitPrice.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kcQM4AY/view (FAIL: net frozen 5830.54 vs COLACalc 7110.41); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FRuD0AW/view ; passing path https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view",
+  "defectStep": "COLA Uplift Net on Renewal (V21 step 26): COLACalculatedPrice__c -> NetUnitPrice does not commit when a prior NetUnitPrice exists; net left stale (not re-uplifted by current COLA%).",
+  "proposedFix": "Make NetUnitPrice always reflect current COLACalculatedPrice on Renew lines: either move the COLA-net write out of the non-flushing COLA ListGroup so the engine commits it, or relax the COLAUpliftPrehook net-seed guard (currently fires only when stored NetUnitPrice null/<=0) to RE-seed when stored net != current COLACalc on a Renew line. NOT applied (validation only).",
+  "regression": "SC-3350 net-seed deleted during SC-3346 rework of co-owned COLAUpliftPrehook (per peer review 2026-06-26); COLA V16-V20.",
+  "recordIds": ["0QLWC000003kcQM4AY", "0Q0WC000003FRuD0AW", "0QLWC000003khwI4AQ", "0QLWC000003khwH4AQ", "0Q0WC000003FY2r0AG"],
+  "notes": "Live Force-reprice via PST API /connect/rev/sales-transaction/actions/place pricingPref=Force on both quotes (isSuccess=true). Active proc=Rev_Mgmt_Default_Pricing_Procedure V21. License/subscription COLA path (not NewMaintenance). Real Quote_Type__c=Renewal lines, COLA_Source__c=CMDT Lookup. InputUnitPrice stamping correct everywhere; defect is NetUnitPrice net-uplift not committed when a prior net is present."
+}

@@ -1,0 +1,18 @@
+{
+  "id": "K-17",
+  "category": "K. Edge Cases",
+  "name": "Inactive version delete blocked by PricingActionParameters reference",
+  "priority": "P2",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "config-query",
+  "preflight": "na",
+  "expected": "PricingActionParameters still has exactly 2 rows bound to Rev_Mgmt_Default_Pricing_Procedure (Order + Quote bindings); inactive versions V2-V8 (and V9-V22) remain undeleteable due to referential-integrity block; V21 is the sole active version.",
+  "actual": "Live FortraUAT 2026-06-30: ExpressionSet Rev_Mgmt_Default_Pricing_Procedure (9QLWC0000015cDl4AI) now has 22 versions (V22 9QMWC00000025TR4AY added 2026-06-30, inactive). V21 (9QMWC00000025LN4AY) remains the SOLE active version; V1-V20 + V22 all inactive. EXACTLY 2 PricingActionParameters rows still reference PricingProcedure='Rev_Mgmt_Default_Pricing_Procedure': 17gWC000000DeAvYAK (DeveloperName=Order_1782043618980) and 17gWC000000DeAwYAK (DeveloperName=Quote_1782043660424). Same 2 Ids as run1 — PAP rows are unchanged. The delete-block condition is still in force: any attempt to delete an inactive ESV while these PAP rows exist returns referential-integrity error (verified by canary 2026-06-10). Lifecycle remains additive-only.",
+  "evidence": "PricingActionParameters live query 2026-06-30: 2 rows, both PricingProcedure='Rev_Mgmt_Default_Pricing_Procedure' (17gWC000000DeAvYAK Order/Order_1782043618980, 17gWC000000DeAwYAK Quote/Quote_1782043660424). ExpressionSetVersion query for esId=9QLWC0000015cDl4AI: 22 versions total; V21 9QMWC00000025LN4AY IsActive=true (sole active); V1-V20 + V22 all IsActive=false. V22 desc='V22 = V21 with Portion-3 fixes: 7-tier derived formula restored + J-10 COLA-on-derived-renewal + K-09 category zero-init. 2026-06-30.' V2 (9QMWC0000001r8j4AA) desc='DO NOT USE IT.' https://fortra--uat.sandbox.lightning.force.com/lightning/setup/PricingProcedures (Rev_Mgmt_Default_Pricing_Procedure version list).",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Config/parity scenario per METHOD_BRIEF (inactive-version delete block listed as query-validated, no DML fixture, no destructive delete). The delete block is NATIVE RLM referential integrity outside the 122-step V21 procedure — no V21 step implicated, so N-A(pass). defect_provenance SC-3350 is the lifecycle ticket, not a regression: the block is correct/intended behavior. Since run1: V22 has been added as an inactive draft (2026-06-30) but this does not change the block condition — PAP rows are unchanged and still reference the procedure. V21 remains sole active version. PricingActionParameters DeveloperNames remain Order_1782043618980/Quote_1782043660424 (re-timestamped during prior context republish); ContextDefinition still SalesTransactionContextExt_v2.",
+  "verdict_reason": "Both PricingActionParameters rows remain intact (same 2 Ids as run1), V21 is sole active version, inactive versions V2-V22 remain present and blocked from deletion by the native RLM referential-integrity check. The lifecycle constraint is operating as designed. Config-query validation complete on live FortraUAT 2026-06-30."
+}

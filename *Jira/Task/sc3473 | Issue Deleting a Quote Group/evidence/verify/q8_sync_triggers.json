@@ -1,0 +1,55 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000004cd9JYAQ"
+        },
+        "Name": "SalesIntel_OpportunityUpdate_Trigger",
+        "TableEnumOrId": "Opportunity",
+        "Status": "Active"
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000005ZCoDYAW"
+        },
+        "Name": "OpportunityTrigger",
+        "TableEnumOrId": "Opportunity",
+        "Status": "Active"
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000004rs0EYAQ"
+        },
+        "Name": "OpportunityLineItemTrigger",
+        "TableEnumOrId": "OpportunityLineItem",
+        "Status": "Active"
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000005ZrWRYA0"
+        },
+        "Name": "QuoteSyncingTrigger",
+        "TableEnumOrId": "Quote",
+        "Status": "Active"
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000007NC1FYAW"
+        },
+        "Name": "QuoteTrigger",
+        "TableEnumOrId": "Quote",
+        "Status": "Active"
+      }
+    ],
+    "totalSize": 5,
+    "done": true
+  },
+  "warnings": []
+}

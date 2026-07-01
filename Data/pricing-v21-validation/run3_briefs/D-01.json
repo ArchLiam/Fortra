@@ -1,0 +1,34 @@
+{
+ "id": "D-01",
+ "category": "D. Pricing Mode",
+ "name": "Attribute Value Pricing - Calculated Mode",
+ "priority": "P0",
+ "what_it_tests": "A line with an attribute adjustment in Calculated mode multiplies the base price by the attribute multiplier percent and bridges base/net via IF guards; must price correctly on first reprice",
+ "proc_mechanism": "Attribute Value Pricing - Calculated Mode (Has_Attribute_Adjustment__c=true AND Attribute_Price_Mode__c='Calculated'); Base_Price__c * Attribute_Multiplier_Pct__c; Calculated Mode Base/Net Bridge",
+ "expected_behavior": "InputUnitPrice = Base_Price__c * multiplier; base and net bridged via IF(>0) guards",
+ "test_setup": "Product Has_Attribute_Adjustment__c=true, Attribute_Price_Mode__c='Calculated', multiplier set",
+ "defect_provenance": "SC-3390 / SC-3393",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "named-script",
+  "actual": "Force-reprice yields UnitPrice=0, NetUnitPrice=0, TotalLineAmount=0. AttributeMultiplierPct__c is WIPED 50->null by the reprice (pre-reprice pct=50, unit=935; post-reprice pct=None, all 0). Calculated branch entered (gate fields persist true/'Calculated') but multiplier null -> 100*null=0; Net Bridge also failed to floor to base (net=0 not 100). Deterministic across 3 fresh lines.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003klgX4AQ/view ; probe https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003klmz4AA/view ; Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcEX0A0/view",
+  "recordIds": [
+   "0Q0WC000003FcEX0A0",
+   "0QLWC000003klgX4AQ",
+   "0QLWC000003klmz4AA"
+  ],
+  "defectStep": "Attribute Value Pricing - Calculated Mode (V21 steps 13-16, incl. Calculated Mode Net Bridge)",
+  "regression": "SC-3390",
+  "rootCause": null,
+  "notes": "Root cause class = SC-3390 stale-context / IsPriceImpacting (multiplier not hydrated, wiped to null on reprice) compounded by SC-3393 Calculated-mode null-guard gap (Net Bridge did not floor to Base_Price__c=100, net landed $0). Gate (Has_Attribute_Adjustment__c=true AND Attribute_Price_Mode__c='Calculated') confirmed satisfied post-reprice, so the line entered the Calculated branch and still priced $0. Reprice REST place isSuccess=true (no pricing error surfaced) - silent $0, the worst kind. Pre-existing repriced Calc lines corroborate: 0QLWC000003khGL4AY repriced unit/net/tot=100 (base-bridg\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

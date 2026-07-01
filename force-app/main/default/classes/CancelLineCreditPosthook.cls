@@ -10,11 +10,19 @@
  *              pricing procedure (the QLI total fields are updateable=false / engine-only,
  *              so a trigger/flow cannot set them; the context API is the only path).
  *
- *              VALUE SOURCE = the custom staging field CancelNetUnitPrice__c (already
- *              populated upstream from the source asset's net unit price). We deliberately
- *              do NOT read QuoteLineDetail: verified live in FortraUAT 2026-06-26/27 our
- *              QLD is 0 (NetUnitPrice/TotalPrice/TotalLineAmount all 0), so there is no
- *              negative on the detail to copy. credit = CancelNetUnitPrice__c * LineItemQuantity.
+ *              VALUE SOURCE (two-tier, self-contained as of v2.1 — needs NO seed prehook
+ *              and NO manual staging):
+ *                1. PREFERRED — the context staging attribute CancelNetUnitPrice__c when it
+ *                   is already populated (fixture-seeded lines / any upstream seeder).
+ *                2. FALLBACK — when CancelNetUnitPrice__c is null/<=0 (EVERY real,
+ *                   UI-created cancellation: nothing seeds it, since the CancelLineNetSeed-
+ *                   Prehook branch was abandoned), the hook resolves the source asset's
+ *                   original NET itself: QuoteAction/OrderAction.SourceAssetId ->
+ *                   AssetActionSource.NetUnitPrice (Generate / Initial-Sale, currency-
+ *                   matched, > 0), with a LOSSY line-ListPrice last resort.
+ *              We deliberately do NOT read QuoteLineDetail: verified live in FortraUAT
+ *              2026-06-26/27 our QLD is 0 (NetUnitPrice/TotalPrice/TotalLineAmount all 0),
+ *              so there is no negative on the detail to copy. credit = resolvedNet * qty.
  *
  *              CRITICAL — ATTRIBUTE NAMES (root cause of the earlier no-persist):
  *              updateContextAttributes must use the QuoteLineItem FIELD API NAMES, which
@@ -34,10 +42,12 @@
  *                Subtotal        = credit                            (-> QLI Subtotal)
  *                TotalLineAmount = credit                            (-> carries to Order)
  *
- *              SCOPE / SAFETY: only NEGATIVE-quantity lines that carry a non-null,
- *              positive CancelNetUnitPrice__c are touched. Positive/zero-qty lines and
- *              lines without the staging value are never written. Currency-safe by
- *              construction (value already in the line currency).
+ *              SCOPE / SAFETY: only NEGATIVE-quantity lines that resolve a positive
+ *              per-unit net (staged OR asset-resolved) are touched. Positive/zero-qty lines
+ *              and lines with no resolvable net are never written. Currency-safe: a foreign-
+ *              currency asset net is never seeded onto a line (SC-3384 guard). The self-
+ *              resolution adds at most two READ-ONLY SOQL queries (line->asset,
+ *              AssetActionSource) and only when an unseeded cancel line is present.
  *
  *              SWALLOW CONTRACT: never throws out of execute() in a way that breaks the
  *              reprice; outer try/catch downgrades any error to SUCCESS-with-warnings,
@@ -47,8 +57,8 @@
  *              (Fortra_Pricing_PreHook), AFTER the PricingProcedure section.
  *
  * @author Liam Jeong (SC-3441)
- * @date June 2026
- * @version 2.0
+ * @date June 2026 (v2.1 2026-07-01: self-resolves asset NET — no seed prehook / no staging)
+ * @version 2.1
  */
 global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProcessor {
 
@@ -76,6 +86,20 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
     @TestVisible private static final String ATTR_TOTAL_PRICE       = 'TotalPrice';
     @TestVisible private static final String ATTR_SUBTOTAL          = 'Subtotal';
     @TestVisible private static final String ATTR_TOTAL_LINE_AMOUNT = 'TotalLineAmount';
+
+    // ============================================================
+    // SELF-RESOLUTION TAGS / ANCHORS (v2.1) — used ONLY when the staged
+    // CancelNetUnitPrice__c is absent (real UI-created cancellations).
+    // ============================================================
+
+    /** Per-line transaction currency tag (currency-aware asset-net match). */
+    @TestVisible private static final String TAG_CURRENCY = 'STICurrencyIsoCode';
+
+    /** Per-line catalog list price tag (LOSSY last-resort fallback only). */
+    @TestVisible private static final String TAG_LIST_PRICE = 'ListPrice';
+
+    /** Asset action types that anchor the priced original-sale net (most-preferred). */
+    @TestVisible private static final Set<String> PRICED_SALE_TYPES = new Set<String>{ 'Generate' };
 
     // ============================================================
     // ENTRY POINT
@@ -118,16 +142,22 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
                 return response;
             }
 
-            // Step 2 — build the credit updates for negative-qty lines that carry a
-            //          positive CancelNetUnitPrice__c (positive lines never touched).
-            List<Map<String, Object>> updates = buildCreditUpdates(lineNodes);
+            // Step 2 — resolve the original asset NET for every negative-qty line whose
+            //          context CancelNetUnitPrice__c is null/<=0 (real UI cancellations).
+            //          Bulk, read-only SOQL; empty when every line is already seeded.
+            Map<Id, Decimal> resolvedNetByLine = resolveAssetNetsForUnseededLines(lineNodes);
+
+            // Step 3 — build the credit updates for negative-qty lines. The staged context
+            //          value wins; otherwise the self-resolved asset NET is used. Positive
+            //          / zero-qty lines and lines with no resolvable net are never touched.
+            List<Map<String, Object>> updates = buildCreditUpdates(lineNodes, resolvedNetByLine);
             if (updates.isEmpty()) {
                 response.status = RevSignaling.TransactionStatus.SUCCESS;
-                response.message = 'No cancellation (negative-qty) lines with a staged net - nothing to credit';
+                response.message = 'No cancellation (negative-qty) lines with a resolvable net - nothing to credit';
                 return response;
             }
 
-            // Step 3 — submit.
+            // Step 4 — submit.
             Integer submitted = submitContextUpdates(ctx, contextId, updates);
 
             response.status = RevSignaling.TransactionStatus.SUCCESS;
@@ -193,43 +223,66 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
     }
 
     // ============================================================
-    // CREDIT BUILD — pure seam, negative-qty + staged-net lines only
+    // CREDIT BUILD — pure seam, negative-qty lines; staged net OR resolved asset net
     // ============================================================
+
+    /** Overload: no pre-resolved asset nets (already-seeded lines / pure-seam tests). */
+    @TestVisible
+    private List<Map<String, Object>> buildCreditUpdates(List<Object> lineNodes) {
+        return buildCreditUpdates(lineNodes, new Map<Id, Decimal>());
+    }
 
     /**
      * @description Build the context node updates for every cancellation line. A line
-     *              qualifies iff LineItemQuantity < 0 AND CancelNetUnitPrice__c is a
-     *              positive value. The credit written is CancelNetUnitPrice__c * qty
-     *              (negative). Positive/zero-qty lines and lines without a staged net
-     *              are skipped (no write).
+     *              qualifies iff LineItemQuantity < 0 AND a positive per-unit net is
+     *              available — the staged context CancelNetUnitPrice__c (preferred), or,
+     *              when that is null/<=0, the self-resolved asset NET in resolvedNetByLine
+     *              (keyed by line Id). The credit written is net * qty (negative).
+     *              Positive/zero-qty lines and lines with no net are skipped (no write).
      */
     @TestVisible
-    private List<Map<String, Object>> buildCreditUpdates(List<Object> lineNodes) {
+    private List<Map<String, Object>> buildCreditUpdates(List<Object> lineNodes, Map<Id, Decimal> resolvedNetByLine) {
         List<Map<String, Object>> updates = new List<Map<String, Object>>();
         if (lineNodes == null) {
             return updates;
         }
+        Map<Id, Decimal> resolved = resolvedNetByLine == null ? new Map<Id, Decimal>() : resolvedNetByLine;
+        Map<String, Object> node;
+        Map<String, Object> tagMap;
+        List<Object> dataPath;
+        Decimal qty;
+        Decimal cancelNet;
+        Id lineId;
+        Decimal credit;
         for (Object raw : lineNodes) {
             if (!(raw instanceof Map<String, Object>)) {
                 continue;
             }
-            Map<String, Object> node = (Map<String, Object>) raw;
-            Map<String, Object> tagMap = extractTagMap(node);
-            List<Object> dataPath = getDataPath(node);
+            node = (Map<String, Object>) raw;
+            tagMap = extractTagMap(node);
+            dataPath = getDataPath(node);
             if (dataPath == null || dataPath.isEmpty()) {
                 continue;
             }
 
-            Decimal qty = getDecimalFromTag(tagMap, TAG_QUANTITY);
-            Decimal cancelNet = getDecimalFromTag(tagMap, TAG_CANCEL_NET);
-
-            // GATE: negative qty AND a positive staged net. Anything else => skip.
-            if (qty == null || qty >= 0 || cancelNet == null || cancelNet <= 0) {
+            // GATE 1: negative qty only. Null/zero/positive => skip (never touch a normal line).
+            qty = getDecimalFromTag(tagMap, TAG_QUANTITY);
+            if (qty == null || qty >= 0) {
                 continue;
             }
 
-            Decimal credit = (cancelNet * qty).setScale(2, System.RoundingMode.HALF_UP);
+            // Per-unit net: the staged context value wins; else the self-resolved asset NET.
+            cancelNet = getDecimalFromTag(tagMap, TAG_CANCEL_NET);
+            if (cancelNet == null || cancelNet <= 0) {
+                lineId = lineIdFromDataPath(dataPath);
+                cancelNet = lineId == null ? null : resolved.get(lineId);
+            }
+            // GATE 2: still no positive net (no asset source / zero-net asset) => skip.
+            if (cancelNet == null || cancelNet <= 0) {
+                continue;
+            }
 
+            credit = (cancelNet * qty).setScale(2, System.RoundingMode.HALF_UP);
             updates.add(buildNodeUpdate(dataPath, cancelNet, credit));
         }
         return updates;
@@ -265,6 +318,277 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
     @TestVisible
     private Map<String, Object> attr(String name, Decimal value) {
         return new Map<String, Object>{ 'attributeName' => name, 'attributeValue' => value };
+    }
+
+    // ============================================================
+    // ASSET-NET SELF-RESOLUTION (v2.1) — lets the posthook stand alone
+    // (no seed prehook, no manual staging). Bulk, read-only, currency-aware.
+    // Mirrors the resolution proven on the abandoned CancelLineNetSeedPrehook.
+    // ============================================================
+
+    /**
+     * @description For every negative-qty line whose staged context CancelNetUnitPrice__c
+     *              is null/<=0, resolve the original asset NET so the posthook can credit
+     *              it with no upstream seeder. Constant SOQL: one line->asset query for the
+     *              scope + one AssetActionSource query. Returns line Id -> per-unit NET
+     *              (> 0); empty when nothing needs resolving. READ-ONLY — safe under the
+     *              RLM Quote/Order DML lock (SOQL, no DML).
+     */
+    @TestVisible
+    private Map<Id, Decimal> resolveAssetNetsForUnseededLines(List<Object> lineNodes) {
+        Map<Id, Decimal> netByLine = new Map<Id, Decimal>();
+        List<PendingLine> pending = collectUnseededCancelLines(lineNodes);
+        if (pending.isEmpty()) {
+            return netByLine;
+        }
+        String scope = resolveScope(lineNodes);
+        if (scope == null) {
+            return netByLine;
+        }
+        Set<Id> lineIds = new Set<Id>();
+        for (PendingLine pl : pending) {
+            lineIds.add(pl.lineId);
+        }
+        Map<Id, Id> lineToAssetId = resolveSourceAssetIds(scope, lineIds);
+        Map<Id, Map<String, Decimal>> assetNetByCurrency =
+            resolveAssetNetByCurrency(new Set<Id>(lineToAssetId.values()));
+
+        Decimal net;
+        for (PendingLine pl : pending) {
+            net = resolveSeedNet(lineToAssetId.get(pl.lineId), pl.currencyIso, pl.listPrice, assetNetByCurrency);
+            if (net != null && net > 0) {
+                netByLine.put(pl.lineId, net);
+            }
+        }
+        return netByLine;
+    }
+
+    /**
+     * @description Pure seam: collect the negative-qty lines that carry NO usable staged
+     *              net (context CancelNetUnitPrice__c null/<=0) and therefore need asset-net
+     *              resolution. Positive/zero-qty and already-seeded lines are excluded (they
+     *              need no SOQL). Captures the line's currency + ListPrice tags for the
+     *              currency-aware pick.
+     */
+    @TestVisible
+    private List<PendingLine> collectUnseededCancelLines(List<Object> lineNodes) {
+        List<PendingLine> pending = new List<PendingLine>();
+        if (lineNodes == null) {
+            return pending;
+        }
+        Map<String, Object> node;
+        Map<String, Object> tagMap;
+        Decimal qty;
+        Decimal staged;
+        Id lineId;
+        PendingLine pl;
+        for (Object raw : lineNodes) {
+            if (!(raw instanceof Map<String, Object>)) {
+                continue;
+            }
+            node = (Map<String, Object>) raw;
+            tagMap = extractTagMap(node);
+
+            qty = getDecimalFromTag(tagMap, TAG_QUANTITY);
+            if (qty == null || qty >= 0) {
+                continue;
+            }
+            staged = getDecimalFromTag(tagMap, TAG_CANCEL_NET);
+            if (staged != null && staged > 0) {
+                continue; // already seeded — the direct path credits it, no SOQL needed
+            }
+            lineId = lineIdFromDataPath(getDataPath(node));
+            if (lineId == null) {
+                continue;
+            }
+            pl = new PendingLine();
+            pl.lineId = lineId;
+            pl.currencyIso = getStringFromTag(tagMap, TAG_CURRENCY);
+            pl.listPrice = getDecimalFromTag(tagMap, TAG_LIST_PRICE);
+            pending.add(pl);
+        }
+        return pending;
+    }
+
+    /**
+     * @description Resolve transaction scope from the LINE record Id (the last dataPath
+     *              element): a QuoteLineItem => 'Quote', an OrderItem => 'Order'. Uses the
+     *              Id SObjectType — robust, because dataPath[0] is the 64-char context path
+     *              (NOT the root entity Id), so a prefix read of element 0 is wrong. Null
+     *              when no node yields a Quote/Order line Id.
+     */
+    @TestVisible
+    private String resolveScope(List<Object> lineNodes) {
+        if (lineNodes == null) {
+            return null;
+        }
+        Id lineId;
+        Schema.SObjectType sType;
+        for (Object raw : lineNodes) {
+            if (!(raw instanceof Map<String, Object>)) {
+                continue;
+            }
+            lineId = lineIdFromDataPath(getDataPath((Map<String, Object>) raw));
+            if (lineId == null) {
+                continue;
+            }
+            sType = lineId.getSObjectType();
+            if (sType == QuoteLineItem.SObjectType) {
+                return 'Quote';
+            }
+            if (sType == OrderItem.SObjectType) {
+                return 'Order';
+            }
+        }
+        return null;
+    }
+
+    /**
+     * @description Resolve each cancel line's source asset Id. ORDER lines via
+     *              OrderItem.OrderAction.SourceAssetId; QUOTE lines via
+     *              QuoteLineItem.QuoteAction.SourceAssetId. ONE SOQL for the scope,
+     *              null-safe at every hop.
+     */
+    @TestVisible
+    private Map<Id, Id> resolveSourceAssetIds(String scope, Set<Id> lineIds) {
+        Map<Id, Id> result = new Map<Id, Id>();
+        if (String.isBlank(scope) || lineIds == null || lineIds.isEmpty()) {
+            return result;
+        }
+        if (scope == 'Order') {
+            for (OrderItem oi : [
+                SELECT Id, OrderAction.SourceAssetId
+                FROM OrderItem
+                WHERE Id IN :lineIds
+            ]) {
+                if (oi.OrderAction != null && oi.OrderAction.SourceAssetId != null) {
+                    result.put(oi.Id, oi.OrderAction.SourceAssetId);
+                }
+            }
+        } else if (scope == 'Quote') {
+            for (QuoteLineItem qli : [
+                SELECT Id, QuoteAction.SourceAssetId
+                FROM QuoteLineItem
+                WHERE Id IN :lineIds
+            ]) {
+                if (qli.QuoteAction != null && qli.QuoteAction.SourceAssetId != null) {
+                    result.put(qli.Id, qli.QuoteAction.SourceAssetId);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @description Resolve the asset NET per source asset, keyed by currency so a non-USD
+     *              line never inherits a USD net. ONE SOQL for ALL assets, positive nets
+     *              only. A Generate / Initial-Sale row wins; else the most-recent priced
+     *              row (rows folded oldest -> newest). (SC-3384 currency-blindness guard.)
+     */
+    @TestVisible
+    private Map<Id, Map<String, Decimal>> resolveAssetNetByCurrency(Set<Id> assetIds) {
+        Map<Id, Map<String, Decimal>> netByCurrency = new Map<Id, Map<String, Decimal>>();
+        Set<Id> cleanIds = new Set<Id>();
+        if (assetIds != null) {
+            for (Id a : assetIds) {
+                if (a != null) {
+                    cleanIds.add(a);
+                }
+            }
+        }
+        if (cleanIds.isEmpty()) {
+            return netByCurrency;
+        }
+        for (AssetActionSource s : [
+            SELECT AssetAction.AssetId, AssetAction.Type, NetUnitPrice, CurrencyIsoCode, CreatedDate
+            FROM AssetActionSource
+            WHERE AssetAction.AssetId IN :cleanIds
+              AND NetUnitPrice > 0
+            ORDER BY CreatedDate ASC
+        ]) {
+            applyAssetNetSource(netByCurrency, s);
+        }
+        return netByCurrency;
+    }
+
+    /**
+     * @description Pure seam: fold one AssetActionSource into the asset/currency net map.
+     *              A Generate row is sticky (only another Generate replaces it); a
+     *              non-Generate row only replaces another non-Generate (newest-wins). Only
+     *              positive nets fold, so a zero-net Generate can never lock a pair at 0.
+     */
+    @TestVisible
+    private void applyAssetNetSource(Map<Id, Map<String, Decimal>> netByCurrency, AssetActionSource s) {
+        if (s == null || s.AssetAction == null || s.AssetAction.AssetId == null) {
+            return;
+        }
+        if (s.NetUnitPrice == null || s.NetUnitPrice <= 0) {
+            return;
+        }
+        String currencyCode = s.CurrencyIsoCode;
+        if (String.isBlank(currencyCode)) {
+            return;
+        }
+        Id assetId = s.AssetAction.AssetId;
+        if (!netByCurrency.containsKey(assetId)) {
+            netByCurrency.put(assetId, new Map<String, Decimal>());
+        }
+        Map<String, Decimal> byCur = netByCurrency.get(assetId);
+        Boolean isGenerate = PRICED_SALE_TYPES.contains(s.AssetAction.Type);
+        String key = assetId + '|' + currencyCode;
+
+        if (!byCur.containsKey(currencyCode)) {
+            byCur.put(currencyCode, s.NetUnitPrice);
+            if (isGenerate) {
+                generateLocked.add(key);
+            }
+            return;
+        }
+        if (isGenerate) {
+            byCur.put(currencyCode, s.NetUnitPrice);
+            generateLocked.add(key);
+        } else if (!generateLocked.contains(key)) {
+            byCur.put(currencyCode, s.NetUnitPrice);
+        }
+    }
+
+    /** Tracks (asset|currency) keys whose kept value came from a Generate row. */
+    @TestVisible
+    private Set<String> generateLocked = new Set<String>();
+
+    /**
+     * @description Pure seam: pick the per-unit NET to credit for one cancel line.
+     *              1) asset NET in the line's OWN currency; 2) asset NET when the line has
+     *              no currency tag and the asset is single-currency; 3) LOSSY ListPrice
+     *              fallback (> 0, already line-currency); else null. NEVER seeds a
+     *              foreign-currency net.
+     */
+    @TestVisible
+    private Decimal resolveSeedNet(Id assetId, String lineCurrency, Decimal listPrice,
+                                   Map<Id, Map<String, Decimal>> assetNetByCurrency) {
+        if (assetId != null && assetNetByCurrency != null && assetNetByCurrency.containsKey(assetId)) {
+            Map<String, Decimal> byCur = assetNetByCurrency.get(assetId);
+            if (byCur != null && !byCur.isEmpty()) {
+                if (String.isNotBlank(lineCurrency)) {
+                    if (byCur.containsKey(lineCurrency)) {
+                        Decimal net = byCur.get(lineCurrency);
+                        if (net != null && net > 0) {
+                            return net;
+                        }
+                    }
+                    // currency mismatch => fall through to the lossy ListPrice fallback
+                } else if (byCur.size() == 1) {
+                    Decimal only = byCur.values()[0];
+                    if (only != null && only > 0) {
+                        return only;
+                    }
+                }
+            }
+        }
+        if (listPrice != null && listPrice > 0) {
+            return listPrice;
+        }
+        return null;
     }
 
     // ============================================================
@@ -310,6 +634,23 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
         return (dpObj instanceof List<Object>) ? (List<Object>) dpObj : null;
     }
 
+    /**
+     * @description The line record Id is the LAST element of the dataPath (QuoteLineItem
+     *              for a Quote, OrderItem for an Order). Null when the last element is not
+     *              a valid Id — mirrors the prehook / COLA / QLDescription hooks.
+     */
+    @TestVisible
+    private Id lineIdFromDataPath(List<Object> dataPath) {
+        if (dataPath == null || dataPath.isEmpty()) {
+            return null;
+        }
+        try {
+            return Id.valueOf(String.valueOf(dataPath.get(dataPath.size() - 1)));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     @TestVisible
     private Map<String, Object> extractTagMap(Map<String, Object> node) {
         if (node == null) {
@@ -320,6 +661,12 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
             return (tv instanceof Map<String, Object>) ? (Map<String, Object>) tv : null;
         }
         return node;
+    }
+
+    @TestVisible
+    private String getStringFromTag(Map<String, Object> tagMap, String fieldName) {
+        Object val = extractFieldValue(tagMap, fieldName);
+        return val != null ? String.valueOf(val) : null;
     }
 
     @TestVisible
@@ -362,5 +709,17 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
             return null;
         }
         return fieldObj;
+    }
+
+    // ============================================================
+    // DTO
+    // ============================================================
+
+    /** Per-cancel-line carrier for lines that need asset-net resolution. */
+    @TestVisible
+    private class PendingLine {
+        public Id lineId;
+        public String currencyIso;
+        public Decimal listPrice;
     }
 }

@@ -1,0 +1,32 @@
+{
+ "id": "K-01",
+ "category": "K. Edge Cases",
+ "name": "Cancellation negative credit at asset NET (not $0)",
+ "priority": "P0",
+ "what_it_tests": "A cancellation line (Qty=-1) must produce a NEGATIVE TotalPrice credit equal to the asset NET unit price (not list, not $0); the native waterfall seeds no NetUnitPrice for cancel lines so a custom seed supplies it",
+ "proc_mechanism": "CancelNetUnitPrice__c seed (from AssetActionSource/SourceAsset NetUnitPrice) + V18 seed step; CancelLineCreditPosthook writes NetUnitPrice/TotalPrice/Subtotal via field-API names; Quantity*Price; Null-Safe Line Adjustment",
+ "expected_behavior": "NetUnitPrice=asset net (e.g. 3000); TotalPrice = NetUnitPrice x -1 = -3000; quote/order header rolls up the negative credit",
+ "test_setup": "Cancel quote/order, line Qty=-1, asset list 3000 no discount, CancelNetUnitPrice__c populated, expect -3000",
+ "defect_provenance": "SC-3441",
+ "run3_result": {
+  "verdict": "FAIL",
+  "rootCause": "PROCEDURE-DEFECT",
+  "dataSource": "existing",
+  "actual": "Force-reprice ERRORS at StampBaseFilter#1 (SF-Pricing-00006 / SF-BRE-00004). Fresh cancel QLI (CancelNetUnitPrice__c=15000, NetUnitPrice=null) stays NetUnitPrice=null, TotalPrice=0. CalculationStatus=PriceCalculationFailed. Reproduced on 3 independent records: prior quotes 0Q0WC000003FZ290AG (QLI 0QLWC000003kiab4AA) and 0Q0WC000003FZ3l0AG (QLI 0QLWC000003kicD4AQ), and fresh new quote 0Q0WC000003FoMA0A0 (QLI 0QLWC000003kySU4AY, CancelNetUnitPrice__c=15000). Cancel order 801WC00000m1DvgYAE (OI 802WC00000PYOG3YAP) also fails with same error. CONTROL PASS: prior quote 0Q0WC000003EQtl0AG (QLI 0QLWC000003jbhd4AA) with NetUnitPrice already=15000 reprices successfully to TotalPrice=-15000, confirming CancelLineCreditPosthook is functional when StampBaseFilter is cleared.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FoMA0A0/view (fresh cancel QLI 0QLWC000003kySU4AY, CancelNetUnitPrice__c=15000, NetUnitPrice=null post-reprice); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003EQtl0AG/view (control pass: NetUnitPrice=15000, TotalPrice=-15000); error: SF-Pricing-00006 StampBaseFilter#1 / SF-BRE-00004 on all fresh cancel lines",
+  "recordIds": [
+   "0Q0WC000003FoMA0A0",
+   "0QLWC000003kySU4AY",
+   "0Q0WC000003EQtl0AG",
+   "0Q0WC000003FZ290AG",
+   "0QLWC000003kiab4AA",
+   "0Q0WC000003FZ3l0AG",
+   "0QLWC000003kicD4AQ",
+   "801WC00000m1DvgYAE"
+  ],
+  "defectStep": "StampBaseFilter (parent step StampContributorBasePreDiscount): criterion #5 is 'NetUnitPrice GreaterThan 0' with no IsNotNull guard. Condition logic '(1 OR 2) AND 3 AND 4 AND 5' fails at evaluation because the rules engine cannot evaluate GreaterThan on a null NetUnitPrice (SF-BRE-00004). The reprice aborts before CancelLineCreditPosthook can seed the credit from CancelNetUnitPrice__c.",
+  "proposedFix": "Add an IsNotNull guard on criterion #5 of StampBaseFilter: change condition logic from '(1 OR 2) AND 3 AND 4 AND 5' to '(1 OR 2) AND 3 AND 4 AND (5 OR NetUnitPrice_IsNull_Guard)' where the guard is 'NetUnitPrice IsNull'. Alternatively, reorder the criteria so cancel lines are excluded via QuoteTypeText__c/OrderType before NetUnitPrice is evaluated, or set NetUnitPrice to 0 (rather than null) at li\u2026",
+  "notes": "Defect persists unchanged in V21 as of 2026-06-30 in-place edit. Discriminant is null vs non-null NetUnitPrice: fresh Apex-inserted cancel lines (NetUnitPrice=null) all fail; pre-priced lines (NetUnitPrice > 0) pass StampBaseFilter and CancelLineCreditPosthook correctly outputs TotalPrice=net*qty. Preflight passed: product Services type, PBE active in Fortra Price Book (list=15000, USD), CancelNetUnitPrice__c=15000 seeded from pbe.UnitPrice fallback (asset has no AssetActionSource), QuoteTypeTex\u2026"
+ },
+ "fixture_scripts": []
+}

@@ -1,0 +1,95 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000005ZrWRYA0"
+        },
+        "Id": "01qWC000005ZrWRYA0",
+        "Name": "QuoteSyncingTrigger",
+        "TableEnumOrId": "Quote",
+        "Status": "Active",
+        "UsageBeforeDelete": false,
+        "UsageAfterDelete": false,
+        "UsageBeforeUpdate": false,
+        "UsageAfterUpdate": true,
+        "UsageBeforeInsert": false,
+        "UsageAfterInsert": false,
+        "UsageAfterUndelete": false
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000007NC1FYAW"
+        },
+        "Id": "01qWC000007NC1FYAW",
+        "Name": "QuoteTrigger",
+        "TableEnumOrId": "Quote",
+        "Status": "Active",
+        "UsageBeforeDelete": false,
+        "UsageAfterDelete": false,
+        "UsageBeforeUpdate": true,
+        "UsageAfterUpdate": false,
+        "UsageBeforeInsert": true,
+        "UsageAfterInsert": false,
+        "UsageAfterUndelete": false
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000005ZCoEYAW"
+        },
+        "Id": "01qWC000005ZCoEYAW",
+        "Name": "QuoteLineGroupTrigger",
+        "TableEnumOrId": "QuoteLineGroup",
+        "Status": "Active",
+        "UsageBeforeDelete": false,
+        "UsageAfterDelete": false,
+        "UsageBeforeUpdate": false,
+        "UsageAfterUpdate": true,
+        "UsageBeforeInsert": false,
+        "UsageAfterInsert": false,
+        "UsageAfterUndelete": false
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC0000043n8LYAQ"
+        },
+        "Id": "01qWC0000043n8LYAQ",
+        "Name": "QuoteLineItemTrigger",
+        "TableEnumOrId": "QuoteLineItem",
+        "Status": "Active",
+        "UsageBeforeDelete": false,
+        "UsageAfterDelete": false,
+        "UsageBeforeUpdate": true,
+        "UsageAfterUpdate": false,
+        "UsageBeforeInsert": true,
+        "UsageAfterInsert": true,
+        "UsageAfterUndelete": false
+      },
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000005jIVlYAM"
+        },
+        "Id": "01qWC000005jIVlYAM",
+        "Name": "QuoteLineItemExchangeRateTrigger",
+        "TableEnumOrId": "QuoteLineItem",
+        "Status": "Active",
+        "UsageBeforeDelete": false,
+        "UsageAfterDelete": false,
+        "UsageBeforeUpdate": true,
+        "UsageAfterUpdate": true,
+        "UsageBeforeInsert": true,
+        "UsageAfterInsert": true,
+        "UsageAfterUndelete": false
+      }
+    ],
+    "totalSize": 5,
+    "done": true
+  },
+  "warnings": []
+}

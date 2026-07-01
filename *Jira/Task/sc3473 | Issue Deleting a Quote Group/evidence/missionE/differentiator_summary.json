@@ -1,0 +1,14 @@
+{
+  "failing_group": "1C9WC00000097of0AA Test HW1 (HW-type=True, Hardware__c=a0nWC000001wdV3YAI)",
+  "failing_quote": "0Q0WC000002U2020AC Accepted USD, 2 grouped + 2 ungrouped (MIXED)",
+  "unique_intersection": "OneTime+TermDefined SM mix inside ONE priced hardware group, net>>list, on a mixed quote (ungrouped lines remain to reprice)",
+  "shared_but_not_unique": {
+    "HW_type_true": "25 groups org-wide, many Accepted",
+    "configured_Power_attrs": "comparison 96J70AI + 35N0f have same Power License/Group Number/Server Type",
+    "net_gt_list_markup": "96J70AI also net>>list",
+    "Hardware__c_stamped": "all HW-type groups stamp lines",
+    "Accepted_status": "96J70AI also Accepted",
+    "mixed_quote": "7 quotes mixed, only failing one is also HW-type+OneTime-mix+markup"
+  },
+  "closest_nonfailing": "96J70AI (Accepted, HW-type, Power, net>>list, Hardware stamped) differs ONLY by: single-SM (all TermDefined) and NOT mixed"
+}

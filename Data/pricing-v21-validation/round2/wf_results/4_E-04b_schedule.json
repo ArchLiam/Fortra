@@ -1,0 +1,117 @@
+Definitive proof. The same channel value maps to different Fortra-orig values (e.g. SW 10→5 AND 10→10; NewMaint 0→0 AND 0→5), and deltas/ratios are all over the map. There is NO derivable rule — Non_Orig percentages are independent business inputs sourced from the D365 `hs_nonoriginating*discount` fields.
+
+Here is my report.
+
+---
+
+## E-04 part (b): Authoritative source of the Non_Orig (Fortra-Originated) partner discount schedule
+
+### VERDICT: FOUND (authoritative source located) — but a crosswalk gap makes it a soft blocker for the 30 UAT rows
+
+The Non_Orig percentages are **real business data with an authoritative source in the repo**. They are **NOT derivable** from the channel columns by any rule — they are **independent business inputs** originating from D365 `hs_nonoriginating*discount` fields.
+
+---
+
+### 1) The 30 PPM rows (all Non_Orig columns NULL — confirmed live in FortraUAT)
+
+| Name | Model_Type | Channel: SW/Sub/NewM/RenM/Svc | Non_Orig: SW/Sub/NewM/RenM/Svc |
+|---|---|---|---|
+| PPM-00000 | Guaranteed Margin | 15/18/12/10/8 | null/null/null/null/null |
+| PPM-00001 | Discount | 20/22/15/15/10 | null×5 |
+| PPM-00002 | Guaranteed Margin | 18/20/14/12/10 | null×5 |
+| PPM-00003 | Discount | 25/28/20/18/12 | null×5 |
+| PPM-00004 | Guaranteed Margin | 22/25/18/15/12 | null×5 |
+| PPM-00005 | Discount | 18/20/15/12/8 | null×5 |
+| PPM-00006 | Guaranteed Margin | 16/19/13/11/9 | null×5 |
+| PPM-00007 | Discount | 22/24/18/16/11 | null×5 |
+| PPM-00008 | Guaranteed Margin | 25/28/20/18/14 | null×5 |
+| PPM-00009 | Discount | 15/25/10/5/20 | null×5 |
+| PPM-00010 | Discount | 10/25/18/15/12 | null×5 |
+| PPM-00011 | Guaranteed Margin | 20/22/(null)/(null)/10 | null×5 |
+| PPM-00012 | Guaranteed Margin | 25/30/10/15/20 | null×5 |
+| PPM-00013 | Discount | 30/35/10/20/25 | null×5 |
+| PPM-00014 | Guaranteed Margin | 15/18/12/10/8 | null×5 |
+| PPM-00015 | Guaranteed Margin | (all null) | null×5 |
+| PPM-00016 | Discount | (all null) | null×5 |
+| PPM-00017 | Discount | 15/20/15/15/10 | null×5 |
+| PPM-00018 | Discount | 0/20/0/5/5 | null×5 |
+| PPM-00019 | Discount | 0/15/0/0/15 | null×5 |
+| PPM-00020 | Guaranteed Margin | (null)/20/(null)/(null)/20 | null×5 |
+| PPM-00021 | Discount | 0/(null)/0/(null)/(null) | null×5 |
+| PPM-00022 | Discount | 15/40/15/15/10 | null×5 |
+| PPM-00023 | Discount | 40/40/40/20/18 | null×5 |
+| PPM-00024 | Discount | 40/40/40/20/15 | null×5 |
+| PPM-00025 | Discount | 40/40/40/20/18 | null×5 |
+| PPM-00026 | Discount | 40/40/40/20/15 | null×5 |
+| PPM-00027 | Guaranteed Margin | 5/10/5/3/15 | null×5 |
+| PPM-00028 | Discount | 15/18/12/10/8 | null×5 (this is the E-04 test row, "AB Test Partner Account") |
+| PPM-00029 | Discount | (all null) | null×5 |
+
+All 30 confirmed NULL across all five Non_Orig columns.
+
+---
+
+### 2) Authoritative source found
+
+**Primary source (fully populated Non_Orig schedule, mapped to the exact SF field API names):**
+- `/Users/liamjeong/Documents/Code/Fortra/Fortra Discovery Documentation/Channel/Partner Discounts Data Lists/UAT Load Partner Discount Tech and Cyber.xlsx` — sheet `Data to Load C&T` (589 rows). Columns 16–20 are the Non_Orig fields, each header literally carrying the SF API name + D365 source field:
+  - col16 → `Non_Orig_New_Maint_Pct__c` (`hs_nonoriginatinginitialmaintenancediscount`)
+  - col17 → `Non_Orig_Services_Pct__c` (`hs_nonoriginatingprofservicesdiscount`)
+  - col18 → `Non_Orig_Ren_Maint_Pct__c` (`hs_nonoriginatingrenewmaintenancediscount`)
+  - col19 → `Non_Orig_Software_Pct__c` (`hs_nonoriginatingsoftwarediscount`)
+  - col20 → `Non_Orig_Subscription_Pct__c` (`hs_nonoriginatingsubscriptiondiscount`)
+
+**Curated Cyber source (side-by-side channel|fortra layout, 34 real partner rows) — clearest to read:**
+- `.../Partner Discounts Data Lists/Copy of D365 Partner Discounts Data Template-WIP-Lidiane 2026.2.27.xlsx` — sheet `Data to Load to UAT ` (identical twin: `CyberDiscounts_UATSample_041326.xlsx`). Banner columns 13–17 = "Channel Originated", 18–22 = "Fortra Originated", both blocks = SW / NewMaint / RenewMaint / Subscription / Service.
+
+Actual Fortra-Originated values from this sheet (excerpt):
+- Optiv (Diamond GM): channel 20/20/20/20/15 → **fortra 12/12/12/12/15**
+- BorderLAN (Gold GM): 15/15/15/15/15 → **7/7/7/7/15**
+- M. Tech (Distributor Disc): 40/40/20/40/18 → **5/5/5/5/0**
+- Securum (Gold Disc): 15/15/15/15/15 → **7/7/7/7/15**
+- Chillisoft (GM): 10/10/10/10/5 → **5/5/5/5/5**
+- SharkmanSix / GOSECURE (MSP/Bronze): 0/0/0/25/10 → **0/0/0/0/0**
+- Adistec (GM): 10/0/0/10/3.5 → **10/5/0/10/3.5**
+
+**Documentation (already synthesized in the KB):**
+- `/Users/liamjeong/Documents/Code/Fortra/FORTRA_DISCOVERY_KB/07_channel-partner-discounts-data.md` — lines 128–132 give the exact field→D365 map; §"Two discount tracks" (line 138) states Fortra-Originated is a separate 5-field track.
+- `/Users/liamjeong/Documents/Code/Fortra/FORTRA_DISCOVERY_KB/14_quotes-billing-partner-pricing-models.md` — lines 62–84 ground the values; line 70 explicitly documents Fortra-set mirror (12/12/12/12/15).
+
+Also mirrored (blank, ready-for-load templates): `PartnerDiscount_CyberforProductionLoad.xlsx` (`Cyber Data ` tab — Non_Orig columns present but empty in this copy), and the full raw D365 export `Raw 2` (2394 rows) embedded in both big workbooks.
+
+---
+
+### 3) Derivable vs independent — INDEPENDENT BUSINESS INPUTS (no rule)
+
+Proven from the 34 real source rows — the same channel value maps to different Fortra-orig values, and no fixed delta or ratio holds:
+
+| Category | Distinct channel→fortra pairs | Deltas (ch−fo) | Ratios (fo/ch) |
+|---|---|---|---|
+| Software | 0→0, 10→5, 10→10, 15→7, 20→12, 40→5 | 0, 5, 8, 35 | 0.13, 0.47, 0.5, 0.6, 1.0 |
+| New Maint | 0→0, 0→5, 10→5, 15→7, 20→12, 40→5 | −5, 0, 5, 8, 35 | 0.13, 0.47, 0.5, 0.6 |
+| Renew Maint | 0→0, 10→5, 15→7, 20→5, 20→12 | 0, 5, 8, 15 | 0.25, 0.47, 0.5, 0.6 |
+| Subscription | 0→0, 10→5, 10→10, 15→7, 20→12, 25→0, 40→5 | 0, 5, 8, 25, 35 | 0.0, 0.13, 0.47, 0.5, 0.6, 1.0 |
+| Service | 0→0, 3.5→3.5, 5→5, 10→0, 15→15, 18→0 | 0, 10, 18 | 0.0, 1.0 |
+
+Note the contradictions that kill any formula: Software `10→5` AND `10→10`; NewMaint `0→0` AND `0→5`; Subscription `25→0` (delta 25) vs `20→12` (delta 8). The Fortra-Originated schedule cannot be computed from the channel columns — it must come from the source data.
+
+---
+
+### The actual blocker (important nuance)
+
+The **schedule itself is FOUND**, but there is a **crosswalk gap** that means you still cannot mechanically populate the 30 UAT rows without a business decision:
+
+- The 30 `PPM-000xx` rows in FortraUAT are **synthetic test records** — no `Unit__c`, `Solution_Category__c`, `Solution_Group__c`, DUNS, or partner-Account key on any of them (all blank; only PPM-00029 has a `ZZ_EDIT` scribble). Their channel values (e.g. PPM-00028 = 15/18/12/10/8) **do not match any channel values in the source workbook**, and searching the 589-row source for "AB Test" / "PPM-" returns **zero matches**.
+- Therefore the 30 UAT rows **cannot be joined to the authoritative source by any natural key**. You cannot say "PPM-00028's Non_Orig = X" from the data — that row does not exist in the real schedule.
+
+**Bottom line for the fix:**
+- If the goal is to make E-04's specific test pass (PPM-00028 / "AB Test Partner"): the user/business must **assign** which real partner tier PPM-00028 represents (or supply an explicit Fortra-orig set for it). Do NOT invent numbers. The natural test value, if they want to mirror a Diamond GM tier, is `12/12/12/12/15` — but that assignment is a business call, not something the data dictates.
+- If the goal is to load the real 30 (or 589) rows for production: use the populated `UAT Load Partner Discount Tech and Cyber.xlsx` → `Data to Load C&T` directly (Non_Orig columns 16–20), keyed by DUNS to the SF partner Accounts — that is the authoritative, load-ready source.
+
+**Recommendation:** Report to the user as FOUND (schedule + source files above), with the one open decision being: *which Fortra-Originated set to stamp on the synthetic `PPM-000xx` test rows, since those test rows have no key into the real schedule.* This is the only piece that requires the user to supply/confirm a value.
+
+Key files:
+- `/Users/liamjeong/Documents/Code/Fortra/Fortra Discovery Documentation/Channel/Partner Discounts Data Lists/UAT Load Partner Discount Tech and Cyber.xlsx` (sheet `Data to Load C&T`, cols 16–20)
+- `/Users/liamjeong/Documents/Code/Fortra/Fortra Discovery Documentation/Channel/Partner Discounts Data Lists/Copy of D365 Partner Discounts Data Template-WIP-Lidiane 2026.2.27.xlsx` (sheet `Data to Load to UAT `, cols 18–22)
+- `/Users/liamjeong/Documents/Code/Fortra/FORTRA_DISCOVERY_KB/07_channel-partner-discounts-data.md` (field map, lines 128–132)
+- `/Users/liamjeong/Documents/Code/Fortra/FORTRA_DISCOVERY_KB/14_quotes-billing-partner-pricing-models.md` (grounded values, lines 62–84)

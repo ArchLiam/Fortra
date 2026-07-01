@@ -1,0 +1,26 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.SellingModelType"
+        },
+        "QualifiedApiName": "SellingModelType",
+        "DataType": "Picklist"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.ProductSellingModel"
+        },
+        "QualifiedApiName": "ProductSellingModelId",
+        "DataType": "Lookup(Product Selling Model)"
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "C-04",
+  "category": "C. Product Type",
+  "name": "Services product type pricing",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Services lines (Fortra_Product_Type__c=Services) aggregated into Total_Services__c bucket; no bundle/subscription splitting; NetUnitPrice = list rate per line; SUM = Total_Services__c",
+  "actual": "Quote 0Q0WC0000034UvR0AU: EFT Expert Service Standard (0QLWC000003dYeP4AU) Qty=1 NetUnitPrice=24000 NetTotalPrice=24000; Hourly Rate Sr. Consultant T&M (0QLWC000003dYeQ4AU) Qty=1 NetUnitPrice=275 NetTotalPrice=275; Total_Services__c=24275 (=24000+275). Type segregation holds: Total_Subscription__c=5775.5, Total_Software__c=27354 (no Services leakage). Confirmed by fresh Force-reprice 2026-06-30T13:13:14Z.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000034UvR0AU/view (Total_Services__c=24275, LastModifiedDate=2026-06-30T13:13:14Z after Force-reprice). Services QLIs: 0QLWC000003dYeP4AU (EFT Expert Service Standard, NetUnitPrice=24000, Fortra_Product_Type__c=Services, Base_Price__c=24000, Pre_Partner_Price__c=24000, SellingModelType=OneTime, AllowRegionalPricing__c=null, COLA_Uplift_Percent__c=null); 0QLWC000003dYeQ4AU (Hourly Rate Sr. Consultant T&M, NetUnitPrice=275, Fortra_Product_Type__c=Services, Base_Price__c=275, Pre_Partner_Price__c=275, SellingModelType=OneTime). PBE preflight: both products active in Fortra Price Book at non-zero USD (24000, 275). Reprice body: Data/sc-c04/v21_live/reprice_C04_body.json (isSuccess:true, errorResponse:[]).",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Branch confirmed: V21 'Total Services' AdvancedListFilter (gate Fortra_Product_Type__c Equals 'Services', parentStep ListContainer8) -> 'Services Aggregate Price' (GroupingAndAggregatePricing, SUM ItemNetTotalPrice, write-back Total_Services__c=24275). No partner discounting applied (Partner_Pricing_Source__c=null). No COLA (COLA_Uplift_Percent__c=null). No regional multiplier (AllowRegionalPricing__c=null/false). Services lines priced as OneTime with NetUnitPrice=ListPrice (clean pass-through). Active proc = Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). Run3 re-measurement on 2026-06-30 confirms prior run1 PASS still holds post any in-place edits.",
+  "verdict_reason": "Force-reprice through active V21 (2026-06-30T13:13:14Z) produced Total_Services__c=24275 exactly matching the sum of the two Services QLIs (24000+275). Type segregation confirmed (Subscription and Software buckets unaffected). Preflight passed: both PBEs active in Fortra Price Book at non-zero USD, Fortra_Product_Type__c=Services on both lines. Branch trace confirms V21 'Total Services' filter + 'Services Aggregate Price' aggregation step fired correctly on valid inputs."
+}

@@ -1,0 +1,435 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000004DUv0AM"
+        },
+        "Id": "1C9WC0000004DUv0AM",
+        "Name": "MTC-0183 Testing Hardware",
+        "Hardware__c": "a0nWC000001dECDYA2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002GV1t0AG"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002GV1t0AG"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000004LHB0A2"
+        },
+        "Id": "1C9WC0000004LHB0A2",
+        "Name": "UAT Split Test HW",
+        "Hardware__c": "a0nWC000001dZrlYAE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj9F0AS"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002Hj9F0AS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000004p8n0AA"
+        },
+        "Id": "1C9WC0000004p8n0AA",
+        "Name": "MTC-0183 Test HW",
+        "Hardware__c": "a0nWC000001fN3JYAU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002LSHt0AO"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002LSHt0AO"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000005EOv0AM"
+        },
+        "Id": "1C9WC0000005EOv0AM",
+        "Name": "UAT Split Test HW",
+        "Hardware__c": "a0nWC000001gZ5dYAE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002PIrp0AG"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002PIrp0AG"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000005r250AA"
+        },
+        "Id": "1C9WC0000005r250AA",
+        "Name": "UAT Split Test",
+        "Hardware__c": "a0nWC000001iDtpYAE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002X1fJ0AS"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002X1fJ0AS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000005r3h0AA"
+        },
+        "Id": "1C9WC0000005r3h0AA",
+        "Name": "Test Hardware Group",
+        "Hardware__c": "a0nWC000001dECDYA2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002X6qH0AS"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002X6qH0AS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000006OXV0A2"
+        },
+        "Id": "1C9WC0000006OXV0A2",
+        "Name": "UAT Split Test HW",
+        "Hardware__c": "a0nWC000001jnonYAA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002c1px0AA"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002c1px0AA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000006XCb0AM"
+        },
+        "Id": "1C9WC0000006XCb0AM",
+        "Name": "UAT Split Test HW",
+        "Hardware__c": "a0nWC000001k6ppYAA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002dN6r0AE"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002dN6r0AE"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000077ZR0AY"
+        },
+        "Id": "1C9WC00000077ZR0AY",
+        "Name": "Hardware Record",
+        "Hardware__c": "a0nWC000001ngvBYAQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002k8330AA"
+          },
+          "Status": "Draft"
+        },
+        "QuoteId": "0Q0WC000002k8330AA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000007Gsr0AE"
+        },
+        "Id": "1C9WC0000007Gsr0AE",
+        "Name": "UAT Split HW Test",
+        "Hardware__c": "a0nWC000001oC5RYAU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lh3Z0AQ"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002lh3Z0AQ"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090IX0AY"
+        },
+        "Id": "1C9WC00000090IX0AY",
+        "Name": "New Hardware Record",
+        "Hardware__c": "a0nWC000001taQTYAY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000034yyL0AQ"
+          },
+          "Status": "Draft"
+        },
+        "QuoteId": "0Q0WC0000034yyL0AQ"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091GD0AY"
+        },
+        "Id": "1C9WC00000091GD0AY",
+        "Name": "Joe Test",
+        "Hardware__c": "a0nWC000001u0KvYAI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000036YIF0A2"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC0000036YIF0A2"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Qn0AI"
+        },
+        "Id": "1C9WC00000092Qn0AI",
+        "Name": "Test Hardware",
+        "Hardware__c": "a0nWC000001uZvNYAU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000024QnZ0AU"
+          },
+          "Status": "Draft"
+        },
+        "QuoteId": "0Q0WC0000024QnZ0AU"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000093WX0AY"
+        },
+        "Id": "1C9WC00000093WX0AY",
+        "Name": "UAT Split Test HW",
+        "Hardware__c": "a0nWC000001utPRYAY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039Ab70AE"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC0000039Ab70AE"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC000000956v0AA"
+        },
+        "Id": "1C9WC000000956v0AA",
+        "Name": "Test - Joe",
+        "Hardware__c": "a0nWC000001u0KvYAI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003A6f70AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000003A6f70AC"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095A90AI"
+        },
+        "Id": "1C9WC00000095A90AI",
+        "Name": "HW#1",
+        "Hardware__c": "a0nWC000001ROXeYAO",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000034BSz0AM"
+          },
+          "Status": "Draft"
+        },
+        "QuoteId": "0Q0WC0000034BSz0AM"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095q50AA"
+        },
+        "Id": "1C9WC00000095q50AA",
+        "Name": "test",
+        "Hardware__c": "a0nWC000001vje9YAA",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038zZF0AY"
+          },
+          "Status": "Draft"
+        },
+        "QuoteId": "0Q0WC0000038zZF0AY"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095y90AA"
+        },
+        "Id": "1C9WC00000095y90AA",
+        "Name": "Test 3423",
+        "Hardware__c": "a0nWC000001vkNJYAY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj1B0AS"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002Hj1B0AS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095zl0AA"
+        },
+        "Id": "1C9WC00000095zl0AA",
+        "Name": "Test 3423 Sec",
+        "Hardware__c": "a0nWC000001vkQXYAY",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj1B0AS"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002Hj1B0AS"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096J70AI"
+        },
+        "Id": "1C9WC00000096J70AI",
+        "Name": "06/22 HW-1.2 Group",
+        "Hardware__c": "a0nWC000001w61FYAQ",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003CTVx0AO"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000003CTVx0AO"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096fh0AA"
+        },
+        "Id": "1C9WC00000096fh0AA",
+        "Name": "06/24 hw -1",
+        "Hardware__c": "a0nWC000001wIwrYAE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003DGGX0A4"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000003DGGX0A4"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096iv0AA"
+        },
+        "Id": "1C9WC00000096iv0AA",
+        "Name": "06/24 hw3",
+        "Hardware__c": "a0nWC000001wJ9lYAE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003DHXZ0A4"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000003DHXZ0A4"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097K10AI"
+        },
+        "Id": "1C9WC00000097K10AI",
+        "Name": "JACTestHardware20260624a",
+        "Hardware__c": "a0nWC000001wRP3YAM",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+          },
+          "Status": "Denied"
+        },
+        "QuoteId": "0Q0WC000002Ly1d0AC"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097QT0AY"
+        },
+        "Id": "1C9WC00000097QT0AY",
+        "Name": "HW1",
+        "Hardware__c": "a0nWC000001wRldYAE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000372Ef0AI"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC00000372Ef0AI"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteId": "0Q0WC000002U2020AC"
+      }
+    ],
+    "totalSize": 25,
+    "done": true
+  },
+  "warnings": []
+}

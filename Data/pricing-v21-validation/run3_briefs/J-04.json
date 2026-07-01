@@ -1,0 +1,34 @@
+{
+ "id": "J-04",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "COLA uplift on derived renewal net via prehook seed (commit, no $0)",
+ "priority": "P0",
+ "what_it_tests": "A derived renewal line eligible for COLA gets COLACalculatedPrice stamped to both InputUnitPrice and NetUnitPrice, and the prehook seeds NetUnitPrice (guarded null/<=0) so the renewal commits the uplifted value rather than $0",
+ "proc_mechanism": "COLA Uplift on Renewal + COLA Uplift Net on Renewal (COLACalculatedPrice__c -> InputUnitPrice AND NetUnitPrice); COLAUpliftPrehook buildNetUnitPriceUpdate seeding NetUnitPrice via updateContextAttributes",
+ "expected_behavior": "Renewal net = Asset.Price x (1+COLA%) (solution-category-matched from COLA_Uplift_Rules__mdt); both unit and net reflect uplift; no $0 commit",
+ "test_setup": "Derived/TermDefined renewal, COLA_Uplift_Percent set, SalesTransactionActionType='Renew', LastTransaction source, Solution_Category matched (e.g. Cybersecurity 7.85%)",
+ "defect_provenance": "SC-3350 / SC-3346 / COLA V16-V20",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "After LIVE Force-reprice under active V21 (LastModified 2026-06-30T03:11:02, not frozen): Cobalt Strike 0QLWC000003khwH4AQ COLA 6.2% PreCOLA=5900 -> COLACalc=6265.80 = UnitPrice=6265.80 AND NetUnitPrice=6265.80, NetTotal/TotalPrice=18797.40 (x3); beSECURE 0QLWC000003khwI4AQ PreCOLA=206 -> COLACalc=218.77 = UnitPrice=218.772 AND NetUnitPrice=218.77, Total=656.31. Quote Subtotal=19453.72 (no $0). Both COLA_Source=CMDT Lookup. Live COLAUpliftPrehook(49910c,api65,@version1.1) HAS the SC-3350 net-seed (buildNetUnitPriceUpdate/pendingNetUnitPriceUpdates), guard !maintenance && storedNet null/<=0.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwH4AQ/view ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwI4AQ/view",
+  "recordIds": [
+   "0Q0WC000003FY2r0AG",
+   "0QLWC000003khwH4AQ",
+   "0QLWC000003khwI4AQ"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY) confirmed. Branch: COLA Uplift on Renewal (steps 27-28, COLACalculatedPrice__c->InputUnitPrice) + COLA Uplift Net on Renewal (step 26, ->NetUnitPrice) gated SalesTransactionActionType=Renew; commit of NetUnitPrice from zero achieved by COLAUpliftPrehook net-seed (SC-3350 fix re-grafted onto live v1.1; grep TRUE for buildNetUnitPriceUpdate/pendingNetUnitPriceUpdates/SC-3350 -- the 06-26 memory claiming the seed was DELETED is now stale; SC-3354 re-graft is LIVE). defect_provenance SC-3350/SC-3346/COLA V16-V20: the from-zero\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

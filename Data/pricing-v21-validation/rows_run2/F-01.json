@@ -1,0 +1,15 @@
+{
+  "id": "F-01",
+  "category": "F. Transaction Type",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "named-script",
+  "expected": "New direct Software line runs full waterfall, net=list: NetUnitPrice=20500, NetTotalPrice=102500 (20500x5), Subtotal=102500; UnitPrice held at list.",
+  "actual": "After 3 Force-reprices NetUnitPrice=0, NetTotalPrice=0, Subtotal=0, PricingTermCount=null; UnitPrice=20500 held, ListPrice=20500. Identical PSM Subscription-type 5250 Integrator priced net=2021.25 PTC=1. Org-wide 0 Software-type QLIs have net>0; 22 have net=0.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fco10AC/view (QLI 0QLWC000003kmCn4AI); contrast working Subscription line 0QLWC000003kZFb4AM",
+  "recordIds": ["0Q0WC000003Fco10AC", "0QLWC000003kmCn4AI", "0QLWC000003kZFb4AM"],
+  "defectStep": "Subscription Pricing (V21 steps 110-112) consuming null PricingTermCount on a TermDefined line; Term-Defined proration PTC-stamp (steps 97/121/123 Proration / Term-Defined proration filter) only fires on the Subscription product-type / Subscription Aggregate path, so Fortra_Product_Type__c='Software' TermDefined lines never get PTC stamped -> net = InputUnitPrice x null = 0.",
+  "proposedFix": "Either (a) re-add the TermDefined PricingTermCount stamp on the Software/Total-Software path (SC-3420 deleted-step regression) so PTC defaults to 1 for any TermDefined line regardless of Fortra_Product_Type, or (b) give Cyber Software products a OneTime/Perpetual selling model option (none exist for Software type in UAT today) so perpetual software does not enter the TermDefined Subscription Pricing branch. Not applied (validation-only).",
+  "regression": "SC-3420",
+  "notes": "F-01 catalog premise (Cyber Software One-Time/Perpetual) is unsatisfiable in UAT: no Software-type product has a OneTime selling model; Software-type products are TermDefined-only and all price to $0 net. Same V21 reprice prices a Subscription-type TermDefined line correctly (net=list, PTC=1), isolating product-type, not selling-model/proration/PSM, as the differentiator. Fixture SubscriptionTerm 12->1 made no difference; root is the PTC stamp gating. REST place reprice returned isSuccess=true with empty errorResponse each time (silent $0, no gack)."
+}

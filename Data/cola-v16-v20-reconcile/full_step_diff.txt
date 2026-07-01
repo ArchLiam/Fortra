@@ -1,0 +1,35 @@
+======================================================================
+STEPS ONLY IN V16 (must consider porting to V20):
+  [1] List Operation  type=None/AdvancedListFilter
+  [2] Proration  type=Proration/BusinessKnowledgeModel
+  [27] Term-Defined proration filter (Line level)  type=None/ListGroup
+
+STEPS ONLY IN V20 (Nir currency additions):
+  [4] Attribute Value Pricing - Calculated Mode Base Bridge  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [3] Attribute Value Pricing - Calculated Mode Net Bridge  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [4] Attribute Value Pricing - Total Price Mode Base Bridge  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [3] Attribute Value Pricing - Total Price Mode Net Bridge  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [4] Attribute Value Pricing - Unit Price Mode Base Bridge  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [3] Attribute Value Pricing - Unit Price Mode Net Bridge  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [37] Currency Conversion - Net Total / Subtotal  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [35] Currency Conversion - Net Unit Price  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [38] Currency Conversion - Total Line Amount  type=FormulaBasedPricing/BusinessKnowledgeModel
+  [36] Currency Conversion - Unit Price Display  type=FormulaBasedPricing/BusinessKnowledgeModel
+
+======================================================================
+MATCHED-BUT-CHANGED STEPS: 3
+
+--- 'Derived Pricing Formula' (occ 0)  V16 seq=2 / V20 seq=2  name16=DerivedPricingFormula name20=DerivedPricingFormula
+     ~param formula-section-0-input: V16="IF ( QuoteTypeText__c = 'Renewal' , NetUnitPrice , IF ( AttributeValue = 'Expert' , 0.35 , IF ( AttributeValue = 'Premier' , 0.30 , IF ( AttributeValue = 'Express' , 0.30 , IF ( AttributeValue = 'Premium' , 0.24 , IF ( AttributeValue = 'Standard' , 0.20 , IF ( AttributeValue = 'Professional' , 0.20 , IF ( AttributeValue = 'Basic' , 0.15 , 0 ) ) ) ) ) ) ) * IF ( Base_Price__c > 0 , Base_Price__c , IF ( Pre_Partner_Price__c > 0 , Pre_Partner_Price__c , IF ( InputUnitPrice > 0 , InputUnitPrice , 0 ) ) ) )" -> V20="IF ( QuoteTypeText__c = 'Renewal' , NetUnitPrice , IF ( AttributeValue = 'Premier' , 0.30 , IF ( AttributeValue = 'Standard' , 0.20 , IF ( AttributeValue = 'Professional' , 0.20 , 0 ) ) ) * IF ( Base_Price__c > 0 , Base_Price__c , IF ( Pre_Partner_Price__c > 0 , Pre_Partner_Price__c , IF ( InputUnitPrice > 0 , InputUnitPrice , 0 ) ) ) )"
+
+--- 'Software Aggregate Price' (occ 0)  V16 seq=2 / V20 seq=2  name16=SoftwareAggregatePrice name20=SoftwareAggregatePrice
+     -param(V16 only) condition-0-input = 'ItemNetTotalPrice'
+     -param(V16 only) condition-0-input-data-type = 'Currency'
+     -param(V16 only) condition-0-operator = 'isNotNull'
+     ~param where-condition-count: V16='1' -> V20='0'
+
+--- 'Subscription Aggregate Price' (occ 0)  V16 seq=2 / V20 seq=2  name16=SubscriptionAggregatePrice name20=SubscriptionAggregatePrice
+     -param(V16 only) condition-0-input = 'ItemNetTotalPrice'
+     -param(V16 only) condition-0-input-data-type = 'Currency'
+     -param(V16 only) condition-0-operator = 'isNotNull'
+     ~param where-condition-count: V16='1' -> V20='0'

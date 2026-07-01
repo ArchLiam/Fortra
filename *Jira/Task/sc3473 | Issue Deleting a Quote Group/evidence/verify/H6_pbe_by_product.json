@@ -1,0 +1,94 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSW3YAM"
+        },
+        "Id": "01uWC000004dSW3YAM",
+        "Product2Id": "01tWC00000DD11EYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11EYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 2200,
+        "IsActive": true,
+        "IsDerived": false
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSWRYA2"
+        },
+        "Id": "01uWC000004dSWRYA2",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 2850,
+        "IsActive": true,
+        "IsDerived": false
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dTDyYAM"
+        },
+        "Id": "01uWC000004dTDyYAM",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 20000,
+        "IsActive": true,
+        "IsDerived": false
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

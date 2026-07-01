@@ -1,0 +1,18 @@
+{
+ "id": "B-06",
+ "category": "B. Selling Model",
+ "name": "Evergreen renewal (auto-continue, no fixed term-end)",
+ "priority": "P1",
+ "verdict": "N-A",
+ "rootCause": "OUT-OF-SCOPE",
+ "dataSource": "config-query",
+ "preflight": "na",
+ "expected": "Evergreen renewal carries prior net (or COLA-uplifted net), keeps evergreen term count, no fixed-term proration, no end-date derivation; asset continues",
+ "actual": "OUT OF SCOPE for Fortra (Evergreen selling model \u2014 Fortra has NO evergreen catalog) \u2014 per stakeholder Marc DeBrey 2026-06-30. V21 branch confirmed wired by source-trace; not a coverage gap and not BLOCKED.",
+ "evidence": "",
+ "defectStep": "",
+ "proposedFix": "",
+ "regression": "",
+ "notes": "Scope ruling: evergreen scenarios are N-A by design (no fixture built).",
+ "verdict_reason": "evergreen not used by Fortra business"
+}

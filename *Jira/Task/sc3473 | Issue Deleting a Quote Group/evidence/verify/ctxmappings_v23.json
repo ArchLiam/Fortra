@@ -1,0 +1,156 @@
+[
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRVYA2"
+    },
+    "Id": "11jWC0000064MRVYA2",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "SalesTransaction",
+    "IsDefault": true,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/SalesTransaction"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRWYA2"
+    },
+    "Id": "11jWC0000064MRWYA2",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "QuoteEntitiesMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/QuoteEntitiesMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRXYA2"
+    },
+    "Id": "11jWC0000064MRXYA2",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "SalesAgreementEntitiesMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/SalesAgreementEntitiesMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRYYA2"
+    },
+    "Id": "11jWC0000064MRYYA2",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "OrderEntitiesMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/OrderEntitiesMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRZYA2"
+    },
+    "Id": "11jWC0000064MRZYA2",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "QuoteToContractSlsTrxnMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/QuoteToContractSlsTrxnMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRaYAM"
+    },
+    "Id": "11jWC0000064MRaYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "OrderToContractSlsTrxnMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/OrderToContractSlsTrxnMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRbYAM"
+    },
+    "Id": "11jWC0000064MRbYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "ContractNodeMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/ContractNodeMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRcYAM"
+    },
+    "Id": "11jWC0000064MRcYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "AssetEntitiesMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/AssetEntitiesMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRdYAM"
+    },
+    "Id": "11jWC0000064MRdYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "ProductDiscoveryContextMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/ProductDiscoveryContextMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MReYAM"
+    },
+    "Id": "11jWC0000064MReYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "SalesTransactionToAssetMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/SalesTransactionToAssetMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRfYAM"
+    },
+    "Id": "11jWC0000064MRfYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "AssetToSalesTransactionMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/AssetToSalesTransactionMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRgYAM"
+    },
+    "Id": "11jWC0000064MRgYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "ContractToSalesTxnMapping",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/ContractToSalesTxnMapping"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRhYAM"
+    },
+    "Id": "11jWC0000064MRhYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "SalesTxnItmToAssetStatePrdMap",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/SalesTxnItmToAssetStatePrdMap"
+  },
+  {
+    "attributes": {
+      "type": "ContextMapping",
+      "url": "/services/data/v67.0/tooling/sobjects/ContextMapping/11jWC0000064MRiYAM"
+    },
+    "Id": "11jWC0000064MRiYAM",
+    "ContextDefinitionVersionId": "11pWC000002TjF7YAK",
+    "Title": "AssetStatePrdToSalesTxnItmMap",
+    "IsDefault": false,
+    "InheritedFrom": "SalesTransactionContext__stdctx/version/AssetStatePrdToSalesTxnItmMap"
+  }
+]

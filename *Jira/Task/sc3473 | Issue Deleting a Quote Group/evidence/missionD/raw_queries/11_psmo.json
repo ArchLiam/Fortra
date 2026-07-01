@@ -1,0 +1,83 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ProductSellingModelOption",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModelOption/0iOWC0000000QY32AM"
+        },
+        "Id": "0iOWC0000000QY32AM",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        }
+      },
+      {
+        "attributes": {
+          "type": "ProductSellingModelOption",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModelOption/0iOWC0000000SES2A2"
+        },
+        "Id": "0iOWC0000000SES2A2",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        }
+      },
+      {
+        "attributes": {
+          "type": "ProductSellingModelOption",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModelOption/0iOWC0000000RRM2A2"
+        },
+        "Id": "0iOWC0000000RRM2A2",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        }
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

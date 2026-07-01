@@ -1,0 +1,31 @@
+{
+ "id": "K-04",
+ "category": "K. Edge Cases",
+ "name": "Workday extendedAmount channel mismatch (list vs net)",
+ "priority": "P0",
+ "what_it_tests": "When regional/partner/tiered pricing makes list != net, the Workday sync must not map the LIST channel (TotalLineAmount) as extendedAmount while the header uses NET; the channels must reconcile or the integration maps extendedAmount<-NetTotalPrice",
+ "proc_mechanism": "Procedure regional/COLA steps write InputUnitPrice/TotalLineAmount (list) while net stays catalog; MuleSoft maps OrderItem.TotalLineAmount->extendedAmount vs header NetTotalPrice/currentContractAmount; fix = extendedAmount<-NetTotalPrice",
+ "expected_behavior": "extendedAmount == header contract amount (both net); line internally consistent OR Mule maps net-only; no 'Contract Amount and Contract Line Revenue Amount must be equal' error",
+ "test_setup": "Order with regional (Italy TotalLineAmount 1540 < NetTotalPrice 2400) or partner discount, Workday sync",
+ "defect_provenance": "SC-3374 / SC-3347 / SC-3143 (extendedAmount mapping)",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Pre-fix repro 00095381 (2026-06-08): TotalLineAmount=3150 (list) vs NetTotalPrice=2835 (net), Workday_Sync_Status=Failure, message='Contract Amount and Contract Line Revenue Amount must be equal to Submit Contract.' (K-04 defect confirmed). Regional reconcile 00095398 (2026-06-09): AllowRegionalPricing__c=true, ListPrice=2400, TotalLineAmount=1540=NetTotalPrice=1540, Workday_ID='00095398', Workday_Sync_Status=Success (V21 RegionalNetReconcile step writes TotalLineAmount=net). Discount fix 00095562 (2026-06-19): GoAnywhere Advanced Agent TotalLineAmount=4130 vs NetTotalPrice=1648.35 (diverge as designed), Workday_ID='00095562', Workday_Sync_Status=Success (Mule maps extendedAmount<-NetTotalPrice, payload extendedAmount=1648.35=currentContractAmount=9154.35). Post-fix survey: 10 orders with Workday_Sync_Status=Failure after 2026-06-09 inspected; ZERO show 'Contract Amount and Contract Line\u2026",
+  "evidence": "Pre-fix repro (stale, never fixed): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kML51YAG/view (00095381, Failure='Contract Amount and Contract Line Revenue Amount must be equal'). Regional reconciled: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kQn0zYAC/view (00095398, TotalLineAmount=1540=NetTotalPrice=1540, Workday_ID set, Success). Discount fix: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lDM31YAG/view (00095562, extendedAmount=1648.35 NET == contract 9154.35, Success). Post-fix sample (NONE show K-04 error): 00095566 (dup line#), 00095583 (bundle line type), 00095586 (dup contract line#), 00095609 (billing schedule ref), 00095610 (billing schedule ref), 00095612 (not Draft).",
+  "recordIds": [
+   "801WC00000kML51YAG",
+   "801WC00000kQn0zYAC",
+   "801WC00000lDM31YAG",
+   "0000564141",
+   "0Q0WC00000372Ef0AI",
+   "0QLWC000003cEjN4AU",
+   "801WC00000gVPfJYAW"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "K-04 is MuleSoft-owned (outside SF/V21). Two sub-cases: (1) regional list!=net reconciled at the SF/V21 procedure layer by V10 RegionalNetReconcile step carried into V21 (00095398: TotalLineAmount=1540=NetTotalPrice while ListPrice=2400, Workday_Sync_Status=Success). (2) discount/partner list!=net is NOT reconciled in SF by design (V21 still produces TotalLineAmount=4130 != NetTotalPrice=1648.35 on 00095562) but is reconciled by current Mule mapping extendedAmount<-NetTotalPrice (proven by 00095\u2026"
+ },
+ "fixture_scripts": []
+}

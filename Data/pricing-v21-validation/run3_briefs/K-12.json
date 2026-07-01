@@ -1,0 +1,36 @@
+{
+ "id": "K-12",
+ "category": "K. Edge Cases",
+ "name": "Second-click stale-context on tiered/attribute line",
+ "priority": "P1",
+ "what_it_tests": "A tiered/attribute-priced line must price correctly on the FIRST reprice, not require a second click (one-cycle stale-context lag on the Unit Quantity / IsPriceImpacting attribute)",
+ "proc_mechanism": "Attribute Value Pricing modes + IsPriceImpacting attribute sync (set true on tiered PADs); Sync InputUnitPrice from Net / for Discount Base",
+ "expected_behavior": "Correct price after a single reprice; no one-cycle lag",
+ "test_setup": "Tiered PAD line, change Unit Quantity attribute, single reprice",
+ "defect_provenance": "SC-3390",
+ "prior_run": {
+  "verdict": "BLOCKED",
+  "dataSource": "existing",
+  "actual": "FIX VERIFIED INTACT + ENGINE SINGLE-PASS CORRECT, but the actual two-click SYMPTOM is not headless-reproducible. (1) All 26/26 tiered Unit-Volume PADs (AttributeDefinition 0tjWC0000000tqvYAA / Attribute_Volume) carry IsPriceImpacting=true today - the exact SC-3390 fix; 0 AttributeAdjustmentCondition rows on the attr = safe no-match pass-through as designed. (2) Single Force-reprice of the live UI-priced gold-oracle quote 0Q0WC000002gBPJ0A2 (CLSAAS line 0QLWC00000311rZ4AQ, committed Unit Volume=50, Feature Options=Managed Service, USD, list 2180) returned isSuccess=true/errorResponse=[] and the line priced NetUnitPrice=Base_Price__c=TotalPrice=1357.2 = correct tier 50-99 in ONE pass (CompletedWithPricing). The live prehook AttributeVolumePricingPrehook (01pWC000001wAzJYAU, mod 2026-06-26) is the post-fix two-pass Attribute_Tier_Pricing_Storage__c lookup. (3) The defect symptom is a UI sid\u2026",
+  "evidence": "Gold-oracle quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002gBPJ0A2/view (line 0QLWC00000311rZ4AQ: Unit Volume=50 -> NetUnitPrice 1357.2 single pass, CompletedWithPricing); place resp scratchpad k12_place_resp.json (isSuccess=true, errorResponse=[]); PADs: SELECT IsPriceImpacting FROM ProductAttributeDefinition WHERE AttributeDefinitionId='0tjWC0000000tqvYAA' -> 26/26 true; AttributeAdjustmentCondition on attr = 0; prehook ApexClass 01pWC000001wAzJYAU live; QLIA/OIA committed Unit Volume org-wide = 0.",
+  "recordIds": [
+   "0Q0WC000002gBPJ0A2",
+   "0QLWC00000311rZ4AQ",
+   "0tjWC0000000tqvYAA",
+   "01pWC000001wAzJYAU",
+   "01tWC00000DD17PYAT"
+  ],
+  "defectStep": "",
+  "regression": "SC-3390",
+  "rootCause": "N-A(pass)",
+  "notes": "Active proc = Rev_Mgmt_Default_Pricing_Procedure V21 (design 9QBWC0000000oWH4AY, context SalesTransactionContextExt_v2 v23), confirmed Active 2026-06-29. The K-12 symptom is the SC-3390 two-click stale-context lag, which the authoritative RCA (project_sc3390_tiered_price_twice) proved is a UI commit/refresh ordering artifact - the engine prices its COMMITTED input perfectly (refuted as cause); the first click prices the STALE pre-edit committed value. Per that RCA the decisive 2-click proof is UI-only and CANNOT be reproduced headlessly (no REST path to race side-panel-save vs reprice; 0 tiere\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

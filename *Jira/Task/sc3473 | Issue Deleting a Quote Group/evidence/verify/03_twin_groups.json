@@ -1,0 +1,150 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Vd0AI"
+        },
+        "Id": "1C9WC00000092Vd0AI",
+        "Name": "Test Hardware",
+        "QuoteId": "0Q0WC0000027oGf0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027oGf0AI"
+          },
+          "Status": "In Review"
+        },
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096Sn0AI"
+        },
+        "Id": "1C9WC00000096Sn0AI",
+        "Name": "test partitions",
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+          },
+          "Status": "Denied"
+        },
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "Hardware_Group_Type__c": true,
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+        },
+        "Id": "1C9WC00000090SD0AY",
+        "Name": "HW-1",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092x30AA"
+        },
+        "Id": "1C9WC00000092x30AA",
+        "Name": "Test Hardware",
+        "QuoteId": "0Q0WC0000038GFZ0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038GFZ0A2"
+          },
+          "Status": "Draft"
+        },
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095lF0AQ"
+        },
+        "Id": "1C9WC00000095lF0AQ",
+        "Name": "Group",
+        "QuoteId": "0Q0WC0000039E8T0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039E8T0AU"
+          },
+          "Status": "Accepted"
+        },
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095gP0AQ"
+        },
+        "Id": "1C9WC00000095gP0AQ",
+        "Name": "Test",
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+          },
+          "Status": "Draft"
+        },
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null
+      }
+    ],
+    "totalSize": 7,
+    "done": true
+  },
+  "warnings": []
+}

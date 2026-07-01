@@ -1,0 +1,36 @@
+{
+ "id": "F-11",
+ "category": "F. Transaction Type",
+ "name": "Amend / co-term line with correct partner band",
+ "priority": "P1",
+ "what_it_tests": "An Amend line is included in the manual quote-level discount and amend-aware paths, honors co-term dates, and (if new-business maintenance) applies the new-business partner band, not the renewal band",
+ "proc_mechanism": "Manual Quote Level Discount (ItemSalesTransactionAction Equals 'Amend'); Partner discount table keyed on Fortra_Product_Type__c; procedure filter QuoteType NOT Renewal",
+ "expected_behavior": "Amend line eligible for manual quote-level discount; co-term dates honored; new-maint partner band (e.g. 17%) applied not renewal band; mid-term add/remove prorated",
+ "test_setup": "ItemSalesTransactionAction='Amend', QuoteTypeText='Amendment', add 100 users mid-term co-termed, Fortra_Product_Type='New Maintenance' partner 17%",
+ "defect_provenance": "SC-3346",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Active proc V21 (status=Active, versionNumber=21; d01_v21_fresh.json). PROC TRACE: ManualQuoteLevelDiscount (step 85, AdvancedListFilter) filter logic '1 AND (2 OR 3 OR 4) AND (5 OR 6)' where criterion 2 = ItemSalesTransactionAction Equals 'Amend' => Amend lines ARE eligible. Dedicated AmendNetCarry group (steps 3-6, seq39): AmendFilter gates ItemPricingSource='LastTransaction' AND ItemSalesTransactionAction='Amend' AND DerivedPricingAttribute=false, then AmendSeedNetUnit = IF(NetUnitPrice>0,NetUnitPrice,InputUnitPrice) (co-term net carryover). Partner band keyed PURELY on Fortra_Product_Type__c (PartnerPricingService.getMarginForProductType: 'New Maintenance'->New_Maintenance_Percent__c, 'Renewal Maintenance'->Renewal_Maintenance_Percent__c); PartnerNetPricePosthook.isNewBusinessDerivedMaintenance returns true ONLY for productType='New Maintenance' AND non-renewal quote, so the Renewal-\u2026",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000039Vm10AE/view ; New-Maint Amend QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003ehR8/view (Net 62.48->60.35, FPT=New Maintenance, QA=Amend) ; partner model aGlWC00000024vZ0AQ NewMaint=12/RenMaint=10 ; place reprice isSuccess=true x3 (Data/sc3473/f11_evidence/reprice_resp{1,2,3}.json) ; proc trace + live posthook/service classes in Data/sc3473/f11_evidence/ (SUMMARY.md, PartnerNetPricePosthook.cls L488-506 isNewBusinessDerivedMaintenance, L1935-2033 buildDerivedMaintenanceSequentialDiscountUpdate, PartnerPricingService.cls L253-278 getMarginForProductType) ; V21 metadata Data/pricing-v21-validation/d01_v21_fresh.json (AmendFilter, ManualQuoteLevelDiscount, PartnerDiscount steps)",
+  "recordIds": [
+   "0Q0WC0000039Vm10AE",
+   "0QLWC000003ehR8",
+   "0QLWC000003ehR7",
+   "0QLWC000003ehSj",
+   "aGlWC00000024vZ0AQ"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 confirmed (fresh metadata status=Active, 123 steps). Three F-11 claims validated on a REAL UI-priced Amend line (not a hand-built headless line, so no base-seed gap): (1) Amend eligible for Manual Quote Level Discount = PASS by proc filter (ItemSalesTransactionAction='Amend' is criterion 2 of ManualQuoteLevelDiscount). (2) New-business band applied NOT renewal band = PASS empirically: the New-Maint amend line routes through isNewBusinessDerivedMaintenance (true) and the renewal-COLA/Renewal-Maintenance-band path is gated out; committed net (62\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

@@ -1,0 +1,37 @@
+{
+ "id": "J-02",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Derived formula tier percentages by support level (7-tier completeness)",
+ "priority": "P0",
+ "what_it_tests": "Each Maintenance Type Defn AttributeValue maps to its correct derived percent (Expert .35, Premier .30, Express .30, Premium .24, Standard .20, Professional .20, Basic .15, else 0); products with no MTD must not silently fall to a $0 trailing branch (1,708 of 1,887 historically did)",
+ "proc_mechanism": "DerivedPricingFormula nested IF on AttributeValue x Source_List_Price__c (V16+ 7-tier); unknown/platinum/missing -> 0",
+ "expected_behavior": "Correct tier percent per AttributeValue; missing MTD -> documented standard, not silent $0; formula must cover all 8 Maintenance_Rate__mdt tiers",
+ "test_setup": "New derived maintenance lines, one per AttributeValue tier (incl. Expert -> 0.35 x list; missing-MTD case)",
+ "defect_provenance": "SC-3346 / SC-3372 / NB-DERIVED-TIER",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "named-script",
+  "actual": "Reprice (Force) on quote 0Q0WC000003Fd2X0AS: license NetUnit=355; Standard NetUnit=71 (0.20x355); Expert NetUnit=124.25 (0.35x355); no-MTD line NetUnit=0. All from real records, Source_List_Price__c=355.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fd2X0AS/view ; QLIs 0QLWC000003kmSw4AI (Std=71), 0QLWC000003kmSx4AI (Expert=124.25)",
+  "recordIds": [
+   "0Q0WC000003Fd2X0AS",
+   "0QLWC000003kmSw4AI",
+   "0QLWC000003kmSx4AI",
+   "0QLWC000003kmUX4AY"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Active V21 DerivedPricingFormula is 3-tier (Premier/Standard/Professional, else 0) per the V21 version description 'Derived Pricing Formula reverted to 3-tier'; the Expert/Premium/Express/Basic branches are absent so the procedure formula alone returns $0 for those tiers. BUT the Active Apex posthook PartnerNetPricePosthook (01pWC000002VmiLYAS) reads ALL 7 Maintenance_Rate__mdt tiers (Expert=0.35) and overrides line net = contributorNet x rate AFTER the formula, so Expert priced correctly to 124.25. End-to-end result is correct per-tier and shows NO silent $0 on a recognized tier (the historic\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ02DerivedTierTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

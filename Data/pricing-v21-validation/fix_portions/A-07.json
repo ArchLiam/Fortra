@@ -1,0 +1,18 @@
+{
+  "id": "A-07",
+  "title": "Backfill Maintenance_Type_Defn ProductAttributeDefinition to ~1567 New Maintenance products",
+  "primarySurface": "DATA-RECORDS",
+  "artifacts": [
+    {
+      "type": "product-attribute",
+      "identifier": "ProductAttributeDefinition — AttributeDefinitionId=0tjWC000000096bYAA (Maintenance_Type_Defn / MTD) — INSERT ~1567 rows for active New Maintenance Product2 records currently missing MTD (1683 total active New Maint products; only 116 carry MTD today = 6.9%)",
+      "editable": true
+    }
+  ],
+  "deployMechanism": "REST/Bulk data insert — query the ~1567 active New Maintenance Product2 Ids lacking a PAD row for AttributeDefinitionId=0tjWC000000096bYAA, then Bulk API v2 insert new ProductAttributeDefinition rows with: AttributeDefinitionId=0tjWC000000096bYAA, Name='Maintenance Type', DefaultValue='Standard', IsPriceImpacting=true, IsRequired=false, IsHidden=false, IsReadOnly=false, Status='Active', AttributeCategoryId=0v3WC00000005ZEYAY, ProductClassificationAttributeId=11CWC000007hls42AA. No proc deploy, no Apex deploy.",
+  "fixBrief": "The defect is a pure org-config gap: ~1567 of 1683 active New Maintenance Product2 records have NO ProductAttributeDefinition row for the Maintenance_Type_Defn attribute (AttributeDefinitionId=0tjWC000000096bYAA). V21 step 39 'Derived Pricing Formula' (tier lookup on MTD AttributeValue) returns 0 when the attribute is absent, producing NetUnitPrice=0. The BoKS positive control (PIAMBK 01tWC00000DD1bsYAD) has the MTD PAD with DefaultValue='Standard' and IsPriceImpacting=true and prices correctly to 0.20 x Source_List_Price. Fix = Bulk API v2 insert one new PAD row per gap product, copying the field shape from existing MTD PADs: AttributeDefinitionId=0tjWC000000096bYAA, Name='Maintenance Type', DefaultValue='Standard', IsPriceImpacting=true, IsRequired=false, IsHidden=false, IsReadOnly=false, Status='Active', AttributeCategoryId=0v3WC00000005ZEYAY, ProductClassificationAttributeId=11CWC000007hls42AA. Identify the gap with: SELECT Id FROM Product2 WHERE Fortra_Product_Type__c='New Maintenance' AND IsActive=true AND Id NOT IN (SELECT Product2Id FROM ProductAttributeDefinition WHERE AttributeDefinitionId='0tjWC000000096bYAA'). Verify by Force-repricing an FIM CCM maintenance quote (e.g. 0Q0WC000003AqV30AK) — CCMMSN and CCMLSE lines should show NetUnitPrice = SLP x 0.20 (Standard tier). NOT APPLIED.",
+  "sharesArtifactWith": [],
+  "blockingDeps": [],
+  "effort": "M",
+  "notes": "PAD field shape confirmed live from record 0v7WC0000000DvXYAU. DefaultValue='Standard' covers the FIM CCM family; verify per product family if any non-Standard tier applies before bulk insert. The 116 existing MTD PADs confirm AttributeCategoryId and ProductClassificationAttributeId values are stable across all current MTD PADs. Gap SOQL excludes the 116 already-present products via NOT IN subquery. Scope from audit_run3: 1683 active New Maint products total, 116 with MTD = 1567 gap rows to insert."
+}

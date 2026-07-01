@@ -1,0 +1,17 @@
+{
+  "id": "J-06",
+  "title": "Partner derived-maintenance uses license 15% Software band instead of New Maintenance 12% band",
+  "primarySurface": "APEX",
+  "artifacts": [
+    {
+      "type": "apex-class",
+      "identifier": "PartnerNetPricePosthook — loadNewMaintenanceLines (line ~1372-1374) and buildContributorCarryForwardSnapshot / resolveContributorPartnerPercent (lines ~1497-1526)",
+      "editable": true
+    }
+  ],
+  "deployMechanism": "Apex class deploy via sf CLI (sf project deploy start --source-dir ... -o FortraUAT). Retrieve live class first (sc-j06-verify/unpackaged/classes/ or Data/sc3473/j06_audit_live/classes/); edit; deploy. No proc version bump needed.",
+  "fixBrief": "In PartnerNetPricePosthook.loadNewMaintenanceLines (line ~1372-1374), the derived New-Maintenance line inherits partnerPercent from ContributorCarryForwardSnapshot.partnerPercent, which was built by buildContributorCarryForwardSnapshot → resolveContributorPartnerPercent and returns the CONTRIBUTOR (license) line's PartnerDiscountPercent = 15 (Software band). The correct band for a 'New Maintenance' product is New_Maintenance_Percent__c = 12, accessible via PartnerPricingService.getMarginForProductType(model, 'New Maintenance'). The call to getMarginForProductType is structurally bypassed for derived maintenance by isDerivedMaintenanceProductType (line 550-552 returns null from calculateDeferredPartnerPrice). Fix: in loadNewMaintenanceLines, after the contributor carry-forward is resolved, resolve the active Partner_Pricing_Model__c for the QLI's Quote (already loaded in partnerModels via quoteData) and call PartnerPricingService.getMarginForProductType(model, 'New Maintenance') to obtain the correct discount percent; use THAT value as partnerPercent for the NewMaintInputs constructor instead of contributor.partnerPercent. Keep contributor.pricingBase (355) as the contributorNet — only the percent band source changes. Verify by repricing Quote 0Q0WC000003FdCD0A0 (Q-J06-58422) via REST v67 force-reprice and confirming maint QLI 0QLWC000003kmeE4AQ NetUnitPrice = 62.48 = 71 * (1 − 0.12), not 60.35.",
+  "sharesArtifactWith": ["E-04"],
+  "blockingDeps": [],
+  "effort": "M"
+}

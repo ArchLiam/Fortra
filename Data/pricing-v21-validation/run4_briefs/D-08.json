@@ -1,0 +1,32 @@
+{
+ "id": "D-08",
+ "category": "D. Pricing Mode",
+ "name": "Bundle-based adjustment / inclusive-price bundle",
+ "priority": "P1",
+ "what_it_tests": "A bundle child/inclusive-price line receives bundle-based adjustment from the bundle decision table and its inclusive price flows to TotalLineAmount (bundle priced at discount to a-la-carte sum)",
+ "proc_mechanism": "Bundle Based Adjustment Entries (MainItemProduct/RootItemProduct + InclusivePrice); Assignment (InclusivePriceConstant -> TotalLineAmount); ListOperation97 (InclusivePrice Equals true)",
+ "expected_behavior": "Bundle_Based_Adjustment_Decision_Table applies; inclusive bundle price set into TotalLineAmount",
+ "test_setup": "GoAnywhere Starter Bundle (15% off a-la-carte=17.064k) parent + inclusive-price children, InclusivePrice=true",
+ "defect_provenance": "SC-3346 (Tripwire bundle-format)",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Quote 0Q0WC000002hhJv0AI (OTP Bank renewal, 18 lines) force-repriced through V21 (pricingPref=Force, configurationMethod=Skip, v67.0): isSuccess=true, errorResponse=[], CalculationStatus=CompletedWithPricing. Bundle parent GOA-GAM-NRPS-GASBGP (GoAnywhere Starter Bundle with Gateway) QLI 0QLWC000003FwWT4A0: ListPrice=39740.1266, NetUnitPrice=6235.174554, TotalLineAmount=6235.174554 (bundle-based adjustment ~84.3% off list). Inclusive children all zeroed: GAAWRP(0QLWC000003FwWV4A0) NetUnitPrice=0 TotalLineAmount=0 (list 24720.17); GAFSP(0QLWC000003FwWa4AK) NetUnitPrice=0 TotalLineAmount=0; GAGLBP(0QLWC000003Fx684AC) NetUnitPrice=0 TotalLineAmount=0; GASFP(0QLWC000003FwWS4A0) NetUnitPrice=0 TotalLineAmount=0; GASSP(0QLWC000003Fx664AC) NetUnitPrice=0 TotalLineAmount=0; GAFCSP both 0; GOBP(0QLWC000003FwWU4A0) NetUnitPrice=0 TotalLineAmount=0. Extra non-inclusive a-la-carte lines priced normal\u2026",
+  "evidence": "Reprice: POST /services/data/v67.0/connect/rev/sales-transaction/actions/place on Quote 0Q0WC000002hhJv0AI -> isSuccess=true errorResponse=[] salesTransactionId=0Q0WC000002hhJv0AI. Quote URL: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002hhJv0AI/view. Bundle parent QLI: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003FwWT4A0/view (NetUnitPrice=6235.17 TotalLineAmount=6235.17). Inclusive child GAAWRP QLI 0QLWC000003FwWV4A0 (NetUnitPrice=0 TotalLineAmount=0). Positive controls: Order 801WC00000hKJCiYAO OI 802WC00000N2XJJYA3 (list=35679, net=6330.99); Order 801WC00000hKUg9YAG OI 802WC00000N2RVYYA3 (list=35679, net=6013.19). V21 design 9QBWC0000000oWH4AY active.",
+  "recordIds": [
+   "0Q0WC000002hhJv0AI",
+   "0QLWC000003FwWT4A0",
+   "0QLWC000003FwWV4A0",
+   "801WC00000hKJCiYAO",
+   "802WC00000N2XJJYA3",
+   "801WC00000hKUg9YAG",
+   "802WC00000N2RVYYA3",
+   "0QLWC000003FwWa4AK"
+  ],
+  "defectStep": "N/A",
+  "proposedFix": "N/A",
+  "notes": "Prior run (run1) BLOCKED as TEST-DATA-ARTIFACT because fresh Apex-inserted headless lines did not hydrate correctly. This run (run3) resolved the block by repricing a real existing renewal quote (0Q0WC000002hhJv0AI, 18 lines, OTP Bank Romania) through V21 headless place action, which succeeded with CompletedWithPricing. Branch trace confirmed: BundleBasedAdjustmentEntries (V21 lines 1647-1828) set NetUnitPrice on bundle parent via Bundle_Based_Adjustment_Decision_Table lookup (MainItemProduct/Ro\u2026"
+ },
+ "fixture_scripts": []
+}

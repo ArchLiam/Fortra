@@ -1,0 +1,34 @@
+{
+ "id": "K-04",
+ "category": "K. Edge Cases",
+ "name": "Workday extendedAmount channel mismatch (list vs net)",
+ "priority": "P0",
+ "what_it_tests": "When regional/partner/tiered pricing makes list != net, the Workday sync must not map the LIST channel (TotalLineAmount) as extendedAmount while the header uses NET; the channels must reconcile or the integration maps extendedAmount<-NetTotalPrice",
+ "proc_mechanism": "Procedure regional/COLA steps write InputUnitPrice/TotalLineAmount (list) while net stays catalog; MuleSoft maps OrderItem.TotalLineAmount->extendedAmount vs header NetTotalPrice/currentContractAmount; fix = extendedAmount<-NetTotalPrice",
+ "expected_behavior": "extendedAmount == header contract amount (both net); line internally consistent OR Mule maps net-only; no 'Contract Amount and Contract Line Revenue Amount must be equal' error",
+ "test_setup": "Order with regional (Italy TotalLineAmount 1540 < NetTotalPrice 2400) or partner discount, Workday sync",
+ "defect_provenance": "SC-3374 / SC-3347 / SC-3143 (extendedAmount mapping)",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Current Mule mapping reconciles: order 00095562 (2026-06-19) discounted line list TotalLineAmount=4130 vs NetTotalPrice=1648.35 -> payload extendedAmount=1648.35 (NET); per-line extendedAmount [3150,4356,0,1648.35,0] sum=9154.35 == currentContractAmount=9154.35 -> Workday Success. Regional 00095398 reconciled (V10 RegionalNetReconcile in V21: list==net==1540, extendedAmount=1540==contract=1540, Success). Old repro 00095381 (2026-06-08) extendedAmount=3150 (LIST) vs currentContractAmount=2835 (NET) -> Failure, but it is a stale pre-fix record (Workday_ID null, never resubmitted). ALL 4 contract-amount Failures predate ~2026-06-09; NO order created on/after 06-09 fails with this error.",
+  "evidence": "Fail repro (pre-fix, stale): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kML51YAG/view (00095381 payload extendedAmount=3150 LIST vs currentContractAmount=2835 NET, Failure). Fixed proof: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lDM31YAG/view (00095562 payload extendedAmount=1648.35 NET == contract 9154.35, Success). Regional reconciled: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kQn0zYAC/view (00095398 list==net==1540, Success).",
+  "recordIds": [
+   "801WC00000kML51YAG",
+   "801WC00000lDM31YAG",
+   "801WC00000kQn0zYAC"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "K-04 is MuleSoft-owned (outside SF/V21). Two sub-cases: (1) regional list!=net now reconciled at the PROCEDURE layer by the V10 RegionalNetReconcile step carried into V21 (00095398 list==net==1540). (2) discount/partner list!=net is NOT reconciled in SF (V21 still produces TotalLineAmount 3150 != NetTotalPrice 2835 on 00095381 by design - list and net are distinct channels) but is reconciled in the current Mule mapping which maps extendedAmount<-NetTotalPrice (proven by 00095562/00095559 reconciled payloads + 0 post-06-09 contract-amount failures). Defect-provenance SC-3374/SC-3347/SC-3143 ext\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

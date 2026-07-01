@@ -1,0 +1,27 @@
+{
+ "id": "F-10",
+ "category": "F. Transaction Type",
+ "name": "Renewal generated under RLM Quote DML lock (initiateRenewal headless, no Apex Quote DML)",
+ "priority": "P1",
+ "what_it_tests": "With RLM/Subscription Mgmt enabled, all Quote DML is platform-blocked; renewal QLI creation and COLA/description seeding must occur via the platform initiateRenewal API or event/trigger paths, NOT Apex Quote DML, or the seed silently fails; verifies the Quote-DML-lock constraint on the renewal seed path (F-04 covers prehook bypass but not the DML-lock root)",
+ "proc_mechanism": "RLM Quote DML lock (Apex==REST error); Fortra_Create_Renewal_Quote uses initiateRenewal; COLA/description must be applied via Reprice-All-triggered prehook or post-create platform-event flow, not Apex update on QuoteLineItem",
+ "expected_behavior": "Renewal QLIs seeded with COLA + description without any Apex Quote DML; if a class attempts Quote DML it must be refactored to event/flow; no silent lock-swallow",
+ "test_setup": "Generate renewal headlessly with RLM enabled, confirm COLA + description applied without Apex Quote update; attempt Apex Quote DML expects platform block",
+ "defect_provenance": "none / completeness-gap (RLM Quote DML lock)",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Run3 re-measure on 2026-06-30. Quote 0Q0WC00000382MH0AY (QuoteTypeText__c=Renewal, Status=Draft, USD). Force-reprice v67 REST place: isSuccess=true, errorResponse=[]. Post-reprice QLI 0QLWC000003dEW24AM (Renewal Maintenance): Description='Powertech Identity & Access Manager (BoKS)-RenewalMaintenance | Standard' (non-null), COLA_Uplift_Percent__c=7.85, COLACalculatedPrice__c=65.4, NetUnitPrice=67.38, Source_List_Price__c=355, Pre_Partner_Price__c=60.64, Base_Price__c=60.64. DML probe (Savepoint+rollback, no persist): F10_QLI_DML=QLI_UPDATE_SUCCEEDED, F10_QUOTE_DML=QUOTE_UPDATE_SUCCEEDED, F10_QUOTE_SOFT_DML=SOFT_QUOTE_UPDATE_SUCCEEDED, F10_PROBE_COMPLETE=ROLLED_BACK. The RLM platform-lock constraint premise remains empirically false. The seed path is correctly lock-immune: COLA/description seed via pricing-engine context-write payloads (not Apex QLI DML), so there is no silent-lock-swallow\u2026",
+  "evidence": "Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC00000382MH0AY/view ; QLI: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003dEW24AM/view . REST place isSuccess=true errorResponse=[] (v67.0, 2026-06-30). DML probe log markers (f10_dml_probe.apex, FortraUAT, rolled back): F10_QLI_DML=QLI_UPDATE_SUCCEEDED; F10_QUOTE_DML=QUOTE_UPDATE_SUCCEEDED; F10_QUOTE_SOFT_DML=SOFT_QUOTE_UPDATE_SUCCEEDED; F10_PROBE_COMPLETE=ROLLED_BACK. QLI post-reprice: Description='Powertech Identity & Access Manager (BoKS)-RenewalMaintenance | Standard', COLA_Uplift_Percent__c=7.85, COLACalculatedPrice__c=65.4, NetUnitPrice=67.38.",
+  "recordIds": [
+   "0Q0WC00000382MH0AY",
+   "0QLWC000003dEW24AM",
+   "0QLWC000003dEW14AM"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "F-10 verifies the Quote-DML-lock CONSTRAINT (sibling to F-04's prehook-bypass). Premise empirically false in FortraUAT: Apex Quote/QLI DML (allOrNone=true and allOrNone=false) all SUCCEED - no platform lock. The seed architecture is correctly lock-immune regardless: COLAUpliftPrehook.buildLineItemUpdates returns context-update payloads (List<Map>) consumed by pricing-engine write-back (not Apex QLI DML); QLDescriptionGeneratorPrehook likewise emits context-update payloads; the only Apex DML in t\u2026"
+ },
+ "fixture_scripts": []
+}

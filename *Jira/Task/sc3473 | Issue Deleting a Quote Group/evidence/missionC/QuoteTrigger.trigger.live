@@ -1,0 +1,9 @@
+/**
+ * @description Normalizes renewal quote type and stamps header fields for platform asset renews.
+ */
+trigger QuoteTrigger on Quote (before insert, before update) {
+    if (Trigger.isBefore && (Trigger.isInsert || Trigger.isUpdate)) {
+        QuoteRenewalTypeHandler.applyRenewalQuoteType(Trigger.new);
+        RenewalQuoteHeaderHandler.applyRenewalQuoteHeaders(Trigger.new);
+    }
+}

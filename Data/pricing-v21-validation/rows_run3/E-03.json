@@ -1,0 +1,18 @@
+{
+  "id": "E-03",
+  "category": "E. Deal / Customer Type",
+  "name": "One-Time partner discount preserved",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "One-Time perpetual product (CCM Limited Scan Engine), partner deal 15% discount, list 2008, NetUnitPrice = 2008 x 0.85 = 1706.8",
+  "actual": "Force-reprice of Quote 0Q0WC000003FWfO0AW (isSuccess=true, errorResponse=[]). QLI 0QLWC000003khOP4AY: NetUnitPrice=1706.8, NetTotalPrice=1706.8, TotalLineAmount=2008, ListPrice=2008, UnitPrice=2008, Quantity=1. Trace: Source_List_Price__c=2008, Pre_Partner_Price__c=2008, Base_Price__c=2008, Partner_Pricing_Source__c='System Calculated (Pre-Procedure, Percent Only)', PartnerDiscountPercent=15, SellingModelType=OneTime. Quote.TotalPrice=1706.8.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FWfO0AW/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khOP4AY/view ; REST place reprice v67 isSuccess=true, errorResponse=[]",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "SC-3359 (One-Time partner net overwritten by SubscriptionPricing74) remains FIXED in V21 as of 2026-06-30. Partner Discount step (PartnerDiscount22 seq10) writes 15% discount to net; SubscriptionPricing74 (seq24 One-Time branch) now preserves the discounted net instead of re-reading un-discounted InputUnitPrice. Confirmed on fresh Force-reprice via REST v67.0. PBE active in Fortra Price Book USD, list=2008 non-zero. TotalLineAmount=2008 confirms list-rollup unchanged. Reused prior-run record 0Q0WC000003FWfO0AW (fixture: scripts/apex/setupPartnerOneTimeQuoteTestData.compact.apex).",
+  "verdict_reason": "NetUnitPrice=1706.8 matches expected 2008*(1-0.15)=1706.8 exactly. Reprice isSuccess=true with no errors. Partner discount preserved through One-Time branch. SC-3359 fix confirmed active in V21."
+}

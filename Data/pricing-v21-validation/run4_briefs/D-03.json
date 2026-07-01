@@ -1,0 +1,34 @@
+{
+ "id": "D-03",
+ "category": "D. Pricing Mode",
+ "name": "Attribute server-type discount config completeness (3-attribute key)",
+ "priority": "P0",
+ "what_it_tests": "Attribute-based adjustment keyed on Feature x Deployment x ServerType; a missing combination (e.g. {SFTP, OnPrem, NonProd}) yields no match so AttributeDiscount makes no change and net stays at list (also covers GoAnywhere Non-Production 50% rule)",
+ "proc_mechanism": "AttributeBasedPrice step queries Attribute_Based_Adjustment_Decision_Table with 3-attribute key; no match -> no adjustment -> NetUnitPrice stays list",
+ "expected_behavior": "All valid attribute combinations have config rows; {SFTP,OnPrem,NonProd} -> Net != list; Non-Production deployment -> Net = List x 0.5",
+ "test_setup": "GS-GSE-NRPS-AAMP (Advanced Authentication), select {SFTP, OnPrem, NonProd} -> expect Net != 3150 list; GoAnywhere Dev instance -> 50%",
+ "defect_provenance": "SC-3360",
+ "run3_result": {
+  "verdict": "BLOCKED",
+  "rootCause": "TEST-DATA-ARTIFACT",
+  "dataSource": "existing",
+  "actual": "Fresh v67 Force-reprice (isSuccess=true, errorResponse=[]) on all 4 cited quotes reproduces: {SFTP,OnPrem,NonProd} NetUnitPrice=0; {SFTP,OnPrem,Prod} NetUnitPrice=0; {RAA,OnPrem,NonProd} NetUnitPrice=1575 (control). BUT the SFTP $0 lines carry UnitPrice=0, Source_List_Price__c=null, Base_Price__c=null, Pre_Partner_Price__c=null - i.e. the EARLY base-price hydration steps (which run BEFORE the ABA branch) never stamped list=3150. The RAA control on the IDENTICAL PBE (01uWC000005wrrNYAQ, list 3150) hydrates fully (Base=1575, SrcList=1575, UnitPrice=1575). A no-ABA-match would leave net at LIST (3150) per the scenario's own proc_mechanism - it can NOT produce $0. The $0 is non-hydration of base price, not the ABA step writing 0.",
+  "evidence": "Repriced 0Q0WC000003FcUf0AK/Ug/Uh + multi-line 0Q0WC000003FcPp0AK fresh on v67 (all isSuccess=true). Controlled twin test (Data/sc-d03/reverify/clone_test.apex): NEW quotes built by the SAME Apex-insert path - qSFTP=0Q0WC000003Frv70AC nets UnitPrice=0/Base=null; qRAA=0Q0WC000003Frv80AC nets 1575/Base=1575. DECISIVE: SFTP+Prod rule ABARule_82 (12HWC000001QRgQ2AW) was created 2026-03-24, BEFORE the decision-table LastSync 2026-06-29T15:48:15Z, so it WAS in the synced table - yet that SFTP+Prod line ALSO collapses to UnitPrice=0/Base=null, which refutes the stale-table theory as the cause of $0. AAMP PBE 01uWC000005wrrNYAQ = list 3150 USD, Active, parent 'Fortra Price Book' Active. Picklist values SFTP(APV_1361)/RAA(APV_1263)/Prod/NonProd all Status=Active. Fixture scripts/apex/setupD03IsolatedTestData.compact.apex inserts QLI via Database.insert (line 82) - the headless Apex-insert path = the documented #1 harness artifact (METHOD_BRIEF lines 24-27).",
+  "recordIds": [
+   "0Q0WC000003FcUf0AK",
+   "0Q0WC000003FcPp0AK",
+   "0Q0WC000003Frv70AC",
+   "0Q0WC000003Frv80AC",
+   "01uWC000005wrrNYAQ",
+   "0Q0WC000003FcUg0AK",
+   "0Q0WC000003FcUh0AK",
+   "0Q0WC000003FXZp0AO"
+  ],
+  "defectStep": "N/A - branch not reached on valid input. The SFTP Apex-inserted lines never hydrated base price (UnitPrice=0, Base_Price__c=null) so the ABA branch could not run on a valid input; the $0 is upstream non-hydration, not the steps 9-12 ABA branch.",
+  "proposedFix": "Re-run on UI-priced (non-Apex-inserted) SFTP lines: add the AAMP product to a quote via the RLM 'Add Products' UI path (which hydrates list->UnitPrice=3150), set the SFTP attribute combos, and reprice. THEN the ABA branch runs on a valid input and the real config questions become testable: (a) does SFTP+NonProd resolve 1575 (it should once decision table 0lDa50000007BEuEAM is re-synced to include \u2026",
+  "notes": "ADVERSARIAL VERIFY of run3 FAIL/ORG-CONFIG-DEFECT. The disputed field ($0 NetUnitPrice on SFTP lines) does NOT survive as a procedure/config defect: it is the headless-Apex-insert $0-hydration artifact the METHOD_BRIEF flags as the #1 trap. Proof: (1) UnitPrice=0 AND Base_Price__c/Source_List_Price__c/Pre_Partner_Price__c all null = base price never entered the pipeline (upstream of the ABA branch); a genuine no-ABA-match leaves net at LIST 3150, never $0 (scenario proc_mechanism). (2) The RAA c\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupD03IsolatedTestData.compact.apex"
+ ]
+}

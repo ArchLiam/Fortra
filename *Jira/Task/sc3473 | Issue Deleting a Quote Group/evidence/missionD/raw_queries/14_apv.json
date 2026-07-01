@@ -1,0 +1,86 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AttributePicklistValue",
+          "url": "/services/data/v67.0/sobjects/AttributePicklistValue/0v6WC00000009quYAA"
+        },
+        "Id": "0v6WC00000009quYAA",
+        "Name": "CU",
+        "Value": "CU",
+        "DisplayValue": "CU",
+        "IsDefault": false,
+        "Status": "Active",
+        "PicklistId": "0v5WC00000005R9YAI",
+        "Abbreviation": "APV_692",
+        "Code": "APV_692"
+      },
+      {
+        "attributes": {
+          "type": "AttributePicklistValue",
+          "url": "/services/data/v67.0/sobjects/AttributePicklistValue/0v6WC0000000A5KYAU"
+        },
+        "Id": "0v6WC0000000A5KYAU",
+        "Name": "Group 700",
+        "Value": "Group 700",
+        "DisplayValue": "Group 700",
+        "IsDefault": false,
+        "Status": "Active",
+        "PicklistId": "0v5WC00000005RAYAY",
+        "Abbreviation": "APV_1695",
+        "Code": "APV_1695"
+      },
+      {
+        "attributes": {
+          "type": "AttributePicklistValue",
+          "url": "/services/data/v67.0/sobjects/AttributePicklistValue/0v6WC0000000AAoYAM"
+        },
+        "Id": "0v6WC0000000AAoYAM",
+        "Name": "Primary",
+        "Value": "Primary",
+        "DisplayValue": "Primary",
+        "IsDefault": false,
+        "Status": "Active",
+        "PicklistId": "0v5WC00000005RGYAY",
+        "Abbreviation": "APV_1657",
+        "Code": "APV_1657"
+      },
+      {
+        "attributes": {
+          "type": "AttributePicklistValue",
+          "url": "/services/data/v67.0/sobjects/AttributePicklistValue/0v6WC0000000AJrYAM"
+        },
+        "Id": "0v6WC0000000AJrYAM",
+        "Name": "Production",
+        "Value": "Production",
+        "DisplayValue": "Production",
+        "IsDefault": false,
+        "Status": "Active",
+        "PicklistId": "0v5WC00000005RJYAY",
+        "Abbreviation": "APV_1669",
+        "Code": "APV_1669"
+      },
+      {
+        "attributes": {
+          "type": "AttributePicklistValue",
+          "url": "/services/data/v67.0/sobjects/AttributePicklistValue/0v6WC0000000AJvYAM"
+        },
+        "Id": "0v6WC0000000AJvYAM",
+        "Name": "Per_User",
+        "Value": "Per User",
+        "DisplayValue": "Per User",
+        "IsDefault": false,
+        "Status": "Active",
+        "PicklistId": "0v5WC00000005RKYAY",
+        "Abbreviation": "PU",
+        "Code": "PU"
+      }
+    ],
+    "totalSize": 5,
+    "done": true
+  },
+  "warnings": []
+}

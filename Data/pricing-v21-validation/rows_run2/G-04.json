@@ -1,0 +1,16 @@
+{
+  "id": "G-04",
+  "verdict": "FAIL",
+  "category": "G. Multi-Currency / Regional",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "expected": "Italy (0.64) services line, catalog list 55000: LIST channel scaled to CEILING(55000x0.64/5)x5=35200 (UnitPrice/TotalLineAmount=35200), but NET stays catalog 55000 (NetUnitPrice/NetTotalPrice=55000) => structural list!=net per documented design.",
+  "actual": "Repriced (V21, Force, REST place), STABLE across 3 repricings on Italy fixture 0Q0WC000003FYdx0AG: ListPrice=55000, UnitPrice=35200, TotalLineAmount=35200 (multiplier correct), but NetUnitPrice=35200 AND NetTotalPrice=35200 (net reconciled to regional, NOT 55000). list==net==35200, not list!=net. Regional_NetUnit_Price__c=35200.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FYdx0AG/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kiHF4AY/view",
+  "recordIds": ["0Q0WC000003FYdx0AG", "0QLWC000003kiHF4AY"],
+  "defectStep": "Regional Services Price (RegionalServicesPricingPrehook v13.3 UnitPrice write) + absent V9 LIST-only isolation",
+  "proposedFix": "If catalog expectation (net=catalog, structural list!=net) is authoritative, restore an independent catalog-net seed downstream of the prehook so NetUnitPrice/NetTotalPrice stay 55000. If V21 list==net is the intended SC-3374 reconcile, UPDATE the G-04 catalog expected_behavior to list==net==regional (expectation drift). NOT applied.",
+  "regression": "",
+  "notes": "Multiplier math is CORRECT (55000x0.64=35200, already multiple of 5). Divergence is purely the NET channel: catalog expects net=55000/list!=net (V9 LIST-only design); V21 produces net=list=35200. V21 retrieve (d01_v21_fresh.json) has NO RegionalNetReconcile group/gate (0 hits) - the net follows the prehook UnitPrice write directly. Per memory project_sc3374_workday_regional_pricing, net was deliberately reconciled DOWN to regional to fix Workday list!=net sync failures, so V21 net==list is likely the intended corrected behavior and the catalog expected is stale. Recording FAIL strictly vs documented expected (real net=35200 != expected 55000). SECONDARY fixture-fragility finding: Ship_To_Place__c is cleared by a Quote trigger on insert; a regional services line with no resolvable ship-to country prices to $0 (prehook getShippingCountry returns null -> line never gets multiplier). Two fixtures (0Q0WC000003FZAD0A4, 0Q0WC000003Fcpd0AC) repriced to all-zero/null Regional_NetUnit_Price__c for this reason; only the Place-retaining fixture priced. defect_provenance SC-3374/SC-3393.",
+  "proc_mechanism_confirmed": "RegionalServicesPricingPrehook v13.3 reads Services_Regional_Pricing__mdt (Italy IT 0.64 active, confirmed live), getShippingCountry via context tag ShipToPlace_Country__c then ShippingCountry fallback, calculateAdjustedPrice=CEILING(list*mult/5)*5, writes UnitPrice + RegionalNetUnitPrice__c into context; V21 step 'Regional Services Price' assigns RegionalNetUnitPrice__c->InputUnitPrice."
+}

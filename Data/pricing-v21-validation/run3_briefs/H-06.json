@@ -1,0 +1,34 @@
+{
+ "id": "H-06",
+ "category": "H. Discounts",
+ "name": "Attribute discount entries",
+ "priority": "P1",
+ "what_it_tests": "An attribute-driven discount applies via the attribute decision-table get to NetUnitPrice",
+ "proc_mechanism": "Attribute Discount Entries; Attribute-Based Price (Attribute_Based_Adjustment_Decision_Table)",
+ "expected_behavior": "Attribute discount adjustment applied to NetUnitPrice",
+ "test_setup": "Line with a priced attribute + AttributeValue, non-renewal",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Live Force-reprice via REST place (v64 connect/rev/sales-transaction/actions/place, isSuccess=true, errorResponse=[], LastModifiedDate refreshed to 2026-06-30T01:56:55Z) of existing UI-attributed line 0QLWC000003khUt4AI {RAA, On Premise, Non-Production} on AAMP (GS-GSE-NRPS-AAMP, ListPrice=3150): NetUnitPrice=1575 (=ABA Override 1575 = list x 0.5), UnitPrice=1575, NetTotalPrice=1575 (=net x Qty 1), Source_List_Price__c=1575, Base_Price__c=1575, Pre_Partner_Price__c=1575. The attribute decision-table get matched the 3 price-impacting attributes and overrode NetUnitPrice exactly as expected.",
+  "evidence": "Repriced line https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khUt4AI/view (Quote 0Q0WC000003FXZp0AO). REST place isSuccess=true errorResponse=[] salesTransactionId=0Q0WC000003FXZp0AO (scratchpad h06_reprice_resp.json). Attributes 0zuWC000006ArAxYAK/0zuWC000006ArAyYAK/0zuWC000006ArAzYAK all IsPriceImpacting=true {RAA, On Premise, Non-Production}. ABA row 12DWC00000JupTR2AZ (ProductId 01tWC00000DD11YYAT, ScheduleId 84Xa50000010nWQEAY, AttributeCount=3, AdjustmentType=Override, AdjustmentValue=1575, hash 9da979e8179283f65310c3c7bed79585). PBE 01uWC000005wrrNYAQ UnitPrice=3150, IsActive=true, parent book 'Fortra Price Book' IsActive=true, USD. V21 source Data/sc3473/v21_retrieve/.../Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml steps AttributeBasedPrice (parent ListContainer35, lines 778-788) + AttributeDiscountEntries (parent ListContainer38, lines 789-957), both actionType=AttributeDiscount, selectedFunction=Get, LookUpId 0lDa50000007BEuEAM, output NetUnitPrice + Subtotal->ItemNetTotalPrice. Active ESV 9QMWC00000025LN4AY (V21, IsActive=true).",
+  "recordIds": [
+   "0Q0WC000003FXZp0AO",
+   "0QLWC000003khUt4AI",
+   "12DWC00000JupTR2AZ"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Branch traced and verified live. The two H-06 steps (V21 step 9 'Attribute-Based Price' parent ListContainer35; step 10 'Attribute Discount Entries' parent ListContainer38) are unconditional ListGroups (no advancedCondition) -> they run on every line as a decision-table Get against Attribute_Based_Adjustment_Decision_Table; a matching attribute hash applies the Override/adjustment to NetUnitPrice (output NetUnitPrice + Subtotal=ItemNetTotalPrice), a non-match passes through. This is DISTINCT from the D-category 'Attribute Value Pricing' matrix path which gates on Has_Attribute_Adjustment__c=tr\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

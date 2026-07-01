@@ -1,0 +1,31 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "ReplacementGroupId": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "ReplacementGroupId": null
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

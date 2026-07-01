@@ -1,0 +1,125 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>V21 Fix Verification</title><style>*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:#1a1f29;background:#eef1f5;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+header{background:linear-gradient(120deg,#10243e,#1c3a5e);color:#fff;padding:28px 18px}
+h1{margin:0 0 4px;font-size:27px}.sub{color:#bcd3ec;font-size:14px}
+section{background:#fff;border-radius:12px;padding:22px 24px;margin:20px 0;box-shadow:0 1px 3px rgba(16,36,62,.08)}
+h2{font-size:19px;margin:0 0 14px;padding-bottom:9px;border-bottom:2px solid #eef1f5}
+.verdict{font-size:16px;background:#f8fafc;border-left:5px solid #16794d;padding:13px 17px;border-radius:8px;margin-bottom:18px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.tile{border:1px solid #e7ecf2;border-radius:10px;padding:15px 12px;text-align:center;border-top:5px solid #c9d2de}
+.tnum{font-size:30px;font-weight:800}.tlab{font-size:12px;color:#5b6675;font-weight:600;margin-top:5px}
+.leg{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:#41506a}
+.legchip{font-weight:800;color:#fff;border-radius:6px;padding:3px 10px}
+.card{background:#fff;border:1px solid #e7ecf2;border-radius:13px;padding:16px 18px;margin:12px 0;border-left:7px solid #c9d2de}
+.chead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:11px}
+.idb{font-size:14px;font-weight:800;color:#fff;background:#10243e;border-radius:7px;padding:3px 10px}
+.catb{font-size:11px;color:#5b6675;background:#eef1f5;border-radius:6px;padding:3px 9px;font-weight:600}
+.prib{font-size:11px;color:#7a8696;font-weight:700}
+.stat{margin-left:auto;font-size:12px;font-weight:800;color:#fff;border-radius:7px;padding:4px 12px}
+.title{font-size:15px;font-weight:700;margin-bottom:11px;color:#16202e}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px}
+.bx{border-radius:9px;padding:10px 13px;font-size:13px}
+.bx.b{background:#fdf0ee;border:1px solid #f3ccc5}.bx.a{background:#eef7f1;border:1px solid #bfe2ce}
+.bx .l{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.bx.b .l{color:#b3261e}.bx.a .l{color:#16794d}
+.reason{font-size:13px;color:#5a3a00;background:#fff8 ec;background:#fdf6e8;border:1px solid #f0dca8;border-radius:9px;padding:10px 13px;margin-top:6px}
+.reason.blk{color:#7a1a13;background:#fdecea;border-color:#f4c7c1}
+.note{font-size:12.5px;color:#5b6675;margin-top:8px;font-style:italic}
+@media(max-width:720px){.tiles{grid-template-columns:repeat(2,1fr)}.ba{grid-template-columns:1fr}}</style></head><body>
+<header><div style="max-width:1080px;margin:0 auto"><h1>V21 Fix Verification</h1><div class="sub">Rev_Mgmt_Default_Pricing_Procedure V21 (active, redeployed 2026-07-01 02:25Z) · 13 defects re-checked live</div></div></header>
+<div class="wrap">
+<section><h2>Executive summary</h2>
+<div class="verdict">8 of 13 defects are fixed and verified on live data. 2 are procedure residuals still open but fixable in one more pass. 3 cannot be self-fixed — they are data/config owned by others (FX admin, Marc DeBrey) or blocked by a platform limit.</div>
+<div class="tiles">
+<div class="tile" style="border-top-color:#16794d"><div class="tnum" style="color:#16794d">8</div><div class="tlab">FIXED &amp; verified</div></div>
+<div class="tile" style="border-top-color:#c77700"><div class="tnum" style="color:#c77700">2</div><div class="tlab">OPEN — still fixable</div></div>
+<div class="tile" style="border-top-color:#b3261e"><div class="tnum" style="color:#b3261e">3</div><div class="tlab">CAN'T SELF-FIX</div></div>
+<div class="tile" style="border-top-color:#10243e"><div class="tnum">13</div><div class="tlab">defects checked</div></div>
+</div>
+<div class="leg">
+<span><span class="legchip" style="background:#16794d">✅ FIXED</span> verified correct on live reprice</span>
+<span><span class="legchip" style="background:#c77700">◑ OPEN</span> procedure residual — you can still fix it</span>
+<span><span class="legchip" style="background:#b3261e">⛔ BLOCKED</span> owned by someone else / platform-blocked</span>
+</div></section>
+<section><h2>Per-defect — before → after + why fails remain</h2><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">K-01</span><span class="catb">Edge Cases</span>
+    <span class="prib">P0</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Cancellation credit</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Reprice aborted (SF-BRE-00004); no credit</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Reprice OK; cancel line net −15000 (negative credit)</div></div>
+  </div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">G-02</span><span class="catb">Multi-Currency</span>
+    <span class="prib">P0</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Configured pricing currency-blindness</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>EUR line net = USD 1575 override; 2nd combo = $0</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Both combos net 2708.47 from EUR list; no $0, no raw-USD-in-net</div></div>
+  <div class="note">Core symptoms ($0 + USD-value leaking into net) resolved. Residual to sanity-check with G-01: Source_List_Price still shows 1575 on one combo and the EUR net = list×0.92 — tied to the G-01 display item below.</div></div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">H-01</span><span class="catb">Discounts</span>
+    <span class="prib">P0</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Manual discount compounding</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Net eroded 20000 → 15000 → 10000 on repeated reprices</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Net stable 45000 across reprices (50000 − 5000)</div></div>
+  </div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">J-06</span><span class="catb">Derived / Maint</span>
+    <span class="prib">P0</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Partner derived-maint band</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Maint net 60.35 = 71×0.85 (license 15% band)</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Maint net 62.48 = 71×0.88 (New-Maint 12% band)</div></div>
+  </div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">J-10</span><span class="catb">Derived / Maint</span>
+    <span class="prib">P0</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">EUR derived-maint $0</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>EUR maint net $0 (COLA computed, not committed)</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>EUR maint net 3177.64 (committed, non-zero)</div></div>
+  </div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">F-12</span><span class="catb">Transaction Type</span>
+    <span class="prib">P1</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Amend-remove negative delta</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Reprice aborted at StampBaseFilter</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Reprice OK; net −75000 (credit produced)</div></div>
+  <div class="note">Primary crash fixed. Minor residual: PricingTermCount still null (proration leg, same family as I-03) — the credit is produced but not term-prorated.</div></div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">E-04</span><span class="catb">Deal / Customer</span>
+    <span class="prib">P1</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Fortra-Originated partner band</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Net 301.75 = 355×0.85 (channel 15%); Deal_Type ignored</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Net 312.4 = 355×0.88 (Non_Orig 12%); PartnerDiscountPercent=12</div></div>
+  </div><div class="card" style="border-left-color:#16794d">
+  <div class="chead"><span class="idb">F-09</span><span class="catb">Transaction Type</span>
+    <span class="prib">P1</span><span class="stat" style="background:#16794d">✅ FIXED</span></div>
+  <div class="title">Non-USD partner double-FX</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Cobalt EUR net 4159.87 (USD×0.92×0.82×0.9346)</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Cobalt EUR net 4521.59 (EUR list×0.82, single FX)</div></div>
+  </div><div class="card" style="border-left-color:#c77700">
+  <div class="chead"><span class="idb">G-01</span><span class="catb">Multi-Currency</span>
+    <span class="prib">P0</span><span class="stat" style="background:#c77700">◑ OPEN (fixable)</span></div>
+  <div class="title">Unit-Price display out of sync</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>UnitPrice double-applied FX</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>UnitPrice 1471.995 ≠ NetUnitPrice 2708.47 — display no longer matches net</div></div>
+  <div class="reason"><b>Why it isn't fixed:</b> NOT blocked — a follow-on procedure tweak. Fixing G-02 changed the EUR net, but the &quot;Currency Conversion – Unit Price Display&quot; step still sources the old USD-derived base, so the display desynced from the net. Fixable in one more proc pass (source the display from the same base as the net, or set UnitPrice = NetUnitPrice after the net currency steps).</div></div><div class="card" style="border-left-color:#c77700">
+  <div class="chead"><span class="idb">I-03</span><span class="catb">Proration</span>
+    <span class="prib">P1</span><span class="stat" style="background:#c77700">◑ OPEN (fixable)</span></div>
+  <div class="title">Mid-term net not prorated by PTC</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>PTC 0.7397 derived; net full 750</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Still net full 750 (not prorated 554.79); PTC 0.7397</div></div>
+  <div class="reason"><b>Why it isn't fixed:</b> NOT blocked — the proration fix did not land on the plain list-priced path. The TermDefined proration leg still multiplies net×PTC only on the adjustment path. Fixable in a proc pass (gate the multiply on SellingModelType=TermDefined regardless of whether an adjustment exists) — best done on a fresh UI-built line, not this stale record.</div></div><div class="card" style="border-left-color:#b3261e">
+  <div class="chead"><span class="idb">J-09</span><span class="catb">Derived / Maint</span>
+    <span class="prib">P0</span><span class="stat" style="background:#b3261e">⛔ CAN&#x27;T SELF-FIX</span></div>
+  <div class="title">Derived line with no PBEDP</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>Derived line net null (0 PBEDP rows)</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Still null (backfill not run)</div></div>
+  <div class="reason blk"><b>Why it isn't fixed:</b> CAN&#x27;T SELF-FIX (gated on Marc DeBrey). The PBEDP backfill is a data load, but the staged ~476-row CSV was ~47% mis-scoped (221 rows pointed at the INACTIVE Standard Price Book); only ~253 rows are safely actionable and the scope is pending Marc DeBrey&#x27;s sign-off. Blind-inserting the mis-scoped rows would create bad contributor config — so it waits on his review.</div></div><div class="card" style="border-left-color:#b3261e">
+  <div class="chead"><span class="idb">A-07</span><span class="catb">Pricing Source</span>
+    <span class="prib">P2</span><span class="stat" style="background:#b3261e">⛔ CAN&#x27;T SELF-FIX</span></div>
+  <div class="title">Maintenance-Type attribute gap</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>MTD attribute on 186 / 1683 New-Maint products</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>277 / 1683 (the ~91 cleanly-backfillable done) — FIM CCM still missing</div></div>
+  <div class="reason blk"><b>Why it isn't fixed:</b> CAN&#x27;T SELF-FIX (platform + data-owner). The ~91 viable products were backfilled, but the FIM CCM family (~1,400) cannot receive the Maintenance-Type attribute via data load — its ProductClassificationAttribute is per-classification and non-nillable, and ~935 products have a null BasedOnId. Needs a product-owner decision: add the attribute to those products upstream, OR add a documented Standard-0.20 default to V21 step 39. Not a data-load you can complete.</div></div><div class="card" style="border-left-color:#b3261e">
+  <div class="chead"><span class="idb">G-08</span><span class="catb">Multi-Currency</span>
+    <span class="prib">P2</span><span class="stat" style="background:#b3261e">⛔ CAN&#x27;T SELF-FIX</span></div>
+  <div class="title">Org FX rates at 1.0</div>
+  <div class="ba"><div class="bx b"><div class="l">Before</div>ARS/CHF/GBP/ILS/JPY/NZD/SEK = 1.0</div>
+    <div class="bx a"><div class="l">After (live 2026-07-01)</div>Still 1.0 (all 7)</div></div>
+  <div class="reason blk"><b>Why it isn't fixed:</b> CAN&#x27;T SELF-FIX (owner + access). These are org-level currency conversion rates in Setup → Manage Currencies, which require the Manage Currencies permission you don&#x27;t hold, and are owned by the FX/finance admin (last set by Aaron Broom on 2/13/2026). Escalated via message. Note this affects reporting/DocGen/Workday-invoicing FX only — the pricing procedure is unaffected.</div></div></section>
+<div style="font-size:12px;color:#7a8696;padding:0 4px">Verified by live Force-reprice through active V21 (v67.0) on 2026-07-01. The 3 "can't self-fix" items are the ones you flagged: G-08 (FX admin), J-09 (Marc DeBrey), A-07 (product owner / platform). G-01 &amp; I-03 are procedure residuals you can still close in one more pass.</div>
+</div></body></html>

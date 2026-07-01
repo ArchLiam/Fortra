@@ -1,0 +1,220 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSW5YAM"
+        },
+        "Id": "01uWC000004dSW5YAM",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sa5000001vuxlAAA"
+          },
+          "Name": "Standard Price Book",
+          "IsActive": false
+        },
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 46,
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wrrAYAQ"
+        },
+        "Id": "01uWC000005wrrAYAQ",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sWC0000022GHFYA2"
+          },
+          "Name": "Fortra Price Book",
+          "IsActive": true
+        },
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 46,
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSWRYA2"
+        },
+        "Id": "01uWC000004dSWRYA2",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sa5000001vuxlAAA"
+          },
+          "Name": "Standard Price Book",
+          "IsActive": false
+        },
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 2850,
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wrrPYAQ"
+        },
+        "Id": "01uWC000005wrrPYAQ",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sWC0000022GHFYA2"
+          },
+          "Name": "Fortra Price Book",
+          "IsActive": true
+        },
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 2850,
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dTDyYAM"
+        },
+        "Id": "01uWC000004dTDyYAM",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sa5000001vuxlAAA"
+          },
+          "Name": "Standard Price Book",
+          "IsActive": false
+        },
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 20000,
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wsG1YAI"
+        },
+        "Id": "01uWC000005wsG1YAI",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sWC0000022GHFYA2"
+          },
+          "Name": "Fortra Price Book",
+          "IsActive": true
+        },
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "CurrencyIsoCode": "USD",
+        "UnitPrice": 20000,
+        "IsActive": true
+      }
+    ],
+    "totalSize": 6,
+    "done": true
+  },
+  "warnings": []
+}

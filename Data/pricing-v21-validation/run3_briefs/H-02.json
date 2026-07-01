@@ -1,0 +1,35 @@
+{
+ "id": "H-02",
+ "category": "H. Discounts",
+ "name": "Manual quote-level percent (line-level) discount with approval gate",
+ "priority": "P0",
+ "what_it_tests": "A manual percent discount reduces net for an eligible line and is flagged for approval if it exceeds the seller authority threshold (e.g. >25% perpetual exceeds AE authority)",
+ "proc_mechanism": "Manual Quote Level Percentage-Based (Line-Level); Discount Percent; same Manual Quote Level Discount gate; approval matrix on DiscountPercent",
+ "expected_behavior": "Net = List x (1-percent); marked 'Sales Rule Broken' and routed for approval if authority exceeded",
+ "test_setup": "New non-derived line, 30% discount on Digital Guardian (exceeds AE 25%) -> routes to approval, Qty=4",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "named-script",
+  "actual": "Post Force-reprice QLI 0QLWC000003kjy64AA: NetUnitPrice=1750, TotalPrice=7000, NetTotalPrice=7000 (=1750x4). UnitPrice/ListPrice=2500, TotalLineAmount=Subtotal=10000 (pre-discount list x qty). Discount=30, Qty=4. Reprice isSuccess=true.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FaSs0AK/view (Quote #00781555); QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kjy64AA/view",
+  "recordIds": [
+   "0Q0WC000003FaSs0AK",
+   "0QLWC000003kjy64AA"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "V21 gate 'Manual Quote Level Discount' (ItemSalesTransactionAction in {Add,Amend,null} AND ItemPricingSource!='LastTransaction' AND ItemIsDerived null/false) routed the NEW Add line to 'Manual Quote Level Percentage-Based (Line-Level)' which applied DiscountPercent=30 -> NetUnitPrice=List x (1-0.30). Math exact. No 'Sales Rule Broken'/approval field exists on QuoteLineItem (0 matching FieldDefinitions) -> approval routing is outside pricing-proc scope and not smoke-testable here. DG Management Console seeds net=0 (DG list->net seed failure, unrelated), so script uses Insite Analytics - Core fo\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupH02ManualPercentDiscountTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

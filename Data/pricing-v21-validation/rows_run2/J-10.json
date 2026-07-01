@@ -1,0 +1,15 @@
+{
+  "id": "J-10",
+  "category": "J. Derived / Maintenance Pricing",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "expected": "EUR derived maint line Net = priorNet(3400) x (1+COLA 7.85%) x partnerSkip(no re-discount) x FX(0.9346) ~= 3427.6 EUR (positive), applied once each, stable across reprices.",
+  "actual": "Maint line PIA-PIA-RNM-PIAMBK (EUR) repriced to NetUnitPrice=0, NetTotalPrice=0, UnitPrice=0, ListPrice=0 across 3 Force reprices (stable, no oscillation). Seed Base_Price__c=3400/Pre_Partner=3400/COLA=7.85/Partner=12 ignored. Same SKU prices to 71 net in USD. License line NetTotal=15888.2 OK.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZN70AO/view (Quote#00781510); maint QLI 0QLWC000003kinW4AQ; USD-derived comparator QLI 0QLWC000003kiZ04AI net=71",
+  "defectStep": "Derived Products - Renewals (V21 step 43) / COLA Uplift Net on Renewal (step 26) / Derived Maintenance Net Filter (step 37)",
+  "proposedFix": "Add IsDerived=true EUR (and other non-USD) PricebookEntry for PIA-PIA-RNM-PIAMBK so the ItemIsDerived__std/DerivedPricingAttribute gates engage in non-USD; OR make derived-products lookup currency-blind/multi-currency-aware. NOT applied (validation only).",
+  "regression": "SC-3384",
+  "recordIds": ["0Q0WC000003FZN70AO", "0QLWC000003kinW4AQ", "0QLWC000003kinV4AQ"],
+  "notes": "Active proc V21 (ExpressionSetVersion 9QMWC00000025LN4AY, IsActive=true) confirmed. Root cause = derived path currency-gated: only USD Fortra PBE 01uWC000005wsbUYAQ has IsDerived=true; EUR PBE 01uWC000005wzX8YAI used by line has IsDerived=false, so ItemIsDerived__std=false and steps 26/37/43 never engage. Maximal interaction cell (derived x partner x COLA x non-USD) uncovered = SC-3384 currency-blind/IsDerived completeness gap crossed with SC-3346 derived maint. QLIA Maintenance Type Defn=Standard present. Result stable (no J-05 oscillation) but stably $0."
+}

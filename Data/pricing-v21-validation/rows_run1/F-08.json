@@ -1,0 +1,17 @@
+{
+  "id": "F-08",
+  "category": "F. Transaction Type",
+  "name": "Quote->Order convert fails: Prior_* item-attributes missing from Order context",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "Order reprice on a derived-maintenance line yields CompletedWithPricing, not 'Unable to fetch tags [-1631597440]'. Requires OrderEntitiesMapping->OrderItem to declare Prior_Partner_Discount__c and Prior_Discretionary_Discount__c.",
+  "actual": "Live ctx SalesTransactionContextExt_v2 (active ver 11pWC000002TjF7YAK): OrderEntitiesMapping->OrderItem node maps Prior_Partner_Discount__c (attrMap[168]) + Prior_Discretionary_Discount__c (attrMap[169]), both hydratable. Force-reprice of 2 draft derived-maint orders both returned isSuccess=true, errorResponse=[], NO -1631597440 gack. 801WC00000kvqPDYAY flipped CompletedWithoutPricing->CompletedWithPricing (TotalAmount 325); 801WC00000knHDLYA2 CompletedWithPricing (TotalAmount 77265.31).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kvqPDYAY/view ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000knHDLYA2/view ; ctx dump scratchpad/ctx_v2.json",
+  "recordIds": ["801WC00000kvqPDYAY", "801WC00000knHDLYA2", "11OWC000002m21Z2AQ"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "F-08 verifies the SC-3371 fix is intact in V21. SC-3371 was a transient context drift (a V9 republish dropped the Order-side Prior_* mapping, causing the -1631597440 'Unable to fetch tags' gack); it self-recovered after re-sync. Today both Prior_* item-level attributes are present on OrderEntitiesMapping->OrderItem (queryAttribute = real OrderItem field), and live Force-reprice on two distinct derived New-Maintenance orders completes cleanly. The derived maint line on 801WC00000kvqPDYAY nets $0 (separate known-normal $0-list condition per NewMaint memory), not an F-08 defect. Active proc V21, context v23/SalesTransactionContextExt_v2.",
+  "evidenceSource": "named-script: scenario protocol place REST reprice"
+}

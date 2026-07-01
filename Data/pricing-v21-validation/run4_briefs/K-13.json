@@ -1,0 +1,29 @@
+{
+ "id": "K-13",
+ "category": "K. Edge Cases",
+ "name": "Sync InputUnitPrice when null (discount-base safety)",
+ "priority": "P1",
+ "what_it_tests": "When InputUnitPrice is null on a non-LastTransaction non-derived line it is synced from net so the discount base is non-null and discount math is safe",
+ "proc_mechanism": "Sync InputUnitPrice for Discount Base; ListOperation38 (InputUnitPrice IsNull AND ItemPricingSource NotEquals 'LastTransaction' AND DerivedPricingAttribute IsNotNull AND =false); Sync InputUnitPrice from Net",
+ "expected_behavior": "InputUnitPrice hydrated from NetUnitPrice; discount math safe",
+ "test_setup": "Line with null InputUnitPrice, non-derived, non-LastTransaction",
+ "defect_provenance": "SC-3441 / SC-3393",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Force-reprice on BoKS demo Quote 0Q0WC000003FKRJ0A4 (non-derived Perpetual line 0QLWC000003kUpN4AU): isSuccess=true, errorResponse=[]. Post-reprice: NetUnitPrice=355, UnitPrice=355, ListPrice=355, NetTotalPrice=355, TotalLineAmount=355, Source_List_Price__c=355, Pre_Partner_Price__c=355, Base_Price__c=355, COLACalculatedPrice__c=null (no COLA), Partner_Pricing_Source__c=null. Derived new-maint line 0QLWC000003kUpO4AU: NetUnitPrice=71, TotalLineAmount=71 (=20% of 355, correct). No null-discount-base error. V21 XML confirmed: ListGroup SyncInputUnitPriceforDiscountBase (seq 13) contains ListOperation38 gated by conditionLogic '1 AND 2 AND 3 AND 4' (InputUnitPrice IsNull AND ItemPricingSource NotEquals 'LastTransaction' AND DerivedPricingAttribute IsNotNull AND DerivedPricingAttribute Equals false) -> child BKM SyncInputUnitPricefromNet AssignmentElement NetUnitPrice->InputUnitPrice (whereC\u2026",
+  "evidence": "Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view | QLI (non-derived Perpetual): https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpN4AU/view | reprice v67.0 place action: isSuccess=true, errorResponse=[] | V21 XML Data/pricing-v21-validation/live/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml L107616-107653 (ListOperation38), L116683-116744 (SyncInputUnitPriceforDiscountBase ListGroup seq=13, SyncInputUnitPricefromNet AssignmentElement NetUnitPrice->InputUnitPrice whereConditions:[])",
+  "recordIds": [
+   "0Q0WC000003FKRJ0A4",
+   "0QLWC000003kUpN4AU",
+   "0QLWC000003kUpO4AU",
+   "0Q0WC000003FO1u0AG",
+   "0QLWC000003kbnd4AA"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "InputUnitPrice and ItemPricingSource are pricing-engine context attributes, NOT persisted QLI fields (SOQL SELECT InputUnitPrice FROM QuoteLineItem returns INVALID_FIELD). Observable only inside the opaque RLM managed code unit. K-13 step is a defensive last-resort discount-base safety net: V21 has earlier InputUnitPrice seeds (ListPrice@ListContainer32 seq14, Base_Price__c, COLACalculatedPrice__c, RegionalNetUnitPrice__c), so on normal non-derived lines InputUnitPrice is already non-null before\u2026"
+ },
+ "fixture_scripts": []
+}

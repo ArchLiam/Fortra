@@ -1,0 +1,52 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "CalculationStatus": "PriceCalculationFailed",
+        "total": 47
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "CalculationStatus": "SaveFailedOrIncomplete",
+        "total": 20
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "CalculationStatus": "ConfigurationFailed",
+        "total": 1
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "CalculationStatus": "CompletedWithPricing",
+        "total": 836
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "CalculationStatus": "NotStarted",
+        "total": 165612
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "CalculationStatus": "CompletedWithoutPricing",
+        "total": 4
+      }
+    ],
+    "totalSize": 6,
+    "done": true
+  },
+  "warnings": []
+}

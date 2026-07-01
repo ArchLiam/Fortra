@@ -1,0 +1,29 @@
+SC-3473 H2 (context-hydration-mapping-gap) — DIFFERENTIAL LENS VERDICT: REFUTED (mechanism as stated)
+
+LIVE CONTEXT STATE (FortraUAT, tooling API):
+- ContextDefinition SalesTransactionContextExt_v2 = 11OWC000002m21Z2AQ
+- ONLY active version = v23 (11pWC000002TjF7YAK, IsActive=true, StartDate 2026-05-29). [ctxdef_v2_versions.json]
+- All 45 ContextNodes + 15 ContextMappings are InheritedFrom SalesTransactionContext__stdctx (standard); 0 custom nodes. [nodes_custom.txt]
+
+MAPPING INTEGRITY (the diff H2 admitted was never done):
+- QuoteLineItem->SalesTransactionItem nodemapping (11bWC00000346zPYAQ): 201 attribute mappings (69 custom). ALL 201 reference a valid existing ContextAttribute on the SalesTransactionItem node. 0 null ContextAttributeId, 0 orphan refs. [qli_mapping_integrity.txt]
+- Quote node 108 maps, QuoteLineItemAttribute 12, QuoteLineGroup 24 — ALL 0 broken. [other_node_integrity.txt]
+=> No unmapped/orphaned attribute exists on the quote-side reprice nodes. The specific "attribute referenced by a step but unmapped on the surviving-line node" that H2 requires is NOT present.
+
+NODE-SWITCH MECHANISM IS ORDER-SIDE, INAPPLICABLE TO A QUOTE-ONLY DELETE:
+- The two confirmed in-org analogs (project_v16_order_pricing_contextfetch_incident; project_reprice_contextdef_error) are Order/OrderItem node gaps.
+- Asymmetry diff: QuoteLineItem node maps 69 custom attrs; OrderItem maps 34. 35 custom attrs are on QLI but NOT OrderItem (incl COLA*, Partner_*, MaintenanceType__c, PricingTerm). Direction = OrderItem is the deficient node, NOT QLI. [qli_vs_orderitem_attr_diff.txt]
+- A Place-Sales-Transaction DeleteGroup graph for a quote (Mission A) hydrates the QuoteLineItem node (superset). It never switches to the OrderItem node. So the org's documented gap direction cannot fire on a quote delete.
+
+getTags() SIBLING ANGLE ALSO UNIFORM (not a differentiator):
+- All 45 nodes have exactly 1 ContextTag, ALL with NULL ContextAttributeId (standard node identity tags). [context_tags.txt] Uniform across the whole definition => if this caused getTags()->null it would fail EVERY pricing op org-wide. It does not.
+
+CLEAN COUNTER-EXAMPLES (differential lens default = REFUTE on clean counter-example):
+1. 370 QLIs org-wide carry the SAME price-impacting attribute "Unit Type=Per User" (AttributeDefinitionId 0tjWC000000096kYAA, the exact attr on the surviving SEA lines) AND have NON-NULL NetUnitPrice => priced fine through v23 native context hydration + attribute pricing. [per_user_attr_population.txt]
+2. 15 quotes have GROUPED lines with NetUnitPrice>0 modified AFTER v23 activation (incl Ordered 0Q0WC0000035N0f0AE, 0Q0WC000003CPov0AG) => v23 hydrates+reprices grouped/configured lines successfully. [post_v23_grouped_priced.txt]
+=> The generic condition H2 names (v23 context + configured/grouped lines + forced reprice) is present on many quotes that DO NOT fail.
+
+SURVIVING LINES ARE WELL-FORMED (no null on a mapped field):
+- 0QLWC000002ou4H4AQ / 0QLWC000002ou5t4AA: NetUnitPrice 20000, valid PBE 01uWC000004dTDyYAM, StartDate/EndDate set, Qty 1, FPT=Subscription. [surviving_lines_fields.txt]
+
+NOT PERSONALLY REFUTED / RESIDUAL: A FINEST trace landing in an industries.context frame is the only thing that could resurrect a context-hydration story, but that needs a live repro+debug log (DML, out of scope). What I CAN say: the static, read-only context-definition diff that H2's confirm-test demands shows NO unmapped/orphaned attribute on the quote-side nodes, and clean counter-examples exist. So the mechanism AS STATED (static mapping gap / node-switch hydration gap) is refuted; a purely RUNTIME-value null inside the native engine remains conceivable but is not a "context mapping gap" and is not evidenced.

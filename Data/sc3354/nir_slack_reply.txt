@@ -1,0 +1,13 @@
+Sample records (both BoKS Perpetual renewal quotes — both reproduce it):
+• 00781389 → https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FRPZ0A4/view
+• 00781386 → https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FR6D0AW/view
+
+Both carry the BoKS Perpetual (PIA-PIA-NRPS-PIAP) + a New Maintenance line (PIA-PIA-RNM-PIAMBK), but no Renewal Maintenance (PIA-PIA-RRM-PIAM) line — and the New Maintenance line is still QuoteAction = Amend, not flipped to Renew. So confirmed: even for BoKS, nothing is adding/replacing with Renewal Maintenance.
+
+On the QuoteTypeText == Renewal lead: I pulled the *live* QuoteLineItemTrigger — it has no QuoteTypeText check and none of the SC-3441 cancel code (that looks un-deployed / blocked). The only QuoteTypeText='Renewal' check I see is in COLAUpliftPrehook's maintenance-pricing path, which affects *pricing* of the maintenance line, not whether the RRM line gets *added*. So I don't think SC-3441 is the cause of the missing RRM.
+
+Where the add actually comes from: the trigger (→ RenewalMaintenanceAutoAddHandler.enqueueIfNeeded) only runs carryover *cleanup*. The code comment is explicit: "RRM must be added by the Year 2 Product Configuration Rule in TLE, not here." So the add depends on the Year-2 PCR 14OWC0000022Eyb2AE — which the SC-3346 fix had slated for deactivation. Can you check that PCR's status in Setup? If it's off, that's why even BoKS stopped adding the RRM (PCR status isn't API-queryable, so I can't confirm it from here).
+
+Two more notes:
+• The Apex backup RenewalMaintenanceAutoAddHandler.ensureRenewalMaintenancePresent is hardcoded to BoKS (PIA-PIA-NRPS-PIAP → PIA-PIA-RRM-PIAM) AND has no caller in the trigger path — so it isn't adding anything either.
+• AA / other perpetual families are a separate gap — that mechanism was only ever built for BoKS, so they were never covered regardless.

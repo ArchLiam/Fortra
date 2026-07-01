@@ -1,0 +1,17 @@
+{
+  "id": "F-08",
+  "category": "F. Transaction Type",
+  "name": "Quote->Order convert fails: Prior_* item-attributes missing from Order context",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "expected": "Order Force-reprice on a derived-maintenance line yields CalculationStatus=CompletedWithPricing, NOT 'Unable to fetch tags [-1631597440]'. Requires OrderEntitiesMapping to declare item-level Prior_Partner_Discount__c / Prior_Discretionary_Discount__c.",
+  "actual": "OrderEntitiesMapping/SalesTransactionItem on active ctx SalesTransactionContextExt_v2 (11OWC000002m21Z2AQ, activeVer 11pWC000002TjF7YAK) carries BOTH Prior_Partner_Discount__c + Prior_Discretionary_Discount__c (the pair absent during the 2026-06-09 fail). Force-reprice REST place() on 4 derived-NewMaintenance Orders all isSuccess=true, errorResponse=[]; 3 Draft (00095544/00095503/00095644) CalculationStatus=CompletedWithPricing; Activated 00095651 w/ Prior_Partner_Discount__c=10.65 also isSuccess=true. No -1631597440 gack.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kvqPDYAY/view (00095544 CompletedWithPricing); 801WC00000ltvgyYAA (00095651, Prior=10.65); ctx Data/sc3473/f08_ctx/ctx_v2.json; reprice Data/sc3473/f08_ctx/reprice_00095544.json",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "recordIds": ["801WC00000kvqPDYAY","801WC00000ltMGxYAM","801WC00000knHDLYA2","801WC00000ltvgyYAA"],
+  "notes": "Was SC-3371: transient Order-side context drift after a V9 republish dropped Prior_* item mappings -> gack -1631597440. Re-sync held through V21; static (mappings present) + live (4 reprices CompletedWithPricing, incl. populated-Prior line) both confirm. V21 step in play: Derived Products - Renewals/Non-Renewal + Manual/Partner Discount - Derived Maintenance reading OrderItem.Prior_*.",
+  "regression_provenance": "SC-3371"
+}

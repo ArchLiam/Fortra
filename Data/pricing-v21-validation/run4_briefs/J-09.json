@@ -1,0 +1,34 @@
+{
+ "id": "J-09",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Native derived pull requires contributing-product config (PBEDP)",
+ "priority": "P0",
+ "what_it_tests": "An IsDerived PBE routes through the native DerivedProducts element which requires a PriceBookEntryDerivedPrice config row; a missing row hard-errors 'contributing products are missing' before the formula can price (incomplete rollout backfilled only 199/3453)",
+ "proc_mechanism": "Native RLM DerivedProducts/DerivedProductsRenewals element maps ContributingProduct<-ContributorProduct via PBEDP config; no row = hard-error; Derived Pricing Filter (ItemIsDerived=true)",
+ "expected_behavior": "Backfill PBEDP rows for all IsDerived PBEs, or remove the native element after confirming the formula suffices; clear error not silent null",
+ "test_setup": "IsDerived maintenance line without PBEDP config row (e.g. GS-GSE-RNM-EFT8), reprice",
+ "defect_provenance": "SC-3372 / M5-PBEDP",
+ "run3_result": {
+  "verdict": "FAIL",
+  "rootCause": "ORG-CONFIG-DEFECT",
+  "dataSource": "existing",
+  "actual": "V21 Force-reprice (2026-06-30, fresh, independent re-measure) of Quote 0Q0WC0000029Agw0AE / QLI 0QLWC000003KEbO4AW (GS-GSE-RNM-EF8, Fortra_Product_Type__c=New Maintenance, PricebookEntry.IsDerived=true) returned: NetUnitPrice=null, ListPrice=0, UnitPrice=0, TotalLineAmount=null, TotalPrice=0, NetTotalPrice=0, Source_List_Price__c=null, Pre_Partner_Price__c=null, Base_Price__c=null, COLACalculatedPrice__c=null. Connect REST place returned isSuccess=true, errorResponse=[] (no error raised; silent). PBEDP count for this PBE=0.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000029Agw0AE/view ; QLI 0QLWC000003KEbO4AW (NetUnitPrice=null after fresh Force-reprice 2026-06-30) ; disputed PBE 01uWC000005wsZpYAI (GS-GSE-RNM-EF8, IsDerived=true, UnitPrice=0, Fortra Price Book 01sWC0000022GHFYA2 active) with 0 PBEDP rows ; covered sibling PBE 01uWC000005wsZnYAI (GS-GSE-RNM-EFT8) with 1 PBEDP row 182WC000000HEPxYAO ; POST /services/data/v67.0/connect/rev/sales-transaction/actions/place isSuccess=true errorResponse=[] ; org has 1889 active IsDerived PBEs in Fortra Price Book vs 199 distinct PBEs with any PBEDP row (201 PBEDP rows total).",
+  "recordIds": [
+   "0Q0WC0000029Agw0AE",
+   "0QLWC000003KEbO4AW",
+   "01uWC000005wsZpYAI",
+   "01uWC000005wsZnYAI",
+   "0Q0WC000003FZ6z0AG",
+   "0QLWC000003kih44AA",
+   "0QLWC000003kih34AA",
+   "01uWC000005wsZFYAY"
+  ],
+  "defectStep": "Derived Products native pull (V21 steps 41-42: Derived Products - Non-Renewal / Derived Products - Renewals) + Derived Pricing Filter gate (ItemIsDerived__std=true): the native DerivedProducts element maps the contributing product via the PriceBookEntryDerivedPrice (PBEDP) config row; with 0 PBEDP rows it produces a silent null instead of surfacing an error.",
+  "proposedFix": "Backfill PBEDP rows for the IsDerived PBEs lacking coverage (live: 199 of 1889 active IsDerived PBEs in Fortra Price Book are covered; the disputed PBE is uncovered), or remove the native DerivedProducts element in V21 if the Fortra custom formula suffices without it. Neither change to be applied in this validation engagement.",
+  "notes": "ADVERSARIAL RE-VERIFICATION (2026-06-30, -o FortraUAT v67.0). Output reproduced exactly on fresh independent Force-reprice through current active V21 (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY VersionNumber=21 Status=Active; context SalesTransactionContextExt_v2). Record is an EXISTING real record, not a headless Apex-inserted line, so the $0-hydration harness artifact does NOT apply -> not TEST-DATA-ARTIFACT. Branch validity proven: line IsDerived=true, Fortra_Product_Type__c=New Mainte\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ09DerivedNoPbedpTestData.compact.apex"
+ ]
+}

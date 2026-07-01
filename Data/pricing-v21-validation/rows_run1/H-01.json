@@ -1,0 +1,16 @@
+{
+  "id": "H-01",
+  "category": "H. Discounts",
+  "priority": "P0",
+  "verdict": "BLOCKED",
+  "dataSource": "new-script",
+  "expected": "Manual amount-based line discount: Net = list - entered amount. For Qty=2 line, DiscountAmount per-unit: NetUnitPrice = list - amount, NetTotalPrice = NetUnitPrice * 2. e.g. 2500 - 250 = 2250 net, 4500 total; or 50000 - 5000 = 45000 net, 90000 total.",
+  "actual": "Headless Force-reprice (connect/rev place API) on Apex-inserted lines does NOT seed base list into NetUnitPrice. Control (no discount) nets to 0 (not list). Insite PBE 2500 list: control net=0; disc line DiscountAmount=250 -> NetUnitPrice=-250, NetTotalPrice=-500 (=0-amount). DG PBE 50000 list: control net=0; disc 5000 -> NetUnitPrice=-5000, NetTotalPrice=-10000. Re-reprice compounds negative. Manual-amount step math is correct (Net=InputUnitPrice-amount) but InputUnitPrice=0 on this path.",
+  "evidence": "Insite repro Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FYSg0AO/view (ctl QLI 0QLWC000003ki5y4AA net=0, disc QLI 0QLWC000003ki5z4AA net=-250). DG repro Quote /Quote/0Q0WC000003FYR30AO/view QLI 0QLWC000003ki4L4AQ net=-5000. Known-good UI line 0QLWC000002VXy94AG nets 2500-4.55=2495.45.",
+  "defectStep": "Manual Quote Level Amount-Based (Line-Level) [V21 step 82] subtracts ItemDiscountAmount from InputUnitPrice(=NetUnitPrice); upstream Price Book Entries/List Container base-seed does not populate NetUnitPrice on the headless Apex-line + Force place path, so InputUnitPrice=0.",
+  "proposedFix": "Not a confirmed V21 defect; do NOT change the proc. The base-price seed gap is a test-harness/data-setup artifact of the headless connect/rev Force-reprice on Apex-inserted QLIs (no base hydration). To smoke-test H-01, add the line through the Add-Products UI (which materializes list into NetUnitPrice) then enter the manual amount and reprice, or seed NetUnitPrice=UnitPrice via a path the proc preserves.",
+  "regression": "",
+  "notes": "Gate 'Manual Quote Level Discount' (ItemPricingSource!=LastTransaction AND (Amend/Add/null) AND ItemIsDerived null/false) and step 'Manual Quote Level Amount-Based (Line-Level)' confirmed in V21 source (AdjustmentType=AmountStringConstant, AdjustmentValue=ItemDiscountAmount, outputs NetUnitPrice + Subtotal->ItemNetTotalPrice). QLI field DiscountAmount maps to ItemDiscountAmount and is per-unit. Reproduced on 2 products/2 pricebooks (Perpetual/OneTime). Known-good UI-created line on same PBE nets correctly, isolating cause to headless base-seed, not discount logic.",
+  "recordIds": ["0Q0WC000003FYSg0AO", "0QLWC000003ki5y4AA", "0QLWC000003ki5z4AA", "0Q0WC000003FYR30AO", "0QLWC000003ki4L4AQ"],
+  "dataScript": "scripts/apex/setupH01ManualAmountDiscountTestData.compact.apex"
+}

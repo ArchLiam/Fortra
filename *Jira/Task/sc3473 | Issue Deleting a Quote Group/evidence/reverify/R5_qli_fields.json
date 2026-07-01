@@ -1,0 +1,262 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000051pKO"
+        },
+        "QualifiedApiName": "Attribute_Price_Mode__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000004OLoO"
+        },
+        "QualifiedApiName": "Base_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000007CL4g"
+        },
+        "QualifiedApiName": "CancelNetUnitPrice__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000052f4E"
+        },
+        "QualifiedApiName": "COLACalculatedPrice__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000006275B"
+        },
+        "QualifiedApiName": "Final_Year_COLA_Calculated_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000051pKP"
+        },
+        "QualifiedApiName": "Hardware_Price_Multiplier__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000052f4F"
+        },
+        "QualifiedApiName": "HardwareCalculatedPrice_c__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000051pKU"
+        },
+        "QualifiedApiName": "Is_Partner_Price_Overridden__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.ListPrice"
+        },
+        "QualifiedApiName": "ListPrice"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.NetTotalPrice"
+        },
+        "QualifiedApiName": "NetTotalPrice"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.NetUnitPrice"
+        },
+        "QualifiedApiName": "NetUnitPrice"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000051pKW"
+        },
+        "QualifiedApiName": "Partner_Adjusted_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PartnerUnitPrice"
+        },
+        "QualifiedApiName": "PartnerUnitPrice"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PeriodBoundary"
+        },
+        "QualifiedApiName": "PeriodBoundary"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PeriodBoundaryDay"
+        },
+        "QualifiedApiName": "PeriodBoundaryDay"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PeriodBoundaryStartMonth"
+        },
+        "QualifiedApiName": "PeriodBoundaryStartMonth"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000054PWh"
+        },
+        "QualifiedApiName": "Pre_COLA_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000051pKb"
+        },
+        "QualifiedApiName": "Pre_Hardware_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000051pKc"
+        },
+        "QualifiedApiName": "Pre_Partner_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000004uynH"
+        },
+        "QualifiedApiName": "PrehookRSNetUnitPrice__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000004OLof"
+        },
+        "QualifiedApiName": "Price_Mode__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PricebookEntry"
+        },
+        "QualifiedApiName": "PricebookEntryId"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PriceRevisionPolicy"
+        },
+        "QualifiedApiName": "PriceRevisionPolicyId"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PriceWaterfallIdentifier"
+        },
+        "QualifiedApiName": "PriceWaterfallIdentifier"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PricingTerm"
+        },
+        "QualifiedApiName": "PricingTerm"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PricingTermCount"
+        },
+        "QualifiedApiName": "PricingTermCount"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.PricingTermUnit"
+        },
+        "QualifiedApiName": "PricingTermUnit"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.ProrationPolicy"
+        },
+        "QualifiedApiName": "ProrationPolicyId"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC0000057V94"
+        },
+        "QualifiedApiName": "QLI_NARR_Calculated__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000004uynI"
+        },
+        "QualifiedApiName": "Regional_NetUnit_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.00NWC000006yUiv"
+        },
+        "QualifiedApiName": "Source_List_Price__c"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.SubscriptionTerm"
+        },
+        "QualifiedApiName": "SubscriptionTerm"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.SubscriptionTermUnit"
+        },
+        "QualifiedApiName": "SubscriptionTermUnit"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.TotalPrice"
+        },
+        "QualifiedApiName": "TotalPrice"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.UnitPrice"
+        },
+        "QualifiedApiName": "UnitPrice"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineItem.UnitPriceUplift"
+        },
+        "QualifiedApiName": "UnitPriceUplift"
+      }
+    ],
+    "totalSize": 36,
+    "done": true
+  },
+  "warnings": []
+}

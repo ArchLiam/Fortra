@@ -1,0 +1,23 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+        },
+        "Id": "0Q0WC000002U2020AC",
+        "QuoteNumber": "00734139",
+        "Status": "Accepted",
+        "CalculationStatus": "SaveFailedOrIncomplete",
+        "TotalPrice": 73416,
+        "LineItemCount": 4
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

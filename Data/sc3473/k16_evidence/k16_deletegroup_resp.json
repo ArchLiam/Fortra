@@ -1,0 +1,16 @@
+Warning: This command is currently in beta. Any aspect of this command can change without advanced notice. Don't use beta commands in your scripts.
+{
+  "contextDetails": {
+    "contextId": "",
+    "isBuiltInTransaction": false
+  },
+  "errorResponse": [
+    {
+      "errorCode": "INVALID_API_INPUT",
+      "message": "Cannot invoke &quot;Object.toString()&quot; because the return value of &quot;java.util.Map.get(Object)&quot; is null",
+      "referenceId": "refQuote"
+    }
+  ],
+  "isSuccess": false,
+  "salesTransactionId": ""
+}

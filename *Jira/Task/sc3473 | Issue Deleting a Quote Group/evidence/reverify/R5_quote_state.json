@@ -1,0 +1,37 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+        },
+        "Id": "0Q0WC000002U2020AC",
+        "Name": "Test Wren - Order Processing",
+        "QuoteNumber": "00734139",
+        "Status": "Accepted",
+        "CalculationStatus": "SaveFailedOrIncomplete",
+        "CurrencyIsoCode": "USD",
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "OpportunityId": "006WC00000NMOODYA5",
+        "IsSyncing": true,
+        "TotalPrice": 73416,
+        "LineItemCount": 4,
+        "CreatedDate": "2026-03-18T06:00:21.000+0000",
+        "LastModifiedDate": "2026-06-26T16:25:03.000+0000",
+        "LastModifiedById": "005a500001SfRd7AAF",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005a500001SfRd7AAF"
+          },
+          "Name": "German Wren"
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

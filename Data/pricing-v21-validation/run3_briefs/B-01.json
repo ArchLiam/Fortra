@@ -1,0 +1,35 @@
+{
+ "id": "B-01",
+ "category": "B. Selling Model",
+ "name": "One-Time/Perpetual selling model PricingTermCount=1",
+ "priority": "P0",
+ "what_it_tests": "A perpetual/one-time line gets PricingTermCount stamped to the one-time constant so Subscription Pricing computes a single-term price; order creates Activated non-subscription Asset and recognizes full revenue",
+ "proc_mechanism": "Assignment (OneTimePricingTermCountConstant -> PricingTermCount); Subscription Pricing (PricingTermCountValueOneConstant); ProductSellingModel='One-Time'",
+ "expected_behavior": "PricingTermCount=1; ItemNetTotalPrice = NetUnitPrice * Qty * 1; Asset.IsSubscription=false, full revenue recognized",
+ "test_setup": "Perpetual software (e.g. Cobalt Strike), One-Time/Perpetual, Qty=1-4, USD, Direct, no support",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "new-script",
+  "actual": "Fresh quote 00781543, Abstract OneTime Qty=2 list 2200. Force-reprice (CompletedWithPricing): NetUnitPrice=2200, NetTotalPrice=4400=2200*2, Subtotal=4400, Quote TotalPrice=4400, SellingModelType=OneTime. PricingTermCount=0 (not 1) - V21 OneTimePricingTermCountConstant=0 by design; price uses separate PricingTermCountValueOneConstant=1 so total NOT zeroed.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcG90AK/view ; QLI 0QLWC000003kli94AA ; control quote 0Q0WC000003FN970AG OneTime lines also PTC=0 correct totals; ESD OneTimePricingTermCountConstant value=0",
+  "recordIds": [
+   "0Q0WC000003FcG90AK",
+   "0QLWC000003kli94AA"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "PricingTermCount field=0 deviates from catalog literal 'PricingTermCount=1' but is by-design: live V21 ESD declares OneTimePricingTermCountConstant=<value>0</value> (Assignment writer); a one-time charge has no recurring term. Price total correct because OneTime Subscription Pricing branch multiplies by separate PricingTermCountValueOneConstant=1. Reproduced on catalog control quote 0Q0WC000003FN970AG (both OneTime lines PTC=0, totals correct) - steady-state norm, not a regression. Consistent with SC-3420/SC-3415 finding that OneTime PTC writer (Assignment68) survived V12 rebuild and is functi\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupB01OneTimePtcTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

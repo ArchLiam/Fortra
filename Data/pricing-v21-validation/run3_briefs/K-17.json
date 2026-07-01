@@ -1,0 +1,30 @@
+{
+ "id": "K-17",
+ "category": "K. Edge Cases",
+ "name": "Inactive version delete blocked by PricingActionParameters reference",
+ "priority": "P2",
+ "what_it_tests": "The platform rejects deletion of any inactive ExpressionSetVersion while PricingActionParameters rows reference it; the documented lifecycle is additive-only (deactivate, never delete)",
+ "proc_mechanism": "Native RLM referential-integrity check blocks ExpressionSetVersion delete when PricingActionParameters reference the version; keep the 2 context bindings",
+ "expected_behavior": "Leave inactive versions Inactive (accepted clutter); to delete, coordinate Support to null PricingActionParameters.PricingProcedure first then re-create PAP rows",
+ "test_setup": "Attempt to delete an inactive V2-V8 version while PricingActionParameters reference Rev_Mgmt_Default_Pricing_Procedure",
+ "defect_provenance": "SC-3350",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "config-query",
+  "actual": "Live FortraUAT 2026-06-29: ExpressionSet Rev_Mgmt_Default_Pricing_Procedure=9QLWC0000015cDl4AI has 21 versions; V21 (9QMWC00000025LN4AY) is the SOLE active version, V1-V20 inactive (7 inactive delete-candidates V2-V8 present, V2=9QMWC0000001r8j4AA desc 'DO NOT USE IT'). EXACTLY 2 PricingActionParameters rows still reference PricingProcedure='Rev_Mgmt_Default_Pricing_Procedure': 17gWC000000DeAvYAK (Order->SalesTransactionContextExt_v2->OrderEntitiesMapping) and 17gWC000000DeAwYAK (Quote->SalesTransactionContextExt_v2->QuoteEntitiesMapping) - the same two Ids the prior canary's block error cited as I/O-signature references. The block was directly verified 2026-06-10 by canary-deleting inactive V2: UI + 'sf data delete record' + raw REST DELETE all returned UNKNOWN_EXCEPTION / HTTP 500 'Deleting this version changes the input and output variables in the expression set ... referenced in obje\u2026",
+  "evidence": "PricingActionParameters live query: 2 rows, both PricingProcedure='Rev_Mgmt_Default_Pricing_Procedure' (17gWC000000DeAvYAK Order/OrderEntitiesMapping, 17gWC000000DeAwYAK Quote/QuoteEntitiesMapping). ExpressionSetVersion query for esId=9QLWC0000015cDl4AI: V21 9QMWC00000025LN4AY IsActive=true (sole active); inactive V2-V8 = 9QMWC0000001r8j4AA/9QMWC0000001rTh4AI/9QMWC0000001s4n4AA/9QMWC0000001sHh4AI/9QMWC0000001xm14AA/9QMWC00000022Ab4AI/9QMWC00000022FR4AY. Documented block error + canary: memory project_pricing_proc_version_delete_blocked (Data/sc3350/version-backup/). ESV object describe deletable=true (so the block is referential, not a per-object permission). https://fortra--uat.sandbox.lightning.force.com/lightning/setup/PricingProcedures (Rev_Mgmt_Default_Pricing_Procedure version list).",
+  "recordIds": [],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Config/parity scenario per METHOD_BRIEF (inactive-version delete block listed as query-validated, no DML fixture, no destructive delete). The delete block is NATIVE RLM referential integrity outside the 122-step V21 procedure - no V21 step implicated, so N-A(pass). defect_provenance SC-3350 is the lifecycle ticket, not a regression: the block is correct/intended behavior, so regression=''. PricingActionParameters DeveloperNames were re-timestamped (Order_1782043618980/Quote_1782043660424) and ContextDefinition advanced to SalesTransactionContextExt_v2 during a context republish since the 2026-\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

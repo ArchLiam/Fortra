@@ -1,0 +1,37 @@
+{
+ "id": "E-07",
+ "category": "E. Deal / Customer Type",
+ "name": "Order line-type FIXED AMOUNT vs BILLING ONLY on splits",
+ "priority": "P1",
+ "what_it_tests": "The Workday line-type reverse-lookup must distinguish quantity-split children (same product) from LIC/MAINT subsplit children (different product) so a quantity-split parent stays FIXED AMOUNT and is not mis-stamped BILLING ONLY",
+ "proc_mechanism": "Fortra_OrderItem_Set_Workday_Contract_Line_Type V8 reverse-lookup compares child vs parent Product2; V9/V10 broke subsplit detection (always-true / undistinguished)",
+ "expected_behavior": "Quantity-split parent (qty>1 -> N qty=1, same product) stays FIXED AMOUNT (revenue recognized); only LIC/MAINT subsplit parent (different products) -> BILLING ONLY",
+ "test_setup": "Order: 3x Perpetual @3675 (parent qty=3 + 3 children qty=1 same product), expect FIXED AMOUNT",
+ "defect_provenance": "SC-3210 / SC-3368 / SC-3347",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Live flow Fortra_OrderItem_Set_Workday_Contract_Line_Type is now V11 (Active 2026-06-10 15:15) and the mechanism CHANGED from the scenario's V8 Original_Order_Item__c reverse-lookup: Decision_Is_Subsplit now gates purely on $Record.Product2.Is_Subsplit_Product__c. Re-firing V11 (savepoint+rollback) on the SC-3210 repro 00095351 quantity-split parent 802WC00000OQLFwYAP (DM-WCU-NRPS-5250PE, $3675, Is_Subsplit_Product__c=false): BEFORE (stale V10-era stamp)=FIXED AMOUNT BILLING ONLY -> AFTER V11 re-stamp=FIXED AMOUNT; both same-product children stay FIXED AMOUNT. Fresh post-V11 quantity-split orders confirm it natively: 00095628 parent 802WC00000PS90eYAD=FIXED AMOUNT, 00095559 (2 parents)=FIXED AMOUNT, 00095498 parent 802WC00000Onq1FYAR=FIXED AMOUNT. Subsplit positive control (Is_Subsplit_Product__c=true, RC_41202): 00095631/00095634/00095639/00095642/00095648/00095649/00095653/00095654 all\u2026",
+  "evidence": "Live flow retrieve Data/sc3473/e07_validation/unpackaged/flows/Fortra_OrderItem_Set_Workday_Contract_Line_Type.flow (V11, Decision_Is_Subsplit -> $Record.Product2.Is_Subsplit_Product__c). Probe log markers: E07-BEFORE parent type=FIXED AMOUNT BILLING ONLY isSubsplitProduct=false ; E07-AFTER-RESTAMP parent type=FIXED AMOUNT ; children FIXED AMOUNT. Quantity-split repro: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kEEdKYAW/view (00095351). Fresh control https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lo7MpYAI/view (00095628). Subsplit control = orders 00095631-00095654.",
+  "recordIds": [
+   "801WC00000kEEdKYAW",
+   "802WC00000OQLFwYAP",
+   "801WC00000lo7MpYAI",
+   "802WC00000PS90eYAD",
+   "801WC00000kkTSnYAM",
+   "802WC00000Onq1FYAR"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Scenario validates a FLOW (Fortra_OrderItem_Set_Workday_Contract_Line_Type), NOT a V21 pricing-procedure step - no V21 step is responsible for Workday line-type stamping; gating fields (ItemPricingSource/SellingModelType etc.) do not drive it. The scenario's proc_mechanism (V8 reverse-lookup compares child vs parent Product2; V9/V10 broke it) is SUPERSEDED: live active version is V11 (not V8/V9/V10), which abandons the Original_Order_Item__c reverse-lookup entirely and gates on the product-level boolean Product2.Is_Subsplit_Product__c (true => RC_41202 subsplit => BILLING ONLY; false => FIXED \u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

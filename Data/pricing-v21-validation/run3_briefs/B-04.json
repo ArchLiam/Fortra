@@ -1,0 +1,30 @@
+{
+ "id": "B-04",
+ "category": "B. Selling Model",
+ "name": "Evergreen subscription (SaaS, no defined term end) full-period count",
+ "priority": "P1",
+ "what_it_tests": "An Evergreen line gets the Evergreen term-count constant, is excluded from Term-Defined fixed-term proration, and (partial periods disabled, no end date) uses full-period count",
+ "proc_mechanism": "Assignment (EvergreenPricingTermCountConstant -> PricingTermCount); ListOperation94 (SellingModelType='TermDefined' OR 'Evergreen'); ListOperation91 (Evergreen AND (AllowPartialProrationPeriods=false OR itemTransientEndDate IsNull))",
+ "expected_behavior": "Evergreen term count applied; full evergreen period billed; no fixed-term/partial proration; Asset continues past initial term unless cancelled",
+ "test_setup": "MSP monthly recurring (e.g. Alert Logic MDR Essentials node tier), Evergreen, AllowPartialProrationPeriods=false, itemTransientEndDate=null, GBP",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "BLOCKED",
+  "dataSource": "config-query",
+  "actual": "Scenario is NOT testable on real UAT data: FortraUAT has NO priceable Evergreen product. (1) All 4 Evergreen ProductSellingModels (Evergreen-Monthly 0jPWC00000006C92AI, Quarterly 0jPWC00000006CA2AY, Semi-Annual 0jPWC00000006CB2AY, Yearly 0jPWC00000006CC2AY) have Status=Inactive. (2) Zero ProductSellingModelOptions map any product to those PSMs (PSMO totals: TermDefined 4944, OneTime 3939, Evergreen 0). (3) Zero PricebookEntries reference any Evergreen PSM. (4) Zero QuoteLineItems / OrderItems / Assets are SellingModelType='Evergreen' anywhere in the org (QLI SellingModelType distribution across ~1.22M lines: TermDefined 938918, OneTime 226471, None 58451 - Evergreen never appears). No 'Alert Logic MDR' or 'MDR' product exists (test_setup product is illustrative). A real sales rep cannot create an Evergreen line in the UI today (no Evergreen-enabled, priceable product). V21 metadata for t\u2026",
+  "evidence": "Live SOQL FortraUAT 2026-06-29: ProductSellingModel WHERE SellingModelType='Evergreen' -> 4 rows all Status=Inactive; PSMO WHERE ProductSellingModelId IN (4 Evergreen ids) COUNT=0; PBE WHERE ProductSellingModel.SellingModelType='Evergreen' TOTAL=0 (TermDefined PBE path returns 79501, proving path valid); QLI GROUP BY SellingModelType -> None/TermDefined/OneTime only (no Evergreen). V21 metadata: Data/pricing-v21-validation/live/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml (EvergreenPricingTermCountConstant value=1; step 'Evergreen anytime proration filter (Line level)'; criteria SellingModelType='Evergreen' + AllowPartialProrationPeriods false/true + itemTransientEndDate IsNull/IsNotNull).",
+  "recordIds": [],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Anti-phantom-defect doctrine applied: V21's Evergreen branch is present and internally well-formed, but it never ran on valid inputs (no Evergreen line can be created), so no PROCEDURE-DEFECT may be asserted. Preflight FAILS at 'product is priceable as Evergreen': no active Evergreen PSM, no Evergreen PSMO, no Evergreen PBE -> verdict BLOCKED, not FAIL. This is a catalog enablement gap (Evergreen selling model never wired to any product in UAT), distinct from a pricing-tier defect; rootCause recorded N-A(pass) because nothing in V21 is at fault. defect_provenance=none/catalog-derived; no regre\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

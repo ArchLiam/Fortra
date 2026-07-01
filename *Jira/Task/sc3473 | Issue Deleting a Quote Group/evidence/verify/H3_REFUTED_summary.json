@@ -1,0 +1,18 @@
+{
+  "hypothesis": "H3-opp-sync-reconciliation",
+  "verdict": "REFUTED",
+  "lens": "differential / counter-example",
+  "decisive_facts": {
+    "OLI_total_orgwide": 121180,
+    "OLI_with_Product_Selling_Model__c_populated": 0,
+    "interpretation": "OLI.Product_Selling_Model__c is universally NULL across the entire org -> the null is the benign baseline, not a defect on the repro quote",
+    "QLI_total": 1223704,
+    "QLI_with_ProductSellingModelId": 1165253,
+    "asymmetry_note": "QLI carries PSM (95%), OLI never carries it -> the QLI/OLI PSM asymmetry the hypothesis names is org-wide, present on every synced quote",
+    "open_opps_with_synced_quote": 10943,
+    "quotes_with_at_least_one_group": 47,
+    "quotes_BOTH_grouped_AND_synced_to_open_opp": 17,
+    "closest_nonfailing_grouped_synced_quote": "0Q0WC0000035N0f0AE (opp 006WC00000Qh4UPYAZ IsClosed=false, 6 OLIs all Product_Selling_Model__c=null, same AJS product) - shares the exact alleged condition yet was not reported failing"
+  },
+  "conclusion": "The exact trigger condition (synced-to-open-opp quote with a group + null OLI PSM + QLI PSM populated) is present on 17 quotes and the null-OLI-PSM asymmetry on all 10,943 synced quotes. A native map.get(psmKey)->null during sync reconciliation would fail group deletion across thousands of quotes, not one. Clean counter-example exists -> hypothesis is incomplete/wrong as stated."
+}

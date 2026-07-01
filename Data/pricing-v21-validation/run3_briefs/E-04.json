@@ -1,0 +1,34 @@
+{
+ "id": "E-04",
+ "category": "E. Deal / Customer Type",
+ "name": "Fortra-Originated partner discount band (Non_Orig_* percents)",
+ "priority": "P1",
+ "what_it_tests": "A Deal_Type__c='Fortra Originated' partner deal pulls its discount from the Non_Orig_* columns (typically lower tier than channel-originated)",
+ "proc_mechanism": "Partner_Pricing_Model__c Non_Orig_Software_Pct__c / Non_Orig_Subscription_Pct__c etc.; Deal Origin picklist drives column set",
+ "expected_behavior": "Net = List x (1 - Non_Orig_Discount%); lower discount than channel-originated (e.g. 12% vs 20%)",
+ "test_setup": "Partner A (20% channel orig / 12% fortra orig), Deal_Type='Fortra Originated' -> 12%",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "Active V21 partner path is Deal_Type-BLIND. Live Force-reprice (isSuccess=true) of Fortra-Originated partner Discount quote 00781140 (BoKS Perpetual, partner=AB Test PPM-00028) stamped PartnerDiscountPercent=15 (Software_Percent__c CHANNEL column), Net=301.75=355x0.85, Src='System Calculated (Pre-Procedure, Percent Only)'. The SAME partner/product on a CHANNEL-Originated quote (00781388) also stamps PDP=15 -> Deal_Type has ZERO effect on the resolved percent. The Non_Orig_* band is never consulted: (a) active prehook is PartnerPricingPrehook V1 -> PartnerPricingService.getMarginForProductType(model,productType) which has NO dealType arg and unconditionally reads CHANNEL columns; the Deal_Type->Non_Orig routing exists only in the DORMANT PartnerPricingServiceV2/PartnerPricingPrehookV2; (b) V21 proc def has 0 references to Non_Orig columns; (c) ALL 30 Partner_Pricing_Model__c rows have NUL\u2026",
+  "evidence": "Live reprice marker isSuccess=true Data/sc3473/e04_evidence/reprice_e04_resp.json ; Fortra-Orig quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000039bwH0AQ/view (BoKS Perpetual PDP=15 Net=301.75, Src 'Pre-Procedure, Percent Only' = V1) ; Channel-Orig control https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FO1u0AG/view (same partner BoKS Perpetual PDP=15) ; live class PartnerPricingService.cls L253-260 getMarginForProductType(model,productType)->Software_Percent__c (no dealType) ; V2 service PartnerPricingServiceV2.cls L123-129 (Non_Orig routing, dormant) ; V21 proc def Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition grep Non_Orig = 0 hits ; SOQL: 0 of 30 PPM rows have any Non_Orig_* populated.",
+  "recordIds": [
+   "0Q0WC0000039bwH0AQ",
+   "0Q0WC000003FO1u0AG",
+   "001WC00000ZtazZYAR"
+  ],
+  "defectStep": "Not a V21 procedure step. Defect is in the Apex partner prehook layer that feeds PartnerDiscountPercent into V21: active processor = PartnerPricingPrehook V1 -> PartnerPricingService.getMarginForProductType(model,productType) is Deal_Type-blind (reads channel columns only). V21 'Partner Discount' / 'Resolve Partner Discount Percent' steps merely consume the pre-stamped PDP. Compounded by empty Non_Orig_* config on all PPMs.",
+  "regression": "",
+  "rootCause": "ORG-CONFIG-DEFECT",
+  "notes": "Smoke-tested on real UI-hydrated records (no headless base-seed gap). Preflight passed: 00781140 is a UI-built Fortra-Originated partner Discount quote, CalculationStatus=CompletedWithPricing, valid active PPM-00028, BoKS Perpetual List=355. Branch confirmed via the V1-exclusive Src marker 'System Calculated (Pre-Procedure, Percent Only)'. This is distinct from E-03/SC-3359 (One-Time net zeroing) -- here the percent IS applied, it is just the WRONG (channel) percent for a Fortra-Originated deal. Consistent with E-01 (Fortra-Originated DIRECT skips partner steps) -- E-01 had no partner so net=l\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

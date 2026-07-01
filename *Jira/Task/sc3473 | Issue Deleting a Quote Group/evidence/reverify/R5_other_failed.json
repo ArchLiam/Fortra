@@ -1,0 +1,280 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+        },
+        "Id": "0Q0WC000002U2020AC",
+        "Name": "Test Wren - Order Processing",
+        "Status": "Accepted",
+        "LineItemCount": 4,
+        "LastModifiedDate": "2026-06-26T16:25:03.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005a500001SfRd7AAF"
+          },
+          "Name": "German Wren"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003A0Hx0AK"
+        },
+        "Id": "0Q0WC000003A0Hx0AK",
+        "Name": "Q-Wren - Test Currency-2026-06-16",
+        "Status": "Approved",
+        "LineItemCount": 0,
+        "LastModifiedDate": "2026-06-16T13:58:10.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005a500001SfRd7AAF"
+          },
+          "Name": "German Wren"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028OnH0AU"
+        },
+        "Id": "0Q0WC0000028OnH0AU",
+        "Name": "Renewal - African Development Bank Group - 20241226",
+        "Status": "Draft",
+        "LineItemCount": 12,
+        "LastModifiedDate": "2026-06-14T17:37:12.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000029E2j0AE"
+        },
+        "Id": "0Q0WC0000029E2j0AE",
+        "Name": "ARR Project - Perpetual to Subscription Swap",
+        "Status": "Draft",
+        "LineItemCount": 16,
+        "LastModifiedDate": "2026-06-14T17:32:27.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002A6z40AC"
+        },
+        "Id": "0Q0WC000002A6z40AC",
+        "Name": "Q-UAT Regional Price Test (US)-2026-02-06",
+        "Status": "Draft",
+        "LineItemCount": 5,
+        "LastModifiedDate": "2026-06-13T22:08:02.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC00000365Uj0AI"
+        },
+        "Id": "0Q0WC00000365Uj0AI",
+        "Name": "Renewal Quote",
+        "Status": "Draft",
+        "LineItemCount": 1,
+        "LastModifiedDate": "2026-06-11T01:43:47.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Fard0AC"
+        },
+        "Id": "0Q0WC000002Fard0AC",
+        "Name": "Renewal Quote",
+        "Status": "Draft",
+        "LineItemCount": 6,
+        "LastModifiedDate": "2026-06-11T01:42:22.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000032Ttp0AE"
+        },
+        "Id": "0Q0WC0000032Ttp0AE",
+        "Name": "Q-test 53-2026-05-29",
+        "Status": "Accepted",
+        "LineItemCount": 2,
+        "LastModifiedDate": "2026-05-29T16:53:19.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000JVQOHYA5"
+          },
+          "Name": "Andy Kumar"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028jet0AA"
+        },
+        "Id": "0Q0WC0000028jet0AA",
+        "Name": "davies / Computer2000 / Kontrax Cert Renewal",
+        "Status": null,
+        "LineItemCount": 1,
+        "LastModifiedDate": "2026-05-07T18:11:21.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000EsahZYAR"
+          },
+          "Name": "Service Data Migration"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000028PFh0AM"
+        },
+        "Id": "0Q0WC0000028PFh0AM",
+        "Name": "AAA - Budgetary Quotes",
+        "Status": "Draft",
+        "LineItemCount": 16,
+        "LastModifiedDate": "2026-05-07T18:10:22.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000EsahZYAR"
+          },
+          "Name": "Service Data Migration"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002D2yv0AC"
+        },
+        "Id": "0Q0WC000002D2yv0AC",
+        "Name": "Q-AB Test NARR-2026-02-12",
+        "Status": "Accepted",
+        "LineItemCount": 2,
+        "LastModifiedDate": "2026-05-07T18:00:20.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000EsahZYAR"
+          },
+          "Name": "Service Data Migration"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002iIXx0AM"
+        },
+        "Id": "0Q0WC000002iIXx0AM",
+        "Name": "Q-AB Approvals Demo 4.16.26",
+        "Status": "Draft",
+        "LineItemCount": 1,
+        "LastModifiedDate": "2026-05-07T18:00:11.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000EsahZYAR"
+          },
+          "Name": "Service Data Migration"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002iNXd0AM"
+        },
+        "Id": "0Q0WC000002iNXd0AM",
+        "Name": "Q-Legal Entity Opp-2026-04-16",
+        "Status": "Accepted",
+        "LineItemCount": 3,
+        "LastModifiedDate": "2026-05-07T18:00:11.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000EsahZYAR"
+          },
+          "Name": "Service Data Migration"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002BT3x0AG"
+        },
+        "Id": "0Q0WC000002BT3x0AG",
+        "Name": "Maria's Test Quote",
+        "Status": "Draft",
+        "LineItemCount": 1,
+        "LastModifiedDate": "2026-05-07T17:59:51.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005WC00000EsahZYAR"
+          },
+          "Name": "Service Data Migration"
+        }
+      },
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002NnA90AK"
+        },
+        "Id": "0Q0WC000002NnA90AK",
+        "Name": "Q-AB DIY Integration Testing 9-2026-03-08",
+        "Status": "Draft",
+        "LineItemCount": 0,
+        "LastModifiedDate": "2026-03-08T12:36:13.000+0000",
+        "LastModifiedBy": {
+          "attributes": {
+            "type": "User",
+            "url": "/services/data/v67.0/sobjects/User/005a500001eZ8nxAAC"
+          },
+          "Name": "Aaron Broom"
+        }
+      }
+    ],
+    "totalSize": 15,
+    "done": true
+  },
+  "warnings": []
+}

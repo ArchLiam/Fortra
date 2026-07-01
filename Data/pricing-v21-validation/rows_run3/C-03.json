@@ -1,0 +1,18 @@
+{
+  "id": "C-03",
+  "category": "C. Product Type",
+  "name": "Software product type pricing",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Software QLIs (Fortra_Product_Type__c='Software') aggregated into Total_Software__c; correct isolation from Services, Subscription, Perpetual, New Maintenance buckets; reprice isSuccess=true",
+  "actual": "Force-reprice through active V21 (Quote 0Q0WC0000034UvR0AU 'Test GS Quote Tim', isSuccess=true, errorResponse=[], LastModified 2026-06-30T13:13:14Z). Post-reprice: Total_Software__c=27354.0 = EXACT SUM of two Software QLIs (EFT 8 Enterprise GS-GSE-NRPS-E8EP TotalLineAmount=27354 + EFT 8 Continuum GS-GSE-NRPS-E8CP TotalLineAmount=0). Bucket isolation confirmed: Total_Services__c=24275 (Services sum=24275), Total_Subscription__c=5775.5 (Subscription sum=5775.5); Perpetual sum=17505 and New Maintenance sum=0 correctly excluded from Software bucket. PBE preflight: EFT 8 Enterprise active in Fortra Price Book USD at $27,354 non-zero. QLI-level Fortra_Product_Type__c='Software' (writeable field, not propagated from Product2.FPT which is 'Perpetual'); gate reads QLI field as expected.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000034UvR0AU/view ; Software QLI EFT 8 Enterprise https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003Zfcr4AC/view ; Software QLI EFT 8 Continuum https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003ZfbF4AS/view ; place response isSuccess:true errorResponse:[] salesTransactionId=0Q0WC0000034UvR0AU; post-reprice SOQL GROUP BY: Software=27354, Services=24275, Subscription=5775.5, Perpetual=17505, NewMaint=0; header Total_Software__c=27354 (exact match)",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Branch trace: V21 step 'Total Software' = AdvancedListFilter criteria Fortra_Product_Type__c Equals 'Software' (on QLI) -> step 'Software Aggregate Price' = GroupingAndAggregatePricing SUM of ItemNetTotalPrice -> output parameter Total_Software__c. Gate correctly reads QLI-level picklist not Product2-level (Product2.FPT='Perpetual' for both EFT 8 lines). Bucket isolation verified: Services/Subscription/Perpetual/NewMaint all correctly separated. Second positive control quoted in run1 (0Q0WC000003FXZp0AO, 3 Software QLIs -> Total_Software__c=1575) not re-measured in this run as primary control is fully validated.",
+  "verdict_reason": "Force-reprice through active V21 on mixed-type quote with two Software QLIs produced Total_Software__c=27354.0 exactly matching the sum of those QLIs' TotalLineAmount. All other buckets isolated correctly. Preflight passed (active PBE, non-zero list, QLI.Fortra_Product_Type__c=Software, isSuccess=true). V21 Software aggregation mechanism working as designed."
+}

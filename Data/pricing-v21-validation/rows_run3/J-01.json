@@ -1,0 +1,18 @@
+{
+  "id": "J-01",
+  "category": "J. Derived / Maintenance Pricing",
+  "name": "Derived pricing formula base x factor",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "New-maint derived QLI NetUnitPrice = tierPct(Standard=0.20) x Base_Price__c(355) = 71; Source_List_Price__c=355; Partner_Pricing_Source__c='System Calculated (Post-Procedure)'",
+  "actual": "After V21 Force-reprice (2026-06-30T13:40:49Z): maint PIA-PIA-RNM-PIAMBK NetUnitPrice=71, NetTotalPrice=71, TotalPrice=71, TotalLineAmount=71, Source_List_Price__c=355, Base_Price__c=355, Pre_Partner_Price__c=null, Partner_Pricing_Source__c='System Calculated (Post-Procedure)', COLA_Uplift_Percent__c=null, COLACalculatedPrice__c=null. License PIA-PIA-NRPS-PIAP NetUnitPrice=355, Base_Price__c=355, Source_List_Price__c=355. Formula: 0.20 x 355 = 71 confirmed.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view ; license QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpN4AU/view ; maint QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpO4AU/view ; QLIA 0zuWC0000068sUUYAY AttributeValue=Standard IsPriceImpacting=true; V21 place API isSuccess:true errorResponse:[] 2026-06-30T13:40Z",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Reused proven BoKS demo Quote (same as run2 positive control). Preflight: Quote Status=Draft CurrencyIsoCode=USD; license Fortra_Product_Type__c=Perpetual UnitPrice=355 PBE active non-zero; maint Fortra_Product_Type__c='New Maintenance' ListPrice=0 (derived, correct); QLIA AttributeName='Maintenance Type Defn' AttributeValue='Standard' IsPriceImpacting=true; QuoteTypeText__c=null (non-renewal branch). Branch confirmed: Derived Maintenance Net Filter (New Maint type) -> Derived Pricing Formula (QuoteTypeText!=Renewal) -> Derived Products - Non-Renewal -> Stamp Contributor Base. Standard tier 0.20 applied to Base_Price__c=355 = 71. Post-V21 in-place edits did not regress this path. V21 force-reprice via v67.0 place API isSuccess:true.",
+  "verdict_reason": "V21 correctly computed derived new-maintenance net = 0.20 x 355 = 71 matching expected formula output. Preflight fully passed. Branch trace confirmed via intermediate stamps (Source_List_Price__c=355, Base_Price__c=355) and final output (NetUnitPrice=71). No regression from SC-3346/3410/3404 fixes."
+}

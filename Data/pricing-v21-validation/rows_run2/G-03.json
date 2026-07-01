@@ -1,0 +1,16 @@
+{
+  "id": "G-03",
+  "category": "G. Multi-Currency / Regional",
+  "name": "Partner discount on non-USD line (discount % vs converted base ordering)",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "new-script",
+  "expected": "EUR partner Software line: net = currency-converted list x (1 - partner%), single FX application, no double-convert, no USD partner% leakage. List input 100000, EUR mult 0.9346, partner 15% (active resolved) -> UnitPrice 93460, NetUnitPrice 79441, NetTotal 238323 (qty 3), TLA 280380.",
+  "actual": "Quote 00781568 / QLI 0QLWC000003kmPh4AI (CCM Limited Scan Engine, Software, OneTime/Perpetual, EUR, Qty 3). After Force-reprice on live V21: UnitPrice=93460 (=100000*0.9346 exact), NetUnitPrice=79441 (=93460*0.85 exact), NetTotalPrice=238323 (=79441*3), TotalLineAmount=280380 (=93460*3), Subtotal=280380, PartnerDiscountPercent=15. Header TotalPrice=238323, Subtotal=280380. FX applied exactly once then partner% on converted base; ordering correct.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fd0v0AC/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kmPh4AI/view ; REST place isSuccess=true errorResponse=[]",
+  "recordIds": ["0Q0WC000003Fd0v0AC", "0QLWC000003kmPh4AI"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 gate trace: Resolve Partner Discount Percent (AB Test Partner active Discount PPM Software_Percent__c=15) -> Partner Percent Resolved Filter (>0) applies discount; Currency Conversion - Net Unit Price/Net Total/Total Line Amount apply EUR mult 0.9346 exactly once. Net=list*FX*(1-partner%) verified exact: 100000*0.9346*0.85=79441. test_setup illustrates 20% reseller but live active partner resolves 15%; structural cell (partner% vs FX ordering) is identical and correct - net at 20% would be 74768. IMPORTANT: original setupG03PartnerNonUsdTestData fixture (quote 00781474, Cobalt Strike) chose a TermDefined product which routes into the Subscription/Proration path; with null PricingTermCount that line repriced to NetUnitPrice=0/NetTotal=0 (the SC-3420 PTC/TermDefined zeroing, NOT the partner x currency cell). Re-ran with the EUR One-Time/Perpetual equivalent of the passing E-02 product (CCM Limited Scan Engine OneTime PBE 01uWC000005wwgaYAA) to isolate G-03. defect_provenance=none/completeness-gap; gap now covered, PASS."
+}

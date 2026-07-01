@@ -1,0 +1,1 @@
+SELECT Id, CreatedDate, Category, PrimaryRecordId, ErrorMessage FROM RevenueTransactionErrorLog WHERE ErrorMessage LIKE '%getTags%' ORDER BY CreatedDate DESC LIMIT 10

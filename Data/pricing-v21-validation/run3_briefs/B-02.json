@@ -1,0 +1,37 @@
+{
+ "id": "B-02",
+ "category": "B. Selling Model",
+ "name": "Term-Defined subscription (annual, renewable) with proration enabled",
+ "priority": "P0",
+ "what_it_tests": "A Term-Defined line with StartProrationPeriod and ItemSubscriptionTerm enters the term-defined proration path, stamps PricingTermCount, and creates an Asset lifecycle (SubscriptionEndDate, renewal automation >=90 days before expiry)",
+ "proc_mechanism": "Term-Defined proration filter (SellingModelType='TermDefined' AND StartProrationPeriod IsNotNull AND ItemSubscriptionTerm IsNotNull); ProrationTermDefined element -> PricingTermCount; ListOperationTermDefinedPTC",
+ "expected_behavior": "Term proration computed; PricingTermCount derived (1 annual or fractional); Asset.IsSubscription=true with SubscriptionEndDate=Start+term; renewal auto-created >=90 days prior",
+ "test_setup": "Subscription software (e.g. Digital Guardian DLP yearly), Term-Defined, ItemSubscriptionTerm=12/36, StartProrationPeriod set, Qty=10",
+ "defect_provenance": "SC-3420 / SC-3415 / SC-3411",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "named-script",
+  "actual": "Live V21 real records: QLI 0QLWC000003kaUz4AI New TermDefined Cobalt Strike Qty1 -> NetUnitPrice=5900, NetTotalPrice=5900, TotalLineAmount=5900, PricingTermCount=1, SubscriptionTerm=1, PeriodBoundary=Anniversary, Start=2026-06-29 EndDate=2027-06-28 (Start+1yr-1d). Asset 02iWC000008deyfYAA Price=5900 LifecycleStart=2026-06-29 LifecycleEnd=2027-06-28. Sibling TermDefined QLIs 0QLWC000003kiVl4AI/0QLWC000003khWT4AY also PTC=1. NOTE: my fresh fixture line 0QLWC000003klev4AA came out 0/0/null on headless REST place reprice of an un-Started Draft quote (ListPrice=5900 seeded but UnitPrice/PTC unhydrated) - a reprice-path artifact, not a proc defect; the properly-Started/Accepted line proves the oracle.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kaUz4AI/view | Asset https://fortra--uat.sandbox.lightning.force.com/lightning/r/Asset/02iWC000008deyfYAA/view | fixture Quote 0Q0WC000003FcCv0AK line 0QLWC000003klev4AA",
+  "recordIds": [
+   "0QLWC000003kaUz4AI",
+   "02iWC000008deyfYAA",
+   "0QLWC000003kiVl4AI",
+   "0QLWC000003khWT4AY",
+   "0Q0WC000003FcCv0AK",
+   "0QLWC000003klev4AA"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Active proc verified live = Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). SC-3420 guarded TermDefined proration writer (TermDefinedProrationFilterLinelevel/ListOperationTermDefinedPTC/ProrationTermDefined; guard SellingModelType=TermDefined AND StartProrationPeriod IsNotNull AND ItemSubscriptionTerm IsNotNull) is present and effective: real New TermDefined lines derive PTC=1 + EndDate + subscription Asset lifecycle. Caveat for reviewers: the headless REST connect/rev place reprice does NOT re-derive PTC/UnitPrice on a never-Started Draft quote (StartProrationPeriod transient not\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

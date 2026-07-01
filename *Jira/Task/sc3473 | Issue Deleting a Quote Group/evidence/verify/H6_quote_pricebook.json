@@ -1,0 +1,27 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+        },
+        "Id": "0Q0WC000002U2020AC",
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "Pricebook2": {
+          "attributes": {
+            "type": "Pricebook2",
+            "url": "/services/data/v67.0/sobjects/Pricebook2/01sa5000001vuxlAAA"
+          },
+          "Name": "Standard Price Book"
+        },
+        "Status": "Accepted",
+        "CurrencyIsoCode": "USD"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "D-01",
+  "category": "D. Pricing Mode",
+  "name": "Attribute Value Pricing - Calculated Mode",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "new-script",
+  "expected": "V21 ListContainer6 Calculated Mode: InputUnitPrice = Base_Price__c * Attribute_Multiplier_Pct__c; net/base bridged via IF(>0). Case A Base=100,Mult=50% expect Net=50 (frac) or 5000 (raw); Case B Base=200,Mult=25% expect Net=50 or 5000.",
+  "actual": "Both cases ignore the multiplier: Case A (Base=100,Mult=50%) Force-reprice -> UnitPrice=100,NetUnitPrice=100,TotalPrice=100 (=Base); Case B (Base=200,Mult=25%) -> Net=200 (=Base). AttributeMultiplierPct__c reset to null on both. Net always equals Base_Price__c, never Base*Mult.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khGL4AY/view (Quote 0Q0WC000003FXOX0A4); reprice place API isSuccess=true",
+  "recordIds": ["0Q0WC000003FXOX0A4", "0QLWC000003khGL4AY"],
+  "defectStep": "Attribute Value Pricing - Calculated Mode (FormulaBasedPricing step, V21 step 14: Base_Price__c * Attribute_Multiplier_Pct__c)",
+  "proposedFix": "Add field Attribute_Multiplier_Pct__c (underscored) to QuoteLineItem and map it in the Quote context so the Calculated Mode formula resolves the multiplier; OR change formula/context to read AttributeMultiplierPct__c on the QLI. OrderItem already has Attribute_Multiplier_Pct__c; QLI does not -> structural parity gap. (NOT applied - validation only.)",
+  "regression": "",
+  "category_provenance": "SC-3390 / SC-3393",
+  "notes": "Root cause: the V21 Calculated Mode formula reads context param Attribute_Multiplier_Pct__c (underscored). OrderItem HAS this field; QuoteLineItem does NOT (only AttributeMultiplierPct__c without underscores). On the quote side the param resolves null -> Base_Price__c * null = null InputUnitPrice -> Net Bridge IF(Base_Price__c>0, Base_Price__c, ...) falls back to Net=Base, multiplier never applied. Only 1 Calculated-mode QLI exists org-wide (0QLWC000002Lo2H4AS, Accepted, multiplier null, Net=0) - corroborates the same broken path. Fields ProductSellingModelId/PricingTermCount are read-only on QLI; TermDefined product needs BillingFrequency+SubscriptionTerm to insert. Fixture script scripts/apex/setupAttrCalcQuoteTestData.compact.apex."
+}

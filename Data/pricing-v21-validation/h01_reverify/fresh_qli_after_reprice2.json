@@ -1,0 +1,31 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003l1zp4AA"
+        },
+        "Id": "0QLWC000003l1zp4AA",
+        "QuoteId": "0Q0WC000003Fs1Z0AS",
+        "Quantity": 2,
+        "UnitPrice": 50000,
+        "NetUnitPrice": 40000,
+        "ListPrice": 50000,
+        "NetTotalPrice": 80000,
+        "TotalLineAmount": 100000,
+        "TotalPrice": 80000,
+        "TotalAdjustmentAmount": -20000,
+        "DiscountAmount": 5000,
+        "Discount": null,
+        "Source_List_Price__c": 45000,
+        "Pre_Partner_Price__c": 45000,
+        "Base_Price__c": 45000
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

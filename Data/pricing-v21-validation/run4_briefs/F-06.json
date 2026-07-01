@@ -1,0 +1,32 @@
+{
+ "id": "F-06",
+ "category": "F. Transaction Type",
+ "name": "Renewal maintenance born-net via Renew QuoteAction link",
+ "priority": "P0",
+ "what_it_tests": "Renewal maintenance lines require QuoteAction.Type='Renew' + SourceAsset at creation to commit derived net through the native contributor-resolution engine; reprice-time/posthook corrections cannot override after settlement; No-Change lines stay $0",
+ "proc_mechanism": "Native DerivedProductsRenewals (V16+, authoritative committer) gates on QuoteAction(Type='Renew').SourceAssetId + Map Products + Asset Discovery + SalesTransactionActionType='Renew'",
+ "expected_behavior": "Line born with Renew QuoteAction commits derived net (COLA pre-applied, corrected partner discount); born without it stays $0/stale and requires line re-creation to heal; No-Change is no-op",
+ "test_setup": "Renewal quote (a) manual Renew QA->owned RNM asset commits 67.38; (b) No-Change QA->RNM asset commits $0 (locked)",
+ "defect_provenance": "SC-3346 / SC-3404 / SC-3350",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Leg (a) QLI 0QLWC000003dEW24AM after V21 Force-reprice: NetUnitPrice=67.38, NetTotalPrice=67.38, TotalPrice=67.38, Source_List_Price__c=355, Pre_Partner_Price__c=60.64, COLACalculatedPrice__c=65.4, COLA_Uplift_Percent__c=7.85%, Fortra_Product_Type__c=Renewal Maintenance. QuoteAction 7ocWC00000u7yf8YAA Type=Renew, SourceAssetId=02iWC000008GKPaYAO (BoKS RNM, Price=60.64, Status=Installed). Leg (b) QLI 0QLWC000003cN584AE after V21 Force-reprice: NetUnitPrice=0, TotalPrice=0, COLACalculatedPrice__c=76.57 (engine ran COLA but gate blocked commitment; QuoteAction count=0).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003dEW24AM/view ; No-Change leg: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003cN584AE/view ; QuoteAction: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteAction/7ocWC00000u7yf8YAA/view",
+  "recordIds": [
+   "0QLWC000003dEW24AM",
+   "0QLWC000003cN584AE",
+   "7ocWC00000u7yf8YAA",
+   "02iWC000008GKPaYAO",
+   "0QLWC000003e2Sn4AI",
+   "0QLWC000003ck6X4AQ",
+   "0Q0WC00000382MH0AY",
+   "0Q0WC0000037XvB0AU"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Both legs re-measured on V21 active as of 2026-06-30. Leg (a): Renew quote 0Q0WC00000382MH0AY has two QuoteActions (Type=Renew) with SourceAssetIds pointing to BoKS RNM assets. After Force-reprice, born-net 67.38 held stable through V21 DerivedProductsRenewals gate. COLACalculatedPrice=65.4 (built by COLA step) but NetUnitPrice=67.38 retained from born-net settlement \u2014 confirms committer ran at creation, not re-settled on reprice. Leg (b): No-QA quote has zero QuoteActions; engine runs COLA (COL\u2026"
+ },
+ "fixture_scripts": []
+}

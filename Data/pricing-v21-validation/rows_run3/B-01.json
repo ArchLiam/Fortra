@@ -1,0 +1,18 @@
+{
+  "id": "B-01",
+  "category": "B. Selling Model",
+  "name": "One-Time/Perpetual PTC constant",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "PricingTermCount=1 (catalog literal); NetTotalPrice = NetUnitPrice * Qty * 1 (single-term); SellingModelType=OneTime; price not zeroed by PTC",
+  "actual": "Quote 0Q0WC000003FcG90AK repriced V21 (CompletedWithPricing). QLI 0QLWC000003kli94AA: Product=Abstract (Fortra_Product_Type__c=Perpetual), Qty=2, SellingModelType=OneTime, NetUnitPrice=2200, NetTotalPrice=4400 (=2200*2*1), TotalLineAmount=4400, TotalPrice=4400, PricingTermCount=0 (by-design: ESD OneTimePricingTermCountConstant=0; price uses separate PricingTermCountValueOneConstant=1 in Subscription Pricing step so total NOT zeroed). Source_List_Price__c=2200, Pre_Partner_Price__c=2200, COLACalculatedPrice__c=null (correct). Control quote 0Q0WC000003FN970AG two OneTime lines also PTC=0 with correct totals; same quote TermDefined line shows PTC=1 — confirms branch differentiation works correctly.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcG90AK/view ; QLI 0QLWC000003kli94AA; force-reprice v67 isSuccess=true errorResponse=[]; CalculationStatus=CompletedWithPricing; PBE 01uWC000005wrr9YAA (Fortra Price Book, USD, UnitPrice=2200, IsActive=true); PSM 0jPWC00000005yz2AA SellingModelType=OneTime; control quote 0Q0WC000003FN970AG confirms PTC=0 on all OneTime lines",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "PTC field=0 deviates from catalog literal 'PricingTermCount=1' but is by-design: V21 ESD declares OneTimePricingTermCountConstant=0 (Assignment writer); a one-time charge has no recurring term. The Subscription Pricing step uses a separate PricingTermCountValueOneConstant=1 so the net total is computed correctly as NetUnitPrice*Qty*1. Steady-state norm confirmed across two quotes (0Q0WC000003FcG90AK from run2 fixture + 0Q0WC000003FN970AG control). Consistent with SC-3420/SC-3415 finding that OneTime PTC writer (Assignment68) survived V12 rebuild and is functional.",
+  "verdict_reason": "V21 correctly prices OneTime/Perpetual line: NetTotalPrice=NetUnitPrice*Qty (single-term, PricingTermCountValueOne=1). PTC field=0 is by-design (ESD constant), not a defect. Force-reprice CompletedWithPricing on valid Fortra Price Book PBE (non-zero USD list). All preflight gates passed."
+}

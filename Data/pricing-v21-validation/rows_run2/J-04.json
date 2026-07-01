@@ -1,0 +1,15 @@
+{
+  "id": "J-04",
+  "category": "J. Derived / Maintenance Pricing",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "expected": "Derived/TermDefined COLA renewal: COLACalculatedPrice stamped to BOTH InputUnitPrice(UnitPrice) AND NetUnitPrice; prehook seeds NetUnitPrice from zero (guarded null/<=0); net = PreCOLA x (1+COLA%); no $0 commit.",
+  "actual": "After LIVE Force-reprice under active V21 (LastModified 2026-06-30T03:11:02, not frozen): Cobalt Strike 0QLWC000003khwH4AQ COLA 6.2% PreCOLA=5900 -> COLACalc=6265.80 = UnitPrice=6265.80 AND NetUnitPrice=6265.80, NetTotal/TotalPrice=18797.40 (x3); beSECURE 0QLWC000003khwI4AQ PreCOLA=206 -> COLACalc=218.77 = UnitPrice=218.772 AND NetUnitPrice=218.77, Total=656.31. Quote Subtotal=19453.72 (no $0). Both COLA_Source=CMDT Lookup. Live COLAUpliftPrehook(49910c,api65,@version1.1) HAS the SC-3350 net-seed (buildNetUnitPriceUpdate/pendingNetUnitPriceUpdates), guard !maintenance && storedNet null/<=0.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwH4AQ/view ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwI4AQ/view",
+  "recordIds": ["0Q0WC000003FY2r0AG", "0QLWC000003khwH4AQ", "0QLWC000003khwI4AQ"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY) confirmed. Branch: COLA Uplift on Renewal (steps 27-28, COLACalculatedPrice__c->InputUnitPrice) + COLA Uplift Net on Renewal (step 26, ->NetUnitPrice) gated SalesTransactionActionType=Renew; commit of NetUnitPrice from zero achieved by COLAUpliftPrehook net-seed (SC-3350 fix re-grafted onto live v1.1; grep TRUE for buildNetUnitPriceUpdate/pendingNetUnitPriceUpdates/SC-3350 -- the 06-26 memory claiming the seed was DELETED is now stale; SC-3354 re-graft is LIVE). defect_provenance SC-3350/SC-3346/COLA V16-V20: the from-zero seed path J-04 asserts is WORKING under V21. Repriced FY2r live (isSuccess=true) so values are fresh, not frozen. NOTE: a sibling line 0QLWC000003iXUo4AM (Vulnerability Mgmt beSECURE, Quote 0Q0WC000003DLBP) did NOT price (UnitPrice/Net null) -- its Fortra Price Book PBE price=0.00 (zero-catalog bad-data line, no priceable base), NOT a COLA-net-seed defect. The F-03 stale-net re-uplift FAIL (net not re-uplifted when a non-zero prior net exists) is by-design-guarded (seed fires only storedNet null/<=0 to preserve applied discounts) and is a distinct concern from J-04's from-zero seed contract, which passes."
+}

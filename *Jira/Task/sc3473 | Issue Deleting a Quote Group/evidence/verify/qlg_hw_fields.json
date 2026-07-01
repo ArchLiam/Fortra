@@ -1,0 +1,34 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineGroup.00NWC000004JtiM"
+        },
+        "QualifiedApiName": "Hardware_Group_Type__c",
+        "DataType": "Checkbox"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineGroup.00NWC000004JtiN"
+        },
+        "QualifiedApiName": "Hardware_Notes__c",
+        "DataType": "Long Text Area(32768)"
+      },
+      {
+        "attributes": {
+          "type": "FieldDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/FieldDefinition/QuoteLineGroup.00NWC000004JtiO"
+        },
+        "QualifiedApiName": "Hardware__c",
+        "DataType": "Lookup(Hardware)"
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

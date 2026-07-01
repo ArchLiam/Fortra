@@ -1,0 +1,19 @@
+{
+  "id": "C-04",
+  "category": "C. Product Type",
+  "name": "Services product type aggregation",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Lines with Fortra_Product_Type__c='Services' route through the V21 ListContainer8 'Total Services' AdvancedListFilter (Fortra_Product_Type__c Equals 'Services') and SUM(ItemNetTotalPrice) into the quote-level Total_Services__c bucket via 'Services Aggregate Price'; Services lines are summed (no bundle/subscription splitting) and segregated from Software/Subscription buckets. Regional multiplier path is secondary (validated separately in G-04).",
+  "actual": "Existing UI-priced Quote 0Q0WC0000034UvR0AU has two Services lines: EFT Expert Service Standard (qty 1, NetUnitPrice 24000, NetTotalPrice 24000) + Hourly Rate Sr. Consultant T&M (qty 1, NetUnitPrice 275, NetTotalPrice 275) = SUM 24275. Quote header Total_Services__c = 24275 exactly. Type segregation holds: Total_Subscription__c=5775.5 (1733 + 4042.5) and Total_Software__c=27354 are separate buckets; no Services leak. Confirmed live by a fresh headless V21 Force-reprice (isSuccess:true, errorResponse:[]) which recomputed Total_Services__c=24275 and advanced LastModifiedDate to 2026-06-30T01:38:29Z. Each Services line stays one Qty line (no splitting).",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000034UvR0AU/view (Total_Services__c=24275) ; Services QLIs 0QLWC000003dYeP4AU (net 24000), 0QLWC000003dYeQ4AU (net 275) ; Force-reprice body Data/sc-c04/v21_live/reprice_C04_body.json (isSuccess:true) ; V21 steps in Data/sc-c04/v21_live/v21_block.xml: 'Total Services' AdvancedListFilter parentStep=ListContainer8 (Fortra_Product_Type__c Equals 'Services') + 'Services Aggregate Price' SUM(ItemNetTotalPrice)->Total_Services__c. Cross-check Quote 0Q0WC00000372Ef0AI Total_Services__c=5150 (2400+2750) and 0Q0WC000003ECdt0AG Total_Services__c=90000.",
+  "recordIds": ["0Q0WC0000034UvR0AU", "0QLWC000003dYeP4AU", "0QLWC000003dYeQ4AU"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Branch confirmed: V21 step 'Total Services' (AdvancedListFilter, gate Fortra_Product_Type__c Equals 'Services', parentStep ListContainer8) -> 'Services Aggregate Price' (GroupingAndAggregatePricing, SUM ItemNetTotalPrice, write-back Total_Services__c). Active proc = Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY, org-confirmed Active; V20 Inactive). Used real UI-priced Services lines with positive net (avoids the headless Apex-insert $0-net artifact). Regional multiplier 'if enabled' sub-path is out of C-04 core scope and already PASS in G-04 (RegionalServicesPricingPrehook + RegionalServicesPrice33, LIST-channel only). defect_provenance none/catalog-derived; no defect reproduced.",
+  "verdict_reason": "Services-type lines summed exactly into Total_Services__c (24000+275=24275) with correct type segregation from Software/Subscription buckets, confirmed by a fresh live V21 Force-reprice."
+}

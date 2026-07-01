@@ -1,0 +1,16 @@
+{
+  "id": "B-03",
+  "verdict": "PASS",
+  "category": "B. Selling Model",
+  "priority": "P0",
+  "dataSource": "new-script",
+  "expected": "Tiered-quantity Subscription line: prehook tier lookup keyed on Number_of_Units=1-50 + Attribute_Volume=30 (range 26-50, Unit Price mode) sets Base_Price/NetUnitPrice=400 (overriding list 325); line total = qty 1 x PricingTermCount 1 x 400 = 400.",
+  "actual": "After Force-reprice: Base_Price__c=400, Attribute_Price_Mode__c='Unit Price', NetUnitPrice=400, UnitPrice=400, NetTotalPrice=400, TotalLineAmount=400, TotalPrice=400, PricingTermCount=1, SubscriptionTerm=1, ListPrice=325. Tier override correctly superseded list; vol 30 matched tier 26-50 (400), not tier-1 (468) nor list.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khjO4AQ/view ; Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FXpy0AG/view",
+  "recordIds": ["0Q0WC000003FXpy0AG", "0QLWC000003khjO4AQ", "0zuWC000006ArQzYAK", "0zuWC000006ArR0YAK"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "dataScript": "scripts/apex/setupTieredSubQuoteTestData.compact.apex",
+  "notes": "Product Device Profiler Ev Express (01tWC00000DD1BUYA1, Subscription, FIM-FIM-RSS-DPEEXS), PSM Term Based-Annual 0jPWC000000060b2AA, Fortra Price Book PBE 01uWC000005wrtuYAA. Tier engine = AttributeVolumePricingPrehook v3.0 over Attribute_Tier_Pricing_Storage__c; V21 steps Attribute Value Pricing - Unit Price Mode (21-24) + Subscription Aggregate/Pricing (109-112). SC-3390 fix in place (Unit Volume PAD 0v7WC0000000TutYAE IsPriceImpacting=true); single REST Force reprice produced correct tier on first pass (no 2-click stale lag). USD; SC-3384 non-USD tiers not exercised in this USD smoke."
+}

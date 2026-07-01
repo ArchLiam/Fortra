@@ -1,0 +1,15 @@
+{
+  "id": "A-02",
+  "category": "A. Pricing Source / Channel",
+  "verdict": "FAIL",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "expected": "LastTransaction carry-forward: prior-transaction NetUnitPrice 6695.30 preserved (UnitPrice 6695.30, TotalLineAmount/NetTotalPrice 13390.60), NO catalog re-derivation; reprice completes CompletedWithPricing.",
+  "actual": "Force-reprice HARD-FAILS at StampBaseFilter#1 with SF-Pricing-00006/SF-BRE-00004 on BOTH A-02 quotes; CalculationStatus=PriceCalculationFailed; NetUnitPrice/NetTotalPrice/TotalLineAmount stay null. Carry-forward never computed. Control A-01 catalog quote reprices isSuccess=True (engine healthy), so failure is specific to the LastTransaction line.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FXA10AO/view (QLI 0QLWC000003kh8H4AQ); repro Quote 0Q0WC000003FX3Z0AW (QLI 0QLWC000003kh6f4AA); Asset 02iWC000008dekCYAQ priorNet 6695.30 / PBE 01uWC000005wrqzYAA list 0.00; control 0Q0WC000003FcHl0AK isSuccess=True",
+  "defectStep": "Stamp Base Filter (parent StampContributorBasePreDiscount, seq 14) criterion 5 'NetUnitPrice GreaterThan 0' not null-safe; cond logic (1 OR 2) AND 3 AND 4 AND 5 evaluates the null NetUnitPrice resource before the ItemPricingSource NotEquals LastTransaction exclusion can drop the line.",
+  "proposedFix": "Make StampBaseFilter null-safe: guard NetUnitPrice criterion (e.g. NetUnitPrice IsNotNull AND >0) or move the LastTransaction exclusion ahead so the carry-forward line is dropped before the NetUnitPrice>0 resource is read; alternatively seed carry-forward NetUnitPrice (AmendNetCarry seq39 / ListContainer79 seq26) BEFORE seq14. NOT applied (validation only).",
+  "regression": "",
+  "recordIds": ["0Q0WC000003FXA10AO", "0QLWC000003kh8H4AQ", "0Q0WC000003FX3Z0AW", "0QLWC000003kh6f4AA", "02iWC000008dekCYAQ"],
+  "notes": "Same SF-BRE-00004 StampBaseFilter null-safety crash documented in SC-3441 (cancellation line, also null NetUnitPrice at reprice). Carry-forward branches exist and are correctly gated (ListOperation80 ItemPricingSource Equals LastTransaction -> NetUnitPrice*LineItemQuantity; AmendNetCarry Amend Filter), but they run at seq 26/39 AFTER StampBaseFilter (seq 14) which aborts the whole procedure first on the un-seeded null NetUnitPrice. Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (status Active confirmed). Debug-log trace flag could not be set (org log storage 1358/1000 MB full); RLM pricing internals are opaque to Apex logs anyway; REST error message names the failing step + cause unambiguously."
+}

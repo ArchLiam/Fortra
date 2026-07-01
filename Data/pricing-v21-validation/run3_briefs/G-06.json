@@ -1,0 +1,34 @@
+{
+ "id": "G-06",
+ "category": "G. Multi-Currency / Regional",
+ "name": "Regional pricing disabled (AllowRegionalPricing=false) null-guard",
+ "priority": "P1",
+ "what_it_tests": "A services line with AllowRegionalPricing__c=false/null does NOT get the country multiplier and never hydrates RegionalNetUnitPrice__c; the reconcile gate must null-guard so an add on a never-hydrated null US line does not fail",
+ "proc_mechanism": "Regional Services Price negative branch (AllowRegionalPricing__c=true gate fails); RegionalNetReconcileGate IsNotNull guard (V13)",
+ "expected_behavior": "Standard catalog price; no regional scaling; no null-line failure on add",
+ "test_setup": "Services, AllowRegionalPricing__c=false, US country, Qty=1",
+ "defect_provenance": "SC-3393",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Live V21 Force-reprice (isSuccess=true, errorResponse=[]) of US/USD Draft quote 00781185 carrying flag-false services lines. Active Threat Sweep qty=5 line: UnitPrice=3, NetUnitPrice=3, ListPrice=3, TotalLineAmount=15, NetTotalPrice=15 = exact catalog (3) with NO regional scaling; Allow_Regional_Pricing__c=false; Regional_NetUnit_Price__c=null (never hydrated). Pre==post (idempotent). Quote CalculationStatus=CompletedWithPricing, TotalPrice=15. NO SF-BRF-00004 / RegionalNetReconcileGate evaluation error. Static proc evidence: V21 version block has ZERO RegionalNetReconcile references (the SC-3393 unguarded GreaterThan-0 group existed ONLY in V10/V11 with 7 refs each; removed in V12 and never returned). V21 regional gate = RegionalServicesPrice group on ListContainer4 with the SINGLE null-safe criterion 'AllowRegionalPricing__c Equals true' (conditionLogic 1); a false/null line fails the \u2026",
+  "evidence": "Reprice log Data/sc3393/v21_live/g06/reprice_result_g06.json (isSuccess:true, errorResponse:[]); quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Akvt0AC/view ; line https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003fxOz4AI/view ; V21 proc block Data/sc3393/v21_block.xml (RegionalNetReconcile count=0; gate = AllowRegionalPricing__c Equals true only); per-version regional-step audit shows RegionalNetReconcile present only V10/V11. Corroborating existing flag-false US/USD priced lines: 0QLWC000003fxP04AI, 0QLWC000003aWFl4AM, 0QLWC000003jbhd4AA all net=catalog, regional price null.",
+  "recordIds": [
+   "0Q0WC000003Akvt0AC",
+   "0QLWC000003fxOz4AI",
+   "0QLWC000003fxP04AI"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "G-06 is the NEGATIVE branch of the regional pricing mechanism; G-04 is the POSITIVE control on the SAME V21 (Italy flag=true => list 55000 -> 35200 CEILING-scaled). Both confirmed: true=>scale, false/null=>no-scale, clean reprice. The catalog proc_mechanism cited a 'RegionalNetReconcileGate IsNotNull guard (V13)' (the SC-3393 recommended fix); LIVE V21 satisfies the null-safety requirement via a STRONGER route \u2014 the entire RegionalNetReconcile ListGroup that hosted the un-null-guarded RegionalNetUnitPrice__c GreaterThan 0 comparison was REMOVED in V12+ (never re-added through V21), so there is\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "B-05",
+  "category": "B. Selling Model",
+  "name": "Evergreen anytime proration (partial periods + transient end date)",
+  "priority": "P1",
+  "verdict": "BLOCKED",
+  "rootCause": "TEST-DATA-ARTIFACT",
+  "dataSource": "config-query",
+  "preflight": "fail",
+  "expected": "Anytime (mid-period) proration computed against the transient end date; PricingTermCount derived from ProrationBKM using itemTransientEndDate as EffectiveTo and PricingTermUnit as ProrationPeriod",
+  "actual": "Scenario un-instantiable in FortraUAT (run3, 2026-06-30). PSMO count for Evergreen SellingModelType = 0 (0 PSMOs linked to any of the 4 Evergreen ProductSellingModel records: 0jPWC00000006C92AI Monthly, 0jPWC00000006CA2AY Quarterly, 0jPWC00000006CB2AY Semi-Annual, 0jPWC00000006CC2AY Yearly). Active PBE WHERE ProductSellingModel.SellingModelType='Evergreen' = 0. Existing QLI WHERE SellingModelType='Evergreen' = 0. No Product2 is mapped to any Evergreen selling model via PSMO, so no priceable Evergreen line can be built. V21 proc branch (EvergreenanytimeprorationfilterLinelevel, ListOperation83, gating SellingModelType='Evergreen' AND AllowPartialProrationPeriods=true AND itemTransientEndDate IsNotNull) was NOT exercised.",
+  "evidence": "FortraUAT queries 2026-06-30: (1) SELECT COUNT(Id) FROM ProductSellingModelOption WHERE ProductSellingModelId IN ('0jPWC00000006C92AI','0jPWC00000006CA2AY','0jPWC00000006CB2AY','0jPWC00000006CC2AY') -> 0; (2) SELECT COUNT(Id) FROM PricebookEntry WHERE ProductSellingModel.SellingModelType='Evergreen' AND IsActive=true -> 0; (3) SELECT COUNT(Id) FROM QuoteLineItem WHERE SellingModelType='Evergreen' -> 0. V21 static trace: Evergreen anytime proration branch present at labels lines 1820-1821 and 6682-6683 in live expressionSetDefinition file, ListOperation83 three-condition guard (SellingModelType='Evergreen' AND AllowPartialProrationPeriods=true AND itemTransientEndDate IsNotNull) confirmed present. ProrationBKM downstream step confirmed (EffectiveTo=itemTransientEndDate). Branch syntax is correct but cannot be exercised with any FortraUAT data.",
+  "defectStep": "",
+  "proposedFix": "Map at least one active Product2 to an Evergreen ProductSellingModel via ProductSellingModelOption, add an active PricebookEntry for that product+selling-model in the Fortra Price Book, then build a Quote with that Evergreen QLI (AllowPartialProrationPeriods=true, itemTransientEndDate set to a mid-period date) to exercise the branch. This is a test-data gap, not a V21 procedure defect.",
+  "regression": "",
+  "notes": "BLOCKED status unchanged from run1 and run2. The 4 Evergreen ProductSellingModel records exist but remain unmapped (0 PSMOs). The V21 branch is syntactically correct per static trace. rootCause=TEST-DATA-ARTIFACT because the scenario cannot be instantiated with current org config - no Evergreen product catalog exists in FortraUAT. Per method brief anti-phantom-defect doctrine, an un-instantiable scenario is BLOCKED, never FAIL.",
+  "verdict_reason": "Preflight fails at first gate: 0 PSMOs for Evergreen SellingModelType means no priceable Evergreen line can be built in FortraUAT. The proc branch exists and is syntactically correct but was never exercised. Cannot distinguish PASS from FAIL on a never-run branch. BLOCKED per method brief (cannot prove valid inputs reached the procedure)."
+}

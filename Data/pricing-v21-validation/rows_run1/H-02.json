@@ -1,0 +1,15 @@
+{
+  "id": "H-02",
+  "category": "H. Discounts",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "expected": "Manual quote-level percent (line-level) discount reduces net to Net = base x (1 - DiscountPercent); approval-routing on >25% is a separate (non-pricing-procedure) layer.",
+  "actual": "V21 'Manual Quote Level Percentage-Based (Line-Level)' BKM applies AdjustmentValue=ItemDiscountPercentage(=QLI.Discount) to InputUnitPrice=NetUnitPrice -> NetUnitPrice. Real live NEW Add lines confirm exactly: disc20 unit15000->net12000; disc20 unit25000->net20000; disc10 unit301.75->net271.575; disc5 unit2850->net2707.5; disc80 unit47.27->net9.454 (Qty=4 -> netTot37.816); disc8 unit18500->net17020; disc15 unit736->net625.6 (24/40 recent disc>0 lines match net==base*(1-d%), rest are derived/asset-net or discount-not-yet-applied rows).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003clIj4AI/view (disc10 271.575); /0QLWC0000036GDF4A2/view (disc80 Qty4 9.454); my fixture Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FXml0AG/view (QLI 0QLWC000003khgB4AQ); V21 meta Data/sc-h02/v21meta/metadata.json",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 ESDV 9QBWC0000000oWH4AY confirmed Active. Discount gate traced: ListContainer56 -> 'Manual Quote Level Discount' AdvancedListFilter (ItemSalesTransactionAction in {Add,Amend,null} AND ItemPricingSource!='LastTransaction' AND (ItemIsDerived IsNull OR =false)) -> 'Manual Quote Level Percentage-Based (Line-Level)' BKM (PercentageStringConstant on ItemDiscountPercentage). The 'Sales Rule Broken'/approval-on->25%-authority sub-clause is NOT a pricing-procedure concern: 0 approval/broken/authority refs in V21 metadata and no such field on Quote/QuoteLineItem/SalesTransactionItem -> out of pricing-smoke-test scope (not a defect). Built H-02 fixture (DG Management Console then Insite Analytics-Core Perpetual/OneTime, Discount=30, Qty=4) but a headless Force-reprice (connect/rev/sales-transaction/actions/place) leaves NetUnitPrice=0 because the list->NetUnitPrice seed for OneTime/Perpetual lines fires only at UI line-add (NetUnitPrice is engine-only, not Apex-writeable); Subtotal seeded to 10000(list) proving the proc ran. PASS therefore rests on real live procedure-priced data, not the fresh headless line. Script scripts/apex/setupH02ManualPercentDiscountTestData.compact.apex.",
+  "recordIds": ["0Q0WC000003FXml0AG", "0QLWC000003khgB4AQ", "0QLWC000003clIj4AI", "0QLWC0000036GDF4A2", "0QLWC000003529F4AQ"]
+}

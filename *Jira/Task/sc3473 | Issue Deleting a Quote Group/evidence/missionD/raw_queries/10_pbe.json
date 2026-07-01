@@ -1,0 +1,851 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSW5YAM"
+        },
+        "Id": "01uWC000004dSW5YAM",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 46,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wrrAYAQ"
+        },
+        "Id": "01uWC000005wrrAYAQ",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 46,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWojYAE"
+        },
+        "Id": "01uWC000004mWojYAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 69.92,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005x3udYAA"
+        },
+        "Id": "01uWC000005x3udYAA",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 69.92,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWokYAE"
+        },
+        "Id": "01uWC000004mWokYAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 62.1,
+        "CurrencyIsoCode": "CAD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005x3ueYAA"
+        },
+        "Id": "01uWC000005x3ueYAA",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 62.1,
+        "CurrencyIsoCode": "CAD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWolYAE"
+        },
+        "Id": "01uWC000004mWolYAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 42.32,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005x3ufYAA"
+        },
+        "Id": "01uWC000005x3ufYAA",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 42.32,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWomYAE"
+        },
+        "Id": "01uWC000004mWomYAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 36.34,
+        "CurrencyIsoCode": "GBP"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005x3ugYAA"
+        },
+        "Id": "01uWC000005x3ugYAA",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 36.34,
+        "CurrencyIsoCode": "GBP"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSWRYA2"
+        },
+        "Id": "01uWC000004dSWRYA2",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 2850,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wrrPYAQ"
+        },
+        "Id": "01uWC000005wrrPYAQ",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 2850,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWqbYAE"
+        },
+        "Id": "01uWC000004mWqbYAE",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 0,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzbHYAQ"
+        },
+        "Id": "01uWC000005wzbHYAQ",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 4332,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWqcYAE"
+        },
+        "Id": "01uWC000004mWqcYAE",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 0,
+        "CurrencyIsoCode": "CAD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzbIYAQ"
+        },
+        "Id": "01uWC000005wzbIYAQ",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 3847.5,
+        "CurrencyIsoCode": "CAD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWqdYAE"
+        },
+        "Id": "01uWC000004mWqdYAE",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 0,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzbJYAQ"
+        },
+        "Id": "01uWC000005wzbJYAQ",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 2622,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004mWqeYAE"
+        },
+        "Id": "01uWC000004mWqeYAE",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 0,
+        "CurrencyIsoCode": "GBP"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzbKYAQ"
+        },
+        "Id": "01uWC000005wzbKYAQ",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "IsActive": true,
+        "UnitPrice": 2251.5,
+        "CurrencyIsoCode": "GBP"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dTDyYAM"
+        },
+        "Id": "01uWC000004dTDyYAM",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 20000,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wsG1YAI"
+        },
+        "Id": "01uWC000005wsG1YAI",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 20000,
+        "CurrencyIsoCode": "USD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004n1m9YAA"
+        },
+        "Id": "01uWC000004n1m9YAA",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 30400,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wxVgYAI"
+        },
+        "Id": "01uWC000005wxVgYAI",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 30400,
+        "CurrencyIsoCode": "AUD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004n1mAYAQ"
+        },
+        "Id": "01uWC000004n1mAYAQ",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 27000,
+        "CurrencyIsoCode": "CAD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wxVhYAI"
+        },
+        "Id": "01uWC000005wxVhYAI",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 27000,
+        "CurrencyIsoCode": "CAD"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004n1mBYAQ"
+        },
+        "Id": "01uWC000004n1mBYAQ",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 18400,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wxViYAI"
+        },
+        "Id": "01uWC000005wxViYAI",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 18400,
+        "CurrencyIsoCode": "EUR"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004n1mCYAQ"
+        },
+        "Id": "01uWC000004n1mCYAQ",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 15800,
+        "CurrencyIsoCode": "GBP"
+      },
+      {
+        "attributes": {
+          "type": "PricebookEntry",
+          "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wxVjYAI"
+        },
+        "Id": "01uWC000005wxVjYAI",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "IsActive": true,
+        "UnitPrice": 15800,
+        "CurrencyIsoCode": "GBP"
+      }
+    ],
+    "totalSize": 30,
+    "done": true
+  },
+  "warnings": []
+}

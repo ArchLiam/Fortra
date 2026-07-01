@@ -1,0 +1,35 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ProductSellingModel",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+        },
+        "Id": "0jPWC00000005yz2AA",
+        "Name": "One Time",
+        "SellingModelType": "OneTime",
+        "Status": "Active",
+        "PricingTerm": null,
+        "PricingTermUnit": null
+      },
+      {
+        "attributes": {
+          "type": "ProductSellingModel",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+        },
+        "Id": "0jPWC000000060b2AA",
+        "Name": "Term Based - Annual",
+        "SellingModelType": "TermDefined",
+        "Status": "Active",
+        "PricingTerm": 1,
+        "PricingTermUnit": "Annual"
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

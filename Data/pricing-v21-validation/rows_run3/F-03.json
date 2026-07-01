@@ -1,0 +1,18 @@
+{
+  "id": "F-03",
+  "category": "F. Transaction Type",
+  "name": "COLA stamps both Input and Net",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Renewal QLI with COLA_Uplift_Percent__c set: UnitPrice(InputUnitPrice) = COLACalculatedPrice__c AND NetUnitPrice = COLACalculatedPrice__c (both stamped; for non-partner lines Net=COLACalc; for partner lines Net=COLACalc then partner step discounts further but COLA stamp fires correctly as shown by Pre_Partner_Price__c=COLACalc)",
+  "actual": "FY2r quote 0Q0WC000003FY2r0AG (non-partner renewal, Partner_Pricing_Model__c=null): Cobalt Strike QLI 0QLWC000003khwH4AQ: UnitPrice=6265.80, NetUnitPrice=6265.80, COLACalc=6265.80 (ListPrice=5900 x 1.062=6265.8). beSECURE QLI 0QLWC000003khwI4AQ: UnitPrice=218.772, NetUnitPrice=218.77, COLACalc=218.77. Both lines: Input=Net=COLACalc. Partner renewal quote FRuD0AW QLI 0QLWC000003kcQM4AY: UnitPrice=7110.41=COLACalc=Pre_Partner_Price__c; NetUnitPrice=5830.54=COLACalc x 0.82 (18% partner discount correctly applied after COLA stamp). All Force-repriced v67.0 isSuccess=true 2026-06-30.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view (PASS: both QLIs Input=Net=COLACalc after Force-reprice); QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwH4AQ/view (Cobalt 6265.80); QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwI4AQ/view (beSECURE 218.77); partner renewal quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FRuD0AW/view (Pre_Partner_Price__c=COLACalc=7110.41 confirms COLA stamped Net before partner discount; Net=5830.54=COLACalc x 0.82 correct)",
+  "defectStep": null,
+  "proposedFix": null,
+  "regression": null,
+  "notes": "Prior run2 FAIL was an EXPECTATION-ERROR. The prior run compared Net directly to COLACalc (7110.41) for the partner renewal line (FRuD0AW) and saw Net=5830.54 which was interpreted as stale/frozen. However: (1) The non-partner test vehicle (FY2r) cleanly shows COLA stamps BOTH Input AND Net = COLACalc correctly. (2) For the partner line, Pre_Partner_Price__c=COLACalc=7110.41 proves the COLA step DID set NetUnitPrice=COLACalc first; the partner prehook then correctly applied 18% discount to get Net=5830.54=7110.41 x 0.82. The prior run misidentified 5830.54 as stale (old 5490.15 x 1.062=5830.54) but mathematically 6695.3 x 1.062 x 0.82 = 5830.54 exactly (same result because old asset net was itself partner-discounted at 18%: 5490.15/6695.3=0.82). The COLA stamping step in V21 is working correctly for both partner and non-partner renewal paths. Active proc=Rev_Mgmt_Default_Pricing_Procedure V21, repriced 2026-06-30 via /services/data/v67.0/connect/rev/sales-transaction/actions/place pricingPref=Force configurationMethod=Skip.",
+  "verdict_reason": "Non-partner renewal quote 0Q0WC000003FY2r0AG: after Force-reprice through current V21 both QLIs show UnitPrice=NetUnitPrice=COLACalculatedPrice__c (Cobalt 6265.80, beSECURE 218.77). COLA correctly stamps both InputUnitPrice and NetUnitPrice. Partner renewal line (prior run FAIL vehicle) shows Pre_Partner_Price__c=COLACalc confirming COLA did stamp Net before partner discounting; prior FAIL was expectation-error comparing Net to COLACalc without accounting for partner step."
+}

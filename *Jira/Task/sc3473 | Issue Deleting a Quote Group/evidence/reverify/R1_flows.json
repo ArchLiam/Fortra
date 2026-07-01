@@ -1,0 +1,166 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000OSStFYAX"
+        },
+        "ApiName": "Fortra_QuoteLineItem_Legal_Entity_Copy",
+        "TriggerObjectOrEventLabel": "Quote Line Item",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "Create",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000LZ3dFYAT"
+        },
+        "ApiName": "Fortra_Quote_Approvals",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "Update",
+        "ProcessType": "ApprovalWorkflow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000M7PJbYAN"
+        },
+        "ApiName": "Fortra_Quote_Count_Maintenance",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000M3iKnYAJ"
+        },
+        "ApiName": "Fortra_Quote_Line_Item_Populate_QL_With_Quote_Values",
+        "TriggerObjectOrEventLabel": "Quote Line Item",
+        "TriggerType": "RecordBeforeSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000OSStGYAX"
+        },
+        "ApiName": "Fortra_Quote_MYCAP_Sale_Approval_Criteria_Record_Triggered",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordBeforeSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000LtFX2YAN"
+        },
+        "ApiName": "Fortra_Quote_Sync_Address_From_Place",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "Update",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000MiCLlYAN"
+        },
+        "ApiName": "Fortra_Quote_Validate_Partner_Pricing_Model",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordBeforeSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000OSStHYAX"
+        },
+        "ApiName": "Fortra_RCA_Renewal_Enhancement",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "Create",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000MCSYcYAP"
+        },
+        "ApiName": "POI_Update_Opportunity_From_QLI",
+        "TriggerObjectOrEventLabel": "Quote Line Item",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000M2JBeYAN"
+        },
+        "ApiName": "Quote_After_Update_Create_Order_From_Quote",
+        "TriggerObjectOrEventLabel": "Quote",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "Update",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000GCynGYAT"
+        },
+        "ApiName": "Quote_Line_Item_On_Create",
+        "TriggerObjectOrEventLabel": "Quote Line Item",
+        "TriggerType": "RecordAfterSave",
+        "RecordTriggerType": "Create",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000S1kIRYAZ"
+        },
+        "ApiName": "Stamp_Maintenance_Pricing_Inputs",
+        "TriggerObjectOrEventLabel": "Quote Line Item",
+        "TriggerType": "RecordBeforeSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      },
+      {
+        "attributes": {
+          "type": "FlowDefinitionView",
+          "url": "/services/data/v67.0/sobjects/FlowDefinitionView/300WC00000Rz0tCYAR"
+        },
+        "ApiName": "Stamp_Source_List_Price",
+        "TriggerObjectOrEventLabel": "Quote Line Item",
+        "TriggerType": "RecordBeforeSave",
+        "RecordTriggerType": "CreateAndUpdate",
+        "ProcessType": "AutoLaunchedFlow",
+        "IsActive": true
+      }
+    ],
+    "totalSize": 13,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,32 @@
+{
+ "id": "G-01",
+ "category": "G. Multi-Currency / Regional",
+ "name": "Non-USD currency conversion of unit/net/total/subtotal",
+ "priority": "P0",
+ "what_it_tests": "A non-USD line applies its ISO-specific multiplier across net total/subtotal/total/unit (EUR 0.9346, GBP 0.7874, CAD 1.3889, AUD 1.5385, CHF 0.8850, ILS 3.6251, JPY 149.2537, NZD 1.6667, ARS 666.6667); reads currency-specific PBE",
+ "proc_mechanism": "Currency Conversion - Net Total / Subtotal / Net Unit Price / Total Line Amount / Unit Price Display (nested IF on STICurrencyIsoCode); currency-matched PricebookEntry; CURRENCYRATE() CMDT",
+ "expected_behavior": "All currency outputs scaled by the per-ISO multiplier; order/invoice/Workday GL in that currency",
+ "test_setup": "STICurrencyIsoCode='EUR' (and one line per other ISO), Software, Qty=2; European customer Fortra International GmbH list 100k EUR",
+ "defect_provenance": "SC-3384",
+ "run3_result": {
+  "verdict": "FAIL",
+  "rootCause": "PROCEDURE-DEFECT",
+  "dataSource": "existing",
+  "actual": "Adversarial re-verify 2026-06-30 on QLI 0QLWC000003kmG14AI (Quote 0Q0WC000003FcrF0AS 'LJ G-02 CurrABA', AAM Perpetual EUR Qty=1). NetUnitPrice=NetTotalPrice=TotalLineAmount=TotalPrice=1471.995 ALL CORRECT (= 1575 \u00d7 0.9346^1). ListPrice=2943.99 correct (EUR PBE). Base_Price__c=Source_List_Price__c=Pre_Partner_Price__c=1575 (correct USD base preserved). UnitPrice is WRONG and compounds by \u00d70.9346 on EVERY reprice: measured 1201.66569974 (\u00d70.9346^4), then 1123.07676298 (\u00d70.9346^5) on a later read, then a single controlled Force-reprice (isSuccess=true) drove it to 1049.62754268 = 1575 \u00d7 0.9346^6 (exactly prior \u00d7 0.9346). The executor had recorded 1285.75401213 (\u00d70.9346^3); my fresh measurements continued the monotonic descent, proving the runaway is live and per-reprice. UnitPrice diverges further from the correct 1471.995 on every pass.",
+  "evidence": "QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kmG14AI/view | Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcrF0AS/view. ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY confirmed VersionNumber=21, Status=Active (Tooling API). Live proc retrieved to Data/pricing-v21-validation/G01_live_v21.json. Controlled single Force-reprice: BEFORE UnitPrice=1123.07676298 (1575\u00d70.9346^5), AFTER=1049.62754268 (1575\u00d70.9346^6) = BEFORE\u00d70.9346 exactly; NetUnitPrice stayed 1471.995. PBE 01uWC000005wyIIYAY EUR UnitPrice=2943.99 active in 'Fortra Price Book' (active). Product 01tWC00000DD11YYAT 'Advanced Authentication Modes' active, Fortra_Product_Type__c=Perpetual. Quote CurrencyIsoCode=EUR.",
+  "recordIds": [
+   "0QLWC000003kmG14AI",
+   "0Q0WC000003FcrF0AS",
+   "01uWC000005wyIIYAY",
+   "01tWC00000DD11YYAT",
+   "01uWC000005wywxYAA",
+   "0Q0WC000003AaoT0AS",
+   "0QLWC000003fnB94AI",
+   "0QLWC000003fnB74AI"
+  ],
+  "defectStep": "CurrencyConversionUnitPriceDisplay (V21 step array-index 38, sequenceNumber 40; label 'Currency Conversion - Unit Price Display'): formula InputUnitPrice * IF(STICurrencyIsoCode='EUR',0.9346,...) with output=InputUnitPrice (mapped to persisted UnitPrice). It reads InputUnitPrice carried in from the PRIOR run's persisted UnitPrice (no step re-seeds InputUnitPrice from base for a plain Perpetual line \u2014 the only InputUnitPrice writers, AttributeValuePricingCalculatedMode17/index16 under ListContainer6 and GSAPricing36/index51 under ListContainer1, are gated off for this line), then multiplies by the EUR rate AGAIN, compounding \u00d70.9346 each reprice. By contrast the net steps (CurrencyConversionNetUnitPrice index36 seq39, CurrencyConversionNetTotalSubtotal index35 seq41, CurrencyConversionTotalLineAmount index37 seq42) read NetUnitPrice/ItemNetTotalPrice/TotalLineAmount which ARE rebuilt from scratch each run (ResetNettoPrePartnerBase, the Base_Price__c=1575 bridges), so they land correctly at \u00d70.9346^1. NOTE: executor mislabeled this as 'seq 36'; seq 36/index36 is actually CurrencyConversionNetUnitPrice (the correct net step). The defective step is the Unit Price Display step at sequenceNumber 40 / array index 38.",
+  "proposedFix": "Source the input for CurrencyConversionUnitPriceDisplay from the same pre-currency base the net steps use (Base_Price__c / Source_List_Price__c = 1575 USD) instead of the persisted InputUnitPrice, so it computes 1575 \u00d7 0.9346 = 1471.995 once. Alternatively assign UnitPrice = NetUnitPrice after the net currency steps (display unit price should equal net for standard lines), or add a once-only guard\u2026",
+  "notes": "Preflight all pass: EUR PBE 01uWC000005wyIIYAY UnitPrice=2943.99 active in active Fortra Price Book; product Perpetual active; EUR branch provably fired (NetUnitPrice landed at exactly 1575\u00d70.9346=1471.995, the EUR multiplier path of the nested IF); reprice isSuccess=true. Adversarial checks cleared: (1) NOT a TEST-DATA-ARTIFACT \u2014 existing real record, net side proves inputs valid; net fields hydrate correctly so this is not the headless $0-hydration harness artifact (the opposite \u2014 an over-appl\u2026"
+ },
+ "fixture_scripts": []
+}

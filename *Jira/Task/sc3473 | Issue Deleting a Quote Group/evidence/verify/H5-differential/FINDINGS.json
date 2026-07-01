@@ -1,0 +1,14 @@
+{
+  "hypothesis": "H5-hardware-group-software-semantics",
+  "lens": "differential",
+  "verdict": "REFUTED",
+  "decisive_counterexamples": {
+    "hardware_stamped_on_software_lines": "8+ HW-type groups (Hardware Record, Joe Test, UAT Split HW Test, UAT Split Test HW, Test Hardware, 06/22 HW-1.2, 06/24 hw -1, 06/24 hw3, New Hardware Record) stamp Hardware__c on software products (Subscription/Perpetual/Services families) with Model__c=null and Hardware_Pricing_Applied__c=false -- EXACT H5 condition -- yet are presumed deletable. q2_hwgroup_member_lines.json",
+    "group_number_list_null_keymismatch": "ALL 10 sampled Hardware__c records have Group_Number_List__c=null (q4_hw_records.json), identical to failing HW; one (oC5RYAU) even has P_Group_List__c=null. Not unique.",
+    "group700_line_attribute": "Twin group 06/22 HW-1.2 (1C9WC00000096J70AI) has a line with 'Group Number = Group 700' (q7_twin_groupnum.json) AND its HW record Group_Number_List__c=null -- the precise key-mismatch H5 posits, in a non-failing group.",
+    "accepted_usd_hwtype": "06/22 HW-1.2 is Accepted, USD, 4 software lines, HW-type, HW-stamped -- a near-perfect twin of the failing group differing ONLY by single-SM (all TermDefined) vs failing mixed OneTime+TermDefined. q3_quote_status.json",
+    "custom_hw_apex_not_on_delete": "QuoteLineGroupTrigger live: UsageBeforeDelete=false, UsageAfterDelete=false, after-update only (q5_trigger_events.json). Cannot run on delete; would throw System.NullPointerException not java.util.Map.get NPE anyway."
+  },
+  "sole_real_discriminator": "Mixed selling-model composition (OneTime + TermDefined in one group). Of 25/17 HW-type groups, the failing one is the ONLY mixed-SM group (q2 / Mission E all_hwgroup_sm.json). This is H1 territory, not the hardware dimension.",
+  "conclusion": "Every component of H5's hardware-specific mechanism is reproduced in deletable groups. The hardware dimension is incidental/coincidental; the discriminator is SM-mix."
+}

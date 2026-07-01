@@ -1,0 +1,188 @@
+{
+ "audited": 18,
+ "confirmedRealDefects": 15,
+ "overturnedCount": 3,
+ "overturned": [
+  {
+   "id": "K-02",
+   "classification": "EXPECTATION-ERROR",
+   "recommendedVerdict": "PASS",
+   "dataIssueDetail": "",
+   "reason": "Independently re-measured on live FortraUAT against active V21; the null net reproduces exactly but is NOT a wrong number and NOT a data artifact. (1) Preflight valid: genuine derived maintenance line (Fortra_Product_Type__c='New Maintenance'), PBE active/derived/USD/active-book; the maint-only/no-contributor cart IS the scenario's test_setup, not a malformed fixture. (2) Intended derived branch fired (Source_List_Price__c=355 stamped); contributor absent so native contributor-keyed committer DerivedProductsRenewals silently skips the line and NetUnitPrice is never written -- documented owner-accepted SC-3346 A2 / SC-3372 'no priced node' architecture. Control is decisive: identical product+PBE nets 71 the instant the license contributor is on the cart (J-02). (3) The 'expected' MissingContributor surfacing requires step SurfaceMissingContributorK02 (writes ValidationResult='MissingContributor') which has 0 occurrences in active V21 and lives only in V22 Draft / P3 change list; native SC-3372 banner fires only on hard-error and this reprice returned isSuccess=true. Catalog 'expected' grades active V21 against an un-deployed enhancement => EXPECTATION-ERROR, PASS. No PROCEDURE-DEFECT/ORG-CONFIG-DEFECT survives; prior FAIL refuted. agreesWithExecutor=false because the audited claim is the original FAIL/defect, which my conclusion contradicts."
+  },
+  {
+   "id": "D-09",
+   "classification": "TEST-DATA-ARTIFACT",
+   "recommendedVerdict": "BLOCKED",
+   "dataIssueDetail": "The cited line carries a STALE persisted UnitPrice (1268.43912) the current active V21 does not reproduce. UnitPrice/TotalLineAmount stays frozen across 3 fresh Force-reprices while the net channel is in a feedback loop (Base_Price__c reseeded from the previous reprice's NetUnitPrice, degrading each cycle). The frozen value implies FX 0.9346, which exists nowhere in the org's live FX config; the current Currency Conversion step on today's rate (0.92) yields 1357.2 x 0.92 = 1248.62 = exactly the executor's expected 'native EUR tier'. Fix: delete/re-clone the line via UI 'Add Products' so UnitPrice rehydrates, or rebuild a clean EUR Total-Price line, then re-measure.",
+   "reason": "Executor recorded FAIL on the theory live UnitPrice 1268.43912 = USD tier 1357.2 x EUR FX 0.9346 (double-applied FX), correct = EUR tier 1248.62. Live re-measurement DISPROVES probe (3): the org's actual active EUR FX is 0.92 (not 0.9346) per CurrencyType and DatedConversionRate, and 0.9346 appears in NO live FX source. Decisively, 1357.2 x 0.92 = 1248.624 = the executor's OWN claimed-correct value -- so if V21 were genuinely FX-multiplying the USD tier, a fresh reprice today (rate 0.92) would produce 1248.62 = a PASS. Instead UnitPrice is frozen at the 0.9346-derived value across 3 fresh reprices and never recomputes, while NetUnitPrice/Base_Price__c degrade non-deterministically (Base reseeded from prior NetUnitPrice) -- the signature of a stale/corrupted line, not a clean V21 computation. The reported +19.82 EUR overcharge is exactly 1357.2 x (0.9346-0.92), the gap between a stale snapshot FX and the current org FX. Branch did fire on valid inputs (probes 1-2 hold), but probe 3 fails: V21 on a fresh reprice with current FX does not produce the wrong number; the wrong number is a frozen stale field a real UI rep would not hit (they'd get 1248.62). Verdict BLOCKED / TEST-DATA-ARTIFACT, not FAIL. If a clean re-seeded EUR Total-Price line still shows USD-tier x FX != native EUR tier on fresh reprice, re-open as PROCEDURE-DEFECT -- that was not demonstrated here."
+  },
+  {
+   "id": "K-10",
+   "classification": "EXPECTATION-ERROR",
+   "recommendedVerdict": "PASS",
+   "dataIssueDetail": "",
+   "reason": "REFUTED the original FAIL; the catalog expected value is the error. Fresh Force-reprice of the CURRENT active V21 proves all three burden items run AGAINST a defect: (1) data VALID - PBE active/$2800/USD on active parent book, Perpetual product, existing UI-style records, CompletedWithPricing; (2) intended null-safe branch FIRED - reprice isSuccess=true errorResponse=[] (NO NPE) and positive line uncorrupted (TotalLineAmount=14000); (3) V21 did NOT produce a wrong number - it yields Subtotal=ALE=11200 = 14000 + (2800 x -1), the arithmetically CORRECT result for a Qty=-1 credit. The catalog's expected 'negative excluded, ALE=14000' is wrong: AllLinesNullSafeFilter gates only ListContainer11's per-line ItemTotalAdjustmentAmount NPE guard, not the header rollup; and Quote.ALE__c is a Formula(Number) literally = 'Subtotal' (CustomField 00NWC000003d66a2AA Metadata.formula='Subtotal' verified live), so no pricing step can exclude a correctly-priced negative line from ALE. Negative line prices via base NetUnitPrice x Quantity (CancelNetUnitPrice__c=null, standard catalog path - no new branch). SC-3441 intent is exactly that a negative-qty line yields a negative credit rolling into the header. Both real assertions (no NPE; positive line uncorrupted) PASS. Not a data issue, not a headless $0 artifact, not a procedure defect. EXPECTATION-ERROR -> PASS. Agrees with run3 executor, disagrees with original FAIL."
+  }
+ ],
+ "dataIssues": [
+  {
+   "id": "G-02",
+   "detail": "Two distinct things share this quote. (A) L1 {RAA,OnPrem,NonProd} is a GENUINE defect, not a data artifact: lines are Apex-inserted, but L1 is NOT a dead headless-$0 line -- it carries a real sourced value (Source_List_Price__c=Base_Price__c=Pre_Partner_Price__c=1575, the USD ABA Override) FX-converted to 1471.995 EUR. (B) L2 {SFTP,OnPrem,NonProd} nets $0 with null stamps -- but the IDENTICAL SFTP combo also nets $0 on the USD control (0QLWC000003l1tN4AQ), so L2's $0 is currency-AGNOSTIC (ABA row 22883 active+unapplied + no PBE fallback), NOT the currency-lookup defect the scenario targets. L2 alone would be ambiguous (headless-$0 vs no-fallback); the verdict rests on L1, which is unambiguous."
+  },
+  {
+   "id": "D-09",
+   "detail": "The cited line carries a STALE persisted UnitPrice (1268.43912) the current active V21 does not reproduce. UnitPrice/TotalLineAmount stays frozen across 3 fresh Force-reprices while the net channel is in a feedback loop (Base_Price__c reseeded from the previous reprice's NetUnitPrice, degrading each cycle). The frozen value implies FX 0.9346, which exists nowhere in the org's live FX config; the current Currency Conversion step on today's rate (0.92) yields 1357.2 x 0.92 = 1248.62 = exactly the executor's expected 'native EUR tier'. Fix: delete/re-clone the line via UI 'Add Products' so UnitPrice rehydrates, or rebuild a clean EUR Total-Price line, then re-measure."
+  },
+  {
+   "id": "J-10",
+   "detail": "The EUR derived-maintenance PBE 01uWC000005wzX8YAI (product 01tWC00000DD1bsYAD, BoKS NewMaintenance) has IsDerived=false, while the USD PBE 01uWC000005wsbUYAQ for the SAME product has IsDerived=true. This is a fixable data/config gap, but it is org-catalog config a real UI rep would also hit (not a fixture omission): all 9 non-USD PBEs for this product have IsDerived=false, and org-wide every one of the 3453 IsDerived=true PBEs is USD (zero non-USD derived PBEs). Fix = PATCH non-USD derived PBEs to IsDerived=true (SC-3384 currency-completeness family). NOT a malformed-seed / headless-insert artifact."
+  }
+ ],
+ "perScenario": [
+  {
+   "id": "G-01",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "G-02",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": true
+  },
+  {
+   "id": "H-01",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "I-02",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "J-05",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "J-06",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "K-01",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "K-02",
+   "isRealDefect": false,
+   "classification": "EXPECTATION-ERROR",
+   "recommendedVerdict": "PASS",
+   "agreesWithExecutor": false,
+   "dataIssueFound": false
+  },
+  {
+   "id": "A-07",
+   "isRealDefect": true,
+   "classification": "ORG-CONFIG-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "D-09",
+   "isRealDefect": false,
+   "classification": "TEST-DATA-ARTIFACT",
+   "recommendedVerdict": "BLOCKED",
+   "agreesWithExecutor": false,
+   "dataIssueFound": true
+  },
+  {
+   "id": "E-04",
+   "isRealDefect": true,
+   "classification": "ORG-CONFIG-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "F-09",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "F-12",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "G-08",
+   "isRealDefect": true,
+   "classification": "ORG-CONFIG-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "I-03",
+   "isRealDefect": true,
+   "classification": "PROCEDURE-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "J-09",
+   "isRealDefect": true,
+   "classification": "ORG-CONFIG-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  },
+  {
+   "id": "J-10",
+   "isRealDefect": true,
+   "classification": "ORG-CONFIG-DEFECT",
+   "recommendedVerdict": "FAIL",
+   "agreesWithExecutor": true,
+   "dataIssueFound": true
+  },
+  {
+   "id": "K-10",
+   "isRealDefect": false,
+   "classification": "EXPECTATION-ERROR",
+   "recommendedVerdict": "PASS",
+   "agreesWithExecutor": true,
+   "dataIssueFound": false
+  }
+ ]
+}

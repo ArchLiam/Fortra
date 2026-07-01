@@ -1,0 +1,43 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou4H4AQ"
+        },
+        "Id": "0QLWC000002ou4H4AQ",
+        "ProductSellingModelId": "0jPWC000000060b2AA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou5t4AA"
+        },
+        "Id": "0QLWC000002ou5t4AA",
+        "ProductSellingModelId": "0jPWC000000060b2AA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "ProductSellingModelId": "0jPWC00000005yz2AA"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "ProductSellingModelId": "0jPWC000000060b2AA"
+      }
+    ],
+    "totalSize": 4,
+    "done": true
+  },
+  "warnings": []
+}

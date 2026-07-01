@@ -1,0 +1,34 @@
+{
+ "id": "C-02",
+ "category": "C. Product Type",
+ "name": "Maintenance product type derived pricing (new + renewal, RC_42000/43000/43120)",
+ "priority": "P0",
+ "what_it_tests": "A maintenance SKU (separate from license) priced as a derived line: new maint as % of list (often 20-24%) via the maintenance derived branch; renewal maint perpetually renewing",
+ "proc_mechanism": "Derived Maintenance Net Filter (ItemIsDerived=true); Derived Pricing Formula (tier% x contributor base); Manual/Partner Discount - Derived Maintenance",
+ "expected_behavior": "Maintenance net = contributor base * tier percent; new maint lines included with license, renewal lines created at asset renewal time",
+ "test_setup": "Derived maintenance (BoKS), ItemIsDerived=true, attached to license, New quote; or Tripwire perpetual + new maint RC_42000",
+ "defect_provenance": "SC-3410 / SC-3412 / SC-3346",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "After live Force-reprice (REST place, isSuccess=true, LastModified 2026-06-30T02:55Z): license net=355 (base 355). New-Maint line net=71 (=0.20 x Source_List_Price 355), UnitPrice 0, NetTotalPrice 71, qty 1, Maintenance Type Defn=Standard. Quote Subtotal=426, TotalPrice=426.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view ; maint QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpO4AU/view",
+  "recordIds": [
+   "0Q0WC000003FKRJ0A4",
+   "0QLWC000003kUpN4AU",
+   "0QLWC000003kUpO4AU"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY, Active). V21 path: step 37 Derived Maintenance Net Filter (ItemIsDerived=true) -> step 39 Derived Pricing Formula (tier 0.20 x contributor base). defect_provenance SC-3410/SC-3412/SC-3346 all resolved; BoKS PIA-PIA-RNM-PIAMBK is Nir-sanctioned DPP product with Maintenance Type Defn attribute => correct 20% derivation. Reprice re-derived live (not stale). Smoke-tested on real records.",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "id": "F-03",
+ "category": "F. Transaction Type",
+ "name": "COLA uplift on renewal (LastTransaction + Renew action)",
+ "priority": "P0",
+ "what_it_tests": "A LastTransaction-sourced renewal with SalesTransactionActionType='Renew' and COLA_Uplift_Percent set gets COLACalculatedPrice stamped to BOTH InputUnitPrice and NetUnitPrice; COLA applied to net (discounted Asset.Price) not list",
+ "proc_mechanism": "COLA Uplift on Renewal (ItemPricingSource='LastTransaction' AND DerivedPricingAttribute=false AND SalesTransactionActionType='Renew' AND COLA_Uplift_Percent__c IsNotNull); COLACalculatedPrice -> InputUnitPrice AND NetUnitPrice",
+ "expected_behavior": "Both InputUnitPrice and NetUnitPrice uplifted by COLA%; renewal net = Asset.Price(net) x (1+COLA%); e.g. 40k net x 1.05 = 42k (not 50k list x 1.05)",
+ "test_setup": "Renewal, ItemPricingSource='LastTransaction', SalesTransactionActionType='Renew', COLA_Uplift_Percent set (category rate), DerivedPricingAttribute=false",
+ "defect_provenance": "SC-3350 / SC-3346 / COLA V16-V20",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "FY2r quote 0Q0WC000003FY2r0AG (non-partner renewal, Partner_Pricing_Model__c=null): Cobalt Strike QLI 0QLWC000003khwH4AQ: UnitPrice=6265.80, NetUnitPrice=6265.80, COLACalc=6265.80 (ListPrice=5900 x 1.062=6265.8). beSECURE QLI 0QLWC000003khwI4AQ: UnitPrice=218.772, NetUnitPrice=218.77, COLACalc=218.77. Both lines: Input=Net=COLACalc. Partner renewal quote FRuD0AW QLI 0QLWC000003kcQM4AY: UnitPrice=7110.41=COLACalc=Pre_Partner_Price__c; NetUnitPrice=5830.54=COLACalc x 0.82 (18% partner discount correctly applied after COLA stamp). All Force-repriced v67.0 isSuccess=true 2026-06-30.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view (PASS: both QLIs Input=Net=COLACalc after Force-reprice); QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwH4AQ/view (Cobalt 6265.80); QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwI4AQ/view (beSECURE 218.77); partner renewal quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FRuD0AW/view (Pre_Partner_Price__c=COLACalc=7110.41 confirms COLA stamped Net before partner discount; Net=5830.54=COLACalc x 0.82 correct)",
+  "recordIds": [
+   "0Q0WC000003FY2r0AG",
+   "0QLWC000003khwH4AQ",
+   "0QLWC000003khwI4AQ",
+   "0Q0WC000003FRuD0AW",
+   "0QLWC000003kcQM4AY",
+   "0Q0WC000003FR6D0AW",
+   "0Q0WC000003FRe50AG",
+   "0QLWC000003kbZ74AI"
+  ],
+  "defectStep": null,
+  "proposedFix": "",
+  "notes": "Prior run2 FAIL was an EXPECTATION-ERROR. The prior run compared Net directly to COLACalc (7110.41) for the partner renewal line (FRuD0AW) and saw Net=5830.54 which was interpreted as stale/frozen. However: (1) The non-partner test vehicle (FY2r) cleanly shows COLA stamps BOTH Input AND Net = COLACalc correctly. (2) For the partner line, Pre_Partner_Price__c=COLACalc=7110.41 proves the COLA step DID set NetUnitPrice=COLACalc first; the partner prehook then correctly applied 18% discount to get N\u2026"
+ },
+ "fixture_scripts": []
+}

@@ -1,0 +1,25 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Opportunity",
+          "url": "/services/data/v67.0/sobjects/Opportunity/006WC00000NMOODYA5"
+        },
+        "Id": "006WC00000NMOODYA5",
+        "Name": "Wren Test - Order Processing",
+        "StageName": "Pre-Qualified",
+        "IsClosed": false,
+        "Pricebook2Id": "01sa5000001vuxlAAA",
+        "SyncedQuoteId": "0Q0WC000002U2020AC",
+        "HasOpportunityLineItem": true,
+        "Amount": 73416
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

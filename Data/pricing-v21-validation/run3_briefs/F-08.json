@@ -1,0 +1,35 @@
+{
+ "id": "F-08",
+ "category": "F. Transaction Type",
+ "name": "Quote->Order convert fails: Prior_* item-attributes missing from Order context",
+ "priority": "P0",
+ "what_it_tests": "The DerivedPricingRenewals formula on the Order side reads item-level Prior_Partner_Discount__c / Prior_Discretionary_Discount__c; if those attributes are missing from OrderEntitiesMapping after a version republish the engine cannot hydrate the read tags and throws an 'Unable to fetch tags' gack",
+ "proc_mechanism": "OrderEntitiesMapping must declare every item-level attribute any active procedure version reads; V9 republish lost the Prior_* mappings; OrderItem.Prior_* must be mapped and hydrated before reprice",
+ "expected_behavior": "Order reprice yields CompletedWithPricing, not 'Unable to fetch tags [-1631597440]'",
+ "test_setup": "Derived maintenance line, order reprice after a version republish",
+ "defect_provenance": "SC-3371",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "OrderEntitiesMapping/SalesTransactionItem on active ctx SalesTransactionContextExt_v2 (11OWC000002m21Z2AQ, activeVer 11pWC000002TjF7YAK) carries BOTH Prior_Partner_Discount__c + Prior_Discretionary_Discount__c (the pair absent during the 2026-06-09 fail). Force-reprice REST place() on 4 derived-NewMaintenance Orders all isSuccess=true, errorResponse=[]; 3 Draft (00095544/00095503/00095644) CalculationStatus=CompletedWithPricing; Activated 00095651 w/ Prior_Partner_Discount__c=10.65 also isSuccess=true. No -1631597440 gack.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kvqPDYAY/view (00095544 CompletedWithPricing); 801WC00000ltvgyYAA (00095651, Prior=10.65); ctx Data/sc3473/f08_ctx/ctx_v2.json; reprice Data/sc3473/f08_ctx/reprice_00095544.json",
+  "recordIds": [
+   "801WC00000kvqPDYAY",
+   "801WC00000ltMGxYAM",
+   "801WC00000knHDLYA2",
+   "801WC00000ltvgyYAA"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Was SC-3371: transient Order-side context drift after a V9 republish dropped Prior_* item mappings -> gack -1631597440. Re-sync held through V21; static (mappings present) + live (4 reprices CompletedWithPricing, incl. populated-Prior line) both confirm. V21 step in play: Derived Products - Renewals/Non-Renewal + Manual/Partner Discount - Derived Maintenance reading OrderItem.Prior_*.",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

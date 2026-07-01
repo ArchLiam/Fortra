@@ -1,0 +1,30 @@
+{
+ "id": "A-05",
+ "category": "A. Pricing Source / Channel",
+ "name": "Derived non-derived exclusion from derived filters",
+ "priority": "P1",
+ "what_it_tests": "A standard line (ItemIsDerived=false/null) must NOT enter Derived Pricing Filter, Derived Maintenance Net Filter, or Stamp Contributor Base derived branches; standard waterfall applies",
+ "proc_mechanism": "Derived Pricing Filter / Derived Maintenance Net Filter (ItemIsDerived Equals true) exclude it; Stamp Base Filter ((ItemIsDerived IsNull OR =false)) includes it",
+ "expected_behavior": "Standard waterfall applies; derived formula skipped",
+ "test_setup": "Software line, ItemIsDerived=false, Qty=3, New quote",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Force-reprice v67.0 on quote 0Q0WC000003FTJJ0A4 (QuoteTypeText__c='New') -> isSuccess:true, errorResponse:[]. Standard QLI 0QLWC000003kdnp4AA (PBE 01uWC000005wrrIYAQ IsDerived=false, list=10000 USD, Fortra Price Book active): post-reprice NetUnitPrice=10000, ListPrice=10000, Base_Price__c=10000, Pre_Partner_Price__c=10000, Source_List_Price__c=null, COLACalculatedPrice__c=null -> standard waterfall ran, derived branches skipped. Inverse derived control QLI 0QLWC000003kiyo4AA (PBE IsDerived=true): Source_List_Price__c=355, Base_Price__c=null, Pre_Partner_Price__c=null -> derived branch ran, standard skipped. Field split confirms gate logic intact in active V21.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FTJJ0A4/view; standard QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kdnp4AA/view; inverse derived QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kiyo4AA/view. Force-reprice POST /services/data/v67.0/connect/rev/sales-transaction/actions/place -> {isSuccess:true, errorResponse:[], salesTransactionId:'0Q0WC000003FTJJ0A4'}. PBE 01uWC000005wrrIYAQ: IsDerived=false, IsActive=true, UnitPrice=10000, Pricebook2='Fortra Price Book' (IsActive=true). PBE 01uWC000005wsbUYAQ (inverse): IsDerived=true, UnitPrice=0.",
+  "recordIds": [
+   "0Q0WC000003FTJJ0A4",
+   "0QLWC000003kdnp4AA",
+   "0QLWC000003kiyo4AA",
+   "01uWC000005wrrIYAQ",
+   "01uWC000005wsbUYAQ",
+   "0QLWC000003ka0M4AQ"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Re-measured on active V21 (run3, 2026-06-30). Standard QLI Quantity=1 (test_setup says Qty=3 for branching distinction; Qty is immaterial to the routing gate \u2014 gate is PBE.IsDerived \u2192 ItemIsDerived__std, not quantity). Source_List_Price__c=null on standard line is the definitive discriminator: derived branch stamps it; standard waterfall does not. Inverse derived control on same-day query confirms the complement: IsDerived=true PBE -> Source_List_Price__c=355 (contributor license price), Base_Pr\u2026"
+ },
+ "fixture_scripts": []
+}

@@ -1,0 +1,17 @@
+{
+  "id": "E-02",
+  "category": "E. Deal / Customer Type",
+  "name": "Channel/Reseller/Distributor partner discount on standard line",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "existing",
+  "recordIds": ["0Q0WC000003FO1u0AG", "0Q0WC000003FXd30AG", "0QLWC000003khcv4AA"],
+  "expected": "Discount model: NetUnitPrice = List x (1 - BillingPartner Software%); net != list. AB Test Partner (Discount PPM-00028, Software 15%), Channel Originated, non-derived line.",
+  "actual": "Well-formed Channel-Orig Discount BoKS Perpetual line (Q 00781388) after V21 Force-reprice (isSuccess=true): Pre_Partner_Price=20000, PartnerDiscountPercent=15, NetUnitPrice=17000=20000x(1-0.15), NetTotalPrice=17000, net!=list. Discount resolved from BILLING PARTNER only.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FO1u0AG/view (Q 00781388, BoKS Perpetual line Net=17000); fixture Q 00781445 = https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FXd30AG/view",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 step path confirmed: Partner Discount (Deal_Type!='Fortra Originated' AND ItemIsDerived false) -> Resolve Partner Discount Percent (15% Software bucket of billing partner's Discount model) -> Partner Percent Resolved Filter (>0). On a properly RLM-hydrated line net=list*(1-15%)=17000 correct. SC-3359 (One-Time/Perpetual partner net not applied) does NOT reproduce on V21 Perpetual line. NOTE: a synthetic Apex-inserted line (Cobalt Strike, QLI 0QLWC000003khcv4AA on Q 00781445) repriced to net=0 because the Apex-built line lacked RLM selling-model/base hydration (Pre_Partner_Price null, List base channel collapsed to 0) -- this is a fixture artifact, NOT a V21 defect; the percent (15) still resolved correctly.",
+  "evidenceSource": "Force-reprice REST place API, isSuccess=true on both quotes"
+}

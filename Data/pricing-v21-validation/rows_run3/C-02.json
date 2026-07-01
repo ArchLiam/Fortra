@@ -1,0 +1,18 @@
+{
+  "id": "C-02",
+  "category": "C. Product Type",
+  "name": "Derived maintenance base x tier",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "New-Maint NetUnitPrice = contributor base (license Source_List_Price) x tier% (Standard=0.20); expected = 355 x 0.20 = 71",
+  "actual": "After live Force-reprice (REST place v67.0, isSuccess=true, errorResponse=[], LastModified 2026-06-30T13:13:25Z): License line (BoKS Perpetual) NetUnitPrice=355, Source_List_Price=355, Base_Price=355; New-Maint line (BoKS-NewMaintenance, Fortra_Product_Type__c=New Maintenance) NetUnitPrice=71 (=0.20 x 355), UnitPrice=0, NetTotalPrice=71, Source_List_Price__c=355 (contributor base stamp). Quote CalculationStatus=CompletedWithPricing, GrandTotal=426.",
+  "evidence": "Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view ; License QLI: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpN4AU/view ; Maint QLI: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kUpO4AU/view",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). V21 path: Derived Maintenance Net Filter (ItemIsDerived=true on maint line) -> Derived Pricing Formula (tier 0.20 x contributor base Source_List_Price=355). BoKS PIA-PIA-RNM-PIAMBK Nir-sanctioned DPP product; Maintenance Type Defn attribute=Standard => 20% tier. Preflight: both products IsActive=true; New-Maint PBE correctly $0 list (derived, not catalog-priced); QLI attribute confirms Standard tier. Reprice re-derived live on 2026-06-30. Consistent with run2 values (71). SC-3410/3412/3346 defects all resolved.",
+  "verdict_reason": "New-Maint derived line priced correctly at 71 = 0.20 x 355 contributor base after live V21 Force-reprice (2026-06-30T13:13:25Z). CalculationStatus=CompletedWithPricing. Matches expected behavior."
+}

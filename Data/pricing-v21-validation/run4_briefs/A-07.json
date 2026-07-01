@@ -1,0 +1,32 @@
+{
+ "id": "A-07",
+ "category": "A. Pricing Source / Channel",
+ "name": "Derived maintenance family inconsistency (BoKS vs FIM)",
+ "priority": "P2",
+ "what_it_tests": "BoKS new-maintenance derives correctly (20% tier x 355 list = 71) but FIM new-maintenance either 100%-copies list or prices $0 because FIM products carry no Maintenance Type Defn attribute, falling to native Formula=UnitPrice or unbound",
+ "proc_mechanism": "DerivedPricingFormula tier lookup on Maintenance_Rate__mdt / Maintenance Type Defn attribute; missing attribute -> native Formula=UnitPrice fallback (100% copy) or unbound $0",
+ "expected_behavior": "All maintenance products should carry Maintenance Type Defn; if missing, fallback should be a documented standard (e.g. Standard 20%), not variable 100% or $0",
+ "test_setup": "New quote (a) BoKS license+maint expect 355x20%=71; (b) FIM license+maint expect FIM-standard-rate x list",
+ "defect_provenance": "SC-3346 (NewMaint derivation / demo recipe)",
+ "run3_result": {
+  "verdict": "FAIL",
+  "rootCause": "ORG-CONFIG-DEFECT",
+  "dataSource": "existing",
+  "actual": "ADVERSARIAL RE-VERIFY 2026-06-30 (v67.0, active V21) CONFIRMS the defect. BoKS PASSES: QLI 0QLWC000003kUpO4AU NetUnitPrice=71, Source_List_Price=355, ratio exactly 0.20, after a fresh independent Force-reprice (isSuccess:true). FIM FAILS: all FIM CCM New Maintenance lines net $0/null after a fresh independent Force-reprice (isSuccess:true, errorResponse:[]). CCMMSN (0QLWC000003g4QT4AY): NetUnitPrice=0, Source_List_Price=34750; CCMLSE lines (0QLWC000003g4YX4AY/g4YZ4AY/g4Ya4AI): NetUnitPrice=0/0/null, Source_List_Price=2008 each. CATALOG-LEVEL root cause confirmed at ProductAttributeDefinition: PIAMBK product 01tWC00000DD1bsYAD defines ONLY MTD (0tjWC000000096bYAA); CCMLSE product 01tWC00000DD16HYAT defines FO/UNT/NU (no MTD); CCMMSN product 01tWC00000DD16LYAT defines FO/UNT (no MTD). A real UI rep adding an FIM CCM new-maint line gets the same MTD-less attribute set -> step 39 tier lookup\u2026",
+  "evidence": "BoKS control (PASS): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view -- QLI 0QLWC000003kUpO4AU NetUnitPrice=71, Source_List_Price=355 after fresh Force-reprice (isSuccess:true). Its sole live QLIA = AttributeDefinition 0tjWC000000096bYAA (Maintenance_Type_Defn). NOTE: the executor-cited QLIA Id 0zuWC0000068sUUYAY no longer exists (QLIAs regenerate on reprice); the current sole QLIA still resolves to the MTD AttributeDefinition. FIM (FAIL): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003AqV30AK/view -- after fresh Force-reprice: 0QLWC000003g4QT4AY (CCMMSN, Net=0, SLP=34750), 0QLWC000003g4YX4AY (CCMLSE, Net=0, SLP=2008), 0QLWC000003g4YZ4AY (Net=0, SLP=2008), 0QLWC000003g4Ya4AI (Net=null, SLP=2008). Live QLIAs on FIM maint lines resolve to Feature_Options (0tjWC000000096ZYAQ), Unit_Type (0tjWC000000096kYAA), Number_of_Units (0tjWC000000096dYAA), Attribute_Volume (0tjWC0000000tqvYAA) -- NO Maintenance_Type_Defn (0tjWC000000096bYAA). CATALOG: ProductAttributeDefinition WHERE Product2Id IN (CCMLSE 01tWC00000DD16HYAT, CCMMSN 01tWC00000DD16LYAT, PIAMBK 01tWC00000DD1bsYAD) -> PIAMBK=[MTD], CCMLSE=[FO,UNT,NU], CCMMSN=[FO,UNT]. Products active with active PBE in active Fortra Price Book (derived PBE UnitPrice=0 by design). Scope: distinct active New Maintenance Product2 with MTD PAD = 116 of 1683 (6.9%).",
+  "recordIds": [
+   "0Q0WC000003FKRJ0A4",
+   "0QLWC000003kUpO4AU",
+   "0Q0WC000003AqV30AK",
+   "0QLWC000003g4QT4AY",
+   "0QLWC000003g4YX4AY",
+   "0QLWC000003g4YZ4AY",
+   "0QLWC000003g4Ya4AI",
+   "01tWC00000DD16HYAT"
+  ],
+  "defectStep": "V21 step 39 'Derived Pricing Formula' (tier lookup on Maintenance Type Defn AttributeValue; missing attr -> tier=0 -> NetUnitPrice=0). No safe-default tier in the procedure for missing MTD.",
+  "proposedFix": "Backfill ProductAttributeDefinition rows to add Maintenance_Type_Defn to the ~1497 New Maintenance products currently missing it (particularly the entire FIM CCM family: CCMLSE, CCMMSN, etc.), setting the correct tier value (Standard=0.20 unless a different rate applies per product family). This is a config fix, not a procedure change. A safe-default fallback tier in step 39 would also mitigate fu\u2026",
+  "notes": "ADVERSARIAL VERIFIER CONFIRMS the executor's FAIL/ORG-CONFIG-DEFECT. Config/parity scenario per METHOD_BRIEF (derived-family inconsistency validated by querying real UI-built records + org metadata). Both quotes are real UI-built records -- headless fixture $0 trap does not apply; FIM products are active with active PBE in active Fortra Price Book, so a real rep would add them. BoKS positive control reprices to 71 (=0.20x355) through active V21 with MTD present; identical Force-reprice leaves al\u2026"
+ },
+ "fixture_scripts": []
+}

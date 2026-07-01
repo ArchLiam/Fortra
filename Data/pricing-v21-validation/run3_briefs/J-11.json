@@ -1,0 +1,38 @@
+{
+ "id": "J-11",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Zero-price contributing product -> $0 derived maintenance",
+ "priority": "P1",
+ "what_it_tests": "When the contributing license has $0 list everywhere, the derived maintenance formula (tier% x Source_List_Price) returns $0 regardless of tier; the contributor must have a non-zero base or the formula must use an alternate base",
+ "proc_mechanism": "DerivedPricingFormula net = tier% x Source_List_Price__c; $0 license -> Source_List_Price stamped $0 -> $0 net",
+ "expected_behavior": "Contributing license must have non-zero list in the relevant pricebook/currency, OR formula uses contract/prior/override base; explicit $0 with explanation if intended",
+ "test_setup": "Maintenance auto-add on a $0 license (e.g. GS-GSE-RNM-EFT8 derived from $0 GS-GSE-NRPS-E8CP), reprice",
+ "defect_provenance": "SC-3372",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "new-script",
+  "actual": "Fresh Force-reprice on active V21 (9QBWC0000000oWH4AY, REST place isSuccess=true errorResponse=[], LastMod 2026-06-30T02:01:35Z). Quote 00781529 (0Q0WC000003Fb2L0AS). License EFT 8 Continuum (GS-GSE-NRPS-E8CP, Feature Options=Standard): ListPrice=0, NetUnitPrice=0, Base_Price=null, Pre_Partner=null (fails Stamp Base Filter gate NetUnitPrice>0). Derived maint EFT 8 Continuum-NewMaintenance (GS-GSE-RNM-EFT8, IsDerived=true, Maintenance Type Defn=Standard tier 0.20): NetUnitPrice=0, NetTotalPrice=0, TotalPrice=0, Source_List_Price__c=0 (=contributor resolved via PBEDP 182WC000000HEPxYAO and stamped its $0 list; NOT null -> distinct from J-09 missing-PBEDP), Base_Price=null. Quote Subtotal/Total/GrandTotal=$0. 0.20 x 0 = $0 exact. Same headless path on non-zero positive control (BoKS PIA license net 355 -> PIA-PIA-RNM-PIAMBK derived 71 = 0.20x355) prices correctly -> rules out headless-base-\u2026",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fb2L0AS/view (license QLI 0QLWC000003kkXZ4AY net 0; derived maint QLI 0QLWC000003kkXa4AI net 0 SrcList 0). Positive control https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view (maint 0QLWC000003kUpO4AU net 71). PBEDP 182WC000000HEPxYAO; contributor 20/20 PBEs UnitPrice=0 (0 non-zero PBEs). Reprice log Data/sc3473/j11_validation/reprice1.json; V21 formula Data/sc3473/j11_validation/v21_full.json steps[41].",
+  "recordIds": [
+   "0Q0WC000003Fb2L0AS",
+   "0QLWC000003kkXZ4AY",
+   "0QLWC000003kkXa4AI",
+   "182WC000000HEPxYAO",
+   "0Q0WC000003FKRJ0A4"
+  ],
+  "defectStep": "",
+  "regression": "SC-3372",
+  "rootCause": "N-A(pass)",
+  "notes": "Active proc=Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). LIVE V21 'Derived Pricing Formula' = IF(QuoteTypeText__c='Renewal', NetUnitPrice, tier(AttributeValue: Premier .30/Standard .20/Professional .20 else 0) x IF(Base_Price__c>0, Base_Price__c, IF(Pre_Partner_Price__c>0, Pre_Partner_Price__c, IF(InputUnitPrice>0, InputUnitPrice, 0)))). NOTE the catalog proc_mechanism 'tier x Source_List_Price__c' is STALE for V21 -- V21 multiplies Base_Price/Pre_Partner/InputUnitPrice; conclusion identical (a $0 contributor zeroes every fallback base). Branch trace confirmed fired on valid in\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ11ZeroPriceContributorTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

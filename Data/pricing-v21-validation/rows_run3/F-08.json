@@ -1,0 +1,18 @@
+{
+  "id": "F-08",
+  "category": "F. Transaction Type",
+  "name": "Convert quote to order pricing",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Order reprice yields CompletedWithPricing with no 'Unable to fetch tags [-1631597440]' gack; OrderEntitiesMapping/SalesTransactionContextExt_v2 v23 (activeVer 11pWC000002TjF7YAK) carries BOTH Prior_Partner_Discount__c and Prior_Discretionary_Discount__c item-level attribute mappings; derived NewMaintenance lines price correctly using those Prior_* attributes",
+  "actual": "Force-reprice via REST place() (v67.0, pricingPref=Force, configurationMethod=Skip) on 3 Draft derived-NewMaintenance Orders all returned isSuccess=true, errorResponse=[]; CalculationStatus=CompletedWithPricing on all 4 orders (00095503/00095544/00095644 Draft + 00095651 Activated). BoKS-NewMaintenance line on Order 00095651 correctly shows Prior_Partner_Discount__c=10.65, Prior_Discretionary_Discount__c=0, Source_List_Price__c=355, Base_Price__c=71 (=20% of 355). Active context version 11pWC000002TjF7YAK (v23, last modified 2026-06-04, unchanged since run2) carries 16 Prior_* attribute mapping occurrences in ctx_v2.json. No -1631597440 gack observed.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kvqPDYAY/view (00095544 isSuccess=true, CompletedWithPricing); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000ltvgyYAA/view (00095651 Activated, Prior_Partner_Discount__c=10.65, CompletedWithPricing); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000knHDLYA2/view (00095503 CompletedWithPricing); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000ltMGxYAM/view (00095644 CompletedWithPricing); ctx Data/sc3473/f08_ctx/ctx_v2.json (activeVer 11pWC000002TjF7YAK v23, 16x Prior_* mappings); run3 reprice: isSuccess=true x3 Draft orders",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "SC-3371 fix (Prior_* item-attribute mappings added to OrderEntitiesMapping in SalesTransactionContextExt_v2) held through V21. Active context v23 (11pWC000002TjF7YAK, last modified 2026-06-04) unchanged since run2 — same version ID confirmed. Static check (16 Prior_* occurrences in saved ctx_v2.json) + live evidence (3 Draft order reprices all isSuccess=true + 1 Activated order CompletedWithPricing with populated Prior_Partner_Discount__c=10.65) both confirm. The -1631597440 'Unable to fetch tags' gack that afflicted V9 republish is absent under V21/ctx v23.",
+  "verdict_reason": "All 4 derived-NewMaintenance Orders (3 Draft repriced + 1 Activated) returned CompletedWithPricing with no errors. Prior_Partner_Discount__c and Prior_Discretionary_Discount__c are present in the active OrderEntitiesMapping (ctx v23, same version as run2, unmodified since 2026-06-04). The V9 republish defect (SC-3371) that stripped these mappings and caused the -1631597440 gack is confirmed resolved and held through V21."
+}

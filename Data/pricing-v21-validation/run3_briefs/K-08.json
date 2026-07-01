@@ -1,0 +1,40 @@
+{
+ "id": "K-08",
+ "category": "K. Edge Cases",
+ "name": "Cancellation of a derived/maintenance line credits derived asset NET (not list, not license net)",
+ "priority": "P1",
+ "what_it_tests": "A Qty=\u22121 cancellation of a DERIVED maintenance asset must credit the maintenance asset's own NET (e.g. the 67.38 COLA'd derived value), not the parent license net and not list; K-01 covers a plain license cancel but not the derived-maintenance cancel where CancelNetUnitPrice must come from the maintenance asset",
+ "proc_mechanism": "CancelNetUnitPrice__c seed from the maintenance SourceAsset/AssetActionSource NetUnitPrice (the derived value) + V18 seed + CancelLineCreditPosthook; must not pull contributor/license base",
+ "expected_behavior": "NetUnitPrice = maintenance asset net (e.g. 67.38); TotalPrice = \u221267.38; not \u2212(license net) and not \u2212(tier%\u00d7list at current catalog)",
+ "test_setup": "Cancel a derived maintenance line Qty=\u22121, maintenance asset net=67.38 (COLA'd), verify credit = \u221267.38",
+ "defect_provenance": "SC-3441 / SC-3346 (completeness-gap cross)",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "new-script",
+  "actual": "Fresh derived-maint cancel QLI 0QLWC000003kkfd4AA (Quote 0Q0WC000003FbFF0A0; QuoteAction 7ocWC00000x4rYPYAY Type='Cancel', SourceAsset=02iWC000008N46eYAC; CancelNetUnitPrice__c=71 seeded from the MAINTENANCE asset's own derived NET, not license 355, not list 0). V21 Force-reprice REST isSuccess=true, errorResponse=[]. Result: NetUnitPrice=71, NetTotalPrice=-71, TotalLineAmount=-71, TotalPrice=-71, Subtotal=-71, ListPrice=0, Source_List_Price__c=355 (license list stamped but NOT used for the credit). Quote header rolled up TotalPrice/Subtotal/GrandTotal=-71, CalculationStatus=CompletedWithPricing. Credit = -71 = -(maintenance asset's own derived NET); != -355 (license net), != tier%xlist. Durable across re-reprice and independently reproduced on a 2nd fresh fixture (Quote 0Q0WC000003FbLh0AK / QLI 0QLWC000003kkm54AA: identical NetUnitPrice=71, TotalPrice=-71, CompletedWithPricing).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FbFF0A0/view (QLI 0QLWC000003kkfd4AA NetUnitPrice=71 TotalPrice=-71) ; repro https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FbLh0AK/view ; reprice resp Data/sc3473/k08_evidence/k08_reprice_resp.json (isSuccess=true) + k08_reprice_resp_2nd.json ; AssetActionSource 4nMWC0000046p962AA (Generate, NetUnitPrice=71, ListPrice=0) on maint asset 02iWC000008N46eYAC (Price 71); license PBE 01uWC000005ws8MYAQ UnitPrice=355 (proves -71 != -license-net); fixture scripts/apex/setupK08DerivedCancelTestData.compact.apex; CONTROL: re-repricing K-01's Services/license cancel line 0QLWC000003kicD4AQ NOW still ABORTS SF-Pricing-00006/SF-BRE-00004 at StampBaseFilter (Data/sc3473/k08_evidence/k01_reprice_resp.json) - cancel-seed path works for the DERIVED maint line but not the Services license line.",
+  "recordIds": [
+   "0Q0WC000003FbFF0A0",
+   "0QLWC000003kkfd4AA",
+   "7ocWC00000x4rYPYAY",
+   "0Q0WC000003FbLh0AK",
+   "0QLWC000003kkm54AA",
+   "02iWC000008N46eYAC",
+   "01uWC000005wsbUYAQ"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Active proc = Rev_Mgmt_Default_Pricing_Procedure V21 design 9QBWC0000000oWH4AY (Created 2026-06-29T18:55:54, Status Active, confirmed 2026-06-30). PREFLIGHT pass: derived maint product PIA-PIA-RNM-PIAMBK (Fortra_Product_Type__c='New Maintenance', OneTime SMO), derived USD PBE 01uWC000005wsbUYAQ active on active 'Fortra Price Book' (IsDerived=true, list 0), maintenance asset 02iWC000008N46eYAC own NET=71 via AssetActionSource (positive), CancelNetUnitPrice__c=71 = the maintenance asset's own derived NET (NOT the license net 355, NOT list 0), QuoteAction Type='Cancel'+SourceAsset, Qty=-1. EXPLAI\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupK08DerivedCancelTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

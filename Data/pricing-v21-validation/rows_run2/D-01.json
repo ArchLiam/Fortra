@@ -1,0 +1,15 @@
+{
+  "id": "D-01",
+  "category": "D. Pricing Mode",
+  "priority": "P0",
+  "verdict": "FAIL",
+  "dataSource": "named-script",
+  "expected": "Calculated-mode line (Has_Attribute_Adjustment__c=true, Attribute_Price_Mode__c='Calculated', Base_Price__c=100, AttributeMultiplierPct__c=50%) reprices first-time: InputUnitPrice = Base_Price__c * multiplier (100*0.50=50), Net Bridge floors NetUnitPrice to Base_Price__c=100 if calc empty; TotalLineAmount nonzero.",
+  "actual": "Force-reprice yields UnitPrice=0, NetUnitPrice=0, TotalLineAmount=0. AttributeMultiplierPct__c is WIPED 50->null by the reprice (pre-reprice pct=50, unit=935; post-reprice pct=None, all 0). Calculated branch entered (gate fields persist true/'Calculated') but multiplier null -> 100*null=0; Net Bridge also failed to floor to base (net=0 not 100). Deterministic across 3 fresh lines.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003klgX4AQ/view ; probe https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003klmz4AA/view ; Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcEX0A0/view",
+  "recordIds": ["0Q0WC000003FcEX0A0", "0QLWC000003klgX4AQ", "0QLWC000003klmz4AA"],
+  "defectStep": "Attribute Value Pricing - Calculated Mode (V21 steps 13-16, incl. Calculated Mode Net Bridge)",
+  "proposedFix": "Mark AttributeMultiplierPct__c (and Base_Price__c) IsPriceImpacting/hydrate into the pricing context so the Calculated Mode step reads the multiplier instead of null; OR guard the calc step to preserve the input multiplier and ensure Net Bridge floors to Base_Price__c when the calculated product is null. NOT applied (validation-only).",
+  "regression": "SC-3390",
+  "notes": "Root cause class = SC-3390 stale-context / IsPriceImpacting (multiplier not hydrated, wiped to null on reprice) compounded by SC-3393 Calculated-mode null-guard gap (Net Bridge did not floor to Base_Price__c=100, net landed $0). Gate (Has_Attribute_Adjustment__c=true AND Attribute_Price_Mode__c='Calculated') confirmed satisfied post-reprice, so the line entered the Calculated branch and still priced $0. Reprice REST place isSuccess=true (no pricing error surfaced) - silent $0, the worst kind. Pre-existing repriced Calc lines corroborate: 0QLWC000003khGL4AY repriced unit/net/tot=100 (base-bridge held that time), 0QLWC000002Lo2H4AS qty=50 all $0 - inconsistent base-bridge behavior."
+}

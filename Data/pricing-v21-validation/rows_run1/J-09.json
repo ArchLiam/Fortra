@@ -1,0 +1,15 @@
+{
+  "id": "J-09",
+  "category": "J. Derived / Maintenance Pricing",
+  "verdict": "FAIL",
+  "priority": "P0",
+  "dataSource": "new-script",
+  "expected": "Uncovered IsDerived maintenance line either backfilled (PBEDP resolves contributor -> derived NetUnitPrice) OR a clear hard-error surfaced; NOT a silent null.",
+  "actual": "Force-reprice (V21 Active) of quote with priced license Abstract (list 2200, NetUnitPrice 0) + uncovered IsDerived Abstract-NewMaintenance line: maint NetUnitPrice=null, NetTotalPrice=null, ListPrice=0, Source_List_Price__c=null. PlaceQuote returned isSuccess:true, errorResponse:[] (silent). Maint PBE 01uWC000005wsZFYAY has 0 PriceBookEntryDerivedPrice rows; org-wide 1889 IsDerived PBEs vs 201 PBEDP (~89% uncovered).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ6z0AG/view ; maint QLI 0QLWC000003kih44AA ; reprice log scratchpad/j09_reprice.json",
+  "defectStep": "DerivedProductsNativePull -> DerivedProductsNonRenewal (entered via DerivedPricingFilter ItemIsDerived__std==true); native maps ContributingProduct<-ContributorProduct via missing PBEDP row -> contributor unresolved -> line left unpriced (null)",
+  "proposedFix": "Backfill PriceBookEntryDerivedPrice for the ~1688 uncovered IsDerived PBEs (M5-PBEDP staged 476-row HICONF crosswalk) OR remove native DerivedProducts element after confirming the MTD formula path suffices; either way surface a clear error instead of silent null. NOT applied (validation only).",
+  "regression": "SC-3372",
+  "recordIds": ["0Q0WC000003FZ6z0AG", "0QLWC000003kih44AA", "0QLWC000003kih34AA", "01uWC000005wsZFYAY"],
+  "notes": "Smoke-tested on real data. Active proc V21 (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY) confirmed. Branch: DerivedPricingFilter gates ItemIsDerived__std==true -> DerivedProductsNativePull/NonRenewal (gated QuoteTypeText__c!='Renewal'). Contributor license priced 2200 in both books, so maint null is the missing-PBEDP failure, not a contributor-$0 artifact. The original SC-3372 product GS-GSE-RNM-EFT8 now carries test PBEDP row 182WC000000HEPxYAO (KEEP-flagged), so it no longer reproduces; used a still-uncovered PBE instead. Fixture: scripts/apex/setupJ09DerivedNoPbedpTestData.compact.apex. defect_provenance SC-3372/M5-PBEDP."
+}

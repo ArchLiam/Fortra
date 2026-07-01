@@ -1,0 +1,16 @@
+{
+  "name": "INVALID_TYPE",
+  "message": "sObject type 'ExpressionSetVersion' is not supported.",
+  "exitCode": 1,
+  "context": "DataSoqlQueryCommand",
+  "data": {
+    "message": "sObject type 'ExpressionSetVersion' is not supported.",
+    "errorCode": "INVALID_TYPE"
+  },
+  "stack": "INVALID_TYPE: sObject type 'ExpressionSetVersion' is not supported.\n    at SfCommandError.from (file:///Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:48:16)\n    at DataSoqlQueryCommand.catch (file:///Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:332:47)\n    at DataSoqlQueryCommand._run (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@oclif/core/lib/command.js:187:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async Config.runCommand (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@oclif/core/lib/config/config.js:422:25)\n    at async run (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@oclif/core/lib/main.js:97:16)\n    at async file:///Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/bin/run.js:15:1",
+  "cause": "INVALID_TYPE: sObject type 'ExpressionSetVersion' is not supported.\n    at HttpApi.getError (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@jsforce/jsforce-node/lib/http-api.js:315:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async /Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@jsforce/jsforce-node/lib/http-api.js:127:33\n    at async Query._execute (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@jsforce/jsforce-node/lib/query.js:373:22)\n    at async /Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@jsforce/jsforce-node/lib/query.js:305:17 {\n  data: {\n    message: \"sObject type 'ExpressionSetVersion' is not supported.\",\n    errorCode: 'INVALID_TYPE'\n  },\n  errorCode: 'INVALID_TYPE'\n}",
+  "warnings": [],
+  "code": "1",
+  "status": 1,
+  "commandName": "DataSoqlQueryCommand"
+}

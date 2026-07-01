@@ -1,0 +1,29 @@
+{
+ "id": "D-04",
+ "category": "D. Pricing Mode",
+ "name": "GSA pricing (GSW__c=true) at 50% of list",
+ "priority": "P0",
+ "what_it_tests": "A GSA/GSW federal-contract line prices at ListPrice * 0.5 (or GSA pricebook variant, e.g. TeamQuest TQG); a standard GSW__c=false/null line is excluded from GSA halving",
+ "proc_mechanism": "GSA Pricing (GSW__c Equals true) formula ListPrice * 0.5 -> InputUnitPrice; negative branch leaves catalog/attribute price",
+ "expected_behavior": "GSW=true: InputUnitPrice = ListPrice * 0.5, no partner stacking; GSW=false: catalog/attribute price retained",
+ "test_setup": "GSW__c=true GSA/federal line, Qty=2; plus a GSW__c=false standard direct line",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "GSW=true QLI 0QLWC000003khzV4AQ: ListPrice=10000, UnitPrice=5000, NetUnitPrice=5000, NetTotalPrice=5000, TotalLineAmount=5000, Source_List_Price__c=5000, Pre_Partner_Price__c=5000, Base_Price__c=5000, COLACalculatedPrice__c=null. GSW=false QLI 0QLWC000003khzW4AQ: ListPrice=10000, NetUnitPrice=0, Source_List_Price__c=null (GSA branch correctly skipped; $0 is E-03/SC-3359 OneTime-zeroing, not GSA).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khzV4AQ/view (GSW=true, NetUnitPrice=5000=ListPrice*0.5); https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khzW4AQ/view (GSW=false control). Both force-repriced via POST /services/data/v67.0/connect/rev/sales-transaction/actions/place pricingPref=Force, isSuccess=true, errorResponse=[] on 2026-06-30. PBE 01uWC000005wrrIYAQ IsActive=true, UnitPrice=10000, Fortra Price Book IsActive=true.",
+  "recordIds": [
+   "0QLWC000003khzV4AQ",
+   "0QLWC000003khzW4AQ",
+   "01uWC000005wrrIYAQ",
+   "0Q0WC000003FY9J0AW",
+   "0Q0WC000003FY9K0AW"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "GSA gate (GSW__c=true on Quote) + GSAPricing36 FormulaBasedPricing InputUnitPrice=ListPrice*0.5 (V21) verified live. GSW=true QLI: Source_List_Price__c=Pre_Partner_Price__c=Base_Price__c=5000 (all half-list) confirming GSA write fires and overrides SubscriptionPricing OneTime branch. No partner stacking (PartnerAccountId=null on both Quotes). GSW=false control correctly excluded from GSA halving; its $0 net is the separate OneTime-zeroing issue (E-03/SC-3359), not attributable to D-04's GSA mech\u2026"
+ },
+ "fixture_scripts": []
+}

@@ -1,0 +1,32 @@
+{
+ "id": "J-12",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Native pull reads asset COLA/override priority order",
+ "priority": "P1",
+ "what_it_tests": "Renewal automation reads Asset/Contract native fields to compute the COLA percent in priority order: line override -> contract override -> CMDT default per Solution Category",
+ "proc_mechanism": "Renewal batch: fetch Asset -> Asset.COLA_Uplift_Percent__c (line) -> Contract.COLA_Override_Percent__c -> COLA_Uplift_Rules__mdt default per Solution Category",
+ "expected_behavior": "Configured COLA % applied in priority order (e.g. Asset line override 8% overrides CMDT default 5%)",
+ "test_setup": "Renewal quote, Asset.COLA_Uplift_Percent__c=8%, CMDT default 5%",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "V21 Force-reprice (REST /services/data/v67.0/connect/rev/sales-transaction/actions/place, isSuccess=true, errorResponse=[] on all 4 quotes) confirmed all three priority tiers correct on 2026-06-30: TIER 1 LINE OVERRIDE: (a) QLI 0QLWC000003abKH4AY (5250 Integrator, Doc Mgmt, CMDT=7.85%): COLA_Uplift_Percent__c=8 (line override), COLACalculatedPrice__c=6548.85=6063.75x1.08, UnitPrice=6548.85. (b) QLI 0QLWC0000037m2z4AA (Active Defense BEC, Email Security, CMDT=5%): COLA%=10 (line override), COLACalc=103400=94000x1.10, UnitPrice=103400. TIER 2 CONTRACT OVERRIDE: QLI 0QLWC000003aHv34AE (5250 Integrator, Doc Mgmt, CMDT=7.85%): COLA%=4 from Contract 800WC00000PCpoMYAT (Status=Activated, COLA_Override_Percent__c=4), COLACalc=6306.3=6063.75x1.04, UnitPrice=6306.3. TIER 3 CMDT DEFAULT: QLI 0QLWC000003dEW24AM (BoKS RenewalMaintenance, SolCat='Powertech Identity & Access Manager (BoKS)', CMDT=7.85%\u2026",
+  "evidence": "Tier1-8%: Quote 0Q0WC0000035P8v0AE / QLI 0QLWC000003abKH4AY https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000035P8v0AE/view ; Tier1-10%: Quote 0Q0WC000002lfOL0AY / QLI 0QLWC0000037m2z4AA https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002lfOL0AY/view ; Tier2-contract: Quote 0Q0WC00000355yD0AQ / QLI 0QLWC000003aHv34AE https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC00000355yD0AQ/view / Contract 800WC00000PCpoMYAT (Activated, COLA_Override=4%); Tier3-CMDT: Quote 0Q0WC00000382MH0AY / QLI 0QLWC000003dEW24AM; All 4 reprices isSuccess=true errorResponse=[] 2026-06-30; Active proc V21 (9QBWC0000000oWH4AY) confirmed via successful REST place action.",
+  "recordIds": [
+   "0Q0WC0000035P8v0AE",
+   "0QLWC000003abKH4AY",
+   "0Q0WC000002lfOL0AY",
+   "0QLWC0000037m2z4AA",
+   "0Q0WC00000355yD0AQ",
+   "0QLWC000003aHv34AE",
+   "800WC00000PCpoMYAT",
+   "0Q0WC00000382MH0AY"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "COLA priority order is implemented in the Apex layer (COLAUpliftPrehook + COLAUpliftHandler). Tier 1 = COLA_Uplift_Percent__c manually set on QLI (differs from CMDT default and contract value); Tier 2 = Contract.COLA_Override_Percent__c via AssetContractRelationship; Tier 3 = COLA_Uplift_Rules__mdt.Default_Uplift_Percent__c keyed by Solution_Category__c. All 21 CMDT records confirmed accessible. PBEs active in Fortra Price Book with non-zero USD list prices (5250 Integrator 2021.25, Active Defen\u2026"
+ },
+ "fixture_scripts": []
+}

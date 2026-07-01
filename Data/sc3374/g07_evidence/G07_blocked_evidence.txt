@@ -1,0 +1,35 @@
+G-07 — Regional services line in NON-USD (EUR) currency (regional multiplier AND currency conversion together)
+Active proc: Rev_Mgmt_Default_Pricing_Procedure V21 (ExpressionSetVersion 9QMWC00000025LN4AY, IsActive=true) — confirmed live 2026-06-29.
+
+PREFLIGHT (PASS):
+  Quote 00781525 = 0Q0WC000003Fakb0AC : CurrencyIsoCode=EUR, BillingCountryCode=IT, ShippingCountryCode=IT,
+    Pricebook=Fortra Price Book (active), Status=Draft, Quote_Type=New.
+  QLI 0QLWC000003kkFp4AI : Product EFT Expert Service Enterprise (GS-GSE-NRST-EESE), Fortra_Product_Type=Services,
+    Allow_Regional_Pricing__c=true, Qty=1, EUR PBE 01uWC000005woEQYAY active, ListPrice=51403 EUR (=55000 USD x 0.9346).
+  Italy multiplier 0.64 (Services_Regional_Pricing__mdt, Active). EUR rate 0.9346 (Currency_Conversion_Formula__mdt EUR_Euro, Active).
+
+EXPECTED (no double-FX): TotalLineAmount/UnitPrice = CEILING(51403*0.64/5)*5 = 32900 EUR (regional on EUR list);
+  NetTotalPrice/NetUnitPrice = 51403 EUR (catalog EUR); structural list(32900) < net(51403) in EUR.
+  Cross-check (regional-in-USD then FX): 35200 x 0.9346 = 32900.32 ~ 32900 (frames converge).
+
+ACTUAL (headless Force-reprice through V21, isSuccess=true, errorResponse=[]):
+  Pass 1: UnitPrice=0, NetUnitPrice=0, TotalLineAmount=0, NetTotalPrice=0, Regional_NetUnit_Price__c=null, ListPrice=51403.
+  Pass 2 (re-reprice): identical zeros.
+  Pass 3 (UnitPrice pre-seeded to 51403 via REST, then reprice): collapses to 0 again, Regional_NetUnit_Price__c=null.
+  => fresh Apex-inserted EUR line NEVER hydrates InputUnitPrice via headless place API; whole waterfall (incl. regional
+     prehook + currency steps) runs on a 0 input. Documented base-seed gap (same artifact G-01/G-03/G-04 note). NOT a calc error.
+
+CONTROL: G-04 USD line 0QLWC000003kiHF4AY persists UnitPrice=35200=CEILING(55000*0.64/5)*5, Regional_NetUnit_Price__c=35200,
+  and survives a fresh headless re-reprice (regional-on-LIST mechanism is sound in V21). BUT currency=USD -> does NOT exercise
+  the FX interaction unique to G-07.
+
+No existing UI-priced EUR Services regional line exists to use as a control: the only EUR regional QLI (0QLWC000002V1eb4AC)
+  is a Perpetual product with Allow_Regional_Pricing__c=FALSE (regional step never fires) and a stale 2026-02 migration value.
+
+VERDICT: BLOCKED — the FX-on-regionalized-EUR-list interaction cannot be exercised. The headless place API does not hydrate
+  fresh Apex-inserted EUR lines, and no existing UI-priced EUR Services regional record exists. Per method brief, a fresh
+  headless-line zero is BLOCKED (data unverified), never FAIL.
+
+RISK NOTE (not a verdict): G-03 (EUR partner) proved Currency Conversion steps 33-36 are non-idempotent (compound FX on each
+  reprice) on EUR lines. If that same double-FX touches the regionalized EUR list, G-07 would show UnitPrice = 32900 x 0.9346
+  per reprice. This must be confirmed on a UI-repriced EUR regional Services line before it can be called a defect.

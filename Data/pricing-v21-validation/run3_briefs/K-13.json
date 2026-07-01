@@ -1,0 +1,35 @@
+{
+ "id": "K-13",
+ "category": "K. Edge Cases",
+ "name": "Sync InputUnitPrice when null (discount-base safety)",
+ "priority": "P1",
+ "what_it_tests": "When InputUnitPrice is null on a non-LastTransaction non-derived line it is synced from net so the discount base is non-null and discount math is safe",
+ "proc_mechanism": "Sync InputUnitPrice for Discount Base; ListOperation38 (InputUnitPrice IsNull AND ItemPricingSource NotEquals 'LastTransaction' AND DerivedPricingAttribute IsNotNull AND =false); Sync InputUnitPrice from Net",
+ "expected_behavior": "InputUnitPrice hydrated from NetUnitPrice; discount math safe",
+ "test_setup": "Line with null InputUnitPrice, non-derived, non-LastTransaction",
+ "defect_provenance": "SC-3441 / SC-3393",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Active V21 (ESV 9QMWC00000025LN4AY, design 9QBWC0000000oWH4AY). ListGroup SyncInputUnitPriceforDiscountBase (seq 13) gated by ListOperation38 conditionLogic '1 AND 2 AND 3 AND 4' = InputUnitPrice IsNull AND ItemPricingSource NotEquals 'LastTransaction' AND DerivedPricingAttribute IsNotNull AND DerivedPricingAttribute Equals false -> child BKM SyncInputUnitPricefromNet AssignmentElement NetUnitPrice->InputUnitPrice (unconditional, whereConditions:[]). EXACT match to proc_mechanism. Runs BEFORE the discount band (Discount Percent BKM seq 36). Force-reprice on BoKS demo Quote 0Q0WC000003FKRJ0A4 non-derived Perpetual line PIA-PIA-NRPS-PIAP: isSuccess=true errorResponse=[] -> NetUnitPrice=355, NetTotalPrice=355, TotalLineAmount=355, CompletedWithPricing, NO SF-BRE/null-discount-base error. Engine RLM_PRICING_BEGIN/END (ApexLog 07LWC00000Pf9dj2AB) for non-derived line 0QLWC000003kkir4AA: Input\u2026",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view (control reprice isSuccess=true, NetUnitPrice=355) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FO1u0AG/view (E-02 discount-active control) ; V21 meta Data/pricing-v21-validation/live/.../Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml L114173-114211 ListOperation38 gating filter + L116683-116744 SyncInputUnitPricefromNet NetUnitPrice->InputUnitPrice ; Data/sc3473/k13_evidence/K13_SMOKE_RESULT.md ; reprice resp scratchpad/k13_place_resp.json (isSuccess=true)",
+  "recordIds": [
+   "0Q0WC000003FKRJ0A4",
+   "0QLWC000003kUpN4AU",
+   "0Q0WC000003FO1u0AG",
+   "0QLWC000003kbnd4AA"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "InputUnitPrice and ItemPricingSource are pricing-ENGINE context attributes, NOT persisted QLI fields (SOQL 'SELECT InputUnitPrice FROM QuoteLineItem' = No such column); observable only inside the opaque RLM managed code unit + surfaced as context-map entries in RLM_PRICING dumps. K-13 step is a defensive LAST-RESORT discount-base safety net: V21 has earlier InputUnitPrice seeds (ListPrice@ListContainer32 seq14, Base_Price__c, COLACalculatedPrice__c, RegionalNetUnitPrice__c), so on normal lines InputUnitPrice is already non-null and the NetUnitPrice-sync no-ops; it guarantees a non-null discoun\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

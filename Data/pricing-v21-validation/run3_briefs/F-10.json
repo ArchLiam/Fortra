@@ -1,0 +1,34 @@
+{
+ "id": "F-10",
+ "category": "F. Transaction Type",
+ "name": "Renewal generated under RLM Quote DML lock (initiateRenewal headless, no Apex Quote DML)",
+ "priority": "P1",
+ "what_it_tests": "With RLM/Subscription Mgmt enabled, all Quote DML is platform-blocked; renewal QLI creation and COLA/description seeding must occur via the platform initiateRenewal API or event/trigger paths, NOT Apex Quote DML, or the seed silently fails; verifies the Quote-DML-lock constraint on the renewal seed path (F-04 covers prehook bypass but not the DML-lock root)",
+ "proc_mechanism": "RLM Quote DML lock (Apex==REST error); Fortra_Create_Renewal_Quote uses initiateRenewal; COLA/description must be applied via Reprice-All-triggered prehook or post-create platform-event flow, not Apex update on QuoteLineItem",
+ "expected_behavior": "Renewal QLIs seeded with COLA + description without any Apex Quote DML; if a class attempts Quote DML it must be refactored to event/flow; no silent lock-swallow",
+ "test_setup": "Generate renewal headlessly with RLM enabled, confirm COLA + description applied without Apex Quote update; attempt Apex Quote DML expects platform block",
+ "defect_provenance": "none / completeness-gap (RLM Quote DML lock)",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Empirical probe on FortraUAT (Savepoint+rollback, no persistence): Apex 'update QuoteLineItem' = QLI_UPDATE_SUCCEEDED; Apex 'update Quote' (allOrNone=true) = QUOTE_UPDATE_SUCCEEDED; Database.update(Quote, allOrNone=false) = SOFT_QUOTE_UPDATE_SUCCEEDED. The premise that all Quote DML is platform-blocked is REFUTED in this org. The actual seed path is lock-immune by design: COLAUpliftPrehook.buildLineItemUpdates returns context-update payloads (List<Map>) consumed by the pricing-engine write-back, NOT Apex QLI DML; QLDescriptionGeneratorPrehook likewise emits context-update payloads; the only Apex DML in the seed path are RenewalAssetQuantityHandler L139/142 (update QuoteAction + update QuoteLineItem, allOrNone=true, in a Queueable) and COLAUpliftPrehook.MyCAPFlagApplier L1397 (Database.update Quote.Mycap__c, allOrNone=false) \u2014 and BOTH DML targets are proven WRITABLE, so no silent lock-sw\u2026",
+  "evidence": "Probe log markers: F10_QLI_DML=QLI_UPDATE_SUCCEEDED, F10_QUOTE_DML=QUOTE_UPDATE_SUCCEEDED, F10_QUOTE_SOFT_DML=SOFT_QUOTE_UPDATE_SUCCEEDED (scratchpad/f10_dml_probe.apex on FortraUAT). Live classes Data/sc3473/seed_classes/unpackaged/classes/: COLAUpliftPrehook.cls (buildLineItemUpdates L314-322 context payloads; MyCAPFlagApplier L1363-1408 only Quote.Mycap__c DML), QLDescriptionGeneratorPrehook.cls (context-update payloads L329/723/777, no QLI DML), RenewalAssetQuantityHandler.cls L138-143 (update QuoteAction + QuoteLineItem). Live flow Data/sc3473/f10_reverify/unpackaged/flows/Fortra_Create_Renewal_Quote.flow (initiateRenewal action + Flow recordUpdates on QuoteLineItem/Quote, NOT Apex DML; identical element set to F-04 retrieve). Repriced record: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC00000382MH0AY/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003dEW24AM/view ; REST place isSuccess=true errorResponse=[].",
+  "recordIds": [
+   "0Q0WC00000382MH0AY",
+   "0QLWC000003dEW24AM",
+   "0QLWC000003dEW14AM"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "EXPECTATION-ERROR",
+  "notes": "F-10 verifies the Quote-DML-lock CONSTRAINT (sibling to F-04's prehook-bypass). Premise empirically false in this org: the RLM lock per [[project_rlm_quote_dml_lock]] verified scope is editing/deleting existing managed Quotes, not routine Apex Quote/QLI updates (fresh inserts + updates succeed in FortraUAT). The seed architecture is correctly lock-immune regardless: COLA/description seed via pricing-engine context-write payloads, not Apex QLI DML, so there is no silent-lock-swallow surface to fail. The two Apex DML sites in the seed path (RenewalAssetQuantityHandler QLI/QuoteAction update; COL\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

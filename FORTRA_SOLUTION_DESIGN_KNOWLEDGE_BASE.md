@@ -1,7 +1,7 @@
 # Fortra Solution Design Documents — Consolidated Reference
 
-> Single-file synthesis of every design document under [`docs/`](docs/) (22 documents:
-> 20 Word solution-design docs + 2 PDF architecture diagrams), as of **2026-06-07**.
+> Single-file synthesis of every design document under [`docs/`](docs/) (23 documents:
+> 21 Word solution-design docs + 2 PDF architecture diagrams), as of **2026-07-01**.
 > Each entry distills purpose, key design decisions, the concrete Salesforce
 > objects/fields/components, business rules, integration touchpoints, and open risks.
 >
@@ -12,8 +12,9 @@
 > where a detail conflicts with the live org, **the org wins** — verify field/object state
 > by retrieving from FortraUAT before scoping a deploy.
 >
-> Source text for the 20 `.docx` files was extracted to `Data/sc3347/docs_txt/`; the two
-> PDFs were read directly. `.docx`/`.pdf` links below point at the binary originals in `docs/`.
+> Source text for the original 20 `.docx` files was extracted to `Data/sc3347/docs_txt/`; the
+> Contract Renewals doc (added 2026-07-01) and the two PDFs were read directly. `.docx`/`.pdf`
+> links below point at the binary originals in `docs/`.
 
 ---
 
@@ -36,13 +37,14 @@
 | 13 | [Orders — Ops Checklist](docs/Fortra-Orders-Ops-Checklist-Solution-Design-Doc.docx) | Orders | Configurable checklist that hard-gates Quote→Order conversion |
 | 14 | [Products — Hardware](docs/Fortra-Products-Hardware-Solution-Design-Doc.docx) | Products | Hardware records + attribute pricing for Power products |
 | 15 | [Contracts — Configuration](docs/Fortra-Contracts-Configuration-Solution-Design-Doc.docx) | Contracts | Full contract lifecycle: renewals, amendments, co-term, proration |
-| 16 | [Order→Asset Lifecycle](docs/Revenue_Cloud_Order_to_Asset_Lifecycle.docx) | Lifecycle | End-to-end Q2O→Asset→Billing→Renewal/Amendment flow map |
-| 17 | [Quote/QLI Migration Guide](docs/Quote%20QuoteLineItem%20Comprehensive%20Migration%20Guide.docx) | Migration | Field-level load guide (Historical vs In-Flight quotes) |
-| 18 | [High-Level Data Migration Architecture (P1–3)](docs/High%20Level%20Data%20Migration%20Architecture%20Phase%201%20-%203%20%281%29.pdf) | Migration | Legacy→Azure SQL→Workday/Salesforce migration pipeline diagram |
-| 19 | [Exchange Rate Snapshot](docs/Exchange%20Rate%20Snapshot%20Solution%20Design.docx) | Currency | Persists txn-currency→USD rate at QLI/OrderItem/Opp for Workday |
-| 20 | [Opportunity Legal Entity Change](docs/Opportunity%20Legal%20Entity%20Change.docx) | Currency | Guided LE change with multi-currency integrity guardrails |
-| 21 | [Product Mapping Links (Empty)](docs/Fortra%20Product%20Mapping%20Links%28Empty%29.docx) | Reference | Placeholder/stub pointing to the external product spreadsheet |
-| 22 | [Lead to Sales Lifecycle](docs/Lead%20to%20Sales%20Lifecycle%202026-02-20%20%281%29.pdf) | Lifecycle | Inquiry→Opportunity→Quote→Order BPF, incl. MuleSoft/Workday push |
+| 16 | [Contract Renewals](docs/Fortra-Contract-Renewals-Solution-Design-Doc.docx) | Contracts | Renew from Contract Assets: 120-day window monitor, COLA renewal quotes, contract succession, MyCAP; + 2026 contract-based rebuild |
+| 17 | [Order→Asset Lifecycle](docs/Revenue_Cloud_Order_to_Asset_Lifecycle.docx) | Lifecycle | End-to-end Q2O→Asset→Billing→Renewal/Amendment flow map |
+| 18 | [Quote/QLI Migration Guide](docs/Quote%20QuoteLineItem%20Comprehensive%20Migration%20Guide.docx) | Migration | Field-level load guide (Historical vs In-Flight quotes) |
+| 19 | [High-Level Data Migration Architecture (P1–3)](docs/High%20Level%20Data%20Migration%20Architecture%20Phase%201%20-%203%20%281%29.pdf) | Migration | Legacy→Azure SQL→Workday/Salesforce migration pipeline diagram |
+| 20 | [Exchange Rate Snapshot](docs/Exchange%20Rate%20Snapshot%20Solution%20Design.docx) | Currency | Persists txn-currency→USD rate at QLI/OrderItem/Opp for Workday |
+| 21 | [Opportunity Legal Entity Change](docs/Opportunity%20Legal%20Entity%20Change.docx) | Currency | Guided LE change with multi-currency integrity guardrails |
+| 22 | [Product Mapping Links (Empty)](docs/Fortra%20Product%20Mapping%20Links%28Empty%29.docx) | Reference | Placeholder/stub pointing to the external product spreadsheet |
+| 23 | [Lead to Sales Lifecycle](docs/Lead%20to%20Sales%20Lifecycle%202026-02-20%20%281%29.pdf) | Lifecycle | Inquiry→Opportunity→Quote→Order BPF, incl. MuleSoft/Workday push |
 
 ---
 
@@ -88,6 +90,17 @@ then Renewal (a *new* Contract generation linked by `Original_Contract__c`) or A
 Contract via `AmendedContractId`). Assetization requires an **ApplicationUsageAssignment** (AUA) with
 `AppUsageType = RevenueLifecycleManagement` — a missing AUA is the #1 cause of "no Asset created."
 Assetization and Billing fire as **independent parallel async triggers** on `Order.Status = Activated`.
+
+**Read *down* from the Contract, not *up* the Asset chain.** Because RCA has no direct Asset→Contract
+relationship, several flows historically traced lineage *upward* (Asset → OrderItem → Order → Quote →
+Contract) by Product2Id/Account matching — a fragile chain that can select an unrelated order and that
+broke outright when the **Summer '26** platform update silently disabled Fortra's managed renewal-quote
+and amendment-quote override registrations (renewal Quotes then began to be created "bare" — typed
+`Renewal` but with null Opportunity/Legal Entity/Account/lineage). The 2026 Contract Renewals rebuild
+(§6) re-bases renewal enrichment to read *downward* from the Contract — a stable single source — and
+resolves the originating Order deterministically via `AssetAction` (Initial Sale) → `AssetActionSource`
+rather than a product-and-account match. Prefer down-chain/deterministic lineage in any new automation
+that must link back to a Contract or Order.
 
 **Multi-currency invariant.** Order, OrderItem, and Contract must share the same `CurrencyIsoCode`
 or DML throws `FIELD_INTEGRITY_EXCEPTION`. Currency is driven top-down from the Account's default
@@ -239,6 +252,33 @@ via Metadata API and are called out as manual post-deploy steps in multiple docs
 - **Integration / Dependencies:** RCA managed package (arcFlow, QuoteAction, Managed Assets, Obligations); COLA infrastructure (`COLAUpliftHandler`, `COLA_Uplift_Rules__mdt`, `Pre_COLA_Price__c`, three-tier override hierarchy); Q2O + assetization pipelines; proration via Revenue Cloud Settings (`StartProrationPeriod=AlignToCalendar`, `AllowPartialProrationPeriods=false`).
 - **Open Items / Risks / Notes:** ContractStatus picklist values (In Review, Amended, Renewed), Path Assistant, and Dynamic Forms must be configured manually (Metadata API limits). Multi-active-contract renewal uses latest EndDate — may need more precise matching (A-007). Managed Assets column config (FORTRA-CONTRACT-005) and Action Buttons (FORTRA-CONTRACT-006) are separate pending JIRA items (owner: Coastal Cloud).
 
+### Contract Renewals Solution Design (`Fortra-Contract-Renewals-Solution-Design-Doc.docx`)
+- **Purpose / Scope:** The dedicated end-to-end Contract Renewals design (Coastal Cloud; v1.0 Apr 2025, **v1.1 Jul 1 2026 = FORTRA-CONTRACT-013**). Users renew existing contracts by selecting Assets on the Contract's Managed Assets and clicking the standard Revenue Cloud **"Renew"** action; Fortra automation then detects the renewal window, enriches the renewal Quote with source-contract data + billing, applies **COLA** pricing, enforces **MyCAP** out-year uplift floors, and runs **contract succession**. Deployed to `fortrauat`. This entry expands the renewal slice of the Contracts Configuration doc (#15) and shares the COLA infrastructure of #3.
+- **Key Design Decisions:** Enhances (does not replace) RCA's standard Renew action. A daily scheduled flow flags contracts "Pending" at the 120-day mark. COLA via a **three-tier override hierarchy** (Line Override > Contract Override > CMDT Lookup) applied by the `COLAUpliftHandler` before-insert trigger. **QuoteAction can't be a Flow trigger object**, so renewal-enhancement flows fire on Quote create with a **0-minute scheduled path** so RCA has already written the QuoteAction/QLI rows. Legacy renewal enrichment traced the Asset origin chain *up* (Asset → OrderItem → Order → Quote → Contract, Product2Id+Account match); the **2026 rebuild re-bases this to read *down* from the Contract** (see §2 note) after Summer '26 broke the up-chain. Multi-active-contract accounts resolve to the contract with the latest EndDate.
+- **Objects / Fields / Components:**
+  - *Flows:* `Fortra_Contract_Renewal_Window_Monitor` (Scheduled, daily 2:00 AM UTC → `Renewal_Status__c='Pending'`); `Fortra_RCA_Renewal_Enhancement` (record-triggered, now handles **amendment/cancellation** quotes — still created untyped); `Fortra_Renewal_Contract_Succession` (on Order activation → Contract `Status='Renewed'`, `Renewal_Status__c='Accepted'`); **`Fortra_Renewal_Quote_Enhancement`** (NEW 2026 — contract-based renewal-quote population); **`Fortra_Contract_Create_Renewal_Opportunity`** (on Contract activation, 15-min path → standing "Renewal Forecast" Opportunity); **`Fortra_OrderItem_Stamp_Asset_Workday_ID`** (Order-Product-triggered → stamps Workday ID onto Asset).
+  - *Apex:* `COLAUpliftHandler` (3-tier COLA on renewal QLIs), `COLAUpliftPrehook` (global pricing pre-hook — MyCAP out-year enforcement), `AssetContractQueryHelper` (queries AssetContractRelationship for Contract override), **`RenewalForecastAmount`** (NEW Invocable — sums recurring Assets' CurrentMrr × 12, COLA-uplifted), trigger `QuoteLineItemTrigger`.
+  - *CMDT:* `COLA_Uplift_Rules__mdt` (COLA % by Solution Category w/ effective dates, 21 records); `MyCAP_Rules__mdt` (Global record: 3% out-year floor).
+  - *Contract fields:* `Renewal_Status__c` (Pending/In Progress/Quoted/Accepted/Declined), `Within_Renewal_Window__c` (formula), `Auto_Renew__c` (default TRUE), `COLA_Override_Percent__c`, `COLA_Override_Persist_Until__c`.
+  - *Quote fields:* `Quote_Type__c` (New/Upsell/Renewal/Amendment/Cancellation), `Renewal_Contract__c`, `Original_Quote__c`, `Original_Order_Id__c`, `Auto_Renewal__c`, `Renewal_Value__c`, `Renewal_ARR_Credit_Amount__c`, `Renewal_ARR_Approval__c`, `Renewal_Cancellation_Approval__c` (plus `OpportunityId`/`LegalEntityId`/`Bill_To_Place__c`/`Ship_To_Place__c`/`BillToContactId` stamped by enrichment).
+  - *QuoteLineItem COLA fields (10):* `COLA_Uplift_Percent__c`, `Default_COLA_Uplift_Percent__c`, `Pre_COLA_Price__c`, `COLA_Solution_Category__c`, `COLA_Applied_Date__c`, `COLA_Modified_By__c`, `COLA_Modified_Date__c`, `COLA_Override_Reason__c`, `Is_COLA_Overridden__c`, `COLA_Source__c` (CMDT Lookup / Contract Override / Line Override / MyCAP Default).
+  - *Asset field (NEW 2026):* `Workday_Contract_Line_Reference_ID__c` (Text 255).
+  - *Perm set:* `COLA_Admin`. *VR:* `Sales_Renewal_Window_Restriction` (Contract).
+- **Business Rules / Logic:**
+  - *Window formula* `Within_Renewal_Window__c` = `AND(NOT(ISBLANK(EndDate)), (EndDate-TODAY())<=120, (EndDate-TODAY())>=0)`. Monitor queries `Status='Activated' AND Within_Renewal_Window__c=TRUE AND Renewal_Status__c=NULL` → bulk-sets `Pending`.
+  - *Status lifecycle:* (blank) → **Pending** (scheduled) → **In Progress** (manual) → **Quoted** (manual/auto) → **Accepted** (succession, on Order activation) / **Declined** (manual).
+  - *COLA calc:* `UnitPrice = Pre_COLA_Price__c × (1 + COLA%/100)`. Base = `Asset.Price` via `QuoteAction.SourceAssetId`; only `QuoteAction.Type='Renew'`; category from `Product2.Solution_Category__c`, none → 0%.
+  - *Contract override persist* (`COLA_Override_Persist_Until__c`): NULL = valid for all future renewals; future date (≥ today) = valid; past date = expired → fall back to CMDT.
+  - *MyCAP out-year* (via `COLAUpliftPrehook` in the pricing waterfall): qualifying = multi-year (`PricingTermCount>1`, Annual unit) **and not prepaid** (`PS_Service_Type != 'Prepaid'`); default 3% (`MyCAP_Rules__mdt.Global`); any qualifying line below 3% → `Quote.Mycap__c=TRUE` → Deal-Desk approval via `Fortra_Quote_MYCAP_Sale_Approval_Criteria_Record_Triggered`. Fully-prepaid and single-year lines exempt.
+  - *Automation sequence on "Renew":* Phase 1 platform (Quote + QuoteAction `Type='Renew'`+SourceAssetId + QLIs) → Phase 2 `Fortra_RCA_Renewal_Enhancement` (legacy asset-trace enrichment) → Phase 3 `COLAUpliftHandler` (3-tier COLA) → Phase 4 user config (Tier-1 line overrides) → Phase 5 `Fortra_Renewal_Contract_Succession` on Order activation.
+- **2026 Renewal Lifecycle Enhancements (§14, FORTRA-CONTRACT-013):** **Summer '26** silently disabled the org's two managed override actions (renewal-quote + amendment-quote); the platform now runs a bare stub, so renewal Quotes are born typed `Renewal` with null Opportunity/Legal Entity/Account/lineage, and `Fortra_RCA_Renewal_Enhancement` no longer fires for renewals (its entry needs `Quote_Type__c` null). Fixes, all reading *down* from the Contract:
+  - **14.1 Renewal Quote Population (contract-based):** new `Fortra_Renewal_Quote_Enhancement` — after-save on Quote create where `OriginalActionType='Renew'`, 0-minute async. Reads Contract → standing renewal Opportunity → its source Opportunity → source Order. Creates a fresh "Renewal - <Account> - <date>" Opportunity (Amount + Bill-To/Ship-To Place from the source Opp; Stage/Close Date/Expected Renewal Date from the standing renewal Opp) and stamps the Quote with `OpportunityId`, `LegalEntityId`, `Renewal_Contract__c`, `Renewal_Value__c`, `Bill_To_Place__c`, `Ship_To_Place__c`, `BillToContactId`. **Supersedes §7.2 Phase 2 asset-tracing for renewals** (that flow now serves amendments/cancellations).
+  - **14.2 Renewal Forecast Opportunity — Amount & Places:** `Fortra_Contract_Create_Renewal_Opportunity` previously ran ~7 s before Assets existed so the forecast Amount computed as 0; re-timed to a **15-minute scheduled offset** (runs after assetization). Amount = Σ(recurring Assets' `CurrentMrr` × 12), COLA-uplifted (`RenewalForecastAmount`), written once on create (verified: one contract moved 0 → 6,289.18). Also now copies `Bill_To_Place__c`/`Ship_To_Place__c` from the source Opp (were null).
+  - **14.3 Asset Workday Contract Line Reference ID:** new `Asset.Workday_Contract_Line_Reference_ID__c` (Text 255) + `Fortra_OrderItem_Stamp_Asset_Workday_ID`. Because the Workday integration assigns the value on the Order Product *after* assetization, the stamp fires on the Order Product's Reference ID transitioning **blank → populated**, resolving the Asset via `AssetActionSource → AssetAction → Asset`. **Go-forward only, no backfill**; end-to-end verification pending the Workday integration populating the source field.
+  - **14.4 Shared enhancement-flow corrections** to `Fortra_RCA_Renewal_Enhancement` (amendment/cancellation quotes): (a) Order lineage now resolved deterministically from the source Asset via `AssetAction` (Initial Sale) → `AssetActionSource` (replacing the product-and-account match that could pick an unrelated order); (b) **Active Legal Entity guard** — Legal Entity copied only when Active (a prior inactive-LE copy hit a VR that rolled back the whole enhancement, leaving the Quote bare); (c) **Cancellation handling** — Cancel actions now map to `Quote_Type__c='Cancellation'`.
+- **Integration / Dependencies:** RCA standard "Renew" action on Contract Managed Assets; `QuoteAction` populated with `Type='Renew'`+`SourceAssetId`; `COLAUpliftPrehook` registered in the pricing procedure for MyCAP; `COLA_Uplift_Rules__mdt` active for all 21 Solution Categories; user roles "Customer Ops"/"Operations" for the VR; shares COLA infra with #3 and the renewal/succession flows catalogued in #15. **The 2026 §14.3 stamp depends on the Workday integration beginning to write the Order-Product Workday Contract Line Reference ID (not yet populating).**
+- **Open Items / Risks / Notes:** Summer '26 override-disablement is the root cause of bare renewal quotes — the contract-based flow is the resilient replacement, but confirm the managed overrides remain disabled (a future platform fix could re-enable them and double-run enrichment). Asset Workday-ID stamping is unverified end-to-end pending Workday. Multi-active-contract renewal picks latest EndDate — imprecise (A-007). 120-day window hardcoded in the formula. Assumes one Solution Category per product and that `Asset.Price` reflects the current annual base. Per the KB convention, verify the live COLA/MyCAP **pricing-procedure** wiring against the active version in FortraUAT (the pre-hook order and COLA×Regional interaction carry the §2 ordering caveat) before scoping any deploy.
+
 ---
 
 ## 7. Lifecycle & Migration
@@ -300,6 +340,7 @@ via Metadata API and are called out as manual post-deploy steps in multiple docs
 
 ---
 
-*Generated 2026-06-07 from the 22 files under `docs/`. Per-document summaries were extracted
+*Generated 2026-06-07 from the files under `docs/`; last updated 2026-07-01 to absorb the Contract
+Renewals Solution Design (now 23 files: 21 `.docx` + 2 `.pdf`). Per-document summaries were extracted
 faithfully from the source design docs; where a figure or rule matters operationally, confirm it
 against the live FortraUAT org before acting.*

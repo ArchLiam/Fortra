@@ -1,0 +1,18 @@
+{
+  "id": "C-01",
+  "category": "C. Product Type",
+  "name": "High-qty Power hardware decomposition",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Power line (Solution_Group__c=Power, Power_Split_Type__c=Order Line Only) with Qty>=150 stays as ONE OrderItem (Is_Split_Line__c=false) after V21 reprice; Qty*UnitPrice aggregates correctly; no CPU/SOQL governor breach",
+  "actual": "Order 00095656 (801WC00000lzWJFYA2, Draft): MessengerConsole OI 802WC00000PX8hxYAD - Qty=5000, UnitPrice=11487, NetUnitPrice=11487, TotalPrice=57435000 (=5000x11487), Is_Split_Line__c=false. V21 Force-reprice returned isSuccess:true, errorResponse:[]. Total OrderItems on order=35, Is_Split_Line__c=true count=0. No decomposition. Aggregation correct. No governor error. Org-wide 71924 OIs carry Hardware__c confirming per-machine decomp only fires on lines with Partition/Hardware.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lzWJFYA2/view (Order 00095656, Draft, MessengerConsole qty=5000 Power line OI 802WC00000PX8hxYAD); real priced MFA line OI 802WC00000N1Cb0YAF (qty 9900 x 41.88 = 414612) in Activated order 00077275; V21 reprice place API: isSuccess=true, errorResponse=[]",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "SC-3447 / SC-3366",
+  "notes": "Preflight: Product MessengerConsole (01tWC00000DD1R9YAL) Solution_Group__c=Power, Power_Split_Type__c=Order Line Only, Fortra_Product_Type__c=Perpetual. PBE 01uWC000005wo3CYAQ active in Fortra Price Book (active), UnitPrice=11487 USD. Order 00095656 is Draft, AccountId=001WC00000XiZP4YAN (Fortra LLC-Test), CurrencyIsoCode=USD. V21 headless place reprice (Force, configurationMethod=Skip) on /services/data/v67.0/connect/rev/sales-transaction/actions/place returned isSuccess:true immediately - no governor breach. SC-3447 P3 fix (gate per-unit split on Partition/Hardware) confirmed LIVE in V21: seat-count Power lines (no Partition) stay as single Qty=N OrderItem. SC-3366 SOQL governor fix also confirmed: 35-line order repriced without hitting SOQL:101.",
+  "verdict_reason": "V21 Force-reprice on real Draft order with MessengerConsole qty=5000 Power (Order Line Only) line returned isSuccess:true with no errors, no CPU/SOQL governor breach, Is_Split_Line__c=false, Qty*UnitPrice=57435000 correct. SC-3447 per-unit split guard and SC-3366 governor fix both confirmed working in current V21."
+}

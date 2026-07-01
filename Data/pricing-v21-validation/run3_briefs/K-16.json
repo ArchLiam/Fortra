@@ -1,0 +1,36 @@
+{
+ "id": "K-16",
+ "category": "K. Edge Cases",
+ "name": "Delete-group / sparse-context robustness (no proc-side NPE)",
+ "priority": "P2",
+ "what_it_tests": "Procedure execution within a quote-group delete or sparse-context scenario must null-safe its filters and not NPE on a missing context node; the native RLM Map.get NPE is platform-side, not proc-side",
+ "proc_mechanism": "Null-Check for Line Adjustment; Null-Safe Line Adjustment; All Lines Null Safe Filter",
+ "expected_behavior": "No procedure-side NPE on a missing context node; the 'Delete Group' Map.get NPE is platform-side (config/context edge), not fixable in the procedure",
+ "test_setup": "Quote group with a deleted group, reprice remaining lines",
+ "defect_provenance": "SC-3473",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Active proc = V21 (9QBWC0000000oWH4AY, single Active). (1) PROCEDURE reprice: Force place-reprice of the canonical SC-3473 sparse/grouped repro quote 0Q0WC000002U2020AC -> isSuccess:true, errorResponse:[], CompletedWithPricing; all 4 lines priced (survivors NetUnitPrice=20000 ea; grouped 29060/4356); Abstract TermDefined line 0QLWC000003jN8P4AU PTC=1 EndDate=2027-06-25. NO proc-side NPE. (2) Native DeleteGroup on a faithful clone 0Q0WC000003FbQX0A0 (group 1C9WC00000098rB0AQ, action:DeleteGroup pricingPref:Force) -> errorResponse INVALID_API_INPUT 'Cannot invoke Object.toString() because the return value of java.util.Map.get(Object) is null', referenceId=refQuote, isSuccess:false -> EXACT SC-3473 signature reproduced. (3) Discriminator: clean control 0Q0WC000003FbS90AK (all-OneTime, NO TermDefined/null-term) plain reprice succeeds (isSuccess:true) but DeleteGroup throws the SAME Map.get N\u2026",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002U2020AC/view (proc reprice isSuccess:true, CompletedWithPricing) ; Data/sc3473/k16_evidence/K16_SMOKE_RESULT.md ; k16_deletegroup_resp.json + k16_clean_deletegroup_resp.json (Map.get NPE on both faithful + clean clones) ; k16_ungroup_body.json (Ungroup isSuccess:true control) ; V21 meta Data/sc3473/v21_meta/.../Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition (AllLinesNullSafeFilter LineItemQuantity>=0 ; NullSafeLineAdjustment formula IF(ISNULL(ItemTotalAdjustmentAmount),0,...) x30)",
+  "recordIds": [
+   "0Q0WC000002U2020AC",
+   "0QLWC000003jN8P4AU",
+   "0Q0WC000003FbQX0A0",
+   "1C9WC00000098rB0AQ",
+   "0Q0WC000003FbS90AK"
+  ],
+  "defectStep": "",
+  "regression": "SC-3473",
+  "rootCause": "N-A(pass)",
+  "notes": "Preflight PASS: active proc V21 confirmed; null-safe steps present in live metadata; canonical repro at the correct sparse/grouped state (2 ungrouped survivors + group 'Test HW1' with a OneTime + a TermDefined Abstract line). The procedure-side assertion is the PASS: V21 Force-reprice on the sparse/grouped context completes CompletedWithPricing with NO NPE (null-safe filters work). The native DeleteGroup NPE is platform-side per scenario design (and per project_sc3473_delete_group_npe). NEW FINDING vs memory: the discriminator clean control (all-OneTime, no malformed term) ALSO throws the iden\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

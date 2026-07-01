@@ -1,0 +1,41 @@
+{
+ "id": "K-07",
+ "category": "K. Edge Cases",
+ "name": "Co-owned version churn drops logic deltas (V16 vs V20 reconcile)",
+ "priority": "P0",
+ "what_it_tests": "Co-ownership of procedure versions causes logic deltas to be lost on republish; the V16->V20 currency rebuild omitted the Term-Defined proration sub-tree, the 7-tier derived reduction, and guards, so any alternate active version must be diffed against the prior version before activation",
+ "proc_mechanism": "ExpressionSetDefinition V20 (V16 + currency additions) missing Term-Defined-Proration (3 steps) + Derived 7-tier + guards; co-owned edits ping-pong (clobber/re-apply)",
+ "expected_behavior": "Co-owned versions fully validated against the prior version's logic tree before activation; TermDefined/COLA/Derived branches verified end-to-end; always retrieve live before editing",
+ "test_setup": "Activate alternate procedure version after co-owner edits, diff V16 vs V20 logic trees, verify TermDefined/COLA/Derived branches",
+ "defect_provenance": "SC-3473 / COLA V16-V20",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Force-reprice under live V21 prices all dropped tiers correctly: Basic 53.25 (0.15x355), Standard 71, Expert 124.25 (0.35x355), Premium 85.2 (0.24x355). TermDefined line PTC=1, EndDate=2027-06-25 derived. Reprice isSuccess=true (guards skip null-PB clean).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZVB0A4/view ; Data/sc3473/k07_validation/K07_RESULT.md ; live V21 metadata Data/sc3473/k07_validation/retrieve/mdapi/unpackaged/expressionSetVersion/...V210.expressionSetVersion",
+  "recordIds": [
+   "0Q0WC000003FZVB0A4",
+   "0QLWC000003kiva4AA",
+   "0QLWC000003kivb4AA",
+   "0QLWC000003kiyn4AA",
+   "0QLWC000003kiyo4AA",
+   "0Q0WC000002U2020AC",
+   "0QLWC000003jN8P4AU",
+   "9QBWC0000000oWH4AY"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "GOVERNANCE/DURABILITY finding (not runtime mispricing): live V21 serialized metadata = 3-tier Derived Pricing Formula (Premier/Standard/Professional only; Basic/Premium/Express/Expert -> 0) labeled DRAFT, but compiled runtime executes full 7-tier. This is the co-owned clobber/re-apply ping-pong K-07 warns about. Exposure if 3-tier snapshot republished: 79 NewMaintenance QLIs org-wide carry NetUnitPrice>0 today and any on a dropped tier would zero out. defect_provenance SC-3473 / COLA V16-V20.",
+  "from": "run2"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupK07DerivedTierTestData.compact.apex"
+ ],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

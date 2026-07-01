@@ -1,0 +1,1061 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbLIP2A3"
+        },
+        "Id": "07LWC00000PbLIP2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 264,
+        "StartTime": "2026-06-28T18:14:15.000+0000",
+        "LogLength": 381
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbLGn2AN"
+        },
+        "Id": "07LWC00000PbLGn2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 186,
+        "StartTime": "2026-06-28T18:14:11.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJms2AF"
+        },
+        "Id": "07LWC00000PbJms2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "common.api.soap.DirectSoap",
+        "Status": "Success",
+        "Request": "Api",
+        "DurationMilliseconds": 189,
+        "StartTime": "2026-06-28T18:12:00.000+0000",
+        "LogLength": 965
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbLDa2AN"
+        },
+        "Id": "07LWC00000PbLDa2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 3907,
+        "StartTime": "2026-06-28T18:09:01.000+0000",
+        "LogLength": 2418
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbLDZ2A3"
+        },
+        "Id": "07LWC00000PbLDZ2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 800509154,
+        "StartTime": "2026-06-28T18:08:58.000+0000",
+        "LogLength": 267397
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbLAL2A3"
+        },
+        "Id": "07LWC00000PbLAL2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 541200224,
+        "StartTime": "2026-06-28T18:08:00.000+0000",
+        "LogLength": 11548
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbLBx2AN"
+        },
+        "Id": "07LWC00000PbLBx2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 457357609,
+        "StartTime": "2026-06-28T18:08:00.000+0000",
+        "LogLength": 27836
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKEI2A3"
+        },
+        "Id": "07LWC00000PbKEI2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 455621305,
+        "StartTime": "2026-06-28T18:08:00.000+0000",
+        "LogLength": 13244
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbL8j2AF"
+        },
+        "Id": "07LWC00000PbL8j2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 14142,
+        "StartTime": "2026-06-28T18:07:45.000+0000",
+        "LogLength": 1106325
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbL772AF"
+        },
+        "Id": "07LWC00000PbL772AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 13885,
+        "StartTime": "2026-06-28T18:07:42.000+0000",
+        "LogLength": 4720
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000Pb3yF2AR"
+        },
+        "Id": "07LWC00000Pb3yF2AR",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 238,
+        "StartTime": "2026-06-28T18:07:28.000+0000",
+        "LogLength": 329
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbL5V2AV"
+        },
+        "Id": "07LWC00000PbL5V2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 181,
+        "StartTime": "2026-06-28T18:07:27.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKJ82AN"
+        },
+        "Id": "07LWC00000PbKJ82AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 542618563,
+        "StartTime": "2026-06-28T18:06:53.000+0000",
+        "LogLength": 646
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbL3t2AF"
+        },
+        "Id": "07LWC00000PbL3t2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 12866,
+        "StartTime": "2026-06-28T18:06:38.000+0000",
+        "LogLength": 995
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbL2H2AV"
+        },
+        "Id": "07LWC00000PbL2H2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 195396277,
+        "StartTime": "2026-06-28T18:06:26.000+0000",
+        "LogLength": 646
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKz42AF"
+        },
+        "Id": "07LWC00000PbKz42AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 1329,
+        "StartTime": "2026-06-28T18:01:08.000+0000",
+        "LogLength": 2443
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKz32AF"
+        },
+        "Id": "07LWC00000PbKz32AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 885380029,
+        "StartTime": "2026-06-28T18:01:07.000+0000",
+        "LogLength": 266476
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKxR2AV"
+        },
+        "Id": "07LWC00000PbKxR2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 543847371,
+        "StartTime": "2026-06-28T18:00:14.000+0000",
+        "LogLength": 27836
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKvp2AF"
+        },
+        "Id": "07LWC00000PbKvp2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 456890789,
+        "StartTime": "2026-06-28T18:00:13.000+0000",
+        "LogLength": 13321
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKuD2AV"
+        },
+        "Id": "07LWC00000PbKuD2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 455154827,
+        "StartTime": "2026-06-28T18:00:13.000+0000",
+        "LogLength": 11638
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKpN2AV"
+        },
+        "Id": "07LWC00000PbKpN2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 12456,
+        "StartTime": "2026-06-28T18:00:01.000+0000",
+        "LogLength": 1097874
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKPa2AN"
+        },
+        "Id": "07LWC00000PbKPa2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 116,
+        "StartTime": "2026-06-28T17:59:56.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKnl2AF"
+        },
+        "Id": "07LWC00000PbKnl2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 86,
+        "StartTime": "2026-06-28T17:59:56.000+0000",
+        "LogLength": 4720
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKm92AF"
+        },
+        "Id": "07LWC00000PbKm92AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 172,
+        "StartTime": "2026-06-28T17:59:56.000+0000",
+        "LogLength": 329
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKkX2AV"
+        },
+        "Id": "07LWC00000PbKkX2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "common.api.soap.DirectSoap",
+        "Status": "Success",
+        "Request": "Api",
+        "DurationMilliseconds": 214,
+        "StartTime": "2026-06-28T17:59:43.000+0000",
+        "LogLength": 965
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKfi2AF"
+        },
+        "Id": "07LWC00000PbKfi2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 1281,
+        "StartTime": "2026-06-28T17:50:54.000+0000",
+        "LogLength": 2442
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKfh2AF"
+        },
+        "Id": "07LWC00000PbKfh2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 456330949,
+        "StartTime": "2026-06-28T17:50:52.000+0000",
+        "LogLength": 266532
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKe52AF"
+        },
+        "Id": "07LWC00000PbKe52AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 456319248,
+        "StartTime": "2026-06-28T17:50:40.000+0000",
+        "LogLength": 28160
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKar2AF"
+        },
+        "Id": "07LWC00000PbKar2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 543271615,
+        "StartTime": "2026-06-28T17:50:39.000+0000",
+        "LogLength": 13289
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKcT2AV"
+        },
+        "Id": "07LWC00000PbKcT2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 541643647,
+        "StartTime": "2026-06-28T17:50:39.000+0000",
+        "LogLength": 11644
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKZF2A3"
+        },
+        "Id": "07LWC00000PbKZF2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 7425,
+        "StartTime": "2026-06-28T17:50:31.000+0000",
+        "LogLength": 1090804
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKXd2AN"
+        },
+        "Id": "07LWC00000PbKXd2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 10029,
+        "StartTime": "2026-06-28T17:50:30.000+0000",
+        "LogLength": 4701
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbE7G2AV"
+        },
+        "Id": "07LWC00000PbE7G2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 104,
+        "StartTime": "2026-06-28T17:50:19.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKW12AN"
+        },
+        "Id": "07LWC00000PbKW12AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 186,
+        "StartTime": "2026-06-28T17:50:19.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKUP2A3"
+        },
+        "Id": "07LWC00000PbKUP2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "common.api.soap.DirectSoap",
+        "Status": "Success",
+        "Request": "Api",
+        "DurationMilliseconds": 350,
+        "StartTime": "2026-06-28T17:50:07.000+0000",
+        "LogLength": 965
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKSo2AN"
+        },
+        "Id": "07LWC00000PbKSo2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 12247,
+        "StartTime": "2026-06-28T17:47:10.000+0000",
+        "LogLength": 2435
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbKSn2AN"
+        },
+        "Id": "07LWC00000PbKSn2AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 885596142,
+        "StartTime": "2026-06-28T17:47:05.000+0000",
+        "LogLength": 267627
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbIZ42AN"
+        },
+        "Id": "07LWC00000PbIZ42AN",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 539892759,
+        "StartTime": "2026-06-28T17:46:11.000+0000",
+        "LogLength": 646
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJwZ2AV"
+        },
+        "Id": "07LWC00000PbJwZ2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 5338,
+        "StartTime": "2026-06-28T17:30:50.000+0000",
+        "LogLength": 2433
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJwY2AV"
+        },
+        "Id": "07LWC00000PbJwY2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "N/A",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 887126371,
+        "StartTime": "2026-06-28T17:30:45.000+0000",
+        "LogLength": 268003
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000Pb1y22AB"
+        },
+        "Id": "07LWC00000Pb1y22AB",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 883534127,
+        "StartTime": "2026-06-28T17:30:18.000+0000",
+        "LogLength": 28157
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJrh2AF"
+        },
+        "Id": "07LWC00000PbJrh2AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 455094988,
+        "StartTime": "2026-06-28T17:30:18.000+0000",
+        "LogLength": 13311
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJtJ2AV"
+        },
+        "Id": "07LWC00000PbJtJ2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "QueueableHandler",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 541616934,
+        "StartTime": "2026-06-28T17:30:18.000+0000",
+        "LogLength": 11671
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbIKZ2A3"
+        },
+        "Id": "07LWC00000PbIKZ2A3",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 16937,
+        "StartTime": "2026-06-28T17:30:01.000+0000",
+        "LogLength": 1106577
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJq52AF"
+        },
+        "Id": "07LWC00000PbJq52AF",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 10430,
+        "StartTime": "2026-06-28T17:29:52.000+0000",
+        "LogLength": 4703
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbIcI2AV"
+        },
+        "Id": "07LWC00000PbIcI2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 127,
+        "StartTime": "2026-06-28T17:29:41.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PbJoT2AV"
+        },
+        "Id": "07LWC00000PbJoT2AV",
+        "LogUserId": "005a500001ddfltAAA",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005a500001ddfltAAA"
+          },
+          "Name": "Marc DeBrey"
+        },
+        "Operation": "/aura",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 189,
+        "StartTime": "2026-06-28T17:29:41.000+0000",
+        "LogLength": 330
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PalOb2AJ"
+        },
+        "Id": "07LWC00000PalOb2AJ",
+        "LogUserId": "005WC00000MgTN2YAN",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "common.api.soap.DirectSoap",
+        "Status": "Success",
+        "Request": "Api",
+        "DurationMilliseconds": 411372822,
+        "StartTime": "2026-06-28T05:21:36.000+0000",
+        "LogLength": 5857
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000Pakva2AB"
+        },
+        "Id": "07LWC00000Pakva2AB",
+        "LogUserId": "005WC00000MgTN2YAN",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "common.api.soap.DirectSoap",
+        "Status": "Success",
+        "Request": "Api",
+        "DurationMilliseconds": 409637283,
+        "StartTime": "2026-06-28T05:21:36.000+0000",
+        "LogLength": 5948
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PalOc2AJ"
+        },
+        "Id": "07LWC00000PalOc2AJ",
+        "LogUserId": "005WC00000MgTN2YAN",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "UniversalPerfLogger",
+        "Status": "Success",
+        "Request": "Application",
+        "DurationMilliseconds": 411373191,
+        "StartTime": "2026-06-28T05:21:36.000+0000",
+        "LogLength": 1313
+      }
+    ],
+    "totalSize": 50,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,25 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Quote",
+          "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003GOO10AO"
+        },
+        "Id": "0Q0WC000003GOO10AO",
+        "Name": "Cancellation Quote",
+        "QuoteNumber": "00781617",
+        "Status": "Draft",
+        "Quote_Type__c": "Cancellation",
+        "CurrencyIsoCode": "USD",
+        "Pricebook2Id": "01sWC0000022GHFYA2",
+        "TotalPrice": 0,
+        "Subtotal": 0
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

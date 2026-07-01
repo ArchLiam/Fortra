@@ -1,0 +1,143 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "OpportunityLineItem",
+          "url": "/services/data/v67.0/sobjects/OpportunityLineItem/00kWC00000CwGWvYAN"
+        },
+        "Id": "00kWC00000CwGWvYAN",
+        "OpportunityId": "006WC00000NMOODYA5",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Product_Selling_Model__c": null,
+        "Product_Selling_Model__r": null,
+        "PricebookEntryId": "01uWC000004dSW5YAM",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSW5YAM"
+          },
+          "IsActive": true,
+          "UnitPrice": 46
+        },
+        "Quantity": 1,
+        "UnitPrice": 46,
+        "NetUnitPrice": 4356,
+        "TotalPrice": 4356,
+        "ListPrice": 46,
+        "Subscription_Term__c": 12
+      },
+      {
+        "attributes": {
+          "type": "OpportunityLineItem",
+          "url": "/services/data/v67.0/sobjects/OpportunityLineItem/00kWC00000CwGVJYA3"
+        },
+        "Id": "00kWC00000CwGVJYA3",
+        "OpportunityId": "006WC00000NMOODYA5",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product_Selling_Model__c": null,
+        "Product_Selling_Model__r": null,
+        "PricebookEntryId": "01uWC000004dSWRYA2",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dSWRYA2"
+          },
+          "IsActive": true,
+          "UnitPrice": 2850
+        },
+        "Quantity": 1,
+        "UnitPrice": 2850,
+        "NetUnitPrice": 29060,
+        "TotalPrice": 29060,
+        "ListPrice": 2850,
+        "Subscription_Term__c": 12
+      },
+      {
+        "attributes": {
+          "type": "OpportunityLineItem",
+          "url": "/services/data/v67.0/sobjects/OpportunityLineItem/00kWC00000BR9FNYA1"
+        },
+        "Id": "00kWC00000BR9FNYA1",
+        "OpportunityId": "006WC00000NMOODYA5",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Product_Selling_Model__c": null,
+        "Product_Selling_Model__r": null,
+        "PricebookEntryId": "01uWC000004dTDyYAM",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dTDyYAM"
+          },
+          "IsActive": true,
+          "UnitPrice": 20000
+        },
+        "Quantity": 1,
+        "UnitPrice": 20000,
+        "NetUnitPrice": 20000,
+        "TotalPrice": 20000,
+        "ListPrice": 20000,
+        "Subscription_Term__c": 12
+      },
+      {
+        "attributes": {
+          "type": "OpportunityLineItem",
+          "url": "/services/data/v67.0/sobjects/OpportunityLineItem/00kWC00000BR9FOYA1"
+        },
+        "Id": "00kWC00000BR9FOYA1",
+        "OpportunityId": "006WC00000NMOODYA5",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Product_Selling_Model__c": null,
+        "Product_Selling_Model__r": null,
+        "PricebookEntryId": "01uWC000004dTDyYAM",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000004dTDyYAM"
+          },
+          "IsActive": true,
+          "UnitPrice": 20000
+        },
+        "Quantity": 1,
+        "UnitPrice": 20000,
+        "NetUnitPrice": 20000,
+        "TotalPrice": 20000,
+        "ListPrice": 20000,
+        "Subscription_Term__c": 12
+      }
+    ],
+    "totalSize": 4,
+    "done": true
+  },
+  "warnings": []
+}

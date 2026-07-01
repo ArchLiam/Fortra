@@ -1,0 +1,42 @@
+SC-3473 RE-VERIFY — TIMELINE & FACTS SUMMARY (all live-queried 2026-06-28/29, FortraUAT)
+
+QUOTE 0Q0WC000002U2020AC "Test Wren - Order Processing" (00734139)
+  Created:        2026-03-18T06:00:21  by German Wren
+  Status:         Accepted | USD | PB 01sa5000001vuxlAAA | 4 lines | TotalPrice 73416
+  CalculationStatus: SaveFailedOrIncomplete  (CONFIRMED — still wedged)
+  Header LastMod: 2026-06-26T16:25:03  by German Wren
+  SyncedQuoteId of OPEN opp 006WC00000NMOODYA5 (Pre-Qualified, IsClosed=false), same PB
+
+GROUP "Test HW1" 1C9WC00000097of0AA
+  Created:  2026-06-26T16:03:48  | LastMod: 2026-06-26T16:06:12  by German Wren
+  Hardware_Group_Type__c=True | Hardware__c=a0nWC000001wdV3YAI
+  SummarySubtotal=33416 (=29060+4356)  | SummaryTotalAmount=NULL | TotalAdjustment/Cost/Margin=NULL  <-- partial rollup
+
+LINES (all LastMod 2026-06-26T16:06:12):
+  [grouped]   04266918 AJS  OneTime   P2 01tWC00000DD11cYAD PSM 0jPWC00000005yz2AA  list2850 net29060
+              PricingTermCount=0, PricingTerm=NULL, Start/End=NULL, ProrationPolicyId=NULL  <-- OneTime (expected null term)
+  [grouped]   04266919 Abstract TermDefined P2 01tWC00000DD11GYAT PSM 0jPWC000000060b2AA list46 net4356
+              PricingTermCount=NULL (!), PricingTerm=1, Unit=Annual, Start=2026-06-26, End=NULL  <-- INCOMPLETE term fields
+  [survivor]  02122365 SUSPIN TermDefined P2 01tWC00000DD1mNYAT PSM 0jPWC000000060b2AA list/net 20000
+              PricingTermCount=1, Start 2026-03-18 End 2027-03-17, Proration 0mua50000004KzRAAU  <-- FULLY priced
+  [survivor]  02122366 SUSPIN  (identical to above, fully priced)
+
+OPP 006WC00000NMOODYA5 LastMod 2026-06-26T16:06:13 (sync fired 1s after line save)
+
+TIMELINE READ:
+  16:03:48  group created
+  16:06:12  lines+group saved (last known-good line state); group summary partial
+  16:06:13  opp sync fires
+  16:25:03  quote HEADER-only save (19 min later) -> left CalculationStatus=SaveFailedOrIncomplete
+            (consistent with the failed Delete-Group: header commits, reprice step fails, not rolled back)
+
+ACTIVE PROC:  Rev_Mgmt_Default_Pricing_Procedure V16  (ExpressionSetVersion.IsActive=True, single;
+              ExpressionSetDefinitionVersion.Status=Active, single; 19 others Inactive)
+              ** V16 Metadata LastMod 2026-06-27T05:49:42 — EDITED the day AFTER the failure **
+ACTIVE CTX:   SalesTransactionContextExt_v2 (11OWC000002m21Z2AQ) V23 IsActive=True (only version)
+              bound to the proc via ExpressionSetDefinitionContextDefinition 9QYWC0000000UcP4AU
+CATALOG:      3/3 pairs have 1 active USD PBE + 1 PSMO each; no dup/inactive ambiguity
+APEX/FLOW:    5 triggers on Quote/QLI/QLG — ZERO delete events; 13 active flows — ZERO Delete recTrig
+APEXLOG:      window 2026-06-23..2026-06-29 covers repro; German Wren & Dawn Krauss = 0 logs;
+              only 4 non-Success logs org-wide all = Liam Jeong (research), none mention the NPE
+CALC-STATE:   20 quotes org-wide in SaveFailedOrIncomplete; 47 in PriceCalculationFailed (wedged state is COMMON)

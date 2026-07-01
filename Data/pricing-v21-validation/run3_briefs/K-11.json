@@ -1,0 +1,37 @@
+{
+ "id": "K-11",
+ "category": "K. Edge Cases",
+ "name": "Qty=0 auto-add middle maintenance line ($0 but correct net)",
+ "priority": "P1",
+ "what_it_tests": "An auto-added (ProductConfigurationRule) maintenance line born with Quantity=0 (StartQuantity=source asset) prices its net correctly but yields $0; normalizing StartQuantity to the source-asset qty (so qty>0) is the fix",
+ "proc_mechanism": "RenewalAssetQuantityHandler (before-insert, widened to Amend + New-Maintenance) normalizes StartQuantity=0 + Quantity=source-asset-qty; Quantity*Price (net x 0 = 0); All Lines Null Safe Filter (Qty>=0 includes 0)",
+ "expected_behavior": "Line born with qty>0 so net unit correct and ItemNetTotalPrice = qty x net (not 0); line type (Amend new-biz / Renew renewal) matches quote action",
+ "test_setup": "Auto-add PCR maintenance line on Perpetual license, SourceAsset qty>0, Fortra_Product_Type='New Maintenance', derived net correct",
+ "defect_provenance": "SC-3346 / SC-3412 / SC-3410",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Live handler RenewalAssetQuantityHandler (ApiVersion 62) matches the spec: MAINTENANCE_PRODUCT_TYPES widened to {Renewal Maintenance, New Maintenance}; candidate filter = maintenance type + QuoteActionId!=null + Quantity<=0; New-Maint branch flips No Change->Amend then sets Quantity=sourceQty, StartQuantity=0. SMOKE TEST (savepoint+rollback) on the real born-qty=0 defect line 0QLWC000003d2QR4AY (Draft quote 0Q0WC0000037rFZ0AY): BEFORE qty=0.00 startQty=1.00 action='No Change' netUnit=71.00 netTotal=0.00 -> AFTER handler qty=1.00 startQty=0.00 action='Amend' netUnit=71.00, qty*net=71.00 (normalizedQtyToSourceAsset=true, startQtyZeroed=true, actionFlippedNoChangeToAmend=true), then ROLLED BACK. End-to-end on 7 real post-fix New-Maint asset-copy lines: all Amend, Quantity=1, NetTotalPrice = Quantity x NetUnitPrice (60.35/62.48/4000, none $0). Renewal-Maint twin 0QLWC000003dEW24AM: Renew, qt\u2026",
+  "evidence": "Smoke log markers (savepoint, rolled back): 'K-11 BEFORE :: qty=0.00 ... action=No Change netUnit=71.00 netTotal=0.00' then 'K-11 AFTER :: qty=1.00 startQty=0.00 action=Amend netUnit=71.00 expectedTotal(qty*net)=71.0000' ; script Data/sc3346/k11_handler_smoke.apex ; live handler Data/pricing-v21-validation/k11_evidence/RenewalAssetQuantityHandler.live.cls (L104-128 New-Maint branch). Real defect line https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000037rFZ0AY/view (0QLWC000003d2QR4AY qty=0 net=71 total=0). Realized post-fix line https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000039fjl0AA/view (0QLWC000003erwl4AA Amend qty1 NetTotal=62.48). V21 meta Data/sc3473/v21_meta/.../Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition: 'Quantity * Price' computes NetUnitPrice*LineItemQuantity (L1837); 'All Lines Null Safe Filter' present.",
+  "recordIds": [
+   "0QLWC000003d2QR4AY",
+   "0Q0WC0000037rFZ0AY",
+   "0QLWC000003erwl4AA",
+   "0QLWC000003ehR84AI",
+   "0QLWC000003dEW24AM",
+   "02iWC000008DFvvYAG"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (confirmed by all K-row siblings + brief, 2026-06-29). The fix being validated is Apex-tier RenewalAssetQuantityHandler (before/after-insert normalizer), NOT a V21 step; V21's 'Quantity * Price' step is correct (qty x net) and only produced $0 because the input qty was 0 - the handler corrects the input so the line type matches the quote action (No Change->Amend new-biz / ->Renew renewal) and ItemNetTotalPrice becomes qty x net. Net itself is finalized by PartnerNetPricePosthook (separately validated PASS in J-07). PREFLIGHT pass: PIA-PIA-NRPS\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

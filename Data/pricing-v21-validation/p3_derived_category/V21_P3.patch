@@ -1,0 +1,432 @@
+--- baseline_pristine.expressionSetDefinition	2026-06-29 22:40:12
++++ deploy/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition	2026-06-29 22:41:53
+@@ -111007,7 +111007,7 @@
+             <label>Aggregate Price</label>
+             <name>AggregatePrice</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>43</sequenceNumber>
++            <sequenceNumber>46</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -111176,7 +111176,7 @@
+             <label>Aggregate Price</label>
+             <name>AggregatePrice119</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>44</sequenceNumber>
++            <sequenceNumber>47</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -111245,7 +111245,7 @@
+             <label>Amend Net Carry</label>
+             <name>AmendNetCarry</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>40</sequenceNumber>
++            <sequenceNumber>43</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -111511,7 +111511,7 @@
+             <label>Assignment</label>
+             <name>Assignment123</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>46</sequenceNumber>
++            <sequenceNumber>49</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -112920,7 +112920,7 @@
+         </steps>
+         <steps>
+             <advancedCondition>
+-                <conditionLogic>1 AND 2 AND 3 AND 4 AND 5 AND 6</conditionLogic>
++                <conditionLogic>1 AND 2 AND 4 AND 5 AND 6</conditionLogic>
+                 <criteria>
+                     <operator>Equals</operator>
+                     <sequenceNumber>1</sequenceNumber>
+@@ -112934,13 +112934,6 @@
+                     <sourceFieldName>DerivedPricingAttribute</sourceFieldName>
+                 </criteria>
+                 <criteria>
+-                    <operator>Equals</operator>
+-                    <sequenceNumber>3</sequenceNumber>
+-                    <sourceFieldName>DerivedPricingAttribute</sourceFieldName>
+-                    <value>false</value>
+-                    <valueType>Literal</valueType>
+-                </criteria>
+-                <criteria>
+                     <operator>IsNotNull</operator>
+                     <sequenceNumber>4</sequenceNumber>
+                     <sourceFieldName>SalesTransactionActionType</sourceFieldName>
+@@ -113108,7 +113101,7 @@
+             <label>Copy 1 of Copy 1 of List Container 8</label>
+             <name>Copy1ofCopy1ofListContainer8</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>35</sequenceNumber>
++            <sequenceNumber>38</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113119,7 +113112,7 @@
+             <label>Copy 1 of List Container 8</label>
+             <name>Copy1ofListContainer8</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>34</sequenceNumber>
++            <sequenceNumber>37</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113183,7 +113176,7 @@
+             <label>Currency Conversion - Net Total / Subtotal</label>
+             <name>CurrencyConversionNetTotalSubtotal</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>38</sequenceNumber>
++            <sequenceNumber>41</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113247,7 +113240,7 @@
+             <label>Currency Conversion - Net Unit Price</label>
+             <name>CurrencyConversionNetUnitPrice</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>36</sequenceNumber>
++            <sequenceNumber>39</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113311,7 +113304,7 @@
+             <label>Currency Conversion - Total Line Amount</label>
+             <name>CurrencyConversionTotalLineAmount</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>39</sequenceNumber>
++            <sequenceNumber>42</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113375,7 +113368,7 @@
+             <label>Currency Conversion - Unit Price Display</label>
+             <name>CurrencyConversionUnitPriceDisplay</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>37</sequenceNumber>
++            <sequenceNumber>40</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113433,7 +113426,7 @@
+                     <name>formula-section-0-input</name>
+                     <output>false</output>
+                     <type>Formula</type>
+-                    <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , NetUnitPrice , IF ( AttributeValue = &apos;Premier&apos; , 0.30 , IF ( AttributeValue = &apos;Standard&apos; , 0.20 , IF ( AttributeValue = &apos;Professional&apos; , 0.20 , 0 ) ) ) * IF ( Base_Price__c &gt; 0 , Base_Price__c , IF ( Pre_Partner_Price__c &gt; 0 , Pre_Partner_Price__c , IF ( InputUnitPrice &gt; 0 , InputUnitPrice , 0 ) ) ) )</value>
++                    <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , NetUnitPrice , IF ( AttributeValue = &apos;Basic&apos; , 0.15 , IF ( AttributeValue = &apos;Standard&apos; , 0.20 , IF ( AttributeValue = &apos;Professional&apos; , 0.20 , IF ( AttributeValue = &apos;Premium&apos; , 0.24 , IF ( AttributeValue = &apos;Express&apos; , 0.30 , IF ( AttributeValue = &apos;Premier&apos; , 0.30 , IF ( AttributeValue = &apos;Expert&apos; , 0.35 , 0 ) ) ) ) ) ) ) * IF ( Base_Price__c &gt; 0 , Base_Price__c , IF ( Pre_Partner_Price__c &gt; 0 , Pre_Partner_Price__c , IF ( InputUnitPrice &gt; 0 , InputUnitPrice , 0 ) ) ) )</value>
+                 </parameters>
+                 <parameters>
+                     <input>true</input>
+@@ -113485,6 +113478,71 @@
+             <parentStep>ListContainer9</parentStep>
+             <resultIncluded>false</resultIncluded>
+             <sequenceNumber>2</sequenceNumber>
++            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
++            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
++            <shouldShowExplExternally>false</shouldShowExplExternally>
++            <stepType>BusinessKnowledgeModel</stepType>
++        </steps>
++        <steps>
++            <actionType>FormulaBasedPricing</actionType>
++            <customElement>
++                <parameters>
++                    <input>true</input>
++                    <name>formula-section-0-input</name>
++                    <output>false</output>
++                    <type>Formula</type>
++                    <value>IF ( QuoteTypeText__c = &apos;Renewal&apos; , ValidationResult , IF ( Base_Price__c &gt; 0 , ValidationResult , IF ( Pre_Partner_Price__c &gt; 0 , ValidationResult , IF ( InputUnitPrice &gt; 0 , ValidationResult , &apos;MissingContributor&apos; ) ) ) )</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>formulaSectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>1</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>HideWaterfall</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>sectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>selectedFunction</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>Get</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>IsRealTime</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>false</input>
++                    <name>formula-section-0-output</name>
++                    <output>true</output>
++                    <type>Parameter</type>
++                    <value>ValidationResult</value>
++                </parameters>
++            </customElement>
++            <description>Formula Based Pricing</description>
++            <hasNestedExplainability>false</hasNestedExplainability>
++            <label>Surface Missing Contributor (K-02)</label>
++            <name>SurfaceMissingContributorK02</name>
++            <parentStep>ListContainer9</parentStep>
++            <resultIncluded>false</resultIncluded>
++            <sequenceNumber>3</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -113921,7 +113979,7 @@
+             <label>Formula Based Pricing 3</label>
+             <name>FormulaBasedPricing3</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>42</sequenceNumber>
++            <sequenceNumber>45</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -114052,7 +114110,7 @@
+             <label>List Container 11</label>
+             <name>ListContainer11</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>45</sequenceNumber>
++            <sequenceNumber>48</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -114206,7 +114264,7 @@
+             <label>List Container 8</label>
+             <name>ListContainer8</name>
+             <resultIncluded>false</resultIncluded>
+-            <sequenceNumber>33</sequenceNumber>
++            <sequenceNumber>36</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -117067,7 +117125,7 @@
+             <label>Total Amount</label>
+             <name>TotalAmount</name>
+             <resultIncluded>true</resultIncluded>
+-            <sequenceNumber>41</sequenceNumber>
++            <sequenceNumber>44</sequenceNumber>
+             <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+@@ -117335,7 +117393,199 @@
+             <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
+             <shouldShowExplExternally>false</shouldShowExplExternally>
+             <stepType>AdvancedListFilter</stepType>
++        </steps>
++        <steps>
++            <actionType>FormulaBasedPricing</actionType>
++            <customElement>
++                <parameters>
++                    <input>true</input>
++                    <name>formula-section-0-input</name>
++                    <output>false</output>
++                    <type>Formula</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>formulaSectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>1</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>HideWaterfall</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>sectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>selectedFunction</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>Get</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>IsRealTime</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>false</input>
++                    <name>formula-section-0-output</name>
++                    <output>true</output>
++                    <type>Parameter</type>
++                    <value>Total_Services__c</value>
++                </parameters>
++            </customElement>
++            <description>Formula Based Pricing</description>
++            <hasNestedExplainability>false</hasNestedExplainability>
++            <label>Reset Total Services (K-09 zero-init)</label>
++            <name>ResetTotalServicesK09</name>
++            <resultIncluded>false</resultIncluded>
++            <sequenceNumber>33</sequenceNumber>
++            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
++            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
++            <shouldShowExplExternally>false</shouldShowExplExternally>
++            <stepType>BusinessKnowledgeModel</stepType>
+         </steps>
++        <steps>
++            <actionType>FormulaBasedPricing</actionType>
++            <customElement>
++                <parameters>
++                    <input>true</input>
++                    <name>formula-section-0-input</name>
++                    <output>false</output>
++                    <type>Formula</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>formulaSectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>1</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>HideWaterfall</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>sectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>selectedFunction</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>Get</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>IsRealTime</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>false</input>
++                    <name>formula-section-0-output</name>
++                    <output>true</output>
++                    <type>Parameter</type>
++                    <value>Total_Software__c</value>
++                </parameters>
++            </customElement>
++            <description>Formula Based Pricing</description>
++            <hasNestedExplainability>false</hasNestedExplainability>
++            <label>Reset Total Software (K-09 zero-init)</label>
++            <name>ResetTotalSoftwareK09</name>
++            <resultIncluded>false</resultIncluded>
++            <sequenceNumber>34</sequenceNumber>
++            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
++            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
++            <shouldShowExplExternally>false</shouldShowExplExternally>
++            <stepType>BusinessKnowledgeModel</stepType>
++        </steps>
++        <steps>
++            <actionType>FormulaBasedPricing</actionType>
++            <customElement>
++                <parameters>
++                    <input>true</input>
++                    <name>formula-section-0-input</name>
++                    <output>false</output>
++                    <type>Formula</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>formulaSectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>1</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>HideWaterfall</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>sectionCount</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>0</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>selectedFunction</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>Get</value>
++                </parameters>
++                <parameters>
++                    <input>true</input>
++                    <name>IsRealTime</name>
++                    <output>false</output>
++                    <type>Literal</type>
++                    <value>false</value>
++                </parameters>
++                <parameters>
++                    <input>false</input>
++                    <name>formula-section-0-output</name>
++                    <output>true</output>
++                    <type>Parameter</type>
++                    <value>Total_Subscription__c</value>
++                </parameters>
++            </customElement>
++            <description>Formula Based Pricing</description>
++            <hasNestedExplainability>false</hasNestedExplainability>
++            <label>Reset Total Subscription (K-09 zero-init)</label>
++            <name>ResetTotalSubscriptionK09</name>
++            <resultIncluded>false</resultIncluded>
++            <sequenceNumber>35</sequenceNumber>
++            <shouldExposExecPathMsgOnly>true</shouldExposExecPathMsgOnly>
++            <shouldExposeConditionDetails>false</shouldExposeConditionDetails>
++            <shouldShowExplExternally>false</shouldShowExplExternally>
++            <stepType>BusinessKnowledgeModel</stepType>
++        </steps>
+         <variables>
+             <collection>false</collection>
+             <dataType>Text</dataType>

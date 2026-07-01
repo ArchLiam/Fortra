@@ -1,0 +1,34 @@
+{
+ "id": "D-10",
+ "category": "D. Pricing Mode",
+ "name": "Formula-Based pricing",
+ "priority": "P2",
+ "what_it_tests": "A formula-priced product computes its unit price via the Formula Based Pricing step from a configured formula",
+ "proc_mechanism": "Formula Based Pricing; Formula Based Pricing 3",
+ "expected_behavior": "Unit price computed from the configured formula",
+ "test_setup": "Product configured with a formula-based pricing rule",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "Live Force-reprice through V21 (REST place isSuccess=true, errorResponse=[], LastModifiedDate bumped to 2026-06-30T01:42:39Z) on real existing quote 0Q0WC000003FY2r0AG: line 0QLWC000003khwH4AQ NetUnitPrice=6265.8 x Qty 3 = NetTotalPrice 18797.4 = TotalLineAmount 18797.4 = TotalPrice 18797.4 (EXACT); line 0QLWC000003khwI4AQ 218.772 x 3 = NetTotalPrice 656.31, TotalLineAmount 656.316 (EXACT, FormulaBasedPricing3 reconciliation holds). Identity reconfirmed across 8 unrelated priced lines: e.g. 3675x2=7350, 19.2x200=3840 with TotalLineAmount kept at 436000=2180x200 (FormulaBasedPricing3 IF-greater picks the larger), 248.48x3=745.44 with TotalLineAmount=750. NO V21 step named 'Formula Based Pricing'/'...3' outputs InputUnitPrice/NetUnitPrice from a product-configured formula; the only formula steps that set a unit price are GSAPricing36 (ListPrice*0.5, D-04 PASS) and AttributeValuePricingCalc\u2026",
+  "evidence": "Live V21 metadata 9QBWC0000000oWH4AY v21 Active: FormulaBasedPricing customElement formula 'NetUnitPrice * LineItemQuantity' -> ItemNetTotalPrice (parent ListContainer79 -> ListOperation80 advancedCondition ItemPricingSource Equals 'LastTransaction'); FormulaBasedPricing3 formula 'IF ( ItemNetTotalPrice > TotalLineAmount , ItemNetTotalPrice , TotalLineAmount )' -> TotalLineAmount (parentStep=None, global). Reprice resp Data/sc-d10/d10_reprice_resp.json (isSuccess=true). Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwH4AQ/view (6265.8x3=18797.4). Metadata source Data/pricing-v21-validation/a05/v21_metadata.json.",
+  "recordIds": [
+   "0Q0WC000003FY2r0AG",
+   "0QLWC000003khwH4AQ",
+   "0QLWC000003khwI4AQ"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "EXPECTATION-ERROR",
+  "notes": "Branch trace: ListContainer79 (no condition) -> ListOperation80 filters ItemPricingSource='LastTransaction' -> FormulaBasedPricing sets ItemNetTotalPrice=NetUnitPrice*LineItemQuantity; later FormulaBasedPricing3 (top-level) sets TotalLineAmount=max(ItemNetTotalPrice,TotalLineAmount). Both fired on the live reprice (LastModifiedDate updated) and produced exact numbers; sibling QuantityPrice78 ('NetUnitPrice * LineItemQuantity' -> ItemNetTotalPrice, parent ListContainer76) is the non-LastTransaction twin that carries the same identity for normal lines, which is why every priced line in the org s\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "D-10",
+  "category": "D. Pricing Mode",
+  "name": "Pricing mode combination",
+  "priority": "P2",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "FormulaBasedPricing steps compute ItemNetTotalPrice = NetUnitPrice * LineItemQuantity (conditional on ItemPricingSource=LastTransaction), and FormulaBasedPricing3 sets TotalLineAmount = max(ItemNetTotalPrice, TotalLineAmount) globally. Net unit prices correct for formula-priced lines.",
+  "actual": "Live V21 Force-reprice 2026-06-30T13:18:29Z (CalculationStatus=CompletedWithPricing, isSuccess=true, errorResponse=[]). Quote 0Q0WC000003FY2r0AG: QLI 0QLWC000003khwH4AQ (Cobalt Strike, COLA 6.2%): NetUnitPrice=6265.8 (=5900*1.062 exact), Qty=3, NetTotalPrice=18797.4, TotalLineAmount=18797.4, TotalPrice=18797.4 (EXACT). QLI 0QLWC000003khwI4AQ (beSECURE Cloud, COLA 6.2%): NetUnitPrice=218.77, Qty=3, NetTotalPrice=656.31, TotalLineAmount=656.316, TotalPrice=656.31 (FormulaBasedPricing3 reconciliation: max(ItemNetTotalPrice,TotalLineAmount) holds). COLACalculatedPrice__c=6265.8 and 218.77 match NetUnitPrice exactly. No regression from run1.",
+  "evidence": "Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FY2r0AG/view ; QLI 0QLWC000003khwH4AQ: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwH4AQ/view ; QLI 0QLWC000003khwI4AQ: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khwI4AQ/view . Reprice resp (prior): Data/sc-d10/d10_reprice_resp.json. Preflight: PBE Cobalt Strike IsActive=true UnitPrice=5900 USD Fortra Price Book (active 01sWC0000022GHFYA2); PBE beSECURE IsActive=true UnitPrice=0 (list=0, price formula-computed). Quote CalculationStatus=CompletedWithPricing, LastModifiedDate=2026-06-30T13:18:29Z.",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Branch trace: FormulaBasedPricing (ListContainer79->ListOperation80, filter ItemPricingSource=LastTransaction) sets ItemNetTotalPrice=NetUnitPrice*LineItemQuantity; FormulaBasedPricing3 (top-level, global) sets TotalLineAmount=max(ItemNetTotalPrice,TotalLineAmount). Both fired on live reprice and produced exact numbers. Gating: COLA_Uplift_Percent__c=6.2% on both QLIs; COLACalculatedPrice__c matches NetUnitPrice. No partner pricing (Partner_Pricing_Model__c=null). Numbers identical to run1 (6265.8x3=18797.4; 218.77x3=656.31 with TotalLineAmount=656.316). Scenario confirmed PASS under V21 Active 2026-06-30.",
+  "verdict_reason": "Force-reprice through active V21 (2026-06-30T13:18:29Z) produced correct formula-computed net prices: Cobalt Strike 5900*1.062=6265.8 EXACT, beSECURE 218.77 with FormulaBasedPricing3 reconciliation holding TotalLineAmount=max(ItemNetTotalPrice,TotalLineAmount)=656.316. CalculationStatus=CompletedWithPricing. Preflight passed (PBEs active, Fortra Price Book active, non-partner USD quote). No regression vs run1."
+}

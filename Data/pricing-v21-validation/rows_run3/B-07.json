@@ -1,0 +1,18 @@
+{
+  "id": "B-07",
+  "category": "B. Selling Model",
+  "name": "Tiered on convert",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "OrderItem tier price identical to quote for given attribute set; matrix attribute hydrated on order context; no $0 no-match from missing order-side attribute mapping; Attribute_Price_Mode__c='Unit Price'",
+  "actual": "Quote QLI 0QLWC000003kjq14AA (NoU=1-50, vol=30): V21 Force-reprice -> NetUnitPrice=400, Base_Price__c=400, Attribute_Price_Mode__c='Unit Price', TotalLineAmount=400 (tier 1-50/26-50=400 correct, isSuccess=true). Positive control: Activated order OI 802WC00000OZLOlYAP (NoU=1-50, vol=20) NetUnitPrice=468 (tier 1-50/1-25=468 correct). Draft order 801WC00000gH4LZYA0 OI 802WC00000MBRLIYA5 (NoU=1-25, vol=20): V21 Force-reprice isSuccess=true -> NetUnitPrice=325 (tier 1-25/1-25=325 correct). All three data points confirm CalculationMatrix tier lookup fires on OrderItem context with hydrated OIAs; no $0 no-match artifact.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FaKn0AK/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kjq14AA/view (NUP=400, Base=400, Mode=Unit Price). Activated-order positive-control OI https://fortra--uat.sandbox.lightning.force.com/lightning/r/OrderItem/802WC00000OZLOlYAP/view (NUP=468, NoU=1-50, vol=20). Draft order https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000gH4LZYA0/view OI 802WC00000MBRLIYA5 (NUP=325, NoU=1-25, vol=20, reprice isSuccess=true). PBE 01uWC000005wrtuYAA active, Fortra Price Book active, list=325 USD, Product Fortra_Product_Type__c=Subscription, Has_Attribute_Adjustment__c=true. Tier table: NoU=1-50/vol 1-25=468, vol 26-50=400; NoU=1-25/vol 1-25=325.",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Re-measured 2026-06-30 under active V21 (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY, context SalesTransactionContextExt_v2 v23). Prior run1 verdict PASS confirmed. Quote still Draft (not yet converted); order-side validated via two real converted orders both showing correct tier resolution on OrderItem context. Draft order force-reprice isSuccess=true with OIAs hydrated (3 attributes: Unit Type=IP, Unit Volume=20.0, Number of Units=1-25) correctly producing 325. Activated order OI (NoU=1-50, vol=20) produces 468. No $0 no-match observed.",
+  "verdict_reason": "All three evidence legs pass: (1) quote-side V21 reprice produces correct tier (400 for NoU=1-50/vol=30), (2) activated order shows correct tier (468 for NoU=1-50/vol=20) proving OIAs hydrate on convert, (3) draft order V21 force-reprice (isSuccess=true) produces correct tier (325 for NoU=1-25/vol=20). Procedure correctly re-evaluates CalculationMatrix on OrderItem context using hydrated OIAs; no missing-attribute no-match ($0) observed."
+}

@@ -1,0 +1,769 @@
+{
+ "total": 104,
+ "returned": 104,
+ "byVerdict": {
+  "PASS": 69,
+  "BLOCKED": 22,
+  "FAIL": 13
+ },
+ "byPriorityPass": {
+  "P0": {
+   "total": 39,
+   "pass": 25
+  },
+  "P1": {
+   "total": 53,
+   "pass": 33
+  },
+  "P2": {
+   "total": 12,
+   "pass": 11
+  }
+ },
+ "defectCount": 13,
+ "defects": [
+  {
+   "id": "A-07",
+   "rootCause": "ORG-CONFIG-DEFECT",
+   "defectStep": "V21 step 39 'Derived Pricing Formula' (tier lookup on Maintenance Type Defn AttributeValue; missing MTD attribute -> tier=0 -> NetUnitPrice=0; no safe-default tier for missing MTD)",
+   "regression": "SC-3346",
+   "expected": "All New Maintenance products should carry Maintenance Type Defn (MTD) attribute so V21 step 39 'Derived Pricing Formula' resolves a tier (e.g. Standard=0.20) and produces NetUnitPrice = 0.20 x Source_List_Price. BoKS: PIAMBK -> MTD=Standard -> NetUnitPrice=71 (355x0.20). FIM CCM family: MTD present on products -> tier lookup -> NetUnitPrice > 0.",
+   "actual": "BoKS PASSES: QLI 0QLWC000003kUpO4AU NetUnitPrice=71, Source_List_Price=355 (20% confirmed). FIM FAILS: All FIM CCM New Maintenance lines net $0/null after fresh V21 Force-reprice (isSuccess:true). CCMMSN (0QLWC000003g4QT4AY): NetUnitPrice=0, Source_List_Price=34750; CCMLSE lines (0QLWC000003g4YX4AY/g4YZ4AY/g4Ya4AI): NetUnitPrice=0/0/null, Source_List_Price=2008 each. Root cause: FIM CCM maintenance products carry NO Maintenance_Type_Defn QLIA -- only Feature_Options, Unit_Type, Number_of_Units, Attribute_Volume. Without MTD, step 39 tier lookup returns 0. Scope: 186/1683 (11%) active New Maintenance products have MTD; ~1497 (89%) are missing it.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "D-09",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "Attribute Value Pricing - Total Price Mode prehook (AttributeVolumePricingPrehook): tier lookup omits CurrencyIsoCode, feeding V21 Currency Conversion steps (Unit Price Display / Total Line Amount) that FX-multiply the USD-anchored tier.",
+   "regression": "SC-3384",
+   "expected": "TotalLineAmount/UnitPrice = native EUR tier value from CurrencyIsoCode-keyed calculation matrix row (1248.62 EUR), not USD tier (1357.2) FX-multiplied by 0.9346. Base_Price__c should equal the EUR matrix tier directly, no FX conversion applied on top of the tier lookup.",
+   "actual": "Force-reprice through current active V21 (isSuccess:true, errorResponse:[], LastModified 2026-06-30T13:17:30Z): UnitPrice=1268.43912 = 1357.2 (USD ATPS Total-Price tier) x 0.9346 (EUR FX) exactly to 5 decimal places. Native EUR tier 1248.62 was NOT read. Overcharge = +19.81912 EUR/unit on the TotalLineAmount/UnitPrice channel. ListPrice=2037.428 (correct EUR PBE, active on Fortra Price Book), Source_List_Price__c=null. Base_Price__c=738.373 this reprice (cascading drift). Product: CLSAAS All Star (HRM-HRM-RSL-CLSAAS), Fortra_Product_Type__c=Subscription. EUR PBE 01uWC000005wyVjYAI active, non-zero EUR list 2037.428.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "E-04",
+   "rootCause": "ORG-CONFIG-DEFECT",
+   "defectStep": "Not a V21 procedure step. Defect is in the Apex partner prehook layer that feeds PartnerDiscountPercent into V21. Active processor = PartnerPricingPrehook V1 -> PartnerPricingService.getMarginForProductType(model, productType) (2-arg, Deal_Type-blind, reads channel Software_Percent__c unconditionally). The Deal_Type->Non_Orig routing exists only in the DORMANT PartnerPricingServiceV2.getMarginForProductType(model, productType, dealType). The V21 'Resolve Partner Discount Percent' steps merely consume the pre-stamped PDP. Compounded by empty Non_Orig_* config on all 30 Partner_Pricing_Model__c rows.",
+   "regression": "",
+   "expected": "Deal_Type__c='Fortra Originated', partner discount should resolve from Non_Orig_Software_Pct__c column (e.g. 12% for PPM-00028 vs 15% channel), Net = List x (1 - Non_Orig_Discount%)",
+   "actual": "Quote 0Q0WC0000039bwH0AQ (Deal_Type__c='Fortra Originated', PartnerAccount='AB Test Partner Account', PPM-00028, BoKS Perpetual). After Force-reprice on live V21 (isSuccess=true, no errors): BoKS Perpetual QLI (0QLWC000003eoAr4AI) Qty=1, ListPrice=355, NetUnitPrice=301.75 = 355 x 0.85 (15% channel column Software_Percent__c). Partner_Pricing_Source__c='System Calculated (Pre-Procedure, Percent Only)'. Deal_Type has ZERO effect: active prehook PartnerPricingPrehook V1 calls PartnerPricingService.getMarginForProductType(model, productType) with NO dealType argument and reads only Software_Percent__c. The Non_Orig routing exists only in the DORMANT PartnerPricingServiceV2. Additionally, ALL 30 PPM records have Non_Orig_Software_Pct__c=null (SOQL COUNT=0).",
+   "verify_confirmed": true
+  },
+  {
+   "id": "F-09",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "Partner-discount base seed for non-USD lines in Rev_Mgmt_Default_Pricing_Procedure V21 (ESDV 9QBWC0000000oWH4AY): Pre_Partner_Price__c on a non-USD partner line is pre-converted by the org corporate currency rate (EUR 0.92) BEFORE the partner discount, while the proc also applies its own hardcoded EUR FX step (CurrencyConversionNetUnitPrice, sequenceNumber 35, multiplier 0.9346, proc line 106524) at the END \u2014 a double currency conversion. Net = USD_list x 0.92(corporate) x (1-type%) x 0.9346(hardcoded) instead of USD_list x (1-type%) x 0.9346.",
+   "regression": "SC-3384",
+   "expected": "NetUnitPrice(Cobalt Strike EUR Subscription, PPM-00028 Subscription_Percent=18%, Channel Originated, Discount model) = EUR_list x (1-0.18) = 5514.14 x 0.82 = 4521.5948; beSECURE: 770.1104 x 0.82 = 631.49; PricingTermCount=1; EndDate populated; partner discount applied once only per type-specific percent",
+   "actual": "Quote 0Q0WC000003AaoT0AS repriced via V21 Force-reprice 2026-06-30 (isSuccess=true, errorResponse=[]). Cobalt Strike (Subscription EUR): Pre_Partner_Price__c=5428 (=USD 5900 x 0.92), PartnerDiscountPercent=18, NetUnitPrice=4159.867216 (=5428 x 0.82 x 0.9346); EXPECTED 4521.5948. beSECURE (Subscription EUR): Pre_Partner_Price__c=758.08 (=USD 824 x 0.92), PartnerDiscountPercent=18, NetUnitPrice=580.97128576; EXPECTED 631.49. PricingTermCount=1 CORRECT, EndDate=2027-06-21/2027-06-08 CORRECT. Control (no partner same quote): Cobalt Net=5514.14=EUR list (correct, no extra 8%). Control (USD partner E-02): CCM Net=1706.8=2008x0.85 (correct). Defect: EUR partner path applies Services_Percent__c (8%) as blanket pre-partner reduction on ALL product types (USD_list x 0.92 = Pre_Partner), then stacks type-specific % and FX. Net understated by 8% for all non-USD partner lines.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "F-12",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "StampBaseFilter (sequenceNumber=1 inside StampContributorBasePreDiscount) \u2014 3 of 6 live-V21 instances (expressionSetDefinition-meta.xml lines 109632 / 116550 / 123457) retain null-unsafe conditionLogic '(1 OR 2) AND 3 AND 4 AND 5' where criterion 5 = NetUnitPrice GreaterThan 0; the amend/cancel execution path hits one of these and aborts on null NetUnitPrice before the AmendNetCarry/AmendSeedNetUnit seed step (lines 111246/111389) can populate it.",
+   "regression": "SC-3441",
+   "expected": "Prorated negative delta: removed qty x net x remaining-term fraction (e.g. -50000 x 1.5 x proration_fraction). NetUnitPrice seeded from CancelNetUnitPrice__c, reprice completes with isSuccess=true, NetTotalPrice < 0.",
+   "actual": "Force-reprice (v67 place API, pricingPref=Force, configurationMethod=Skip) aborts: isSuccess=false, SF-Pricing-00006 / SF-BRE-00004 at StampBaseFilter#1. QLI post-reprice: Qty=-50000, NetUnitPrice=null, TotalPrice=0, NetTotalPrice=null, PricingTermCount=null. No proration delta produced.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "G-01",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "CurrencyConversionUnitPriceDisplay (V21 array-index 38, sequenceNumber 40; label \"Currency Conversion - Unit Price Display\"): InputUnitPrice * IF(STICurrencyIsoCode='EUR',0.9346,...) \u2192 InputUnitPrice. NOTE: executor's \"seq 36\" label is wrong \u2014 seq36/idx36 is CurrencyConversionNetUnitPrice (the CORRECT net step); the defective step is the Unit Price Display step at sequenceNumber 40 / array index 38.",
+   "regression": "SC-3384",
+   "expected": "UnitPrice=1471.995 (= USD_net 1575 \u00d7 EUR_rate 0.9346, applied once); NetUnitPrice=1471.995; NetTotalPrice=1471.995; TotalLineAmount=1471.995; ListPrice=2943.99 (EUR PBE). All currency conversion multipliers applied exactly once per field.",
+   "actual": "After Force-reprice 2026-06-30 on QLI 0QLWC000003kmG14AI (Quote 0Q0WC000003FcrF0AS, AAM Perpetual EUR Qty=1): ListPrice=2943.99 (correct), NetUnitPrice=1471.995 (correct), NetTotalPrice=1471.995 (correct), TotalLineAmount=1471.995 (correct), TotalPrice=1471.995 (correct). UnitPrice=1285.75401213 WRONG \u2014 equals 1575 \u00d7 0.9346^3 (triple-applied). Prior run2 UnitPrice was 1375.726527 (= 1575 \u00d7 0.9346^2, double-applied). UnitPrice compounds by factor 0.9346 on every reprice. Source_List_Price__c=1575, Base_Price__c=1575, Pre_Partner_Price__c=1575. CalculationStatus=CompletedWithPricing.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "G-02",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "Native RLM Attribute-Based Price step (AttributeBasedAdjustment decision-table lookup) -> matches USD-only Override rows for an EUR quote line because ABA master data + the decision-table key carry no CurrencyIsoCode discriminator; downstream 'Currency Conversion - Net Unit Price' step then FX-converts the USD-sourced base (1575 USD -> 1471.995 EUR) instead of using EUR-native data. NOT the AttributeVolumePricingPrehook Apex class (gated on Has_Attribute_Adjustment__c=true, which is FALSE on these lines, so it never runs).",
+   "regression": "SC-3384",
+   "expected": "EUR quote with configured AAMP lines: L1 {RAA, OnPrem, NonProd} NetUnitPrice = EUR ABA Override (if EUR row exists) OR EUR list 2943.99 EUR; L2 {SFTP, OnPrem, NonProd} NetUnitPrice = EUR list 2943.99 EUR (no ABA match -> PBE fallback). ABA lookup must include CurrencyIsoCode discriminator.",
+   "actual": "V21 Force-reprice 2026-06-30T13:28:38Z (CalculationStatus=CompletedWithPricing). L1: Source_List_Price__c=1575 (USD ABA Override leaked), NetUnitPrice=1471.995 EUR (= 1575 USD converted at proc FX rate), Has_Attribute_Adjustment__c=false. L2: Source_List_Price__c=null, Base_Price__c=null, NetUnitPrice=0 (no-match collapse to $0, no PBE fallback). ABA census: 13,073/13,073 rows USD, 0 non-USD. EUR PBE 2943.99 EUR exists and is active but ignored by ABA step.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "G-08",
+   "rootCause": "ORG-CONFIG-DEFECT",
+   "defectStep": "Admin-maintained CurrencyType.ConversionRate (Setup > Manage Currencies) \u2014 NOT a V21 procedure step. V21 currency-conversion steps (33-36) are clean: they read Currency_Conversion_Formula__mdt, not CurrencyType. Defect surface = reports/dashboards engine, DocGen FX conversion, Workday invoicing consolidation.",
+   "regression": "SC-3384",
+   "expected": "CurrencyType.ConversionRate maintained at authoritative rates per Confluence table (ARS=666.6667, CHF=0.885, GBP=0.7874, ILS=3.6251, JPY=149.2537, NZD=1.6667). Reports / dashboards / DocGen / Workday invoicing consolidate foreign currencies at correct rates. Fortra Japan KK (0fwWC0000000CNlYAM) is the primary JPY legal entity (Workday COM071). JPY DecimalPlaces=0.",
+   "actual": "CurrencyType.ConversionRate corrupted on 6 of 11 non-USD currencies (all at placeholder 1.0): ARS=1.0 (auth 666.6667), CHF=1.0 (auth 0.8850), GBP=1.0 (auth 0.7874), ILS=1.0 (auth 3.6251), JPY=1.0 (auth 149.2537), NZD=1.0 (auth 1.6667). DatedConversionRate (Advanced Currency Mgmt ON) confirms ARS/CHF/GBP/JPY reset to 1.0 on 2026-02-11/12/13; any foreign txn dated >= 2026-02-11 consolidates at face value. 12 active currencies vs 5-in-scope (MXN/SEK are orphans). AUD 1.52 / CAD 1.35 / EUR 0.92 also drift from authoritative values. V21 pricing proc is CLEAN (decoupled via Currency_Conversion_Formula__mdt which holds correct rates). JPY DecimalPlaces=0 is CORRECT. Fortra Japan KK legal entity correct. State identical to run1 (2026-06-29) \u2014 no corrective admin action taken.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "H-01",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "ManualQuoteLevelAmountBasedLineLevel (BKM actionType=ManualDiscount, InputUnitPrice=NetUnitPrice, AdjustmentValue=ItemDiscountAmount), fed by SyncInputUnitPriceforDiscountBase/SyncInputUnitPricefromNet (top-level seq=13: InputUnitPrice <- NetUnitPrice). Root cause = no NetUnitPrice->ListPrice re-seed for a direct OneTime line before discounting: 'OneTime Net Seed' (seq19) = IF(NetUnitPrice>0,NetUnitPrice,InputUnitPrice) preserves the prior net, and 'Reset Net to Pre-Partner Base' (seq14) only resets to ListPrice when PartnerDiscountPercent>0 (false for this direct line).",
+   "regression": "Run2 PASS was a first-reprice artifact: at insert time, platform seeds NetUnitPrice=50000 (from UnitPrice), so InputUnitPrice was synced to 50000 and the first reprice correctly produced 45000. On the second reprice (run3), NetUnitPrice was already 45000, InputUnitPrice synced to 45000, and the amount step produced 40000. The defect in SyncInputUnitPriceforDiscountBase predates run2 and would be hit by any real sales rep re-editing and re-pricing a quote with an amount discount.",
+   "expected": "NetUnitPrice = 50000 - 5000 = 45000; NetTotalPrice = 45000 * 2 = 90000; TotalPrice = 90000; ListPrice/UnitPrice = 50000. Discount applies once off list price, idempotent on repeated reprice.",
+   "actual": "After Force-reprice (isSuccess=true) on 2026-06-30: NetUnitPrice=40000, NetTotalPrice=80000, TotalPrice=80000, TotalAdjustmentAmount=-20000. Source_List_Price__c=45000, Pre_Partner_Price__c=45000, Base_Price__c=45000. The $5000 amount discount was applied to the already-discounted 45000 (from run2) rather than the list price 50000, producing an additional $5000 deduction (double-discount on re-reprice).",
+   "verify_confirmed": true
+  },
+  {
+   "id": "J-06",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "PartnerNetPricePosthook.resolveContributorCarryForwardByMaintenanceQuoteLines / buildContributorCarryForwardSnapshot / resolveContributorPartnerPercent -> loadNewMaintenanceLines: derived New Maintenance line inherits ContributorCarryForwardSnapshot.partnerPercent (= contributor license PartnerDiscountPercent=15, Software band) instead of resolving the line's own band via PartnerPricingService.getMarginForProductType(model,'New Maintenance')=12. The correct getMarginForProductType path (line ~569) is explicitly bypassed for derived maintenance by isDerivedMaintenanceProductType (line 550-552).",
+   "regression": "SC-3346/SC-3359",
+   "expected": "Derived maint NetUnitPrice = 62.48 = 71*(1-0.12); 12% is the New Maintenance band from Partner_Pricing_Model__c.New_Maintenance_Percent__c (PPM-00000, Software=15%, NewMaint=12%). No double discount. License net = 301.75 = 355*(1-0.15) correct.",
+   "actual": "Maint NetUnitPrice = 60.35 = 71*(1-0.15). Wrong band: 15% Software band carried from license contributor PartnerDiscountPercent instead of 12% New Maintenance band. PartnerDiscountPercent on maint QLI stamped 15. License net = 301.75 correct. Quote TotalPrice = 362.10. Stable across 3 reprices (prior run one-cycle lag resolved). Partner_Pricing_Source__c = System Calculated (Post-Procedure).",
+   "verify_confirmed": true
+  },
+  {
+   "id": "J-09",
+   "rootCause": "ORG-CONFIG-DEFECT",
+   "defectStep": "Derived Products native pull (V21 steps 41-42: Derived Products - Non-Renewal / Renewals) + Derived Pricing Filter gate (ItemIsDerived__std=true): native DerivedProducts element maps the contributing product via the PriceBookEntryDerivedPrice config row; 0 PBEDP rows => silent null instead of a surfaced error.",
+   "regression": "SC-3372 / M5-PBEDP",
+   "expected": "IsDerived New Maintenance line (GS-GSE-RNM-EF8, PBE 01uWC000005wsZpYAI, 0 PBEDP rows) should return a clear 'contributing products missing' hard-error or derive a non-null NetUnitPrice from its contributing product; silent null/0 output is incorrect behavior that masks the config gap from the sales rep",
+   "actual": "V21 Force-reprice (2026-06-30) of Quote 0Q0WC0000029Agw0AE / QLI 0QLWC000003KEbO4AW (GS-GSE-RNM-EF8, Fortra_Product_Type__c=New Maintenance, SellingModelType=OneTime, QuoteTypeText__c=New) returned: NetUnitPrice=null, ListPrice=0, UnitPrice=0, TotalLineAmount=null, TotalPrice=0, NetTotalPrice=0, Source_List_Price__c=null, Pre_Partner_Price__c=null, Base_Price__c=null, COLACalculatedPrice__c=null. CalculationStatus=CompletedWithPricing (no error raised). PBEDP count for PBE=0. Total PBEDP rows in org=201.",
+   "verify_confirmed": true
+  },
+  {
+   "id": "J-10",
+   "rootCause": "ORG-CONFIG-DEFECT",
+   "defectStep": "Derived Products - Renewals (V21 step 43) / COLA Uplift Net on Renewal (step 26) / Derived Maintenance Net Filter (step 37) \u2014 derived-net committer gates on PBE.IsDerived, true only on the USD PBE; on the EUR PBE (IsDerived=false) COLA stamps COLACalculatedPrice__c=3666.90 but the derived committer never writes NetUnitPrice",
+   "regression": "SC-3384",
+   "expected": "Maint QLI 0QLWC000003kinW4AQ: NetUnitPrice approx 3427.08 EUR (= priorNet 3400 x COLA 1.0785 x FX 0.9346, partner already in base). COLACalculatedPrice__c=3666.90 should commit to NetUnitPrice. Stable across 3 reprices.",
+   "actual": "NetUnitPrice=0, NetTotalPrice=0, UnitPrice=0, ListPrice=0 on derived maint line (QLI 0QLWC000003kinW4AQ) after 3x Force-reprice through current V21. COLACalculatedPrice__c=3666.90 is stamped (COLA step fires) but never committed to NetUnitPrice. License line (QLI 0QLWC000003kinV4AQ) NetUnitPrice=15888.2 unchanged (correct).",
+   "verify_confirmed": true
+  },
+  {
+   "id": "K-01",
+   "rootCause": "PROCEDURE-DEFECT",
+   "defectStep": "StampBaseFilter (parent step StampContributorBasePreDiscount) in active V21 (9QBWC0000000oWH4AY): conditionLogic \"(1 OR 2) AND 3 AND 4 AND 5\", criterion #5 = NetUnitPrice GreaterThan 0 (Literal), with NO IsNull/IsNotNull guard. The BRE cannot evaluate GreaterThan on a null NetUnitPrice and throws SF-BRE-00004, aborting the whole reprice before CancelLineCreditPosthook runs.",
+   "regression": "SC-3441",
+   "expected": "NetUnitPrice=15000, TotalPrice=-15000 (asset net x Qty=-1); CalculationStatus=CompletedWithPricing",
+   "actual": "Force-reprice ERRORS at StampBaseFilter#1 (SF-Pricing-00006 / SF-BRE-00004). Fresh cancel QLI (CancelNetUnitPrice__c=15000, NetUnitPrice=null) stays NetUnitPrice=null, TotalPrice=0. CalculationStatus=PriceCalculationFailed. Reproduced on 3 independent records: prior quotes 0Q0WC000003FZ290AG (QLI 0QLWC000003kiab4AA) and 0Q0WC000003FZ3l0AG (QLI 0QLWC000003kicD4AQ), and fresh new quote 0Q0WC000003FoMA0A0 (QLI 0QLWC000003kySU4AY). Cancel order 801WC00000m1DvgYAE also fails with same error. CONTROL PASS: prior quote 0Q0WC000003EQtl0AG (QLI 0QLWC000003jbhd4AA) with NetUnitPrice already=15000 reprices successfully to TotalPrice=-15000, confirming CancelLineCreditPosthook is functional when StampBaseFilter is cleared.",
+   "verify_confirmed": true
+  }
+ ],
+ "perScenario": [
+  {
+   "id": "A-01",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "A-02",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "A-03",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "A-04",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "A-05",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "A-06",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "A-07",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "ORG-CONFIG-DEFECT"
+  },
+  {
+   "id": "B-01",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "B-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "B-03",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "B-04",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "B-05",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "B-06",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "B-07",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "B-08",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-01",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-03",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-04",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-05",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-06",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "C-07",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "D-01",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "D-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "D-03",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "D-04",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "D-05",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "D-06",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "ORG-CONFIG-DEFECT"
+  },
+  {
+   "id": "D-07",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "EXPECTATION-ERROR"
+  },
+  {
+   "id": "D-08",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "D-09",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "D-10",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-01",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-03",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-04",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "ORG-CONFIG-DEFECT"
+  },
+  {
+   "id": "E-05",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-06",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-07",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "E-08",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-01",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "F-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-03",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-04",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "EXPECTATION-ERROR"
+  },
+  {
+   "id": "F-05",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "F-06",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-07",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-08",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-09",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "F-10",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-11",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "F-12",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "G-01",
+   "priority": "P0",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "G-02",
+   "priority": "P0",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "G-03",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "G-04",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "G-05",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "G-06",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "G-07",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "G-08",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "ORG-CONFIG-DEFECT"
+  },
+  {
+   "id": "H-01",
+   "priority": "P0",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "H-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "H-03",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "H-04",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "H-05",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "H-06",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "I-01",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "I-02",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "I-03",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "I-04",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "I-05",
+   "priority": "P1",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "I-06",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "I-07",
+   "priority": "P2",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "J-01",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-03",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-04",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-05",
+   "priority": "P0",
+   "verdict": "BLOCKED",
+   "rootCause": "TEST-DATA-ARTIFACT"
+  },
+  {
+   "id": "J-06",
+   "priority": "P0",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "J-07",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-08",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-09",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "ORG-CONFIG-DEFECT"
+  },
+  {
+   "id": "J-10",
+   "priority": "P1",
+   "verdict": "FAIL",
+   "rootCause": "ORG-CONFIG-DEFECT"
+  },
+  {
+   "id": "J-11",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-12",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-13",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "J-14",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-01",
+   "priority": "P0",
+   "verdict": "FAIL",
+   "rootCause": "PROCEDURE-DEFECT"
+  },
+  {
+   "id": "K-02",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "EXPECTATION-ERROR"
+  },
+  {
+   "id": "K-03",
+   "priority": "P0",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-04",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-05",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-06",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-07",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-08",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-09",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-10",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "EXPECTATION-ERROR"
+  },
+  {
+   "id": "K-11",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-12",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-13",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-14",
+   "priority": "P1",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-15",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-16",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  },
+  {
+   "id": "K-17",
+   "priority": "P2",
+   "verdict": "PASS",
+   "rootCause": "N-A(pass)"
+  }
+ ]
+}

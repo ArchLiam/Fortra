@@ -1,0 +1,33 @@
+{
+ "id": "H-03",
+ "category": "H. Discounts",
+ "name": "Manual discount on derived maintenance line",
+ "priority": "P1",
+ "what_it_tests": "A derived maintenance line accepts a manual amount discount through its dedicated derived-maintenance manual path without breaking the contributor base",
+ "proc_mechanism": "Manual Discount - Derived Maintenance (AmountStringConstant + ItemDiscountAmount on derived line)",
+ "expected_behavior": "Manual discount applied to derived net without breaking contributor base",
+ "test_setup": "Derived maintenance line, ItemIsDerived=true, ItemDiscountAmount set",
+ "defect_provenance": "SC-3346",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Maintenance QLI 0QLWC000003kUpO4AU: Discount=20, NetUnitPrice=56.8 (=71x0.80), UnitPrice=71, NetTotalPrice=56.8, Pre_Partner_Price__c=71, Base_Price__c=355, Source_List_Price__c=355, Fortra_Product_Type__c='New Maintenance'. License QLI 0QLWC000003kUpN4AU: NetUnitPrice=355, Fortra_Product_Type__c='Perpetual', Base_Price__c=355, Pre_Partner_Price__c=355. isSuccess:true, errorResponse:[]. Discount cleared and standing demo restored to baseline (maint Net=71, no discount).",
+  "evidence": "Standing BoKS demo quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FKRJ0A4/view. Maint QLI 0QLWC000003kUpO4AU: Discount=20 set via REST PATCH, Force-reprice v67 isSuccess:true. Post-reprice: NetUnitPrice=56.8, Pre_Partner_Price__c=71, Base_Price__c=355. License 0QLWC000003kUpN4AU NetUnitPrice=355 (untouched). Restored demo: cleared Discount, repriced, maint Net=71, license Net=355.",
+  "recordIds": [
+   "0Q0WC000003FKRJ0A4",
+   "0QLWC000003kUpO4AU",
+   "0QLWC000003kUpN4AU",
+   "0QLWC000003kkNu4AI",
+   "0QLWC000003kkNt4AI",
+   "0QLWC000002SWnH4AW",
+   "0QLWC000002SU8l4AG"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Fixture clone approach (Apex-insert) produced Fortra_Product_Type__c='Software' and Net=0 even after adding QLIAs -- classic headless harness artifact (ItemIsDerived__std not hydrated on Apex-inserted lines). Used standing demo quote instead (properly UI-built with full QLIA context). Branch trace: Fortra_Product_Type__c='New Maintenance' stamped; Pre_Partner_Price__c=71 = derived base (0.20x355 license net); ManualDiscountDerivedMaintenance step applied Discount=20 => NetUnitPrice=71x0.80=56.8.\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupH03ManualDiscountDerivedMaintTestData.compact.apex"
+ ]
+}

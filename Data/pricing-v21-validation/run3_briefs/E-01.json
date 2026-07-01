@@ -1,0 +1,33 @@
+{
+ "id": "E-01",
+ "category": "E. Deal / Customer Type",
+ "name": "Direct sale - no partner discount (Fortra Originated)",
+ "priority": "P0",
+ "what_it_tests": "A Fortra-Originated direct deal (Quote.AccountId=end customer, Bill_To=AccountId) is excluded from partner discount steps; list/attribute price flows, subject only to discount-approval thresholds",
+ "proc_mechanism": "Partner Discount (Deal_Type__c NotEquals 'Fortra Originated' gate fails -> skip); Partner Percent Resolved Filter excludes",
+ "expected_behavior": "No partner discount applied; net stays at list/attribute price; AE approval matrix applies",
+ "test_setup": "Deal_Type__c='Fortra Originated'/'Direct', enterprise end customer, Cyber software perpetual, Qty=5",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "named-script",
+  "actual": "Repriced QLI: Qty=5, UnitPrice=ListPrice=NetUnitPrice=$34,750; NetTotalPrice=TotalPrice=Subtotal=TotalLineAmount=$173,750; PartnerUnitPrice=null, PartnerDiscountPercent=null, Partner_Pricing_Model_Applied__c=null, Partner_Pricing_Source__c=null, Discount=null. Quote: Deal_Type='Fortra Originated', PartnerAccountId=null, Subtotal/GrandTotal=$173,750.",
+  "evidence": "Quote 00781546 https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcMb0AK/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003klob4AA/view ; reprice isSuccess=true",
+  "recordIds": [
+   "0Q0WC000003FcMb0AK",
+   "0QLWC000003klob4AA"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": null,
+  "notes": "Created via scripts/apex/setupDirectFortraOriginatedQuoteTestData.compact.apex. V21 Partner Discount steps (87-93) gate on Deal_Type__c NotEquals 'Fortra Originated' -> gate fails -> partner steps skipped; Partner Percent Resolved Filter excludes line. Net = list/attribute price, no waterfall partner adjustment. Force-reprice via REST place action returned isSuccess=true with no errors. defect_provenance: none/catalog-derived.",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

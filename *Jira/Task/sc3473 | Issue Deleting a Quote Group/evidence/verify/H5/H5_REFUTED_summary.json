@@ -1,0 +1,27 @@
+{
+  "hypothesis": "H5-hardware-group-software-semantics",
+  "verdict": "REFUTED",
+  "decisive_tests": [
+    {
+      "test": "Full selling-model distribution across ALL hardware-type groups org-wide",
+      "query_file": "verify/H5/hwtype_group_full_sm.json",
+      "result": "17 HW-type groups with lines; only the failing group Test HW1 (1C9WC00000097of0AA) has OneTime+TermDefined mix. All 16 others are single-SM. => HW-type flag is shared by 16 presumed-deletable groups; the discriminator is the SM mix, which only coincidentally sits on a HW group here."
+    },
+    {
+      "test": "Compare Hardware__c records of failing group vs two non-failing HW groups (96J70AI closest, Test Hardware)",
+      "query_file": "verify/H5/hw_compare2.json",
+      "result": "Group_Number_List__c = null on ALL THREE hardware records (failing AND both non-failing). The claimed key mismatch (GroupNum null vs line attr Group 700) is identical on hardware that deletes cleanly => cannot be the trigger."
+    },
+    {
+      "test": "Custom hardware Apex path on delete",
+      "source_file": "missionC/QuoteLineGroupTrigger.trigger.live",
+      "result": "Trigger is 'after update' ONLY; does not run on delete; handler is pure Apex (would throw System.NullPointerException, never java.util.Map). Cannot emit the JEP-358 Java NPE."
+    },
+    {
+      "test": "Is Hardware__c even visible to the native engine? (context mapping)",
+      "source_file": "verify/ctx_retrieve/unpackaged/contextDefinitions/SalesTransactionContextExt_v2.contextDefinition",
+      "result": "Hardware__c/Hardware_ID__c ARE mapped as plain context INPUT attributes (lines 6660-6663, 12346-12349) - so engine can read the value, but they are value attributes not map KEYS. The standard keys the native save/reprice engine maps on are ProductSellingModel / SellingModelType / proration (inherited from std context). Refines the hypothesis's claim that the engine 'cannot see' Hardware__c, but the keying is on SM not hardware."
+    }
+  ],
+  "conclusion": "Hardware-group-on-software is NECESSARY-BUT-NOT-SUFFICIENT at most, and the specific hardware-derived key mismatch it names is shared by clean-deleting groups. The native Map.get NPE is keyed on the standard selling-model/proration dimension (OneTime+TermDefined mix), not on any hardware-derived key. H5 redirects to H1/H4."
+}

@@ -161,6 +161,171 @@ private class CancelLineCreditPosthookTest {
         }
     }
 
+    // ============================================================
+    // v2.1 — asset-NET self-resolution (no seed prehook / no staging)
+    // ============================================================
+
+    private static final Id LINE_ID  = '0QLWC000003laPh4AI';   // Nir's cancel line shape
+    private static final Id ASSET_ID  = '02iWC000008eKMnYAM';   // its source asset
+
+    @isTest
+    static void negativeLine_noStagedNet_usesResolvedAssetNet() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        List<Object> nodes = new List<Object>{
+            node('CTXPATH', '0Q0WC000002VENJ0A4', LINE_ID, -1, null)   // unseeded cancel line
+        };
+        Map<Id, Decimal> resolved = new Map<Id, Decimal>{ LINE_ID => 6695.30 };
+
+        List<Map<String, Object>> updates = h.buildCreditUpdates(nodes, resolved);
+
+        System.assertEquals(1, updates.size(), 'unseeded cancel line credited from resolved asset net');
+        Map<String, Decimal> w = flatten((List<Object>) updates[0].get('attributes'));
+        System.assertEquals(6695.30, w.get('NetUnitPrice'), 'per-unit net stays positive');
+        System.assertEquals(-6695.30, w.get('TotalPrice'), 'total = net * qty (negative)');
+        System.assertEquals(-6695.30, w.get('NetTotalPrice'));
+        System.assertEquals(-6695.30, w.get('Subtotal'));
+        System.assertEquals(-6695.30, w.get('TotalLineAmount'));
+    }
+
+    @isTest
+    static void stagedNet_winsOverResolved() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        List<Object> nodes = new List<Object>{
+            node('CTXPATH', '0Q0WC000002VENJ0A4', LINE_ID, -1, 15000)   // already seeded
+        };
+        Map<Id, Decimal> resolved = new Map<Id, Decimal>{ LINE_ID => 6695.30 };
+
+        Map<String, Decimal> w = flatten((List<Object>) h.buildCreditUpdates(nodes, resolved)[0].get('attributes'));
+        System.assertEquals(15000, w.get('NetUnitPrice'), 'staged context value wins over resolved');
+        System.assertEquals(-15000, w.get('TotalPrice'));
+    }
+
+    @isTest
+    static void noStagedNet_noResolved_isSkipped() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        List<Object> nodes = new List<Object>{
+            node('CTXPATH', '0Q0WC000002VENJ0A4', LINE_ID, -1, null)
+        };
+        System.assertEquals(0, h.buildCreditUpdates(nodes, new Map<Id, Decimal>()).size(),
+            'no staged and nothing resolved => skip (no zero/garbage credit)');
+    }
+
+    @isTest
+    static void collectUnseeded_onlyNegativeUnseeded() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        List<Object> nodes = new List<Object>{
+            node('c', '0Q0x', LINE_ID, -1, null),                       // unseeded cancel -> pending
+            node('c', '0Q0x', '0QLWC000002q2Sn4AI', -1, 15000),         // seeded -> excluded
+            node('c', '0Q0x', '0QLWC000003jbhd4AA', 2, null)            // positive -> excluded
+        };
+        List<CancelLineCreditPosthook.PendingLine> pend = h.collectUnseededCancelLines(nodes);
+        System.assertEquals(1, pend.size(), 'only the negative unseeded line is pending');
+        System.assertEquals(LINE_ID, pend[0].lineId);
+    }
+
+    @isTest
+    static void resolveScope_byLineIdType() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        // scope comes from the LINE Id (last dataPath element), not the root element.
+        System.assertEquals('Quote', h.resolveScope(new List<Object>{ node('c', 'root', LINE_ID, -1, null) }));
+        System.assertEquals('Order', h.resolveScope(new List<Object>{ node('c', 'root', '802WC00000OugI7YAJ', -1, null) }));
+        System.assertEquals(null, h.resolveScope(new List<Object>{ node('c', 'root', 'notAnId', -1, null) }));
+        System.assertEquals(null, h.resolveScope(null));
+    }
+
+    @isTest
+    static void lineIdFromDataPath_lastElement() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        System.assertEquals(LINE_ID,
+            h.lineIdFromDataPath(new List<Object>{ 'ctx', '0Q0root', LINE_ID }));
+        System.assertEquals(null, h.lineIdFromDataPath(new List<Object>{ 'ctx', 'root', 'notAnId' }));
+        System.assertEquals(null, h.lineIdFromDataPath(new List<Object>()));
+        System.assertEquals(null, h.lineIdFromDataPath(null));
+    }
+
+    @isTest
+    static void resolveSeedNet_currencyAwareAndFallback() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        Map<Id, Map<String, Decimal>> byCur = new Map<Id, Map<String, Decimal>>{
+            ASSET_ID => new Map<String, Decimal>{ 'USD' => 6695.30 }
+        };
+        System.assertEquals(6695.30, h.resolveSeedNet(ASSET_ID, 'USD', 0, byCur), 'currency match');
+        System.assertEquals(6695.30, h.resolveSeedNet(ASSET_ID, null, 0, byCur), 'no tag + single-currency asset');
+        System.assertEquals(999, h.resolveSeedNet(ASSET_ID, 'EUR', 999, byCur), 'mismatch -> lossy ListPrice');
+        System.assertEquals(null, h.resolveSeedNet(ASSET_ID, 'EUR', 0, byCur), 'mismatch + no list -> null');
+        System.assertEquals(500, h.resolveSeedNet(null, 'USD', 500, byCur), 'no asset -> ListPrice');
+        System.assertEquals(null, h.resolveSeedNet(null, 'USD', 0, byCur), 'nothing resolvable -> null');
+    }
+
+    @isTest
+    static void applyAssetNetSource_generateWinsAndSticks() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        Map<Id, Map<String, Decimal>> m = new Map<Id, Map<String, Decimal>>();
+        h.applyAssetNetSource(m, aas(ASSET_ID, 'Change', 'USD', 1000));      // older non-Generate first
+        System.assertEquals(1000, m.get(ASSET_ID).get('USD'));
+        h.applyAssetNetSource(m, aas(ASSET_ID, 'Generate', 'USD', 6695.30)); // Generate wins
+        System.assertEquals(6695.30, m.get(ASSET_ID).get('USD'), 'Generate wins');
+        h.applyAssetNetSource(m, aas(ASSET_ID, 'Change', 'USD', 2000));      // later non-Generate can't replace
+        System.assertEquals(6695.30, m.get(ASSET_ID).get('USD'), 'Generate stays locked');
+        h.applyAssetNetSource(m, aas(ASSET_ID, 'Generate', 'USD', 0));       // zero net never folds
+        System.assertEquals(6695.30, m.get(ASSET_ID).get('USD'));
+        // currency isolation: a EUR row does not touch the USD value
+        h.applyAssetNetSource(m, aas(ASSET_ID, 'Generate', 'EUR', 5000));
+        System.assertEquals(6695.30, m.get(ASSET_ID).get('USD'));
+        System.assertEquals(5000, m.get(ASSET_ID).get('EUR'));
+    }
+
+    @isTest
+    static void getStringFromTag_coerces() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        Map<String, Object> m = new Map<String, Object>{ 'a' => 'USD', 'b' => 123, 'c' => null };
+        System.assertEquals('USD', h.getStringFromTag(m, 'a'));
+        System.assertEquals('123', h.getStringFromTag(m, 'b'));
+        System.assertEquals(null, h.getStringFromTag(m, 'c'));
+        System.assertEquals(null, h.getStringFromTag(m, 'missing'));
+    }
+
+    @isTest
+    static void resolveSourceAssetIds_runsSoql_noRowsForFakeIds() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        System.assertEquals(0, h.resolveSourceAssetIds('Quote', new Set<Id>{ LINE_ID }).size());
+        System.assertEquals(0, h.resolveSourceAssetIds('Order', new Set<Id>{ '802WC00000OugI7YAJ' }).size());
+        System.assertEquals(0, h.resolveSourceAssetIds('Quote', new Set<Id>()).size());
+        System.assertEquals(0, h.resolveSourceAssetIds(null, null).size());
+    }
+
+    @isTest
+    static void resolveAssetNetByCurrency_runsSoql_noRowsForFakeIds() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        System.assertEquals(0, h.resolveAssetNetByCurrency(new Set<Id>{ ASSET_ID }).size());
+        System.assertEquals(0, h.resolveAssetNetByCurrency(new Set<Id>()).size());
+        System.assertEquals(0, h.resolveAssetNetByCurrency(null).size());
+    }
+
+    @isTest
+    static void resolveAssetNets_endToEnd_noMatchingData_returnsEmpty() {
+        CancelLineCreditPosthook h = new CancelLineCreditPosthook();
+        List<Object> nodes = new List<Object>{
+            node('CTXPATH', '0Q0WC000002VENJ0A4', LINE_ID, -1, null)   // valid shape, non-existent record
+        };
+        Test.startTest();
+        Map<Id, Decimal> r = h.resolveAssetNetsForUnseededLines(nodes);
+        Test.stopTest();
+        System.assertEquals(0, r.size(), 'no source asset for a non-existent line => nothing resolved');
+        // an all-seeded set never queries
+        System.assertEquals(0, h.resolveAssetNetsForUnseededLines(new List<Object>{
+            node('CTXPATH', '0Q0WC000002VENJ0A4', LINE_ID, -1, 15000)
+        }).size());
+    }
+
+    // Build an in-memory AssetActionSource (with its AssetAction parent) for pure-seam tests.
+    private static AssetActionSource aas(Id assetId, String type, String cur, Decimal net) {
+        return (AssetActionSource) JSON.deserialize(
+            '{"NetUnitPrice":' + net + ',"CurrencyIsoCode":"' + cur + '",' +
+            '"AssetAction":{"AssetId":"' + assetId + '","Type":"' + type + '"}}',
+            AssetActionSource.class);
+    }
+
     private static Map<String, Decimal> flatten(List<Object> attrs) {
         Map<String, Decimal> out = new Map<String, Decimal>();
         for (Object o : attrs) {

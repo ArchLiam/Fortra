@@ -1,0 +1,27 @@
+{
+ "id": "C-04",
+ "category": "C. Product Type",
+ "name": "Services product type aggregation",
+ "priority": "P1",
+ "what_it_tests": "Services lines (Fortra_Product_Type__c='Services' / GP Item Class SERVICES) aggregate into the Services subtotal bucket; priced per hour/day/block, regional multiplier applied if enabled",
+ "proc_mechanism": "Total Services (Fortra_Product_Type__c Equals 'Services'); Services Aggregate Price; regional multiplier if Allow_Regional_Pricing__c=true",
+ "expected_behavior": "Services lines summed into Total Services bucket; no bundle/subscription splitting",
+ "test_setup": "Services (e.g. Digital Guardian setup, SERV SUP), hours 40, rate 250 USD, Qty=1",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Quote 0Q0WC0000034UvR0AU: EFT Expert Service Standard (0QLWC000003dYeP4AU) Qty=1 NetUnitPrice=24000 NetTotalPrice=24000; Hourly Rate Sr. Consultant T&M (0QLWC000003dYeQ4AU) Qty=1 NetUnitPrice=275 NetTotalPrice=275; Total_Services__c=24275 (=24000+275). Type segregation holds: Total_Subscription__c=5775.5, Total_Software__c=27354 (no Services leakage). Confirmed by fresh Force-reprice 2026-06-30T13:13:14Z.",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000034UvR0AU/view (Total_Services__c=24275, LastModifiedDate=2026-06-30T13:13:14Z after Force-reprice). Services QLIs: 0QLWC000003dYeP4AU (EFT Expert Service Standard, NetUnitPrice=24000, Fortra_Product_Type__c=Services, Base_Price__c=24000, Pre_Partner_Price__c=24000, SellingModelType=OneTime, AllowRegionalPricing__c=null, COLA_Uplift_Percent__c=null); 0QLWC000003dYeQ4AU (Hourly Rate Sr. Consultant T&M, NetUnitPrice=275, Fortra_Product_Type__c=Services, Base_Price__c=275, Pre_Partner_Price__c=275, SellingModelType=OneTime). PBE preflight: both products active in Fortra Price Book at non-zero USD (24000, 275). Reprice body: Data/sc-c04/v21_live/reprice_C04_body.json (isSuccess:true, errorResponse:[]).",
+  "recordIds": [
+   "0Q0WC0000034UvR0AU",
+   "0QLWC000003dYeP4AU",
+   "0QLWC000003dYeQ4AU"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Branch confirmed: V21 'Total Services' AdvancedListFilter (gate Fortra_Product_Type__c Equals 'Services', parentStep ListContainer8) -> 'Services Aggregate Price' (GroupingAndAggregatePricing, SUM ItemNetTotalPrice, write-back Total_Services__c=24275). No partner discounting applied (Partner_Pricing_Source__c=null). No COLA (COLA_Uplift_Percent__c=null). No regional multiplier (AllowRegionalPricing__c=null/false). Services lines priced as OneTime with NetUnitPrice=ListPrice (clean pass-through).\u2026"
+ },
+ "fixture_scripts": []
+}

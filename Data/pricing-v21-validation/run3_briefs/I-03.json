@@ -1,0 +1,37 @@
+{
+ "id": "I-03",
+ "category": "I. Proration",
+ "name": "Mid-term Term-Defined proration (fractional PTC)",
+ "priority": "P1",
+ "what_it_tests": "A TermDefined line with a mid-period start (ServiceDate/EffectiveFrom != subscription start) must prorate the period and compute a fractional PricingTermCount, pricing net proportionally; the TermDefined gate on the Proration action is currently missing",
+ "proc_mechanism": "Proration action (EffectiveFrom/To -> ProrationMultiplier -> PricingTermCount); TermDefined gate to be re-added; StartProrationPeriod handling",
+ "expected_behavior": "Mid-term sale of an annual subscription computes fractional PricingTermCount (e.g. 0.5 for 6 months); net prorated; add/remove seats charged/refunded prorata",
+ "test_setup": "TermDefined line, EffectiveFrom=mid-year, SubscriptionTerm=12 Months, Anniversary; or add 100 users 6mo into 12mo term -> 6/12 x annual",
+ "defect_provenance": "SC-3420 / SC-3411",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "V21 derives the fractional PTC correctly but does NOT apply it to the price \u2014 the net comes out at the FULL annual amount. Fresh Force-reprice under active V21 (isSuccess=true) of two real UI-built TermDefined Anniversary mid-term lines: (1) line 0QLWC000002LCwH4AW (Unlimited Classification, Start 2026-04-06 / End 2026-12-31 = 270 days, SubTerm=1, PB=Anniversary, Qty=3, List=250): PricingTermCount = 0.7397260273972603 (=270/365, EXACT) but NetTotalPrice = 750.00 = 250x3x1.0 (NOT prorated). Expected prorated = 250x3x0.7397 = 554.79; that 554.79 was the line's PRIOR value before this reprice. (2) line 0QLWC000002SYdV4AW (Start 2026-04-15 / End 2027-03-31 = 351 days, SubTerm=1, Qty=1, List=250): PTC = 0.9616438356164384 (=351/365, EXACT) but NetTotalPrice = 250.00 (full), prior value was 240.41 = 250x0.9616 (prorated). Full-term positive control 0QLWC000003kaUz4AI (PTC=1, List=5900) reprice\u2026",
+  "evidence": "Reprice REST /services/data/v64.0/connect/rev/sales-transaction/actions/place isSuccess=true errorResponse=[] 2026-06-30T01:57Z (3 quotes: 0Q0WC0000026xqf0AA, 0Q0WC000002DWNV0A4, 0Q0WC000003FPvd0AG). Defect lines: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000002LCwH4AW/view (PTC=0.7397, NetTotal 750 vs expected 554.79) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000002SYdV4AW/view (PTC=0.9616, NetTotal 250 vs expected 240.41). Pre-V21 prorated proof line https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC0000034VY94AM/view (NetTotal 3170.71=3465x0.9151). Full-term control https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kaUz4AI/view (PTC=1 net 5900 OK). V21 active = ESDV 9QBWC0000000oWH4AY (ExpressionSetDefinition 9QAWC0000003mg14AA, VersionNumber 21, Status Active). Proc body scan (V16 carried forward): PricingTermCount appears as a value only inside Proration / PTC-constant writers (lines 394/516/4025/4753/4911 of Rev_Mgmt_Default_Pricing_V160.expressionSetVersion); NO Quantity*Price / Total / NetTotal step multiplies the price by PricingTermCount or ProrationMultiplier.",
+  "recordIds": [
+   "0QLWC000002LCwH4AW",
+   "0QLWC000002SYdV4AW",
+   "0QLWC0000034VY94AM",
+   "0QLWC000003kaUz4AI",
+   "0Q0WC0000026xqf0AA",
+   "0Q0WC000002DWNV0A4"
+  ],
+  "defectStep": "Step 97/123 'Proration' (actionType=Proration; EffectiveFrom->itemTransientEndDate->ProrationMultiplier->PricingTermCount) correctly derives the fractional multiplier, but NO downstream Quantity*Price / Subscription/Software/Services Aggregate / Total Amount step (skeleton steps 98-99 'Quantity * Price', 103-118 Aggregate/Total*) consumes PricingTermCount as a price multiplier. The net-proration leg of the TermDefined proration cluster was not restored alongside the SC-3420 PTC-writer restore.",
+  "regression": "SC-3420 / SC-3411 (same V11->V12 TermDefined proration-cluster rebuild by Nir Kailash 2026-06-11 that dropped the TermDefined Proration steps; SC-3420 restored the PTC *derivation* writer into V16->V21 but the net-*proration* leg was not restored)",
+  "rootCause": "PROCEDURE-DEFECT",
+  "notes": "Preflight PASS: real UI-built (not headless Apex-inserted) TermDefined Anniversary lines; PBE active in Fortra Price Book, USD, list>0; SellingModelType=TermDefined, Fortra_Product_Type__c=Subscription; the proration branch demonstrably FIRED (PTC went fractional, day-count/365 exact to 1e-9), so this is NOT the headless base-seed $0 artifact and NOT a route/data error. Two independent controls reproduce; full-term control (PTC=1) unaffected; pre-V21-era lines on identical shape remain prorated, isolating the change to V21. The fractional-PTC DERIVATION half of the scenario PASSES (SC-3420 fix\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

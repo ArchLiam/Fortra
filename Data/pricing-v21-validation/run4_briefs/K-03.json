@@ -1,0 +1,33 @@
+{
+ "id": "K-03",
+ "category": "K. Edge Cases",
+ "name": "Large-order governor safety (30+ lines / high-qty Power)",
+ "priority": "P0",
+ "what_it_tests": "The procedure handles a large order (many lines, high-qty Power, tiered matrices, PowerBranching splits) within CPU/SOQL/DML governor limits on Reprice-All and order completion",
+ "proc_mechanism": "Whole procedure on order context; Aggregate Price / List Operations bulk-safe; batched line creation; deprecated duplicate line-type subflow removed; Apex-stamp + flow-guard for high-qty Power",
+ "expected_behavior": "Order reprice/complete succeeds; no SOQL:101, CPU limit, or 'too many DML' error",
+ "test_setup": "Order with 30+ lines incl. high-qty (150+) Power / 500+ node tiers, Reprice-All + complete",
+ "defect_provenance": "SC-3366 / SC-3447",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Order 00095656 (801WC00000lzWJFYA2): 35 OrderItems incl MessengerConsole qty=5000. TWO REST Force-reprice calls (Order PATCH, v67.0) both returned isSuccess=true, errorResponse=[]. qty=5000 Power line NetUnitPrice=11487, NetTotalPrice=57435000 (11487x5000). Line count stable at 35 after both reprices (0 split clones). Order TotalAmount=57516319 stable. No governor breach observed.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lzWJFYA2/view ; Reprice 1: isSuccess=true errorResponse=[]; Reprice 2: isSuccess=true errorResponse=[]; lineCount=35 both runs; qty=5000 line (802WC00000PX8hxYAD) NetUnit=11487 NetTotal=57435000",
+  "recordIds": [
+   "801WC00000lzWJFYA2",
+   "802WC00000PX8hxYAD",
+   "801WC00000hKGY0YAO",
+   "801WC00000hJlZ5YAK",
+   "801WC00000hJfDUYA0",
+   "801WC00000hJpqmYAC",
+   "801WC00000hHe9bYAC"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Reused prior-run Order 00095656 (still Draft, 35 lines). Preflight: qty=5000 MessengerConsole (Perpetual) has active PBE, non-zero list, CurrencyIsoCode=USD. SC-3366 SOQL:101 fix (OrderSubmissionValidator v13) governs the completion path; SC-3447 Power-no-split fix governs convert. Both fixes verified clean: reprice-all on 35-line order with qty-5000 Power returned no governor error on two consecutive attempts. Line count held at 35 (no clones), confirming SC-3447 Apex-stamp+flow-guard is holdin\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupK03LargeOrderTestData.compact.apex"
+ ]
+}

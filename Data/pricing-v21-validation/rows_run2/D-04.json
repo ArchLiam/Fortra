@@ -1,0 +1,15 @@
+{
+  "id": "D-04",
+  "category": "D. Pricing Mode",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "recordIds": ["0Q0WC000003FY9J0AW","0QLWC000003khzV4AQ","0Q0WC000003FY9K0AW","0QLWC000003khzW4AQ"],
+  "expected": "GSW=true: NetUnitPrice = ListPrice*0.5 (no partner stacking); GSW=false: GSA does NOT halve (catalog/attribute price governs).",
+  "actual": "Force-repriced both. GSW=true (00781466): List=10000 -> NetUnitPrice=5000=10000*0.5 exactly, UnitPrice=5000, Base/Pre_Partner=5000, NetTotal=5000, Partner%=null (no stacking). GSW=false (00781467): NOT halved (NetUnitPrice=0, not 5000); =0 not 10000 is the known E-03/SC-3359 OneTime net-zeroing, not a GSA step.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khzV4AQ/view (GSW=true) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khzW4AQ/view (GSW=false control)",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "GSA gate GSAPricing (GSW__c Equals true) + GSAPricing36 FormulaBasedPricing InputUnitPrice=ListPrice*0.5 (V21 seq 48-49) verified live on real records. GSW=true OneTime line nets to exact half list and overrides the OneTime-zeroing, proving the GSA write fires and survives. GSW=false control nets /bin/zsh (Subscription/OneTime product) due to the separate SubscriptionPricing OneTime branch defect filed as E-03/SC-3359 -- NOT attributable to the GSA step (GSA negative branch correctly leaves the line). GSA mechanism PASS."
+}

@@ -1,0 +1,784 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QaMr4AK"
+        },
+        "Id": "0QLWC000002QaMr4AK",
+        "QuoteId": "0Q0WC0000026Egf0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026Egf0AE"
+          },
+          "Status": "Draft"
+        },
+        "QuoteLineGroupId": "1C9WC0000003eNV0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000003eNV0AY"
+          },
+          "Name": "Hardware Test"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC000009oPyxYAE"
+          },
+          "Name": "Unlimited Classification"
+        },
+        "Product2Id": "01tWC000009oPyxYAE",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 250,
+        "ListPrice": 250,
+        "TotalPrice": 250,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QaGP4A0"
+        },
+        "Id": "0QLWC000002QaGP4A0",
+        "QuoteId": "0Q0WC0000026Egf0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026Egf0AE"
+          },
+          "Status": "Draft"
+        },
+        "QuoteLineGroupId": "1C9WC0000003eNV0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000003eNV0AY"
+          },
+          "Name": "Hardware Test"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVqYAL"
+          },
+          "Name": "Insite Analytics"
+        },
+        "Product2Id": "01tWC00000DCwVqYAL",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 650,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002QaGQ4A0"
+        },
+        "Id": "0QLWC000002QaGQ4A0",
+        "QuoteId": "0Q0WC0000026Egf0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026Egf0AE"
+          },
+          "Status": "Draft"
+        },
+        "QuoteLineGroupId": "1C9WC0000003eNV0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000003eNV0AY"
+          },
+          "Name": "Hardware Test"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DCwVrYAL"
+          },
+          "Name": "Insite Analytics - Core"
+        },
+        "Product2Id": "01tWC00000DCwVrYAL",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 2500,
+        "ListPrice": 2500,
+        "TotalPrice": 2500,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 29060,
+        "ListPrice": 2850,
+        "TotalPrice": 29060,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "Product2Id": "01tWC00000DD11GYAT",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 4356,
+        "ListPrice": 46,
+        "TotalPrice": 4356,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou4H4AQ"
+        },
+        "Id": "0QLWC000002ou4H4AQ",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 20000,
+        "ListPrice": 20000,
+        "TotalPrice": 20000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou5t4AA"
+        },
+        "Id": "0QLWC000002ou5t4AA",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 20000,
+        "ListPrice": 20000,
+        "TotalPrice": 20000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZNJ4A2"
+        },
+        "Id": "0QLWC000003aZNJ4A2",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 2850,
+        "ListPrice": 2850,
+        "TotalPrice": 2850,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZS94AM"
+        },
+        "Id": "0QLWC000003aZS94AM",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 2850,
+        "ListPrice": 2850,
+        "TotalPrice": 2850,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZWz4AM"
+        },
+        "Id": "0QLWC000003aZWz4AM",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11eYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 1568,
+        "ListPrice": 1568,
+        "TotalPrice": 1568,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZYb4AM"
+        },
+        "Id": "0QLWC000003aZYb4AM",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11eYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 1568,
+        "ListPrice": 1568,
+        "TotalPrice": 1568,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aVDG4A2"
+        },
+        "Id": "0QLWC000003aVDG4A2",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 2707.5,
+        "ListPrice": 2850,
+        "TotalPrice": 2707.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aYvt4AE"
+        },
+        "Id": "0QLWC000003aYvt4AE",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 2707.5,
+        "ListPrice": 2850,
+        "TotalPrice": 2707.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003cl2b4AA"
+        },
+        "Id": "0QLWC000003cl2b4AA",
+        "QuoteId": "0Q0WC0000037Zc10AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037Zc10AE"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": "1C9WC00000091xl0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091xl0AA"
+          },
+          "Name": "Secure Email"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1e8YAD"
+          },
+          "Name": "SECURE Email Gateway"
+        },
+        "Product2Id": "01tWC00000DD1e8YAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 19.5,
+        "ListPrice": 1500,
+        "TotalPrice": 1950,
+        "Quantity": 100
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003clKL4AY"
+        },
+        "Id": "0QLWC000003clKL4AY",
+        "QuoteId": "0Q0WC0000037Zc10AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037Zc10AE"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": "1C9WC00000091xl0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091xl0AA"
+          },
+          "Name": "Secure Email"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1DBYA1"
+          },
+          "Name": "Document Sanitization For SECURE Email Gateway"
+        },
+        "Product2Id": "01tWC00000DD1DBYA1",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 6.83,
+        "ListPrice": 9.1,
+        "TotalPrice": 683,
+        "Quantity": 100
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ekX34AI"
+        },
+        "Id": "0QLWC000003ekX34AI",
+        "QuoteId": "0Q0WC0000037Zc10AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037Zc10AE"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": "1C9WC00000091xl0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091xl0AA"
+          },
+          "Name": "Secure Email"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD13qYAD"
+          },
+          "Name": "Automate Desktop"
+        },
+        "Product2Id": "01tWC00000DD13qYAD",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 6000,
+        "ListPrice": 6000,
+        "TotalPrice": 6000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ckXy4AI"
+        },
+        "Id": "0QLWC000003ckXy4AI",
+        "QuoteId": "0Q0WC0000037Zc10AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037Zc10AE"
+          },
+          "Status": "Accepted"
+        },
+        "QuoteLineGroupId": "1C9WC00000091xl0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091xl0AA"
+          },
+          "Name": "Secure Email"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD0AiYAL"
+          },
+          "Name": "OCR Feature For SECURE Email Gateway"
+        },
+        "Product2Id": "01tWC00000DD0AiYAL",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 4.88,
+        "ListPrice": 6.5,
+        "TotalPrice": 488,
+        "Quantity": 100
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d7EP4AY"
+        },
+        "Id": "0QLWC000003d7EP4AY",
+        "QuoteId": "0Q0WC0000037vXh0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037vXh0AI"
+          },
+          "Status": "Draft"
+        },
+        "QuoteLineGroupId": "1C9WC00000092Ij0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Ij0AI"
+          },
+          "Name": "Hardware Group 1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1A1YAL"
+          },
+          "Name": "Data Monitor for iSeries Reads"
+        },
+        "Product2Id": "01tWC00000DD1A1YAL",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime"
+        },
+        "NetUnitPrice": 1095,
+        "ListPrice": 1095,
+        "TotalPrice": 2190,
+        "Quantity": 2
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003d7Cn4AI"
+        },
+        "Id": "0QLWC000003d7Cn4AI",
+        "QuoteId": "0Q0WC0000037vXh0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037vXh0AI"
+          },
+          "Status": "Draft"
+        },
+        "QuoteLineGroupId": "1C9WC00000092Ij0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Ij0AI"
+          },
+          "Name": "Hardware Group 1"
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BAYA1"
+          },
+          "Name": "DeliverNow iSeries Monitor"
+        },
+        "Product2Id": "01tWC00000DD1BAYA1",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined"
+        },
+        "NetUnitPrice": 1237.5,
+        "ListPrice": 1237.5,
+        "TotalPrice": 2475,
+        "Quantity": 2
+      }
+    ],
+    "totalSize": 19,
+    "done": true
+  },
+  "warnings": []
+}

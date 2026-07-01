@@ -1,0 +1,16 @@
+{
+  "id": "K-03",
+  "verdict": "PASS",
+  "category": "K. Edge Cases",
+  "priority": "P0",
+  "dataSource": "new-script",
+  "expected": "Order Reprice-All on a 30+ line order incl high-qty Power succeeds with no SOQL:101 / CPU / too-many-DML governor error; whole V21 procedure (Aggregate Price, List Operations, Quantity*Price, Total Amount) runs bulk-safe; high-qty Power line stays ONE qty=N line (no per-unit split).",
+  "actual": "Built Draft Order 00095656 (801WC00000lzWJFYA2) = 35 OrderItems incl MessengerConsole Power qty 5000. REST Force-reprice (Order PATCH) returned isSuccess=true, errorResponse=[]. All 35/35 lines got NetUnitPrice (was null). qty-5000 Power line NetUnit=11487, NetTotal=57435000 (11487x5000), stayed ONE line, 0 split clones, line count still 35. Order TotalAmount recomputed 57573162.35 -> 57516319. 2nd reprice also isSuccess=true. No governor breach.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lzWJFYA2/view ; fixture scripts/apex/setupK03LargeOrderTestData.compact.apex",
+  "recordIds": ["801WC00000lzWJFYA2"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "K-03 governor safety. SC-3366 SOQL:101 fix (v13 OrderSubmissionValidator) governs the completion path; SC-3447 P3 (no-split seat/sentinel Power) governs convert. Reprice-All on order context = the V21 bulk path; verified clean on 35 lines incl qty-5000 Power. Note: the platform RLM place action has a hard 'Too many Order Products' input cap (hit on a 1244-line Draft order 00057076) - that is a platform request-size limit, NOT the Apex governor defect K-03 targets, so a sub-100-line order is the correct K-03 fixture per the '30+ lines' setup.",
+  "verdict_basis": "real-records"
+}

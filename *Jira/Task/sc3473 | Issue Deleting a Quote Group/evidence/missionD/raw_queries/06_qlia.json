@@ -1,0 +1,115 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC000004CQHNYA4"
+        },
+        "Id": "0zuWC000004CQHNYA4",
+        "QuoteLineItemId": "0QLWC000002ou4H4AQ",
+        "AttributeDefinitionId": "0tjWC000000096kYAA",
+        "AttributeName": "Unit Type",
+        "AttributeValue": "Per User",
+        "AttributePicklistValueId": "0v6WC0000000AJvYAM",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC000004CQIzYAO"
+        },
+        "Id": "0zuWC000004CQIzYAO",
+        "QuoteLineItemId": "0QLWC000002ou5t4AA",
+        "AttributeDefinitionId": "0tjWC000000096kYAA",
+        "AttributeName": "Unit Type",
+        "AttributeValue": "Per User",
+        "AttributePicklistValueId": "0v6WC0000000AJvYAM",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC0000066OyfYAE"
+        },
+        "Id": "0zuWC0000066OyfYAE",
+        "QuoteLineItemId": "0QLWC000003jN6n4AE",
+        "AttributeDefinitionId": "0tjWC000000096gYAA",
+        "AttributeName": "Power License Type",
+        "AttributeValue": "Primary",
+        "AttributePicklistValueId": "0v6WC0000000AAoYAM",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC0000066OygYAE"
+        },
+        "Id": "0zuWC0000066OygYAE",
+        "QuoteLineItemId": "0QLWC000003jN6n4AE",
+        "AttributeDefinitionId": "0tjWC000000096aYAA",
+        "AttributeName": "Group Number",
+        "AttributeValue": "Group 700",
+        "AttributePicklistValueId": "0v6WC0000000A5KYAU",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC0000066OyhYAE"
+        },
+        "Id": "0zuWC0000066OyhYAE",
+        "QuoteLineItemId": "0QLWC000003jN6n4AE",
+        "AttributeDefinitionId": "0tjWC000000096jYAA",
+        "AttributeName": "Server Type",
+        "AttributeValue": "Production",
+        "AttributePicklistValueId": "0v6WC0000000AJrYAM",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC0000066P1tYAE"
+        },
+        "Id": "0zuWC0000066P1tYAE",
+        "QuoteLineItemId": "0QLWC000003jN8P4AU",
+        "AttributeDefinitionId": "0tjWC000000096gYAA",
+        "AttributeName": "Power License Type",
+        "AttributeValue": "Primary",
+        "AttributePicklistValueId": "0v6WC0000000AAoYAM",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC0000066P1uYAE"
+        },
+        "Id": "0zuWC0000066P1uYAE",
+        "QuoteLineItemId": "0QLWC000003jN8P4AU",
+        "AttributeDefinitionId": "0tjWC000000096ZYAQ",
+        "AttributeName": "Feature Options",
+        "AttributeValue": "CU",
+        "AttributePicklistValueId": "0v6WC00000009quYAA",
+        "IsPriceImpacting": true
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItemAttribute",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItemAttribute/0zuWC0000066P1vYAE"
+        },
+        "Id": "0zuWC0000066P1vYAE",
+        "QuoteLineItemId": "0QLWC000003jN8P4AU",
+        "AttributeDefinitionId": "0tjWC000000096jYAA",
+        "AttributeName": "Server Type",
+        "AttributeValue": "Production",
+        "AttributePicklistValueId": "0v6WC0000000AJrYAM",
+        "IsPriceImpacting": true
+      }
+    ],
+    "totalSize": 8,
+    "done": true
+  },
+  "warnings": []
+}

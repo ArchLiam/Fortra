@@ -1,0 +1,16 @@
+{
+  "id": "F-06",
+  "category": "F. Transaction Type",
+  "name": "Renewal maintenance born-net via Renew QuoteAction link",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "(a) RNM renewal line born with Type=Renew QuoteAction + SourceAsset commits derived COLA net NetUnitPrice=67.38 and holds through Force-reprice; (b) No-Change/QA-null RNM line stays $0 or stale and reprice cannot heal it (locked); No-Change is no-op.",
+  "actual": "Force-repriced live. (a) line 0QLWC000003dEW24AM q00781084, QA=7ocWC00000u7yf8YAA Type=Renew -> Net/NetTot/TotalPrice=67.38 (held). (b) QA-null: 0QLWC000003e2Sn4AI q00781109 Net=60.64 stale; 0QLWC000003ck6X4AQ q00781043 & 0QLWC000003cN584AE q00780982 Net=0 locked; all COLACalc=67.38 built but not committed.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003dEW24AM/view ; fossil https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003ck6X4AQ/view ; canary https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003e2Sn4AI/view",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "recordIds": ["0QLWC000003dEW24AM", "0QLWC000003e2Sn4AI", "0QLWC000003ck6X4AQ", "0QLWC000003cN584AE", "7ocWC00000u7yf8YAA"],
+  "notes": "Native DerivedProductsRenewals committer (V21 steps 43 Derived Products - Renewals / 26 COLA Uplift Net on Renewal) gates on SalesTransactionActionType=Renew + contributor from QuoteAction(Type=Renew).SourceAssetId. Both legs match expected_behavior on real records after a fresh Force-reprice: born-with-Renew-QA commits 67.38 and is stable; QA-null lines are engine-locked at their settled born value ($0/60.64) and a reprice-time COLACalc correction (67.38) is silently dropped. This is the documented architectural constraint (SC-3346/SC-3404/SC-3350), not a V21 procedure defect. Control QA confirmed Type=Renew."
+}

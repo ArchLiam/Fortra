@@ -1,0 +1,97 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003kbqs4AA"
+        },
+        "Id": "0QLWC000003kbqs4AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "ProductCode": "PIA-PIA-NRPS-PIAP"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "Quantity": 1,
+        "UnitPrice": 177.5,
+        "ListPrice": 355,
+        "NetUnitPrice": 17000,
+        "NetTotalPrice": 17000,
+        "PartnerDiscountPercent": 15,
+        "PartnerUnitPrice": null,
+        "Partner_Adjusted_Price__c": null,
+        "Partner_Discount_Percent__c": null,
+        "Partner_Pricing_Model_Applied__c": "Discount",
+        "Partner_Pricing_Source__c": "System Calculated (Pre-Procedure, Percent Only)",
+        "Base_Price__c": 20000,
+        "Pre_Partner_Price__c": 20000,
+        "Source_List_Price__c": 20000
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003kbqr4AA"
+        },
+        "Id": "0QLWC000003kbqr4AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "Quantity": 1,
+        "UnitPrice": 4000,
+        "ListPrice": 0,
+        "NetUnitPrice": 3400,
+        "NetTotalPrice": 3400,
+        "PartnerDiscountPercent": 15,
+        "PartnerUnitPrice": 3400,
+        "Partner_Adjusted_Price__c": null,
+        "Partner_Discount_Percent__c": 15,
+        "Partner_Pricing_Model_Applied__c": "Discount",
+        "Partner_Pricing_Source__c": "System Calculated (Post-Procedure)",
+        "Base_Price__c": 20000,
+        "Pre_Partner_Price__c": 20000,
+        "Source_List_Price__c": 355
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003kbnd4AA"
+        },
+        "Id": "0QLWC000003kbnd4AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "Quantity": 1,
+        "UnitPrice": 0,
+        "ListPrice": 0,
+        "NetUnitPrice": 5490.15,
+        "NetTotalPrice": 5490.15,
+        "PartnerDiscountPercent": 18,
+        "PartnerUnitPrice": 5490.15,
+        "Partner_Adjusted_Price__c": 5490.15,
+        "Partner_Discount_Percent__c": null,
+        "Partner_Pricing_Model_Applied__c": "Discount",
+        "Partner_Pricing_Source__c": "System Calculated (Pre-Procedure, Percent Only)",
+        "Base_Price__c": 8165,
+        "Pre_Partner_Price__c": 8165,
+        "Source_List_Price__c": null
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "B-02",
+  "category": "B. Selling Model",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "expected": "Term-Defined Cobalt Strike line: Proration writer stamps PricingTermCount=1, NetUnitPrice=list 5900, NetTotalPrice=5900*Qty, EndDate=Start+1yr; subscription Asset created with LifecycleEnd=LifecycleStart+1 term.",
+  "actual": "Live V21 real records: QLI 0QLWC000003kaUz4AI New TermDefined Cobalt Strike Qty1 -> NetUnitPrice=5900, NetTotalPrice=5900, TotalLineAmount=5900, PricingTermCount=1, SubscriptionTerm=1, PeriodBoundary=Anniversary, Start=2026-06-29 EndDate=2027-06-28 (Start+1yr-1d). Asset 02iWC000008deyfYAA Price=5900 LifecycleStart=2026-06-29 LifecycleEnd=2027-06-28. Sibling TermDefined QLIs 0QLWC000003kiVl4AI/0QLWC000003khWT4AY also PTC=1. NOTE: my fresh fixture line 0QLWC000003klev4AA came out 0/0/null on headless REST place reprice of an un-Started Draft quote (ListPrice=5900 seeded but UnitPrice/PTC unhydrated) - a reprice-path artifact, not a proc defect; the properly-Started/Accepted line proves the oracle.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kaUz4AI/view | Asset https://fortra--uat.sandbox.lightning.force.com/lightning/r/Asset/02iWC000008deyfYAA/view | fixture Quote 0Q0WC000003FcCv0AK line 0QLWC000003klev4AA",
+  "recordIds": ["0QLWC000003kaUz4AI", "02iWC000008deyfYAA", "0QLWC000003kiVl4AI", "0QLWC000003khWT4AY", "0Q0WC000003FcCv0AK", "0QLWC000003klev4AA"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Active proc verified live = Rev_Mgmt_Default_Pricing_Procedure V21 (9QBWC0000000oWH4AY). SC-3420 guarded TermDefined proration writer (TermDefinedProrationFilterLinelevel/ListOperationTermDefinedPTC/ProrationTermDefined; guard SellingModelType=TermDefined AND StartProrationPeriod IsNotNull AND ItemSubscriptionTerm IsNotNull) is present and effective: real New TermDefined lines derive PTC=1 + EndDate + subscription Asset lifecycle. Caveat for reviewers: the headless REST connect/rev place reprice does NOT re-derive PTC/UnitPrice on a never-Started Draft quote (StartProrationPeriod transient not hydrated) - smoke-test must use a quote that went through RLM Start-Sync, or read a properly-processed line. defect_provenance SC-3420/SC-3415/SC-3411 all resolved in current V21."
+}

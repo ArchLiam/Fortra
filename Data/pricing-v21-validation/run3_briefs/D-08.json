@@ -1,0 +1,38 @@
+{
+ "id": "D-08",
+ "category": "D. Pricing Mode",
+ "name": "Bundle-based adjustment / inclusive-price bundle",
+ "priority": "P1",
+ "what_it_tests": "A bundle child/inclusive-price line receives bundle-based adjustment from the bundle decision table and its inclusive price flows to TotalLineAmount (bundle priced at discount to a-la-carte sum)",
+ "proc_mechanism": "Bundle Based Adjustment Entries (MainItemProduct/RootItemProduct + InclusivePrice); Assignment (InclusivePriceConstant -> TotalLineAmount); ListOperation97 (InclusivePrice Equals true)",
+ "expected_behavior": "Bundle_Based_Adjustment_Decision_Table applies; inclusive bundle price set into TotalLineAmount",
+ "test_setup": "GoAnywhere Starter Bundle (15% off a-la-carte=17.064k) parent + inclusive-price children, InclusivePrice=true",
+ "defect_provenance": "SC-3346 (Tripwire bundle-format)",
+ "prior_run": {
+  "verdict": "BLOCKED",
+  "dataSource": "existing",
+  "actual": "MECHANISM CONFIRMED WORKING on real UI-priced records, but the fresh headless smoke-test is a harness artifact -> BLOCKED. (1) Positive controls (Activated orders, V21-priced via UI convert): GoAnywhere Starter Bundle (GOA-GAM-NRPS-GASBP) parent ListPrice=35679 -> NetUnitPrice/TotalLineAmount=6330.99 (order 801WC00000hKJCiYAO line 802WC00000N2XJJYA3, ~82.3% bundle discount) and 6013.19 (801WC00000hKUg9YAG); inclusive children (Advanced Workflows list 26450, SFTP/FTPS 4025, Secure Folders 7475, FTP Client 0) -> TotalLineAmount=0; over-bundle a-la-carte extras priced normally. 'with Gateway' variant (GOA-GAM-NRPS-GASBGP) list 42521 -> 8504.40 on order 801WC00000hHaXyYAK. The InclusivePrice/bundle-adjustment branch is live and correct on real records. (2) Fresh smoke-test: Force-reprice (REST place isSuccess=true, errorResponse:[]) of UI-built bundle quote 0Q0WC000002RK6g0AG (Optum, 3 bundl\u2026",
+  "evidence": "Active V21 9QBWC0000000oWH4AY body (Data/cola-v16-v20-reconcile/verify_v21/.../Rev_Mgmt_Default_Pricing_V210.expressionSetVersion): BundleBasedAdjustmentEntries (lines 1647-1828, actionType BundleDiscount, LookUpApiName Bundle_Based_Adjustment_Decision_Table, inputs MainItemProduct/RootItemProduct/InclusivePrice, outputs NetUnitPrice+ItemNetTotalPrice); Assignment98 InclusivePriceConstant->TotalLineAmount (lines 532-580, parentStep ListContainer96); ListOperation97 InclusivePrice Equals true (lines 3439-3460); InclusivePriceConstant Constant value=0 (lines 6418-6428). InclusivePrice context source: SalesTransactionContextExt_v2 SalesTrxnItemRelationship/IsPriceInclusive (Data/sc3473/a02_ctx/.../SalesTransactionContextExt_v2.contextDefinition-meta.xml line 27317). POSITIVE CONTROLS (unchanged): https://fortra--uat.sandbox.lightning.force.com/lightning/r/OrderItem/802WC00000N2XJJYA3/view (35679->6330.99); 802WC00000N2RVYYA3 (35679->6013.19). Reprice resp Data/sc3473/d08_evidence/reprice_resp.json (isSuccess true). Repriced quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002RK6g0AG/view (parents 0QLWC000003JjHO4A0/V4A0/a4AK -> 35679; child 0QLWC000003JjHR4A0 -> 26450).",
+  "recordIds": [
+   "01tWC00000DD1OpYAL",
+   "0Q0WC000002RK6g0AG",
+   "801WC00000hKJCiYAO",
+   "802WC00000N2XJJYA3",
+   "801WC00000hKUg9YAG",
+   "802WC00000N2RVYYA3",
+   "801WC00000hHaXyYAK"
+  ],
+  "defectStep": "N/A (intended branch did not run on valid inputs in the headless harness; on real UI-priced records the branch -- BundleBasedAdjustmentEntries / ListOperation97 InclusivePrice=true / Assignment98 -- runs correctly)",
+  "regression": "",
+  "rootCause": "TEST-DATA-ARTIFACT",
+  "notes": "Branch trace (active V21): ListContainer25 (filter ItemPricingSource != LastTransaction) -> BundleBasedAdjustmentEntries BKM looks up Bundle_Based_Adjustment_Decision_Table via MainItemProduct/RootItemProduct + InclusivePrice, writes NetUnitPrice + Subtotal(ItemNetTotalPrice). Separately ListContainer96 -> ListOperation97 (InclusivePrice Equals true) -> Assignment98 sets TotalLineAmount = InclusivePriceConstant (Constant=0), zeroing inclusive-child revenue (rolled to parent). CalculationMatrix 'Bundle Based Adjustment Entries' 0lIa5000000MYcXEAW has 0 versions/0 rows and org-wide CalculationMa\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

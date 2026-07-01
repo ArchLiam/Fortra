@@ -1,0 +1,55 @@
+AssetId | Lookup(Asset)
+c2g__CODAGeneralLedgerAccount__c | Lookup(General Ledger Account)
+c2g__CODAUnitOfWork__c | Number(18, 0)
+CanUseQuantitySchedule | Checkbox
+CanUseRevenueSchedule | Checkbox
+Catalog_Name__c | Formula (Text)
+Category_Name__c | Formula (Text)
+ConnectionReceivedDate | Date/Time
+ConnectionSentDate | Date/Time
+CreatedById | Lookup(User)
+CreatedDate | Date/Time
+CurrencyIsoCode | Picklist
+Description | Text(255)
+Discount | Percent(3, 2)
+Displaced_ARR__c | Formula (Currency)
+Exchange_Rate_To_USD__c | Formula (Number)
+ffscpq__Total_Billable_Contingency_Amount__c | Currency(16, 2)
+ffscpq__Total_Estimated_Expense_Amount__c | Currency(16, 2)
+ffscpq__Total_Vendor_Line_Item_Bill_Amount__c | Currency(16, 2)
+HasQuantitySchedule | Checkbox
+HasRevenueSchedule | Checkbox
+HasSchedule | Checkbox
+Id | Lookup()
+IsDeleted | Checkbox
+LastModifiedById | Lookup(User)
+LastModifiedDate | Date/Time
+LastReferencedDate | Date/Time
+LastViewedDate | Date/Time
+Line_NARR__c | Formula (Currency)
+Line_NARR_Calculated__c | Formula (Currency)
+LineALE__c | Formula (Number)
+ListPrice | Currency(16, 2)
+Name | Text(376)
+NetUnitPrice | Currency(16, 2)
+OpportunityId | Lookup(Opportunity)
+Parent_Category_Name__c | Formula (Text)
+PricebookEntryId | Lookup(Price Book Entry)
+Product2Id | Lookup(Product)
+Product_Selling_Model__c | Lookup(Product Selling Model)
+ProductCode | Text(255)
+pse__Added_To_Project__c | Checkbox
+pse__IsServicesProductLine__c | Checkbox
+Quantity | Number(10, 2)
+QuoteLineItemId | Lookup(Quote Line Item)
+RecordVisibilityId | Lookup(Record Visibility)
+ServiceDate | Date
+SortOrder | Number(9, 0)
+Sub_Category_Name__c | Formula (Text)
+Subscription_Term__c | Number(3, 0)
+Subtotal | Currency(16, 2)
+SystemModstamp | Date/Time
+Total_Line_Amount__c | Formula (Currency)
+TotalPrice | Currency(16, 2)
+UnitPrice | Currency(16, 2)
+UserRecordAccessId | Lookup(User Record Access)

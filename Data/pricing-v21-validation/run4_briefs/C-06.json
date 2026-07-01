@@ -1,0 +1,32 @@
+{
+ "id": "C-06",
+ "category": "C. Product Type",
+ "name": "Add-on / modular feature priced separately but grouped",
+ "priority": "P1",
+ "what_it_tests": "Add-on SKUs (e.g. GoAnywhere Advanced Workflows, PhishLabs Dark Web add-on) are priced separately and additively but grouped with the primary product line; no special override unless parent bundle pricing gates it",
+ "proc_mechanism": "Product2.Bundle='Add-On'/'Bundle Component'; parent SKU link; additive line pricing",
+ "expected_behavior": "Add-on line included in same group as primary product; no override unless bundle gate",
+ "test_setup": "GoAnywhere Essentials (base 25k) + Advanced Workflows add-on (12.65k) as two lines in same group, subscription",
+ "defect_provenance": "none / catalog-derived",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Confirmed on real UAT data (re-measured 2026-06-30 against active V21). Order 801WC00000hKXezYAG (Activated) contains GoAnywhere Advanced Workflows OIs with POSITIVE net: OI 802WC00000N2VEOYA3 NetUnitPrice=8152.85, OI 802WC00000N2VEIYA3 NetUnitPrice=1848.24 (prorated). Real UI-priced QLI 0QLWC000002yEvH4AU (GoAnywhere Enterprise Bundle) NetUnitPrice=121141 = ListPrice=121141 (no override). Fixture Quote 0Q0WC000003FaW50AK force-repriced through V21 returned isSuccess:true, errorResponse:[]. BundleBasedAdjustment 15TWC00000MuMdv2AF still exists (1 row only, targets DCS Essentials Bundle / Data Detection Engine pair, NOT GoAnywhere). PBEs active and non-zero: GoAnywhere Advanced Workflows USD 5497.25 in Fortra Price Book; GoAnywhere Enterprise Bundle USD 121141 in Fortra Price Book. Fixture $0 is the known headless DML artifact (no attribute hydration), not a V21 defect.",
+  "evidence": "Order: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000hKXezYAG/view | Add-on OI 802WC00000N2VEOYA3 NET=8152.85, OI 802WC00000N2VEIYA3 NET=1848.24, list=5497.25. QLI 0QLWC000002yEvH4AU NET=121141=list (Q 0Q0WC000002dNI90AM). Fixture Q 0Q0WC000003FaW50AK force-reprice: isSuccess=true. BundleBasedAdjustment 15TWC00000MuMdv2AF: AdjustmentValue=7, AdjustmentType=Percentage, ProductId=01tWC000009oPywYAE (Data Detection Engine), ParentProductId=01tWC000009oPzFYAU (DCS Essentials Bundle) \u2014 does not match GoAnywhere pair. V21 Bundle Based Adjustment Entries step fires only on matching BBA rows; no match = add-on flows as independent additive line.",
+  "recordIds": [
+   "801WC00000hKXezYAG",
+   "802WC00000N2VEOYA3",
+   "802WC00000N2VEIYA3",
+   "0QLWC000002yEvH4AU",
+   "0Q0WC000002dNI90AM",
+   "0Q0WC000003FaW50AK",
+   "01tWC000009oPywYAE",
+   "01tWC000009oPzFYAU"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Branch traced: V21 step 'Bundle Based Adjustment Entries' (BundleDiscount BKM lookup into Bundle_Based_Adjustment_Decision_Table 0lDa50000007BGTEA2 keyed on ProductId/ParentProductId/RootBundleId). GoAnywhere Advanced Workflows has no BBA row under GoAnywhere Enterprise Bundle, so the gate correctly produces no override and each line is priced independently at list. The existing activated order has 48 lines from two product families all with positive net. The fixture quote's $0 NetUnitPrice is t\u2026"
+ },
+ "fixture_scripts": []
+}

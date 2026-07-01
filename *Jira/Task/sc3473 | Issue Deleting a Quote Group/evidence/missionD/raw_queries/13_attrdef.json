@@ -1,0 +1,81 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096ZYAQ"
+        },
+        "Id": "0tjWC000000096ZYAQ",
+        "Name": "Feature Options",
+        "DeveloperName": "Feature_Options",
+        "DataType": "Picklist",
+        "IsActive": true,
+        "Code": "FO",
+        "Label": "Feature Options",
+        "PicklistId": "0v5WC00000005R9YAI"
+      },
+      {
+        "attributes": {
+          "type": "AttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096aYAA"
+        },
+        "Id": "0tjWC000000096aYAA",
+        "Name": "Group Number",
+        "DeveloperName": "Group_Number",
+        "DataType": "Picklist",
+        "IsActive": true,
+        "Code": "GN",
+        "Label": "Group Number",
+        "PicklistId": "0v5WC00000005RAYAY"
+      },
+      {
+        "attributes": {
+          "type": "AttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096gYAA"
+        },
+        "Id": "0tjWC000000096gYAA",
+        "Name": "Power License Type",
+        "DeveloperName": "Power_License_Type",
+        "DataType": "Picklist",
+        "IsActive": true,
+        "Code": "PLT_1",
+        "Label": "Power License Type",
+        "PicklistId": "0v5WC00000005RGYAY"
+      },
+      {
+        "attributes": {
+          "type": "AttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096jYAA"
+        },
+        "Id": "0tjWC000000096jYAA",
+        "Name": "Server Type",
+        "DeveloperName": "Server_Type",
+        "DataType": "Picklist",
+        "IsActive": true,
+        "Code": "ST",
+        "Label": "Server Type",
+        "PicklistId": "0v5WC00000005RJYAY"
+      },
+      {
+        "attributes": {
+          "type": "AttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096kYAA"
+        },
+        "Id": "0tjWC000000096kYAA",
+        "Name": "Unit Type",
+        "DeveloperName": "Unit_Type",
+        "DataType": "Picklist",
+        "IsActive": true,
+        "Code": "UNT",
+        "Label": "Unit Type",
+        "PicklistId": "0v5WC00000005RKYAY"
+      }
+    ],
+    "totalSize": 5,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,46 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "Product2",
+          "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+        },
+        "Id": "01tWC00000DD11GYAT",
+        "Name": "Abstract",
+        "Family": "Subscription",
+        "Fortra_Product_Type__c": "Subscription",
+        "Allow_Regional_Pricing__c": false,
+        "ConfigureDuringSale": "Allowed"
+      },
+      {
+        "attributes": {
+          "type": "Product2",
+          "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+        },
+        "Id": "01tWC00000DD11cYAD",
+        "Name": "Advanced Job Scheduler",
+        "Family": "Perpetual",
+        "Fortra_Product_Type__c": "Perpetual",
+        "Allow_Regional_Pricing__c": false,
+        "ConfigureDuringSale": "Allowed"
+      },
+      {
+        "attributes": {
+          "type": "Product2",
+          "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+        },
+        "Id": "01tWC00000DD1mNYAT",
+        "Name": "Suspicious Email Intelligence",
+        "Family": "Subscription",
+        "Fortra_Product_Type__c": "Subscription",
+        "Allow_Regional_Pricing__c": false,
+        "ConfigureDuringSale": "Allowed"
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "F-07",
+  "category": "F. Transaction Type",
+  "name": "Converted Order locks prices idempotent",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Order-level Force reprice through V21 is idempotent: OrderItem prices (UnitPrice/NetUnitPrice/TotalLineAmount/PricingTermCount/EndDate) are identical post-reprice to their converted-from-quote values; isSuccess=true; errorResponse=[]; no contextDefinition gack; term fields populated.",
+  "actual": "Order 00095649 (mixed: beSECURE Subscription + Cobalt Strike Subscription): beSECURE UnitPrice=206/NetUnitPrice=206/TotalLineAmount=412/PricingTermCount=1/EndDate=2027-06-28; Cobalt Strike UnitPrice=5900/NetUnitPrice=5900/TotalLineAmount=11800/PricingTermCount=1/EndDate=2027-06-28; TotalAmount=12212. Order 00095620 (5250 Integrator Perpetual + Subscription): Perpetual UnitPrice=3675/NetUnitPrice=3675/TotalLineAmount=3675/PricingTermCount=0/EndDate=null; Subscription UnitPrice=2021.25/NetUnitPrice=2021.25/TotalLineAmount=2021.25/PricingTermCount=1/EndDate=2027-06-25; TotalAmount=5696.25. Both reprices: isSuccess=true errorResponse=[] no gack. All values identical to prior run (run2) measurements.",
+  "evidence": "Order 00095649: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000ltWwRYAU/view; Order 00095620: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lhDYyYAM/view. Force reprice via POST /services/data/v67.0/connect/rev/sales-transaction/actions/place on both orders 2026-06-30 returned isSuccess:true errorResponse:[] on each. OrderItems 802WC00000PW1PCYA1 (beSECURE 206), 802WC00000PW1PDYA1 (Cobalt Strike 5900), 802WC00000PP5anYAD (5250 Integrator Perpetual 3675), 802WC00000PP5aoYAD (5250 Integrator Subscription 2021.25) all match expected values exactly.",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Two distinct mixed-line converted orders both reproduced idempotently under active V21. Pre_Partner_Price__c and Base_Price__c correctly stamped (Perpetual 5250 Integrator: Source_List_Price__c=3675 confirming catalog lookup; Subscription lines have Base_Price__c stamped). No contextDefinition gack confirming SC-3308/SC-3371 risk remains closed. Term fields (PricingTermCount=1 for Subscription, 0 for Perpetual; EndDate populated for Subscription) correctly populated. RLM stores pricing in runtime context not QLI/OI snapshot - price-lock evidenced by OrderItem values matching expected catalog/converted prices. Active V21 (9QBWC0000000oWH4AY) context SalesTransactionContextExt_v2 confirmed gack-free on OrderItem context.",
+  "verdict_reason": "Both converted orders Force-repriced through V21 on 2026-06-30: isSuccess=true, errorResponse=[], no contextDefinition gack, all OrderItem price fields identical to prior measurements. SC-3308/SC-3371/reprice-contextDef P0 risk confirmed closed."
+}

@@ -1,0 +1,86 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou4H4AQ"
+        },
+        "Id": "0QLWC000002ou4H4AQ",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "OpportunityLineItemId": "00kWC00000BR9FNYA1",
+        "QuoteId": "0Q0WC000002U2020AC"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou5t4AA"
+        },
+        "Id": "0QLWC000002ou5t4AA",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "OpportunityLineItemId": "00kWC00000BR9FOYA1",
+        "QuoteId": "0Q0WC000002U2020AC"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "OpportunityLineItemId": "00kWC00000CwGVJYA3",
+        "QuoteId": "0Q0WC000002U2020AC"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "OpportunityLineItemId": "00kWC00000CwGWvYAN",
+        "QuoteId": "0Q0WC000002U2020AC"
+      }
+    ],
+    "totalSize": 4,
+    "done": true
+  },
+  "warnings": []
+}

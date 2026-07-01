@@ -1,0 +1,17 @@
+{
+  "id": "C-03",
+  "category": "C. Product Type",
+  "name": "Software product type aggregation (perpetual, RC_41000)",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Lines whose QLI Fortra_Product_Type__c='Software' are summed (SUM of ItemNetTotalPrice) into the Software subtotal bucket Total_Software__c; Services/Subscription/Perpetual/Maintenance lines are excluded from that bucket. Perpetual software license + optional maintenance, no subscription lifecycle.",
+  "actual": "Force-reprice through active V21 (Quote 0Q0WC0000034UvR0AU 'Test GS Quote Tim', mixed-type, isSuccess=true errorResponse=[], LastModified 2026-06-30T01:35:59Z) recomputed Total_Software__c=27354 = EXACT SUM of the two QLI.Fortra_Product_Type__c='Software' lines (EFT 8 Enterprise GS-GSE-NRPS-E8EP NetTotalPrice=27354 + EFT 8 Continuum GS-GSE-NRPS-E8CP NetTotalPrice=0). Other buckets isolated correctly: Total_Services__c=24275 (=24000+275), Total_Subscription__c=5775.5 (=1733+4042.5); Perpetual lines (17505) and New Maintenance (0) excluded from the Software bucket. Confirmed on a second Software quote 0Q0WC000003FXZp0AO (3 QLI.FPT='Software' lines -> Total_Software__c=1575 exact).",
+  "evidence": "Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000034UvR0AU/view ; Software license QLI EFT 8 Enterprise https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003Zfcr4AC/view (QLI.Fortra_Product_Type__c=Software, NetUnitPrice=27354, list 27354 perpetual NRPS); place response isSuccess:true errorResponse:[] salesTransactionId=0Q0WC0000034UvR0AU; post-reprice bucket sum Software=27354.0 == header Total_Software__c=27354",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Branch trace verified in proc def (Rev_Mgmt_Default_Pricing_Procedure family): V21 step 117 'Total Software' = AdvancedListFilter criteria Fortra_Product_Type__c Equals 'Software' (parentStep Copy1ofListContainer8) -> step 104 'Software Aggregate Price' = GroupingAndAggregatePricing SUM of ItemNetTotalPrice -> output Parameter Total_Software__c. Mirror filters Total Services ('Services')/Total Subscription confirmed isolating in parallel. KEY: the gate reads the QLI-LEVEL picklist Fortra_Product_Type__c (a writeable field on QuoteLineItem), NOT Product2.Fortra_Product_Type__c - on this quote the EFT 8 Enterprise line is QLI.FPT='Software' while its Product2.FPT='Perpetual', and the aggregate correctly follows the QLI value (this also explains why single-type fixtures D03/B03/D01 show Total_Software__c = full line sum: every QLI on them carries FPT='Software'). Used a real UI-priced mixed-type quote with a >$10k perpetual NRPS software license as positive control to avoid the headless DML-seed $0 artifact (A-01/C-01); the $0 EFT 8 Continuum companion line contributes 0 and does not affect the result. No fresh DML fixture needed. Validation-only: one Force-reprice, no deploys/edits."
+}

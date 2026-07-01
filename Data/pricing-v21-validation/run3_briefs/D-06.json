@@ -1,0 +1,36 @@
+{
+ "id": "D-06",
+ "category": "D. Pricing Mode",
+ "name": "Attribute-Based Price decision-table adjustment (contracted vs catalog)",
+ "priority": "P1",
+ "what_it_tests": "An attribute-based adjustment decision table applies for lines with ItemContractAttributePasId, gated to non-LastTransaction, non-derived, non-renewal",
+ "proc_mechanism": "Attribute-Based Price + Attribute Discount Entries; Attribute Pricing Filter (ItemContractAttributePasId IsNotNull AND ItemPricingSource NotEquals 'LastTransaction' AND DerivedPricingAttribute IsNotNull AND =false)",
+ "expected_behavior": "Attribute_Based_Adjustment_Decision_Table applies adjustment to NetUnitPrice",
+ "test_setup": "Line with ItemContractAttributePasId set, DerivedPricingAttribute=false, non-renewal",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "BLOCKED",
+  "dataSource": "new-script",
+  "actual": "The contracted branch could NOT be exercised. ItemContractAttributePasId is a platform-managed, transient, customMappingAllowed=false contracted-pricing context attribute (inheritedFrom std SalesTransactionItem/ContractAttributePasId) - it is hydrated only when the line's Contract resolves to a contracted ATTRIBUTE PriceAdjustmentSchedule; it cannot be hand-set on a QLI. Org has ZERO contracted-attribute pricing: 0 QuoteLineItem and 0 OrderItem have PricingContractId set; only 1 ContractItemPrice exists (CIP-0000000001, a price/discount 10%-off entry for PIA-BoKS 01tWC00000DD1btYAD, NOT attribute-based); the only Attribute-type PriceAdjustmentSchedule is the CATALOG one 84Xa50000010nWQEAY (=AttributePASIdConstant). Empirical smoke test: built Quote 0Q0WC000003FaZJ0A0 with L1 (AAMP, PricingContractId=800WC00000SFn6jYAD + {RAA,OnPrem,Non-Production}) and L2 (same attrs, no contract); Force\u2026",
+  "evidence": "Active V21 proc retrieve Data/pricing-v21-validation/d06_proc/unpackaged/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition (label 'Rev Mgmt Default Pricing V21', status Active; AttributePricingFilter gating at active-block rel-line ~1149 = ItemContractAttributePasId IsNotNull...; AttributeBasedPrice LookUpApiName=Attribute_Based_Adjustment_Decision_Table, IsContractEnabled=true). Context: Data/sc3473/a02_ctx/.../SalesTransactionContextExt_v2.contextDefinition-meta.xml line 22896 ContractAttributePasId customMappingAllowed=false transient=true. Org state: QLI/OI PricingContractId count=0; ContractItemPrice count=1 (CIP-0000000001, ItemId=01tWC00000DD1btYAD, DiscountValue=10); PriceAdjustmentSchedule Attribute count=1 (84Xa50000010nWQEAY). Fixture quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FaZJ0A0/view ; L1(contracted)=0QLWC000003kk694AA L2(catalog)=0QLWC000003kk6A4AQ both Net=1575; reprice place isSuccess=true errorResponse=[].",
+  "recordIds": [
+   "0Q0WC000003FaZJ0A0",
+   "0QLWC000003kk694AA",
+   "0QLWC000003kk6A4AQ",
+   "800WC00000SFn6jYAD",
+   "84Xa50000010nWQEAY"
+  ],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "TEST-DATA-ARTIFACT",
+  "notes": "Two parallel attribute-pricing branches confirmed in active V21: (a) D-06 CONTRACTED = ListContainer / AttributePricingFilter (ItemContractAttributePasId IsNotNull...) -> AttributeBasedPrice (IsContractEnabled=true); (b) D-03 CATALOG = ListContainer7 / AttributePricingFilter8 ((IsContracted IsNull OR =false) AND ItemPricingSource!=LastTransaction) -> AttributeDiscountEntries. Both consult the same Attribute_Based_Adjustment_Decision_Table (LookUpId 0lDa50000007BEuEAM, schedule 84Xa50000010nWQEAY). D-03 verified the catalog branch is live; D-06's contracted branch is structurally present but DO\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

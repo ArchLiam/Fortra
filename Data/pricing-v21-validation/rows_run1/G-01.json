@@ -1,0 +1,15 @@
+{
+  "id": "G-01",
+  "category": "G. Multi-Currency / Regional",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "recordIds": ["0Q0WC000003AaoT0AS", "0QLWC000003fnB94AI", "0QLWC000003fnB74AI"],
+  "expected": "Non-USD (EUR) catalog line: Unit/Net/NetTotal/Subtotal all scaled by the per-ISO EUR multiplier 0.9346 via currency-matched EUR PricebookEntry; no USD leak, no double-apply. VMA USD500 -> EUR467.3; beSECURE USD824 -> EUR770.1104; Cobalt USD5900 -> EUR5514.14.",
+  "actual": "Live V21 Force-reprice (isSuccess=true) of EUR quote 00781182. Clean catalog lines (Has_Attribute_Adjustment=false) land exact EUR-PBE values across ALL outputs: VM Analyst Unit=Net=NetTot=Sub=467.3 (=500x0.9346); beSECURE Unit=Net=NetTot=Sub=770.1104 (=824x0.9346); Cobalt Strike Unit=Net=5514.14 (=5900x0.9346). Header EUR Subtotal=10963.98 Total=10728.46. No raw-USD value, no 0.9346 double-apply (would be VMA 436.74). EUR PBEs all pre-built at 0.9346.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003AaoT0AS/view ; VMA QLI 0QLWC000003fnB94AI ; reprice log scratchpad/reprice_eur_existing.json (isSuccess true)",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "G-01 tests the BASE-currency-conversion happy path (Currency Conversion - Net Total/Subtotal/Net Unit Price/Total Line Amount/Unit Price Display steps over a currency-matched EUR PBE). That path is CORRECT: base catalog list is currency-converted via per-ISO EUR PBE seeded at authoritative 0.9346, and V21 preserves EUR through Unit/Net/NetTotal/Subtotal with no double-apply/no USD leak. defect_provenance SC-3384 belongs to G-02 (CONFIGURED pricing: ABA/tier/server-type ignore currency) -- on this same quote AAMP (Net=2708.4708, server-disc) and CLSAAS (attrAdj=true, Unit=1268.44) show that separate configured-pricing currency behavior, but those are out of G-01 scope. Method note: fresh Apex-inserted QLIs zero out on Force-reprice (InputUnitPrice context=0, same artifact as A-02/D-01 new-script rows), so I validated on existing UI-priced EUR lines (same approach as E-02/A-03 PASS). New fixture script setupCurrencyEurCatalogTestData.compact.apex was written+run (created EUR quotes 00781480/00781481 via EUR Opp 006WC00000QnybxYAB) but its fresh lines zeroed; used existing repro quote instead."
+}

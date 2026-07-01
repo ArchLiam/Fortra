@@ -1,0 +1,24 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "SellingModelType": "OneTime",
+        "cnt": 1
+      },
+      {
+        "attributes": {
+          "type": "AggregateResult"
+        },
+        "SellingModelType": "TermDefined",
+        "cnt": 3
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

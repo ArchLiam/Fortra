@@ -1,0 +1,18 @@
+{
+  "id": "E-01",
+  "category": "E. Deal / Customer Type",
+  "name": "Fortra Originated excluded from partner",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Deal_Type__c='Fortra Originated' gates partner discount steps (87-93) -> skipped; net=list price; PartnerUnitPrice/PartnerDiscountPercent/Partner_Pricing_Model_Applied__c/Partner_Pricing_Source__c all null; Discount null; NetUnitPrice=$34,750; NetTotalPrice=$173,750 (Qty=5)",
+  "actual": "Repriced QLI 0QLWC000003klob4AA: Qty=5, UnitPrice=ListPrice=NetUnitPrice=$34,750; NetTotalPrice=TotalPrice=TotalLineAmount=$173,750; PartnerUnitPrice=null, PartnerDiscountPercent=null, Partner_Pricing_Model_Applied__c=null, Partner_Pricing_Source__c=null, Discount=null; Source_List_Price__c=$34,750, Pre_Partner_Price__c=$34,750, Base_Price__c=$34,750; COLA_Uplift_Percent__c=null, COLACalculatedPrice__c=null. Quote: Deal_Type__c='Fortra Originated', PartnerAccountId=null, Subtotal/GrandTotal=$173,750, QuoteTypeText__c='New'. Reprice isSuccess=true, errorResponse=[].",
+  "evidence": "Quote 00781546 https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcMb0AK/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003klob4AA/view ; PBE 01uWC000005wrxMYAQ active, Fortra Price Book active, UnitPrice=$34,750 USD non-zero; reprice POST /services/data/v67.0/connect/rev/sales-transaction/actions/place returned isSuccess=true no errors; re-measured 2026-06-30.",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Reused prior-run record (run2 PASS). V21 Partner Discount steps (87-93) gate on Deal_Type__c NotEquals 'Fortra Originated' -> gate fails -> partner steps skipped; Partner Percent Resolved Filter excludes line. Net = list/attribute price, no waterfall partner adjustment. Force-reprice via REST place action v67.0 returned isSuccess=true with no errors. Preflight: PBE active, Fortra Price Book active, UnitPrice=$34,750 USD non-zero; Fortra_Product_Type__c=Software, SellingModelType=OneTime. All measured values identical to run2 baseline; V21 in-place edits since run2 have not regressed this scenario.",
+  "verdict_reason": "Force-reprice (V21, pricingPref=Force, configurationMethod=Skip) confirmed partner discount steps skipped for Fortra Originated deal type; net equals list price exactly at $34,750 per unit / $173,750 total; all partner stamp fields null; intermediate stamps (Source_List_Price__c, Pre_Partner_Price__c, Base_Price__c) all equal $34,750 confirming no partner waterfall adjustment was applied."
+}

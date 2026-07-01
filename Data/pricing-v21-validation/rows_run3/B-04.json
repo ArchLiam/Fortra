@@ -1,0 +1,18 @@
+{
+  "id": "B-04",
+  "category": "B. Selling Model",
+  "name": "Evergreen subscription (SaaS, no defined term end) full-period count",
+  "priority": "P1",
+  "verdict": "BLOCKED",
+  "rootCause": "N-A(pass)",
+  "dataSource": "config-query",
+  "preflight": "fail",
+  "expected": "Evergreen term count constant applied (PricingTermCount=1); full evergreen period billed; no fixed-term/partial proration; SellingModelType='Evergreen' gates correct branch in V21",
+  "actual": "FortraUAT has NO priceable Evergreen product as of 2026-06-30. All 4 Evergreen ProductSellingModels (Evergreen-Monthly 0jPWC00000006C92AI, Quarterly 0jPWC00000006CA2AY, Semi-Annual 0jPWC00000006CB2AY, Yearly 0jPWC00000006CC2AY) remain Status=Inactive. Zero PSMOs map any product to those PSMs (COUNT=0). Zero PricebookEntries reference any Evergreen PSM (COUNT=0). Zero QuoteLineItems have SellingModelType='Evergreen' (COUNT=0). A real sales rep cannot create an Evergreen line in the UI. Preflight fails at 'product is priceable as Evergreen'; no smoke test is possible.",
+  "evidence": "Live SOQL FortraUAT 2026-06-30: SELECT Id,Name,Status,SellingModelType FROM ProductSellingModel WHERE SellingModelType='Evergreen' -> 4 rows all Status=Inactive (same as run1 2026-06-29). SELECT COUNT() FROM ProductSellingModelOption WHERE ProductSellingModelId IN (4 Evergreen ids) -> 0. SELECT COUNT() FROM PricebookEntry WHERE ProductSellingModelId IN (4 Evergreen ids) -> 0. SELECT COUNT() FROM QuoteLineItem WHERE SellingModelType='Evergreen' -> 0. V21 metadata branch IS present (EvergreenPricingTermCountConstant value=1; Evergreen anytime proration filter step; criteria SellingModelType='Evergreen') but cannot be exercised without active Evergreen catalog enablement.",
+  "defectStep": "",
+  "proposedFix": "Activate at least one Evergreen ProductSellingModel (e.g. Evergreen-Monthly 0jPWC00000006C92AI), create a PSMO linking a suitable SaaS product to it, and ensure an active PBE exists in the Fortra Price Book. Then smoke-test the Evergreen branch. This is a catalog enablement gap, not a V21 defect.",
+  "regression": "",
+  "notes": "Anti-phantom-defect doctrine applied: V21's Evergreen branch is internally well-formed. The BLOCKED verdict is because the preflight gate fails — no Evergreen-enabled, priceable product exists in UAT, so the branch cannot run on valid inputs. rootCause=N-A(pass) because nothing in V21 is at fault; the gap is in catalog configuration. This result is unchanged from run1 (2026-06-29). Re-verified live 2026-06-30 after V21 in-place edits confirmed no change to Evergreen catalog state.",
+  "verdict_reason": "Preflight fails: no active Evergreen PSM, no Evergreen PSMO, no Evergreen PBE, zero QLIs with SellingModelType='Evergreen' in the org. The V21 Evergreen branch cannot be exercised on valid inputs. No PROCEDURE-DEFECT may be asserted without a priceable Evergreen line; verdict is BLOCKED (catalog enablement gap)."
+}

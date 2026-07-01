@@ -1,0 +1,105 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000003eNV0AY"
+        },
+        "Id": "1C9WC0000003eNV0AY",
+        "Name": "Hardware Test",
+        "QuoteId": "0Q0WC0000026Egf0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000026Egf0AE"
+          },
+          "Status": "Draft",
+          "CurrencyIsoCode": "USD",
+          "Name": "Q-Victorias Test Opportunity - 0100-2026-01-30",
+          "LineItemCount": 3
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+        },
+        "Id": "1C9WC00000090SD0AY",
+        "Name": "HW-1",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered",
+          "CurrencyIsoCode": "USD",
+          "Name": "Rev Migration validation - 06/05/2026-1",
+          "LineItemCount": 6
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091xl0AA"
+        },
+        "Id": "1C9WC00000091xl0AA",
+        "Name": "Secure Email",
+        "QuoteId": "0Q0WC0000037Zc10AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037Zc10AE"
+          },
+          "Status": "Accepted",
+          "CurrencyIsoCode": "USD",
+          "Name": "Q-Test Opportunity 1-2026-06-10",
+          "LineItemCount": 4
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Ij0AI"
+        },
+        "Id": "1C9WC00000092Ij0AI",
+        "Name": "Hardware Group 1",
+        "QuoteId": "0Q0WC0000037vXh0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000037vXh0AI"
+          },
+          "Status": "Draft",
+          "CurrencyIsoCode": "USD",
+          "Name": "Q-Wren - Test Hardware Items-2026-06-11",
+          "LineItemCount": 2
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted",
+          "CurrencyIsoCode": "USD",
+          "Name": "Test Wren - Order Processing",
+          "LineItemCount": 4
+        }
+      }
+    ],
+    "totalSize": 5,
+    "done": true
+  },
+  "warnings": []
+}

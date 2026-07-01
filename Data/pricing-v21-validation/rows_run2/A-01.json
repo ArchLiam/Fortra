@@ -1,0 +1,15 @@
+{
+  "id": "A-01",
+  "category": "A. Pricing Source / Channel",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "expected": "Non-contracted non-derived new line prices straight from catalog PBE: NetUnitPrice = PBE list price (no LastTransaction, no partner discount); NetTotalPrice = NetUnitPrice * Qty (* PricingTermCount).",
+  "actual": "Real V21-priced TermDefined Cobalt Strike line QLI 0QLWC000003kaUz4AI: ListPrice=5900, NetUnitPrice=5900 (NET==LIST), PricingTermCount=1, Qty=1, NetTotalPrice=5900 - catalog list flows straight to net, no discount. A-01 list-price mechanism confirmed on real data.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kaUz4AI/view ; fixture quote 00781544 https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcHl0AK/view",
+  "recordIds": ["0QLWC000003kaUz4AI", "0Q0WC000003FcHl0AK", "0QLWC000003kljl4AA", "01uWC000005wrqnYAA"],
+  "defectStep": "",
+  "regression": "",
+  "proposedFix": "",
+  "notes": "Force-repriced via REST place action (isSuccess, no errors). Active proc Rev_Mgmt_Default_Pricing V21. Catalog PBE 01uWC000005wrqnYAA (Cobalt Strike Software, USD, Fortra Price Book active, UnitPrice=20500) verified live. CAVEAT (test-data, not a V21 defect): the dedicated fixture setupCatalogListPriceTestData.compact.apex inserts QLI 0QLWC000003kljl4AA directly; it correctly seeds ListPrice=20500 but the script-built line lacks proration boundary fields (PeriodBoundary/PeriodBoundaryDay null), so the Term-Defined proration step never derives PricingTermCount and Subscription Pricing multiplies by null -> NetUnitPrice=0 on Force reprice (reproduced on 2 fixtures, even after setting SubscriptionTerm=1). The PASS is evidenced by an independent fully-hydrated real V21 line (0QLWC000003kaUz4AI, PTC=1) where NetUnitPrice==ListPrice==PBE list, proving the catalog DP2 List Price -> Quantity*Price waterfall is sound. Cobalt Strike Software product 01tWC00000DD2SlYAL has only a TermDefined selling model in UAT (no One-Time), so the A-01 catalog setup is forced onto a subscription model; recommend fixture set proration boundary fields or use a OneTime/Perpetual product to avoid the proration entanglement masking the list-price result."
+}

@@ -1,0 +1,25 @@
+{
+ "id": "D-07",
+ "category": "D. Pricing Mode",
+ "name": "Volume / quantity-tiered discount (PriceAdjustmentTier step-down)",
+ "priority": "P1",
+ "what_it_tests": "A qualifying-quantity non-contracted line receives a per-unit price that steps down by quantity band (1-100, 101-250, 251+) via PriceAdjustmentSchedule/Tier",
+ "proc_mechanism": "Volume Discount Entries; Volume Discounts ((IsContracted IsNull OR =false) AND ItemPricingSource NotEquals 'LastTransaction'); PriceAdjustmentSchedule/PriceAdjustmentTier keyed on Qty band",
+ "expected_behavior": "Tier matching ordered qty applies (e.g. Qty=300 uses 251+ band, lower per-unit than 1-100 band)",
+ "test_setup": "Tripwire nodes perpetual, Qty=300, tiers 1-100=220k/node, 101-250 lower; IsContracted=false, New quote",
+ "defect_provenance": "SC-3390",
+ "run3_result": {
+  "verdict": "BLOCKED",
+  "rootCause": "EXPECTATION-ERROR",
+  "dataSource": "config-query",
+  "actual": "The native Volume Discount branch is unreachable in active V21 and cannot fire. (1) In the live V21 (run3 retrieve Jun 30 08:15, ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY VersionNumber=21), every sub-block defines VolumePASIdConstant as the empty string ('') \u2014 so the VolumeDiscountEntries BKM lookup against Price_Adjustment_Tier_Decision_Table finds PriceAdjustmentScheduleId='' which matches no rows. Branch is a no-op regardless of gate conditions. (2) Org config: only 3 PriceAdjustmentSchedule records exist org-wide \u2014 'Standard Attribute Based Adjustment' (84Xa50000010nWQEAY, ACTIVE, Attribute type), 'ZZ_E2E_RCA_20260613 Test Schedule' (84XWC000000S6bx2AC, INACTIVE), 'ZZ_E2E_Bundle_Sched_ZZ_E2E_RCA_20260613' (84XWC000000S6dZ2AS, INACTIVE). Zero active quantity-band (Volume) PriceAdjustmentSchedules. (3) Only 1 PriceAdjustmentTier exists org-wide: PAT-0000003633 (band 1-10, no Pr\u2026",
+  "evidence": "Active V21 confirmed: SOQL ExpressionSetDefinitionVersion WHERE Status='Active' -> Id=9QBWC0000000oWH4AY, VersionNumber=21. Live V21 XML (Data/pricing-v21-validation/v21_run3/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml, retrieved Jun 30 08:15): VolumePASIdConstant <value>&apos;&apos;</value> at lines 4869, 9743, 14843 (all sub-blocks). PriceAdjustmentSchedule totalSize=3: 1 active Attribute, 2 inactive Volume; PriceAdjustmentTier totalSize=1 (band 1-10, INACTIVE schedule PAT-0000003633). Attribute_Tier_Pricing_Storage__c totalSize=1154 (active attribute-tier path). Sibling B-03 PASS quote (attribute tier): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FXpy0AG/view",
+  "recordIds": [
+   "0Q0WC000003FXpy0AG"
+  ],
+  "defectStep": "V21 step 'Volume Discount Entries' (VolumeDiscountEntries) + gate 'Volume Discounts' (VolumeDiscounts). VolumePASIdConstant='' makes the BKM lookup a no-op. This is NOT a defect \u2014 it is the intended design; Fortra uses the attribute-tier engine (Attribute_Tier_Pricing_Storage__c + Standard Attribute Based Adjustment schedule) for all quantity/volume tiers, not the native PriceAdjustmentSchedule/PriceAdjustmentTier path.",
+  "proposedFix": "No fix required. The catalog test_setup should be re-characterized: 'Volume discount native (PriceAdjustmentTier path)' is intentionally unused in Fortra's pricing implementation. If native volume band discounting is ever desired, it would require: (a) creating an active Volume-type PriceAdjustmentSchedule with multi-band PriceAdjustmentTiers, and (b) setting VolumePASIdConstant in V21 to that sch\u2026",
+  "notes": "Config/parity-class scenario. Carries over BLOCKED + EXPECTATION-ERROR verdict from run1 and run2. Re-verified on live V21 (run3 retrieve Jun 30 08:15) \u2014 no change: VolumePASIdConstant still empty, zero active Volume PriceAdjustmentSchedules, 1 org-wide PriceAdjustmentTier (inactive). Building a headless Qty=300 fixture would either (a) price through the attribute-tier path (not the named native mechanism) or (b) net $0 from the missing Tripwire perpetual PBE \u2014 neither constitutes evidence about\u2026"
+ },
+ "fixture_scripts": []
+}

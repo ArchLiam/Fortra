@@ -1,0 +1,61 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ProductSellingModelOption",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModelOption/0iOWC0000000QY32AM"
+        },
+        "Id": "0iOWC0000000QY32AM",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        }
+      },
+      {
+        "attributes": {
+          "type": "ProductSellingModelOption",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModelOption/0iOWC0000000SES2A2"
+        },
+        "Id": "0iOWC0000000SES2A2",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        }
+      },
+      {
+        "attributes": {
+          "type": "ProductSellingModelOption",
+          "url": "/services/data/v67.0/sobjects/ProductSellingModelOption/0iOWC0000000RRM2A2"
+        },
+        "Id": "0iOWC0000000RRM2A2",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        }
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

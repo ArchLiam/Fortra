@@ -1,0 +1,30 @@
+{
+ "id": "C-05",
+ "category": "C. Product Type",
+ "name": "Subscription product type / subscription-split aggregation (RC_41202)",
+ "priority": "P1",
+ "what_it_tests": "Subscription lines aggregate into the Subscription subtotal bucket; subscription-split bundle SKUs (Is Workday Bundle=TRUE) create LIC + MAINT child SKUs for Workday rev-rec while the quote shows one line",
+ "proc_mechanism": "Total Subscription (Fortra_Product_Type__c Equals 'Subscription'); Subscription Aggregate Price; order-time _LIC/_MAINT split for RC_41202 bundles",
+ "expected_behavior": "Subscription lines summed into bucket; quote shows single bundle price; order creates two Workday lines (license/maintenance deferred separately)",
+ "test_setup": "Subscription (e.g. Clearswift Essentials), 12-month term, list 50k, Qty=4",
+ "defect_provenance": "none / catalog-derived",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "V21 aggregates Subscription lines into Total_Subscription__c exactly, verified on 3 real priced quotes (live Force-reprice on the primary). Quote 0Q0WC000003FN970AG (repriced live 2026-06-30T01:38:31Z, calc=CompletedWithPricing): 1 Subscription line DM-WCU-RSS-5250SU NetTotalPrice=2021.25 + 2 Perpetual lines (2200, 3675) -> Total_Subscription__c=2021.25 (Perpetual EXCLUDED). Quote 0Q0WC000003FPvd0AG: 2 Subscription lines 206+5900 -> Total_Subscription__c=6106.0. Quote 0Q0WC0000034UvR0AU (mixed): Subscription 1733+4042.5=5775.5 -> Total_Subscription__c=5775.5, with Services/New Maintenance/Perpetual all excluded. Subsplit bundle catalog confirmed: parent ES-SEG-RSS-CSEGKS Is_Subsplit_Product__c=true (active), children ES-SEG-RSS-CSEGKS_LIC / _MAINT inactive; 9 live OrderItems exist on _LIC/_MAINT child SKUs (order-time split active). V21 proc XML has 0 references to Is_Subsplit_Product__c\u2026",
+  "evidence": "Force-reprice REST place: isSuccess=true, errorResponse=[] on Quote 0Q0WC000003FN970AG (body Data/pricing-v21-validation/reprice/c05_body.json). https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FN970AG/view (Total_Subscription__c=2021.25) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FPvd0AG/view (=6106) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000034UvR0AU/view (=5775.5). Proc XML Data/pricing-v21-validation/live/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition-meta.xml: step name=TotalSubscription AdvancedListFilter (Fortra_Product_Type__c Equals 'Subscription'), step name=SubscriptionAggregatePrice BusinessKnowledgeModel section-0-output=Total_Subscription__c; grep Is_Subsplit_Product__c|_LIC|_MAINT|Workday|RC_41202 => 0 hits. SOQL: COUNT(OrderItem WHERE ProductCode LIKE '%_LIC' OR '%_MAINT') = 9.",
+  "recordIds": [],
+  "defectStep": "",
+  "regression": "",
+  "rootCause": "N-A(pass)",
+  "notes": "Two distinct claims in C-05. (1) PRICING (V21-owned): subscription lines aggregate into the Subscription bucket -> PASS, reproduced live on 3 real quotes; gating is Fortra_Product_Type__c='Subscription' (V21 steps Total Subscription #118 + Subscription Aggregate Price #109), rollup target Total_Subscription__c; non-Subscription product types correctly excluded (Perpetual/Services/New Maintenance dropped). Positive control method satisfied (existing UI-priced records, not hand-built). (2) WORKDAY SPLIT (RC_41202 _LIC/_MAINT): correctly described in proc_mechanism as 'order-time' but it is NOT a\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

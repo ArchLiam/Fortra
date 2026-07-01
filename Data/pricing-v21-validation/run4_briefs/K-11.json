@@ -1,0 +1,31 @@
+{
+ "id": "K-11",
+ "category": "K. Edge Cases",
+ "name": "Qty=0 auto-add middle maintenance line ($0 but correct net)",
+ "priority": "P1",
+ "what_it_tests": "An auto-added (ProductConfigurationRule) maintenance line born with Quantity=0 (StartQuantity=source asset) prices its net correctly but yields $0; normalizing StartQuantity to the source-asset qty (so qty>0) is the fix",
+ "proc_mechanism": "RenewalAssetQuantityHandler (before-insert, widened to Amend + New-Maintenance) normalizes StartQuantity=0 + Quantity=source-asset-qty; Quantity*Price (net x 0 = 0); All Lines Null Safe Filter (Qty>=0 includes 0)",
+ "expected_behavior": "Line born with qty>0 so net unit correct and ItemNetTotalPrice = qty x net (not 0); line type (Amend new-biz / Renew renewal) matches quote action",
+ "test_setup": "Auto-add PCR maintenance line on Perpetual license, SourceAsset qty>0, Fortra_Product_Type='New Maintenance', derived net correct",
+ "defect_provenance": "SC-3346 / SC-3412 / SC-3410",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "SMOKE (savepoint+rollback) on defect line 0QLWC000003d2QR4AY (quote 0Q0WC0000037rFZ0AY): BEFORE qty=0.00 startQty=1.00 action=No Change netUnit=71.00 netTotal=0.00 -> AFTER qty=1.00 startQty=0.00 action=Amend netUnit=71.00 expectedTotal=71.0000 (normalizedQtyToSourceAsset=true, startQtyZeroed=true, actionFlippedNoChangeToAmend=true), then ROLLED BACK. Defect line still exists unmodified (Quantity=0, StartQuantity=1, action=No Change, NetUnitPrice=71, NetTotalPrice=0). End-to-end on realized post-fix New-Maint lines after V21 force-reprice (isSuccess:true, errorResponse:[]): 0QLWC000003erwl4AA qty=1 startQty=0 action=Amend netUnit=60.35 netTotal=60.35 (=qty x net); 0QLWC000003ehR84AI qty=1 startQty=0 action=Amend netUnit=60.35 netTotal=60.35. Renewal-Maint twin 0QLWC000003dEW24AM qty=1 startQty=0 action=Renew netUnit=67.38 netTotal=67.38. Handler class live: Id=01pWC000002WcXFYA0 ApiVersi\u2026",
+  "evidence": "Smoke log markers (savepoint, rolled back 2026-06-30): 'K-11 BEFORE :: qty=0.00 startQty=1.00 action=No Change netUnit=71.00 netTotal=0.00' then 'K-11 AFTER :: qty=1.00 startQty=0.00 action=Amend netUnit=71.00 expectedTotal(qty*net)=71.0000' then 'K-11 ROLLED BACK (record untouched)'; script Data/sc3346/k11_handler_smoke.apex. Defect line URL https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000037rFZ0AY/view (QLI 0QLWC000003d2QR4AY qty=0 net=71 total=0 confirmed live 2026-06-30). Realized post-fix quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000039fjl0AA/view (QLI 0QLWC000003erwl4AA Amend qty=1 NetTotalPrice=60.35, V21 reprice isSuccess:true). Live handler Data/pricing-v21-validation/k11_evidence/RenewalAssetQuantityHandler.live.cls (ApiVersion=62, L104-128 New-Maint branch). V21 'Quantity * Price' step confirmed correct (NetUnitPrice x LineItemQuantity).",
+  "recordIds": [
+   "0Q0WC0000037rFZ0AY",
+   "0QLWC000003d2QR4AY",
+   "0Q0WC0000039fjl0AA",
+   "0QLWC000003erwl4AA",
+   "0QLWC000003ehR84AI",
+   "0QLWC000003dEW24AM",
+   "02iWC000008DFvvYAG"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "This scenario validates the Apex-tier handler RenewalAssetQuantityHandler (before/after-insert normalizer), NOT a V21 step. V21's 'Quantity * Price' step is correct by design (qty x net); it only produced $0 historically because the input qty was 0. The handler corrects the input BEFORE V21 runs: sets Quantity=sourceAsset.Quantity, zeroes StartQuantity, flips No Change->Amend (new-biz) or No Change->Renew (renewal). MAINTENANCE_PRODUCT_TYPES widened to {Renewal Maintenance, New Maintenance}. Def\u2026"
+ },
+ "fixture_scripts": []
+}

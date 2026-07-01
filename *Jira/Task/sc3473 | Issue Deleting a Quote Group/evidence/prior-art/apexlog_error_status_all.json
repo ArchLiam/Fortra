@@ -1,0 +1,82 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PZ0Q92AL"
+        },
+        "Id": "07LWC00000PZ0Q92AL",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "Api",
+        "Request": "Api",
+        "Status": "Update failed. First exception on row 0 with id 001WC00000lYU5YYAW; first error: DUPLICATE_VALUE, duplicate value found: DB_DUNS__c duplicates value on record with id: 001WC00000aMG9WYAW: []",
+        "StartTime": "2026-06-27T05:57:29.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PVD4D2AX"
+        },
+        "Id": "07LWC00000PVD4D2AX",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "Api",
+        "Request": "Api",
+        "Status": "Update failed. First exception on row 0 with id 802WC00000OugI7YAJ; first error: INVALID_FIELD_FOR_INSERT_UPDATE, You can't edit the Net Unit Price because the Order Product has related Order Product Detail records. : [NetUnitPrice]",
+        "StartTime": "2026-06-25T23:39:41.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PM0EH2A1"
+        },
+        "Id": "07LWC00000PM0EH2A1",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "Api",
+        "Request": "Api",
+        "Status": "Salesforce System Error: 976246562-52859 (-1644057892) (-1644057892)",
+        "StartTime": "2026-06-23T04:19:20.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "ApexLog",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexLog/07LWC00000PLtWA2A1"
+        },
+        "Id": "07LWC00000PLtWA2A1",
+        "LogUser": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/tooling/sobjects/User/005WC00000MgTN2YAN"
+          },
+          "Name": "Liam Jeong"
+        },
+        "Operation": "Api",
+        "Request": "Api",
+        "Status": "Salesforce System Error: 1608421420-46460 (-1644057892) (-1644057892)",
+        "StartTime": "2026-06-23T04:18:36.000+0000"
+      }
+    ],
+    "totalSize": 4,
+    "done": true
+  },
+  "warnings": []
+}

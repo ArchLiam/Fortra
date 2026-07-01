@@ -1,0 +1,34 @@
+{
+ "id": "J-02",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Derived formula tier percentages by support level (7-tier completeness)",
+ "priority": "P0",
+ "what_it_tests": "Each Maintenance Type Defn AttributeValue maps to its correct derived percent (Expert .35, Premier .30, Express .30, Premium .24, Standard .20, Professional .20, Basic .15, else 0); products with no MTD must not silently fall to a $0 trailing branch (1,708 of 1,887 historically did)",
+ "proc_mechanism": "DerivedPricingFormula nested IF on AttributeValue x Source_List_Price__c (V16+ 7-tier); unknown/platinum/missing -> 0",
+ "expected_behavior": "Correct tier percent per AttributeValue; missing MTD -> documented standard, not silent $0; formula must cover all 8 Maintenance_Rate__mdt tiers",
+ "test_setup": "New derived maintenance lines, one per AttributeValue tier (incl. Expert -> 0.35 x list; missing-MTD case)",
+ "defect_provenance": "SC-3346 / SC-3372 / NB-DERIVED-TIER",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Force-reprice (v67 place action, pricingPref=Force) on quote 0Q0WC000003Fd2X0AS 2026-06-30: license NetUnit=355 (Source_List_Price__c=355); Standard QLI 0QLWC000003kmSw4AI NetUnit=71 (AttributeValue=Standard, Maintenance_Rate__mdt Standard Rate=0.20); Expert QLI 0QLWC000003kmSx4AI NetUnit=124.25 (AttributeValue=Expert, Maintenance_Rate__mdt Expert Rate=0.35); no-MTD QLI 0QLWC000003kmUX4AY NetUnit=0 (no QLIA, 0 rows). 7 MDT tiers confirmed: Expert=0.35, Express=0.30, Premier=0.30, Premium=0.24, Professional=0.20, Standard=0.20, Basic=0.15. All Partner_Pricing_Source__c='System Calculated (Post-Procedure)' on derived lines. isSuccess=true, errorResponse=[].",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fd2X0AS/view ; QLIs 0QLWC000003kmSw4AI (Std=71), 0QLWC000003kmSx4AI (Expert=124.25), 0QLWC000003kmUX4AY (no-MTD=0); QLIAs 0zuWC000006AzGTYA0 (Standard), 0zuWC000006AvcgYAC (Expert); Maintenance_Rate__mdt 7 tiers all present with correct rates",
+  "recordIds": [
+   "0Q0WC000003Fd2X0AS",
+   "0QLWC000003kmSw4AI",
+   "0QLWC000003kmSx4AI",
+   "0QLWC000003kmUX4AY",
+   "0Q0WC000003FYaj0AG",
+   "0QLWC000003kiE24AI",
+   "0QLWC000003kiE34AI",
+   "0QLWC000003kiKT4AY"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "V21 DerivedPricingFormula is 3-tier in the procedure canvas (Premier/Standard/Professional, else 0 per version description 'reverted to 3-tier'). However PartnerNetPricePosthook (Apex post-procedure hook) reads ALL 7 Maintenance_Rate__mdt tiers via loadMaintenanceRates() and overrides NetUnitPrice after the formula step. Expert line correctly gets 0.35x355=124.25 via the posthook even though the formula alone would return $0. NB-DERIVED-TIER memory note about oscillation on V14 does not apply: V\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ02DerivedTierTestData.compact.apex"
+ ]
+}

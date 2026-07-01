@@ -1,0 +1,242 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000E6zYAE"
+        },
+        "Id": "0v7WC0000000E6zYAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "AttributeDefinitionId": "0tjWC000000096ZYAQ",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096ZYAQ"
+          },
+          "Name": "Feature Options",
+          "DeveloperName": "Feature_Options"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlrL2AQ",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": null,
+        "AttributeCategoryId": "0v3WC00000005ZBYAY",
+        "DefaultValue": "CU"
+      },
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000E70YAE"
+        },
+        "Id": "0v7WC0000000E70YAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "AttributeDefinitionId": "0tjWC000000096gYAA",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096gYAA"
+          },
+          "Name": "Power License Type",
+          "DeveloperName": "Power_License_Type"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlrM2AQ",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": null,
+        "AttributeCategoryId": "0v3WC00000005ZFYAY",
+        "DefaultValue": "Primary"
+      },
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000E71YAE"
+        },
+        "Id": "0v7WC0000000E71YAE",
+        "Product2Id": "01tWC00000DD11GYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract"
+        },
+        "AttributeDefinitionId": "0tjWC000000096jYAA",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096jYAA"
+          },
+          "Name": "Server Type",
+          "DeveloperName": "Server_Type"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlrN2AQ",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": null,
+        "AttributeCategoryId": "0v3WC00000005ZCYAY",
+        "DefaultValue": "Production"
+      },
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000E7RYAU"
+        },
+        "Id": "0v7WC0000000E7RYAU",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "AttributeDefinitionId": "0tjWC000000096gYAA",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096gYAA"
+          },
+          "Name": "Power License Type",
+          "DeveloperName": "Power_License_Type"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlr82AA",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": null,
+        "AttributeCategoryId": "0v3WC00000005ZFYAY",
+        "DefaultValue": "Primary"
+      },
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000E7SYAU"
+        },
+        "Id": "0v7WC0000000E7SYAU",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "AttributeDefinitionId": "0tjWC000000096jYAA",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096jYAA"
+          },
+          "Name": "Server Type",
+          "DeveloperName": "Server_Type"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlr92AA",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": null,
+        "AttributeCategoryId": "0v3WC00000005ZCYAY",
+        "DefaultValue": "Production"
+      },
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000E7TYAU"
+        },
+        "Id": "0v7WC0000000E7TYAU",
+        "Product2Id": "01tWC00000DD11cYAD",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler"
+        },
+        "AttributeDefinitionId": "0tjWC000000096aYAA",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096aYAA"
+          },
+          "Name": "Group Number",
+          "DeveloperName": "Group_Number"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlrA2AQ",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": null,
+        "AttributeCategoryId": "0v3WC00000005ZFYAY",
+        "DefaultValue": "Group 100"
+      },
+      {
+        "attributes": {
+          "type": "ProductAttributeDefinition",
+          "url": "/services/data/v67.0/sobjects/ProductAttributeDefinition/0v7WC0000000RkGYAU"
+        },
+        "Id": "0v7WC0000000RkGYAU",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence"
+        },
+        "AttributeDefinitionId": "0tjWC000000096kYAA",
+        "AttributeDefinition": {
+          "attributes": {
+            "type": "AttributeDefinition",
+            "url": "/services/data/v67.0/sobjects/AttributeDefinition/0tjWC000000096kYAA"
+          },
+          "Name": "Unit Type",
+          "DeveloperName": "Unit_Type"
+        },
+        "ProductClassificationAttributeId": "11CWC000007hlrF2AQ",
+        "IsRequired": false,
+        "IsPriceImpacting": true,
+        "IsHidden": false,
+        "IsReadOnly": false,
+        "Status": "Active",
+        "Sequence": 1,
+        "AttributeCategoryId": "0v3WC00000005ZDYAY",
+        "DefaultValue": "Per User"
+      }
+    ],
+    "totalSize": 7,
+    "done": true
+  },
+  "warnings": []
+}

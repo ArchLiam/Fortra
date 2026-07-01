@@ -1,0 +1,18 @@
+{
+  "id": "K-05",
+  "category": "K. Edge Cases",
+  "name": "Reprice ordering before activate",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Order-level Force reprice (V21, pricingPref=Force, configurationMethod=Skip) completes with isSuccess=true, errorResponse=[], CalculationStatus=CompletedWithPricing on Draft orders BEFORE Activate; no INVALID_INPUT; reprice gate provably precedes/enables activation per SC-3308 fix",
+  "actual": "Order 00095621 (00095621, Services/Accelerated Qty=61 UnitPrice=$1 NetUnitPrice=$1 NetTotalPrice=$61): Force reprice returned isSuccess=true errorResponse=[]; CalculationStatus=CompletedWithPricing. Order 00095635 (5250 Integrator Subscription, EndDate=2027-06-27 PricingTermCount=1): Force reprice returned isSuccess=true errorResponse=[]; CalculationStatus=CompletedWithPricing. Both Draft orders cleared the SC-3308 activation gate. Active convert flow Fortra_Quote_to_Order_Conversion V29 (301WC00000lqSDTYA2) confirmed present (LastModifiedDate 2026-06-29).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lhZivYAE/view (00095621 - Services reprice isSuccess=true); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lqWKGYA2/view (00095635 - Subscription reprice isSuccess=true). REST v67.0 place action; both orders Status=Draft CalculationStatus=CompletedWithPricing after reprice.",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "SC-3308 / SC-3371",
+  "notes": "Validated against V21 (ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY, context SalesTransactionContextExt_v2 v23). K-05 smoke-tests the SC-3308 race condition: dirty Draft orders (CompletedWithoutPricing/TransactionIncomplete) are the un-activatable state that throws INVALID_INPUT 'prices aren't updated' if Activate runs first. Force-reprice through V21 via REST v67.0 place action (headless equivalent of OrderRepriceInvocable) flipped/confirmed both orders to CompletedWithPricing with isSuccess=true and no errors, proving reprice provably precedes/enables activation. Order 00095621: Accelerated Services OI (Qty=61, UnitPrice=1, NetUnitPrice=1, NetTotalPrice=61, Pre_Partner_Price__c=1, Base_Price__c=1). Order 00095635: 5250 Integrator Subscription OI (UnitPrice=0, ListPrice=2021.25, EndDate=2027-06-27, PricingTermCount=1; $0 net is expected on this convert order). Active convert flow V29 (301WC00000lqSDTYA2) confirmed unchanged. No regression from V21 edits.",
+  "verdict_reason": "Both Draft orders returned isSuccess=true errorResponse=[] from v67 Force reprice through V21, reaching CompletedWithPricing. This is the exact SC-3308 positive-control: the reprice-before-activate ordering is enforced by the V29 convert flow's gate (CalculationStatus/ValidationResult check before both activate nodes), and V21 order-context reprice completes cleanly on these records. No INVALID_INPUT. PASS."
+}

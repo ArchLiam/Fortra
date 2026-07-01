@@ -1,0 +1,29 @@
+{
+ "id": "H-04",
+ "category": "H. Discounts",
+ "name": "Derived line excluded from standard manual + partner discount",
+ "priority": "P1",
+ "what_it_tests": "A derived line must be excluded from the standard Manual Quote Level Discount and standard Partner Discount steps (handled only by the derived-maintenance variants) to avoid double-discounting",
+ "proc_mechanism": "Manual Quote Level Discount and Partner Discount ((ItemIsDerived IsNull OR =false)) negative branches; derived-maintenance discount paths apply instead",
+ "expected_behavior": "Standard discount steps skip the derived line; only derived-maintenance manual/partner paths apply",
+ "test_setup": "Derived maintenance line, ItemIsDerived=true, partner deal",
+ "defect_provenance": "SC-3346 / SC-3359",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "E-02 quote (0Q0WC000003FO1u0AG) fresh V21 reprice 2026-06-30: derived maint line 0QLWC000003kbqr4AA (PIA-PIA-RNM-PIAMBK, New Maintenance, PartnerDiscountPercent=15) -> NetUnitPrice=60.35 = 71*0.85 (single 15% via Post-Procedure path), Partner_Pricing_Source__c='System Calculated (Post-Procedure)', Partner_Discount_Percent__c=15. Perpetual line 0QLWC000003kbqs4AA (PIA-PIA-NRPS-PIAP) -> NetUnitPrice=301.75 = 355*0.85 via 'System Calculated (Pre-Procedure, Percent Only)' (standard path). DOfV quote (0Q0WC000003DOfV0AW) derived maint line 0QLWC000003ib6z4AA -> NetUnitPrice=3060, Post-Procedure, single 15% discount. No double-discounting observed on any derived line.",
+  "evidence": "Force-repriced quotes 0Q0WC000003FO1u0AG and 0Q0WC000003DOfV0AW through active V21 (ESDV 9QBWC0000000oWH4AY) via /services/data/v67.0/connect/rev/sales-transaction/actions/place (isSuccess:true). Gate logic confirmed from live ESDV (LastModified 2026-06-29): ManualQuoteLevelDiscount AdvancedListFilter conditionLogic '1 AND (2 OR 3 OR 4) AND (5 OR 6)' crit5=ItemIsDerived__std IsNull OR crit6==false; PartnerDiscount AdvancedListFilter '1 AND (2 OR 3)' crit2=ItemIsDerived__std IsNull OR crit3==false; ManualDiscountDerivedMaintenance (BKM, parentStep=PartnerDiscountDerivedMaintenance); PartnerDiscountDerivedMaintenance (ListGroup seq=21). Records: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FO1u0AG/view (derived QLI 0QLWC000003kbqr4AA net 60.35 / perpetual 0QLWC000003kbqs4AA net 301.75); https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003DOfV0AW/view (derived QLI 0QLWC000003ib6z4AA net 3060).",
+  "recordIds": [
+   "0Q0WC000003FO1u0AG",
+   "0Q0WC000003DOfV0AW",
+   "0QLWC000003kbqr4AA",
+   "0QLWC000003kbqs4AA",
+   "0QLWC000003ib6z4AA"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Re-measured on 2026-06-30 against fresh V21 reprice. Numbers differ from prior run (run1: derived net 3400, perpetual net 17000) because the pricing procedure was edited in-place today changing derived pricing amounts - the ROUTING mechanism under test is unchanged. Gate logic (ItemIsDerived__std IsNull OR =false) correctly excludes derived=true lines from both standard discount steps. Partner_Pricing_Source__c='System Calculated (Post-Procedure)' on derived lines vs 'System Calculated (Pre-Proc\u2026"
+ },
+ "fixture_scripts": []
+}

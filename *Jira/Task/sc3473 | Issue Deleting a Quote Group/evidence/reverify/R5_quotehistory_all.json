@@ -1,0 +1,27 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteHistory",
+          "url": "/services/data/v67.0/sobjects/QuoteHistory/017WC000058k2d7YAA"
+        },
+        "Field": "created",
+        "OldValue": null,
+        "NewValue": null,
+        "CreatedDate": "2026-03-18T06:00:21.000+0000",
+        "CreatedBy": {
+          "attributes": {
+            "type": "Name",
+            "url": "/services/data/v67.0/sobjects/User/005a500001SfRd7AAF"
+          },
+          "Name": "German Wren"
+        }
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

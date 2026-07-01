@@ -1,0 +1,16 @@
+{
+  "id": "K-01",
+  "category": "K. Edge Cases",
+  "name": "Cancellation negative credit at asset NET (not $0)",
+  "verdict": "FAIL",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "recordIds": ["0Q0WC000003FZ3l0AG", "0QLWC000003kicD4AQ", "0Q0WC000002VENJ0A4", "0QLWC000002q2Sn4AI"],
+  "expected": "Fresh native cancel line (Qty -1, asset net 15000, CancelNetUnitPrice__c=15000) repriced under V21 -> NetUnitPrice=15000, TotalPrice/NetTotalPrice/Subtotal/TotalLineAmount=-15000, header rolls up -15000.",
+  "actual": "Fresh cancel QLI 0QLWC000003kicD4AQ (CancelNetUnitPrice__c=15000, NetUnitPrice=null): V21 Force reprice ABORTS with SF-Pricing-00006 / SF-BRE-00004 at StampBaseFilter#1; TotalPrice stays 0, NetUnitPrice null, NetTotalPrice null. Pre-seeded QLI 0QLWC000002q2Sn4AI (NetUnitPrice already 15000) reprices OK -> -15000, header -15000; only passes because StampBaseFilter NetUnitPrice>0 already true.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ3l0AG/view (fresh FAIL line 0QLWC000003kicD4AQ); contrast https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002VENJ0A4/view (pre-seeded line passes). V21 meta: Data/sc3473/v21_meta/.../Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition L116308 StampBaseFilter NetUnitPrice GreaterThan 0 (not null-safe); 0 CancelNetUnitPrice refs in V21 block (L110849-117524).",
+  "defectStep": "Stamp Base Filter (StampBaseFilter) criterion 'NetUnitPrice GreaterThan 0' not null-safe; plus the V18/V19 cancel-seed step (CancelNetUnitPrice__c -> NetUnitPrice/InputUnitPrice) is ABSENT in V20/V21",
+  "proposedFix": "Re-add the V18-era cancel seed (gate CancelNetUnitPrice__c IsNotNull AND NetUnitPrice IsNull -> NetUnitPrice+InputUnitPrice) BEFORE StampBaseFilter, AND/OR make StampBaseFilter criterion null-safe (e.g. NetUnitPrice IsNotNull AND NetUnitPrice>0, or add a Cancel/qty<0 bypass). NOT applied (validation only).",
+  "regression": "SC-3441",
+  "notes": "Posthook CancelLineCreditPosthook (plan Section 9) is Active but unreachable on a fresh cancel line because the procedure errors at StampBaseFilter before reaching the posthook. Memory note marked SC-3441 RESOLVED under V19, but that verification used a line whose NetUnitPrice was already seeded by a prior run; the seed step was dropped in V20. Active proc=V21 design 9QBWC0000000oWH4AY / runtime 9QMWC00000025LN4AY (confirmed Active 2026-06-29)."
+}

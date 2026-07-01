@@ -1,0 +1,15 @@
+{
+  "id": "K-04",
+  "category": "K. Edge Cases",
+  "verdict": "FAIL",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "extendedAmount == header contract amount (both net); line internally consistent OR Mule maps net-only; NO 'Contract Amount and Contract Line Amount/Revenue Amount must be equal to Submit Contract' Workday error.",
+  "actual": "Live Workday payload on Order 00095381 maps extendedAmount=3150 (=OrderItem.TotalLineAmount/LIST) vs currentContractAmount=unitCost=2835 (=NetTotalPrice/NET); mismatch 315 = the 10% discount -> Workday rejects 'Contract Amount must equal Contract Line Amount'. 8 live orders fail this exact error in last 60d (00095261/266/279/345/351/372/380/381); 77 of 500 recent OrderItems have TotalLineAmount != NetTotalPrice (incl reg=True 00095583 TLA2000/NTP500).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kML51YAG/view (00095381, Workday_Sync_Status=Failure, payload extendedAmount=3150 vs currentContractAmount=2835); line https://fortra--uat.sandbox.lightning.force.com/lightning/r/OrderItem/0000564141/view TLA=3150 NTP=2835",
+  "defectStep": "MuleSoft extendedAmount mapping (Mule-owned, not a V21 step); SF-side condition produced by V21 Discount Percent / Quantity*Price (and RegionalServicesPrice33 for regional) which legitimately leave TotalLineAmount(list) != NetTotalPrice(net) with no order-tier reconcile.",
+  "proposedFix": "Mule: map contract-line extendedAmount <- OrderItem.NetTotalPrice (== NetUnitPrice x Qty) instead of TotalLineAmount. Regression-safe: on net==list lines NetTotalPrice==TotalLineAmount (no-op). NOT applied (Mule-owned, validation only). Spec: *Jira/Task/sc3347/MIDDLEWARE_FIX_SPEC.md.",
+  "regression": "",
+  "notes": "Root cause is integration mapping, not V21 math; K-04 expected behavior allows list!=net on the line provided Mule maps net-only. V21 confirmed Active (ESDV 9QBWC0000000oWH4AY). No RegionalNetReconcile step exists in V21 (only 2 RegionalServicesPrice steps, both InputUnitPrice/LIST assigns) -> regional lines structurally list!=net (RegionalServicesPrice33: RegionalNetUnitPrice__c->InputUnitPrice). Verified V21 reprice of regional Quote 00780962 line 0QLWC000003cEjN4AU (Italy 0.64): UnitPrice=1540, NetUnitPrice=2400, TLA=NTP=2400; regional Order 00007889 line reconciled at 1540. The 00095381 case is a plain 10% discount (reg=false), proving the defect is general to any net<list line, not just regional. defect_provenance SC-3374/SC-3347/SC-3143 confirmed live; 0 orders with this error class have EVER reached Workday Success.",
+  "recordIds": ["801WC00000kML51YAG", "0000564141", "0Q0WC00000372Ef0AI", "0QLWC000003cEjN4AU", "801WC00000gVPfJYAW"]
+}

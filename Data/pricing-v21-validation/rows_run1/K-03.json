@@ -1,0 +1,15 @@
+{
+  "id": "K-03",
+  "category": "K. Edge Cases",
+  "verdict": "FAIL",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "Order Reprice-All (Force) on large orders (30+ lines, hundreds of lines) succeeds with no SOQL:101, CPU limit, or 'too many DML' governor error.",
+  "actual": "Small/mid orders pass (330/453/628 lines: isSuccess=true; SOQL 3-4/100, DML 6-9/150, rows 800-1256/10000). Large orders FAIL: 838 & 847-line reliably, 671-line intermittently -> CANNOT_EXECUTE_FLOW_TRIGGER on 'Fortra | Order | Before Insert/Update - Sync Status'; captured engine log = System.LimitException: Apex CPU time limit exceeded (error.cause=FLOW_INTERVIEW_LIMIT_EXCEEDED), Maximum CPU time 10323->14493 / 10000 ms; SOQL/DML well under limits. 2003-line hits hard RLM cap LIMIT_EXCEEDED 'Too many Order Products'.",
+  "defectStep": "Save-path before-save flow 'Fortra | Order | Before Insert/Update - Sync Status' re-fires on each RLM place-engine chunk-commit during Reprice-All; cumulative Apex CPU over 10,000ms (engine chunks OrderItem DML in 400/200 batches). Not a V21 pricing-step SOQL/DML blowup (those stay green); CPU is the binding governor.",
+  "proposedFix": "Bulk-safe the per-chunk Order before-save flow path (Sync Status fires once per engine commit, amplifying CPU); add Is_Split_Line/header-scoped fast-exit; OR raise RLM place chunk granularity / move reprice to async batched context for >~600-line orders. Mirrors SC-3447 P1 (collapse per-line flow CPU) but for reprice not convert. NOT applied (validation-only).",
+  "regression": "",
+  "recordIds": ["801WC00000hKGY0YAO", "801WC00000hJlZ5YAK", "801WC00000hJfDUYA0", "801WC00000hJpqmYAC", "801WC00000hHe9bYAC"],
+  "evidence": "Reprice FAIL order 00088127 (847 lines): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000hKGY0YAO/view ; 00085180 (838): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000hJlZ5YAK/view ; PASS 00080428 (628): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000hJpqmYAC/view ; CPU-limit log excerpt: Data/sc3447/k03_evidence/k03_reprice_cpu_limit_log_excerpt.txt (ApexLog 07LWC00000Pf38Q2AR)",
+  "notes": "Active proc Rev_Mgmt_Default_Pricing_Procedure V21 (confirmed 2026-06-29). SMOKE-TESTED via REST Force-reprice (place action, type=Order) on real UAT orders, no data created. defect_provenance SC-3366/SC-3447 are the same large-order governor family: SC-3366 fixed order-COMPLETION SOQL:101 (validator), SC-3447 fixed Power-CONVERT CPU; this REPRICE-ALL CPU path (Sync Status flow x RLM chunked saves) is a distinct, still-open manifestation. Failure is intermittent at the ~670-line CPU boundary (671 failed then passed across reruns), reliable at 838/847+, hard-capped at 2003. CPU never SOQL/DML."
+}

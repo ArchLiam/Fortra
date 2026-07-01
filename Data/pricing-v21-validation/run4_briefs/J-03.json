@@ -1,0 +1,33 @@
+{
+ "id": "J-03",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Derived renewal carries prior NetUnitPrice (no tier recompute) + reset on non-renewal",
+ "priority": "P0",
+ "what_it_tests": "A renewal derived line keeps prior NetUnitPrice in the formula instead of recomputing from tier; a non-renewal derived line resets NetUnitPrice to 0 (clearing stale) before the formula re-seeds it",
+ "proc_mechanism": "Derived Pricing Formula (IF QuoteTypeText='Renewal' then NetUnitPrice); Derived Products - Renewals; Derived Pricing - NetUnitPrice Value Reset (IF Renewal then NetUnitPrice else 0)",
+ "expected_behavior": "Renewal net = prior NetUnitPrice (tier recompute suppressed); non-renewal NetUnitPrice cleared to 0 then recomputed",
+ "test_setup": "QuoteTypeText='Renewal' derived line with prior NetUnitPrice; and a New derived line with stale NetUnitPrice",
+ "defect_provenance": "SC-3350 / SC-3346 (NetUnitPrice seed deletion)",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "RENEWAL 0QLWC000003dEW24AM (Quote 0Q0WC00000382MH0AY, QuoteTypeText=Renewal, Fortra_Product_Type=Renewal Maintenance): post-V21-reprice NetUnitPrice=67.38 HELD (prior net carried, NOT 0.20x60.64=12.13 tier; COLACalculatedPrice=65.4 at 7.85% COLA but override suppressed). GrandTotal=67.38. NON-RENEWAL 0QLWC000003kmXm4AI (Quote 0Q0WC000003Fd5l0AC, QuoteTypeText=null, Fortra_Product_Type=New Maintenance): post-V21-reprice NetUnitPrice=71 = 0.20 x 355 (tier-recomputed, reset step fired). GrandTotal=426 (355+71).",
+  "evidence": "Renewal: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC00000382MH0AY/view (QLI 0QLWC000003dEW24AM). Non-renewal: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003Fd5l0AC/view (QLI 0QLWC000003kmXm4AI). Both force-repriced via POST /services/data/v67.0/connect/rev/sales-transaction/actions/place pricingPref=Force 2026-06-30; isSuccess=true, errorResponse=[].",
+  "recordIds": [
+   "0Q0WC00000382MH0AY",
+   "0QLWC000003dEW24AM",
+   "0Q0WC000003Fd5l0AC",
+   "0QLWC000003kmXm4AI",
+   "0QLWC000003kmXl4AI",
+   "0QLWC000003kUpO4AU",
+   "0Q0WC000003FKRJ0A4"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "V21 active (design 9QBWC0000000oWH4AY, context SalesTransactionContextExt_v2 v23). Both branches of J-03 verified on LIVE data re-measured 2026-06-30. Step 41 Derived Pricing Formula (LC9): IF(QuoteTypeText__c='Renewal', NetUnitPrice, tier x base) \u2014 renewal branch holds 67.38, not tier(12.13). Step 42 Derived Pricing - NetUnitPrice Value Reset (LC10): IF(QuoteTypeText__c='Renewal', NetUnitPrice, 0) \u2014 non-renewal reset then tier-recomputed to 71. SC-3350/SC-3346 NetUnitPrice-seed-deletion did NOT\u2026"
+ },
+ "fixture_scripts": [
+  "scripts/apex/setupJ03DerivedRenewalResetTestData.compact.apex"
+ ]
+}

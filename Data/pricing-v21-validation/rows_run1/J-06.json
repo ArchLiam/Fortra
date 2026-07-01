@@ -1,0 +1,17 @@
+{
+  "id": "J-06",
+  "category": "J. Derived / Maintenance Pricing",
+  "name": "Partner discount on derived maintenance (non-renewal, applied once)",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "Derived non-renewal maint line: partner discount applied ONCE to derived net, no double discount. BoKS base=71 (0.20x355 Standard). Partner 15% -> PartnerUnitPrice=60.35=71x0.85; with a 10% manual disc carried, sequential net=60.35x0.90=54.32. Double-discount BUG would be 71x0.85x0.85=51.30.",
+  "actual": "Quote 00781287 (Channel Originated, Discount, AB Test Partner, New, not LastTransaction) after 2 fresh Force reprices (REST isSuccess=true): derived maint PIA-PIA-RNM-PIAMBK base/list=71, PartnerDiscountPercent=15, PartnerUnitPrice=60.35 (partner applied ONCE), Discount=10, committed NetUnitPrice=NetTotalPrice=54.32=60.35x0.90 (manual once). NOT 51.30 (no partner double-apply). License PIA-PIA-NRPS-PIAP net=271.575=355x0.85x0.90 consistent. Stable, no oscillation.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003DIAL0A4/view ; reprice logs Data/sc3473/j06_validation/reprice1.json,reprice2.json ; class Data/sc3473/j06_validation/unpackaged/classes/PartnerNetPricePosthook.cls",
+  "recordIds": ["0Q0WC000003DIAL0A4"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 step path confirmed: Partner Discount - Derived Maintenance gate (ItemIsDerived=true AND Deal_Type!='Fortra Originated' AND ItemPricingSource!='LastTransaction' AND QuoteTypeText!='Renewal') -> Stamp Partner Unit Price - Derived Maintenance -> PartnerNetPricePosthook. Posthook live @version 1.7 (Id 01pWC000002VmiLYAS, retrieved api v66). The applied-once logic is buildDerivedMaintenanceSequentialDiscountUpdate: partnerUnitPrice=derivedListNet*(1-partner%/100) then commercialNet=partnerUnitPrice*(1-manual%/100) -- each discount type applied exactly once, sequential, never re-stacks the same partner %. This is the SC-3346/SC-3359 double-discount fix; defect does NOT reproduce. Note the line carries a separate manual Discount=10 (software/contributor carry-forward), so net=54.32 not the partner-only 60.35; that 10% is a distinct discount applied once, consistent with the contributor license (271.575=355x0.85x0.90).",
+  "defect_provenance": "SC-3346 / SC-3359 (partner double-discount on derived maintenance; fixed in PartnerNetPricePosthook sequential-discount path, live v1.7) - not reproduced"
+}

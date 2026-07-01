@@ -1,0 +1,16 @@
+{
+  "id": "F-06",
+  "category": "F. Transaction Type",
+  "verdict": "PASS",
+  "priority": "P0",
+  "dataSource": "existing",
+  "expected": "Renewal-maint line born WITH Type=Renew QuoteAction + SourceAsset commits derived COLA net (67.38) via native DerivedProductsRenewals; line born WITHOUT (No-Change/QA-less) stays $0/stale locked, reprice cannot heal.",
+  "actual": "Control 0QLWC000003dEW24AM (RRM-PIAM, QA 7ocWC00000u7yf8YAA Type=Renew -> SourceAsset RRM 02iWC000008GKPaYAO): NetUnitPrice=NetTotalPrice=TotalLineAmount=67.38, held after Force-reprice. QA-less fossil 0QLWC000003ck6X4AQ (same derived PBE, QuoteActionId=null): Net/NetTotal/TotalLineAmount=0 after reprice though COLACalc=67.38 (locked). Gate = Renew QuoteAction is sole discriminator.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003dEW24AM/view (commits 67.38); https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003ck6X4AQ/view ($0 locked)",
+  "recordIds": ["0QLWC000003dEW24AM", "0Q0WC00000382MH0AY", "7ocWC00000u7yf8YAA", "0QLWC000003ck6X4AQ", "0Q0WC0000037XvB0AU"],
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "V21 active (skeleton confirmed 2026-06-29). F-06 born-net thesis verified both halves on real data under live Force-reprice: native committer gates on QuoteAction(Type=Renew).SourceAssetId + Asset Discovery + SalesTransactionActionType=Renew. Renew-QA present -> 67.38 born-net committed and stable; QA-less -> $0/stale, COLACalc(67.38) never lands (corrective writes no-op on settled derived QA-less node). This is the documented INTENDED architecture (SC-3346/SC-3404), not a regression; locked-$0 = expected invariant per spec. COLACalculatedPrice__c custom field churns on reprice (67.38->65.4 on control) but committed NetUnitPrice holds 67.38, confirming the field is decorative vs the engine-owned committed net.",
+  "category_v21": "Derived Maintenance Net Filter / Derived Products - Renewals (native committer); COLA Uplift on Renewal"
+}

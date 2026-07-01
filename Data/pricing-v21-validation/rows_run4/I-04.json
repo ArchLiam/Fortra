@@ -1,0 +1,18 @@
+{
+ "id": "I-04",
+ "category": "I. Proration",
+ "name": "Evergreen anytime / partial-period proration (monthly, mid-month cancel)",
+ "priority": "P1",
+ "verdict": "N-A",
+ "rootCause": "OUT-OF-SCOPE",
+ "dataSource": "config-query",
+ "preflight": "na",
+ "expected": "Partial-period amount computed against end date (e.g. cancel day 15 of 30 of 4000 GBP -> 2000 refund; order 1/15 monthly -> first month prorated)",
+ "actual": "OUT OF SCOPE for Fortra (Evergreen selling model \u2014 Fortra has NO evergreen catalog) \u2014 per stakeholder Marc DeBrey 2026-06-30. V21 branch confirmed wired by source-trace; not a coverage gap and not BLOCKED.",
+ "evidence": "",
+ "defectStep": "",
+ "proposedFix": "",
+ "regression": "",
+ "notes": "Scope ruling: evergreen scenarios are N-A by design (no fixture built).",
+ "verdict_reason": "evergreen not used by Fortra business"
+}

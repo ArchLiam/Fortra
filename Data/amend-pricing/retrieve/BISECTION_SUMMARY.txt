@@ -1,0 +1,19 @@
+AMEND PRICING REGRESSION — DATA BISECTION (read-only SOQL, FortraUAT)
+
+BOUNDARY TABLE (OriginalActionType=Amend, ordered by Quote.CreatedDate)
+QuoteId             Created           Product                          Qty  List     NetUnit  Verdict
+0Q0WC000003A3PV0A0  2026-06-16 16:24  SECURE Exchange (4 lines)        300  3125..   NULL     unpriced-draft (not bug)
+0Q0WC000003A80z0AC  2026-06-16 20:49  GoAnywhere Security Domains       15  1925     1925     GOOD
+0Q0WC000003CvaH0AS  2026-06-23 21:03  5250 Integrator                    2  2021.25  2021.25  GOOD  <-- LAST GOOD
+0Q0WC000003Cvgj0AC  2026-06-23 21:09  Additional Threat Assessments      2  10000    10000    GOOD  <-- LAST GOOD
+-------------------------- REGRESSION DEPLOYED IN THIS WINDOW: Jun 23 21:09 -> Jun 27 17:14 --------------------------
+0Q0WC000003Eb9F0AS  2026-06-27 17:14  Additional Threat Assessments      0  10000    0        BAD   <-- FIRST BAD
+0Q0WC000003Ey2b0AC  2026-06-28 18:20  5250 Integrator                    0  2021.25  0        BAD
+0Q0WC000003EzEn0AK  2026-06-28 19:29  5250 Integrator                    0  2021.25  0        BAD
+0Q0WC000003F3bl0AC  2026-06-28 23:23  Automate Enterprise                0  7000     0        BAD
+0Q0WC000003F3n30AC  2026-06-28 23:32  Automate Professional              0  4000     0        BAD
+0Q0WC000003F3yL0AS  2026-06-28 23:40  5250 Integrator                    2  2021.25  0        BAD (qty=2, unambiguous)
+0Q0WC000003F55h0AC  2026-06-29 00:41  5250 Integrator                    2  2021.25  0        BAD (qty=2; LastMod Jun29 04:27)
+0Q0WC000003FNXF0A4  2026-06-29 16:37  Advanced Authentication Modes(CAD) 2  4252.5   0        BAD (SUBJECT, qty=2)
+
+KEY: NetUnitPrice is PER-UNIT (qty-independent). Bug zeroes NetUnitPrice itself (and UnitPrice) -> not a qty=0 artifact.

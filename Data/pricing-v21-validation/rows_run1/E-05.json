@@ -1,0 +1,19 @@
+{
+  "id": "E-05",
+  "category": "E. Deal / Customer Type",
+  "name": "MSP sale - single invoice, lines grouped per end customer",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "config-query",
+  "preflight": "pass",
+  "recordIds": ["0Q0WC000003CTVx0AO", "1C9WC00000096J70AI", "a0nWC000001w61FYAQ", "0Q0WC000003FO1u0AG"],
+  "expected": "Single order/invoice to MSP/Bill-To; QuoteLineItems internally grouped per end customer via QuoteLineGroup + Hardware record; co-termed renewals keep grouping; partner pricing per MSP/billing-partner account applied to lines. V21-pricing aspect = each grouped line prices on its own product/attribute/partner/deal-type inputs (grouping is a structural rollup container, NOT a V21 pricing branch); partner-per-account discount = the Partner Discount branch.",
+  "actual": "Existing real grouped+Hardware quote 0Q0WC000003CTVx0AO (4 Powertech Authority Broker lines under QuoteLineGroup 1C9WC00000096J70AI, group references Hardware__c=a0nWC000001w61FYAQ HW-0717951, Hardware_Group_Type__c=True) Force-repriced through V21 (REST place Force, isSuccess=true, errorResponse=[]). Post-reprice all 4 grouped lines retain correct per-line pricing & grouping intact: line1 net=17463.9 (attribute-based, Base_Price__c=Pre_Partner_Price__c=17463.9), lines2-4 net=2324.15=list (Fortra Originated, no partner discount), netTotals 52391.7/11620.75/16269.05/20917.35, QuoteLineGroupId preserved. V21 122-step skeleton has ZERO grouping/MSP/invoice gating; context SalesTransactionContextExt_v2 hydrates QuoteLineGroupId/IsLineGroupRamped__std for ramp-detection only. Channel_MSP_Pricing_Discount_Approval__c is a Quote Checkbox APPROVAL field, not a V21 pricing input. The partner-pricing-per-account mechanism = Partner Discount branch = E-02 PASS (Net=List*(1-BillingPartner%)).",
+  "evidence": "Force-reprice isSuccess=true: scratchpad/reprice_e05_out.json (salesTransactionId=0Q0WC000003CTVx0AO). Grouped quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003CTVx0AO/view (4 lines net-positive under QLG 1C9WC00000096J70AI w/ Hardware__c=a0nWC000001w61FYAQ). V21 skeleton grep: no group/MSP/invoice/hardware gating fields. Context meta Data/pricing-v21-validation/d01_ctx/contextDefinitions/SalesTransactionContextExt_v2: QuoteLineGroupId hydrated for IsLineGroupRamped__std only. Partner-pricing control = E-02 (0Q0WC000003FO1u0AG, Net=List*(1-15%)).",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "CONFIG/PARITY scenario (no DML fixture per brief): the single-invoice + per-end-customer grouping + renewal co-terming are STRUCTURAL RLM features (QuoteLineGroup + Hardware__c container, Workday invoice aggregation, renewal-asset/co-term logic) that live OUTSIDE the V21 pricing procedure. V21's only contact with grouping is ramp-detection (IsLineGroupRamped__std); per-line unit/net pricing is group-agnostic. The only V21-PRICING aspect of an MSP/Channel deal = partner pricing per MSP/billing-partner account, which is the Partner Discount branch validated PASS in E-02. No 'Meridian IT' MSP account or GBP test_setup record exists, but the grouping+Hardware mechanism is proven on real USD Fortra-Originated grouped data 0Q0WC000003CTVx0AO and partner-per-account on E-02 control 0Q0WC000003FO1u0AG; currency-axis is independent (G-01 EUR catalog PASS) so the missing GBP fixture does not invalidate the V21 verdict. No headless base-seed gap: the control is a real UI-priced quote (net positive pre- and post-reprice). defect_provenance=none.",
+  "verdict_reason": "Grouped+Hardware quote Force-repriced cleanly through V21 with all 4 per-end-customer lines retaining correct individual pricing and grouping intact; V21 has no grouping/MSP/invoice pricing branch (grouping is structural), and the only V21-pricing aspect (partner-per-account discount) is E-02 PASS, so the MSP grouped-deal scenario prices as expected."
+}

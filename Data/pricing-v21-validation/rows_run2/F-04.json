@@ -1,0 +1,15 @@
+{
+  "id": "F-04",
+  "category": "F. Transaction Type",
+  "verdict": "FAIL",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "expected": "Headless renewal via Fortra_Create_Renewal_Quote must fire prehook chain (or trigger Reprice-All): all renewal QLIs get COLA'd UnitPrice, COLACalculatedPrice__c, non-zero NetUnitPrice/TotalPrice, and pipe-delimited LineItemDescription without a manual reprice.",
+  "actual": "Fresh headless renewal Quote 0Q0WC000003FcRR0A0 (2 lines, async-settled): Cobalt Strike & beSECURE both have NetUnitPrice=0, TotalPrice=0, COLACalculatedPrice__c=null, Description=null. Only the trigger ran (UnitPrice=6265.8/218.772 = Pre_COLA x1.062, Pre_COLA_Price__c & COLA_Source__c=CMDT Lookup set). Manual Force-reprice (PST API isSuccess=true) then HEALED both lines: COLACalculatedPrice 6265.8/218.77, NetUnitPrice 6265.8/218.77, TotalPrice 18797.4/656.31, Description 'Cobalt Strike | Named User | Expert' / 'beSECURE - Cloud-Based | Devices: 1-10 | One Time | Cloud Based'. Confirms prehook bypass.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcRR0A0/view ; QLIs 0QLWC000003kltR4AQ (Cobalt) 0QLWC000003kltS4AQ (beSECURE); script scripts/apex/f04_initiateRenewal.apex",
+  "defectStep": "Renewal generation path bypasses V21 entirely: COLAUpliftPrehook feeding 'COLA Uplift Net on Renewal' (step 26) / 'COLA Uplift on Renewal' (steps 27-28, COLACalculatedPrice__c->NetUnitPrice) and QLDescriptionGeneratorPrehook (registered LAST) never execute at headless generation time because Fortra_Create_Renewal_Quote does not trigger Reprice-All.",
+  "proposedFix": "Have Fortra_Create_Renewal_Quote trigger Reprice-All (Place Sales Transaction pricingPref=Force) after QLI creation, OR move COLA + description onto a post-create trigger/flow so they fire without procedure execution. NOT applied (validation only).",
+  "regression": "SC-3354/SC-3350 (COLA renewal net+COLACalculatedPrice null) + SC-3349 (renewal line description null)",
+  "recordIds": ["0Q0WC000003FcRR0A0", "0QLWC000003kltR4AQ", "0QLWC000003kltS4AQ", "7ocWC00000x4rdGYAQ", "7ocWC00000x4rdFYAQ"],
+  "notes": "Trigger COLAUpliftHandler does stamp UnitPrice/Pre_COLA_Price__c/COLA_Source__c at insert, but COLACalculatedPrice__c, NetUnitPrice, TotalPrice and Description require the prehook chain which only runs during procedure execution. Defect reproduces 100% on fresh headless renewal; Force-reprice proves root cause is the missing post-create reprice, not the V21 procedure. Active proc V21; QuoteActionId FK lag did not manifest this run (links were set), so the bypass is the procedure-context absence, not the ~35s QuoteActionId lag."
+}

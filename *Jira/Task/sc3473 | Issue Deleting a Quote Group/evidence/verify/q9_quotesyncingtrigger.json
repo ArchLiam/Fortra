@@ -1,0 +1,18 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ApexTrigger",
+          "url": "/services/data/v67.0/tooling/sobjects/ApexTrigger/01qWC000005ZrWRYA0"
+        },
+        "Name": "QuoteSyncingTrigger",
+        "Body": "/**\n * @description Trigger on Quote to initialize checklist when IsSyncing is set to true\n */\ntrigger QuoteSyncingTrigger on Quote (after update) {\n    QuoteSyncingTriggerHandler.handleAfterUpdate(Trigger.new, Trigger.oldMap);\n}"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

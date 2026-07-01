@@ -1,0 +1,35 @@
+{
+ "id": "G-01",
+ "category": "G. Multi-Currency / Regional",
+ "name": "Non-USD currency conversion of unit/net/total/subtotal",
+ "priority": "P0",
+ "what_it_tests": "A non-USD line applies its ISO-specific multiplier across net total/subtotal/total/unit (EUR 0.9346, GBP 0.7874, CAD 1.3889, AUD 1.5385, CHF 0.8850, ILS 3.6251, JPY 149.2537, NZD 1.6667, ARS 666.6667); reads currency-specific PBE",
+ "proc_mechanism": "Currency Conversion - Net Total / Subtotal / Net Unit Price / Total Line Amount / Unit Price Display (nested IF on STICurrencyIsoCode); currency-matched PricebookEntry; CURRENCYRATE() CMDT",
+ "expected_behavior": "All currency outputs scaled by the per-ISO multiplier; order/invoice/Workday GL in that currency",
+ "test_setup": "STICurrencyIsoCode='EUR' (and one line per other ISO), Software, Qty=2; European customer Fortra International GmbH list 100k EUR",
+ "defect_provenance": "SC-3384",
+ "prior_run": {
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "actual": "AAM Software EUR qty1 (line 0QLWC000003kmG14AI, Quote 00781564) after Force-reprice: ListPrice=2943.99, NetUnitPrice=NetTotalPrice=Subtotal=1471.995 (=1575x0.9346, CORRECT once). BUT UnitPrice=1375.726527 (=1471.995x0.9346, DOUBLE-applied).",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kmG14AI/view (Quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcrF0AS/view #00781564). USD baseline AAM line net=1575 list=3150. V21 formulas: Data/sc3473/v21_active.json steps[35-38].",
+  "recordIds": [
+   "0QLWC000003kmG14AI",
+   "0Q0WC000003FcrF0AS",
+   "01tWC00000DD11YYAT",
+   "01uWC000005wywxYAA"
+  ],
+  "defectStep": "Currency Conversion - Unit Price Display (V21 step 36, seq 36): InputUnitPrice * IF(STICurrencyIsoCode='EUR',0.9346,...)",
+  "regression": "SC-3384",
+  "rootCause": null,
+  "notes": "Defect isolated to AAM (01tWC00000DD11YYAT) which nets correctly in USD/EUR. The catalog's nominal Cobalt Strike fixture (01tWC00000DD2SlYAL) nets to 0 in BOTH USD and EUR (product/ABA config gap, not currency) so it cannot exercise the currency steps; used a Software product that nets. V21 Currency Conversion steps unconditionally multiply Net/NetTotal/TLA/InputUnit by the per-ISO multiplier with NO once-only guard; EUR PBE list is pre-converted (2943.99=3150x0.9346) and net is currency-blind USD value x0.9346 - net/total/subtotal land correctly, unit display is the only double-apply surface.\u2026",
+  "from": "run2"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

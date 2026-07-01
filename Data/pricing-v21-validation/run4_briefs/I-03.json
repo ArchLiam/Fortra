@@ -1,0 +1,32 @@
+{
+ "id": "I-03",
+ "category": "I. Proration",
+ "name": "Mid-term Term-Defined proration (fractional PTC)",
+ "priority": "P1",
+ "what_it_tests": "A TermDefined line with a mid-period start (ServiceDate/EffectiveFrom != subscription start) must prorate the period and compute a fractional PricingTermCount, pricing net proportionally; the TermDefined gate on the Proration action is currently missing",
+ "proc_mechanism": "Proration action (EffectiveFrom/To -> ProrationMultiplier -> PricingTermCount); TermDefined gate to be re-added; StartProrationPeriod handling",
+ "expected_behavior": "Mid-term sale of an annual subscription computes fractional PricingTermCount (e.g. 0.5 for 6 months); net prorated; add/remove seats charged/refunded prorata",
+ "test_setup": "TermDefined line, EffectiveFrom=mid-year, SubscriptionTerm=12 Months, Anniversary; or add 100 users 6mo into 12mo term -> 6/12 x annual",
+ "defect_provenance": "SC-3420 / SC-3411",
+ "run3_result": {
+  "verdict": "BLOCKED",
+  "rootCause": "TEST-DATA-ARTIFACT",
+  "dataSource": "existing",
+  "actual": "REFUTED on active V21 (label 'Rev Mgmt Default Pricing V21', versionNumber 21, Status=Active, design 9QAWC0000003mg14AA). Three Force-reprices via v67.0 REST all isSuccess=true. (1) Executor defectStep is metadata-false: V21 DOES contain a TermDefined net-proration multiply leg. Step SubscriptionPricing95 (parentStep=ListContainer93, gated by filter ListOperation94 SellingModelType IN ('TermDefined','Evergreen')) takes ProrationMultiplier=PricingTermCount and computes NetUnitPrice*Quantity*PricingTermCount -> TotalLineAmount. (2) Executor measured the wrong field: TermDefined leg writes TotalLineAmount, NetTotalPrice is mapped from ItemNetTotalPrice (Evergreen leg). (3) Cited proof line 0QLWC0000034VY94AM (claimed NetTotalPrice=3170.71) is stale: fresh v67 reprice now NetUnit=904.48 NetTot=904.48; 3170.71 survives only in TotalLineAmount V21 did not refresh. (4) DISPOSITIVE: identical si\u2026",
+  "evidence": "Active V21 body Data/pricing-v21-validation/proc_retrieve/unpackaged/expressionSetDefinition/Rev_Mgmt_Default_Pricing_Procedure.expressionSetDefinition (V21 block lines 110850-117571): SubscriptionPricing95 parentStep=ListContainer93 ProrationMultiplier=PricingTermCount -> TotalLineAmount; filter ListOperation94 = SellingModelType IN ('TermDefined','Evergreen'). Fresh v67.0 reprices 2026-06-30 isSuccess=true on 0Q0WC0000026xqf0AA, 0Q0WC000002DWNV0A4, 0Q0WC000002iMYL0A2. Identical-sibling inconsistency: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC0000034VY94AM/view (NetTot=904.48 TotLineAmt=3170.71) vs https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC0000034VbN4AU/view (NetTot=3465 TotLineAmt=3465). Defect lines: 0QLWC000002LCwH4AW (NetTot=750 TotLineAmt=750 PTC=0.7397 SubTerm=1); 0QLWC000002SYdV4AW (NetTot=250 TotLineAmt=250 PTC=0.9616 SubTerm=1). All four real UI-built (Greg Schweitzer / Cindy Whalen / Joe Romo).",
+  "recordIds": [
+   "0Q0WC0000026xqf0AA",
+   "0Q0WC000002DWNV0A4",
+   "0Q0WC000002iMYL0A2",
+   "0QLWC0000034VY94AM",
+   "0QLWC0000034VbN4AU",
+   "0QLWC000002LCwH4AW",
+   "0QLWC000002SYdV4AW",
+   "0QLWC000003kaUz4AI"
+  ],
+  "defectStep": "N/A -- the step the executor claimed was missing (TermDefined net-proration multiply) exists as SubscriptionPricing95 / ListContainer93 in active V21.",
+  "proposedFix": "None as diagnosed. Re-test with a FRESH UI 'Add Products' mid-term TermDefined line, reprice once, measure TotalLineAmount (not NetTotalPrice). Current evidence (stale proof, non-deterministic identical-line results, wrong field measured, persisted-not-derived PTC) cannot support a PROCEDURE-DEFECT.",
+  "notes": "Adversarial re-verification 2026-06-30 vs -o FortraUAT (liam.jeong.c@fortra.com.uat) v67.0. Fails the 'branch ran on valid inputs AND V21 still produces the wrong number on fresh re-measure' bar: cited proof is stale, identical lines price differently, wrong field measured, diagnosed missing step exists. Per METHOD_BRIEF: cannot prove data valid => BLOCKED, never FAIL. Verdict FAIL->BLOCKED; rootCause PROCEDURE-DEFECT->TEST-DATA-ARTIFACT; confirmed=false. No proc/flow/metadata edits; one test-da\u2026"
+ },
+ "fixture_scripts": []
+}

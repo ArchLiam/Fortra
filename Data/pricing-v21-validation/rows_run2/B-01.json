@@ -1,0 +1,15 @@
+{
+  "id": "B-01",
+  "category": "B. Selling Model",
+  "priority": "P0",
+  "verdict": "PASS",
+  "dataSource": "new-script",
+  "expected": "One-Time/Perpetual line: PricingTermCount stamped to one-time constant; single-term price NetTotalPrice=NetUnitPrice*Qty*1; NetUnitPrice from PBE list (2200), no zeroing.",
+  "actual": "Fresh quote 00781543, Abstract OneTime Qty=2 list 2200. Force-reprice (CompletedWithPricing): NetUnitPrice=2200, NetTotalPrice=4400=2200*2, Subtotal=4400, Quote TotalPrice=4400, SellingModelType=OneTime. PricingTermCount=0 (not 1) - V21 OneTimePricingTermCountConstant=0 by design; price uses separate PricingTermCountValueOneConstant=1 so total NOT zeroed.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FcG90AK/view ; QLI 0QLWC000003kli94AA ; control quote 0Q0WC000003FN970AG OneTime lines also PTC=0 correct totals; ESD OneTimePricingTermCountConstant value=0",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "recordIds": ["0Q0WC000003FcG90AK", "0QLWC000003kli94AA"],
+  "notes": "PricingTermCount field=0 deviates from catalog literal 'PricingTermCount=1' but is by-design: live V21 ESD declares OneTimePricingTermCountConstant=<value>0</value> (Assignment writer); a one-time charge has no recurring term. Price total correct because OneTime Subscription Pricing branch multiplies by separate PricingTermCountValueOneConstant=1. Reproduced on catalog control quote 0Q0WC000003FN970AG (both OneTime lines PTC=0, totals correct) - steady-state norm, not a regression. Consistent with SC-3420/SC-3415 finding that OneTime PTC writer (Assignment68) survived V12 rebuild and is functioning. Asset.IsSubscription=false/full-revenue is convert-tier, not quote-smoke-testable. Catalog expected_behavior text 'PricingTermCount=1' is an over-specification vs the OneTime constant. Fixture script scripts/apex/setupB01OneTimePtcTestData.compact.apex."
+}

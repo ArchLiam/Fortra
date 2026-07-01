@@ -1,0 +1,118 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Vd0AI"
+        },
+        "Id": "1C9WC00000092Vd0AI",
+        "Name": "Test Hardware",
+        "QuoteId": "0Q0WC0000027oGf0AI",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096Sn0AI"
+        },
+        "Id": "1C9WC00000096Sn0AI",
+        "Name": "test partitions",
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097K10AI"
+        },
+        "Id": "1C9WC00000097K10AI",
+        "Name": "JACTestHardware20260624a",
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Hardware_Group_Type__c": true,
+        "Hardware__c": "a0nWC000001wRP3YAM",
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Hardware_Group_Type__c": true,
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+        },
+        "Id": "1C9WC00000090SD0AY",
+        "Name": "HW-1",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090Tp0AI"
+        },
+        "Id": "1C9WC00000090Tp0AI",
+        "Name": "HW-2",
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092x30AA"
+        },
+        "Id": "1C9WC00000092x30AA",
+        "Name": "Test Hardware",
+        "QuoteId": "0Q0WC0000038GFZ0A2",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095lF0AQ"
+        },
+        "Id": "1C9WC00000095lF0AQ",
+        "Name": "Group",
+        "QuoteId": "0Q0WC0000039E8T0AU",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": "Test"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095gP0AQ"
+        },
+        "Id": "1C9WC00000095gP0AQ",
+        "Name": "Test",
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Hardware_Group_Type__c": false,
+        "Hardware__c": null,
+        "Hardware_Notes__c": null
+      }
+    ],
+    "totalSize": 9,
+    "done": true
+  },
+  "warnings": []
+}

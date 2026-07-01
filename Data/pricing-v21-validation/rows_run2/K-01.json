@@ -1,0 +1,17 @@
+{
+  "id": "K-01",
+  "category": "K. Edge Cases",
+  "verdict": "FAIL",
+  "dataSource": "existing",
+  "priority": "P0",
+  "expected": "Fresh cancel line Qty=-1, asset list=net=15000 no discount: NetUnitPrice=15000, TotalPrice=NetUnitPrice x -1 = -15000, quote header Subtotal/TotalPrice roll up -15000 credit.",
+  "actual": "Force-reprice ERRORS at StampBaseFilter#1 (SF-Pricing-00006 / SF-BRE-00004). Both fresh cancel QLIs stay NetUnitPrice=null, TotalPrice=0, Subtotal=0 (NOT -15000). Quote headers CalculationStatus=PriceCalculationFailed. Reproduced on 2 independent fresh quotes.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ290AG/view (QLI 0QLWC000003kiab4AA) ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FZ3l0AG/view (QLI 0QLWC000003kicD4AQ) ; V21 meta Data/sc3473/v21_check",
+  "recordIds": ["0Q0WC000003FZ290AG", "0QLWC000003kiab4AA", "0Q0WC000003FZ3l0AG", "0QLWC000003kicD4AQ"],
+  "defectStep": "StampBaseFilter (parent StampContributorBasePreDiscount): criterion #5 NetUnitPrice GreaterThan 0 is not null-safe; condition logic (1 OR 2) AND 3 AND 4 AND 5 has no IsNull guard on NetUnitPrice. A fresh cancel line has NetUnitPrice=null so the rules engine cannot evaluate GreaterThan -> SF-BRE-00004, aborting the whole reprice before CancelLineCreditPosthook can seed the credit.",
+  "regression": "SC-3441",
+  "proposedFix": "NOT applied. Null-guard StampBaseFilter so cancel lines pass: change crit #5 to (NetUnitPrice IsNull OR NetUnitPrice > 0), or seed NetUnitPrice from CancelNetUnitPrice__c in an early V21 ListGroup BEFORE StampBaseFilter so it is non-null at that step. Posthook alone cannot bootstrap a fresh line because the reprice errors out first.",
+  "defect_provenance": "SC-3441 - cancellation TotalPrice=0; posthook fix (2026-06-27) only credits lines whose NetUnitPrice is already non-null; durability/bootstrap gap on a fresh cancel line re-manifests on V21.",
+  "proc_mechanism": "CancelNetUnitPrice__c seed + CancelLineCreditPosthook writing QLI field-API attrs (NetUnitPrice/TotalPrice/Subtotal/NetTotalPrice/TotalLineAmount).",
+  "notes": "K-08 derived-cancel quote 0Q0WC000003FbLh0AK got -71 and prior 0Q0WC000003EQtl0AG got -15000 ONLY because their NetUnitPrice was already non-null (71 / 15000) so they cleared StampBaseFilter. Active runtime + design = Rev_Mgmt_Default_Pricing_Procedure V21 sole-active (ExpressionSetVersion 9QMWC00000025LN4AY). CancelLineCreditPosthook class 01pWC000002awnVYAQ present/api65."
+}

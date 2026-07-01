@@ -1,0 +1,48 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou4H4AQ"
+        },
+        "Id": "0QLWC000002ou4H4AQ",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "PricebookEntryId": "01uWC000004dTDyYAM",
+        "NetUnitPrice": 20000,
+        "ListPrice": 20000,
+        "NetTotalPrice": 20000,
+        "TotalPrice": 20000,
+        "Quantity": 1,
+        "PricingTermCount": 1,
+        "PeriodBoundary": "Anniversary",
+        "StartDate": "2026-03-18",
+        "EndDate": "2027-03-17"
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou5t4AA"
+        },
+        "Id": "0QLWC000002ou5t4AA",
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "PricebookEntryId": "01uWC000004dTDyYAM",
+        "NetUnitPrice": 20000,
+        "ListPrice": 20000,
+        "NetTotalPrice": 20000,
+        "TotalPrice": 20000,
+        "Quantity": 1,
+        "PricingTermCount": 1,
+        "PeriodBoundary": "Anniversary",
+        "StartDate": "2026-03-18",
+        "EndDate": "2027-03-17"
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,21 @@
+{
+  "hypothesis": "H2-context-hydration-mapping-gap",
+  "active_context": {"def":"SalesTransactionContextExt_v2 11OWC000002m21Z2AQ","version":"V23 11pWC000002TjF7YAK ACTIVE only-version","nodes":45,"contextMappings":14,"hydrationDetails":1233},
+  "active_procedure": {"name":"Rev_Mgmt_Default_Pricing_Procedure label 'Rev Mgmt Default Pricing V16'","active_version":"V15 (status Active, startDate 2026-06-18)","total_versions":20},
+  "surviving_lines": [
+    {"id":"0QLWC000002ou4H4AQ","prod":"01tWC00000DD1mNYAT SUSPIN","psm":"0jPWC000000060b2AA TermDefined-Annual","pbe":"01uWC000004dTDyYAM active","psmo":"0iOWC0000000RRM2A2 present","grp":null,"PTC":1,"Net":20000,"Base_Price__c":20000,"AllowRegional":false},
+    {"id":"0QLWC000002ou5t4AA","same_as_above":true}
+  ],
+  "custom_field_node_symmetry": {
+    "Base_Price__c":"QLI+OrderItem (symmetric, populated 20000)",
+    "COLACalculatedPrice__c":"QLI+OrderItem (symmetric, null but renewal-gated)",
+    "Pre_Partner_Price__c":"QLI+OrderItem (symmetric, populated 20000)",
+    "CancelNetUnitPrice__c":"QLI+OrderItem (symmetric, null but cancel-gated)",
+    "RegionalNetUnitPrice__c":"OrderItem ONLY -- ASYMMETRIC, field does NOT exist on QuoteLineItem",
+    "AllowRegionalPricing__c":"field does NOT exist on QuoteLineItem either"
+  },
+  "regional_gate": "RegionalServicesPrice step (references RegionalNetUnitPrice__c) is filtered by AllowRegionalPricing__c=true; Allow_Regional_Pricing__c=FALSE on all 3 products on the quote => step does NOT execute for surviving lines",
+  "group_aggregate": "AggregatePrice105 seq38 groups by SalesTransactionItemGroup with condition-0 SalesTransactionItemGroup isNotNull => ungrouped surviving lines excluded; group/orderitemgroup hydration fully symmetric (25/25)",
+  "missionE_discriminator": "unique failing intersection = OneTime+TermDefined SM MIX inside ONE priced HW group; closest non-failing 96J70AI identical except single-SM(all TermDefined) & not mixed",
+  "conclusion": "No QLI-side context-hydration gap is reachable for the surviving lines. The one asymmetric attribute (RegionalNetUnitPrice__c) is gated off. Specificity (SM-mix) is not explained by a generic context-mapping gap."
+}

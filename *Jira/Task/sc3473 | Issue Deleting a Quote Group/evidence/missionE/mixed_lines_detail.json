@@ -1,0 +1,1141 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dRkz4AE"
+        },
+        "QuoteId": "0Q0WC0000027oGf0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027oGf0AI"
+          },
+          "Status": "In Review"
+        },
+        "Id": "0QLWC000003dRkz4AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000E5JwVYAV"
+          },
+          "Name": "10 Languages and 50 Courses Included",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000E5JwVYAV",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000092Vd0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Vd0AI"
+          },
+          "Name": "Test Hardware"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 0,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dRug4AE"
+        },
+        "QuoteId": "0Q0WC0000027oGf0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027oGf0AI"
+          },
+          "Status": "In Review"
+        },
+        "Id": "0QLWC000003dRug4AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000E5JwVYAV"
+          },
+          "Name": "10 Languages and 50 Courses Included",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000E5JwVYAV",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000092Vd0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Vd0AI"
+          },
+          "Name": "Test Hardware"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 0,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002MBgP4AW"
+        },
+        "QuoteId": "0Q0WC0000027oGf0AI",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000027oGf0AI"
+          },
+          "Status": "In Review"
+        },
+        "Id": "0QLWC000002MBgP4AW",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC000009oPyxYAE"
+          },
+          "Name": "Unlimited Classification",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC000009oPyxYAE",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 92,
+        "ListPrice": 250,
+        "TotalPrice": 92,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iwHt4AI"
+        },
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+          },
+          "Status": "Denied"
+        },
+        "Id": "0QLWC000003iwHt4AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1YkYAL"
+          },
+          "Name": "Robot Console",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD1YkYAL",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": "1C9WC00000096Sn0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096Sn0AI"
+          },
+          "Name": "test partitions"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 7604.56,
+        "TotalPrice": 0,
+        "Quantity": 3
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003i7Gz4AI"
+        },
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+          },
+          "Status": "Denied"
+        },
+        "Id": "0QLWC000003i7Gz4AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1YwYAL"
+          },
+          "Name": "Robot Monitor - AIX",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD1YwYAL",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 1610,
+        "ListPrice": 2447.2,
+        "TotalPrice": 3220,
+        "Quantity": 2
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003i7Dl4AI"
+        },
+        "QuoteId": "0Q0WC000002Ly1d0AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Ly1d0AC"
+          },
+          "Status": "Denied"
+        },
+        "Id": "0QLWC000003i7Dl4AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1ZSYA1"
+          },
+          "Name": "Robot Schedule Enterprise Agent",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD1ZSYA1",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 207.9,
+        "ListPrice": 316.01,
+        "TotalPrice": 41580,
+        "Quantity": 200
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1"
+        },
+        "NetUnitPrice": 29060,
+        "ListPrice": 2850,
+        "TotalPrice": 29060,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11GYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1"
+        },
+        "NetUnitPrice": 4356,
+        "ListPrice": 46,
+        "TotalPrice": 4356,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou4H4AQ"
+        },
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000002ou4H4AQ",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 20000,
+        "ListPrice": 20000,
+        "TotalPrice": 20000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ou5t4AA"
+        },
+        "QuoteId": "0Q0WC000002U2020AC",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000002ou5t4AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1mNYAT"
+          },
+          "Name": "Suspicious Email Intelligence",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD1mNYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 20000,
+        "ListPrice": 20000,
+        "TotalPrice": 20000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZS94AM"
+        },
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Id": "0QLWC000003aZS94AM",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "NetUnitPrice": 2850,
+        "ListPrice": 2850,
+        "TotalPrice": 2850,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZNJ4A2"
+        },
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Id": "0QLWC000003aZNJ4A2",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "NetUnitPrice": 2850,
+        "ListPrice": 2850,
+        "TotalPrice": 2850,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZWz4AM"
+        },
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Id": "0QLWC000003aZWz4AM",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11eYAD",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "NetUnitPrice": 1568,
+        "ListPrice": 1568,
+        "TotalPrice": 1568,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aZYb4AM"
+        },
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Id": "0QLWC000003aZYb4AM",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11eYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11eYAD",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000090SD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090SD0AY"
+          },
+          "Name": "HW-1"
+        },
+        "NetUnitPrice": 1568,
+        "ListPrice": 1568,
+        "TotalPrice": 1568,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aYvt4AE"
+        },
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Id": "0QLWC000003aYvt4AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 2707.5,
+        "ListPrice": 2850,
+        "TotalPrice": 2707.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aVDG4A2"
+        },
+        "QuoteId": "0Q0WC0000035N0f0AE",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000035N0f0AE"
+          },
+          "Status": "Ordered"
+        },
+        "Id": "0QLWC000003aVDG4A2",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11cYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 2707.5,
+        "ListPrice": 2850,
+        "TotalPrice": 2707.5,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dSAo4AM"
+        },
+        "QuoteId": "0Q0WC0000038GFZ0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038GFZ0A2"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003dSAo4AM",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000E5JwVYAV"
+          },
+          "Name": "10 Languages and 50 Courses Included",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000E5JwVYAV",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000092x30AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092x30AA"
+          },
+          "Name": "Test Hardware"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 0,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dSAp4AM"
+        },
+        "QuoteId": "0Q0WC0000038GFZ0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038GFZ0A2"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003dSAp4AM",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000E5JwVYAV"
+          },
+          "Name": "10 Languages and 50 Courses Included",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000E5JwVYAV",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000092x30AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092x30AA"
+          },
+          "Name": "Test Hardware"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 0,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003dSAn4AM"
+        },
+        "QuoteId": "0Q0WC0000038GFZ0A2",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000038GFZ0A2"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003dSAn4AM",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC000009oPyxYAE"
+          },
+          "Name": "Unlimited Classification",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC000009oPyxYAE",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 0,
+        "ListPrice": 250,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003fy9l4AA"
+        },
+        "QuoteId": "0Q0WC0000039E8T0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039E8T0AU"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000003fy9l4AA",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "Name": "Active Defense BEC Threat Intelligence Service",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11JYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000095lF0AQ",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095lF0AQ"
+          },
+          "Name": "Group"
+        },
+        "NetUnitPrice": 94000,
+        "ListPrice": 94000,
+        "TotalPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003eQeo4AE"
+        },
+        "QuoteId": "0Q0WC0000039E8T0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039E8T0AU"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000003eQeo4AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11JYAT"
+          },
+          "Name": "Active Defense BEC Threat Intelligence Service",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11JYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 94000,
+        "ListPrice": 94000,
+        "TotalPrice": 94000,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003eQen4AE"
+        },
+        "QuoteId": "0Q0WC0000039E8T0AU",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039E8T0AU"
+          },
+          "Status": "Accepted"
+        },
+        "Id": "0QLWC000003eQen4AE",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11LYAT"
+          },
+          "Name": "Active Threat Sweep - Per Windows Device",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11LYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 9,
+        "ListPrice": 9,
+        "TotalPrice": 45,
+        "Quantity": 5
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003hcLF4AY"
+        },
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003hcLF4AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17cYAD"
+          },
+          "Name": "Cobalt Strike",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD17cYAD",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": "1C9WC00000095gP0AQ",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000095gP0AQ"
+          },
+          "Name": "Test"
+        },
+        "NetUnitPrice": 0,
+        "ListPrice": 5428,
+        "TotalPrice": 0,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003fnB74AI"
+        },
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003fnB74AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD15FYAT"
+          },
+          "Name": "beSECURE - Premise-Based",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD15FYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 758.08,
+        "ListPrice": 758.08,
+        "TotalPrice": 758.08,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003fnB84AI"
+        },
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003fnB84AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11YYAT"
+          },
+          "Name": "Advanced Authentication Modes",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD11YYAT",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 2898,
+        "ListPrice": 2898,
+        "TotalPrice": 2898,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003fnBA4AY"
+        },
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003fnBA4AY",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17PYAT"
+          },
+          "Name": "Click and Launch Security Awareness Training - All Star",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD17PYAT",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "SellingModelType": "TermDefined",
+          "Name": "Term Based - Annual"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 1357.2,
+        "ListPrice": 2005.6,
+        "TotalPrice": 1357.2,
+        "Quantity": 1
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003fnB94AI"
+        },
+        "QuoteId": "0Q0WC000003AaoT0AS",
+        "Quote": {
+          "attributes": {
+            "type": "Quote",
+            "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003AaoT0AS"
+          },
+          "Status": "Draft"
+        },
+        "Id": "0QLWC000003fnB94AI",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1qnYAD"
+          },
+          "Name": "VM Analyst",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Product2Id": "01tWC00000DD1qnYAD",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "SellingModelType": "OneTime",
+          "Name": "One Time"
+        },
+        "QuoteLineGroupId": null,
+        "QuoteLineGroup": null,
+        "NetUnitPrice": 460,
+        "ListPrice": 460,
+        "TotalPrice": 460,
+        "Quantity": 1
+      }
+    ],
+    "totalSize": 27,
+    "done": true
+  },
+  "warnings": []
+}

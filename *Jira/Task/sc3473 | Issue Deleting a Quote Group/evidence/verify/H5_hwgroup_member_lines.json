@@ -1,0 +1,934 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002VRh74AG"
+        },
+        "Id": "0QLWC000002VRh74AG",
+        "QuoteLineGroupId": "1C9WC0000004DUv0AM",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000004DUv0AM"
+          },
+          "Name": "MTC-0183 Testing Hardware",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002GV1t0AG"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002WdUv4AK"
+        },
+        "Id": "0QLWC000002WdUv4AK",
+        "QuoteLineGroupId": "1C9WC0000004LHB0A2",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000004LHB0A2"
+          },
+          "Name": "UAT Split Test HW",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002Hj9F0AS"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002aiNx4AI"
+        },
+        "Id": "0QLWC000002aiNx4AI",
+        "QuoteLineGroupId": "1C9WC0000004p8n0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000004p8n0AA"
+          },
+          "Name": "MTC-0183 Test HW",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002LSHt0AO"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ef054AA"
+        },
+        "Id": "0QLWC000002ef054AA",
+        "QuoteLineGroupId": "1C9WC0000005EOv0AM",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000005EOv0AM"
+          },
+          "Name": "UAT Split Test HW",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002PIrp0AG"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002ru9N4AQ"
+        },
+        "Id": "0QLWC000002ru9N4AQ",
+        "QuoteLineGroupId": "1C9WC0000005r250AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000005r250AA"
+          },
+          "Name": "UAT Split Test",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002X1fJ0AS"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002wsJp4AI"
+        },
+        "Id": "0QLWC000002wsJp4AI",
+        "QuoteLineGroupId": "1C9WC0000006OXV0A2",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000006OXV0A2"
+          },
+          "Name": "UAT Split Test HW",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002c1px0AA"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000002yCoL4AU"
+        },
+        "Id": "0QLWC000002yCoL4AU",
+        "QuoteLineGroupId": "1C9WC0000006XCb0AM",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000006XCb0AM"
+          },
+          "Name": "UAT Split Test HW",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002dN6r0AE"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": null,
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000036GI54AM"
+        },
+        "Id": "0QLWC0000036GI54AM",
+        "QuoteLineGroupId": "1C9WC00000077ZR0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000077ZR0AY"
+          },
+          "Name": "Hardware Record",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002k8330AA"
+            },
+            "Status": "Draft"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001ngvBYAQ",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC0000037nrt4AA"
+        },
+        "Id": "0QLWC0000037nrt4AA",
+        "QuoteLineGroupId": "1C9WC0000007Gsr0AE",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC0000007Gsr0AE"
+          },
+          "Name": "UAT Split HW Test",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002lh3Z0AQ"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001oC5RYAU",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003aBCv4AM"
+        },
+        "Id": "0QLWC000003aBCv4AM",
+        "QuoteLineGroupId": "1C9WC00000090IX0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000090IX0AY"
+          },
+          "Name": "New Hardware Record",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000034yyL0AQ"
+            },
+            "Status": "Draft"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD119YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001taQTYAY",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003bnOD4AY"
+        },
+        "Id": "0QLWC000003bnOD4AY",
+        "QuoteLineGroupId": "1C9WC00000091GD0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000091GD0AY"
+          },
+          "Name": "Joe Test",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000036YIF0A2"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1cUYAT"
+          },
+          "Name": "Powertech SIEM Agent for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001u0KvYAI",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003daDB4AY"
+        },
+        "Id": "0QLWC000003daDB4AY",
+        "QuoteLineGroupId": "1C9WC00000092Qn0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Qn0AI"
+          },
+          "Name": "Test Hardware",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000024QnZ0AU"
+            },
+            "Status": "Draft"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD17hYAD"
+          },
+          "Name": "CSCO I & II Course",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001uZvNYAU",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003daDC4AY"
+        },
+        "Id": "0QLWC000003daDC4AY",
+        "QuoteLineGroupId": "1C9WC00000092Qn0AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000092Qn0AI"
+          },
+          "Name": "Test Hardware",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000024QnZ0AU"
+            },
+            "Status": "Draft"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000E5JwVYAV"
+          },
+          "Name": "10 Languages and 50 Courses Included",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001uZvNYAU",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003eN4D4AU"
+        },
+        "Id": "0QLWC000003eN4D4AU",
+        "QuoteLineGroupId": "1C9WC00000093WX0AY",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000093WX0AY"
+          },
+          "Name": "UAT Split Test HW",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC0000039Ab70AE"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD117YAD"
+          },
+          "Name": "5250 Integrator",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001utPRYAY",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003hg5W4AQ"
+        },
+        "Id": "0QLWC000003hg5W4AQ",
+        "QuoteLineGroupId": "1C9WC00000096J70AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096J70AI"
+          },
+          "Name": "06/22 HW-1.2 Group",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003CTVx0AO"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1aoYAD"
+          },
+          "Name": "Powertech Authority Broker for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001w61FYAQ",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003hhG54AI"
+        },
+        "Id": "0QLWC000003hhG54AI",
+        "QuoteLineGroupId": "1C9WC00000096J70AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096J70AI"
+          },
+          "Name": "06/22 HW-1.2 Group",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003CTVx0AO"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1aoYAD"
+          },
+          "Name": "Powertech Authority Broker for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001w61FYAQ",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003i0KM4AY"
+        },
+        "Id": "0QLWC000003i0KM4AY",
+        "QuoteLineGroupId": "1C9WC00000096J70AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096J70AI"
+          },
+          "Name": "06/22 HW-1.2 Group",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003CTVx0AO"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1aoYAD"
+          },
+          "Name": "Powertech Authority Broker for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001w61FYAQ",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003i13V4AQ"
+        },
+        "Id": "0QLWC000003i13V4AQ",
+        "QuoteLineGroupId": "1C9WC00000096J70AI",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096J70AI"
+          },
+          "Name": "06/22 HW-1.2 Group",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003CTVx0AO"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1aoYAD"
+          },
+          "Name": "Powertech Authority Broker for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001w61FYAQ",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iSlF4AU"
+        },
+        "Id": "0QLWC000003iSlF4AU",
+        "QuoteLineGroupId": "1C9WC00000096fh0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096fh0AA"
+          },
+          "Name": "06/24 hw -1",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003DGGX0A4"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1aoYAD"
+          },
+          "Name": "Powertech Authority Broker for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001wIwrYAE",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iU774AE"
+        },
+        "Id": "0QLWC000003iU774AE",
+        "QuoteLineGroupId": "1C9WC00000096iv0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000096iv0AA"
+          },
+          "Name": "06/24 hw3",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000003DHXZ0A4"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1aoYAD"
+          },
+          "Name": "Powertech Authority Broker for IBM i",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001wJ9lYAE",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN6n4AE"
+        },
+        "Id": "0QLWC000003jN6n4AE",
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11cYAD"
+          },
+          "Name": "Advanced Job Scheduler",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "ProductSellingModelId": "0jPWC00000005yz2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+          },
+          "Name": "One Time",
+          "SellingModelType": "OneTime"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003jN8P4AU"
+        },
+        "Id": "0QLWC000003jN8P4AU",
+        "QuoteLineGroupId": "1C9WC00000097of0AA",
+        "QuoteLineGroup": {
+          "attributes": {
+            "type": "QuoteLineGroup",
+            "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+          },
+          "Name": "Test HW1",
+          "Quote": {
+            "attributes": {
+              "type": "Quote",
+              "url": "/services/data/v67.0/sobjects/Quote/0Q0WC000002U2020AC"
+            },
+            "Status": "Accepted"
+          }
+        },
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD11GYAT"
+          },
+          "Name": "Abstract",
+          "ConfigureDuringSale": "Allowed"
+        },
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "ProductSellingModelId": "0jPWC000000060b2AA",
+        "ProductSellingModel": {
+          "attributes": {
+            "type": "ProductSellingModel",
+            "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+          },
+          "Name": "Term Based - Annual",
+          "SellingModelType": "TermDefined"
+        },
+        "Model__c": null,
+        "Hardware_Pricing_Applied__c": false
+      }
+    ],
+    "totalSize": 22,
+    "done": true
+  }
+}

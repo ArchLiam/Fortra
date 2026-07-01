@@ -1,0 +1,79 @@
+/**
+ * Trigger on QuoteLineItem that captures and propagates exchange rates.
+ *
+ * Before insert/update: Sets Exchange_Rate_To_USD__c on each QLI via
+ *   DatedConversionRateLookup (ACM with CurrencyType fallback).
+ *
+ * After insert/update: Propagates Exchange_Rate_To_USD__c to the parent
+ *   Opportunity, but ONLY when the QLI's Quote is the Opportunity's syncing
+ *   Quote (Opportunity.SyncedQuoteId). This ensures that only the active
+ *   synced Quote drives the Opportunity-level rate.
+ */
+trigger QuoteLineItemExchangeRateTrigger on QuoteLineItem (
+    before insert, before update, after insert, after update
+) {
+
+    if (Trigger.isBefore) {
+        // ── Phase 1: Set Exchange_Rate_To_USD__c on the QLI itself ──
+        List<DatedConversionRateLookup.Request> requests = new List<DatedConversionRateLookup.Request>();
+        List<QuoteLineItem> itemsToUpdate = new List<QuoteLineItem>();
+
+        for (QuoteLineItem qli : Trigger.new) {
+            if (String.isNotBlank(qli.CurrencyIsoCode)) {
+                DatedConversionRateLookup.Request req = new DatedConversionRateLookup.Request();
+                req.currencyIsoCode = qli.CurrencyIsoCode;
+                requests.add(req);
+                itemsToUpdate.add(qli);
+            }
+        }
+
+        if (!requests.isEmpty()) {
+            List<DatedConversionRateLookup.Result> results = DatedConversionRateLookup.getExchangeRates(requests);
+
+            for (Integer i = 0; i < itemsToUpdate.size(); i++) {
+                itemsToUpdate[i].Exchange_Rate_To_USD__c = results[i].exchangeRate;
+            }
+        }
+    }
+
+    if (Trigger.isAfter) {
+        // ── Phase 2: Propagate rate to parent Opportunity (syncing Quote only) ──
+
+        // Collect QuoteIds and rates from QLIs that have a rate
+        Map<Id, Decimal> quoteIdToRate = new Map<Id, Decimal>();
+        for (QuoteLineItem qli : Trigger.new) {
+            if (qli.Exchange_Rate_To_USD__c != null) {
+                quoteIdToRate.put(qli.QuoteId, qli.Exchange_Rate_To_USD__c);
+            }
+        }
+
+        if (!quoteIdToRate.isEmpty()) {
+            // Query Quotes with their parent Opportunity's SyncedQuoteId
+            Map<Id, Quote> quotes = new Map<Id, Quote>([
+                SELECT Id, OpportunityId, Opportunity.SyncedQuoteId
+                FROM Quote
+                WHERE Id IN :quoteIdToRate.keySet()
+                AND OpportunityId != null
+            ]);
+
+            // Build Opportunity updates — only where this Quote is the syncing Quote
+            Map<Id, Opportunity> oppsToUpdate = new Map<Id, Opportunity>();
+            for (Quote q : quotes.values()) {
+                if (q.Id == q.Opportunity.SyncedQuoteId) {
+                    Decimal rate = quoteIdToRate.get(q.Id);
+                    oppsToUpdate.put(q.OpportunityId, new Opportunity(
+                        Id = q.OpportunityId,
+                        Exchange_Rate_To_USD__c = rate
+                    ));
+                }
+            }
+
+            if (!oppsToUpdate.isEmpty()) {
+                // Use allOrNone=false so Opportunity validation-rule failures
+                // (e.g. Deal_Origin partner requirements) do not block the QLI save.
+                // The QLI rate is the source of truth; the Opportunity copy is best-effort.
+                Database.update(oppsToUpdate.values(), false);
+            }
+        }
+    }
+}

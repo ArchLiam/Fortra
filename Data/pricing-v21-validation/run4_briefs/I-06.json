@@ -1,0 +1,32 @@
+{
+ "id": "I-06",
+ "category": "I. Proration",
+ "name": "Co-termination proration to existing contract end-date (add aligns to anchor term-end)",
+ "priority": "P1",
+ "what_it_tests": "A co-term add (amend) must prorate the new line from its start to the EXISTING contract/asset end-date (anchor), computing a fractional PricingTermCount to the co-term anchor rather than a fresh full term; F-11/E-05 mention co-term but no scenario validates the anchor-end proration math",
+ "proc_mechanism": "ProrationTermDefined with EffectiveTo = anchor contract end-date (not start+term); ProrationMultiplier from start-to-anchor; co-term date resolution feeding EffectiveTo",
+ "expected_behavior": "PricingTermCount = (anchorEnd \u2212 start)/fullTerm; net prorated to the shared end-date; renewal then co-terms all lines together",
+ "test_setup": "Existing 12mo contract ending in 5mo, add line co-termed, SubscriptionTerm=12 Months -> expect PTC \u2248 5/12 and end-date = anchor end",
+ "defect_provenance": "none / completeness-gap",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "Force-reprice of Quote 0Q0WC000002DWNV0A4 via REST v67 place action (pricingPref=Force, configurationMethod=Skip): isSuccess=true, errorResponse=[]. Control QLI 0QLWC000002SYdV4AW (TermDefined, Fortra_Product_Type__c=Subscription, USD, list/net=$250, Start=2026-04-15, anchor EndDate=2027-03-31): PTC=0.9616438356164384 = EXACTLY 351/365 (350-day span + 1 inclusive day), NOT a full term 1.0. LastModifiedDate=2026-06-30T13:39:33Z confirming V21 repriced today. Corroborating co-term Order 801WC00000hJfDUYA0 OI 802WC00000N1TEmYAN (ServiceDate=2025-11-02, EndDate=2026-09-01, PTC=0.8328767123287671=304/365). Additional fractional-PTC QLIs all verify: 0QLWC000002LCwH4AW (270/365=0.7397), 0QLWC000002dNlB4AU (207/365=0.5671), 0QLWC000003ZQab4AG (361/365=0.9890). All four date-window calculations match to 16 significant figures.",
+  "evidence": "Force-reprice isSuccess=true/errorResponse=[]: Quote 0Q0WC000002DWNV0A4 repriced 2026-06-30T13:39:33Z. Control QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000002SYdV4AW/view (TermDefined, Start=2026-04-15, EndDate=2027-03-31, PTC=0.9616438356164384=351/365). Co-term Order https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000hJfDUYA0/view (OI 802WC00000N1TEmYAN PTC=0.8328767123287671=304/365, OI 802WC00000N1TEuYAN PTC=0.8328767123287671=304/365). Additional: 0QLWC000002dNlB4AU PTC=0.5671=207/365; 0QLWC000002LCwH4AW PTC=0.7397=270/365; 0QLWC000003ZQab4AG PTC=0.9890=361/365. All pass arithmetic verification.",
+  "recordIds": [
+   "0Q0WC000002DWNV0A4",
+   "0QLWC000002SYdV4AW",
+   "801WC00000hJfDUYA0",
+   "802WC00000N1TEmYAN",
+   "802WC00000N1TEuYAN",
+   "0QLWC000002dNlB4AU",
+   "0QLWC000002LCwH4AW",
+   "0QLWC000003ZQab4AG"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Active proc confirmed Rev_Mgmt_Default_Pricing_Procedure V21 (ESDV 9QBWC0000000oWH4AY Active, context SalesTransactionContextExt_v2 v23). Preflight confirmed: product SellingModelType=TermDefined, Fortra_Product_Type__c=Subscription, PBE active in Fortra Price Book, USD, list=$250 (non-zero). Mechanism: V21 TermDefined proration branch (skeleton steps 121-123) gates on SellingModelType='TermDefined', reads line's EffectiveTo (= anchor co-term end-date, not start+full-term), computes ProrationMul\u2026"
+ },
+ "fixture_scripts": []
+}

@@ -1,0 +1,18 @@
+{
+  "id": "E-07",
+  "category": "E. Deal / Customer Type",
+  "name": "Order line-type FIXED AMOUNT vs BILLING ONLY on splits",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Quantity-split parent (same product, Is_Subsplit_Product__c=false) -> FIXED AMOUNT; subsplit product lines (Is_Subsplit_Product__c=true) -> FIXED AMOUNT BILLING ONLY",
+  "actual": "Order 00095498 (801WC00000kkTSnYAM): 3x 5250 Integrator (Is_Subsplit_Product__c=false) parent 802WC00000Onq1FYAR (Original_Order_Item__c=null) = FIXED AMOUNT; children 802WC00000Onq1GYAR + 802WC00000Onq1HYAR (Original_Order_Item__c=802WC00000Onq1FYAR) = FIXED AMOUNT. Subsplit control order 00095631 (801WC00000lpqBGYAY): Is_Subsplit_Product__c=true lines (Automate Maintenance Add Ons 802WC00000PTQKEYA5, Advanced Reporting Suite 802WC00000PTQK5YAP/802WC00000PTQK6YAP, Automate Maintenance Add Ons 802WC00000PTQK8YAP) all = FIXED AMOUNT BILLING ONLY. Non-subsplit lines on same order = FIXED AMOUNT / PREPAID / USAGE BASED. Active flow V11 (301WC00000kUYVFYA4) confirmed via tooling API.",
+  "evidence": "Order 00095498 (qty-split, FIXED AMOUNT): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000kkTSnYAM/view | Parent OI 802WC00000Onq1FYAR, Children 802WC00000Onq1GYAR/802WC00000Onq1HYAR all = FIXED AMOUNT. Order 00095631 (subsplit control, BILLING ONLY): https://fortra--uat.sandbox.lightning.force.com/lightning/r/Order/801WC00000lpqBGYAY/view | Is_Subsplit_Product__c=true OIs: 802WC00000PTQKEYA5, 802WC00000PTQK5YAP, 802WC00000PTQK6YAP, 802WC00000PTQK8YAP all = FIXED AMOUNT BILLING ONLY. Active flow confirmed tooling: V11 Status=Active Id=301WC00000kUYVFYA4. Metadata: Data/sc3473/e07_validation/unpackaged/flows/Fortra_OrderItem_Set_Workday_Contract_Line_Type.flow",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "This scenario validates flow Fortra_OrderItem_Set_Workday_Contract_Line_Type, NOT a V21 pricing-procedure step. Active version is V11 (not V8/V9/V10). V11 abandons Original_Order_Item__c reverse-lookup entirely; Decision_Is_Subsplit gates purely on Product2.Is_Subsplit_Product__c (true -> BILLING ONLY; false -> does NOT stamp BILLING ONLY, routes to FIXED AMOUNT for Perpetual). Quantity-split order 00095498: 3 lines of 5250 Integrator (Is_Subsplit_Product__c=false), parent + 2 children by Original_Order_Item__c, all correctly stamped FIXED AMOUNT. Subsplit control 00095631: all Is_Subsplit_Product__c=true lines correctly stamped FIXED AMOUNT BILLING ONLY; Is_Subsplit_Product__c=false lines correctly NOT stamped BILLING ONLY. Stale legacy stamp on 802WC00000OQLFwYAP (order 00095351, Order Complete status) is a V10-era relic and does not reflect V11 behavior. The scenario's described defect (V9/V10 always-true detection) was fixed in V11 and remains fixed today.",
+  "verdict_reason": "Quantity-split parent/children (same product, Is_Subsplit_Product__c=false) correctly stamped FIXED AMOUNT on live post-V11 order 00095498. Subsplit products (Is_Subsplit_Product__c=true) correctly stamped FIXED AMOUNT BILLING ONLY on order 00095631. Both branches of V11 Decision_Is_Subsplit validated against real existing records. V11 mechanism supersedes V8/V9/V10 and is confirmed Active in FortraUAT. PASS."
+}

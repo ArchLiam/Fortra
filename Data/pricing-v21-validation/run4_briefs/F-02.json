@@ -1,0 +1,32 @@
+{
+ "id": "F-02",
+ "category": "F. Transaction Type",
+ "name": "Renewal quote preserves prior net (no fresh contributor base)",
+ "priority": "P0",
+ "what_it_tests": "A renewal line (QuoteAction.Type='Renew', QuoteTypeText='Renewal') preserves prior NetUnitPrice in the derived formula, is NOT reset to 0, and is excluded from non-renewal/base-stamp/partner-derived branches; renewal maintenance auto-created",
+ "proc_mechanism": "Derived Pricing Formula (IF QuoteTypeText='Renewal' then NetUnitPrice); NetUnitPrice Value Reset (IF Renewal then NetUnitPrice else 0); Stamp Base Filter & Partner Discount-Derived Maint exclude renewals",
+ "expected_behavior": "Renewal carries prior net; NetUnitPrice not reset to 0; no fresh contributor base stamping; renewal maint SKU (RC_43000/43120) created",
+ "test_setup": "QuoteTypeText='Renewal', derived maintenance line, prior NetUnitPrice present",
+ "defect_provenance": "SC-3350 / SC-3346 (NetUnitPrice seed)",
+ "run3_result": {
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "actual": "FR6D quote (0Q0WC000003FR6D0AW): beSECURE-Cloud QLI 0QLWC000003kbZ74AI NetUnitPrice=7110.41, COLACalculatedPrice__c=7110.41 (COLA_Uplift_Percent__c=6.2%), Base_Price__c=null, TotalPrice=7110.41. Derived maint QLI 0QLWC000003kbZ84AI present (BoKS-NewMaintenance, COLACalculatedPrice=3666.9). FRPZ quote (0Q0WC000003FRPZ0A4): beSECURE-Cloud QLI 0QLWC000003kbxK4AQ NetUnitPrice=1453.47 (partner-discounted, preserved), Pre_Partner_Price__c=4781.04, COLACalculatedPrice__c=5830.54, Base_Price__c=null. Both quotes repriced isSuccess=true with no errors under active V21.",
+  "evidence": "Quotes: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FR6D0AW/view ; https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FRPZ0A4/view | QLIs post-reprice: 0QLWC000003kbZ74AI (FR6D beSECURE NetUnitPrice=7110.41), 0QLWC000003kbxK4AQ (FRPZ beSECURE NetUnitPrice=1453.47) | Force-reprice via /services/data/v67.0/connect/rev/sales-transaction/actions/place pricingPref=Force, configurationMethod=Skip, both isSuccess=true 2026-06-30",
+  "recordIds": [
+   "0Q0WC000003FR6D0AW",
+   "0Q0WC000003FRPZ0A4",
+   "0QLWC000003kbZ74AI",
+   "0QLWC000003kbxK4AQ",
+   "0QLWC000003kbZ84AI",
+   "0Q0WC000003F3tV0AS",
+   "0QLWC000003kESr4AM",
+   "0Q0WC000003FRuD0AW"
+  ],
+  "defectStep": "",
+  "proposedFix": "",
+  "notes": "Preflight: QuoteTypeText__c=Renewal on both quotes; QuoteAction.Type=Renew confirmed; CurrencyIsoCode=USD; PBE active in Fortra Price Book. Explainability: Renewal branch (Derived Pricing Formula step 39-40) preserved prior net on subscription QLIs; NetUnitPrice Value Reset correctly did NOT zero them; Stamp Base Filter (step ~105) correctly excluded renewal lines (Base_Price__c=null on both subscription QLIs). COLACalculatedPrice__c stamped on top of prior net (COLA branch ran). Partner-discoun\u2026"
+ },
+ "fixture_scripts": []
+}

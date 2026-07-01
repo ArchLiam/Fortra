@@ -1,0 +1,30 @@
+{
+ "id": "J-14",
+ "category": "J. Derived / Maintenance Pricing",
+ "name": "Out-year / MyCAP multi-year COLA inert (design drift)",
+ "priority": "P2",
+ "what_it_tests": "The spreadsheet model specifies multi-year compounding Y2/Y3 COLA totals, but the live Final_Year_COLA_Calculated_Price__c formula is broken and never feeds pricing; single-year per spec is the agreed scope",
+ "proc_mechanism": "Formula field Final_Year_COLA_Calculated_Price__c computes but has zero references in the procedure; branches use wrong bases + PricingTermCount exponent without unit guard",
+ "expected_behavior": "Either wire Final_Year prices into the procedure for Y2/Y3 billing, or confirm out-year stays flat (single-year per spec, agreed out-of-scope)",
+ "test_setup": "Multi-year renewal (3-year term), COLA active, check whether Y2/Y3 reflected in line total",
+ "defect_provenance": "SC-3354 / RN-MULTIYEAR",
+ "prior_run": {
+  "verdict": "PASS",
+  "dataSource": "existing",
+  "actual": "CONFIRMED inert / single-year flat on live active V21 (9QBWC0000000oWH4AY). Real 3-year Renewal quote 0Q0WC000002lf6b0AA (TermDefined/Subscription, SubscriptionTerm=36, PricingTermCount=36, Active Defense BEC line 0QLWC0000037ljd4AA): COLA_Uplift_Percent__c=5, COLA_Outyear_Uplift_Percent__c=3 (out-year rate IS populated), Pre_COLA_Price__c=282000, COLACalculatedPrice__c=296100 (=282000x1.05, single-year). Stored NetUnitPrice=296100 and NetTotalPrice=10,659,600 (=296100 x 36, single-year price repeated flat across 36 months, NO compounding). Fresh Force-reprice through V21 (REST place isSuccess=true, errorResponse=[], LastModifiedDate 2026-06-30T02:01:14Z) kept NetUnitPrice=296100=COLACalculatedPrice__c; out-year 3% never compounded into Y2/Y3. Second 3yr line 0QLWC0000034WxF4AU (5250 Integrator, term36/PTC3, outyear=4) identical pattern: net=COLACalculatedPrice 6539.75, NetTotal=19619.26\u2026",
+  "evidence": "Clean control quote https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002lf6b0AA/view (line 0QLWC0000037ljd4AA NetUnitPrice=296100=COLACalc, NetTotal pre-reprice=10,659,600=296100x36 flat, outyear=3 ignored). Second 3yr line https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000002iO2H0AU/view (0QLWC0000034WxF4AU net=6539.75=COLACalc, NetTotal=19619.26=x3 flat, outyear=4 ignored). Force-reprice resp Data/sc3354/j14_validation/reprice_resp_lf6b.json (isSuccess:true). V21 grep: 0 refs for Final_Year_COLA/Outyear/COLA_Outyear/Pre_COLA_Price/COLA_Uplift2/mycap/compound/EXP/multi-year/year2/year3 in Data/cola-v16-v20-reconcile/verify_v21/.../Rev_Mgmt_Default_Pricing_V210.expressionSetVersion; COLA steps COLAUpliftNetonRenewal/COLAUpliftonRenewal at lines ~1838-1974 all source COLACalculatedPrice__c. Formula source force-app/main/default/objects/QuoteLineItem/fields/Final_Year_COLA_Calculated_Price__c.field-meta.xml (EXP/(PricingTermCount-1) exponent bug). FieldDefinition tooling: field IsCalculated=true but SOQL SELECT errors 'No such column'. Active version confirmed V21 9QBWC0000000oWH4AY (tooling ExpressionSetDefinitionVersion Status=Active).",
+  "recordIds": [],
+  "defectStep": "",
+  "regression": "SC-3354 / SC-3346 RN-MULTIYEAR (closed 2026-06-14, confirmed out-of-scope; single-year per COLA SDD BR-002/6.3 + User Story Req#5)",
+  "rootCause": "N-A(pass)",
+  "notes": "PASS = the catalog's agreed-scope outcome is realized: out-year/MyCAP multi-year COLA is INERT and the line bills single-year COLA flat across the term, exactly per spec. The Final_Year_COLA_Calculated_Price__c formula is genuinely broken (un-queryable + PricingTermCount(months)-as-year-exponent ^35 bug) but it has 0 procedure references and is un-SELECTable, so it never feeds pricing -> documented tech-debt, NOT a reportable PROCEDURE-DEFECT or money bug. This is design drift (spreadsheet model specifies Y2/Y3 compounding totals; build agreed single-year) deliberately resolved as single-year.\u2026",
+  "from": "run1"
+ },
+ "fixture_scripts": [],
+ "generic_fixtures": {
+  "cola": "scripts/apex/setupColaUatTestData.compact.apex",
+  "cancelQuote": "scripts/apex/setupCancelQuoteTestData.compact.apex",
+  "cancelOrder": "scripts/apex/setupCancelOrderTestData.compact.apex",
+  "power": "scripts/apex/setupPowerConvertQuoteTestData.compact.apex"
+ }
+}

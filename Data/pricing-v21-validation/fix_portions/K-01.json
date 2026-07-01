@@ -1,0 +1,18 @@
+{
+  "id": "K-01",
+  "title": "StampBaseFilter null-safe guard on cancellation path",
+  "primarySurface": "V21-PROCEDURE",
+  "artifacts": [
+    {
+      "type": "proc-step",
+      "identifier": "StampBaseFilter (sequenceNumber=1 inside StampContributorBasePreDiscount) — cancellation-path instances at expressionSetDefinition lines ~109632, ~116550, ~123457 in V21 design 9QBWC0000000oWH4AY; conditionLogic '(1 OR 2) AND 3 AND 4 AND 5' with criterion #5 = 'NetUnitPrice GreaterThan 0'; runtime ESV 9QMWC00000025LN4AY (VersionNumber 21). NOTE: 3 other instances (lines ~85590/97330/103241) were partially patched 2026-06-30T05:56 but the runtime was never recompiled — all 6 instances require verification and the runtime must be recompiled via full deactivate+deploy+reactivate.",
+      "editable": true
+    }
+  ],
+  "deployMechanism": "In-place edit to V21 ExpressionSetDefinition 9QBWC0000000oWH4AY (no new version). Edit expressionSetDefinition-meta.xml: for each of the 3 cancellation-path StampBaseFilter instances (lines ~109632, ~116550, ~123457) change conditionLogic from '(1 OR 2) AND 3 AND 4 AND 5' to '(1 OR 2) AND 3 AND 4 AND (5 OR 6)' and add criterion #6 'NetUnitPrice IsNull'. Confirm all 3 already-patched instances (lines ~85590/97330/103241) are also null-safe. Deploy: deactivate V21, deploy via sf project deploy start --metadata-dir with api 67, then reactivate from the Versions list (NOT the canvas save) to recompile the runtime. Reactivating from Versions is mandatory — the 2026-06-30T05:56 in-place edit did NOT recompile the runtime (ESV still executes the pre-fix frozen compile, so reprice still errors).",
+  "fixBrief": "The V21 StampBaseFilter step (seq=1 inside StampContributorBasePreDiscount) contains criterion #5 'NetUnitPrice GreaterThan 0' under condition logic '(1 OR 2) AND 3 AND 4 AND 5'. The SF rules engine cannot evaluate GreaterThan on a null operand, so it aborts with SF-BRE-00004 for any fresh cancel line where NetUnitPrice=null, preventing CancelLineCreditPosthook from ever seeding the credit from CancelNetUnitPrice__c. Fix: in V21 design 9QBWC0000000oWH4AY, add an IsNull guard for NetUnitPrice as a new criterion #6 and update the condition logic to '(1 OR 2) AND 3 AND 4 AND (5 OR 6)' in all 3 cancellation-path StampBaseFilter instances (expressionSetDefinition lines ~109632, ~116550, ~123457). The 3 previously-patched instances (lines ~85590/97330/103241) should be verified as already null-safe. After deploying, reactivate V21 from the Versions list (not canvas) to recompile the runtime. Verify by force-repricing cancel quote 0Q0WC000003FoMA0A0 (QLI 0QLWC000003kySU4AY, CancelNetUnitPrice__c=15000, Qty=-1) and confirming isSuccess=true, NetUnitPrice=15000, TotalPrice=-15000, CalculationStatus=CompletedWithPricing. NOT APPLIED.",
+  "sharesArtifactWith": ["F-12"],
+  "blockingDeps": [],
+  "effort": "S",
+  "notes": "K-01 (cancellation path) and F-12 (amendment path) both touch StampBaseFilter in the same V21 proc — they MUST be fixed in a single proc deploy to avoid clobbering each other. F-12 covers the same 3 un-patched instances. The partial in-place edit on 2026-06-30T05:56 is already in the design XML but was never deployed/reactivated, so the live runtime is still broken. The reactivation-from-Versions step is the critical recompile trigger. Control evidence: quote 0Q0WC000003EQtl0AG (QLI 0QLWC000003jbhd4AA, NetUnitPrice pre-set=15000) reprices correctly to TotalPrice=-15000 with V21, confirming CancelLineCreditPosthook is functional once StampBaseFilter is cleared."
+}

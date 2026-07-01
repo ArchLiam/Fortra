@@ -1,0 +1,18 @@
+{
+  "id": "K-09",
+  "category": "K. Edge Cases",
+  "name": "Stale category totals when group empty (Total_Services__c / Total_Software__c)",
+  "priority": "P1",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Empty category group -> Total_X__c=0 on every V21 Force-reprice; Subtotal=TotalPrice; Discount% explicit (not phantom from list/net divergence)",
+  "actual": "Controlled USD quote 0Q0WC000003FbGr0AK (1 Software/BoKS Perpetual line, Services+Subscription groups EMPTY): seeded Total_Services__c=777, Total_Subscription__c=888 (stale), then V21 Force-reprice (isSuccess=true, errorResponse=[]). RESULT: Total_Services__c->0 (reset, was 777), Total_Subscription__c->0 (reset, was 888), Total_Software__c=355 (active group, correct SUM of NetTotalPrice). Test repeated twice with different stale seeds (555/999 and 777/888) - BOTH reset deterministically to 0. Real-data corroboration: 0Q0WC0000037tXV0AY (previously Total_Services=39000, 0 Services lines) repriced -> Total_Services__c=0. Discount% sub-claim: E-02 partner quote 0Q0WC000003FO1u0AG (list!=net) post-reprice: Subtotal=TotalPrice=5852.25, Discount=0 (no phantom). Phantom-cured control 0Q0WC0000034U4D0AU: Subtotal=TotalPrice=5231, Discount=0.",
+  "evidence": "Controlled test: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FbGr0AK/view -> seed svc=777/sub=888 -> V21 Force-reprice -> svc=0/sub=0/sw=355 (both empty groups reset). Deterministic across 3 reprice calls. Real-data: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC0000037tXV0AY/view -> Total_Services=0 after reprice (was 39000, no Services lines). Discount% control: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FO1u0AG/view Subtotal=TotalPrice=5852.25 Discount=0. Active procedure: V21 ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY Status=Active VersionNumber=21 (2026-06-30 confirmed).",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "SC-3345",
+  "notes": "Prior run1 FAIL (stale values stayed frozen after reprice on V21) is no longer reproducible. Current V21 (Active 2026-06-30, edited in-place since Jun-29 local metadata capture) correctly zeroes empty category groups on every Force-reprice. The Jun-29 local XML (Data/pricing-v21-validation/live/...) still shows no explicit zero-init AssignmentElement steps for Total_Services/Software/Subscription__c - the GroupingAndAggregatePricing BKM (ServicesAggregatePrice/SoftwareAggregatePrice/SubscriptionAggregatePrice with section-0-aggr-func=SUM over ItemNetTotalPrice, section-0-group-count=0) now writes 0 when its upstream TotalServices/TotalSoftware/TotalSubscription AdvancedListFilter produces an empty set. This may reflect a platform-level behavior change or an in-place V21 edit not reflected in the Jun-29 metadata snapshot. All three sub-claims of SC-3345: Fix1 (empty-group reset), Fix2 (DiscountPercent explicit), Fix3 (net-consistent Subtotal) are PASSING under current V21.",
+  "verdict_reason": "Seeding stale values (777/888) into empty category fields then Force-repricing through V21 deterministically resets them to 0 on 3 successive trials. Real-data quote with stale Total_Services=39000 (0 Services lines) also resets to 0 after V21 reprice. Subtotal=TotalPrice and Discount=0 on partner quote confirm Fix2/Fix3 also pass. Defect from run1 is resolved in current active V21."
+}

@@ -1,0 +1,36 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "ContextDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/ContextDefinition/11OWC0000012HsD2AU"
+        },
+        "Id": "11OWC0000012HsD2AU",
+        "DeveloperName": "SalesTransactionContextExt",
+        "MasterLabel": "SalesTransactionContextExt",
+        "DisplayName": null,
+        "IsExtensionV2Used": false,
+        "ManageableState": "unmanaged",
+        "LastModifiedDate": "2026-06-03T10:24:11.000+0000"
+      },
+      {
+        "attributes": {
+          "type": "ContextDefinition",
+          "url": "/services/data/v67.0/tooling/sobjects/ContextDefinition/11OWC000002m21Z2AQ"
+        },
+        "Id": "11OWC000002m21Z2AQ",
+        "DeveloperName": "SalesTransactionContextExt_v2",
+        "MasterLabel": "SalesTransactionContextExt_v2",
+        "DisplayName": null,
+        "IsExtensionV2Used": false,
+        "ManageableState": "unmanaged",
+        "LastModifiedDate": "2026-06-25T02:35:25.000+0000"
+      }
+    ],
+    "totalSize": 2,
+    "done": true
+  },
+  "warnings": []
+}

@@ -1,0 +1,33 @@
+ ›   Warning: @salesforce/cli update available from 2.138.6 to 2.139.6.
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineGroup",
+          "url": "/services/data/v67.0/sobjects/QuoteLineGroup/1C9WC00000097of0AA"
+        },
+        "Id": "1C9WC00000097of0AA",
+        "Name": "Test HW1",
+        "QuoteId": "0Q0WC000002U2020AC",
+        "ParentQuoteLineGroupId": null,
+        "Type": "CPQQuoteGroup",
+        "SegmentType": null,
+        "SortOrder": null,
+        "Description": null,
+        "StartDate": null,
+        "EndDate": null,
+        "SummarySubtotal": 33416,
+        "SummaryTotalAmount": null,
+        "Hardware__c": "a0nWC000001wdV3YAI",
+        "Hardware_Group_Type__c": true,
+        "Hardware_Notes__c": null,
+        "CurrencyIsoCode": "USD"
+      }
+    ],
+    "totalSize": 1,
+    "done": true
+  },
+  "warnings": []
+}

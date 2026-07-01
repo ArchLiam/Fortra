@@ -1,0 +1,15 @@
+{
+  "id": "E-03",
+  "verdict": "PASS",
+  "category": "E. Deal / Customer Type",
+  "priority": "P0",
+  "dataSource": "named-script",
+  "recordIds": ["0Q0WC000003FWfO0AW", "0QLWC000003khOP4AY"],
+  "expected": "One-Time/Perpetual partner line: partner 15% discount applied to FINAL net and preserved through SubscriptionPricing. NetUnitPrice = 2008*(1-0.15) = 1706.8; NetTotalPrice 1706.8; TotalLineAmount stays list 2008.",
+  "actual": "Fresh Force-reprice of previously-unpriced E-03 quote 00781439 (CCM Limited Scan Engine, OneTime/Perpetual, partner AB Test 15% SW, Channel Originated/Discount): NetUnitPrice=1706.8, NetTotalPrice=1706.8, TotalLineAmount=2008, ListPrice=2008, QLI Subtotal=2008, Quote.TotalPrice=1706.8. Matches expected exactly.",
+  "evidence": "https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FWfO0AW/view ; QLI https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003khOP4AY/view ; REST place reprice isSuccess=true",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "SC-3359 (One-Time partner net overwrite by V9 SubscriptionPricing74) is FIXED in active V21 (confirmed IsActive=true). Partner Discount step writes discounted net and Subscription Pricing steps now preserve it (not re-read un-discounted InputUnitPrice). Verified on a FRESH reprice of an unpriced quote (not a stale prior reprice); a sibling fixture 00781440/0QLWC000003kgXC4AY independently showed the same 1706.8. TotalLineAmount/Subtotal correctly stay at list 2008 (no rollup regression). Fixture: scripts/apex/setupPartnerOneTimeQuoteTestData.compact.apex."
+}

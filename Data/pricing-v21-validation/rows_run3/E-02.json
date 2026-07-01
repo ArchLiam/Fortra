@@ -1,0 +1,18 @@
+{
+  "id": "E-02",
+  "category": "E. Deal / Customer Type",
+  "name": "Channel-Originated discount",
+  "priority": "P0",
+  "verdict": "PASS",
+  "rootCause": "N-A(pass)",
+  "dataSource": "existing",
+  "preflight": "pass",
+  "expected": "Deal_Type__c=Channel Originated, Partner_Pricing_Model__c=Discount, PartnerDiscountPercent=15, List=2008; Net = List x (1-0.15) = 1706.8; net != list",
+  "actual": "Quote 0Q0WC000003FWCM0A4 / QLI 0QLWC000003kgXC4AY (CCM Limited Scan Engine, Fortra_Product_Type__c=Software, Qty=1). After Force-reprice on live V21 (isSuccess=true, no errors): Source_List_Price__c=2008, Pre_Partner_Price__c=2008, Base_Price__c=2008, PartnerDiscountPercent=15, NetUnitPrice=1706.8, NetTotalPrice=1706.8, TotalLineAmount=2008, TotalPrice (Quote header)=1706.8, COLACalculatedPrice__c=null, Partner_Pricing_Source__c='System Calculated (Pre-Procedure, Percent Only)'. Math: 2008 x 0.85 = 1706.8. Net != list.",
+  "evidence": "Quote: https://fortra--uat.sandbox.lightning.force.com/lightning/r/Quote/0Q0WC000003FWCM0A4/view ; QLI: https://fortra--uat.sandbox.lightning.force.com/lightning/r/QuoteLineItem/0QLWC000003kgXC4AY/view ; REST place /services/data/v67.0/connect/rev/sales-transaction/actions/place returned isSuccess:true, errorResponse:[]",
+  "defectStep": "",
+  "proposedFix": "",
+  "regression": "",
+  "notes": "Re-measured on V21 active as of 2026-06-30. V21 gate confirmed: Partner Discount branch fires on Deal_Type__c='Channel Originated' != 'Fortra Originated', ItemIsDerived=false (standard Software line). Resolve Partner Discount Percent step resolves 15% from the billing partner account (001WC00000ZtazZYAR). Partner Percent Resolved Filter passes (PartnerDiscountPercent=15 > 0). Discount model (not Guaranteed Margin) applies billing-partner-only discount. Pre_Partner_Price__c=2008=List (no prior manipulation); NetUnitPrice=2008*(1-0.15)=1706.8. SC-3359 regression (SubscriptionPricing74 overwriting discounted net on One-Time/Perpetual) does NOT reproduce on V21 - the partner-discounted net 1706.8 is preserved. PBE verified active on Fortra Price Book at USD 2008 (non-zero). Product2 Fortra_Product_Type__c=Perpetual; QLI stamp=Software (used for discount lookup by proc).",
+  "verdict_reason": "Force-reprice through V21 (isSuccess=true) produced NetUnitPrice=1706.8=2008*0.85, confirming the Partner Discount branch (Channel Originated, billing-partner % only, Discount model) fires correctly and net != list."
+}

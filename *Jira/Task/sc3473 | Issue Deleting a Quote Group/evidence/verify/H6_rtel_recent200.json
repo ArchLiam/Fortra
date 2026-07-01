@@ -1,0 +1,2610 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Fn0P2AS"
+        },
+        "Id": "0nYWC000000Fn0P2AS",
+        "CreatedDate": "2026-06-26T15:48:32.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000lfptrYAA",
+        "PrimaryTextRecord": "801WC00000lfptrYAA",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Ff652AC"
+        },
+        "Id": "0nYWC000000Ff652AC",
+        "CreatedDate": "2026-06-24T21:09:14.000+0000",
+        "Category": "ConfiguratorAPI",
+        "PrimaryRecordId": "0Q0WC000003DMc50AG",
+        "PrimaryTextRecord": null,
+        "ErrorCode": null,
+        "ErrorMessage": "Invalid Configuration. Please see Configurator ErrorMessage for details."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FNqj2AG"
+        },
+        "Id": "0nYWC000000FNqj2AG",
+        "CreatedDate": "2026-06-16T22:38:11.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000ktVYfYAM",
+        "PrimaryTextRecord": "801WC00000ktVYfYAM",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FNp72AG"
+        },
+        "Id": "0nYWC000000FNp72AG",
+        "CreatedDate": "2026-06-16T22:17:55.000+0000",
+        "Category": "DRO Plan Composition Failure",
+        "PrimaryRecordId": "801WC00000ktF0sYAE",
+        "PrimaryTextRecord": "801WC00000ktF0sYAE",
+        "ErrorCode": "DRO_SALES_TRANSACTION_DATA_ACCESS_EXCEPTION",
+        "ErrorMessage": "industries.fulfillment.orchestrator.api.exceptions.DfoDataAccessException"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FNnV2AW"
+        },
+        "Id": "0nYWC000000FNnV2AW",
+        "CreatedDate": "2026-06-16T22:10:04.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000ktJPMYA2",
+        "PrimaryTextRecord": "801WC00000ktJPMYA2",
+        "ErrorCode": "INVALID_API_INPUT",
+        "ErrorMessage": "Couldn’t cancel the Asset. When you provide a cancellation date that matches the Lifecycle Start Date on the Asset, the sum of the amount you provide for the Asset Action and the Total Lifecycle Amount on the Asset for reference ID 802WC00000OugI7YAJ must be 0."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FMcv2AG"
+        },
+        "Id": "0nYWC000000FMcv2AG",
+        "CreatedDate": "2026-06-16T14:07:42.000+0000",
+        "Category": "DRO Plan Composition Failure",
+        "PrimaryRecordId": "801WC00000ks8ZCYAY",
+        "PrimaryTextRecord": "801WC00000ks8ZCYAY",
+        "ErrorCode": "DRO_SALES_TRANSACTION_DATA_ACCESS_EXCEPTION",
+        "ErrorMessage": "industries.fulfillment.orchestrator.api.exceptions.DfoDataAccessException"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FL2X2AW"
+        },
+        "Id": "0nYWC000000FL2X2AW",
+        "CreatedDate": "2026-06-15T23:09:20.000+0000",
+        "Category": "ConfiguratorAPI",
+        "PrimaryRecordId": "801WC00000knHDLYA2",
+        "PrimaryTextRecord": null,
+        "ErrorCode": null,
+        "ErrorMessage": "Invalid Configuration. Please see Configurator ErrorMessage for details."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FKzJ2AW"
+        },
+        "Id": "0nYWC000000FKzJ2AW",
+        "CreatedDate": "2026-06-15T20:52:14.000+0000",
+        "Category": "ConfiguratorAPI",
+        "PrimaryRecordId": "0Q0WC0000039dlB0AQ",
+        "PrimaryTextRecord": null,
+        "ErrorCode": null,
+        "ErrorMessage": "Invalid Configuration. Please see Configurator ErrorMessage for details."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000FFDF2A4"
+        },
+        "Id": "0nYWC000000FFDF2A4",
+        "CreatedDate": "2026-06-12T16:05:18.000+0000",
+        "Category": "DRO Order Decomposition Failure",
+        "PrimaryRecordId": "801WC00000kcnVFYAY",
+        "PrimaryTextRecord": "801WC00000kcnVFYAY",
+        "ErrorCode": "DRO_DATA_ACCESS_ERROR",
+        "ErrorMessage": "DfoDataAccessHandler :: update :: failed with error:Error updating the record with id 801WC00000kcnVFYAY, errors: Error [statusCode=UNABLE_TO_LOCK_ROW, code=[xmlrpc=1325, statusCode=UNABLE_TO_LOCK_ROW, exceptionCode=UNABLE_TO_LOCK_ROW, scope=PublicApi, http=500], message=unable to obtain exclusive access to this record, fields=null]"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000F5FV2A0"
+        },
+        "Id": "0nYWC000000F5FV2A0",
+        "CreatedDate": "2026-06-09T13:11:13.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000kQn0zYAC",
+        "PrimaryTextRecord": "801WC00000kQn0zYAC",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000F35d2AC"
+        },
+        "Id": "0nYWC000000F35d2AC",
+        "CreatedDate": "2026-06-08T13:40:36.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000kM40uYAC",
+        "PrimaryTextRecord": "801WC00000kM40uYAC",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Eyyn2AC"
+        },
+        "Id": "0nYWC000000Eyyn2AC",
+        "CreatedDate": "2026-06-07T17:39:59.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000kJMdZYAW",
+        "PrimaryTextRecord": "801WC00000kJMdZYAW",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Expp2AC"
+        },
+        "Id": "0nYWC000000Expp2AC",
+        "CreatedDate": "2026-06-06T23:51:01.000+0000",
+        "Category": "ConfiguratorAPI",
+        "PrimaryRecordId": "0Q0WC0000035sfZ0AQ",
+        "PrimaryTextRecord": null,
+        "ErrorCode": null,
+        "ErrorMessage": "Invalid Configuration. Please see Configurator ErrorMessage for details."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000ExoD2AS"
+        },
+        "Id": "0nYWC000000ExoD2AS",
+        "CreatedDate": "2026-06-06T18:46:00.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000kH7VeYAK",
+        "PrimaryTextRecord": "801WC00000kH7VeYAK",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Ew492AC"
+        },
+        "Id": "0nYWC000000Ew492AC",
+        "CreatedDate": "2026-06-05T20:23:49.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000kDyHCYA0",
+        "PrimaryTextRecord": "801WC00000kDyHCYA0",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000EvOD2A0"
+        },
+        "Id": "0nYWC000000EvOD2A0",
+        "CreatedDate": "2026-06-05T16:56:49.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000kDTTCYA4",
+        "PrimaryTextRecord": "801WC00000kDTTCYA4",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Ekfh2AC"
+        },
+        "Id": "0nYWC000000Ekfh2AC",
+        "CreatedDate": "2026-06-01T21:01:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jvn8cYAA",
+        "PrimaryTextRecord": "801WC00000jvn8cYAA",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Eke52AC"
+        },
+        "Id": "0nYWC000000Eke52AC",
+        "CreatedDate": "2026-06-01T19:41:09.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jvsxpYAA",
+        "PrimaryTextRecord": "801WC00000jvsxpYAA",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000EQFZ2A4"
+        },
+        "Id": "0nYWC000000EQFZ2A4",
+        "CreatedDate": "2026-05-22T18:51:16.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jNBFPYA4",
+        "PrimaryTextRecord": "801WC00000jNBFPYA4",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000EQDx2AO"
+        },
+        "Id": "0nYWC000000EQDx2AO",
+        "CreatedDate": "2026-05-22T17:37:12.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jMuD1YAK",
+        "PrimaryTextRecord": "801WC00000jMuD1YAK",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000ENw12AG"
+        },
+        "Id": "0nYWC000000ENw12AG",
+        "CreatedDate": "2026-05-21T14:48:22.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jGqnIYAS",
+        "PrimaryTextRecord": "801WC00000jGqnIYAS",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000ENsn2AG"
+        },
+        "Id": "0nYWC000000ENsn2AG",
+        "CreatedDate": "2026-05-21T12:11:11.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jGL57YAG",
+        "PrimaryTextRecord": "801WC00000jGL57YAG",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000EII12AO"
+        },
+        "Id": "0nYWC000000EII12AO",
+        "CreatedDate": "2026-05-20T14:58:25.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000jCR0vYAG",
+        "PrimaryTextRecord": "801WC00000jCR0vYAG",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000EGPt2AO"
+        },
+        "Id": "0nYWC000000EGPt2AO",
+        "CreatedDate": "2026-05-19T20:42:38.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000j81EoYAI",
+        "PrimaryTextRecord": "801WC00000j81EoYAI",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000E3XV2A0"
+        },
+        "Id": "0nYWC000000E3XV2A0",
+        "CreatedDate": "2026-05-12T18:03:12.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000ibqzFYAQ",
+        "PrimaryTextRecord": "801WC00000ibqzFYAQ",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000E1U52AK"
+        },
+        "Id": "0nYWC000000E1U52AK",
+        "CreatedDate": "2026-05-11T19:12:52.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000iSV18YAG",
+        "PrimaryTextRecord": "801WC00000iSV18YAG",
+        "ErrorCode": "UNKNOWN_EXCEPTION",
+        "ErrorMessage": "Something went wrong. Please ask your Salesforce admin to contact Customer Support."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0k2AC"
+        },
+        "Id": "0nYWC000000Dv0k2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0j2AC"
+        },
+        "Id": "0nYWC000000Dv0j2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0i2AC"
+        },
+        "Id": "0nYWC000000Dv0i2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0h2AC"
+        },
+        "Id": "0nYWC000000Dv0h2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0g2AC"
+        },
+        "Id": "0nYWC000000Dv0g2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0f2AC"
+        },
+        "Id": "0nYWC000000Dv0f2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0e2AC"
+        },
+        "Id": "0nYWC000000Dv0e2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0d2AC"
+        },
+        "Id": "0nYWC000000Dv0d2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0c2AC"
+        },
+        "Id": "0nYWC000000Dv0c2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0b2AC"
+        },
+        "Id": "0nYWC000000Dv0b2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0a2AC"
+        },
+        "Id": "0nYWC000000Dv0a2AC",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0Z2AS"
+        },
+        "Id": "0nYWC000000Dv0Z2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0Y2AS"
+        },
+        "Id": "0nYWC000000Dv0Y2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0X2AS"
+        },
+        "Id": "0nYWC000000Dv0X2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0W2AS"
+        },
+        "Id": "0nYWC000000Dv0W2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0V2AS"
+        },
+        "Id": "0nYWC000000Dv0V2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0U2AS"
+        },
+        "Id": "0nYWC000000Dv0U2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dv0T2AS"
+        },
+        "Id": "0nYWC000000Dv0T2AS",
+        "CreatedDate": "2026-05-08T13:51:29.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdoYAC",
+        "PrimaryTextRecord": "801WC00000hMmdoYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz92AC"
+        },
+        "Id": "0nYWC000000Duz92AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz82AC"
+        },
+        "Id": "0nYWC000000Duz82AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz72AC"
+        },
+        "Id": "0nYWC000000Duz72AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz62AC"
+        },
+        "Id": "0nYWC000000Duz62AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz52AC"
+        },
+        "Id": "0nYWC000000Duz52AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz42AC"
+        },
+        "Id": "0nYWC000000Duz42AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz32AC"
+        },
+        "Id": "0nYWC000000Duz32AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz22AC"
+        },
+        "Id": "0nYWC000000Duz22AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz12AC"
+        },
+        "Id": "0nYWC000000Duz12AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duz02AC"
+        },
+        "Id": "0nYWC000000Duz02AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyz2AC"
+        },
+        "Id": "0nYWC000000Duyz2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyy2AC"
+        },
+        "Id": "0nYWC000000Duyy2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyx2AC"
+        },
+        "Id": "0nYWC000000Duyx2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyw2AC"
+        },
+        "Id": "0nYWC000000Duyw2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyv2AC"
+        },
+        "Id": "0nYWC000000Duyv2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyu2AC"
+        },
+        "Id": "0nYWC000000Duyu2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyt2AC"
+        },
+        "Id": "0nYWC000000Duyt2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duys2AC"
+        },
+        "Id": "0nYWC000000Duys2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duyr2AC"
+        },
+        "Id": "0nYWC000000Duyr2AC",
+        "CreatedDate": "2026-05-08T13:50:46.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMmdbYAC",
+        "PrimaryTextRecord": "801WC00000hMmdbYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duvd2AC"
+        },
+        "Id": "0nYWC000000Duvd2AC",
+        "CreatedDate": "2026-05-08T13:50:18.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbo7YAC",
+        "PrimaryTextRecord": "801WC00000hMbo7YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duu12AC"
+        },
+        "Id": "0nYWC000000Duu12AC",
+        "CreatedDate": "2026-05-08T13:49:57.000+0000",
+        "Category": "DRO Plan Composition Failure",
+        "PrimaryRecordId": "801WC00000hMbnxYAC",
+        "PrimaryTextRecord": "801WC00000hMbnxYAC",
+        "ErrorCode": "DRO_GUARDRAILS_VIOLATION",
+        "ErrorMessage": "Ensure that the number of fulfillment step sources per fulfillment step is less than or equal to 125."
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DusT2AS"
+        },
+        "Id": "0nYWC000000DusT2AS",
+        "CreatedDate": "2026-05-08T13:49:56.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnyYAC",
+        "PrimaryTextRecord": "801WC00000hMbnyYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DusS2AS"
+        },
+        "Id": "0nYWC000000DusS2AS",
+        "CreatedDate": "2026-05-08T13:49:56.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnyYAC",
+        "PrimaryTextRecord": "801WC00000hMbnyYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DusR2AS"
+        },
+        "Id": "0nYWC000000DusR2AS",
+        "CreatedDate": "2026-05-08T13:49:56.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnyYAC",
+        "PrimaryTextRecord": "801WC00000hMbnyYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DusQ2AS"
+        },
+        "Id": "0nYWC000000DusQ2AS",
+        "CreatedDate": "2026-05-08T13:49:56.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnyYAC",
+        "PrimaryTextRecord": "801WC00000hMbnyYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DusP2AS"
+        },
+        "Id": "0nYWC000000DusP2AS",
+        "CreatedDate": "2026-05-08T13:49:56.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnyYAC",
+        "PrimaryTextRecord": "801WC00000hMbnyYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duqo2AC"
+        },
+        "Id": "0nYWC000000Duqo2AC",
+        "CreatedDate": "2026-05-08T13:49:55.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnlYAC",
+        "PrimaryTextRecord": "801WC00000hMbnlYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duqn2AC"
+        },
+        "Id": "0nYWC000000Duqn2AC",
+        "CreatedDate": "2026-05-08T13:49:55.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnlYAC",
+        "PrimaryTextRecord": "801WC00000hMbnlYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DupC2AS"
+        },
+        "Id": "0nYWC000000DupC2AS",
+        "CreatedDate": "2026-05-08T13:49:25.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnTYAS",
+        "PrimaryTextRecord": "801WC00000hMbnTYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DupB2AS"
+        },
+        "Id": "0nYWC000000DupB2AS",
+        "CreatedDate": "2026-05-08T13:49:25.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnTYAS",
+        "PrimaryTextRecord": "801WC00000hMbnTYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dunc2AC"
+        },
+        "Id": "0nYWC000000Dunc2AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnSYAS",
+        "PrimaryTextRecord": "801WC00000hMbnSYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dunb2AC"
+        },
+        "Id": "0nYWC000000Dunb2AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnSYAS",
+        "PrimaryTextRecord": "801WC00000hMbnSYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duna2AC"
+        },
+        "Id": "0nYWC000000Duna2AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnSYAS",
+        "PrimaryTextRecord": "801WC00000hMbnSYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DunZ2AS"
+        },
+        "Id": "0nYWC000000DunZ2AS",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnSYAS",
+        "PrimaryTextRecord": "801WC00000hMbnSYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DumC2AS"
+        },
+        "Id": "0nYWC000000DumC2AS",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DumB2AS"
+        },
+        "Id": "0nYWC000000DumB2AS",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DumA2AS"
+        },
+        "Id": "0nYWC000000DumA2AS",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum92AC"
+        },
+        "Id": "0nYWC000000Dum92AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum82AC"
+        },
+        "Id": "0nYWC000000Dum82AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum72AC"
+        },
+        "Id": "0nYWC000000Dum72AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum62AC"
+        },
+        "Id": "0nYWC000000Dum62AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum52AC"
+        },
+        "Id": "0nYWC000000Dum52AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum42AC"
+        },
+        "Id": "0nYWC000000Dum42AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum32AC"
+        },
+        "Id": "0nYWC000000Dum32AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum22AC"
+        },
+        "Id": "0nYWC000000Dum22AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum12AC"
+        },
+        "Id": "0nYWC000000Dum12AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dum02AC"
+        },
+        "Id": "0nYWC000000Dum02AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dulz2AC"
+        },
+        "Id": "0nYWC000000Dulz2AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duly2AC"
+        },
+        "Id": "0nYWC000000Duly2AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dulx2AC"
+        },
+        "Id": "0nYWC000000Dulx2AC",
+        "CreatedDate": "2026-05-08T13:49:20.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnOYAS",
+        "PrimaryTextRecord": "801WC00000hMbnOYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DukP2AS"
+        },
+        "Id": "0nYWC000000DukP2AS",
+        "CreatedDate": "2026-05-08T13:49:07.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnIYAS",
+        "PrimaryTextRecord": "801WC00000hMbnIYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DukO2AS"
+        },
+        "Id": "0nYWC000000DukO2AS",
+        "CreatedDate": "2026-05-08T13:49:07.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnIYAS",
+        "PrimaryTextRecord": "801WC00000hMbnIYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DukN2AS"
+        },
+        "Id": "0nYWC000000DukN2AS",
+        "CreatedDate": "2026-05-08T13:49:07.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnIYAS",
+        "PrimaryTextRecord": "801WC00000hMbnIYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DukM2AS"
+        },
+        "Id": "0nYWC000000DukM2AS",
+        "CreatedDate": "2026-05-08T13:49:07.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnIYAS",
+        "PrimaryTextRecord": "801WC00000hMbnIYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DukL2AS"
+        },
+        "Id": "0nYWC000000DukL2AS",
+        "CreatedDate": "2026-05-08T13:49:07.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbnIYAS",
+        "PrimaryTextRecord": "801WC00000hMbnIYAS",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duiq2AC"
+        },
+        "Id": "0nYWC000000Duiq2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duip2AC"
+        },
+        "Id": "0nYWC000000Duip2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duio2AC"
+        },
+        "Id": "0nYWC000000Duio2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duin2AC"
+        },
+        "Id": "0nYWC000000Duin2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duim2AC"
+        },
+        "Id": "0nYWC000000Duim2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duil2AC"
+        },
+        "Id": "0nYWC000000Duil2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duik2AC"
+        },
+        "Id": "0nYWC000000Duik2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duij2AC"
+        },
+        "Id": "0nYWC000000Duij2AC",
+        "CreatedDate": "2026-05-08T13:48:57.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbn4YAC",
+        "PrimaryTextRecord": "801WC00000hMbn4YAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh72AC"
+        },
+        "Id": "0nYWC000000Duh72AC",
+        "CreatedDate": "2026-05-08T13:48:51.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmxYAC",
+        "PrimaryTextRecord": "801WC00000hMbmxYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh52AC"
+        },
+        "Id": "0nYWC000000Duh52AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh42AC"
+        },
+        "Id": "0nYWC000000Duh42AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh32AC"
+        },
+        "Id": "0nYWC000000Duh32AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh22AC"
+        },
+        "Id": "0nYWC000000Duh22AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh12AC"
+        },
+        "Id": "0nYWC000000Duh12AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duh02AC"
+        },
+        "Id": "0nYWC000000Duh02AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugz2AC"
+        },
+        "Id": "0nYWC000000Dugz2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugy2AC"
+        },
+        "Id": "0nYWC000000Dugy2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugx2AC"
+        },
+        "Id": "0nYWC000000Dugx2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugw2AC"
+        },
+        "Id": "0nYWC000000Dugw2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugv2AC"
+        },
+        "Id": "0nYWC000000Dugv2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugu2AC"
+        },
+        "Id": "0nYWC000000Dugu2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugt2AC"
+        },
+        "Id": "0nYWC000000Dugt2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugs2AC"
+        },
+        "Id": "0nYWC000000Dugs2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugr2AC"
+        },
+        "Id": "0nYWC000000Dugr2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugq2AC"
+        },
+        "Id": "0nYWC000000Dugq2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugp2AC"
+        },
+        "Id": "0nYWC000000Dugp2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugo2AC"
+        },
+        "Id": "0nYWC000000Dugo2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugn2AC"
+        },
+        "Id": "0nYWC000000Dugn2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugm2AC"
+        },
+        "Id": "0nYWC000000Dugm2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugl2AC"
+        },
+        "Id": "0nYWC000000Dugl2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugk2AC"
+        },
+        "Id": "0nYWC000000Dugk2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugj2AC"
+        },
+        "Id": "0nYWC000000Dugj2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugi2AC"
+        },
+        "Id": "0nYWC000000Dugi2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugh2AC"
+        },
+        "Id": "0nYWC000000Dugh2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugg2AC"
+        },
+        "Id": "0nYWC000000Dugg2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugf2AC"
+        },
+        "Id": "0nYWC000000Dugf2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duge2AC"
+        },
+        "Id": "0nYWC000000Duge2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugd2AC"
+        },
+        "Id": "0nYWC000000Dugd2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugc2AC"
+        },
+        "Id": "0nYWC000000Dugc2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dugb2AC"
+        },
+        "Id": "0nYWC000000Dugb2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duga2AC"
+        },
+        "Id": "0nYWC000000Duga2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugZ2AS"
+        },
+        "Id": "0nYWC000000DugZ2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugY2AS"
+        },
+        "Id": "0nYWC000000DugY2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugX2AS"
+        },
+        "Id": "0nYWC000000DugX2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugW2AS"
+        },
+        "Id": "0nYWC000000DugW2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugV2AS"
+        },
+        "Id": "0nYWC000000DugV2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugU2AS"
+        },
+        "Id": "0nYWC000000DugU2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugT2AS"
+        },
+        "Id": "0nYWC000000DugT2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugS2AS"
+        },
+        "Id": "0nYWC000000DugS2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugR2AS"
+        },
+        "Id": "0nYWC000000DugR2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugQ2AS"
+        },
+        "Id": "0nYWC000000DugQ2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugP2AS"
+        },
+        "Id": "0nYWC000000DugP2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugO2AS"
+        },
+        "Id": "0nYWC000000DugO2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugN2AS"
+        },
+        "Id": "0nYWC000000DugN2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugM2AS"
+        },
+        "Id": "0nYWC000000DugM2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugL2AS"
+        },
+        "Id": "0nYWC000000DugL2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugK2AS"
+        },
+        "Id": "0nYWC000000DugK2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugJ2AS"
+        },
+        "Id": "0nYWC000000DugJ2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugI2AS"
+        },
+        "Id": "0nYWC000000DugI2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugH2AS"
+        },
+        "Id": "0nYWC000000DugH2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugG2AS"
+        },
+        "Id": "0nYWC000000DugG2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugF2AS"
+        },
+        "Id": "0nYWC000000DugF2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugE2AS"
+        },
+        "Id": "0nYWC000000DugE2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugD2AS"
+        },
+        "Id": "0nYWC000000DugD2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugC2AS"
+        },
+        "Id": "0nYWC000000DugC2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugB2AS"
+        },
+        "Id": "0nYWC000000DugB2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000DugA2AS"
+        },
+        "Id": "0nYWC000000DugA2AS",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug92AC"
+        },
+        "Id": "0nYWC000000Dug92AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug82AC"
+        },
+        "Id": "0nYWC000000Dug82AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug72AC"
+        },
+        "Id": "0nYWC000000Dug72AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug62AC"
+        },
+        "Id": "0nYWC000000Dug62AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug52AC"
+        },
+        "Id": "0nYWC000000Dug52AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug42AC"
+        },
+        "Id": "0nYWC000000Dug42AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug32AC"
+        },
+        "Id": "0nYWC000000Dug32AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug22AC"
+        },
+        "Id": "0nYWC000000Dug22AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug12AC"
+        },
+        "Id": "0nYWC000000Dug12AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dug02AC"
+        },
+        "Id": "0nYWC000000Dug02AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufz2AC"
+        },
+        "Id": "0nYWC000000Dufz2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufy2AC"
+        },
+        "Id": "0nYWC000000Dufy2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufx2AC"
+        },
+        "Id": "0nYWC000000Dufx2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufw2AC"
+        },
+        "Id": "0nYWC000000Dufw2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufv2AC"
+        },
+        "Id": "0nYWC000000Dufv2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufu2AC"
+        },
+        "Id": "0nYWC000000Dufu2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duft2AC"
+        },
+        "Id": "0nYWC000000Duft2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufs2AC"
+        },
+        "Id": "0nYWC000000Dufs2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufr2AC"
+        },
+        "Id": "0nYWC000000Dufr2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufq2AC"
+        },
+        "Id": "0nYWC000000Dufq2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufp2AC"
+        },
+        "Id": "0nYWC000000Dufp2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufo2AC"
+        },
+        "Id": "0nYWC000000Dufo2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufn2AC"
+        },
+        "Id": "0nYWC000000Dufn2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufm2AC"
+        },
+        "Id": "0nYWC000000Dufm2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufl2AC"
+        },
+        "Id": "0nYWC000000Dufl2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufk2AC"
+        },
+        "Id": "0nYWC000000Dufk2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufj2AC"
+        },
+        "Id": "0nYWC000000Dufj2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufi2AC"
+        },
+        "Id": "0nYWC000000Dufi2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufh2AC"
+        },
+        "Id": "0nYWC000000Dufh2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufg2AC"
+        },
+        "Id": "0nYWC000000Dufg2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Duff2AC"
+        },
+        "Id": "0nYWC000000Duff2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufe2AC"
+        },
+        "Id": "0nYWC000000Dufe2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufd2AC"
+        },
+        "Id": "0nYWC000000Dufd2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      },
+      {
+        "attributes": {
+          "type": "RevenueTransactionErrorLog",
+          "url": "/services/data/v67.0/sobjects/RevenueTransactionErrorLog/0nYWC000000Dufc2AC"
+        },
+        "Id": "0nYWC000000Dufc2AC",
+        "CreatedDate": "2026-05-08T13:48:34.000+0000",
+        "Category": "OrderToAsset",
+        "PrimaryRecordId": "801WC00000hMbmkYAC",
+        "PrimaryTextRecord": "801WC00000hMbmkYAC",
+        "ErrorCode": "INVALID_INPUT",
+        "ErrorMessage": "Start Date must be before End Date on Asset Contract Relationship"
+      }
+    ],
+    "totalSize": 200,
+    "done": true
+  },
+  "warnings": []
+}
