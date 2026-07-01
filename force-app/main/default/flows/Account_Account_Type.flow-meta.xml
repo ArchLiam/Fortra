@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>Account_Type</name>
+        <dataType>String</dataType>
+        <expression>IF(
+AND({!$Record.Customer__c}=TRUE,{!$Record.Partner__c}=TRUE),
+&quot;Customer&quot;,
+	IF({!$Record.Customer__c}=TRUE,
+		&quot;Customer&quot;,
+		IF({!$Record.Partner__c}=TRUE,
+			&quot;Partner&quot;,
+			&quot;&quot;)))</expression>
+    </formulas>
+    <interviewLabel>Account | Account Type {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account | Account Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Type</name>
+        <label>Update Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Type</field>
+            <value>
+                <elementReference>Account_Type</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Type</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

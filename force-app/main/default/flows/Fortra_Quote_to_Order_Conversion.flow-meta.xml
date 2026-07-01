@@ -3,14 +3,15 @@
     <actionCalls>
         <name>Call_Create_Order_From_Quote</name>
         <label>Create Order From Quote</label>
-        <locationX>545</locationX>
-        <locationY>1768</locationY>
+        <locationX>2228</locationX>
+        <locationY>3536</locationY>
         <actionName>createOrderFromQuote</actionName>
         <actionType>createOrderFromQuote</actionType>
         <connector>
             <targetReference>Assign_Created_Order_Id</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -28,14 +29,15 @@
         <description>Maps custom fields (Hardware, Partition) from source QuoteLineItems to OrderItems. The standard createOrderFromQuote does not map custom lookup fields.</description>
         <name>MapQuoteLineFieldsToOrderItems</name>
         <label>Map Quote Line Fields to Order Items</label>
-        <locationX>545</locationX>
-        <locationY>1936</locationY>
+        <locationX>2228</locationX>
+        <locationY>3752</locationY>
         <actionName>QuoteToOrderFieldMapper</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>SplitPowerOrderLines</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -53,14 +55,15 @@
         <description>SC-3308: reprice the order (RCA Force) so it is CompletedWithPricing before activation (contract path).</description>
         <name>Reprice_Order_Before_Activate</name>
         <label>Reprice Order Before Activate</label>
-        <locationX>171</locationX>
-        <locationY>3016</locationY>
+        <locationX>1392</locationX>
+        <locationY>4808</locationY>
         <actionName>OrderRepriceInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Decision_Order_Priced</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -78,14 +81,15 @@
         <description>SC-3308: reprice the order (RCA Force) so it is CompletedWithPricing before activation (no-contract path).</description>
         <name>Reprice_Order_Before_Activate_No_Contract</name>
         <label>Reprice Order Before Activate (No Contract)</label>
-        <locationX>413</locationX>
-        <locationY>3508</locationY>
+        <locationX>578</locationX>
+        <locationY>5348</locationY>
         <actionName>OrderRepriceInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Decision_Order_Priced_No_Contract</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -103,14 +107,15 @@
         <description>Splits Power product order lines with quantity greater than 1 into individual lines (qty=1 each) before Order activation. Uses the product Power Split Type to determine hardware/partition handling.</description>
         <name>SplitPowerOrderLines</name>
         <label>Split Power Order Lines</label>
-        <locationX>545</locationX>
-        <locationY>2046</locationY>
+        <locationX>2228</locationX>
+        <locationY>3860</locationY>
         <actionName>PowerOrderSplittingService</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Decision_Power_Split_Succeeded</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -127,14 +132,15 @@
     <actionCalls>
         <name>Validate_Checklist_Complete</name>
         <label>Validate Checklist Complete</label>
-        <locationX>545</locationX>
-        <locationY>586</locationY>
+        <locationX>3207</locationX>
+        <locationY>1214</locationY>
         <actionName>ChecklistValidationService</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Decision_Validate_ChecklistComplete</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <flowTransactionModel>CurrentTransaction</flowTransactionModel>
@@ -153,8 +159,8 @@
     <assignments>
         <name>Assign_Created_Contract_Id</name>
         <label>Assign Created Contract Id</label>
-        <locationX>303</locationX>
-        <locationY>2608</locationY>
+        <locationX>50</locationX>
+        <locationY>4508</locationY>
         <assignmentItems>
             <assignToReference>varCreatedContractId</assignToReference>
             <operator>Assign</operator>
@@ -169,8 +175,8 @@
     <assignments>
         <name>Assign_Created_Order_Id</name>
         <label>Assign Created Order Id</label>
-        <locationX>545</locationX>
-        <locationY>1876</locationY>
+        <locationX>2228</locationX>
+        <locationY>3644</locationY>
         <assignmentItems>
             <assignToReference>varCreatedOrderId</assignToReference>
             <operator>Assign</operator>
@@ -185,8 +191,8 @@
     <assignments>
         <name>Assign_Existing_Contract</name>
         <label>Assign Existing Contract</label>
-        <locationX>50</locationX>
-        <locationY>1126</locationY>
+        <locationX>2120</locationX>
+        <locationY>2186</locationY>
         <assignmentItems>
             <assignToReference>varCreatedContractId</assignToReference>
             <operator>Assign</operator>
@@ -208,8 +214,8 @@
     <assignments>
         <name>Set_Amendment_Contract_Defaults</name>
         <label>Set Amendment Contract Defaults</label>
-        <locationX>303</locationX>
-        <locationY>802</locationY>
+        <locationX>1724</locationX>
+        <locationY>1646</locationY>
         <assignmentItems>
             <assignToReference>varContractWasLinked</assignToReference>
             <operator>Assign</operator>
@@ -284,8 +290,8 @@
     <decisions>
         <name>Decision_Activate_Contract</name>
         <label>Activate Contract?</label>
-        <locationX>303</locationX>
-        <locationY>2824</locationY>
+        <locationX>1865</locationX>
+        <locationY>4400</locationY>
         <defaultConnector>
             <targetReference>Decision_Activate_Order_After_Contract</targetReference>
         </defaultConnector>
@@ -316,9 +322,10 @@
     <decisions>
         <name>Decision_Activate_Order_After_Contract</name>
         <label>Activate Order After Contract?</label>
-        <locationX>303</locationX>
-        <locationY>3124</locationY>
+        <locationX>1865</locationX>
+        <locationY>4700</locationY>
         <defaultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Get_Created_Contract</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Manual Order Activation</defaultConnectorLabel>
@@ -341,8 +348,8 @@
     <decisions>
         <name>Decision_Activate_Order_No_Contract</name>
         <label>Activate Order (No Contract Path)?</label>
-        <locationX>545</locationX>
-        <locationY>3616</locationY>
+        <locationX>974</locationX>
+        <locationY>5240</locationY>
         <defaultConnector>
             <targetReference>Screen_4_Confirmation</targetReference>
         </defaultConnector>
@@ -366,8 +373,8 @@
     <decisions>
         <name>Decision_Contract_Selection</name>
         <label>Contract Selection</label>
-        <locationX>182</locationX>
-        <locationY>1018</locationY>
+        <locationX>2318</locationX>
+        <locationY>2078</locationY>
         <defaultConnector>
             <targetReference>Screen_3_Contract_Options</targetReference>
         </defaultConnector>
@@ -398,8 +405,8 @@
     <decisions>
         <name>Decision_Contracts_Found</name>
         <label>Contracts Found?</label>
-        <locationX>336</locationX>
-        <locationY>802</locationY>
+        <locationX>2505</locationX>
+        <locationY>1862</locationY>
         <defaultConnector>
             <targetReference>Screen_2B_No_Contracts</targetReference>
         </defaultConnector>
@@ -423,8 +430,8 @@
     <decisions>
         <name>Decision_Create_Contract</name>
         <label>Create Contract?</label>
-        <locationX>545</locationX>
-        <locationY>694</locationY>
+        <locationX>2731</locationX>
+        <locationY>1646</locationY>
         <defaultConnector>
             <targetReference>Get_Quote_Line_Items</targetReference>
         </defaultConnector>
@@ -448,9 +455,10 @@
     <decisions>
         <name>Decision_Create_Contract_Record</name>
         <label>Create Contract Record?</label>
-        <locationX>536</locationX>
-        <locationY>2485</locationY>
+        <locationX>1326</locationX>
+        <locationY>4184</locationY>
         <defaultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Get_Created_Contract</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>No Contract Needed</defaultConnectorLabel>
@@ -495,8 +503,8 @@
     <decisions>
         <name>Decision_Is_Amendment</name>
         <label>Is Amendment Quote?</label>
-        <locationX>545</locationX>
-        <locationY>634</locationY>
+        <locationX>2228</locationX>
+        <locationY>1430</locationY>
         <defaultConnector>
             <targetReference>Screen_1_Order_Options</targetReference>
         </defaultConnector>
@@ -525,38 +533,13 @@
         </rules>
     </decisions>
     <decisions>
-        <description>SC-3447: PowerOrderSplittingService returns success=false (with a friendly errorMessage) when a high-quantity Power line would create more split order lines than the supported synchronous maximum, instead of breaching the Apex CPU/DML governor limits and rolling back the whole convert. Route the user to a clear message in that case; otherwise continue to the happy path.</description>
-        <name>Decision_Power_Split_Succeeded</name>
-        <label>Power Split Succeeded?</label>
-        <locationX>545</locationX>
-        <locationY>2156</locationY>
-        <defaultConnector>
-            <targetReference>Screen_Error_Power_Split_Too_Large</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Split Too Large</defaultConnectorLabel>
-        <rules>
-            <name>Power_Split_OK</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>SplitPowerOrderLines.success</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_Created_Order</targetReference>
-            </connector>
-            <label>Power Split OK</label>
-        </rules>
-    </decisions>
-    <decisions>
         <description>SC-3308: activate only if the order is fully priced; else route to the existing remediation screen (contract path).</description>
         <name>Decision_Order_Priced</name>
         <label>Order Priced?</label>
-        <locationX>171</locationX>
-        <locationY>3126</locationY>
+        <locationX>1392</locationX>
+        <locationY>4916</locationY>
         <defaultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Priced</defaultConnectorLabel>
@@ -580,9 +563,10 @@
         <description>SC-3308: activate only if the order is fully priced; else route to the existing remediation screen (no-contract path).</description>
         <name>Decision_Order_Priced_No_Contract</name>
         <label>Order Priced? (No Contract)</label>
-        <locationX>413</locationX>
-        <locationY>3616</locationY>
+        <locationX>578</locationX>
+        <locationY>5456</locationY>
         <defaultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Not Priced</defaultConnectorLabel>
@@ -603,10 +587,36 @@
         </rules>
     </decisions>
     <decisions>
+        <description>SC-3447: PowerOrderSplittingService returns success=false (with a friendly errorMessage) when a high-quantity Power line would create more split order lines than the supported synchronous maximum, instead of breaching the Apex CPU/DML governor limits and rolling back the whole convert. Route the user to a clear message in that case; otherwise continue to the happy path.</description>
+        <name>Decision_Power_Split_Succeeded</name>
+        <label>Power Split Succeeded?</label>
+        <locationX>2228</locationX>
+        <locationY>3968</locationY>
+        <defaultConnector>
+            <targetReference>Screen_Error_Power_Split_Too_Large</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Split Too Large</defaultConnectorLabel>
+        <rules>
+            <name>Power_Split_OK</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SplitPowerOrderLines.success</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Created_Order</targetReference>
+            </connector>
+            <label>Power Split OK</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Decision_Validate_BillingAddress</name>
         <label>Validate Bill To Place</label>
-        <locationX>545</locationX>
-        <locationY>526</locationY>
+        <locationX>4855</locationX>
+        <locationY>890</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Missing_BillingAddress</targetReference>
         </defaultConnector>
@@ -630,8 +640,8 @@
     <decisions>
         <name>Decision_Validate_BillingStreet</name>
         <label>Validate Billing Street Populated</label>
-        <locationX>545</locationX>
-        <locationY>550</locationY>
+        <locationX>4469</locationX>
+        <locationY>998</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Missing_BillingStreet</targetReference>
         </defaultConnector>
@@ -655,8 +665,8 @@
     <decisions>
         <name>Decision_Validate_BillToContact</name>
         <label>Validate Bill To Contact</label>
-        <locationX>545</locationX>
-        <locationY>478</locationY>
+        <locationX>5180</locationX>
+        <locationY>782</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Missing_BillToContact</targetReference>
         </defaultConnector>
@@ -680,8 +690,8 @@
     <decisions>
         <name>Decision_Validate_ChecklistComplete</name>
         <label>Validate Checklist Complete</label>
-        <locationX>545</locationX>
-        <locationY>598</locationY>
+        <locationX>3207</locationX>
+        <locationY>1322</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Checklist_Incomplete</targetReference>
         </defaultConnector>
@@ -705,8 +715,8 @@
     <decisions>
         <name>Decision_Validate_Contract_StartDate</name>
         <label>Validate Contract Start Date</label>
-        <locationX>50</locationX>
-        <locationY>1288</locationY>
+        <locationX>2120</locationX>
+        <locationY>2402</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Contract_StartDate</targetReference>
         </defaultConnector>
@@ -722,6 +732,7 @@
                 </rightValue>
             </conditions>
             <connector>
+                <isGoTo>true</isGoTo>
                 <targetReference>Get_Quote_Line_Items</targetReference>
             </connector>
             <label>Quote Start Date is Valid</label>
@@ -730,8 +741,8 @@
     <decisions>
         <name>Decision_Validate_IsSyncing</name>
         <label>Validate Quote Is Syncing</label>
-        <locationX>285</locationX>
-        <locationY>285</locationY>
+        <locationX>6294</locationX>
+        <locationY>242</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Not_Syncing</targetReference>
         </defaultConnector>
@@ -755,8 +766,8 @@
     <decisions>
         <name>Decision_Validate_No_Existing_Order</name>
         <label>Validate No Existing Order</label>
-        <locationX>545</locationX>
-        <locationY>439</locationY>
+        <locationX>6026</locationX>
+        <locationY>458</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Order_Already_Exists</targetReference>
         </defaultConnector>
@@ -780,8 +791,8 @@
     <decisions>
         <name>Decision_Validate_PricingStatus</name>
         <label>Validate Pricing Status</label>
-        <locationX>545</locationX>
-        <locationY>442</locationY>
+        <locationX>5754</locationX>
+        <locationY>566</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Pricing_Required</targetReference>
         </defaultConnector>
@@ -805,8 +816,8 @@
     <decisions>
         <name>Decision_Validate_QuoteStatus</name>
         <label>Validate Quote Status</label>
-        <locationX>545</locationX>
-        <locationY>454</locationY>
+        <locationX>5475</locationX>
+        <locationY>674</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Quote_Not_Accepted</targetReference>
         </defaultConnector>
@@ -830,8 +841,8 @@
     <decisions>
         <name>Decision_Validate_ShippingAddress</name>
         <label>Validate Ship To Place</label>
-        <locationX>545</locationX>
-        <locationY>574</locationY>
+        <locationX>3960</locationX>
+        <locationY>1106</locationY>
         <defaultConnector>
             <targetReference>Screen_Error_Missing_ShippingAddress</targetReference>
         </defaultConnector>
@@ -873,8 +884,8 @@
     <recordCreates>
         <name>Create_Contract_AppUsageAssignment</name>
         <label>Create Contract AppUsageAssignment</label>
-        <locationX>303</locationX>
-        <locationY>2554</locationY>
+        <locationX>50</locationX>
+        <locationY>4400</locationY>
         <connector>
             <targetReference>Assign_Created_Contract_Id</targetReference>
         </connector>
@@ -896,8 +907,8 @@
     <recordCreates>
         <name>Create_Contract_Record</name>
         <label>Create Contract Record</label>
-        <locationX>303</locationX>
-        <locationY>2500</locationY>
+        <locationX>50</locationX>
+        <locationY>4292</locationY>
         <connector>
             <targetReference>Create_Contract_AppUsageAssignment</targetReference>
         </connector>
@@ -943,8 +954,8 @@
     <recordLookups>
         <name>Get_Amendment_Source_Contract</name>
         <label>Get Amendment Source Contract</label>
-        <locationX>303</locationX>
-        <locationY>910</locationY>
+        <locationX>1724</locationX>
+        <locationY>1754</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Quote_Line_Items</targetReference>
@@ -970,8 +981,8 @@
     <recordLookups>
         <name>Get_Created_Contract</name>
         <label>Get Created Contract</label>
-        <locationX>545</locationX>
-        <locationY>3508</locationY>
+        <locationX>974</locationX>
+        <locationY>5132</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Activate_Order_No_Contract</targetReference>
@@ -991,13 +1002,14 @@
     <recordLookups>
         <name>Get_Created_Order</name>
         <label>Get Created Order</label>
-        <locationX>545</locationX>
-        <locationY>2284</locationY>
+        <locationX>1326</locationX>
+        <locationY>4076</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Create_Contract_Record</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Decision_Create_Contract_Record</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
@@ -1023,8 +1035,8 @@
     <recordLookups>
         <name>Get_Existing_Contracts</name>
         <label>Get Existing Contracts</label>
-        <locationX>336</locationX>
-        <locationY>694</locationY>
+        <locationX>2505</locationX>
+        <locationY>1754</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Contracts_Found</targetReference>
@@ -1061,8 +1073,8 @@
     <recordLookups>
         <name>Get_Existing_Orders</name>
         <label>Get Existing Orders</label>
-        <locationX>241</locationX>
-        <locationY>457</locationY>
+        <locationX>6026</locationX>
+        <locationY>350</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Validate_No_Existing_Order</targetReference>
@@ -1098,8 +1110,8 @@
     <recordLookups>
         <name>Get_Quote_Details</name>
         <label>Get Quote Details</label>
-        <locationX>423</locationX>
-        <locationY>163</locationY>
+        <locationX>6294</locationX>
+        <locationY>134</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Validate_IsSyncing</targetReference>
@@ -1164,8 +1176,8 @@
     <recordLookups>
         <name>Get_Quote_Line_Items</name>
         <label>Get Quote Line Items</label>
-        <locationX>545</locationX>
-        <locationY>1660</locationY>
+        <locationX>2228</locationX>
+        <locationY>3212</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Clear_Quote_ContractId</targetReference>
@@ -1185,8 +1197,8 @@
     <recordLookups>
         <name>Get_Selected_Contract_Details</name>
         <label>Get Selected Contract Details</label>
-        <locationX>50</locationX>
-        <locationY>1180</locationY>
+        <locationX>2120</locationX>
+        <locationY>2294</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Validate_Contract_StartDate</targetReference>
@@ -1212,8 +1224,8 @@
     <recordUpdates>
         <name>Activate_Contract</name>
         <label>Activate Contract</label>
-        <locationX>171</locationX>
-        <locationY>2932</locationY>
+        <locationX>1733</locationX>
+        <locationY>4508</locationY>
         <connector>
             <targetReference>Decision_Activate_Order_After_Contract</targetReference>
         </connector>
@@ -1236,12 +1248,13 @@
     <recordUpdates>
         <name>Activate_Order</name>
         <label>Activate Order</label>
-        <locationX>171</locationX>
-        <locationY>3232</locationY>
+        <locationX>974</locationX>
+        <locationY>5024</locationY>
         <connector>
             <targetReference>Get_Created_Contract</targetReference>
         </connector>
         <faultConnector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_Error_Order_Creation_Failed</targetReference>
         </faultConnector>
         <filterLogic>and</filterLogic>
@@ -1263,8 +1276,8 @@
     <recordUpdates>
         <name>Activate_Order_No_Contract</name>
         <label>Activate Order (No Contract)</label>
-        <locationX>413</locationX>
-        <locationY>3724</locationY>
+        <locationX>314</locationX>
+        <locationY>5564</locationY>
         <connector>
             <targetReference>Screen_4_Confirmation</targetReference>
         </connector>
@@ -1290,8 +1303,8 @@
     <recordUpdates>
         <name>Align_Order_Date_And_Link_Contract</name>
         <label>Align Order Date And Link Contract</label>
-        <locationX>50</locationX>
-        <locationY>2608</locationY>
+        <locationX>1865</locationX>
+        <locationY>4292</locationY>
         <connector>
             <targetReference>Decision_Activate_Contract</targetReference>
         </connector>
@@ -1321,8 +1334,8 @@
         <description>Clears ContractId on the Quote before createOrderFromQuote to prevent &quot;Order Start Date can&apos;t be later than its contract&apos;s end date&quot; validation error. The flow handles Contract linking independently after Order creation.</description>
         <name>Clear_Quote_ContractId</name>
         <label>Clear Quote ContractId</label>
-        <locationX>545</locationX>
-        <locationY>1726</locationY>
+        <locationX>2228</locationX>
+        <locationY>3320</locationY>
         <connector>
             <targetReference>Clear_Quote_Validation</targetReference>
         </connector>
@@ -1343,8 +1356,8 @@
         <description>Clears Quote.ValidationResult before createOrderFromQuote. The platform sets ValidationResult to TransactionIncomplete whenever upstream automations touch QuoteLineItems after TLE priced them, and createOrderFromQuote then rejects with the misleading &quot;prices aren&apos;t updated&quot; error. Clearing this field here lets the action proceed; if pricing is actually stale, the action will re-set the field and fail naturally.</description>
         <name>Clear_Quote_Validation</name>
         <label>Clear Quote Validation</label>
-        <locationX>545</locationX>
-        <locationY>1747</locationY>
+        <locationX>2228</locationX>
+        <locationY>3428</locationY>
         <connector>
             <targetReference>Call_Create_Order_From_Quote</targetReference>
         </connector>
@@ -1364,9 +1377,10 @@
     <recordUpdates>
         <name>Link_Order_to_Contract</name>
         <label>Link Order to Contract</label>
-        <locationX>303</locationX>
-        <locationY>2716</locationY>
+        <locationX>50</locationX>
+        <locationY>4616</locationY>
         <connector>
+            <isGoTo>true</isGoTo>
             <targetReference>Decision_Activate_Contract</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
@@ -1389,8 +1403,8 @@
     <screens>
         <name>Screen_1_Order_Options</name>
         <label>Order Options</label>
-        <locationX>545</locationX>
-        <locationY>586</locationY>
+        <locationX>2731</locationX>
+        <locationY>1538</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1431,6 +1445,7 @@
             <defaultSelectedChoiceReference>choiceOrderAutomatic</defaultSelectedChoiceReference>
             <fieldText>Activation Method</fieldText>
             <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <styleProperties>
                 <verticalAlignment>
@@ -1463,6 +1478,7 @@
             <fieldText>Create or link a Contract for this Order</fieldText>
             <fieldType>InputField</fieldType>
             <helpText>Check this box to either select an existing Contract or create a new one from this Quote. If unchecked, the Order will be created without a Contract.</helpText>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <styleProperties>
                 <verticalAlignment>
@@ -1481,8 +1497,8 @@
     <screens>
         <name>Screen_2_Contract_Selection</name>
         <label>Contract Selection</label>
-        <locationX>182</locationX>
-        <locationY>910</locationY>
+        <locationX>2318</locationX>
+        <locationY>1970</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1591,6 +1607,7 @@
             <fieldText>Create a new Contract instead</fieldText>
             <fieldType>InputField</fieldType>
             <helpText>Check this box to create a new Contract from the Quote instead of linking to an existing Contract.</helpText>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <styleProperties>
                 <verticalAlignment>
@@ -1609,8 +1626,8 @@
     <screens>
         <name>Screen_2B_No_Contracts</name>
         <label>No Existing Contracts</label>
-        <locationX>490</locationX>
-        <locationY>910</locationY>
+        <locationX>2692</locationX>
+        <locationY>1970</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1638,8 +1655,8 @@
     <screens>
         <name>Screen_3_Contract_Options</name>
         <label>Contract Options</label>
-        <locationX>336</locationX>
-        <locationY>1468</locationY>
+        <locationX>2505</locationX>
+        <locationY>2936</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1688,9 +1705,15 @@
         </fields>
         <fields>
             <name>Screen3_ContractAutoNotice</name>
-            <fieldText>&lt;p&gt;&lt;span style=&quot;font-size: 16px; background-color: rgb(243, 242, 242);&quot;&gt;ⓘ &lt;b&gt;Contract will be automatically activated.&lt;/b&gt; Revenue Cloud requires Contract activation before Order activation, so the Contract will be activated automatically when Order activation is set to Automatic.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;ⓘ Contract will be automatically activated.&lt;/strong&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; Revenue Cloud requires Contract activation before Order activation, so the Contract will be activated automatically when Order activation is set to Automatic.&lt;/span&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
             <styleProperties>
+                <styleSettings>
+                    <propertyName>--flowruntime-c-displaytext-background-color</propertyName>
+                    <propertyValue>
+                        <stringValue>#FFFFFF</stringValue>
+                    </propertyValue>
+                </styleSettings>
                 <verticalAlignment>
                     <stringValue>top</stringValue>
                 </verticalAlignment>
@@ -1719,6 +1742,7 @@
             </defaultValue>
             <fieldText>Select Contract Activation Mode</fieldText>
             <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <styleProperties>
                 <verticalAlignment>
@@ -1746,8 +1770,8 @@
     <screens>
         <name>Screen_4_Confirmation</name>
         <label>Confirmation</label>
-        <locationX>545</locationX>
-        <locationY>3916</locationY>
+        <locationX>974</locationX>
+        <locationY>6080</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1823,8 +1847,8 @@
     <screens>
         <name>Screen_Amendment_Order_Options</name>
         <label>Amendment Order Options</label>
-        <locationX>303</locationX>
-        <locationY>694</locationY>
+        <locationX>1724</locationX>
+        <locationY>1538</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1865,6 +1889,7 @@
             <defaultSelectedChoiceReference>choiceOrderAutomatic</defaultSelectedChoiceReference>
             <fieldText>Activation Method</fieldText>
             <fieldType>RadioButtons</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <styleProperties>
                 <verticalAlignment>
@@ -1883,8 +1908,8 @@
     <screens>
         <name>Screen_Error_Checklist_Incomplete</name>
         <label>Checklist Incomplete</label>
-        <locationX>809</locationX>
-        <locationY>598</locationY>
+        <locationX>4186</locationX>
+        <locationY>1430</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1921,13 +1946,14 @@
     <screens>
         <name>Screen_Error_Contract_StartDate</name>
         <label>Contract Start Date Conflict</label>
-        <locationX>314</locationX>
-        <locationY>1288</locationY>
+        <locationX>2252</locationX>
+        <locationY>2510</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
         <backButtonLabel>Back to Contract Selection</backButtonLabel>
         <connector>
+            <isGoTo>true</isGoTo>
             <targetReference>Screen_2_Contract_Selection</targetReference>
         </connector>
         <fields>
@@ -1977,8 +2003,8 @@
     <screens>
         <name>Screen_Error_Missing_BillingAddress</name>
         <label>Missing Bill To Place</label>
-        <locationX>809</locationX>
-        <locationY>526</locationY>
+        <locationX>5242</locationX>
+        <locationY>998</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2015,8 +2041,8 @@
     <screens>
         <name>Screen_Error_Missing_BillingStreet</name>
         <label>Missing Billing Address</label>
-        <locationX>809</locationX>
-        <locationY>550</locationY>
+        <locationX>4978</locationX>
+        <locationY>1106</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2053,8 +2079,8 @@
     <screens>
         <name>Screen_Error_Missing_BillToContact</name>
         <label>Missing Bill To Contact</label>
-        <locationX>809</locationX>
-        <locationY>478</locationY>
+        <locationX>5506</locationX>
+        <locationY>890</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2091,8 +2117,8 @@
     <screens>
         <name>Screen_Error_Missing_ShippingAddress</name>
         <label>Missing Ship To Place</label>
-        <locationX>809</locationX>
-        <locationY>574</locationY>
+        <locationX>4714</locationX>
+        <locationY>1214</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2129,8 +2155,8 @@
     <screens>
         <name>Screen_Error_Not_Syncing</name>
         <label>Quote Not Syncing</label>
-        <locationX>809</locationX>
-        <locationY>430</locationY>
+        <locationX>6562</locationX>
+        <locationY>350</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2167,8 +2193,8 @@
     <screens>
         <name>Screen_Error_Order_Already_Exists</name>
         <label>Order Already Exists</label>
-        <locationX>809</locationX>
-        <locationY>439</locationY>
+        <locationX>6298</locationX>
+        <locationY>566</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2218,8 +2244,8 @@
     <screens>
         <name>Screen_Error_Order_Creation_Failed</name>
         <label>Order Creation Failed</label>
-        <locationX>809</locationX>
-        <locationY>1768</locationY>
+        <locationX>578</locationX>
+        <locationY>5672</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2256,8 +2282,8 @@
     <screens>
         <name>Screen_Error_Power_Split_Too_Large</name>
         <label>Power Line Quantity Too Large</label>
-        <locationX>809</locationX>
-        <locationY>2156</locationY>
+        <locationX>3130</locationX>
+        <locationY>4076</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2294,8 +2320,8 @@
     <screens>
         <name>Screen_Error_Pricing_Required</name>
         <label>Pricing Required</label>
-        <locationX>809</locationX>
-        <locationY>442</locationY>
+        <locationX>6034</locationX>
+        <locationY>674</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2332,8 +2358,8 @@
     <screens>
         <name>Screen_Error_Quote_Not_Accepted</name>
         <label>Quote Not Accepted</label>
-        <locationX>809</locationX>
-        <locationY>454</locationY>
+        <locationX>5770</locationX>
+        <locationY>782</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2370,8 +2396,8 @@
     <screens>
         <name>Screen_Navigate_To_Order</name>
         <label>Navigate To Order</label>
-        <locationX>545</locationX>
-        <locationY>4016</locationY>
+        <locationX>974</locationX>
+        <locationY>6188</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -2400,8 +2426,8 @@
         <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>315</locationX>
-        <locationY>50</locationY>
+        <locationX>6168</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Get_Quote_Details</targetReference>
         </connector>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>POI_Line_Found</name>
+        <label>POI Line Found</label>
+        <locationX>176</locationX>
+        <locationY>398</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Product_of_Interest</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Found</defaultConnectorLabel>
+        <rules>
+            <name>Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_POI_Line</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_With_Product</targetReference>
+            </connector>
+            <label>Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Synced_Quote_Exists</name>
+        <label>Synced Quote Exists</label>
+        <locationX>176</locationX>
+        <locationY>158</locationY>
+        <defaultConnector>
+            <targetReference>Clear_Product_of_Interest</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Synced Quote</defaultConnectorLabel>
+        <rules>
+            <name>Has_Synced_Quote</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.SyncedQuoteId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_POI_Line</targetReference>
+            </connector>
+            <label>Has Synced Quote</label>
+        </rules>
+    </decisions>
+    <description>Updates Opportunity Product_of_Interest__c field when SyncedQuoteId changes
+SO: 4-18-26 - No changes - Saved as most recent for deployment</description>
+    <environments>Default</environments>
+    <interviewLabel>POI Update Opportunity From Sync {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>POI Update Opportunity From Sync</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_POI_Line</name>
+        <label>Get POI Line</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>POI_Line_Found</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>QuoteId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.SyncedQuoteId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsProductOfInterest__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>QuoteLineItem</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Product2Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Clear_Product_of_Interest</name>
+        <label>Clear Product of Interest</label>
+        <locationX>440</locationX>
+        <locationY>518</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Product_of_Interest__c</field>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity_With_Product</name>
+        <label>Update Opportunity With Product</label>
+        <locationX>176</locationX>
+        <locationY>518</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Product_of_Interest__c</field>
+            <value>
+                <elementReference>Get_POI_Line.Product2.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Synced_Quote_Exists</targetReference>
+        </connector>
+        <filterFormula>ISCHANGED({!$Record.SyncedQuoteId})</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

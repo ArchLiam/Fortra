@@ -76,7 +76,7 @@
     <description>Autolaunched subflow that sets Workday Contract Line Type on Order Items. Invoke with a collection of Order Item records.</description>
     <environments>Default</environments>
     <interviewLabel>Fortra | Autolaunched | Set Workday Contract Line Type {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Fortra | Autolaunched | Set Workday Contract Line Type</label>
+    <label>(Deprecated)Fortra | Autolaunched | Set Workday Contract Line Type</label>
     <loops>
         <name>Loop_Order_Items</name>
         <label>Loop Order Items</label>
@@ -180,7 +180,7 @@
         <inputAssignments>
             <field>Workday_Contract_Line_Type__c</field>
             <value>
-                <stringValue>FIXED AMOUNT</stringValue>
+                <stringValue>FIXED AMOUNT BILLING ONLY</stringValue>
             </value>
         </inputAssignments>
         <object>OrderItem</object>
@@ -240,7 +240,7 @@
             <targetReference>Loop_Order_Items</targetReference>
         </connector>
     </start>
-    <status>Active</status>
+    <status>Draft</status>
     <variables>
         <name>records</name>
         <dataType>SObject</dataType>

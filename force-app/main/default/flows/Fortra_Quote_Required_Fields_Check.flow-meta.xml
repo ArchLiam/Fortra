@@ -1,107 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
     <description>SC-3338: Read-only guidance modal listing the fields required for a valid Quote to Order, with live tick/cross readiness, grouped by where the rep fixes them. Reachable from the Quote via the Review Required Fields quick action. No DML.</description>
     <environments>Default</environments>
     <formulas>
-        <name>lnA_BillToContact</name>
+        <name>fHeader</name>
         <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Quote.BillToContactId})), "✅ Bill To Contact", "❌ Bill To Contact — select a Bill To Contact on this Quote")</expression>
-    </formulas>
-    <formulas>
-        <name>lnA_ShipToContact</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Quote.ContactId})), "✅ Ship To Contact (Quote Contact)", "❌ Ship To Contact (Quote Contact) — select the Quote Contact (becomes the Order Ship To Contact)")</expression>
-    </formulas>
-    <formulas>
-        <name>lnA_BillToPlace</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Quote.Bill_To_Place__c})), "✅ Bill To Place", "❌ Bill To Place — select a Bill To Place (becomes the Order Bill To Address)")</expression>
-    </formulas>
-    <formulas>
-        <name>lnA_ShipToPlace</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Quote.Ship_To_Place__c})), "✅ Ship To Place", "❌ Ship To Place — select a Ship To Place (becomes the Order Ship To Address)")</expression>
-    </formulas>
-    <formulas>
-        <name>lnA_ShipToAcct</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_ShipToPlace.Account__c})), "✅ Ship To Place has an Account", "❌ Ship To Place has an Account — the chosen Ship To Place needs an Account (drives the Order Ship To Account)")</expression>
-    </formulas>
-    <formulas>
-        <name>lnA_StartDate</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Quote.StartDate})), "✅ Start Date", "❌ Start Date — set the Quote Start Date (becomes the Order Effective Date)")</expression>
-    </formulas>
-    <formulas>
-        <name>lnB_Name</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Account.Name})), "✅ Account Name", "❌ Account Name — set the Account Name")</expression>
-    </formulas>
-    <formulas>
-        <name>lnB_Phone</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Account.Phone})), "✅ Account Phone", "❌ Account Phone — add a Phone on the Account")</expression>
-    </formulas>
-    <formulas>
-        <name>lnB_Type</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK(TEXT({!Get_Account.Type}))), "✅ Account Type", "❌ Account Type — set the Account Type")</expression>
-    </formulas>
-    <formulas>
-        <name>lnB_Duns</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_Account.DB_DUNS__c})), "✅ Account D&amp;B DUNS", "❌ Account D&amp;B DUNS — add the D&amp;B DUNS on the Account")</expression>
-    </formulas>
-    <formulas>
-        <name>lnBT_First</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_BillToContact.FirstName})), "✅ Bill To Contact First Name", "❌ Bill To Contact First Name — add the contact First Name")</expression>
-    </formulas>
-    <formulas>
-        <name>lnBT_Last</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_BillToContact.LastName})), "✅ Bill To Contact Last Name", "❌ Bill To Contact Last Name — add the contact Last Name")</expression>
-    </formulas>
-    <formulas>
-        <name>lnBT_Dev</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK(TEXT({!Get_BillToContact.Workday_MobilePhone_Device_Type__c}))), "✅ Bill To Contact Workday Mobile Device Type", "❌ Bill To Contact Workday Mobile Device Type — set the Workday Mobile Device Type on the contact")</expression>
-    </formulas>
-    <formulas>
-        <name>lnBT_Use</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK(TEXT({!Get_BillToContact.Workday_MobilePhone_Usage_Type__c}))), "✅ Bill To Contact Workday Mobile Usage Type", "❌ Bill To Contact Workday Mobile Usage Type — set the Workday Mobile Usage Type on the contact")</expression>
-    </formulas>
-    <formulas>
-        <name>lnBT_Prim</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_BillToContact.Id})), "✅ Bill To Contact Workday Mobile Primary", "❌ Bill To Contact Workday Mobile Primary — this is set automatically once the Bill To Contact exists")</expression>
-    </formulas>
-    <formulas>
-        <name>lnST_First</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_ShipToContact.FirstName})), "✅ Ship To Contact First Name", "❌ Ship To Contact First Name — add the contact First Name")</expression>
-    </formulas>
-    <formulas>
-        <name>lnST_Last</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_ShipToContact.LastName})), "✅ Ship To Contact Last Name", "❌ Ship To Contact Last Name — add the contact Last Name")</expression>
-    </formulas>
-    <formulas>
-        <name>lnST_Dev</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK(TEXT({!Get_ShipToContact.Workday_MobilePhone_Device_Type__c}))), "✅ Ship To Contact Workday Mobile Device Type", "❌ Ship To Contact Workday Mobile Device Type — set the Workday Mobile Device Type on the contact")</expression>
-    </formulas>
-    <formulas>
-        <name>lnST_Use</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK(TEXT({!Get_ShipToContact.Workday_MobilePhone_Usage_Type__c}))), "✅ Ship To Contact Workday Mobile Usage Type", "❌ Ship To Contact Workday Mobile Usage Type — set the Workday Mobile Usage Type on the contact")</expression>
-    </formulas>
-    <formulas>
-        <name>lnST_Prim</name>
-        <dataType>String</dataType>
-        <expression>IF(NOT(ISBLANK({!Get_ShipToContact.Id})), "✅ Ship To Contact Workday Mobile Primary", "❌ Ship To Contact Workday Mobile Primary — this is set automatically once the Ship To Contact exists")</expression>
+        <expression>IF({!fReady}, &quot;&lt;b&gt;✅ Ready to convert&lt;/b&gt; — all required fields are populated.&quot;, &quot;&lt;b&gt;⚠️ Action needed&lt;/b&gt; — complete the items marked ❌ below before converting this Quote to an Order.&quot;)</expression>
     </formulas>
     <formulas>
         <name>fReady</name>
@@ -109,34 +15,108 @@
         <expression>AND(NOT(ISBLANK({!Get_Quote.BillToContactId})), NOT(ISBLANK({!Get_Quote.ContactId})), NOT(ISBLANK({!Get_Quote.Bill_To_Place__c})), NOT(ISBLANK({!Get_Quote.Ship_To_Place__c})), NOT(ISBLANK({!Get_ShipToPlace.Account__c})), NOT(ISBLANK({!Get_Quote.StartDate})), NOT(ISBLANK({!Get_Account.Name})), NOT(ISBLANK({!Get_Account.Phone})), NOT(ISBLANK(TEXT({!Get_Account.Type}))), NOT(ISBLANK({!Get_Account.DB_DUNS__c})), NOT(ISBLANK({!Get_BillToContact.FirstName})), NOT(ISBLANK({!Get_BillToContact.LastName})), NOT(ISBLANK(TEXT({!Get_BillToContact.Workday_MobilePhone_Device_Type__c}))), NOT(ISBLANK(TEXT({!Get_BillToContact.Workday_MobilePhone_Usage_Type__c}))), NOT(ISBLANK({!Get_ShipToContact.FirstName})), NOT(ISBLANK({!Get_ShipToContact.LastName})), NOT(ISBLANK(TEXT({!Get_ShipToContact.Workday_MobilePhone_Device_Type__c}))), NOT(ISBLANK(TEXT({!Get_ShipToContact.Workday_MobilePhone_Usage_Type__c}))))</expression>
     </formulas>
     <formulas>
-        <name>fHeader</name>
+        <name>lnA_BillToContact</name>
         <dataType>String</dataType>
-        <expression>IF({!fReady}, "&lt;b&gt;✅ Ready to convert&lt;/b&gt; — all required fields are populated.", "&lt;b&gt;⚠️ Action needed&lt;/b&gt; — complete the items marked ❌ below before converting this Quote to an Order.")</expression>
+        <expression>IF(NOT(ISBLANK({!Get_Quote.BillToContactId})), &quot;✅ Bill To Contact&quot;, &quot;❌ Bill To Contact — select a Bill To Contact on this Quote&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnA_BillToPlace</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Quote.Bill_To_Place__c})), &quot;✅ Bill To Place&quot;, &quot;❌ Bill To Place — select a Bill To Place (becomes the Order Bill To Address)&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnA_ShipToAcct</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_ShipToPlace.Account__c})), &quot;✅ Ship To Place has an Account&quot;, &quot;❌ Ship To Place has an Account — the chosen Ship To Place needs an Account (drives the Order Ship To Account)&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnA_ShipToContact</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Quote.ContactId})), &quot;✅ Ship To Contact (Quote Contact)&quot;, &quot;❌ Ship To Contact (Quote Contact) — select the Quote Contact (becomes the Order Ship To Contact)&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnA_ShipToPlace</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Quote.Ship_To_Place__c})), &quot;✅ Ship To Place&quot;, &quot;❌ Ship To Place — select a Ship To Place (becomes the Order Ship To Address)&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnA_StartDate</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Quote.StartDate})), &quot;✅ Start Date&quot;, &quot;❌ Start Date — set the Quote Start Date (becomes the Order Effective Date)&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnB_Duns</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Account.DB_DUNS__c})), &quot;✅ Account D&amp;B DUNS&quot;, &quot;❌ Account D&amp;B DUNS — add the D&amp;B DUNS on the Account&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnB_Name</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Account.Name})), &quot;✅ Account Name&quot;, &quot;❌ Account Name — set the Account Name&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnB_Phone</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_Account.Phone})), &quot;✅ Account Phone&quot;, &quot;❌ Account Phone — add a Phone on the Account&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnB_Type</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK(TEXT({!Get_Account.Type}))), &quot;✅ Account Type&quot;, &quot;❌ Account Type — set the Account Type&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnBT_Dev</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK(TEXT({!Get_BillToContact.Workday_MobilePhone_Device_Type__c}))), &quot;✅ Bill To Contact Workday Mobile Device Type&quot;, &quot;❌ Bill To Contact Workday Mobile Device Type — set the Workday Mobile Device Type on the contact&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnBT_First</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_BillToContact.FirstName})), &quot;✅ Bill To Contact First Name&quot;, &quot;❌ Bill To Contact First Name — add the contact First Name&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnBT_Last</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_BillToContact.LastName})), &quot;✅ Bill To Contact Last Name&quot;, &quot;❌ Bill To Contact Last Name — add the contact Last Name&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnBT_Prim</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_BillToContact.Id})), &quot;✅ Bill To Contact Workday Mobile Primary&quot;, &quot;❌ Bill To Contact Workday Mobile Primary — this is set automatically once the Bill To Contact exists&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnBT_Use</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK(TEXT({!Get_BillToContact.Workday_MobilePhone_Usage_Type__c}))), &quot;✅ Bill To Contact Workday Mobile Usage Type&quot;, &quot;❌ Bill To Contact Workday Mobile Usage Type — set the Workday Mobile Usage Type on the contact&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnST_Dev</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK(TEXT({!Get_ShipToContact.Workday_MobilePhone_Device_Type__c}))), &quot;✅ Ship To Contact Workday Mobile Device Type&quot;, &quot;❌ Ship To Contact Workday Mobile Device Type — set the Workday Mobile Device Type on the contact&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnST_First</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_ShipToContact.FirstName})), &quot;✅ Ship To Contact First Name&quot;, &quot;❌ Ship To Contact First Name — add the contact First Name&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnST_Last</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_ShipToContact.LastName})), &quot;✅ Ship To Contact Last Name&quot;, &quot;❌ Ship To Contact Last Name — add the contact Last Name&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnST_Prim</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK({!Get_ShipToContact.Id})), &quot;✅ Ship To Contact Workday Mobile Primary&quot;, &quot;❌ Ship To Contact Workday Mobile Primary — this is set automatically once the Ship To Contact exists&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>lnST_Use</name>
+        <dataType>String</dataType>
+        <expression>IF(NOT(ISBLANK(TEXT({!Get_ShipToContact.Workday_MobilePhone_Usage_Type__c}))), &quot;✅ Ship To Contact Workday Mobile Usage Type&quot;, &quot;❌ Ship To Contact Workday Mobile Usage Type — set the Workday Mobile Usage Type on the contact&quot;)</expression>
     </formulas>
     <interviewLabel>Quote Required Fields Check {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Fortra Quote Required Fields Check</label>
     <processType>Flow</processType>
-    <recordLookups>
-        <name>Get_Quote</name>
-        <label>Get Quote</label>
-        <locationX>176</locationX>
-        <locationY>134</locationY>
-        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Account</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>recordId</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Quote</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
     <recordLookups>
         <name>Get_Account</name>
         <label>Get Account</label>
@@ -177,6 +157,27 @@
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
         <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Quote</name>
+        <label>Get Quote</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Quote</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -234,6 +235,14 @@
             <name>Checklist_Display</name>
             <fieldText>&lt;p&gt;{!fHeader}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On this Quote (you set these directly)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnA_BillToContact}&lt;/p&gt;&lt;p&gt;{!lnA_ShipToContact}&lt;/p&gt;&lt;p&gt;{!lnA_BillToPlace}&lt;/p&gt;&lt;p&gt;{!lnA_ShipToPlace}&lt;/p&gt;&lt;p&gt;{!lnA_ShipToAcct}&lt;/p&gt;&lt;p&gt;{!lnA_StartDate}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On the Customer Account (open the Account to fix)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnB_Name}&lt;/p&gt;&lt;p&gt;{!lnB_Phone}&lt;/p&gt;&lt;p&gt;{!lnB_Type}&lt;/p&gt;&lt;p&gt;{!lnB_Duns}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On the Bill To Contact (open the Contact to fix)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnBT_First}&lt;/p&gt;&lt;p&gt;{!lnBT_Last}&lt;/p&gt;&lt;p&gt;{!lnBT_Dev}&lt;/p&gt;&lt;p&gt;{!lnBT_Use}&lt;/p&gt;&lt;p&gt;{!lnBT_Prim}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On the Ship To Contact / Quote Contact (open the Contact to fix)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnST_First}&lt;/p&gt;&lt;p&gt;{!lnST_Last}&lt;/p&gt;&lt;p&gt;{!lnST_Dev}&lt;/p&gt;&lt;p&gt;{!lnST_Use}&lt;/p&gt;&lt;p&gt;{!lnST_Prim}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;Fields like Tax, Line Numbers, Billing Frequency and the Workday contract IDs are filled in automatically when the Order is created — you don&apos;t need to enter them.&lt;/i&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>

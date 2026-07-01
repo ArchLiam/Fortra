@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Project_Recognition_Method_and_Billable</name>
+        <label>Project Recognition Method and Billable</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>All others</defaultConnectorLabel>
+        <rules>
+            <name>Deliverable</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pse__Project__r.pse__Recognition_Method__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Deliverable</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.pse__Project__r.pse__Is_Billable__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>uExpenseRecognitionMethod</targetReference>
+            </connector>
+            <label>Deliverable</label>
+        </rules>
+    </decisions>
+    <description>Purpose is to set the Recognition Method on Expenses to Deliverable when the related Project also has Recognition Method set to Deliverable.  Purpose is for amount to flow into Actuals bucket in Revenue Forecasting for previous periods.</description>
+    <interviewLabel>FFX PSA Rev Forecast Set Deliverable Recognition Method on Expenses {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FFX PSA Rev Forecast Set Deliverable Recognition Method on Expenses</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>uExpenseRecognitionMethod</name>
+        <label>uExpenseRecognitionMethod</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>pse__Recognition_Method__c</field>
+            <value>
+                <stringValue>Deliverable</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Project_Recognition_Method_and_Billable</targetReference>
+        </connector>
+        <object>pse__Expense__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

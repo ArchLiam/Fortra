@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Notify_NEW_Resolver</name>
+        <label>Notify NEW Resolver</label>
+        <locationX>584</locationX>
+        <locationY>371</locationY>
+        <actionName>chatterPost</actionName>
+        <actionType>chatterPost</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>text</name>
+            <value>
+                <elementReference>Post_to_NEW_Resolver</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>subjectNameOrId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>chatterPost</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>When the Resolver is updated on a Test Case Issue - a new chatter post will be created alerting the new resolver</description>
+    <environments>Default</environments>
+    <interviewLabel>UAT Post Notification of newly assigned TCI Resolver {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>UAT Post Notification of newly assigned TCI Resolver</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>458</locationX>
+        <locationY>48</locationY>
+        <connector>
+            <targetReference>Notify_NEW_Resolver</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Resolution_Assigned_To__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Test_Case_Issues__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Post_to_NEW_Resolver</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>@[{!$Record.Resolution_Assigned_To__r.Id}]  A new UAT Test Case Issue has been assigned to you.</text>
+    </textTemplates>
+</Flow>

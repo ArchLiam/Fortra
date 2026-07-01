@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Status_Changed</name>
+        <label>Status Changed?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>UpdateApprovedFalse</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other</defaultConnectorLabel>
+        <rules>
+            <name>MiscAdj_Approved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pse__Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>UpdateApprovedTrue</targetReference>
+            </connector>
+            <label>Approved</label>
+        </rules>
+    </decisions>
+    <description>When a Misc Adjustment Status is changed, update Misc Adj billing and IIF fields accordingly</description>
+    <interviewLabel>FFX PSA Miscellaneous Adjustment Create/Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FFX PSA Miscellaneous Adjustment</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Field Updates if Status is not Approved</description>
+        <name>UpdateApprovedFalse</name>
+        <label>Update - Misc Adj</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>pse__Approved__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pse__Include_In_Financials__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Field Updates if Status is Approved</description>
+        <name>UpdateApprovedTrue</name>
+        <label>Update - Misc Adj</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <inputAssignments>
+            <field>pse__Approved__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>pse__Include_In_Financials__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Status_Changed</targetReference>
+        </connector>
+        <object>pse__Miscellaneous_Adjustment__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

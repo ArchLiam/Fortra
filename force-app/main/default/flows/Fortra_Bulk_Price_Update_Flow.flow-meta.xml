@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>getProductPreview</name>
+        <label>Get Product Preview</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <actionName>Fortra_BulkPriceUpdateInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>decisionHasProducts</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>solutionCategories</name>
+            <value>
+                <elementReference>varSelectedCategories</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>pricebookIds</name>
+            <value>
+                <elementReference>varSelectedPricebookIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>previewOnly</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>Fortra_BulkPriceUpdateInvocable</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <name>startBulkUpdate</name>
+        <label>Start Bulk Update</label>
+        <locationX>50</locationX>
+        <locationY>782</locationY>
+        <actionName>Fortra_BulkPriceUpdateInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>decisionBatchStarted</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>solutionCategories</name>
+            <value>
+                <elementReference>varSelectedCategories</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>pricebookIds</name>
+            <value>
+                <elementReference>varSelectedPricebookIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>batchSize</name>
+            <value>
+                <numberValue>50.0</numberValue>
+            </value>
+        </inputParameters>
+        <nameSegment>Fortra_BulkPriceUpdateInvocable</nameSegment>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>assignBatchResults</name>
+        <label>Store Batch Results</label>
+        <locationX>50</locationX>
+        <locationY>998</locationY>
+        <assignmentItems>
+            <assignToReference>varJobId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>startBulkUpdate.jobId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varBatchSuccess</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>screenConfirmation</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>assignPreviewData</name>
+        <label>Store Preview Data</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <assignmentItems>
+            <assignToReference>varProductCount</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getProductPreview.productCount</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varEstimatedPBEs</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>getProductPreview.estimatedPBECount</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>decisionStandardWarning</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>assignSelectedCategories</name>
+        <label>Assign Selected Categories</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>varSelectedCategories</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>categoryCheckboxGroup</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>varSelectedPricebookIds</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>pricebookCheckboxGroup</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>getProductPreview</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>choiceBrandProtection</name>
+        <choiceText>Brand Protection</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Brand Protection</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceBusinessIntelligence</name>
+        <choiceText>Business Intelligence</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Business Intelligence</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceCapacityManagement</name>
+        <choiceText>Capacity Management</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Capacity Management</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceCloudDataProtection</name>
+        <choiceText>Cloud Data Protection</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Cloud Data Protection</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceCoreIGA</name>
+        <choiceText>Core IGA</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Core IGA</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceCybersecurity</name>
+        <choiceText>Cybersecurity</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Cybersecurity</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceDataProtection</name>
+        <choiceText>Data Protection</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Data Protection</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceDocManagement</name>
+        <choiceText>Doc Management</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Doc Management</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceEmailSecurity</name>
+        <choiceText>Email Security</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Email Security</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceFileIntegrityMonitoring</name>
+        <choiceText>File Integrity Monitoring</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>File Integrity Monitoring</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceGlobalscape</name>
+        <choiceText>Globalscape</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Globalscape</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceGoAnywhere</name>
+        <choiceText>GoAnywhere</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>GoAnywhere</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceHumanRiskManagement</name>
+        <choiceText>Human Risk Management</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Human Risk Management</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceIPP</name>
+        <choiceText>IPP</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>IPP</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceNetworkMonitoring</name>
+        <choiceText>Network Monitoring</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Network Monitoring</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceOffensiveSecurity</name>
+        <choiceText>Offensive Security</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Offensive Security</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choicePowertechBoKS</name>
+        <choiceText>Powertech Identity &amp; Access Manager (BoKS)</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Powertech Identity &amp; Access Manager (BoKS)</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceRoboticProcessAutomation</name>
+        <choiceText>Robotic Process Automation</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Robotic Process Automation</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceSystemsManagement</name>
+        <choiceText>Systems Management</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Systems Management</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>choiceVulnerabilityManagement</name>
+        <choiceText>Vulnerability Management</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Vulnerability Management</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>decisionBatchStarted</name>
+        <label>Batch Started?</label>
+        <locationX>50</locationX>
+        <locationY>890</locationY>
+        <defaultConnector>
+            <targetReference>screenBatchError</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Failed</defaultConnectorLabel>
+        <rules>
+            <name>ruleBatchSuccess</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>startBulkUpdate.success</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assignBatchResults</targetReference>
+            </connector>
+            <label>Success</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>decisionHasProducts</name>
+        <label>Has Products?</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <defaultConnector>
+            <targetReference>screenNoProducts</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Products</defaultConnectorLabel>
+        <rules>
+            <name>ruleHasProducts</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getProductPreview.success</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>getProductPreview.productCount</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>assignPreviewData</targetReference>
+            </connector>
+            <label>Has Products</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>decisionStandardWarning</name>
+        <label>Blocking Warning?</label>
+        <locationX>50</locationX>
+        <locationY>650</locationY>
+        <defaultConnector>
+            <targetReference>screenPreview</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>OK to Proceed</defaultConnectorLabel>
+        <rules>
+            <name>ruleBlockingWarning</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>getProductPreview.blockingWarning</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>screenStandardBlocked</targetReference>
+            </connector>
+            <label>Blocked - Standard Missing</label>
+        </rules>
+    </decisions>
+    <description>Screen Flow for bulk updating multi-currency prices across products filtered by Solution Category. Allows users to select categories, preview products, and initiate a batch job to create/update PricebookEntries for all currencies.</description>
+    <dynamicChoiceSets>
+        <name>choiceActivePricebooks</name>
+        <dataType>String</dataType>
+        <displayField>Name</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsActive</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Pricebook2</object>
+        <sortField>Name</sortField>
+        <sortOrder>Asc</sortOrder>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <interviewLabel>Bulk Multi-Currency Price Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Products | Bulk Multi-Currency Price Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <screens>
+        <name>screenBatchError</name>
+        <label>Update Failed</label>
+        <locationX>314</locationX>
+        <locationY>998</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>batchErrorMessage</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(194, 57, 52);&quot;&gt;Failed to Start Price Update&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The batch job could not be started. Please try again or contact your administrator.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Error Details:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!startBulkUpdate.errorMessage}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>screenConfirmation</name>
+        <label>Update Started</label>
+        <locationX>50</locationX>
+        <locationY>1106</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>confirmationHeader</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px; color: rgb(46, 132, 74);&quot;&gt;Price Update Started Successfully&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>confirmationDetails</name>
+            <fieldText>&lt;p&gt;The bulk price update has been initiated. Here are the details:&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Batch Job ID:&lt;/strong&gt; {!varJobId}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Categories:&lt;/strong&gt; {!varSelectedCategories}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Pricebooks:&lt;/strong&gt; {!getProductPreview.pricebooksProcessed}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Products:&lt;/strong&gt; {!varProductCount}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>nextSteps</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;What Happens Next:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;The batch job is processing products in the background&lt;/li&gt;&lt;li&gt;You will receive an email when the process completes&lt;/li&gt;&lt;li&gt;The email will include a summary of successes and any errors&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em style=&quot;font-size: 12px; color: rgb(109, 109, 109);&quot;&gt;You can monitor the batch job status in Setup - Apex Jobs&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Done</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>screenNoProducts</name>
+        <label>No Products Found</label>
+        <locationX>314</locationX>
+        <locationY>566</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>noProductsMessage</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(194, 57, 52);&quot;&gt;No Products Found&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;No active products were found for the selected Solution Categories with a USD price in the Standard Pricebook.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please verify:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Products exist with the selected Solution Category values&lt;/li&gt;&lt;li&gt;Products are marked as Active&lt;/li&gt;&lt;li&gt;Products have a USD PricebookEntry in the Standard Pricebook&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;em&gt;Error: {!getProductPreview.errorMessage}&lt;/em&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>screenPreview</name>
+        <label>Preview and Confirm</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>startBulkUpdate</targetReference>
+        </connector>
+        <fields>
+            <name>previewHeader</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;Confirm Price Update&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Review the details below and click &quot;Start Price Update&quot; to begin processing.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>previewDetails</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Selected Categories:&lt;/strong&gt; {!varSelectedCategories}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Selected Pricebooks:&lt;/strong&gt; {!getProductPreview.pricebooksProcessed}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Products to Process:&lt;/strong&gt; &lt;span style=&quot;font-size: 16px; color: rgb(0, 112, 210);&quot;&gt;{!varProductCount}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Estimated PricebookEntries:&lt;/strong&gt; {!varEstimatedPBEs}&lt;/p&gt;&lt;p&gt;&lt;em style=&quot;font-size: 12px; color: rgb(109, 109, 109);&quot;&gt;(Products x Pricebooks x Currencies)&lt;/em&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>previewPricebookBreakdown</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Per-Pricebook Breakdown:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;{!getProductPreview.pricebookBreakdownHtml}&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>previewStandardWarning</name>
+            <fieldText>&lt;p style=&quot;color: rgb(194, 113, 0);&quot;&gt;{!getProductPreview.standardWarning}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>previewWarning</name>
+            <fieldText>&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;This process runs in the background and may take several minutes for large volumes&lt;/li&gt;&lt;li&gt;Existing PricebookEntry prices will be updated based on the current USD price&lt;/li&gt;&lt;li&gt;You will receive an email notification when the process completes&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Start Price Update</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>screenSelectCategories</name>
+        <label>Select Solution Categories</label>
+        <locationX>50</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>assignSelectedCategories</targetReference>
+        </connector>
+        <fields>
+            <name>screenHeader1</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 18px;&quot;&gt;Bulk Multi-Currency Price Update&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This tool will update PricebookEntry prices for all selected products across all active currencies. The conversion rates from Currency_Conversion_Formula__mdt will be applied to the USD Standard Pricebook price.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>categoryCheckboxGroup</name>
+            <choiceReferences>choiceBrandProtection</choiceReferences>
+            <choiceReferences>choiceBusinessIntelligence</choiceReferences>
+            <choiceReferences>choiceCapacityManagement</choiceReferences>
+            <choiceReferences>choiceCloudDataProtection</choiceReferences>
+            <choiceReferences>choiceCoreIGA</choiceReferences>
+            <choiceReferences>choiceCybersecurity</choiceReferences>
+            <choiceReferences>choiceDataProtection</choiceReferences>
+            <choiceReferences>choiceDocManagement</choiceReferences>
+            <choiceReferences>choiceEmailSecurity</choiceReferences>
+            <choiceReferences>choiceFileIntegrityMonitoring</choiceReferences>
+            <choiceReferences>choiceGlobalscape</choiceReferences>
+            <choiceReferences>choiceGoAnywhere</choiceReferences>
+            <choiceReferences>choiceHumanRiskManagement</choiceReferences>
+            <choiceReferences>choiceIPP</choiceReferences>
+            <choiceReferences>choiceNetworkMonitoring</choiceReferences>
+            <choiceReferences>choiceOffensiveSecurity</choiceReferences>
+            <choiceReferences>choicePowertechBoKS</choiceReferences>
+            <choiceReferences>choiceRoboticProcessAutomation</choiceReferences>
+            <choiceReferences>choiceSystemsManagement</choiceReferences>
+            <choiceReferences>choiceVulnerabilityManagement</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Select Solution Categories</fieldText>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <helpText>Select one or more Solution Categories. Products in these categories will have their multi-currency prices updated.</helpText>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>pricebookCheckboxGroup</name>
+            <choiceReferences>choiceActivePricebooks</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Select Pricebooks</fieldText>
+            <fieldType>MultiSelectCheckboxes</fieldType>
+            <helpText>Select one or more Pricebooks. Updates will only be applied to these Pricebooks. The Standard Pricebook serves as the source of USD prices for currency conversion.</helpText>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>noteText</name>
+            <fieldText>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(68, 68, 68);&quot;&gt;Only active products with a USD price in the Standard Pricebook will be processed. You will receive an email notification when the update is complete.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Preview Products</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>screenStandardBlocked</name>
+        <label>Standard Pricebook Required</label>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>standardBlockedHeader</name>
+            <fieldText>&lt;p&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(194, 57, 52);&quot;&gt;Cannot Proceed - Standard Pricebook Data Issue&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!getProductPreview.standardWarning}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The Standard Pricebook is the source of USD prices used to derive prices in other currencies. To proceed, do one of:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Go back and add the Standard Pricebook to your selection&lt;/li&gt;&lt;li&gt;Ensure every in-scope product has a USD price in the Standard Pricebook&lt;/li&gt;&lt;/ul&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>screenSelectCategories</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Whether batch was successfully started</description>
+        <name>varBatchSuccess</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Error message if batch fails to start</description>
+        <name>varErrorMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Estimated number of PricebookEntries to create/update</description>
+        <name>varEstimatedPBEs</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>Batch job ID returned from invocable</description>
+        <name>varJobId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Number of products to be processed</description>
+        <name>varProductCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+    </variables>
+    <variables>
+        <description>Semicolon-separated list of selected Solution Categories</description>
+        <name>varSelectedCategories</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Semicolon-separated list of selected Pricebook2 IDs</description>
+        <name>varSelectedPricebookIds</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

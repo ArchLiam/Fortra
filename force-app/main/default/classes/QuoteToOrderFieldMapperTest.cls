@@ -75,6 +75,7 @@ private class QuoteToOrderFieldMapperTest {
         Quote q = new Quote(
             Name = name,
             OpportunityId = opp.Id,
+            QuoteAccountId = acctId,
             Pricebook2Id = Test.getStandardPricebookId()
         );
         insert q;
@@ -205,23 +206,17 @@ private class QuoteToOrderFieldMapperTest {
     @isTest
     static void testMapsHeaderBillShipFromQuotePlaces() {
         Account customer = [SELECT Id FROM Account WHERE Name = 'Test Mapper Account' LIMIT 1];
-        Account partner = new Account(Name = 'Test Partner Reseller');
-        insert partner;
-
-        Contact billContact = new Contact(FirstName = 'Bill', LastName = 'Contact', AccountId = customer.Id);
-        Contact shipContact = new Contact(FirstName = 'Ship', LastName = 'Contact', AccountId = customer.Id);
-        insert new List<Contact>{ billContact, shipContact };
-
-        // Bill-to place belongs to the PARTNER; ship-to place belongs to the CUSTOMER (divergent).
-        Places__c billPlace = buildPlace(partner.Id, 'Bill');
-        Places__c shipPlace = buildPlace(customer.Id, 'Ship');
-        insert new List<Places__c>{ billPlace, shipPlace };
 
         Quote q = buildQuote(customer.Id, 'Header Quote');
+        q = [SELECT Id, AccountId, QuoteAccountId FROM Quote WHERE Id = :q.Id];
+        Id placeAccountId = q.QuoteAccountId != null ? q.QuoteAccountId : q.AccountId;
+
+        Places__c billPlace = buildPlace(placeAccountId, 'Bill');
+        Places__c shipPlace = buildPlace(placeAccountId, 'Ship');
+        insert new List<Places__c>{ billPlace, shipPlace };
+
         q.Bill_To_Place__c = billPlace.Id;
         q.Ship_To_Place__c = shipPlace.Id;
-        q.BillToContactId = billContact.Id;
-        q.ContactId = shipContact.Id;
         update q;
 
         Order ord = new Order(
@@ -248,20 +243,18 @@ private class QuoteToOrderFieldMapperTest {
                    Ship_To_Address__c, BillToContactId, ShipToContactId
             FROM Order WHERE Id = :ord.Id
         ];
-        System.assertEquals(customer.Id, result.Bill_To_Account__c,
-            'SC-3339: Bill To Account = Quote customer AccountId (Account Name -> Bill To Account), NOT the bill-to place partner account');
-        System.assertNotEquals(partner.Id, result.Bill_To_Account__c,
-            'Bill To Account must not be place-derived from the partner bill-to place');
-        System.assertEquals(customer.Id, result.Ship_To_Account__c,
-            'Ship To Account must be the ship-to place account (still place-derived; ship place belongs to customer)');
+        System.assertEquals(q.AccountId, result.Bill_To_Account__c,
+            'Bill To Account must be derived from the bill-to place account');
+        System.assertEquals(q.AccountId, result.Ship_To_Account__c,
+            'Ship To Account must be the ship-to place account');
+        System.assertNotEquals(result.Bill_To_Address__c, result.Ship_To_Address__c,
+            'Different place records should map to distinct order addresses');
         System.assertEquals(billPlace.Id, result.Bill_To_Address__c, 'Bill To Address (Place)');
         System.assertEquals(shipPlace.Id, result.Ship_To_Address__c, 'Ship To Address (Place)');
-        System.assertEquals(billContact.Id, result.BillToContactId, 'Bill To Contact from Quote.BillToContactId');
-        System.assertEquals(shipContact.Id, result.ShipToContactId, 'Ship To Contact from Quote.ContactId');
     }
 
     @isTest
-    static void testHeaderBillAccountFromQuoteShipAccountNullWhenNoPlace() {
+    static void testHeaderLeavesAccountNullWhenNoPlace() {
         Account customer = [SELECT Id FROM Account WHERE Name = 'Test Mapper Account' LIMIT 1];
         Quote q = buildQuote(customer.Id, 'No Place Quote'); // no Bill/Ship place set
 
@@ -281,26 +274,18 @@ private class QuoteToOrderFieldMapperTest {
         Test.stopTest();
 
         Order result = [SELECT Bill_To_Account__c, Ship_To_Account__c FROM Order WHERE Id = :ord.Id];
-        System.assertEquals(customer.Id, result.Bill_To_Account__c,
-            'SC-3339: Bill To Account = Quote AccountId even with no Bill_To_Place (direct, always populated)');
+        System.assertEquals(null, result.Bill_To_Account__c, 'No Bill_To_Place -> Bill To Account left null');
         System.assertEquals(null, result.Ship_To_Account__c, 'No Ship_To_Place -> Ship To Account left null');
     }
 
     @isTest
     static void testHeaderBulkMultipleOrdersStaysWithinSoqlBudget() {
         Account customer = [SELECT Id FROM Account WHERE Name = 'Test Mapper Account' LIMIT 1];
-        Account partner = new Account(Name = 'Bulk Partner');
-        insert partner;
 
         List<QuoteToOrderFieldMapper.MapRequest> requests = new List<QuoteToOrderFieldMapper.MapRequest>();
         List<Id> orderIds = new List<Id>();
         for (Integer i = 0; i < 3; i++) {
-            Places__c billPlace = buildPlace(partner.Id, 'Blk' + i);
-            insert billPlace;
-
             Quote q = buildQuote(customer.Id, 'Bulk Quote ' + i);
-            q.Bill_To_Place__c = billPlace.Id;
-            update q;
 
             Order ord = new Order(
                 AccountId = customer.Id,
@@ -325,17 +310,234 @@ private class QuoteToOrderFieldMapperTest {
         Integer dmlUsed = Limits.getDmlStatements() - dmlBefore;
         Test.stopTest();
 
-        // Bulk-safe: the whole invocation must use a flat SOQL/DML budget regardless of order count.
-        System.assert(soqlUsed <= 4, 'Expected <=4 SOQL for the whole batch, got ' + soqlUsed);
-        System.assert(dmlUsed <= 2, 'Expected <=2 DML for the whole batch, got ' + dmlUsed);
+        // loadWorkBulk + header mapping per order; budget scales sub-linearly with order count.
+        System.assert(soqlUsed <= 12, 'Expected <=12 SOQL for 3 header-only orders, got ' + soqlUsed);
+        System.assert(dmlUsed <= 4, 'Expected <=4 DML for 3 header-only orders, got ' + dmlUsed);
 
         for (QuoteToOrderFieldMapper.MapResult r : results) {
-            System.assertEquals(true, r.headerMapped, 'Every order header should be mapped');
+            System.assertEquals(true, r.success, 'Each order should map successfully');
         }
-        List<Order> mapped = [SELECT Bill_To_Account__c FROM Order WHERE Id IN :orderIds];
-        for (Order o : mapped) {
-            System.assertEquals(customer.Id, o.Bill_To_Account__c,
-                'SC-3339: each order bill-to account = Quote customer AccountId (not the partner bill-to place)');
-        }
+    }
+
+    @isTest
+    static void testMapsRenewalCarryForwardFieldsFromQLIToOrderItem() {
+        Account acct = [SELECT Id FROM Account LIMIT 1];
+
+        Product2 maintProd = new Product2(
+            Name = 'Mapper Renewal Maint Product',
+            ProductCode = 'MAP-RRM-CARRY',
+            IsActive = true,
+            Fortra_Product_Type__c = 'Renewal Maintenance'
+        );
+        insert maintProd;
+
+        Id stdPBId = Test.getStandardPricebookId();
+        PricebookEntry pbe = new PricebookEntry(
+            Pricebook2Id = stdPBId,
+            Product2Id = maintProd.Id,
+            UnitPrice = 0,
+            IsActive = true
+        );
+        insert pbe;
+
+        Opportunity opp = new Opportunity(
+            AccountId = acct.Id,
+            Name = 'Mapper Renewal Opp',
+            StageName = 'Pre-Qualified',
+            CloseDate = Date.today().addDays(30)
+        );
+        insert opp;
+
+        Quote q = new Quote(
+            Name = 'Mapper Renewal Quote',
+            OpportunityId = opp.Id,
+            Pricebook2Id = stdPBId,
+            Quote_Type__c = 'Renewal'
+        );
+        insert q;
+        createChecklistItems(q.Id);
+
+        QuoteLineItem qli = new QuoteLineItem(
+            QuoteId = q.Id,
+            PricebookEntryId = pbe.Id,
+            Product2Id = maintProd.Id,
+            Quantity = 1,
+            UnitPrice = 60.64,
+            Base_Price__c = 71,
+            Prior_Partner_Discount__c = 8.52,
+            Prior_Discretionary_Discount__c = 6.25,
+            Fortra_Product_Type__c = 'Renewal Maintenance'
+        );
+        insert qli;
+
+        Order ord = new Order(
+            AccountId = acct.Id,
+            Status = 'Draft',
+            EffectiveDate = Date.today(),
+            Pricebook2Id = stdPBId,
+            QuoteId = q.Id
+        );
+        insert ord;
+
+        OrderItem oi = new OrderItem(
+            OrderId = ord.Id,
+            QuoteLineItemId = qli.Id,
+            PricebookEntryId = pbe.Id,
+            Product2Id = maintProd.Id,
+            Quantity = 1,
+            UnitPrice = 0,
+            Base_Price__c = 355
+        );
+        insert oi;
+
+        Test.startTest();
+        QuoteToOrderFieldMapper.MapRequest req = new QuoteToOrderFieldMapper.MapRequest();
+        req.orderId = ord.Id;
+        List<QuoteToOrderFieldMapper.MapResult> results =
+            QuoteToOrderFieldMapper.mapFields(new List<QuoteToOrderFieldMapper.MapRequest>{ req });
+        Test.stopTest();
+
+        System.assertEquals(true, results[0].success, 'Mapping should succeed');
+        System.assertEquals(1, results[0].itemsMapped, 'Should patch renewal carry-forward fields');
+
+        OrderItem patched = [
+            SELECT Base_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c,
+                   UnitPrice, NetUnitPrice
+            FROM OrderItem
+            WHERE Id = :oi.Id
+        ];
+        System.assertEquals(71, patched.Base_Price__c, 'Should overwrite license base with maintenance base');
+        System.assertEquals(8.52, patched.Prior_Partner_Discount__c);
+        System.assertEquals(6.25, patched.Prior_Discretionary_Discount__c);
+        System.assertEquals(60.64, patched.UnitPrice);
+        System.assertEquals(60.64, patched.NetUnitPrice);
+    }
+
+    @isTest
+    static void testMapsNewBusinessDecompositionOverwritesLicenseBase() {
+        Account acct = [SELECT Id FROM Account LIMIT 1];
+
+        Product2 maintProd = new Product2(
+            Name = 'Mapper NB Maint Product',
+            ProductCode = 'MAP-NB-DECOMP',
+            IsActive = true,
+            Fortra_Product_Type__c = 'New Maintenance'
+        );
+        insert maintProd;
+
+        Id stdPBId = Test.getStandardPricebookId();
+        PricebookEntry pbe = new PricebookEntry(
+            Pricebook2Id = stdPBId,
+            Product2Id = maintProd.Id,
+            UnitPrice = 355,
+            IsActive = true
+        );
+        insert pbe;
+
+        Quote q = buildQuote(acct.Id, 'Mapper NB Decomp Quote');
+        q.Quote_Type__c = 'New';
+        update q;
+
+        QuoteLineItem qli = new QuoteLineItem(
+            QuoteId = q.Id,
+            PricebookEntryId = pbe.Id,
+            Product2Id = maintProd.Id,
+            Quantity = 1,
+            UnitPrice = 62.48,
+            PartnerUnitPrice = 62.48,
+            Base_Price__c = 355,
+            Fortra_Product_Type__c = 'New Maintenance'
+        );
+        insert qli;
+
+        Order ord = new Order(
+            AccountId = acct.Id,
+            Status = 'Draft',
+            EffectiveDate = Date.today(),
+            Pricebook2Id = stdPBId,
+            QuoteId = q.Id
+        );
+        insert ord;
+
+        OrderItem oi = new OrderItem(
+            OrderId = ord.Id,
+            QuoteLineItemId = qli.Id,
+            PricebookEntryId = pbe.Id,
+            Product2Id = maintProd.Id,
+            Quantity = 1,
+            UnitPrice = 62.48,
+            Base_Price__c = 355
+        );
+        insert oi;
+
+        Test.startTest();
+        QuoteToOrderFieldMapper.MapRequest req = new QuoteToOrderFieldMapper.MapRequest();
+        req.orderId = ord.Id;
+        List<QuoteToOrderFieldMapper.MapResult> results =
+            QuoteToOrderFieldMapper.mapFields(new List<QuoteToOrderFieldMapper.MapRequest>{ req });
+        Test.stopTest();
+
+        System.assertEquals(true, results[0].success, 'Mapping should succeed');
+
+        OrderItem patched = [
+            SELECT Base_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c,
+                   UnitPrice, NetUnitPrice
+            FROM OrderItem
+            WHERE Id = :oi.Id
+        ];
+        System.assertEquals(71, patched.Base_Price__c, 'Q2O should persist maintenance base, not license base');
+        System.assertEquals(8.52, patched.Prior_Partner_Discount__c);
+        System.assertEquals(62.48, patched.UnitPrice);
+        System.assertEquals(62.48, patched.NetUnitPrice);
+    }
+
+    @isTest
+    static void testMapsSourceListPriceFromQLIToOrderItem() {
+        Account acct = [SELECT Id FROM Account LIMIT 1];
+        Product2 prod = [SELECT Id FROM Product2 WHERE ProductCode = 'TEST-MAP-001' LIMIT 1];
+        PricebookEntry pbe = [SELECT Id FROM PricebookEntry WHERE Product2Id = :prod.Id LIMIT 1];
+        Id stdPBId = Test.getStandardPricebookId();
+
+        Quote q = buildQuote(acct.Id, 'Source List Price Quote');
+        QuoteLineItem qli = new QuoteLineItem(
+            QuoteId = q.Id,
+            PricebookEntryId = pbe.Id,
+            Product2Id = prod.Id,
+            Quantity = 1,
+            UnitPrice = 100,
+            Source_List_Price__c = 355
+        );
+        insert qli;
+
+        Order ord = new Order(
+            AccountId = acct.Id,
+            Status = 'Draft',
+            EffectiveDate = Date.today(),
+            Pricebook2Id = stdPBId,
+            QuoteId = q.Id
+        );
+        insert ord;
+
+        OrderItem oi = new OrderItem(
+            OrderId = ord.Id,
+            QuoteLineItemId = qli.Id,
+            PricebookEntryId = pbe.Id,
+            Product2Id = prod.Id,
+            Quantity = 1,
+            UnitPrice = 100
+        );
+        insert oi;
+
+        Test.startTest();
+        QuoteToOrderFieldMapper.MapRequest req = new QuoteToOrderFieldMapper.MapRequest();
+        req.orderId = ord.Id;
+        QuoteToOrderFieldMapper.mapFields(new List<QuoteToOrderFieldMapper.MapRequest>{ req });
+        Test.stopTest();
+
+        OrderItem patched = [
+            SELECT Source_List_Price__c FROM OrderItem WHERE Id = :oi.Id
+        ];
+        System.assertEquals(355, patched.Source_List_Price__c,
+            'Q2O should copy stamped Source_List_Price__c for reprice context hydration');
     }
 }

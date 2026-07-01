@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Contact_to_VoiceCall</name>
+        <label>Assign Contact to VoiceCall</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.RelatedRecordId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>contactId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Region_by_Customer_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>regionByPhoneCountryCode</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Lead_to_VoiceCall</name>
+        <label>Assign Lead to VoiceCall</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RelatedRecordId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Lead_with_matching_Phone.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Region_by_Customer_Phone__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>regionByPhoneCountryCode</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Sales_Department_Type</name>
+        <label>Assign Sales Department Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Department_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Sales</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Related_Record_Null</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Service_Department_Type</name>
+        <label>Assign Service Department Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Department_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Service</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Related_Record_Null</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Contact_Center</name>
+        <label>Check Contact Center</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Service_Department_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome(Service)</defaultConnectorLabel>
+        <rules>
+            <name>Sales</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CallCenter.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Sales_Department_Type</targetReference>
+            </connector>
+            <label>Sales</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_Found</name>
+        <label>Contact Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Lead_with_matching_Phone</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome(NO)</defaultConnectorLabel>
+        <rules>
+            <name>YES</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>contactId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Contact_to_VoiceCall</targetReference>
+            </connector>
+            <label>YES</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Inbound_or_Outbound_Call</name>
+        <label>Inbound or Outbound Call?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Contact_with_matching_Phone</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outbound</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CallType</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Outbound</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Contact_with_matching_Phone1</targetReference>
+            </connector>
+            <label>Outbound</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Matching_Lead_Found</name>
+        <label>Matching Lead Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome(NO)</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Lead_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Lead_with_matching_Phone</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Lead_to_VoiceCall</targetReference>
+            </connector>
+            <label>Yes Lead Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Related_Record_Null</name>
+        <label>Related Record Null?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome(NO)</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Related_Record_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RelatedRecordId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Inbound_or_Outbound_Call</targetReference>
+            </connector>
+            <label>Yes , Related Record null</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>normalizedFromNumberFormula</name>
+        <dataType>String</dataType>
+        <expression>RIGHT(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE({!$Record.FromPhoneNumber}, &quot; &quot;, &quot;&quot;),
+&quot;-&quot;, &quot;&quot;),
+&quot;(&quot;, &quot;&quot;),
+&quot;)&quot;, &quot;&quot;),
+&quot;+&quot;, &quot;&quot;),
+10)</expression>
+    </formulas>
+    <formulas>
+        <name>normalizedToNumberFormula</name>
+        <dataType>String</dataType>
+        <expression>RIGHT(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE(
+SUBSTITUTE({!$Record.ToPhoneNumber}, &quot; &quot;, &quot;&quot;),
+&quot;-&quot;, &quot;&quot;),
+&quot;(&quot;, &quot;&quot;),
+&quot;)&quot;, &quot;&quot;),
+&quot;+&quot;, &quot;&quot;),
+10)</expression>
+    </formulas>
+    <formulas>
+        <name>PhoneNumberToEvaluate</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    ISPICKVAL({!$Record.CallType}, &quot;Inbound&quot;),
+    {!$Record.FromPhoneNumber},
+    {!$Record.ToPhoneNumber}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>regionByPhoneCountryCode</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    OR(
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1242&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1246&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1264&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1268&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1473&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1658&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1758&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1767&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1809&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1829&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1849&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+1876&quot;)
+    ),
+    &quot;LATAM&quot;,
+
+IF(
+    BEGINS({!PhoneNumberToEvaluate}, &quot;+1&quot;),
+    &quot;NORAM&quot;,
+
+IF(
+    OR(
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+2&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+3&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+4&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+7&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+90&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+96&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+97&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+98&quot;)
+    ),
+    &quot;EMEA&quot;,
+
+IF(
+    OR(
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+6&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+8&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+91&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+92&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+93&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+94&quot;),
+        BEGINS({!PhoneNumberToEvaluate}, &quot;+95&quot;)
+    ),
+    &quot;APAC&quot;,
+
+&quot;Other&quot;
+))))</expression>
+    </formulas>
+    <interviewLabel>Fortra | VoiceCall | Before Insert - &lt;Title&gt; {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | VoiceCall | Before Insert - Populate Related Record Field</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Contact_with_matching_Phone</name>
+        <label>Contact with matching Phone</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Contact_Found</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Normalized_Phone__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>normalizedFromNumberFormula</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputAssignments>
+            <assignToReference>contactId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Contact_with_matching_Phone1</name>
+        <label>Contact with matching Phone</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Contact_Found</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Normalized_Phone__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>normalizedToNumberFormula</elementReference>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <outputAssignments>
+            <assignToReference>contactId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Lead_with_matching_Phone</name>
+        <label>Lead with matching Phone</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Matching_Lead_Found</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Normalized_Phone__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>normalizedFromNumberFormula</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Normalized_Phone__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>normalizedToNumberFormula</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Lead</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Contact_Center</targetReference>
+        </connector>
+        <object>VoiceCall</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>contactId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>phoneNumberToCheck</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
