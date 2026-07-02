@@ -1,6 +1,0 @@
-Crmprod is a replica database in our production data warehouse environment.  All tables in this crmprod database should also be available in the hsprodcrm database on the dc-staging-dw.public.63649b2f8fb6.database.windows.net,3342 server
-Hswarehouse is a database on the production server that hosts ETL destinations using the D365 replica as a source
-It contains a StringMap object that is just a view to the crmprod stringmap object where the column names are spaced out
-There are transformations that occur on a schedule that write to this database
-It also contains target data for different teams that are supplied to use at the start of each year
-I tried to focus on views within the report that returned Fact data – if you need more information on those or if I missed any please reach out

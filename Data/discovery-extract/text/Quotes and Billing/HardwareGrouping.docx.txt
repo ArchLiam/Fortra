@@ -1,9 +1,0 @@
-Hardware Records Groups
-To allow the teams to connect hardware records to sets of products instead of one product at a time, we could link the hardware record to a quote line group.
-Creating new Hardware records will create a new quote line group with the same name. This would allow them to see the Hardware/Group in the line editor as well as add and remove quote lines to/from that Hardware/Group.
-Proposed Solution
-A “New Hardware” button somewhere on the line editor form.  When clicked it will prompt for hardware information and when saved, will create the Hardware record, a corresponding quote line group, and link them together.
-From there the sales/customer ops team can add one or more products to that group, which will associate them with the linked hardware record.
-The UI will need some way to edit the hardware record linked to the quote line group. An edit button, a clickable link that opens the hardware record page, etc.
-This should not replace the normal new group button/process so that teams who do not need hardware records can still create standard quote line groups
-These hardware records/groups would need to be propagated into subsequent renewal quotes.

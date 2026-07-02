@@ -1,8 +1,0 @@
-SC-3390 — Fix (a) rollout record (2026-06-11)
-Change: ProductAttributeDefinition.IsPriceImpacting false->true on all 26 'Unit Quantity' (Attribute_Volume, AttrDef 0tjWC0000000tqvYAA) PADs.
-Method: CLSAAS (0v7WC0000000TvBYAU) flipped + validated first; remaining 25 flipped via per-record sf data update (OK=25, FAIL=0).
-Post-state: 26/26 IsPriceImpacting=true, all Status=Active. Reversible (flip back to false + re-Sync).
-Sync Pricing Data: run once after CLSAAS flip (validated CLSAAS); a SECOND Sync Pricing Data is required to publish the other 25.
-Rollout CSV: Data/sc3390/fix/ispriceimpacting-rollout.csv
-
-26 PAD Ids set true (by ProductCode):
