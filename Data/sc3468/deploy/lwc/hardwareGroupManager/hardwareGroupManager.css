@@ -1,0 +1,158 @@
+/* Hardware Group Manager Styles */
+
+/* Close Button Icon */
+.close-icon {
+    display: inline-block;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #706e6b;
+    font-weight: 300;
+}
+
+/* SLDS Modal Customizations */
+.slds-modal__container {
+    width: auto !important;
+    max-width: 800px !important;
+    max-height: 85vh !important;
+    min-height: auto !important;
+}
+
+.slds-modal__content {
+    padding: 2rem !important;
+    overflow-y: auto !important;
+    max-height: calc(85vh - 10rem) !important;
+}
+
+/* Remove footer border and shadow */
+.slds-modal__footer {
+    border-top: none !important;
+    box-shadow: none !important;
+}
+
+/* Position modal higher on page */
+.slds-modal {
+    align-items: flex-start !important;
+    padding-top: 10vh !important;
+}
+
+/* Radio button spacing */
+lightning-radio-group {
+    display: block;
+}
+
+/* Add spacing between radio options */
+.slds-form-element__control .slds-radio {
+    margin-bottom: 1rem !important;
+}
+
+/* Alternative approach - target via custom property */
+lightning-radio-group::part(group) {
+    gap: 1rem;
+}
+
+/* Section spacing */
+.slds-section {
+    margin-bottom: 1rem;
+}
+
+.slds-section__title {
+    padding: 0.75rem 1rem;
+    background-color: var(--slds-g-color-neutral-base-95, #f3f2f2);
+}
+
+.slds-section__content {
+    padding: 1rem;
+}
+
+/* Form elements */
+lightning-input,
+lightning-textarea,
+lightning-combobox {
+    margin-bottom: 1rem;
+}
+
+/* Summary box */
+.slds-box {
+    padding: 0;
+    background-color: var(--slds-g-color-neutral-base-100, #ffffff);
+    border: none;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+/* Box title - match section title styling */
+.box-title {
+    padding: 0.75rem 1rem;
+    margin: 0;
+    background-color: var(--slds-g-color-neutral-base-95, #f3f2f2);
+}
+
+/* Box content area */
+.box-content {
+    padding: 1.5rem;
+}
+
+/* Datatable container */
+lightning-datatable {
+    margin-top: 1rem;
+}
+
+/* Empty state */
+.slds-text-align_center {
+    padding: 2rem 0;
+}
+
+/* Hardware search section */
+.hardware-search-container {
+    padding: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    margin-top: 1rem;
+}
+
+/* Filter row */
+.filter-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Results section */
+.results-section {
+    margin-top: 1.5rem;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* Loading overlay */
+lightning-spinner {
+    position: absolute;
+    z-index: 9999;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .filter-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Wizard Progress Indicator */
+lightning-progress-indicator {
+    margin-top: 0;
+}
+
+/* Progress indicator wrapper - match spacing above/below header line */
+/* SLDS modal header has 1rem padding below title, so we need 1rem below line */
+/* Content has 2rem padding, so -1rem margin leaves 1rem space */
+.progress-indicator-wrapper {
+    margin-top: -1rem;
+    padding-bottom: 0.5rem;
+}
