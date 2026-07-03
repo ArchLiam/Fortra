@@ -1,0 +1,497 @@
+<style>
+  :root{
+    --ground:#EEF1F5; --panel:#FFFFFF; --panel-2:#F7F9FB;
+    --ink:#12161D; --muted:#59636F; --faint:#8A94A0; --hair:#DCE1E8;
+    --navy:#1B3A5B; --navy-2:#254B72; --blue:#2E6FB0;
+    --ok:#157A4E; --ok-bg:#E5F1EA; --ok-line:#BFE0CD;
+    --warn:#8F5600; --warn-bg:#F6EDDA; --warn-line:#E6D2A8;
+    --crit:#A4342A; --crit-bg:#F6E4E0; --crit-line:#E7C3BC;
+    --info:#3B4A87; --info-bg:#E9EBF7; --info-line:#CBD1EE;
+    --mono:"SF Mono",ui-monospace,"Menlo","Cascadia Code","Roboto Mono",monospace;
+    --sans:-apple-system,"SF Pro Text","SF Pro Display","Segoe UI",system-ui,"Helvetica Neue",Arial,sans-serif;
+    --shadow:0 1px 2px rgba(18,22,29,.05),0 6px 20px rgba(18,22,29,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0}
+  .doc{
+    background:var(--ground); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased; padding:32px 20px 96px;
+  }
+  .wrap{max-width:1080px; margin:0 auto}
+  .mono{font-family:var(--mono); font-variant-numeric:tabular-nums}
+  code,.k{font-family:var(--mono); font-size:.86em; background:#EDF0F4; border:1px solid var(--hair);
+    padding:1px 6px; border-radius:5px; white-space:nowrap}
+  h1,h2,h3{text-wrap:balance; line-height:1.15; letter-spacing:-.02em; margin:0}
+  a{color:var(--blue); text-decoration:none} a:hover{text-decoration:underline}
+
+  /* ---------- Header / verdict ---------- */
+  .hero{
+    background:linear-gradient(158deg,#14304C 0%, #1B3A5B 52%, #223f5f 100%);
+    color:#EAF0F6; border-radius:16px; padding:34px 34px 30px; box-shadow:var(--shadow);
+    position:relative; overflow:hidden;
+  }
+  .hero::after{content:""; position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 64px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 64px);
+    mask:linear-gradient(180deg,rgba(0,0,0,.5),transparent 70%); pointer-events:none}
+  .hero > *{position:relative}
+  .ticket{font-family:var(--mono); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:#9FC1E0; display:flex; gap:14px; flex-wrap:wrap; align-items:center}
+  .hero h1{font-size:32px; font-weight:800; margin:12px 0 6px; color:#fff}
+  .hero .sub{color:#BBD0E4; font-size:16.5px; max-width:64ch}
+  .verdict{
+    margin-top:22px; display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap;
+    background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16);
+    border-radius:12px; padding:16px 18px}
+  .verdict .vbadge{font-family:var(--mono); font-size:12px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; padding:5px 10px; border-radius:999px; white-space:nowrap;
+    background:var(--ok-bg); color:#0c4d31; border:1px solid var(--ok-line)}
+  .verdict p{margin:0; font-size:15px; color:#DCE7F2}
+
+  /* ---------- meta strip ---------- */
+  .meta{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px;
+    background:var(--hair); border:1px solid var(--hair); border-radius:12px; overflow:hidden;
+    margin:18px 0 8px}
+  .meta div{background:var(--panel); padding:12px 14px}
+  .meta dt{font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); margin-bottom:3px}
+  .meta dd{margin:0; font-size:14px; font-weight:600; font-family:var(--mono)}
+
+  /* ---------- sections ---------- */
+  section{margin-top:38px}
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--blue); font-weight:700; display:flex; align-items:center; gap:10px; margin-bottom:12px}
+  .eyebrow::before{content:""; width:22px; height:2px; background:var(--blue); display:inline-block}
+  h2.sec{font-size:23px; font-weight:800; margin-bottom:8px}
+  .lead{color:var(--muted); max-width:74ch; margin:0 0 18px}
+
+  .panel{background:var(--panel); border:1px solid var(--hair); border-radius:14px;
+    padding:22px 24px; box-shadow:var(--shadow)}
+  .panel + .panel{margin-top:16px}
+
+  /* ---------- status chips ---------- */
+  .chip{display:inline-flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11.5px;
+    font-weight:700; letter-spacing:.04em; text-transform:uppercase; padding:3px 9px; border-radius:999px;
+    white-space:nowrap; vertical-align:middle}
+  .chip.ok{background:var(--ok-bg); color:#0c4d31; border:1px solid var(--ok-line)}
+  .chip.warn{background:var(--warn-bg); color:#6d4300; border:1px solid var(--warn-line)}
+  .chip.crit{background:var(--crit-bg); color:#7e281f; border:1px solid var(--crit-line)}
+  .chip.info{background:var(--info-bg); color:#2c3873; border:1px solid var(--info-line)}
+  .chip .dot{width:7px; height:7px; border-radius:50%; background:currentColor}
+
+  /* ---------- tables ---------- */
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--hair); border-radius:12px}
+  table{border-collapse:collapse; width:100%; font-size:14.5px; min-width:640px}
+  thead th{background:var(--panel-2); text-align:left; font-family:var(--mono); font-size:11px;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:11px 14px;
+    border-bottom:1px solid var(--hair); font-weight:700}
+  tbody td{padding:12px 14px; border-bottom:1px solid var(--hair); vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:nth-child(even) td{background:#FBFCFD}
+  td .claim{font-weight:600}
+  td small{color:var(--muted); display:block; margin-top:3px; font-size:12.8px; line-height:1.5}
+
+  /* ---------- mechanism two-col ---------- */
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:760px){.split{grid-template-columns:1fr} .meta dd{font-size:13px}}
+  .mech{border-radius:12px; padding:18px; border:1px solid var(--hair)}
+  .mech.bad{background:var(--crit-bg); border-color:var(--crit-line)}
+  .mech.good{background:var(--ok-bg); border-color:var(--ok-line)}
+  .mech h4{margin:0 0 4px; font-size:15px; font-family:var(--mono); letter-spacing:.02em}
+  .mech .tag{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:.1em;
+    font-weight:700; opacity:.8}
+  .logic{font-family:var(--mono); font-size:12.5px; background:#12161D; color:#D7E2EE;
+    border-radius:9px; padding:12px 13px; margin-top:12px; overflow-x:auto; line-height:1.7}
+  .logic .cm{color:#7FA9C9}
+  .logic .hi{color:#7FE0A8; font-weight:700}
+  .logic .no{color:#F0A8A0}
+
+  /* ---------- callouts ---------- */
+  .note{border-left:3px solid var(--navy-2); background:var(--panel-2); padding:12px 16px;
+    border-radius:0 10px 10px 0; margin:14px 0; font-size:14.5px}
+  .note.warn{border-color:var(--warn); background:var(--warn-bg)}
+  .note.ok{border-color:var(--ok); background:var(--ok-bg)}
+  .note.info{border-color:var(--info); background:var(--info-bg)}
+  .note b{font-weight:700}
+
+  /* ---------- roadmap ---------- */
+  .phase{display:grid; grid-template-columns:44px 1fr; gap:16px; padding:18px 0; border-top:1px solid var(--hair)}
+  .phase:first-child{border-top:none}
+  .pnum{font-family:var(--mono); font-weight:800; font-size:15px; color:#fff; width:38px; height:38px;
+    border-radius:10px; display:flex; align-items:center; justify-content:center; background:var(--navy-2)}
+  .phase.done .pnum{background:var(--ok)}
+  .phase.open .pnum{background:var(--warn)}
+  .phase h3{font-size:17px; font-weight:750; display:flex; align-items:center; gap:10px; flex-wrap:wrap}
+  .phase .who{font-family:var(--mono); font-size:12px; color:var(--faint)}
+  .steps{margin:10px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px}
+  .steps li{position:relative; padding-left:24px; font-size:14.5px; color:#28303a}
+  .steps li::before{content:""; position:absolute; left:4px; top:9px; width:7px; height:7px; border-radius:2px;
+    background:var(--navy-2); transform:rotate(45deg)}
+  .steps.check li::before{content:"✓"; background:none; color:var(--ok); font-weight:800; top:0; left:2px;
+    transform:none; font-size:14px}
+
+  .kv{display:grid; grid-template-columns:auto 1fr; gap:6px 16px; font-size:14px; margin-top:6px}
+  .kv dt{font-family:var(--mono); color:var(--muted); font-size:12.5px}
+  .kv dd{margin:0; font-family:var(--mono); font-size:12.8px}
+
+  .foot{margin-top:44px; padding-top:18px; border-top:1px solid var(--hair); color:var(--faint);
+    font-size:12.5px; font-family:var(--mono); line-height:1.7}
+  .grid-cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin-top:4px}
+  .card{border:1px solid var(--hair); border-radius:12px; padding:15px 16px; background:var(--panel)}
+  .card .big{font-size:26px; font-weight:800; font-family:var(--mono); letter-spacing:-.02em}
+  .card .lbl{font-size:12.5px; color:var(--muted); margin-top:2px}
+  .card.ok{border-left:4px solid var(--ok)} .card.warn{border-left:4px solid var(--warn)}
+  .card.crit{border-left:4px solid var(--crit)} .card.info{border-left:4px solid var(--info)}
+
+  /* ---------- adversarial cards ---------- */
+  .adv{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media(max-width:760px){.adv{grid-template-columns:1fr}}
+  .adv .panel{padding:20px 22px}
+  .adv-head{display:flex; justify-content:space-between; align-items:flex-start; gap:12px;
+    flex-wrap:wrap; margin-bottom:10px}
+  .adv-lens{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--blue); font-weight:700}
+  .adv-t{font-size:16px; font-weight:700; margin-top:3px; line-height:1.3}
+  .adv .panel p{font-size:14px; color:#28303a; margin:0 0 12px}
+  .adv .note{font-size:13.5px}
+</style>
+
+<div class="doc"><div class="wrap">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="ticket">
+      <span>SC-3473</span><span>·</span><span>Issue Deleting a Quote Group</span>
+      <span>·</span><span>Re-Verification Dossier</span>
+    </div>
+    <h1>The Delete-Group NPE, re-verified against live FortraUAT</h1>
+    <p class="sub">An independent re-check of the original root-cause analysis — every load-bearing claim re-tested against live metadata, data, Salesforce documentation, and an adversarial review of the fix that is now deployed.</p>
+    <div class="verdict">
+      <span class="vbadge">Original RCA — Confirmed</span>
+      <p><b>The prior investigation is accurate.</b> The native RLM null-pointer defect, its malformed-term / <span class="k" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.2);color:#EAF0F6">PricingTermCount</span> data trigger, and the net-zero pricing-procedure fix all hold up. The fix is <b>live on the active version and empirically working</b>. Adversarial review sharpened two things — the causal label (PTC is a co-symptom, not the literal null) and a <b>measured pricing-safety check</b> the constant fix needs before closure — and left five follow-through items open.</p>
+    </div>
+  </header>
+
+  <dl class="meta">
+    <div><dt>Org</dt><dd>FortraUAT</dd></div>
+    <div><dt>Active Procedure</dt><dd>V21 · Active</dd></div>
+    <div><dt>Active Context</dt><dd>SalesTxCtxExt_v2 V23</dd></div>
+    <div><dt>Re-verified</dt><dd>2026-07-02</dd></div>
+    <div><dt>Method</dt><dd>Read-only</dd></div>
+  </dl>
+
+  <!-- ================= 1. VERDICT SNAPSHOT ================= -->
+  <section>
+    <div class="eyebrow">§1 · Snapshot</div>
+    <h2 class="sec">Where this stands, at a glance</h2>
+    <p class="lead">The specific ticket instance is healed and the durable fix is deployed to the active pricing procedure. What is left is parity, hygiene, and the platform-side guarantee.</p>
+    <div class="grid-cards">
+      <div class="card ok"><div class="big">Fixed</div><div class="lbl">Net-zero seq-29 filter fix — <b>live on active V21</b> since 2026-07-03 00:06 UTC</div></div>
+      <div class="card ok"><div class="big">0</div><div class="lbl">Fully-configured TermDefined lines with null PTC created <b>after</b> the fix</div></div>
+      <div class="card warn"><div class="big">18</div><div class="lbl">Pre-fix stale lines still null-PTC — heal on next reprice</div></div>
+      <div class="card warn"><div class="big">V22</div><div class="lbl">Draft does <b>not</b> yet carry the fix — would reintroduce the bug if activated</div></div>
+      <div class="card crit"><div class="big">47</div><div class="lbl">Existing TermDefined lines carry a <b>fractional</b> PTC — a constant <code>=1</code> would mis-price them if re-priced (latent, measured)</div></div>
+      <div class="card crit"><div class="big">Open</div><div class="lbl">Salesforce platform case for the unguarded native NPE not yet filed</div></div>
+      <div class="card info"><div class="big">+0</div><div class="lbl">Pricing-procedure elements added by the fix (stays under the ~129 ceiling)</div></div>
+    </div>
+  </section>
+
+  <!-- ================= 2. THE ORIGINAL CLAIM ================= -->
+  <section>
+    <div class="eyebrow">§2 · What was originally concluded</div>
+    <h2 class="sec">The investigation under review</h2>
+    <div class="panel">
+      <p style="margin-top:0"><b>Symptom.</b> Clicking <b>Delete Group</b> in the RLM Quote Line Editor throws a red toast:</p>
+      <div class="logic"><span class="no">Your quote was not updated. Cannot invoke "Object.toString()" because the
+return value of "java.util.Map.get(Object)" is null</span></div>
+      <p><b>Conclusion on file.</b> The throw is a <b>native, JVM-level "helpful NullPointerException"</b> (JEP-358) inside the managed Revenue Cloud save/force-reprice engine — <span class="chip info"><span class="dot"></span>not custom Apex</span>. The most-probable in-org <b>data trigger</b> is a malformed <b>TermDefined</b> quote line carrying <code>EndDate = null</code> and <code>PricingTermCount = null</code>, a state produced when the guarded TermDefined proration writer was dropped from the pricing procedure (the SC-3420 family). The prescribed remedy had two prongs: <b>(A)</b> restore <code>PricingTermCount</code> stamping for TermDefined lines, and <b>(B)</b> a Salesforce platform case for the engine leaking a raw NPE instead of an actionable message.</p>
+      <div class="note warn"><b>The RCA's own honest limit.</b> Null <code>PricingTermCount</code> is <b>necessary-here but not proven sufficient</b> org-wide — ~83% (128/154) of quotes carrying the same malformed-term condition price cleanly. So Prong A removes the trigger; only Prong B guarantees against the raw NPE itself. This re-verification preserves that distinction rather than papering over it.</div>
+    </div>
+  </section>
+
+  <!-- ================= 3. LIVE RE-VERIFICATION ================= -->
+  <section>
+    <div class="eyebrow">§3 · Live re-verification</div>
+    <h2 class="sec">Every load-bearing claim, re-tested against the live org</h2>
+    <p class="lead">Fresh Tooling/SOQL queries and a fresh metadata retrieve of all 22 procedure versions on 2026-07-02. Nothing below is carried over from the prior dossier on trust.</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:38%">Claim re-tested</th><th style="width:14%">Verdict</th><th>Live evidence (this re-verification)</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="claim">Active pricing procedure is <span class="k">V21</span> (the fix landed here, not the old V16)</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td><code>ExpressionSetDefinitionVersion 9QBWC0000000oWH4AY</code> Status=<b>Active</b>; V22=Draft. The 6/29 fix on V16 is no longer the active surface.</td>
+          </tr>
+          <tr>
+            <td class="claim">The net-zero fix is present in <b>live active V21</b> (not just a plan)</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td>Retrieved live: filter <code>ListOperation93</code> (seq&nbsp;29) logic = <span class="mono">(1 AND (2 OR 3)) OR (4 AND 3)</span> with criterion 4 = <code>SellingModelType Equals 'TermDefined'</code>; container <code>Assignment94</code> stamps <code>PricingTermCount</code>.</td>
+          </tr>
+          <tr>
+            <td class="claim">Fix applied and by whom</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td>V21 <code>LastModifiedDate = 2026-07-03T00:06:43Z</code> by <b>Liam Jeong</b> (= 19:06 CDT, 2026-07-02). The earlier "07-03" note was a UTC timestamp, not a future date.</td>
+          </tr>
+          <tr>
+            <td class="claim">The ticket's exact repro quote is healed</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td><code>0Q0WC000002U2020AC</code> CalculationStatus = <b>CompletedWithPricing</b> (was SaveFailedOrIncomplete). Abstract line <code>0QLWC000003jN8P4AU</code> now <code>EndDate=2027-06-25</code>, <code>PricingTermCount=1</code>.</td>
+          </tr>
+          <tr>
+            <td class="claim">The fix actually works on new lines (not just cosmetically present)</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td>Post-fix: <b>2</b> fully-configured TermDefined lines have PTC set; <b>0</b> have null PTC. Test lines Cobalt Strike <code>0QLWC000003lizx4AA</code> + Fortra PCI Scanning <code>0QLWC000003kjjZ4AQ</code> both PTC=1.</td>
+          </tr>
+          <tr>
+            <td class="claim">TermDefined lines are filtered out of the only proration writer that could stamp PTC</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td>Seq-27 filter <code>ListOperation85</code> logic = <span class="mono">(1 AND 2 AND 3) OR (4 AND 3)</span> admits TermDefined only via <code>itemTransientEndDate IsNotNull</code> — a transient <b>no step writes</b>, so it is null for TermDefined in reprice.</td>
+          </tr>
+          <tr>
+            <td class="claim">The trigger condition is still regenerating under V21 (the regression the RCA warned of)</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed → now closed</span></td>
+            <td>Before the fix, 18 fully-configured TermDefined lines carried null PTC (all last modified 2026-06-30). The seq-29 fix stops new ones; the 18 are pre-fix stragglers.</td>
+          </tr>
+          <tr>
+            <td class="claim">No pricing regression introduced (Evergreen path untouched)</td>
+            <td><span class="chip ok"><span class="dot"></span>Confirmed</span></td>
+            <td>The fix only <b>adds</b> the <code>(4 AND 3)</code> branch; the Evergreen branch <code>1 AND (2 OR 3)</code> is byte-identical. No new <code>SaveFailedOrIncomplete</code> quotes post-fix (the 4 that exist are all pre-fix / test clones).</td>
+          </tr>
+          <tr>
+            <td class="claim">V22 draft carries the fix forward</td>
+            <td><span class="chip crit"><span class="dot"></span>Refuted</span></td>
+            <td>V22 draft has <b>neither</b> the seq-29 criterion nor a dedicated TermDefined writer. Activating V22 as-is would re-ship the bug.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= 4. MECHANISM ================= -->
+  <section>
+    <div class="eyebrow">§4 · Root cause &amp; the fix, mechanically</div>
+    <h2 class="sec">Why the line was malformed — and how the fix stamps it</h2>
+    <p class="lead"><code>PricingTermCount</code> is a platform-managed, read-only field: only the pricing engine can write it, so the remedy has to live in the procedure. The proration cluster has two complementary branches. TermDefined lines were falling through the gap between them.</p>
+    <div class="split">
+      <div class="mech bad">
+        <div class="tag">Seq 27 · before</div>
+        <h4>Real proration writer — skips TermDefined</h4>
+        <p style="font-size:14px;margin:.5em 0 0">The Proration BKM that computes and outputs <code>PricingTermCount</code> only admits a line when its <code>itemTransientEndDate</code> transient is set. That transient is written by no step and is null for TermDefined lines during reprice — so they never enter, and PTC stays null.</p>
+        <div class="logic"><span class="cm"># ListOperation85 (Evergreen anytime proration)</span>
+(1 AND 2 AND 3) OR (4 AND 3)
+ 1  SellingModelType = 'Evergreen'
+ 2  AllowPartialProrationPeriods = true
+ 3  itemTransientEndDate <span class="no">IsNotNull</span>   <span class="cm">← null for TermDefined</span>
+ 4  SellingModelType = 'TermDefined'</div>
+      </div>
+      <div class="mech good">
+        <div class="tag">Seq 29 · the fix</div>
+        <h4>Constant-assignment container — now catches it</h4>
+        <p style="font-size:14px;margin:.5em 0 0">This container already stamps a <b>constant</b> <code>PricingTermCount = 1</code> for the analogous Evergreen "no live end-date" case. Adding one criterion routes the exact orphaned TermDefined cohort (transient <b>null</b>) into that same assignment. No new elements.</p>
+        <div class="logic"><span class="cm"># ListOperation93 (constant PTC assignment)</span>
+(1 AND (2 OR 3)) OR <span class="hi">(4 AND 3)</span>
+ 1  SellingModelType = 'Evergreen'
+ 2  AllowPartialProrationPeriods = false
+ 3  itemTransientEndDate <span class="hi">IsNull</span>       <span class="cm">← true for TermDefined</span>
+ 4  SellingModelType = <span class="hi">'TermDefined'</span>  <span class="cm">← ADDED</span>
+   ⇒ Assignment94: PricingTermCount = 1</div>
+      </div>
+    </div>
+    <div class="note info"><b>Why the two branches never collide.</b> Seq-27 requires <code>itemTransientEndDate IsNotNull</code>; seq-29's new branch requires <code>itemTransientEndDate IsNull</code>. They are mutually exclusive, so a TermDefined line that <em>does</em> prorate in seq-27 is never re-stamped by seq-29. The Evergreen branch is untouched. Constant values confirmed live: <code>EvergreenPricingTermCountConstant = 1</code>, <code>OneTimePricingTermCountConstant = 0</code>.</div>
+    <div class="note info"><b>A precision on the causal label.</b> Adversarial review (§6) correctly notes that <code>PricingTermCount</code> is an engine <em>output</em>, not the value the engine dereferences — so "null PTC is <em>the</em> root trigger" is slightly imprecise. The proximate null is the line's <b>malformed-term state</b> (null <code>EndDate</code> → null <code>itemTransientEndDate</code> → null proration multiplier), of which null PTC is a co-symptom. All are outputs of the same dropped SC-3420 writer, so they are perfectly confounded and the fix targets the correct <em>defect family</em>. Empirically, healing the line stamps both <code>EndDate</code> and <code>PTC</code> and flips the quote to CompletedWithPricing.</div>
+    <div class="note warn"><b>Measured precision limit — the constant is data-gated.</b> A <em>constant</em> PTC=1 is correct only for single, full-term lines. A live count found <b>47 TermDefined lines with an engine-computed <em>fractional</em> PTC</b> (0.57, 0.74, 0.83 … partial periods) and one at <b>PTC=3</b> (multi-term) — all priced under earlier versions that still had a real proration writer. Under V21 there is <b>no</b> TermDefined proration writer, so re-pricing one of those lines could route it through the seq-29 constant and overwrite the correct multiplier with 1 (silent amount error). All 47 are currently quiescent (pre-fix), so the risk is <b>latent, not active</b> — but it must be tested before closure (Roadmap Phase 3). The durable answer for computed proration is the 3-element writer preserved in <code>V20_writer_subtree_template.xml</code> (needs element budget).</div>
+  </section>
+
+  <!-- ================= 5. EXTERNAL VALIDATION (workflow) ================= -->
+  <section>
+    <div class="eyebrow">§5 · External validation</div>
+    <h2 class="sec">Salesforce documentation &amp; web cross-check</h2>
+    <p class="lead">Independent validation of the mechanism's factual claims against Salesforce official documentation and public sources — run as a parallel research pass, separate from the org checks above.</p>
+    <div id="ext-validation" class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:34%">Claim validated externally</th><th style="width:15%">Verdict</th><th>What the sources say</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="claim"><code>PricingTermCount</code> is a read-only, engine-populated pricing field; TermDefined proration produces it</td>
+            <td><span class="chip ok"><span class="dot"></span>Supported</span><br><small>high confidence</small></td>
+            <td>Salesforce <b>Object Reference</b>: on QuoteLineItem the field's Properties are <span class="mono">Filter, Nillable, Sort</span> — <b>no Create/Update</b> — while the same field on OrderItem/CartItem lists <span class="mono">Create … Update</span>; it is described as <em>"A calculated field."</em> <code>TotalLineAmount = ListPrice × Quantity × PricingTermCount</code>. <b>Trailhead</b>: the Proration element outputs a multiplier = ActualDuration ÷ StandardTerm that becomes PricingTermCount.</td>
+          </tr>
+          <tr>
+            <td class="claim">The error is a native JVM (JEP-358) NPE that Apex cannot emit</td>
+            <td><span class="chip ok"><span class="dot"></span>Supported</span><br><small>high confidence</small></td>
+            <td>JEP-358 "helpful NullPointerException" shipped in Java 14 (default in JDK 15). The exact string is reproduced byte-for-byte by non-Salesforce JVM stacks (e.g. JavaLite #1086) and the same <code>Map.get(key)==null</code> pattern appears in a ServiceNow KB — proving it is a generic JVM message. Apex null-deref reads <em>"Attempt to de-reference a null object"</em> and never names <code>java.util.Map</code>. <b>Confirms the throw is native, not custom code.</b></td>
+          </tr>
+          <tr>
+            <td class="claim">"Delete Group" = Place Sales Transaction (<code>method:DELETE</code>, <code>action:DeleteGroup</code>, <code>pricingPref:Force</code>), header commits first</td>
+            <td><span class="chip warn"><span class="dot"></span>Partially supported</span><br><small>high confidence</small></td>
+            <td>The RLM Developer Guide's <em>verbatim</em> "delete a group" sample carries exactly <code>method:DELETE</code> + <code>action:DeleteGroup</code> + <code>pricingPref:Force</code>, and documents header-commit-before-later-step. <b>Nuance:</b> the guide documents the API payload shape, not that the QLE button always emits precisely this — the LWC→API mapping is a strong inference, not a doc-stated fact.</td>
+          </tr>
+          <tr>
+            <td class="claim">Stamping <code>PricingTermCount</code> via a constant AssignmentElement is a legitimate procedure pattern</td>
+            <td><span class="chip warn"><span class="dot"></span>Partially supported</span><br><small>high confidence</small></td>
+            <td>An AssignmentElement <em>is</em> an engine write, so a constant assignment is a valid way to populate the read-only field — and the org already uses this exact idiom for OneTime (constant 0) and Evergreen (constant 1). <b>Caveat:</b> the <em>documented canonical</em> writer for a TermDefined line is the Proration element mapping the multiplier → PricingTermCount; a flat constant is a correct shortcut only for full-term single-period lines.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= 6. ADVERSARIAL ================= -->
+  <section>
+    <div class="eyebrow">§6 · Adversarial review</div>
+    <h2 class="sec">Four attempts to break the conclusion</h2>
+    <p class="lead">Each core conclusion was handed to an independent skeptic instructed to refute it. This is where residual risk gets named honestly.</p>
+    <div id="adversarial">
+      <div class="adv">
+        <div class="panel">
+          <div class="adv-head">
+            <div><span class="adv-lens">Efficacy</span><h3 class="adv-t">"The fix won't actually stop the Delete-Group NPE"</h3></div>
+            <span class="chip ok"><span class="dot"></span>Concern did not survive</span>
+          </div>
+          <p>The skeptic <b>could not refute</b> the fix's efficacy — the affirmative evidence (repro quote healed, malformed line now PTC=1, zero post-fix null-PTC lines) outweighs the counter-case. But the claim is "not proven to 100%," not "confirmed."</p>
+          <div class="note warn" style="margin-bottom:0"><b>Named residual:</b> the quote healed via a <em>reprice</em>, not via the <em>delete-cascade + forced full-graph reprice</em> path that actually throws. No successful Delete-Group has been observed post-fix. And the necessary-not-sufficient co-factor (~83% of same-condition quotes price fine) is unresolved. → <b>Roadmap Phase 5</b> (logged repro) is the proof.</div>
+        </div>
+
+        <div class="panel">
+          <div class="adv-head">
+            <div><span class="adv-lens">Safety</span><h3 class="adv-t">"The constant PTC=1 cannot cause a pricing regression"</h3></div>
+            <span class="chip crit"><span class="dot"></span>Concern holds — confirmed</span>
+          </div>
+          <p>The skeptic <b>refuted</b> the safety claim by reading the live V21 body: there is <b>no functioning TermDefined proration writer</b> in V21, so the seq-29 constant is the <em>only</em> thing setting PTC for the entire TermDefined cohort. A flat <code>1</code> silently mis-prices any multi-year / non-annual / partial-period line.</p>
+          <div class="note crit" style="margin-bottom:0"><b>Measured, not asserted:</b> a live count found <b>47 TermDefined lines with a fractional PTC</b> (partial-period) and one at <b>PTC=3</b> (multi-term). All are pre-fix and quiescent, so the risk is <b>latent</b> — but re-pricing any of them under V21 could overwrite the correct multiplier with 1. Highest exposure: renewal / maintenance / COLA multi-year deals. → <b>Roadmap Phase 3</b> settles it with one logged reprice.</div>
+        </div>
+
+        <div class="panel">
+          <div class="adv-head">
+            <div><span class="adv-lens">Root cause</span><h3 class="adv-t">"<code>PricingTermCount=null</code> is <em>the</em> root data trigger"</h3></div>
+            <span class="chip warn"><span class="dot"></span>Label imprecise — fix still right</span>
+          </div>
+          <p>The skeptic <b>refuted the literal label</b>: PTC is an engine <em>output</em>, so it cannot be the null the engine dereferences <em>before</em> producing it. The proximate null is <code>EndDate → itemTransientEndDate</code>. But EndDate-null and PTC-null are perfectly confounded (both outputs of the same dropped SC-3420 writer), so the fix targets the correct <em>defect family</em> and the healing outcome is genuine.</p>
+          <div class="note info" style="margin-bottom:0"><b>Consequence:</b> because the exact native key was never captured and the co-factor is unidentified, the <b>Salesforce platform case (Phase 4) is still required</b> — it is the only guarantee against the raw NPE regardless of the data fix.</div>
+        </div>
+
+        <div class="panel">
+          <div class="adv-head">
+            <div><span class="adv-lens">Durability</span><h3 class="adv-t">"The fix is durable"</h3></div>
+            <span class="chip crit"><span class="dot"></span>Concern holds — high confidence</span>
+          </div>
+          <p>The skeptic <b>refuted durability</b> (while confirming the fix is correct and live right now). It is a single <code>&lt;criteria&gt;</code> node buried inside a filter step — not a discrete, self-describing element — in a co-owned procedure that sits at <b>128 of ~129 elements</b> (verified: 32 filters + 64 BKMs + 32 groups). This exact branch has now been dropped <b>3×</b> (V12, V17-19, V21).</p>
+          <div class="note warn" style="margin-bottom:0"><b>Minimum durable guard:</b> mirror into V22 now, and add "TermDefined must receive a non-null PricingTermCount" to the pricing-procedure PR/branch checklist with an element-budget note. → <b>Roadmap Phase 2</b>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7. ROADMAP ================= -->
+  <section>
+    <div class="eyebrow">§7 · Roadmap</div>
+    <h2 class="sec">What is done, and the concrete steps that remain</h2>
+    <div class="panel" style="padding:8px 24px">
+
+      <div class="phase done">
+        <div class="pnum">✓</div>
+        <div>
+          <h3>Restore TermDefined <code>PricingTermCount</code> on the active version <span class="chip ok"><span class="dot"></span>Done · verified</span></h3>
+          <span class="who">Net-zero filter edit on V21 · Liam Jeong · 2026-07-03 00:06 UTC</span>
+          <ul class="steps check">
+            <li>Added criterion 4 (<code>SellingModelType = 'TermDefined'</code>) to seq-29 filter <code>ListOperation93</code> and set logic <span class="mono">(1 AND (2 OR 3)) OR (4 AND 3)</span>.</li>
+            <li>Saved in place on V21, activated from the Versions list — zero new elements.</li>
+            <li>Verified live: repro quote + both test lines flipped to <code>PricingTermCount = 1</code>; 0 post-fix null-PTC lines.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase open">
+        <div class="pnum">2</div>
+        <div>
+          <h3>Mirror the fix into the V22 draft <span class="chip warn"><span class="dot"></span>Open</span></h3>
+          <span class="who">Prevents re-shipping the bug if V22 is ever activated · ~5 min</span>
+          <ul class="steps">
+            <li>Open Setup → Pricing Procedures → <code>Rev_Mgmt_Default_Pricing_Procedure</code> → <b>Version 22 (Draft)</b>.</li>
+            <li>Locate the seq-29 constant-PTC container (the one whose Assignment outputs <code>PricingTermCount</code>, filter currently <span class="mono">1 AND (2 OR 3)</span> over Evergreen / AllowPartial=false / <code>itemTransientEndDate IsNull</code>).</li>
+            <li>Add the identical criterion 4 and set logic to <span class="mono">(1 AND (2 OR 3)) OR (4 AND 3)</span>. Save in place.</li>
+            <li>Add "TermDefined lines must receive a non-null <code>PricingTermCount</code>" to the pricing-procedure PR/branch checklist — this branch has now been dropped <b>3×</b> (V12, V17-19, V21) under element pressure.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase open">
+        <div class="pnum">3</div>
+        <div>
+          <h3>Validate the constant is safe for the live catalog <span class="chip crit"><span class="dot"></span>Open · pricing-correctness</span></h3>
+          <span class="who">Settles the measured safety risk before the fix is treated as complete</span>
+          <ul class="steps">
+            <li>Pick a known <b>fractional-PTC</b> TermDefined line — e.g. <code>0QLWC000002LCwH4AW</code> (PTC=0.74) or the multi-term <code>0QLWC0000036BtV4AU</code> (PTC=3) — clone its quote and reprice under V21 with logging.</li>
+            <li><b>Observe:</b> PTC stays fractional/3 ⇒ seq-27's <code>(4 AND 3)</code> branch still prorates it (constant fix is <b>safe</b>). PTC flips to <b>1</b> ⇒ the constant overwrites real proration — a <b>regression</b> for partial/multi-term lines.</li>
+            <li>If it flips: replace the constant branch with the 3-element proration writer (<code>V20_writer_subtree_template.xml</code>) — which needs element budget, so run the element audit first.</li>
+            <li>Confirm scope: only <b>47</b> lines carry non-1 PTC today and all are pre-fix/quiescent, so this is a controlled test, not a live fire.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase open">
+        <div class="pnum">4</div>
+        <div>
+          <h3>File the Salesforce platform case for the unguarded native NPE <span class="chip crit"><span class="dot"></span>Open · highest durable value</span></h3>
+          <span class="who">Prong B — the only fix that removes the hard failure for ANY null-key edge, not just this data condition</span>
+          <ul class="steps">
+            <li>Title: <em>"RLM Quote Line Editor 'Delete Group' surfaces a raw JEP-358 NullPointerException (<code>java.util.Map.get(Object)</code> is null) instead of a guarded message; quote header commits but the group is not deleted."</em></li>
+            <li>Attach: the repro quote/group ids; the live <code>CalculationStatus = SaveFailedOrIncomplete</code> (designed status fired, yet the raw exception leaked); the documented <code>DefaultContextRuntimeEntityAttribute.getTags()</code> sibling; proof the throw is not in ApexLogs.</li>
+            <li>Ask Salesforce to null-guard the <code>map.get(key).toString()</code> path so a config error surfaces an actionable message.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase open">
+        <div class="pnum">5</div>
+        <div>
+          <h3>Close the inferred→proven gap with one authorized repro <span class="chip warn"><span class="dot"></span>Open · needs DML auth</span></h3>
+          <span class="who">The link "null PTC → this exact NPE" was inferred read-only; one logged repro settles it</span>
+          <ul class="steps">
+            <li>Use the existing <b>K-16 DeleteGroup Clone</b> quote <code>0Q0WC000003FbOv0AK</code> (Draft, still SaveFailedOrIncomplete) or a fresh clone with a TermDefined line in a group.</li>
+            <li>Enable <b>FINEST + RLM/pricing</b> debug logging, retry <b>Delete Group</b>, and confirm the NPE is gone end-to-end (the last open item from the prior dossier).</li>
+            <li>If it still throws with PTC now populated, that isolates the residual to the platform NPE (Phase 4) and the exact native key — capture the frame for the case.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="phase open">
+        <div class="pnum">6</div>
+        <div>
+          <h3>Heal the 18 pre-fix stale lines <span class="chip warn"><span class="dot"></span>Open · low risk · hygiene</span></h3>
+          <span class="who">Fully-configured full-term lines still carrying null PTC from before the fix — a latent Delete-Group trigger until repriced</span>
+          <ul class="steps">
+            <li>These 18 are all full-term (safe to receive PTC=1) and distinct from the 47 fractional lines in Phase 3. Reprice each so the live seq-29 branch stamps PTC=1.</li>
+            <li><b>Do not</b> use a blind "Reprice All" as a wedge-clearing reflex on a quote already in <code>SaveFailedOrIncomplete</code> — heal the offending line's term fields first, then reprice.</li>
+            <li>Re-run the sweep afterward: fully-configured TermDefined lines with null PTC should trend to 0.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 8. ACCEPTANCE ================= -->
+  <section>
+    <div class="eyebrow">§8 · Acceptance criteria</div>
+    <h2 class="sec">How to know each item is truly closed</h2>
+    <div class="panel">
+      <ul class="steps">
+        <li><b>Data fix (done):</b> a fresh fully-configured TermDefined line, on reprice under V21, gets <code>PricingTermCount</code> populated — <span class="chip ok"><span class="dot"></span>met</span>.</li>
+        <li><b>Recurrence stopped (done):</b> new fully-configured TermDefined lines stop being created with null PTC — <span class="chip ok"><span class="dot"></span>met (0 post-fix)</span>.</li>
+        <li><b>Parity:</b> V22 draft's seq-29 filter carries criterion 4 — <span class="chip warn"><span class="dot"></span>pending</span>.</li>
+        <li><b>No pricing regression:</b> a known fractional-PTC line, repriced under V21, keeps its computed multiplier (does not flip to 1) — <span class="chip crit"><span class="dot"></span>pending measured test</span>.</li>
+        <li><b>End-to-end:</b> Delete Group on a rebuilt repro throws no NPE — <span class="chip warn"><span class="dot"></span>pending logged repro</span>.</li>
+        <li><b>Platform guarantee:</b> Salesforce case filed for the raw-NPE leak — <span class="chip crit"><span class="dot"></span>pending</span>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="foot">
+    Read-only re-verification · FortraUAT · 2026-07-02 · Sources: fresh Tooling/SOQL queries, live metadata retrieve of all 22 procedure versions (<code>Data/sc3473/reverify_20260702/</code>), Salesforce documentation &amp; web research, and the original dossier under <code>Jira/Defects/sc3473 | Issue Deleting a Quote Group/</code>. No DML, deploy, reprice, or group delete was performed during this re-verification.
+  </div>
+
+</div></div>
