@@ -927,31 +927,11 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      * @param fieldName The field name to extract
      * @return The unwrapped value or null
      */
+    // Delegates to shared ContextTagReader (Wave-2 decomposition, increment 9 — verified
+    // functionally equivalent; the only prior diff was a FINE-level debug line, no behavior change).
     @TestVisible
     private Object extractFieldValue(Map<String, Object> tagData, String fieldName) {
-        if (tagData == null || !tagData.containsKey(fieldName)) {
-            return null;
-        }
-        Object fieldObj = tagData.get(fieldName);
-        if (fieldObj == null) {
-            return null;
-        }
-
-        // Check if the field value is wrapped in the new Context API format
-        // Structure: { tagValue: actualValue, dmlStatus: "...", isDirty: false, ... }
-        if (fieldObj instanceof Map<String, Object>) {
-            Map<String, Object> fieldWrapper = (Map<String, Object>) fieldObj;
-            if (fieldWrapper.containsKey('tagValue')) {
-                return fieldWrapper.get('tagValue');
-            }
-            // If it's a map but doesn't have tagValue, it might be the direct value (unlikely)
-            // Return null to avoid treating metadata as actual value
-            System.debug(LoggingLevel.FINE, 'Field ' + fieldName + ' is a Map without tagValue: ' + fieldWrapper.keySet());
-            return null;
-        }
-
-        // Legacy format: direct value (not wrapped)
-        return fieldObj;
+        return ContextTagReader.extractFieldValue(tagData, fieldName);
     }
 
     /**
@@ -975,8 +955,7 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private String getStringFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        return val != null ? String.valueOf(val) : null;
+        return ContextTagReader.getStringFromTag(tagData, fieldName);
     }
 
     /**
@@ -984,18 +963,7 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private Decimal getDecimalFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        if (val == null) {
-            return null;
-        }
-        if (val instanceof Decimal) {
-            return (Decimal) val;
-        }
-        try {
-            return Decimal.valueOf(String.valueOf(val));
-        } catch (Exception e) {
-            return null;
-        }
+        return ContextTagReader.getDecimalFromTag(tagData, fieldName);
     }
 
     /**
@@ -1003,15 +971,7 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private Id getIdFromTag(Map<String, Object> tagData, String fieldName) {
-        String val = getStringFromTag(tagData, fieldName);
-        if (String.isBlank(val)) {
-            return null;
-        }
-        try {
-            return Id.valueOf(val);
-        } catch (Exception e) {
-            return null;
-        }
+        return ContextTagReader.getIdFromTag(tagData, fieldName);
     }
 
     /**
