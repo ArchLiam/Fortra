@@ -876,60 +876,26 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     }
 
     @TestVisible
+    // Tag-reading helpers delegate to the shared ContextTagReader (Wave-2 decomposition, increment 7).
+    // Kept as thin @TestVisible seams so the posthook's ~47 call sites (and tests) stay unchanged;
+    // the canonical parsing logic + its unit tests now live in ContextTagReader.
     private Object extractFieldValue(Map<String, Object> tagData, String fieldName) {
-        if (tagData == null || !tagData.containsKey(fieldName)) {
-            return null;
-        }
-
-        Object fieldObj = tagData.get(fieldName);
-        if (fieldObj == null) {
-            return null;
-        }
-
-        if (fieldObj instanceof Map<String, Object>) {
-            Map<String, Object> fieldWrapper = (Map<String, Object>) fieldObj;
-            if (fieldWrapper.containsKey('tagValue')) {
-                return fieldWrapper.get('tagValue');
-            }
-            return null;
-        }
-
-        return fieldObj;
+        return ContextTagReader.extractFieldValue(tagData, fieldName);
     }
 
     @TestVisible
     private String getStringFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        return val != null ? String.valueOf(val) : null;
+        return ContextTagReader.getStringFromTag(tagData, fieldName);
     }
 
     @TestVisible
     private Id getIdFromTag(Map<String, Object> tagData, String fieldName) {
-        String val = getStringFromTag(tagData, fieldName);
-        if (String.isBlank(val)) {
-            return null;
-        }
-        try {
-            return Id.valueOf(val);
-        } catch (Exception e) {
-            return null;
-        }
+        return ContextTagReader.getIdFromTag(tagData, fieldName);
     }
 
     @TestVisible
     private Decimal getDecimalFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        if (val == null) {
-            return null;
-        }
-        if (val instanceof Decimal) {
-            return (Decimal) val;
-        }
-        try {
-            return Decimal.valueOf(String.valueOf(val));
-        } catch (Exception e) {
-            return null;
-        }
+        return ContextTagReader.getDecimalFromTag(tagData, fieldName);
     }
 
     /**
