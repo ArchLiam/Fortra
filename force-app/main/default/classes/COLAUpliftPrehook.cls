@@ -375,12 +375,19 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
             // year-1 value equal to the MyCAP rate (e.g. 3%) is a genuine
             // manual override.
             Decimal lineOverridePercent = getDecimalFromTag(lineItem, 'COLA_Uplift_Percent__c');
-            // Single shared predicate with the trigger handler so the two
-            // override-detection paths can never drift (see
-            // COLAUpliftHandler.isManualLineOverride). MyCAP arg is null:
-            // year-1 detection excludes the outyear rate.
-            Boolean isEffectivelyOverridden = COLAUpliftHandler.isManualLineOverride(
-                lineOverridePercent, cmdtDefault, null, contractOverridePct);
+            // Honor a persisted Line Override: the trigger records the applied tier's rate in
+            // Default_COLA_Uplift_Percent__c, so a stored COLA% that differs from it is a genuine
+            // rep override (mirrors COLAUpliftHandler.Is_COLA_Overridden__c). Detecting it directly
+            // keeps the rep's rate on reprice instead of reverting to the Contract rate when the
+            // entry happens to equal the CMDT default (Marc DeBrey, 2026-07-07). Additive only:
+            // non-overridden lines fall through to the existing CMDT-based detection unchanged, and
+            // lines never stamped by the trigger (legacy/handler-skipped, null Default) are unaffected.
+            Decimal stampedDefault = getDecimalFromTag(lineItem, 'Default_COLA_Uplift_Percent__c');
+            // Shared predicate with the trigger handler (COLAUpliftHandler.isManualLineOverride);
+            // MyCAP arg null so year-1 detection excludes the outyear rate.
+            Boolean isEffectivelyOverridden = isPersistedLineOverride(lineOverridePercent, stampedDefault)
+                || COLAUpliftHandler.isManualLineOverride(
+                    lineOverridePercent, cmdtDefault, null, contractOverridePct);
 
             if (isEffectivelyOverridden) {
                 // Tier 1: Line Override (highest priority)
@@ -971,26 +978,30 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
     // Helper Methods
     // ============================================
 
+    /**
+     * @description True when a stored line COLA% differs from the applied tier's stamped
+     *              Default_COLA_Uplift_Percent__c — i.e. a genuine rep Line Override the trigger
+     *              already classified (mirrors QuoteLineItem.Is_COLA_Overridden__c). A null stamped
+     *              default (legacy / handler-skipped line) is NOT treated as an override, so the
+     *              caller falls back to the CMDT-based detection unchanged.
+     */
+    @TestVisible
+    private static Boolean isPersistedLineOverride(Decimal lineOverridePercent, Decimal stampedDefault) {
+        return stampedDefault != null
+            && lineOverridePercent != null
+            && lineOverridePercent != stampedDefault;
+    }
+
+    // getStringFromTag / getDecimalFromTag delegate to the shared ContextTagReader
+    // (Wave-2 decomposition, increment 8 — verified equivalent; de-dups a copy from this hook).
     @TestVisible
     private String getStringFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        return val != null ? String.valueOf(val) : null;
+        return ContextTagReader.getStringFromTag(tagData, fieldName);
     }
 
     @TestVisible
     private Decimal getDecimalFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        if (val == null) {
-            return null;
-        }
-        if (val instanceof Decimal) {
-            return (Decimal) val;
-        }
-        try {
-            return Decimal.valueOf(String.valueOf(val));
-        } catch (Exception e) {
-            return null;
-        }
+        return ContextTagReader.getDecimalFromTag(tagData, fieldName);
     }
 
     @TestVisible
@@ -1006,24 +1017,9 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
         return strVal == 'true' || strVal == '1';
     }
 
+    // extractFieldValue delegates to the shared ContextTagReader (Wave-2 decomposition, increment 8).
     private Object extractFieldValue(Map<String, Object> tagData, String fieldName) {
-        if (tagData == null || !tagData.containsKey(fieldName)) {
-            return null;
-        }
-        Object fieldObj = tagData.get(fieldName);
-        if (fieldObj == null) {
-            return null;
-        }
-
-        if (fieldObj instanceof Map<String, Object>) {
-            Map<String, Object> fieldWrapper = (Map<String, Object>) fieldObj;
-            if (fieldWrapper.containsKey('tagValue')) {
-                return fieldWrapper.get('tagValue');
-            }
-            return null;
-        }
-
-        return fieldObj;
+        return ContextTagReader.extractFieldValue(tagData, fieldName);
     }
 
     /**
