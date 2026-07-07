@@ -1923,20 +1923,13 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
 
     @TestVisible
     private Decimal resolveStampedPartnerPercent(Map<String, Object> lineItem) {
-        Decimal partnerPercent = getDecimalFromTag(lineItem, 'PartnerDiscountPercent');
-        if (partnerPercent != null && partnerPercent > 0) {
-            return partnerPercent;
-        }
-        return getDecimalFromTag(lineItem, 'Partner_Discount_Percent__c');
+        // Delegates to ListPriceStampCalculator (Wave-2 decomposition, increment 12).
+        return ListPriceStampCalculator.resolveStampedPartnerPercent(lineItem);
     }
 
     @TestVisible
     private Decimal resolveStampedManualPercent(Map<String, Object> lineItem) {
-        Decimal manualPercent = getDecimalFromTag(lineItem, 'ItemDiscountPercentage');
-        if (manualPercent != null && manualPercent > 0) {
-            return manualPercent;
-        }
-        return getDecimalFromTag(lineItem, 'Discount');
+        return ListPriceStampCalculator.resolveStampedManualPercent(lineItem);
     }
 
     @TestVisible
@@ -1997,41 +1990,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Map<String, Object> lineItem,
         Map<Id, String> productTypeByLineId
     ) {
-        String productType = PartnerPricingService.resolveProductType(
-            getStringFromTag(lineItem, 'Fortra_Product_Type__c'),
-            getLineItemRecordId(lineItem),
-            productTypeByLineId
-        );
-
-        if (DerivedMaintenanceClassifier.isDerivedMaintenanceProductType(productType)) {
-            Decimal derivedList = getDecimalFromTag(lineItem, 'NetUnitPrice');
-            if (derivedList == null || derivedList <= 0) {
-                derivedList = getDecimalFromTag(lineItem, 'UnitPrice');
-            }
-            if (derivedList == null || derivedList <= 0) {
-                return null;
-            }
-
-            Decimal listPrice = getDecimalFromTag(lineItem, 'ListPrice');
-            if (listPrice != null && listPrice >= derivedList) {
-                return null;
-            }
-            return derivedList;
-        }
-
-        Decimal basePrice = getDecimalFromTag(lineItem, 'Base_Price__c');
-        if (basePrice == null || basePrice <= 0) {
-            basePrice = getDecimalFromTag(lineItem, 'Pre_Partner_Price__c');
-        }
-        if (basePrice == null || basePrice <= 0) {
-            return null;
-        }
-
-        Decimal listPrice = getDecimalFromTag(lineItem, 'ListPrice');
-        if (listPrice != null && listPrice >= basePrice) {
-            return null;
-        }
-        return basePrice;
+        // Delegates to ListPriceStampCalculator (Wave-2 decomposition, increment 12).
+        return ListPriceStampCalculator.resolveAttributeTierListPrice(lineItem, productTypeByLineId);
     }
 
     @TestVisible
@@ -2278,35 +2238,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Map<String, Decimal> rateByType,
         Map<Id, String> tierByLine
     ) {
-        if (qli.UnitPrice != null && qli.UnitPrice > 0
-            && (qli.NetUnitPrice == null || qli.UnitPrice >= qli.NetUnitPrice)) {
-            return qli.UnitPrice;
-        }
-
-        Decimal rate = null;
-        if (rateByType != null && tierByLine != null) {
-            String tier = tierByLine.get(qli.Id);
-            if (String.isNotBlank(tier) && rateByType.containsKey(tier)) {
-                rate = rateByType.get(tier);
-            }
-        }
-
-        Decimal basePrice = qli.Base_Price__c != null && qli.Base_Price__c > 0
-            ? qli.Base_Price__c
-            : qli.Pre_Partner_Price__c;
-        if (rate != null && rate > 0 && basePrice != null && basePrice > 0) {
-            return (basePrice * rate).setScale(2, RoundingMode.HALF_UP);
-        }
-
-        if (qli.NetUnitPrice != null && qli.NetUnitPrice > 0) {
-            Decimal partnerPercent = qli.PartnerDiscountPercent != null ? qli.PartnerDiscountPercent : 0;
-            Decimal manualPercent = qli.Discount != null ? qli.Discount : 0;
-            Decimal divisor = (1 - (partnerPercent / 100)) * (1 - (manualPercent / 100));
-            if (divisor > 0) {
-                return (qli.NetUnitPrice / divisor).setScale(2, RoundingMode.HALF_UP);
-            }
-        }
-
-        return null;
+        // Delegates to ListPriceStampCalculator (Wave-2 decomposition, increment 12).
+        return ListPriceStampCalculator.resolveDerivedMaintenanceListPrice(qli, rateByType, tierByLine);
     }
 }
