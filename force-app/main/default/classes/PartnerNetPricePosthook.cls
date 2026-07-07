@@ -328,7 +328,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             : null;
 
         // V16+: new-business derived maintenance only — renewal COLA lines are handled above.
-        if (isNewBusinessDerivedMaintenance(productType, isRenewalQuote == true, renewalLineId, renewalColaByLineId)
+        if (DerivedMaintenanceClassifier.isNewBusinessDerivedMaintenance(productType, isRenewalQuote == true, renewalLineId, renewalColaByLineId)
             || (maintInputs != null && isRenewalQuote != true)) {
             Map<String, Object> derivedLineItem = adjustNewBusinessDerivedListLineItem(lineItem, maintInputs);
             Map<String, Object> derivedDiscountUpdate = buildDerivedMaintenanceSequentialDiscountUpdate(
@@ -484,26 +484,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return partnerUnitPrice;
     }
 
-    @TestVisible
-    private Boolean isDerivedMaintenanceProductType(String productType) {
-        return productType == 'New Maintenance' || productType == 'Renewal Maintenance';
-    }
-
-    @TestVisible
-    private Boolean isNewBusinessDerivedMaintenance(
-        String productType,
-        Boolean isRenewalQuote,
-        Id lineItemId,
-        Map<Id, QuoteLineItem> renewalColaByLineId
-    ) {
-        if (isRenewalQuote || productType != 'New Maintenance') {
-            return false;
-        }
-        if (lineItemId != null && renewalColaByLineId != null && renewalColaByLineId.containsKey(lineItemId)) {
-            return false;
-        }
-        return true;
-    }
+    // isDerivedMaintenanceProductType / isNewBusinessDerivedMaintenance extracted to
+    // DerivedMaintenanceClassifier (Wave-2 decomposition, increment 3).
 
     @TestVisible
     private Boolean isRenewalQuoteId(Id quoteId, Map<Id, QuoteLineItem> renewalColaByLineId) {
@@ -547,7 +529,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             getLineItemRecordId(lineItem),
             productTypeByLineId
         );
-        if (isDerivedMaintenanceProductType(productType)) {
+        if (DerivedMaintenanceClassifier.isDerivedMaintenanceProductType(productType)) {
             return null;
         }
 
@@ -1115,7 +1097,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             && qli.COLACalculatedPrice__c > 0) {
             return null;
         }
-        if (!isDerivedMaintenanceProductType(
+        if (!DerivedMaintenanceClassifier.isDerivedMaintenanceProductType(
             PartnerPricingService.resolveProductType(
                 qli.getPopulatedFieldsAsMap().containsKey('Fortra_Product_Type__c')
                     ? qli.Fortra_Product_Type__c
@@ -2135,7 +2117,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             productTypeByLineId
         );
 
-        if (isDerivedMaintenanceProductType(productType)) {
+        if (DerivedMaintenanceClassifier.isDerivedMaintenanceProductType(productType)) {
             Decimal derivedList = getDecimalFromTag(lineItem, 'NetUnitPrice');
             if (derivedList == null || derivedList <= 0) {
                 derivedList = getDecimalFromTag(lineItem, 'UnitPrice');
