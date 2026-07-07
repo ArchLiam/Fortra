@@ -551,7 +551,14 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             return null;
         }
 
-        Decimal currentPrice = getDecimalFromTag(lineItem, 'NetUnitPrice');
+        // DEF-1 idempotency: on a re-reprice this line's NetUnitPrice already carries the partner
+        // discount stamped on the prior pass, so discounting it again compounds (x0.82 each reprice).
+        // Prefer the stable pre-partner base; fall back to NetUnitPrice for the first application
+        // (the pre-hook skipped this line, so NetUnitPrice is the intended base at that point).
+        Decimal currentPrice = getDecimalFromTag(lineItem, 'Pre_Partner_Price__c');
+        if (currentPrice == null || currentPrice <= 0) {
+            currentPrice = getDecimalFromTag(lineItem, 'NetUnitPrice');
+        }
         if (currentPrice == null || currentPrice <= 0) {
             return null;
         }
@@ -1121,7 +1128,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         }
 
         Decimal procedureNet = getDecimalFromTag(lineItem, 'NetUnitPrice');
-        Decimal colaNet = computeRenewalMaintenanceColaNet(qli);
+        Decimal colaNet = RenewalMaintenanceColaCalculator.computeRenewalMaintenanceColaNet(qli);
         if (colaNet == null || colaNet <= 0) {
             return null;
         }
@@ -1191,59 +1198,9 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return new List<Object>{ String.valueOf(quoteId), String.valueOf(lineItemId) };
     }
 
-    @TestVisible
-    private Decimal computeRenewalMaintenanceColaNet(QuoteLineItem qli) {
-        if (qli == null || qli.Base_Price__c == null || qli.Base_Price__c <= 0) {
-            return null;
-        }
-
-        Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
-        Decimal priorDisc = resolveRenewalDiscretionaryDollars(qli);
-        Decimal colaPercent = qli.COLA_Uplift_Percent__c != null ? qli.COLA_Uplift_Percent__c : 0;
-
-        Decimal preColaNet = qli.Base_Price__c - priorPartner - priorDisc;
-        if (preColaNet <= 0 || isContributorBaseOnMaintenanceLine(qli, preColaNet)) {
-            return computeColaFromPriorNet(qli, colaPercent);
-        }
-
-        return (preColaNet * (1 + (colaPercent / 100))).setScale(2, RoundingMode.HALF_UP);
-    }
-
-    /**
-     * @description Year 2+ COLA applies to the prior year's commercial net (e.g. $3,060 + 3% = $3,151.80).
-     *              Falls back when Base_Price__c still holds the contributor perpetual base ($20k).
-     */
-    @TestVisible
-    private Decimal computeColaFromPriorNet(QuoteLineItem qli, Decimal colaPercent) {
-        if (qli == null) {
-            return null;
-        }
-        if (qli.COLACalculatedPrice__c != null && qli.COLACalculatedPrice__c > 0) {
-            return qli.COLACalculatedPrice__c.setScale(2, RoundingMode.HALF_UP);
-        }
-        return null;
-    }
-
-    @TestVisible
-    private Boolean isContributorBaseOnMaintenanceLine(QuoteLineItem qli, Decimal preColaNet) {
-        if (qli == null || qli.Base_Price__c == null || preColaNet == null || preColaNet <= 0) {
-            return false;
-        }
-        return qli.Base_Price__c >= 10000 && preColaNet < (qli.Base_Price__c * 0.5);
-    }
-
-    @TestVisible
-    private Decimal resolveRenewalDiscretionaryDollars(QuoteLineItem qli) {
-        if (qli.Prior_Discretionary_Discount__c != null && qli.Prior_Discretionary_Discount__c > 0) {
-            return qli.Prior_Discretionary_Discount__c;
-        }
-        if (qli.Discount == null || qli.Discount <= 0) {
-            return 0;
-        }
-
-        Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
-        return ((qli.Base_Price__c - priorPartner) * (qli.Discount / 100)).setScale(2, RoundingMode.HALF_UP);
-    }
+    // Renewal-maintenance COLA net math (computeRenewalMaintenanceColaNet / computeColaFromPriorNet /
+    // isContributorBaseOnMaintenanceLine / resolveRenewalDiscretionaryDollars) extracted verbatim to
+    // RenewalMaintenanceColaCalculator (Wave-2 decomposition; pure, unit-tested).
 
     @TestVisible
     private Decimal resolveRenewalPartnerPercent(QuoteLineItem qli) {

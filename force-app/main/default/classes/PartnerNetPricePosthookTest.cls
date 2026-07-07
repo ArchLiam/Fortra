@@ -566,13 +566,13 @@ private class PartnerNetPricePosthookTest {
             Fortra_Product_Type__c = 'Renewal Maintenance'
         );
 
-        Decimal priorDisc = posthook.resolveRenewalDiscretionaryDollars(qli);
+        Decimal priorDisc = RenewalMaintenanceColaCalculator.resolveRenewalDiscretionaryDollars(qli);
         Decimal expectedPreCola = 71 - 8.52 - priorDisc;
         Decimal expectedNet = (expectedPreCola * 1.0785).setScale(2, RoundingMode.HALF_UP);
 
         System.assertEquals(
             expectedNet,
-            posthook.computeRenewalMaintenanceColaNet(qli),
+            RenewalMaintenanceColaCalculator.computeRenewalMaintenanceColaNet(qli),
             'COLA should uplift base minus partner and software discount components'
         );
         System.assertEquals(
@@ -706,7 +706,7 @@ private class PartnerNetPricePosthookTest {
             WHERE Id = :qli.Id
         ];
 
-        Decimal expectedNet = posthook.computeRenewalMaintenanceColaNet(qli);
+        Decimal expectedNet = RenewalMaintenanceColaCalculator.computeRenewalMaintenanceColaNet(qli);
         System.assertNotEquals(null, expectedNet, 'Precondition: COLA net should be computable from stamped inputs');
 
         Map<String, Object> lineItem = new Map<String, Object>{
@@ -1370,8 +1370,8 @@ private class PartnerNetPricePosthookTest {
             Discount = 20
         );
 
-        System.assertEquals(18, posthook.resolveRenewalDiscretionaryDollars(qli));
-        System.assertEquals(5, posthook.resolveRenewalDiscretionaryDollars(new QuoteLineItem(
+        System.assertEquals(18, RenewalMaintenanceColaCalculator.resolveRenewalDiscretionaryDollars(qli));
+        System.assertEquals(5, RenewalMaintenanceColaCalculator.resolveRenewalDiscretionaryDollars(new QuoteLineItem(
             Base_Price__c = 100,
             Prior_Discretionary_Discount__c = 5
         )));
@@ -1765,8 +1765,8 @@ private class PartnerNetPricePosthookTest {
     @IsTest
     static void testComputeRenewalMaintenanceColaNet_returnsNullForInvalidInputs() {
         PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
-        System.assertEquals(null, posthook.computeRenewalMaintenanceColaNet(null));
-        System.assertEquals(null, posthook.computeRenewalMaintenanceColaNet(new QuoteLineItem(
+        System.assertEquals(null, RenewalMaintenanceColaCalculator.computeRenewalMaintenanceColaNet(null));
+        System.assertEquals(null, RenewalMaintenanceColaCalculator.computeRenewalMaintenanceColaNet(new QuoteLineItem(
             Base_Price__c = 10,
             Prior_Partner_Discount__c = 10
         )));
