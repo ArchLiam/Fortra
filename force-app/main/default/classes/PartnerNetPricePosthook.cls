@@ -1304,24 +1304,23 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                     }
                 }
                 for (QuoteLineItem qli : qlis.values()) {
-                    Decimal rate = resolveTierRate(tierByLine.get(qli.Id), rateByType);
+                    Decimal rate = NewMaintenanceInputResolver.resolveTierRate(tierByLine.get(qli.Id), rateByType);
                     if (rate == null) {
                         continue;
                     }
                     ContributorCarryForwardSnapshot contributor = contributorByMaintLineId.get(qli.Id);
-                    Decimal contributorNet = contributor != null ? contributor.pricingBase : null;
-                    Boolean contributorNetFromPerpetual = contributorNet != null && contributorNet > 0;
-                    if (!contributorNetFromPerpetual) {
-                        contributorNet = qli.Base_Price__c;
-                    }
-                    Decimal partnerPercent = nmBandByQuote.get(qli.QuoteId) != null
-                        ? nmBandByQuote.get(qli.QuoteId)
-                        : (contributor != null && contributor.partnerPercent != null
-                            ? contributor.partnerPercent
-                            : qli.PartnerDiscountPercent);
-                    Decimal softwareDiscount = contributor != null && contributor.softwareDiscount != null
-                        ? contributor.softwareDiscount
-                        : qli.Discount;
+                    Decimal contributorBase = contributor != null ? contributor.pricingBase : null;
+                    Boolean contributorNetFromPerpetual =
+                        NewMaintenanceInputResolver.isContributorNetFromPerpetual(contributorBase);
+                    Decimal contributorNet =
+                        NewMaintenanceInputResolver.resolveContributorNet(contributorBase, qli.Base_Price__c);
+                    Decimal partnerPercent = NewMaintenanceInputResolver.resolvePartnerPercent(
+                        nmBandByQuote.get(qli.QuoteId),
+                        contributor != null ? contributor.partnerPercent : null,
+                        qli.PartnerDiscountPercent);
+                    Decimal softwareDiscount = NewMaintenanceInputResolver.resolveSoftwareDiscount(
+                        contributor != null ? contributor.softwareDiscount : null,
+                        qli.Discount);
                     byId.put(qli.Id, new NewMaintInputs(
                         contributorNet, contributorNetFromPerpetual, qli.Source_List_Price__c,
                         partnerPercent, softwareDiscount,
@@ -1358,18 +1357,19 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                     }
                 }
                 for (OrderItem oi : ois.values()) {
-                    Decimal rate = resolveTierRate(tierByLine.get(oi.Id), rateByType);
+                    Decimal rate = NewMaintenanceInputResolver.resolveTierRate(tierByLine.get(oi.Id), rateByType);
                     if (rate == null) {
                         continue;
                     }
-                    Decimal contributorNet = contributorNetByMaintLineId.get(oi.Id);
-                    Boolean contributorNetFromPerpetual = contributorNet != null && contributorNet > 0;
-                    if (!contributorNetFromPerpetual) {
-                        contributorNet = oi.Base_Price__c;
-                    }
+                    Decimal contributorBase = contributorNetByMaintLineId.get(oi.Id);
+                    Boolean contributorNetFromPerpetual =
+                        NewMaintenanceInputResolver.isContributorNetFromPerpetual(contributorBase);
+                    Decimal contributorNet =
+                        NewMaintenanceInputResolver.resolveContributorNet(contributorBase, oi.Base_Price__c);
                     byId.put(oi.Id, new NewMaintInputs(
                         contributorNet, contributorNetFromPerpetual, oi.Source_List_Price__c,
-                        (nmBandByOrder.get(oi.OrderId) != null ? nmBandByOrder.get(oi.OrderId) : oi.PartnerDiscountPercent),
+                        NewMaintenanceInputResolver.resolvePartnerPercent(
+                            nmBandByOrder.get(oi.OrderId), null, oi.PartnerDiscountPercent),
                         null, oi.Quantity, rate, oi.OrderId));
                     byId.get(oi.Id).partnerBandResolved = nmBandByOrder.get(oi.OrderId) != null;
                 }
@@ -1789,10 +1789,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         ]).keySet());
     }
 
-    private Decimal resolveTierRate(String tier, Map<String, Decimal> rateByType) {
-        Decimal rate = String.isNotBlank(tier) ? rateByType.get(tier) : null;
-        return (rate != null && rate > 0) ? rate : null;
-    }
+    // resolveTierRate + the New-Maintenance per-line input resolution (contributor net / partner% /
+    // software discount) extracted to NewMaintenanceInputResolver (Wave-2 decomposition, increment 5).
 
     @TestVisible
     private Map<String, Decimal> loadMaintenanceRates() {
