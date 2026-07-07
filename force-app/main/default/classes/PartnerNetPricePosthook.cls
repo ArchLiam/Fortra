@@ -1690,13 +1690,19 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         NewMaintInputs maintInputs
     ) {
         NewBusinessMaintenanceNets nets = new NewBusinessMaintenanceNets();
-        if (maintInputs == null || maintInputs.rate == null || maintInputs.rate <= 0
-            || maintInputs.contributorNetPrice == null || maintInputs.contributorNetPrice <= 0) {
+        if (maintInputs == null) {
             return nets;
         }
 
-        nets.expectedListNet = (maintInputs.contributorNetPrice * maintInputs.rate)
-            .setScale(2, RoundingMode.HALF_UP);
+        // Pure list-net arithmetic (contributor net x rate) — null when rate/contributor invalid,
+        // equivalent to the prior early-return guard.
+        nets.expectedListNet = NewMaintenanceNetCalculator.expectedListNet(
+            maintInputs.contributorNetPrice, maintInputs.rate
+        );
+        if (nets.expectedListNet == null) {
+            return nets;
+        }
+
         if (maintInputs.partnerBandResolved
             && maintInputs.partnerPercent != null && maintInputs.partnerPercent > 0) {
             // J-06: the authoritative New-Maintenance band from the partner Discount model overrides
@@ -1713,16 +1719,9 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             nets.softwareDiscount = maintInputs.softwareDiscount;
         }
 
-        Decimal partnerUnitPrice = nets.expectedListNet;
-        if (nets.partnerPercent != null && nets.partnerPercent > 0) {
-            partnerUnitPrice = (nets.expectedListNet * (1 - (nets.partnerPercent / 100)))
-                .setScale(2, RoundingMode.HALF_UP);
-        }
-        nets.expectedCommercialNet = partnerUnitPrice;
-        if (nets.softwareDiscount != null && nets.softwareDiscount > 0) {
-            nets.expectedCommercialNet = (partnerUnitPrice * (1 - (nets.softwareDiscount / 100)))
-                .setScale(2, RoundingMode.HALF_UP);
-        }
+        nets.expectedCommercialNet = NewMaintenanceNetCalculator.expectedCommercialNet(
+            nets.expectedListNet, nets.partnerPercent, nets.softwareDiscount
+        );
         return nets;
     }
 
