@@ -857,22 +857,10 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     }
 
     @TestVisible
+    // Delegates to shared ContextTagReader (Wave-2 decomposition, increment 11). Kept as a thin
+    // seam so the posthook's 13 call sites stay unchanged; canonical logic lives in ContextTagReader.
     private Id getLineItemRecordId(Map<String, Object> lineItem) {
-        String lineItemId = (String) lineItem.get('_recordId');
-        if (String.isBlank(lineItemId)) {
-            lineItemId = getStringFromTag(lineItem, 'SourceRecordId');
-        }
-        if (String.isBlank(lineItemId)) {
-            lineItemId = getStringFromTag(lineItem, 'Id');
-        }
-        if (String.isBlank(lineItemId)) {
-            return null;
-        }
-        try {
-            return Id.valueOf(lineItemId);
-        } catch (Exception e) {
-            return null;
-        }
+        return ContextTagReader.getLineItemRecordId(lineItem);
     }
 
     @TestVisible

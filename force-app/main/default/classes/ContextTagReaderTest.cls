@@ -38,4 +38,25 @@ private class ContextTagReaderTest {
         System.assertEquals(null, ContextTagReader.getDecimalFromTag(tag('abc'), 'F'), 'Non-number -> null');
         System.assertEquals(null, ContextTagReader.getDecimalFromTag(tag(null), 'F'));
     }
+
+    @IsTest
+    static void getLineItemRecordId_prefersRecordIdThenTagsElseNull() {
+        Id rid = '001000000000001AAA';
+        // _recordId marker wins
+        System.assertEquals(rid,
+            ContextTagReader.getLineItemRecordId(new Map<String, Object>{ '_recordId' => String.valueOf(rid) }));
+        // falls back to SourceRecordId tag
+        System.assertEquals(rid,
+            ContextTagReader.getLineItemRecordId(new Map<String, Object>{
+                'SourceRecordId' => new Map<String, Object>{ 'tagValue' => String.valueOf(rid) } }));
+        // falls back to Id tag
+        System.assertEquals(rid,
+            ContextTagReader.getLineItemRecordId(new Map<String, Object>{
+                'Id' => new Map<String, Object>{ 'tagValue' => String.valueOf(rid) } }));
+        // none present -> null
+        System.assertEquals(null, ContextTagReader.getLineItemRecordId(new Map<String, Object>{ 'X' => 'y' }));
+        // malformed -> null
+        System.assertEquals(null,
+            ContextTagReader.getLineItemRecordId(new Map<String, Object>{ '_recordId' => 'not-an-id' }));
+    }
 }

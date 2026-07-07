@@ -61,4 +61,27 @@ public with sharing class ContextTagReader {
             return null;
         }
     }
+
+    /**
+     * @description Resolve the source record Id for a context line map. Prefers the
+     *              `_recordId` marker, then the SourceRecordId tag, then the Id tag.
+     *              Verbatim from PartnerNetPricePosthook (Wave-2 decomposition, increment 11).
+     */
+    public static Id getLineItemRecordId(Map<String, Object> lineItem) {
+        String lineItemId = (String) lineItem.get('_recordId');
+        if (String.isBlank(lineItemId)) {
+            lineItemId = getStringFromTag(lineItem, 'SourceRecordId');
+        }
+        if (String.isBlank(lineItemId)) {
+            lineItemId = getStringFromTag(lineItem, 'Id');
+        }
+        if (String.isBlank(lineItemId)) {
+            return null;
+        }
+        try {
+            return Id.valueOf(lineItemId);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
