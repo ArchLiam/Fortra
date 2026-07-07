@@ -73,4 +73,20 @@ private class RenewalMaintenanceColaCalculatorTest {
         System.assertEquals(0, RenewalMaintenanceColaCalculator.resolveRenewalDiscretionaryDollars(
             qli(new Map<String, Object>{ 'Base_Price__c' => 1000 })));
     }
+
+    @IsTest
+    static void resolveRenewalPartnerPercent_stampedElseDerivedFromPrior() {
+        // stamped PartnerDiscountPercent > 0 wins
+        System.assertEquals(18, RenewalMaintenanceColaCalculator.resolveRenewalPartnerPercent(
+            qli(new Map<String, Object>{ 'PartnerDiscountPercent' => 18 })));
+        // derive from prior partner $ / base: 250/1000*100 = 25.00
+        System.assertEquals(25.00, RenewalMaintenanceColaCalculator.resolveRenewalPartnerPercent(
+            qli(new Map<String, Object>{ 'Base_Price__c' => 1000, 'Prior_Partner_Discount__c' => 250 })));
+        // no base -> null
+        System.assertEquals(null, RenewalMaintenanceColaCalculator.resolveRenewalPartnerPercent(
+            qli(new Map<String, Object>{ 'Prior_Partner_Discount__c' => 250 })));
+        // base but no prior partner -> null
+        System.assertEquals(null, RenewalMaintenanceColaCalculator.resolveRenewalPartnerPercent(
+            qli(new Map<String, Object>{ 'Base_Price__c' => 1000 })));
+    }
 }

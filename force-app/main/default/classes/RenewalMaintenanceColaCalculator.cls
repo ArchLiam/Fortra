@@ -60,4 +60,24 @@ public with sharing class RenewalMaintenanceColaCalculator {
         Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
         return ((qli.Base_Price__c - priorPartner) * (qli.Discount / 100)).setScale(2, RoundingMode.HALF_UP);
     }
+
+    /**
+     * @description Renewal partner discount % for a maintenance line: the stamped
+     *              PartnerDiscountPercent when positive, else derived from the prior partner
+     *              dollars over base price. Null when no base or no prior partner dollars.
+     *              (Wave-2 decomposition, increment 16 — moved verbatim from the posthook.)
+     */
+    public static Decimal resolveRenewalPartnerPercent(QuoteLineItem qli) {
+        if (qli.PartnerDiscountPercent != null && qli.PartnerDiscountPercent > 0) {
+            return qli.PartnerDiscountPercent;
+        }
+        if (qli.Base_Price__c == null || qli.Base_Price__c <= 0) {
+            return null;
+        }
+        Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
+        if (priorPartner <= 0) {
+            return null;
+        }
+        return ((priorPartner / qli.Base_Price__c) * 100).setScale(2, RoundingMode.HALF_UP);
+    }
 }

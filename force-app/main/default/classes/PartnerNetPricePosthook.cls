@@ -1092,17 +1092,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
 
     @TestVisible
     private Decimal resolveRenewalPartnerPercent(QuoteLineItem qli) {
-        if (qli.PartnerDiscountPercent != null && qli.PartnerDiscountPercent > 0) {
-            return qli.PartnerDiscountPercent;
-        }
-        if (qli.Base_Price__c == null || qli.Base_Price__c <= 0) {
-            return null;
-        }
-        Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
-        if (priorPartner <= 0) {
-            return null;
-        }
-        return ((priorPartner / qli.Base_Price__c) * 100).setScale(2, RoundingMode.HALF_UP);
+        // Delegates to RenewalMaintenanceColaCalculator (Wave-2 decomposition, increment 16).
+        return RenewalMaintenanceColaCalculator.resolveRenewalPartnerPercent(qli);
     }
 
     /**
