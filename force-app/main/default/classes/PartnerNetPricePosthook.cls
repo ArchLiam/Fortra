@@ -1388,9 +1388,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private Map<Id, Decimal> resolveNewMaintenancePartnerBandByQuote(List<QuoteLineItem> maintLines) {
-        Map<Id, Decimal> bandByQuote = new Map<Id, Decimal>();
         if (maintLines == null || maintLines.isEmpty()) {
-            return bandByQuote;
+            return new Map<Id, Decimal>();
         }
         Set<Id> quoteIds = new Set<Id>();
         for (QuoteLineItem qli : maintLines) {
@@ -1399,32 +1398,20 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             }
         }
         if (quoteIds.isEmpty()) {
-            return bandByQuote;
+            return new Map<Id, Decimal>();
         }
         Map<Id, Quote> quotes = new Map<Id, Quote>([
             SELECT Id, Billing_Partner__c, Partner_Pricing_Model__c
             FROM Quote
             WHERE Id IN :quoteIds
         ]);
-        Set<Id> billingPartnerIds = new Set<Id>();
-        for (Quote q : quotes.values()) {
-            if (q.Partner_Pricing_Model__c == 'Discount' && q.Billing_Partner__c != null) {
-                billingPartnerIds.add(q.Billing_Partner__c);
-            }
-        }
+        Set<Id> billingPartnerIds = NewMaintenanceBandCalculator.billingPartnerIdsFromQuotes(quotes);
         if (billingPartnerIds.isEmpty()) {
-            return bandByQuote;
+            return new Map<Id, Decimal>();
         }
         Map<Id, Partner_Pricing_Model__c> models =
             PartnerPricingService.getPricingModels(billingPartnerIds, 'Discount');
-        Decimal band;
-        for (Quote q : quotes.values()) {
-            band = newMaintenanceBand(q.Partner_Pricing_Model__c, q.Billing_Partner__c, models);
-            if (band != null) {
-                bandByQuote.put(q.Id, band);
-            }
-        }
-        return bandByQuote;
+        return NewMaintenanceBandCalculator.bandByQuote(quotes, models);
     }
 
     /**
@@ -1433,9 +1420,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private Map<Id, Decimal> resolveNewMaintenancePartnerBandByOrder(List<OrderItem> maintLines) {
-        Map<Id, Decimal> bandByOrder = new Map<Id, Decimal>();
         if (maintLines == null || maintLines.isEmpty()) {
-            return bandByOrder;
+            return new Map<Id, Decimal>();
         }
         Set<Id> orderIds = new Set<Id>();
         for (OrderItem oi : maintLines) {
@@ -1444,61 +1430,24 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             }
         }
         if (orderIds.isEmpty()) {
-            return bandByOrder;
+            return new Map<Id, Decimal>();
         }
         Map<Id, Order> orders = new Map<Id, Order>([
             SELECT Id, Quote.Billing_Partner__c, Quote.Partner_Pricing_Model__c
             FROM Order
             WHERE Id IN :orderIds
         ]);
-        Set<Id> billingPartnerIds = new Set<Id>();
-        for (Order ord : orders.values()) {
-            if (ord.Quote != null
-                && ord.Quote.Partner_Pricing_Model__c == 'Discount'
-                && ord.Quote.Billing_Partner__c != null) {
-                billingPartnerIds.add(ord.Quote.Billing_Partner__c);
-            }
-        }
+        Set<Id> billingPartnerIds = NewMaintenanceBandCalculator.billingPartnerIdsFromOrders(orders);
         if (billingPartnerIds.isEmpty()) {
-            return bandByOrder;
+            return new Map<Id, Decimal>();
         }
         Map<Id, Partner_Pricing_Model__c> models =
             PartnerPricingService.getPricingModels(billingPartnerIds, 'Discount');
-        Decimal band;
-        for (Order ord : orders.values()) {
-            if (ord.Quote == null) {
-                continue;
-            }
-            band = newMaintenanceBand(
-                ord.Quote.Partner_Pricing_Model__c, ord.Quote.Billing_Partner__c, models);
-            if (band != null) {
-                bandByOrder.put(ord.Id, band);
-            }
-        }
-        return bandByOrder;
+        return NewMaintenanceBandCalculator.bandByOrder(orders, models);
     }
 
-    /**
-     * @description Resolve the New-Maintenance discount band from a billing partner's Discount
-     *              pricing model. Returns null unless the model type is Discount and a positive
-     *              New_Maintenance_Percent__c resolves, so callers fall back to existing behavior.
-     */
-    @TestVisible
-    private Decimal newMaintenanceBand(
-        String pricingModel,
-        Id billingPartnerId,
-        Map<Id, Partner_Pricing_Model__c> models
-    ) {
-        if (pricingModel != 'Discount' || billingPartnerId == null || models == null) {
-            return null;
-        }
-        Partner_Pricing_Model__c model = models.get(billingPartnerId);
-        if (model == null) {
-            return null;
-        }
-        Decimal band = PartnerPricingService.getMarginForProductType(model, 'New Maintenance');
-        return (band != null && band > 0) ? band : null;
-    }
+    // newMaintenanceBand + the New-Maintenance band mapping extracted to NewMaintenanceBandCalculator
+    // (Wave-2 decomposition, increment 4 — SOQL loaders stay here, pure mapping moved out).
 
     /**
      * @description Live contributor perpetual pricing + carried discounts for each maintenance line.
