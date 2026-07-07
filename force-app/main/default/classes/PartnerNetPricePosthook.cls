@@ -442,29 +442,10 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Decimal partnerDiscountPercent,
         Decimal procedureNet
     ) {
-        if (partnerUnitPrice == null || partnerUnitPrice <= 0) {
-            return false;
-        }
-
-        Decimal commercialUnitPrice = PartnerNetResolutionCalculator.resolveCommercialUnitPrice(procedureNet, partnerUnitPrice);
-        Decimal existingPartnerUnit = getDecimalFromTag(lineItem, 'PartnerUnitPrice');
-
-        if (procedureNet != null && procedureNet > 0 && procedureNet == commercialUnitPrice) {
-            if (commercialUnitPrice == partnerUnitPrice) {
-                return true;
-            }
-            if (existingPartnerUnit != null && existingPartnerUnit == partnerUnitPrice) {
-                return true;
-            }
-        }
-
-        String pricingSource = getStringFromTag(lineItem, 'Partner_Pricing_Source__c');
-        return String.isNotBlank(pricingSource)
-            && pricingSource.contains('Procedure')
-            && partnerDiscountPercent != null
-            && partnerDiscountPercent > 0
-            && procedureNet != null
-            && procedureNet == commercialUnitPrice;
+        // Delegates to PartnerPricingGate (Wave-2 decomposition, increment 14).
+        return PartnerPricingGate.shouldSkipProcedureOwnedPartner(
+            lineItem, partnerUnitPrice, partnerDiscountPercent, procedureNet
+        );
     }
 
     @TestVisible
@@ -589,22 +570,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
 
     @TestVisible
     private Boolean needsDeferredPartnerPricing(Map<String, Object> lineItem) {
-        Decimal partnerUnitPrice = getDecimalFromTag(lineItem, 'PartnerUnitPrice');
-        if (partnerUnitPrice != null && partnerUnitPrice > 0) {
-            return false;
-        }
-
-        Decimal netUnitPrice = getDecimalFromTag(lineItem, 'NetUnitPrice');
-        if (netUnitPrice == null || netUnitPrice <= 0) {
-            return false;
-        }
-
-        Decimal preProcedurePrice = PartnerNetResolutionCalculator.resolvePreProcedurePrice(
-            getDecimalFromTag(lineItem, 'RegionalNetUnitPrice__c'),
-            getDecimalFromTag(lineItem, 'UnitPrice'),
-            getDecimalFromTag(lineItem, 'ListPrice')
-        );
-        return preProcedurePrice == null || preProcedurePrice <= 0;
+        // Delegates to PartnerPricingGate (Wave-2 decomposition, increment 14).
+        return PartnerPricingGate.needsDeferredPartnerPricing(lineItem);
     }
 
     // resolvePreProcedurePrice extracted to PartnerNetResolutionCalculator (Wave-2 decomposition, increment 6).
