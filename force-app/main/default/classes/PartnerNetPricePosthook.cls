@@ -378,7 +378,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         }
 
         Decimal existingPartnerUnit = getDecimalFromTag(lineItem, 'PartnerUnitPrice');
-        Decimal commercialUnitPrice = resolveCommercialUnitPrice(procedureNet, partnerUnitPrice);
+        Decimal commercialUnitPrice = PartnerNetResolutionCalculator.resolveCommercialUnitPrice(procedureNet, partnerUnitPrice);
 
         if (deferredResult == null && procedureNet != null && procedureNet == commercialUnitPrice) {
             if (commercialUnitPrice == partnerUnitPrice) {
@@ -446,7 +446,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             return false;
         }
 
-        Decimal commercialUnitPrice = resolveCommercialUnitPrice(procedureNet, partnerUnitPrice);
+        Decimal commercialUnitPrice = PartnerNetResolutionCalculator.resolveCommercialUnitPrice(procedureNet, partnerUnitPrice);
         Decimal existingPartnerUnit = getDecimalFromTag(lineItem, 'PartnerUnitPrice');
 
         if (procedureNet != null && procedureNet > 0 && procedureNet == commercialUnitPrice) {
@@ -476,13 +476,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return RenewalMaintenancePricingService.resolveColaLineTotal(stub, unitPrice);
     }
 
-    @TestVisible
-    private Decimal resolveCommercialUnitPrice(Decimal procedureNet, Decimal partnerUnitPrice) {
-        if (procedureNet != null && procedureNet > 0 && procedureNet < partnerUnitPrice) {
-            return procedureNet.setScale(2, RoundingMode.HALF_UP);
-        }
-        return partnerUnitPrice;
-    }
+    // resolveCommercialUnitPrice extracted to PartnerNetResolutionCalculator (Wave-2 decomposition, increment 6).
 
     // isDerivedMaintenanceProductType / isNewBusinessDerivedMaintenance extracted to
     // DerivedMaintenanceClassifier (Wave-2 decomposition, increment 3).
@@ -605,7 +599,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             return false;
         }
 
-        Decimal preProcedurePrice = resolvePreProcedurePrice(
+        Decimal preProcedurePrice = PartnerNetResolutionCalculator.resolvePreProcedurePrice(
             getDecimalFromTag(lineItem, 'RegionalNetUnitPrice__c'),
             getDecimalFromTag(lineItem, 'UnitPrice'),
             getDecimalFromTag(lineItem, 'ListPrice')
@@ -613,16 +607,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return preProcedurePrice == null || preProcedurePrice <= 0;
     }
 
-    @TestVisible
-    private Decimal resolvePreProcedurePrice(Decimal regionalNetUnitPrice, Decimal unitPrice, Decimal listPrice) {
-        if (regionalNetUnitPrice != null && regionalNetUnitPrice > 0) {
-            return regionalNetUnitPrice;
-        }
-        if (unitPrice != null && unitPrice > 0) {
-            return unitPrice;
-        }
-        return listPrice;
-    }
+    // resolvePreProcedurePrice extracted to PartnerNetResolutionCalculator (Wave-2 decomposition, increment 6).
 
     @TestVisible
     private Set<Id> collectPartnerIds(QuoteHeaderData quoteData) {

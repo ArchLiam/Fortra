@@ -76,7 +76,7 @@ private class PartnerNetPricePosthookTest {
         System.assertEquals(null, result,
             'PartnerUnitPrice already stamped — no context write needed');
 
-        Decimal commercial = posthook.resolveCommercialUnitPrice(241.40, 301.75);
+        Decimal commercial = PartnerNetResolutionCalculator.resolveCommercialUnitPrice(241.40, 301.75);
         System.assertEquals(241.40, commercial,
             'Commercial net must remain procedure value, not partner net 301.75');
         System.assertEquals(482.80, (commercial * 2).setScale(2, RoundingMode.HALF_UP),
@@ -106,10 +106,10 @@ private class PartnerNetPricePosthookTest {
     static void testResolveCommercialUnitPrice_prefersLowerProcedureNet() {
         PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
 
-        System.assertEquals(241.40, posthook.resolveCommercialUnitPrice(241.40, 301.75));
-        System.assertEquals(301.75, posthook.resolveCommercialUnitPrice(301.75, 301.75));
-        System.assertEquals(301.75, posthook.resolveCommercialUnitPrice(355, 301.75));
-        System.assertEquals(62.48, posthook.resolveCommercialUnitPrice(71, 62.48));
+        System.assertEquals(241.40, PartnerNetResolutionCalculator.resolveCommercialUnitPrice(241.40, 301.75));
+        System.assertEquals(301.75, PartnerNetResolutionCalculator.resolveCommercialUnitPrice(301.75, 301.75));
+        System.assertEquals(301.75, PartnerNetResolutionCalculator.resolveCommercialUnitPrice(355, 301.75));
+        System.assertEquals(62.48, PartnerNetResolutionCalculator.resolveCommercialUnitPrice(71, 62.48));
     }
 
     @IsTest
@@ -1329,9 +1329,9 @@ private class PartnerNetPricePosthookTest {
     @IsTest
     static void testResolvePreProcedurePrice_prefersRegionalThenUnitThenList() {
         PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
-        System.assertEquals(900, posthook.resolvePreProcedurePrice(900, 1000, 1100));
-        System.assertEquals(1000, posthook.resolvePreProcedurePrice(null, 1000, 1100));
-        System.assertEquals(1100, posthook.resolvePreProcedurePrice(null, null, 1100));
+        System.assertEquals(900, PartnerNetResolutionCalculator.resolvePreProcedurePrice(900, 1000, 1100));
+        System.assertEquals(1000, PartnerNetResolutionCalculator.resolvePreProcedurePrice(null, 1000, 1100));
+        System.assertEquals(1100, PartnerNetResolutionCalculator.resolvePreProcedurePrice(null, null, 1100));
     }
 
     @IsTest
