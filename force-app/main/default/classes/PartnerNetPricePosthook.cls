@@ -1588,54 +1588,20 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         if (contributorLine == null) {
             return null;
         }
-        Decimal pricingBase = resolveContributorPricingBase(contributorLine);
+        Decimal pricingBase = ContributorPricingCalculator.resolveContributorPricingBase(contributorLine);
         if (pricingBase == null || pricingBase <= 0) {
             return null;
         }
 
         ContributorCarryForwardSnapshot carryForward = new ContributorCarryForwardSnapshot();
         carryForward.pricingBase = pricingBase;
-        carryForward.partnerPercent = resolveContributorPartnerPercent(contributorLine, pricingBase);
-        carryForward.softwareDiscount = resolveContributorSoftwarePercent(contributorLine, pricingBase, carryForward.partnerPercent);
+        carryForward.partnerPercent = ContributorPricingCalculator.resolveContributorPartnerPercent(contributorLine, pricingBase);
+        carryForward.softwareDiscount = ContributorPricingCalculator.resolveContributorSoftwarePercent(contributorLine, pricingBase, carryForward.partnerPercent);
         return carryForward;
     }
 
-    @TestVisible
-    private Decimal resolveContributorPartnerPercent(QuoteLineItem contributorLine, Decimal pricingBase) {
-        if (contributorLine.PartnerDiscountPercent != null && contributorLine.PartnerDiscountPercent > 0) {
-            return contributorLine.PartnerDiscountPercent;
-        }
-        if (contributorLine.Partner_Discount_Percent__c != null && contributorLine.Partner_Discount_Percent__c > 0) {
-            return contributorLine.Partner_Discount_Percent__c;
-        }
-        if (contributorLine.Prior_Partner_Discount__c != null && contributorLine.Prior_Partner_Discount__c > 0
-            && pricingBase != null && pricingBase > 0) {
-            return (contributorLine.Prior_Partner_Discount__c / pricingBase * 100).setScale(2, RoundingMode.HALF_UP);
-        }
-        return null;
-    }
-
-    @TestVisible
-    private Decimal resolveContributorSoftwarePercent(
-        QuoteLineItem contributorLine,
-        Decimal pricingBase,
-        Decimal partnerPercent
-    ) {
-        if (contributorLine.Discount != null && contributorLine.Discount > 0) {
-            return contributorLine.Discount;
-        }
-        Decimal preManualNet = pricingBase;
-        if (partnerPercent != null && partnerPercent > 0) {
-            preManualNet = (pricingBase * (1 - (partnerPercent / 100))).setScale(2, RoundingMode.HALF_UP);
-        }
-        if (contributorLine.Prior_Discretionary_Discount__c != null
-            && contributorLine.Prior_Discretionary_Discount__c > 0
-            && preManualNet != null && preManualNet > 0) {
-            return (contributorLine.Prior_Discretionary_Discount__c / preManualNet * 100)
-                .setScale(2, RoundingMode.HALF_UP);
-        }
-        return null;
-    }
+    // resolveContributorPartnerPercent / resolveContributorSoftwarePercent extracted to
+    // ContributorPricingCalculator (Wave-2 decomposition, increment 2).
 
     /**
      * @description Resolves the contributing perpetual line's commercial base for each New-Maintenance
@@ -1707,7 +1673,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             OrderItem contributorLine = contributorProductId != null
                 ? contributorByProductId.get(contributorProductId)
                 : null;
-            Decimal contributorNet = resolveContributorPricingBase(contributorLine);
+            Decimal contributorNet = ContributorPricingCalculator.resolveContributorPricingBase(contributorLine);
             if (contributorNet != null && contributorNet > 0) {
                 contributorNetByMaintLineId.put(maintLine.Id, contributorNet);
             }
@@ -1716,50 +1682,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return contributorNetByMaintLineId;
     }
 
-    @TestVisible
-    private Decimal resolveContributorPricingBase(QuoteLineItem contributorLine) {
-        if (contributorLine == null) {
-            return null;
-        }
-        if (contributorLine.Pre_Partner_Price__c != null && contributorLine.Pre_Partner_Price__c > 0) {
-            return contributorLine.Pre_Partner_Price__c;
-        }
-        if (contributorLine.Base_Price__c != null && contributorLine.Base_Price__c > 0) {
-            return contributorLine.Base_Price__c;
-        }
-        if (contributorLine.NetUnitPrice != null && contributorLine.NetUnitPrice > 0
-            && contributorLine.ListPrice != null && contributorLine.ListPrice > 0
-            && contributorLine.NetUnitPrice > contributorLine.ListPrice) {
-            return contributorLine.NetUnitPrice;
-        }
-        if (contributorLine.ListPrice != null && contributorLine.ListPrice > 0) {
-            return contributorLine.ListPrice;
-        }
-        if (contributorLine.UnitPrice != null && contributorLine.UnitPrice > 0) {
-            return contributorLine.UnitPrice;
-        }
-        return null;
-    }
-
-    @TestVisible
-    private Decimal resolveContributorPricingBase(OrderItem contributorLine) {
-        if (contributorLine == null) {
-            return null;
-        }
-        if (contributorLine.NetUnitPrice != null && contributorLine.NetUnitPrice > 0) {
-            return contributorLine.NetUnitPrice;
-        }
-        if (contributorLine.Base_Price__c != null && contributorLine.Base_Price__c > 0) {
-            return contributorLine.Base_Price__c;
-        }
-        if (contributorLine.ListPrice != null && contributorLine.ListPrice > 0) {
-            return contributorLine.ListPrice;
-        }
-        if (contributorLine.UnitPrice != null && contributorLine.UnitPrice > 0) {
-            return contributorLine.UnitPrice;
-        }
-        return null;
-    }
+    // resolveContributorPricingBase (QuoteLineItem + OrderItem overloads) extracted to
+    // ContributorPricingCalculator (Wave-2 decomposition, increment 2).
 
     @TestVisible
     private Map<Id, Map<String, Object>> indexContextLinesById(List<Map<String, Object>> lineItems) {
