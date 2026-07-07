@@ -941,13 +941,9 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private Decimal resolveBasePrice(Decimal regionalNetUnitPrice, Decimal unitPrice, Decimal listPrice) {
-        if (regionalNetUnitPrice != null && regionalNetUnitPrice > 0) {
-            return regionalNetUnitPrice;
-        }
-        if (unitPrice != null && unitPrice > 0) {
-            return unitPrice;
-        }
-        return listPrice;
+        // Delegates to shared PartnerNetResolutionCalculator (Wave-2 decomposition, increment 10 —
+        // byte-identical to resolvePreProcedurePrice).
+        return PartnerNetResolutionCalculator.resolvePreProcedurePrice(regionalNetUnitPrice, unitPrice, listPrice);
     }
 
     /**
