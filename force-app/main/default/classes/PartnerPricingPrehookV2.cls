@@ -347,30 +347,19 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private Set<Id> collectPartnerIds(QuoteHeaderData quoteData) {
-        Set<Id> partnerIds = new Set<Id>();
-
-        if (quoteData == null || quoteData.billingPartnerId == null) {
-            return partnerIds;
+        // Delegates to PartnerParticipationResolver (Wave-2 hook-thinning); the shell unpacks the
+        // QuoteHeaderData DTO and passes the isGuaranteedMargin boolean so the resolver stays
+        // decoupled from the inner type + the MODEL_GUARANTEED_MARGIN constant.
+        if (quoteData == null) {
+            return new Set<Id>();
         }
-
-        // Billing Partner always participates
-        partnerIds.add(quoteData.billingPartnerId);
-
-        // For Guaranteed Margin, include all partners
-        if (quoteData.partnerPricingModel == MODEL_GUARANTEED_MARGIN) {
-            if (quoteData.resellerId != null) {
-                partnerIds.add(quoteData.resellerId);
-            }
-            if (quoteData.distributorId != null) {
-                partnerIds.add(quoteData.distributorId);
-            }
-            if (quoteData.referralPartnerId != null) {
-                partnerIds.add(quoteData.referralPartnerId);
-            }
-        }
-        // For Discount model, only billing partner (already added)
-
-        return partnerIds;
+        return PartnerParticipationResolver.collectPartnerIds(
+            quoteData.billingPartnerId,
+            quoteData.partnerPricingModel == MODEL_GUARANTEED_MARGIN,
+            quoteData.resellerId,
+            quoteData.distributorId,
+            quoteData.referralPartnerId
+        );
     }
 
     /**
@@ -809,16 +798,14 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private String getPartnerRole(Id partnerId, QuoteHeaderData quoteData) {
-        if (partnerId == quoteData.billingPartnerId) {
-            return 'Billing Partner';
-        } else if (partnerId == quoteData.resellerId) {
-            return 'Reseller';
-        } else if (partnerId == quoteData.distributorId) {
-            return 'Distributor';
-        } else if (partnerId == quoteData.referralPartnerId) {
-            return 'Referral Partner';
-        }
-        return 'Unknown';
+        // Delegates to PartnerParticipationResolver (Wave-2 hook-thinning).
+        return PartnerParticipationResolver.resolvePartnerRole(
+            partnerId,
+            quoteData.billingPartnerId,
+            quoteData.resellerId,
+            quoteData.distributorId,
+            quoteData.referralPartnerId
+        );
     }
 
     /**
