@@ -15,39 +15,57 @@ was blind-fixed.
 ## A. Rulings needed (bucket-C — Marc decides which is authoritative: SDD or code)
 
 ### A-1. COLA — MyCAP precedence: is it a year-1 TIER or an OUT-YEAR concept?
-- **SDD conflict (internal):** §6 lists a **4-tier** hierarchy `Line > MyCAP Default > Contract > CMDT`;
-  §7.1 / §10.1 describe a **3-tier** `Line > Contract > CMDT`.
-- **Code + live data:** implements `Line > Contract > CMDT`, with MyCAP as an **out-year** concept
-  (`COLA_Outyear_Uplift_Percent__c`, 3% floor for multi-year), NOT a year-1 tier. Confirmed by live data:
-  **0 of 7** real `MyCAP Default` lines on FortraUAT carry the MyCAP value in year-1; all carry the CMDT default.
-- **Recommendation:** the code is right; update SDD §6 to state MyCAP is an out-year floor, not a year-1 tier.
-- **Impact if ruled the other way:** MyCAP would need to outrank Contract in year-1 tier selection
-  (`COLAUpliftCalculator.resolveTier` + prehook) — a real behavioral change gated on S3.
+- **SDD conflict (internal):** §6 lists a **4-tier** `Line > MyCAP Default > Contract > CMDT`; §7.1/§10.1 describe **3-tier** `Line > Contract > CMDT`.
+- **Verified code reality (high confidence, adversarially confirmed):** live code implements **3-tier** year-1 selection (`COLAUpliftCalculator.resolveTier`, MyCAP hardcoded `null` at `:71`); "MyCAP Default" is only a **source LABEL** applied to multi-year lines that already resolved to CMDT Lookup (relabel gated on `colaSource=='CMDT Lookup'`, prehook `:399`) — so **Contract outranks MyCAP in year-1**, the opposite of §6. The year-1 3% payload §6 calls for is **built but never submitted** — `COLAUpliftPrehook :1074-1084` writes to `allContextUpdates`, which is dead code (submit only at `:277/:289/:587`). The 3% floor is realized only in out-years (`COLA_Outyear_Uplift_Percent__c` + `Final_Year_COLA_Calculated_Price__c` + the `Quote.Mycap__c` Deal-Desk flag).
+- **Recommendation — AFFIRM the code, but present as a GENUINE conflict (not pre-settled):** MyCAP is a 3% **minimum/floor** (`Minimum_Out_Year_Uplift_Percent__c`, "flag if below") — a floor should RAISE sub-3% out-year uplifts, never REPLACE a year-1 rate; SDD Ex4 (9.85%→3% in year-1) is a *reduction* that contradicts the floor semantic in the same doc; the CMDT fields are literally named `Out_Year`; RN-MULTIYEAR (closed 2026-06-14, owner-accepted) already ruled year-1 MyCAP out of scope. **But** the dead year-1 payload shows *someone* once intended year-1 MyCAP — so this warrants a real ruling, not a doc-only edit.
+- **Impact if ruled the other way:** MyCAP must outrank Contract in year-1 (`resolveTier` + prehook), forcing a negotiated 3.5% contract rate (or 9.85% CMDT) DOWN to 3% in year-1 — materially wrong pricing; gated on S3.
+- **Tab-1 SOQL to confirm the "0 of 7" claim (I have read auth):** `SELECT COLA_Source__c, COLA_Uplift_Percent__c, Default_COLA_Uplift_Percent__c FROM QuoteLineItem WHERE COLA_Source__c='MyCAP Default'` — re-verify none carry the MyCAP rate in year-1.
+- **Hygiene:** the dead `allContextUpdates` year-1 MyCAP payload (`:1074-1084`) is removable dead code (low priority; COLA prehook = handle carefully).
 
 ### A-2. Partner V2 — E-04 Non_Orig fallback (⚠️ this lives in Nir's UNCOMMITTED working tree)
-- **Behavior:** for a Fortra-Originated deal whose `Non_Orig_*_Pct__c` band is **blank**, the code
-  (`PartnerPricingServiceV2.getMarginForProductType`, `effectivePct`) falls back to the standard /
-  non-originating band instead of treating the blank as "no partner margin."
-- **Provenance:** this change is in the **uncommitted** co-owned `PartnerPricingServiceV2.cls` (0 occurrences
-  in committed HEAD, 11 in the working tree). It is **not** part of the committed refactor — it's Nir's WIP.
-- **Ask:** Nir + Marc confirm whether the "borrow the standard band on blank Non_Orig" fallback is sanctioned
-  (Partner V2 Open Issues RULE 2). If yes → document it in the Partner SDD. If no → Nir reverts in his file.
-- **Not ours to change.**
+- **Verified behavior (high confidence):** the uncommitted `effectivePct` helper (`PartnerPricingServiceV2.cls:164-170`) makes a **blank** `Non_Orig_*_Pct__c` on a Fortra-Originated deal return the **standard/non-originating band** (e.g. `Software_Percent__c`); returns 0 only if BOTH are null — replacing HEAD's blank⇒0. Only the Fortra-Originated branch changes; the else branch (`effectivePct(x, null)`) is byte-equivalent to HEAD.
+- **Provenance:** uncommitted (0 in HEAD, 11 in working tree; `git status ' M'`, blame "Not Committed Yet" 2026-07-08), co-owned `PartnerPricingServiceV2.cls`, **not** the committed refactor (sole file commit `a1fc2b3`). Authorship=Nir per ESCALATIONS A-2 + co-ownership; not independently git-provable for an uncommitted edit.
+- **SDD status:** the Partner SDD is **silent** on the blank-Non_Orig case; Open-Issues RULE 2 only fixes *which branch* reads Non_Orig, not the blank fallback. So this resolves the still-open owner-gated **OQ-1** (null⇒0% vs null⇒catalog).
+- **Key fact for the ruling (semantic RISK):** `Non_Orig_*` is the Fortra-Originated discount schedule (partner sourced less ⇒ typically a **smaller** margin); the standard band is the **larger** partner-originated discount. So "borrow the standard band on blank" can **over-discount** a Fortra-Originated deal.
+- **Ask (Nir + Marc; do NOT touch the file):** (a) SANCTION ⇒ document in Partner SDD §6.3 as an explicit "blank Non_Orig ⇒ standard band" rule, track as an intended delta (plan exit-gate line 329), run a Non_Orig data-completeness audit; or (b) REJECT ⇒ Nir reverts `effectivePct` in his own tree, close E-04 by **data remediation** (populate Non_Orig — the V21-verified fix was 312.40 = Non_Orig 12%).
 
-### A-3. ARR — renewal Opportunity.Amount: MRR×12 or persisted Asset.ARR__c?
-- **Behavior:** `RenewalForecastAmount` (SC-3500) computes `Opportunity.Amount = Σ (MRR × 12 × COLA)`,
-  NOT from a persisted `Asset.ARR__c`.
-- **Recommendation:** intentional per SC-3500; annotate the ARR SDD that renewal-opp amount is a forecast
-  (MRR×12×COLA), not an Asset rollup. No code change.
-- **Secondary:** verify `PowerOrderSplittingService` apportions `Order_Line_ARR__c` on splits (it currently
-  divides only `Displaced_ARR__c`). If ARR must split too, that's a small, separate fix.
+### A-3. ARR — `Order_Line_ARR__c` N-fold overcount on Power order-line splits
+- **Verified finding (high confidence):** `PowerOrderSplittingService` apportions only `Displaced_ARR__c` +
+  `Manual_Discount__c` (÷qty across original+clones); `Order_Line_ARR__c` is copied **whole** to every clone
+  (`createFullClone` `:404-421`) and left whole on the original (`:259-266`) → a qty=N Power split yields
+  `Σ Order_Line_ARR__c = N×X` and propagates N copies to `Asset.ARR__c` (the SDD's ARR reporting field). By the
+  SDD's own logic (Displaced_ARR is divided to "preserve the total"), `Order_Line_ARR__c` — also a whole-line
+  writable snapshot — should be too.
+- **NOT a code-vs-SDD violation:** the OrderLineSplitting SDD explicitly lists ONLY `Manual_Discount__c` +
+  `Displaced_ARR__c` as distributed (BR-002, rules 7/9) and is **silent** on `Order_Line_ARR__c`. The code follows
+  the SDD's list; the asymmetry is a latent defect the SDD didn't anticipate.
+- **Recommendation (Marc/Nir ruling — recommended YES):** apportion `Order_Line_ARR__c` on splits by parity with
+  `Displaced_ARR__c`, to protect `Asset.ARR__c`/finance from an N-fold overstatement. Requires (a) an SDD amendment
+  adding the field to the distributed list in BOTH the OrderLineSplitting SDD and the ARR SDD (Rule 10), and (b)
+  accepting Apex-stamping this ARR field despite ARR SDD Rule 5 ("ARR declarative-only") — **precedent exists**
+  (`Displaced_ARR__c` is already Apex-stamped here). **Scoped fix if greenlit: ~3 lines in
+  `PowerOrderSplittingService`, mirroring the `Displaced_ARR` pattern.** NOT autonomously safe (declarative-only rule) → escalate.
+- **(Separate, intentional — no change):** renewal `Opportunity.Amount = Σ MRR×12×COLA` (`RenewalForecastAmount`,
+  SC-3500) is a forecast by design, not an `Asset.ARR__c` rollup — annotate the ARR SDD.
 
-### A-4. AttrVolume — no-match / null-volume behavior (⚠️ SC-3390 regression risk)
-- **Behavior:** on no-match AND null volume, the code **resets the line to list price**; SDD §6.3 / Rule 10
-  may intend "leave the line untouched."
-- **Risk:** this behavior is tied to **SC-3390** (tiered-price-twice fix). Changing it may regress a shipped
-  ticket. Tab 3 is verifying the SC-3390 tie; if confirmed intentional → this becomes an SDD doc-update, not a code change.
-- **Ask:** Marc confirms desired no-match behavior. Default assumption: keep current (SC-3390), update the SDD.
+### A-4. AttrVolume — no-match / null-volume reset-to-list ✅ RESOLVED to a Tab-3 fix (NOT a ruling)
+- **Verified finding (high confidence):** live code resets no-match lines (prehook `:283-291`) AND null-volume
+  lines (`:271-279`) to list price via `AttributeVolumeCalculator.buildResetNodeUpdate` (`:244-275`:
+  `Base_Price__c=ListPrice`, `Attribute_Price_Mode__c='Unit Price'`; or `Base_Price__c=0` when ListPrice is null).
+  This **directly violates** SDD §6.3/Rule 10 ("write NOTHING, skip, do not zero out prices"). The null-ListPrice
+  branch is a latent **$0** defect.
+- **SC-3390 ruled OUT (proven):** the reset is **NOT** from SC-3390 — it predates it (present in the Jun-2 SC-3308
+  org snapshot); SC-3390's commit only added evidence files; SC-3390's shipped fix was an `IsPriceImpacting`
+  PAD-data flip with **zero Apex change**. The "SC-3390/D-17" code comment = discovery origin, not causation.
+  ⇒ making no-match **SKIP would NOT regress SC-3390** (orthogonal).
+- **Disposition: a real Tab-3-owned fix (refactor-plan D-17), NOT a Marc ruling.** Both the SDD (Rule 10) and the
+  plan (D-17) agree: remove the silent reset-to-list. Tab 3's earlier STOP was about a `*_Warning__c` field-blocked
+  variant — the skip/clear variant is unblocked and needs no new field.
+- **One open technical precondition (for Tab 3):** a bare skip leaves any stale prior-tier `Base_Price__c` unless
+  the V21 procedure re-derives list price on absent `Base_Price__c`. If V21 re-derives ⇒ **bare skip** (write
+  nothing, per Rule 10). If V21 carries the stale value ⇒ replace the reset with an **explicit CLEAR** (write null
+  `Base_Price__c`/`Attribute_Price_Mode__c`). Confirm V21 behavior first. Gate on S11/S2 (`0Q0WC000003GMu5`) + a
+  constructed no-match-with-stale-prior-tier case.
 
 ---
 
@@ -89,5 +107,6 @@ was blind-fixed.
 ---
 
 ## In-flight clean code fixes (Round 3, tabs — NOT escalations, listed for completeness)
-- **Tab 2 (Hardware):** `Hardware_Pricing_Source__c` 'User Override'→'Configurator'; open-ended top user-band (1M+→3.0×).
-- **Tab 3 (Regional):** Active+null-`Multiplier__c` guard (skip, don't derive off null); effective-dating predicate (if KB Rule 14 is unambiguous).
+- **Tab 2 (Hardware):** `Hardware_Pricing_Source__c` = `'User Override'` → map to the winning tier value per KB §8 Rule 5 (`Configurator | Hardware Default | System Default`, not hardcoded 'Configurator'); open-ended top user-band (1M+ → 3.0×, §8 Rule 3).
+- **Tab 3 (Regional):** Active+null-`Multiplier__c` guard (skip, don't derive off null); effective-dating predicate (KB Rule 14; mind the CMDT vs `Regional_Pricing_Entry__c` field-name split).
+- **Tab 3 (AttrVolume) — promoted from A-4:** remove the no-match/null-volume reset-to-list (SDD Rule 10 SKIP); SC-3390 proven unrelated. One V21 precondition (bare-skip vs explicit-clear) — see A-4.
