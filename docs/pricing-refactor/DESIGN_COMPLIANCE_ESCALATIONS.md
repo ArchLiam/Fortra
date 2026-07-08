@@ -14,10 +14,17 @@ was blind-fixed.
 
 ## A. Rulings needed (bucket-C — Marc decides which is authoritative: SDD or code)
 
-### A-1. COLA — MyCAP precedence: is it a year-1 TIER or an OUT-YEAR concept?
+### A-1. COLA — MyCAP precedence: year-1 TIER vs OUT-YEAR concept ✅ RULED (owner: affirm code, MyCAP = out-year floor)
 - **SDD conflict (internal):** §6 lists a **4-tier** `Line > MyCAP Default > Contract > CMDT`; §7.1/§10.1 describe **3-tier** `Line > Contract > CMDT`.
 - **Verified code reality (high confidence, adversarially confirmed):** live code implements **3-tier** year-1 selection (`COLAUpliftCalculator.resolveTier`, MyCAP hardcoded `null` at `:71`); "MyCAP Default" is only a **source LABEL** applied to multi-year lines that already resolved to CMDT Lookup (relabel gated on `colaSource=='CMDT Lookup'`, prehook `:399`) — so **Contract outranks MyCAP in year-1**, the opposite of §6. The year-1 3% payload §6 calls for is **built but never submitted** — `COLAUpliftPrehook :1074-1084` writes to `allContextUpdates`, which is dead code (submit only at `:277/:289/:587`). The 3% floor is realized only in out-years (`COLA_Outyear_Uplift_Percent__c` + `Final_Year_COLA_Calculated_Price__c` + the `Quote.Mycap__c` Deal-Desk flag).
-- **Recommendation — AFFIRM the code, but present as a GENUINE conflict (not pre-settled):** MyCAP is a 3% **minimum/floor** (`Minimum_Out_Year_Uplift_Percent__c`, "flag if below") — a floor should RAISE sub-3% out-year uplifts, never REPLACE a year-1 rate; SDD Ex4 (9.85%→3% in year-1) is a *reduction* that contradicts the floor semantic in the same doc; the CMDT fields are literally named `Out_Year`; RN-MULTIYEAR (closed 2026-06-14, owner-accepted) already ruled year-1 MyCAP out of scope. **But** the dead year-1 payload shows *someone* once intended year-1 MyCAP — so this warrants a real ruling, not a doc-only edit.
+- **✅ RULED (owner, 2026-07-08): AFFIRM THE CODE — no code change.** MyCAP stays an **out-year floor** (year-1 keeps
+  the CMDT category rate; 3% lives in `COLA_Outyear_Uplift_Percent__c`), consistent with the RN-MULTIYEAR
+  owner-accepted single-year-pricing decision (closed 2026-06-14). The SDD §6/§4.6/Ex4 model (MyCAP replaces year-1
+  with 3.00%) is **not implemented and is not to be implemented** — reconcile the SDD to match the code (MyCAP =
+  out-year floor + Deal-Desk-approval-below-3%, not a year-1 cap). Live data confirms the shipped behavior: `MyCAP
+  Default` lines carry 9.85/5/7.85/6.2 in year-1 with `COLA_Outyear_Uplift_Percent__c=3`. Optional future cleanup
+  (NOT done — "stay the code"): the built-but-never-submitted year-1 3% payload at `COLAUpliftPrehook:1074-1084` is
+  dead code that could be removed for clarity.
 - **Impact if ruled the other way:** MyCAP must outrank Contract in year-1 (`resolveTier` + prehook), forcing a negotiated 3.5% contract rate (or 9.85% CMDT) DOWN to 3% in year-1 — materially wrong pricing; gated on S3.
 - **Tab-1 SOQL to confirm the "0 of 7" claim (I have read auth):** `SELECT COLA_Source__c, COLA_Uplift_Percent__c, Default_COLA_Uplift_Percent__c FROM QuoteLineItem WHERE COLA_Source__c='MyCAP Default'` — re-verify none carry the MyCAP rate in year-1.
 - **Hygiene:** the dead `allContextUpdates` year-1 MyCAP payload (`:1074-1084`) is removable dead code (low priority; COLA prehook = handle carefully).
