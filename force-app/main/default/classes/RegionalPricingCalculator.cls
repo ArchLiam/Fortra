@@ -17,7 +17,12 @@ public with sharing class RegionalPricingCalculator {
         if (String.isBlank(country)) {
             return DEFAULT_MULTIPLIER;
         }
-        return multipliers.containsKey(country) ? multipliers.get(country) : DEFAULT_MULTIPLIER;
+        // A-6: an Active multiplier row with a null Multiplier__c has no real multiplier — resolve it
+        // to DEFAULT_MULTIPLIER so the prehook's default-multiplier short-circuit SKIPS the line
+        // (leaves it untouched) rather than adjusting a price off a null. Provably 0-delta today
+        // (0 live rows have a null Multiplier__c). The not-found case still resolves to DEFAULT too.
+        Decimal multiplier = multipliers.get(country);
+        return multiplier != null ? multiplier : DEFAULT_MULTIPLIER;
     }
 
     /**

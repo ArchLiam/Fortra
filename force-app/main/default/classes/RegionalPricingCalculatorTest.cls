@@ -16,6 +16,23 @@ private class RegionalPricingCalculatorTest {
         System.assertEquals(1.0,  RegionalPricingCalculator.getMultiplierForCountry(m, null),      'null -> 1.0');
     }
 
+    // A-6 — Active multiplier row with a null Multiplier__c resolves to DEFAULT_MULTIPLIER (1.0),
+    // so the prehook's default short-circuit skips the line (leaves it untouched) instead of
+    // adjusting off a null. Non-null and not-found behavior is unchanged.
+    @isTest
+    static void getMultiplierForCountry_nullMultiplier_resolvesToDefault_A6() {
+        Map<String, Decimal> m = new Map<String, Decimal>{
+            'Nullland' => null,      // Active row, null Multiplier__c (the A-6 edge)
+            'Germany'  => 0.85       // normal populated row
+        };
+        System.assertEquals(1.0, RegionalPricingCalculator.getMultiplierForCountry(m, 'Nullland'),
+            'A-6: null multiplier -> DEFAULT_MULTIPLIER (1.0) so the prehook skips the line');
+        System.assertEquals(0.85, RegionalPricingCalculator.getMultiplierForCountry(m, 'Germany'),
+            'populated multiplier still returned unchanged');
+        System.assertEquals(1.0, RegionalPricingCalculator.getMultiplierForCountry(m, 'Nowhere'),
+            'not-found country still resolves to DEFAULT_MULTIPLIER');
+    }
+
     // SDD Rule 14 / BR-007 — effective dating: only rows in effect on the eval date load.
     @isTest
     static void isEffectiveOn_rule14_effectiveDating() {
