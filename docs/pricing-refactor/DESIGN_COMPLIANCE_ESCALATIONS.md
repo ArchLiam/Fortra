@@ -27,7 +27,13 @@ was blind-fixed.
 - **Provenance:** uncommitted (0 in HEAD, 11 in working tree; `git status ' M'`, blame "Not Committed Yet" 2026-07-08), co-owned `PartnerPricingServiceV2.cls`, **not** the committed refactor (sole file commit `a1fc2b3`). Authorship=Nir per ESCALATIONS A-2 + co-ownership; not independently git-provable for an uncommitted edit.
 - **SDD status:** the Partner SDD is **silent** on the blank-Non_Orig case; Open-Issues RULE 2 only fixes *which branch* reads Non_Orig, not the blank fallback. So this resolves the still-open owner-gated **OQ-1** (null⇒0% vs null⇒catalog).
 - **Key fact for the ruling (semantic RISK):** `Non_Orig_*` is the Fortra-Originated discount schedule (partner sourced less ⇒ typically a **smaller** margin); the standard band is the **larger** partner-originated discount. So "borrow the standard band on blank" can **over-discount** a Fortra-Originated deal.
-- **Ask (Nir + Marc; do NOT touch the file):** (a) SANCTION ⇒ document in Partner SDD §6.3 as an explicit "blank Non_Orig ⇒ standard band" rule, track as an intended delta (plan exit-gate line 329), run a Non_Orig data-completeness audit; or (b) REJECT ⇒ Nir reverts `effectivePct` in his own tree, close E-04 by **data remediation** (populate Non_Orig — the V21-verified fix was 312.40 = Non_Orig 12%).
+- **✅ RULED (owner, 2026-07-08): REJECT the fallback — follow the SDD / best practice.** Committed HEAD already
+  does the correct thing (`Non_Orig_X != null ? Non_Orig_X : 0` — blank ⇒ 0, no borrowed margin, no over-discount),
+  so **no committed-code change is needed**. Nir's uncommitted `effectivePct` standard-band fallback is **not
+  adopted** (it over-discounts Fortra-Originated deals). E-04 closes by **data remediation** — populate the
+  `Non_Orig_*_Pct__c` bands (the V21-verified fix was 312.40 = Non_Orig 12%). Action: Nir should drop the uncommitted
+  edit from his tree; if his fallback is currently deployed to FortraUAT, redeploy HEAD's `PartnerPricingServiceV2`
+  to restore blank⇒0 (verify org state first).
 
 ### A-3. ARR — `Order_Line_ARR__c` N-fold overcount on Power order-line splits
 - **Verified finding (high confidence):** `PowerOrderSplittingService` apportions only `Displaced_ARR__c` +
