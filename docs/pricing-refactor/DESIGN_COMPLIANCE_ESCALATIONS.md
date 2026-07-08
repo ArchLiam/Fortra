@@ -129,10 +129,12 @@ was blind-fixed.
   changes are 0-delta). Written by base/partner classes (`ListPriceStampCalculator`, `PartnerPricingPrehookV2`,
   `PartnerNetPricePosthook`, `ContributorPricingCalculator`) — the committed refactor base-price stamps and/or Nir's
   uncommitted `PartnerPricingServiceV2`, deployed to shared FortraUAT Jul-7→Jul-8.
-- **Tab-1 action (final matrix):** characterize this stamp across ALL scenarios (is it price-neutral everywhere, as
-  on S12, or does a previously-blank `Base_Price__c` now moving to net change any downstream partner/COLA calc?). If
-  price-neutral everywhere → re-baseline the affected audit-stamp columns under Tab 1 with a note (benign). Baseline
-  left frozen by Tab 2 so the drift stays visible to the gate.
+- **✅ RESOLVED (Tab-1 targeted drift matrix, 2026-07-08):** repriced S3/S5/S6/S7/S9/S12 → the 5 partner/COLA/regional
+  scenarios are **0-delta**; S12 reproduces only the 3 audit stamps (net unchanged). So the stamp is **price-neutral
+  and non-cascading** (does not move any partner/COLA net), is **committed** (not Nir's uncommitted diff, which
+  doesn't touch these fields; not Round-3), and the value is **correct** (`Base=Pre_Partner=Unit=Net=250` for a
+  no-discount Services line). **Re-baselined S12** (pre-drift copy preserved at `baselines/S12_quote.pre_r3drift.tsv`).
+  Residual: the exact introducing commit is untraced but benign — see `baselines/S12_REBASE_NOTE.md` Tab-1 resolution.
 
 ---
 
