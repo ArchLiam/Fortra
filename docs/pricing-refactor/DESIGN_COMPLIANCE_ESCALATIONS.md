@@ -68,9 +68,22 @@ was blind-fixed.
   matching, keeps its old tier `Base_Price__c`). That regression is **structurally unobservable in headless reprice
   testing** — the exact reason SC-3390's two-click bug couldn't be reproduced headlessly. Shipping a fix gated only
   by the headless harness would be unsafe.
-- **Ask (Marc):** confirm the desired no-match behavior AND provide/authorize a **non-headless (UI two-click)**
-  validation path. If approved, the fix is Tab-3-owned (remove reset per Rule 10, or explicit-clear), gated on a UI
-  match→no-match repro, NOT the headless S11/S2 gate alone. Refactor-plan D-17 is the tracking item.
+- **✅ ROOT CAUSE CONFIRMED (UI two-click + debug log, 2026-07-08).** Test: quote `0Q0WC000002gBPJ0A2`, line
+  "Click and Launch…All Star" (matched `Feature_Options=Managed Service`, `Attribute_Volume∈[50,99]`→1357.20);
+  set `Attribute_Volume`=99999 (>10000 max band, guaranteed no-match) + reprice. Result: **split/stale state** —
+  `Subtotal`→218,000 (list×qty) but `Net Unit Price`/`Base Price` **stayed 1357.20 (stale prior-tier)**. Debug log
+  (`07LWC00000Q6ScA2AV`): the prehook did everything right — read `Attribute_Volume=99999`, no-match, reset
+  `Base_Price→2180`, submitted OK. **BUT `InputUnitPrice=1357.2` was hydrated at reprice START (log line 324) —
+  before the prehook ran (line 8377) — and nothing re-derives `InputUnitPrice` from the prehook's late `Base_Price`
+  write.** So the committed `NetUnitPrice` = the stale hydrated `InputUnitPrice`. Match works because that path uses
+  `Total Price` mode (`Base_Price→ItemNetTotalPrice`, which re-derives); the reset hardcodes `Unit Price` mode
+  (`Base_Price→InputUnitPrice`, which is already locked). **This is NOT fixable in the Apex prehook alone** (the
+  reset write is proven ignored on this path).
+- **Fix (owner-chosen: Option A = procedure).** In V21, the AttrVolume no-match must re-derive the line from List
+  Price (so a stale `Base_Price__c` can't survive) — a canvas edit to the attribute-pricing element. Cheaper Apex
+  first-shot (Option B): stop `buildResetNodeUpdate` hardcoding `mode='Unit Price'` (use the re-deriving path). Exact
+  change pending read of the V21 attribute-pricing element. Validate ONLY via the UI match→no-match two-click (the
+  headless harness is blind to it). Refactor-plan D-17 is the tracking item.
 
 ### A-5. Hardware — per-line product-eligibility gate (Tab-2 escalated, KB §8 Rule 12)
 - **Finding (Tab 2):** the SDD (§8 Rule 12) implies a product-eligibility gate, but `HardwareProductEligibilityService`
