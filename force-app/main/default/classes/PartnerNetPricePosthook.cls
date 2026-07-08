@@ -923,37 +923,14 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Decimal partnerPercent = resolveRenewalPartnerPercent(qli);
         Decimal softwareDiscount = qli.Discount != null ? qli.Discount : 0;
 
-        List<Map<String, Object>> attributes = new List<Map<String, Object>>{
-            new Map<String, Object>{ 'attributeName' => 'NetUnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'NetTotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'UnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'InputUnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'PartnerUnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'Subtotal', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalLineAmount', 'attributeValue' => lineTotal }
-        };
-
-        if (partnerPercent != null && partnerPercent > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'PartnerDiscountPercent',
-                'attributeValue' => partnerPercent
-            });
-        }
-        if (softwareDiscount > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'Discount',
-                'attributeValue' => softwareDiscount
-            });
-        }
-
         System.debug(LoggingLevel.INFO, 'RENEWAL COLA COMMIT: Line ' + lineItemId +
             ' procedureNet=' + procedureNet + ' -> colaNet=' + colaNet);
 
-        return new Map<String, Object>{
-            'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
-            'attributes' => attributes
-        };
+        // Attribute-map assembly delegated to RenewalColaPayloadBuilder (build*Update step 8);
+        // all guards/idempotency/tag reads stay above.
+        return RenewalColaPayloadBuilder.buildCommitPayload(
+            updatePath, colaNet, lineTotal, partnerPercent, softwareDiscount
+        );
     }
 
     @TestVisible
@@ -1038,36 +1015,14 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Decimal partnerPercent = resolveRenewalPartnerPercent(qli);
         Decimal softwareDiscount = qli.Discount != null ? qli.Discount : 0;
 
-        List<Map<String, Object>> attributes = new List<Map<String, Object>>{
-            new Map<String, Object>{ 'attributeName' => 'NetUnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'NetTotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'UnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'InputUnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'PartnerUnitPrice', 'attributeValue' => colaNet },
-            new Map<String, Object>{ 'attributeName' => 'COLACalculatedPrice__c', 'attributeValue' => colaNet }
-        };
-
-        if (partnerPercent != null && partnerPercent > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'PartnerDiscountPercent',
-                'attributeValue' => partnerPercent
-            });
-        }
-        if (softwareDiscount > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'Discount',
-                'attributeValue' => softwareDiscount
-            });
-        }
-
         System.debug(LoggingLevel.INFO, 'RENEWAL MAINT COLA: Line ' + lineItemId +
             ' -> Net=' + colaNet + ' Partner%=' + partnerPercent + ' Discount%=' + softwareDiscount);
 
-        return new Map<String, Object>{
-            'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
-            'attributes' => attributes
-        };
+        // Attribute-map assembly delegated to RenewalColaPayloadBuilder (build*Update step 8);
+        // all guards/classification/idempotency/tag reads stay above.
+        return RenewalColaPayloadBuilder.buildMaintenancePayload(
+            updatePath, colaNet, lineTotal, partnerPercent, softwareDiscount
+        );
     }
 
     @TestVisible
