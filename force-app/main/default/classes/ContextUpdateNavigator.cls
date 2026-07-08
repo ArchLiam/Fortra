@@ -55,4 +55,25 @@ public with sharing class ContextUpdateNavigator {
         }
         return false;
     }
+
+    /**
+     * @description Resolve the context update dataPath for a renewal-maintenance line: the line's
+     *              own `_updatePath` when present, else a [quoteId, lineItemId] path; null when
+     *              neither is available. Verbatim from PartnerNetPricePosthook (Wave-2
+     *              decomposition, build*Update step 2). Highest fan-in resolver (5 builders).
+     */
+    public static Object resolveRenewalMaintenanceUpdatePath(
+        Map<String, Object> lineItem,
+        Id lineItemId,
+        Id quoteId
+    ) {
+        Object updatePath = lineItem.get('_updatePath');
+        if (updatePath != null) {
+            return updatePath;
+        }
+        if (quoteId == null || lineItemId == null) {
+            return null;
+        }
+        return new List<Object>{ String.valueOf(quoteId), String.valueOf(lineItemId) };
+    }
 }

@@ -44,4 +44,22 @@ private class ContextUpdateNavigatorTest {
         System.assert(!ContextUpdateNavigator.containsEquivalentUpdate(updates, new Map<String, Object>{ 'x' => 'y' }),
             'Candidate without dataPath -> false');
     }
+
+    @IsTest
+    static void resolveRenewalMaintenanceUpdatePath_prefersUpdatePathElseBuildsList() {
+        // _updatePath present -> returned verbatim
+        Object existing = new List<Object>{ 'a', 'b' };
+        System.assertEquals(existing, ContextUpdateNavigator.resolveRenewalMaintenanceUpdatePath(
+            new Map<String, Object>{ '_updatePath' => existing }, '001000000000001AAA', '001000000000002AAA'));
+        // no _updatePath, both ids present -> [quoteId, lineItemId]
+        Id lineId = '001000000000001AAA';
+        Id quoteId = '001000000000002AAA';
+        List<Object> built = (List<Object>) ContextUpdateNavigator.resolveRenewalMaintenanceUpdatePath(
+            new Map<String, Object>{}, lineId, quoteId);
+        System.assertEquals(String.valueOf(quoteId), built[0], 'path[0] = quoteId');
+        System.assertEquals(String.valueOf(lineId), built[1], 'path[1] = lineItemId');
+        // missing an id -> null
+        System.assertEquals(null, ContextUpdateNavigator.resolveRenewalMaintenanceUpdatePath(
+            new Map<String, Object>{}, null, quoteId), 'null lineItemId -> null');
+    }
 }

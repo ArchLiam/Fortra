@@ -1076,14 +1076,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Id lineItemId,
         Id quoteId
     ) {
-        Object updatePath = lineItem.get('_updatePath');
-        if (updatePath != null) {
-            return updatePath;
-        }
-        if (quoteId == null || lineItemId == null) {
-            return null;
-        }
-        return new List<Object>{ String.valueOf(quoteId), String.valueOf(lineItemId) };
+        // Delegates to ContextUpdateNavigator (Wave-2 decomposition, build*Update step 2).
+        return ContextUpdateNavigator.resolveRenewalMaintenanceUpdatePath(lineItem, lineItemId, quoteId);
     }
 
     // Renewal-maintenance COLA net math (computeRenewalMaintenanceColaNet / computeColaFromPriorNet /
