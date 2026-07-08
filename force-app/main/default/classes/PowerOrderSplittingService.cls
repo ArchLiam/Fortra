@@ -180,6 +180,8 @@ public with sharing class PowerOrderSplittingService {
                     original.Manual_Discount__c / qty : null;
                 Decimal displacedARRPer = original.Displaced_ARR__c != null ?
                     original.Displaced_ARR__c / qty : null;
+                Decimal orderLineARRPer = original.Order_Line_ARR__c != null ?
+                    original.Order_Line_ARR__c / qty : null;
 
                 Hardware__c origHw = original.Hardware__c != null ?
                     hardwareMap.get(original.Hardware__c) : null;
@@ -190,6 +192,7 @@ public with sharing class PowerOrderSplittingService {
                     splitItem.Quantity = 1;
                     splitItem.Manual_Discount__c = manualDiscountPer;
                     splitItem.Displaced_ARR__c = displacedARRPer;
+                    splitItem.Order_Line_ARR__c = orderLineARRPer;
                     splitItem.Is_Split_Line__c = true;
                     splitItem.Original_Order_Item__c = original.Id;
 
@@ -255,12 +258,15 @@ public with sharing class PowerOrderSplittingService {
                     original.Manual_Discount__c / qty : null;
                 Decimal displacedARRPer = original.Displaced_ARR__c != null ?
                     original.Displaced_ARR__c / qty : null;
+                Decimal orderLineARRPer = original.Order_Line_ARR__c != null ?
+                    original.Order_Line_ARR__c / qty : null;
 
                 originalsToUpdate.add(new OrderItem(
                     Id = original.Id,
                     Quantity = 1,
                     Manual_Discount__c = manualDiscountPer,
                     Displaced_ARR__c = displacedARRPer,
+                    Order_Line_ARR__c = orderLineARRPer,
                     Is_Split_Line__c = false,
                     Original_Order_Item__c = null
                 ));

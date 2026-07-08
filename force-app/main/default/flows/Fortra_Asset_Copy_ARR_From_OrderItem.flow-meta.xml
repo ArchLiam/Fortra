@@ -86,7 +86,7 @@
 Copies Order_Line_ARR__c from OrderItem directly to Asset.ARR__c after Asset creation during order activation. Traverses: Asset → AssetAction → AssetActionSource → OrderItem (via ReferenceEntityItemId).</description>
     <environments>Default</environments>
     <interviewLabel>Fortra - Asset Copy ARR From OrderItem {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Fortra | Asset | After Insert/Update - Copy ARR From OrderItem</label>
+    <label>(Deprecated) Fortra | Asset | After Insert/Update - Copy ARR From OrderItem</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -193,5 +193,5 @@ Copies Order_Line_ARR__c from OrderItem directly to Asset.ARR__c after Asset cre
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Active</status>
+    <status>Obsolete</status>
 </Flow>
