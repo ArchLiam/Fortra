@@ -727,8 +727,8 @@ private class COLAUpliftTest {
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = contractOverridePct,
             Default_COLA_Uplift_Percent__c = contractOverridePct,
-            Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false
+            Pre_COLA_Price__c = 1000
+
         );
         insert qli;
 
@@ -739,7 +739,6 @@ private class COLAUpliftTest {
             COLA_Uplift_Percent__c = qli.COLA_Uplift_Percent__c,
             Default_COLA_Uplift_Percent__c = qli.Default_COLA_Uplift_Percent__c,
             Pre_COLA_Price__c = qli.Pre_COLA_Price__c,
-            Is_COLA_Overridden__c = qli.Is_COLA_Overridden__c,
             UnitPrice = qli.UnitPrice
         );
 
@@ -754,8 +753,6 @@ private class COLAUpliftTest {
             'Contract Override percent must survive the update cycle, not be overwritten with CMDT default');
         System.assertEquals('Contract Override', qli.COLA_Source__c,
             'COLA Source should remain Contract Override');
-        System.assertEquals(false, qli.Is_COLA_Overridden__c,
-            'Is_COLA_Overridden should remain false (Contract Override is not a manual line override)');
         System.assertEquals(contractOverridePct, qli.Default_COLA_Uplift_Percent__c,
             'Default_COLA_Uplift_Percent should not be overwritten with CMDT default');
     }
@@ -827,8 +824,8 @@ private class COLAUpliftTest {
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = cmdtDefault,
             Default_COLA_Uplift_Percent__c = cmdtDefault,
-            Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false
+            Pre_COLA_Price__c = 1000
+
         );
         insert qli;
 
@@ -839,7 +836,6 @@ private class COLAUpliftTest {
             COLA_Uplift_Percent__c = cmdtDefault,
             Default_COLA_Uplift_Percent__c = cmdtDefault,
             Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false,
             UnitPrice = qli.UnitPrice
         );
 
@@ -857,8 +853,6 @@ private class COLAUpliftTest {
             'A direct year-1 COLA override must survive the update, not be reset to the CMDT default');
         System.assertEquals('Line Override', qli.COLA_Source__c,
             'A year-1 override must promote COLA_Source to Line Override');
-        System.assertEquals(true, qli.Is_COLA_Overridden__c,
-            'Is_COLA_Overridden should be true after a manual year-1 override');
     }
 
     /**
@@ -929,8 +923,8 @@ private class COLAUpliftTest {
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = cmdtDefault,
             Default_COLA_Uplift_Percent__c = cmdtDefault,
-            Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false
+            Pre_COLA_Price__c = 1000
+
         );
         insert qli;
 
@@ -941,7 +935,6 @@ private class COLAUpliftTest {
             COLA_Uplift_Percent__c = cmdtDefault,
             Default_COLA_Uplift_Percent__c = cmdtDefault,
             Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false,
             UnitPrice = qli.UnitPrice
         );
 
@@ -961,15 +954,11 @@ private class COLAUpliftTest {
         if (expectOverride) {
             System.assertEquals('Line Override', qli.COLA_Source__c,
                 'A year-1 edit to the MyCAP rate must be promoted to Line Override (MyCAP is outyear-only)');
-            System.assertEquals(true, qli.Is_COLA_Overridden__c,
-                'Is_COLA_Overridden must be true for a genuine manual override');
             System.assertEquals(systemWriteValue, qli.COLA_Uplift_Percent__c,
                 'A manual override year-1 percent (even == the MyCAP rate) must be preserved, not reset');
         } else {
             System.assertNotEquals('Line Override', qli.COLA_Source__c,
                 'A year-1 value equal to the CMDT default is not a manual override');
-            System.assertEquals(false, qli.Is_COLA_Overridden__c,
-                'Is_COLA_Overridden must remain false for the CMDT system value');
             System.assertEquals(cmdtDefault, qli.COLA_Uplift_Percent__c,
                 'A CMDT-equal year-1 value stays the CMDT default');
         }
@@ -1068,8 +1057,8 @@ private class COLAUpliftTest {
             COLA_Source__c = 'CMDT Lookup',
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = null,
-            Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false
+            Pre_COLA_Price__c = 1000
+
         );
         insert qli;
 
@@ -1079,7 +1068,6 @@ private class COLAUpliftTest {
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = null, // PRIOR value is null
             Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false,
             UnitPrice = qli.UnitPrice
         );
 
@@ -1097,8 +1085,6 @@ private class COLAUpliftTest {
             'A null->value year-1 override must be preserved, not reset to the CMDT default');
         System.assertEquals('Line Override', qli.COLA_Source__c,
             'A null->value year-1 override must promote COLA_Source to Line Override');
-        System.assertEquals(true, qli.Is_COLA_Overridden__c,
-            'Is_COLA_Overridden must be true after a null->value manual override');
     }
 
     /**
@@ -1165,8 +1151,8 @@ private class COLAUpliftTest {
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = null,
             Default_COLA_Uplift_Percent__c = overridePct, // STALE -- equals the override
-            Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false
+            Pre_COLA_Price__c = 1000
+
         );
         insert qli;
 
@@ -1177,7 +1163,6 @@ private class COLAUpliftTest {
             COLA_Uplift_Percent__c = null,
             Default_COLA_Uplift_Percent__c = overridePct,
             Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false,
             UnitPrice = qli.UnitPrice
         );
 
@@ -1194,8 +1179,6 @@ private class COLAUpliftTest {
             'The override percent must survive even with a stale Default field');
         System.assertEquals('Line Override', qli.COLA_Source__c,
             'Source must be Line Override');
-        System.assertEquals(true, qli.Is_COLA_Overridden__c,
-            'Is_COLA_Overridden must stay true -- the reprice must not clear it from a stale Default');
     }
 
     /**
@@ -1256,8 +1239,8 @@ private class COLAUpliftTest {
             COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = contractOverridePct,
             Default_COLA_Uplift_Percent__c = contractOverridePct,
-            Pre_COLA_Price__c = 1000,
-            Is_COLA_Overridden__c = false
+            Pre_COLA_Price__c = 1000
+
         );
         insert seed;
 
@@ -1273,7 +1256,6 @@ private class COLAUpliftTest {
             'COLA_Uplift_Percent__c' => contractOverridePct,
             'Default_COLA_Uplift_Percent__c' => contractOverridePct,
             'Pre_COLA_Price__c' => 1000,
-            'Is_COLA_Overridden__c' => false,
             'UnitPrice' => seed.UnitPrice,
             'PricingTermCount' => 3,
             'PricingTermUnit' => 'Annual'
@@ -1370,8 +1352,6 @@ private class COLAUpliftTest {
             'Pre-COLA price should be the SourceAsset price');
         System.assertEquals(assetPrice * (1 + (cmdtDefault / 100)), qli.UnitPrice,
             'UnitPrice should be the asset price uplifted by the CMDT default');
-        System.assertEquals(false, qli.Is_COLA_Overridden__c,
-            'A CMDT-sourced renewal line is not an override');
     }
 
     /**
@@ -1598,13 +1578,13 @@ private class COLAUpliftTest {
             UnitPrice = preCOLA * (1 + (cmdtDefault / 100)),
             COLA_Source__c = 'CMDT Lookup', COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = cmdtDefault, Default_COLA_Uplift_Percent__c = cmdtDefault,
-            Pre_COLA_Price__c = preCOLA, Is_COLA_Overridden__c = false);
+            Pre_COLA_Price__c = preCOLA);
         insert qli;
 
         QuoteLineItem oldSnapshot = new QuoteLineItem(
             Id = qli.Id, COLA_Source__c = 'CMDT Lookup', COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = cmdtDefault, Default_COLA_Uplift_Percent__c = cmdtDefault,
-            Pre_COLA_Price__c = preCOLA, Is_COLA_Overridden__c = false, UnitPrice = qli.UnitPrice);
+            Pre_COLA_Price__c = preCOLA, UnitPrice = qli.UnitPrice);
 
         // User raises the COLA percent
         qli.COLA_Uplift_Percent__c = raisedPct;
@@ -1619,8 +1599,6 @@ private class COLAUpliftTest {
             'recalculateCOLAPrice must recompute UnitPrice from Pre-COLA price at the raised percent');
         System.assertEquals('Line Override', qli.COLA_Source__c,
             'A raised percent diverging from the CMDT default promotes the line to Line Override');
-        System.assertEquals(true, qli.Is_COLA_Overridden__c,
-            'Is_COLA_Overridden should be true after a manual percent raise');
         System.assertNotEquals(null, qli.COLA_Modified_By__c,
             'recalculateCOLAPrice should stamp the audit modified-by field');
     }
@@ -1661,7 +1639,7 @@ private class COLAUpliftTest {
             QuoteId = testQuote.Id, PricebookEntryId = pbe.Id, Quantity = 1, UnitPrice = 1000,
             COLA_Source__c = 'MyCAP Default', COLA_Solution_Category__c = cmdtCategory,
             COLA_Uplift_Percent__c = cmdtDefault, Default_COLA_Uplift_Percent__c = cmdtDefault,
-            Pre_COLA_Price__c = 1000, Is_COLA_Overridden__c = false);
+            Pre_COLA_Price__c = 1000);
         insert seed;
 
         // --- Part A: outyear-default block (PricingTermCount>1, null outyear) ---
@@ -1673,7 +1651,6 @@ private class COLAUpliftTest {
             'COLA_Uplift_Percent__c' => cmdtDefault,
             'Default_COLA_Uplift_Percent__c' => cmdtDefault,
             'Pre_COLA_Price__c' => 1000,
-            'Is_COLA_Overridden__c' => false,
             'UnitPrice' => 1000,
             'PricingTermCount' => 3,
             'PricingTermUnit' => 'Annual'
@@ -1698,7 +1675,6 @@ private class COLAUpliftTest {
             'COLA_Uplift_Percent__c' => cmdtDefault,
             'Default_COLA_Uplift_Percent__c' => cmdtDefault,
             'Pre_COLA_Price__c' => 1000,
-            'Is_COLA_Overridden__c' => false,
             'UnitPrice' => 1000,
             'PricingTermCount' => 3,
             'PricingTermUnit' => 'Annual',
@@ -1717,8 +1693,6 @@ private class COLAUpliftTest {
             'A user outyear edit must be preserved');
         System.assertEquals('Line Override', qliB.COLA_Source__c,
             'A user outyear edit diverging from the MyCAP default promotes the line to Line Override');
-        System.assertEquals(true, qliB.Is_COLA_Overridden__c,
-            'Is_COLA_Overridden should be true after a manual outyear edit');
     }
 
     // =====================================================================
@@ -2834,6 +2808,30 @@ private class COLAUpliftTest {
 
         System.assertEquals(0, processed,
             'B has no wrapper (skip) and C has non-positive preColaNet (skip) -> nothing built');
+    }
+
+    /**
+     * SC-3384 / COLA divergence (Marc DeBrey 2026-07-07): the prehook must honor a persisted Line
+     * Override on reprice — a stored COLA% differing from the stamped Default_COLA_Uplift_Percent__c
+     * — even when that entry equals the live CMDT default, instead of reverting to the Contract rate.
+     */
+    @isTest
+    static void isPersistedLineOverride_honorsRepEntryDifferingFromStampedDefault() {
+        // Divergence case: contract line, stamped Default = contract 4%, rep entered CMDT default 3%.
+        System.assertEquals(true, COLAUpliftPrehook.isPersistedLineOverride(3, 4),
+            'Stored COLA% differing from the stamped Default is a genuine Line Override');
+        // Not overridden: stored equals the stamped default.
+        System.assertEquals(false, COLAUpliftPrehook.isPersistedLineOverride(4, 4),
+            'Stored COLA% equal to the stamped Default is not an override');
+        // Genuine CMDT-line override (differs from stamped CMDT default).
+        System.assertEquals(true, COLAUpliftPrehook.isPersistedLineOverride(8, 3),
+            'Stored COLA% differing from a stamped CMDT default is an override');
+        // Legacy / handler-skipped line: null stamped Default -> defer to CMDT-based detection.
+        System.assertEquals(false, COLAUpliftPrehook.isPersistedLineOverride(3, null),
+            'Null stamped Default is not a persisted override (falls back to CMDT-based detection)');
+        // Null stored value is never an override.
+        System.assertEquals(false, COLAUpliftPrehook.isPersistedLineOverride(null, 4),
+            'Null stored COLA% is not an override');
     }
 
 }

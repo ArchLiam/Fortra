@@ -98,7 +98,7 @@ public with sharing class COLAUpliftHandler {
                     // and must stick. Contract Override is covered by the COLA_Source__c
                     // != 'Contract Override' guard above, so it is null here too.
                     if (isManualLineOverride(qli.COLA_Uplift_Percent__c, y1Rule.Default_Uplift_Percent__c, null, null)) {
-                        qli.Is_COLA_Overridden__c = true;
+                        // Is_COLA_Overridden__c is now a derived formula (pct <> Default) — no longer written.
                         qli.COLA_Source__c = 'Line Override';
                         qli.COLA_Modified_By__c = UserInfo.getUserId();
                         qli.COLA_Modified_Date__c = DateTime.now();
@@ -132,7 +132,7 @@ public with sharing class COLAUpliftHandler {
                     && qli.COLA_Uplift_Percent__c != rule.Default_Uplift_Percent__c) {
                     qli.COLA_Uplift_Percent__c = rule.Default_Uplift_Percent__c;
                     qli.Default_COLA_Uplift_Percent__c = rule.Default_Uplift_Percent__c;
-                    qli.Is_COLA_Overridden__c = false;
+                    // Is_COLA_Overridden__c derived (pct now == Default -> false).
                 }
             }
 
@@ -191,8 +191,9 @@ public with sharing class COLAUpliftHandler {
                         year1Overridden = (qli.COLA_Uplift_Percent__c != catRule.Default_Uplift_Percent__c);
                     }
                 }
-                qli.Is_COLA_Overridden__c = outyearOverridden || year1Overridden;
-                if (qli.Is_COLA_Overridden__c) {
+                // Is_COLA_Overridden__c is derived (formula); use a local for the source/audit decision.
+                Boolean overridden = outyearOverridden || year1Overridden;
+                if (overridden) {
                     qli.COLA_Source__c = 'Line Override';
                     qli.COLA_Modified_By__c = UserInfo.getUserId();
                     qli.COLA_Modified_Date__c = DateTime.now();
@@ -328,7 +329,7 @@ public with sharing class COLAUpliftHandler {
             qli.Default_COLA_Uplift_Percent__c = colaPercent;
             qli.COLA_Solution_Category__c = solutionCategory;
             qli.COLA_Applied_Date__c = DateTime.now();
-            qli.Is_COLA_Overridden__c = false;
+            // Is_COLA_Overridden__c derived (pct == Default at insert -> false).
             qli.COLA_Source__c = colaSource;
         }
     }
@@ -356,8 +357,9 @@ public with sharing class COLAUpliftHandler {
                 // stale Default happens to equal the user's value while the active CMDT
                 // rate differs. Those blocks own Is_COLA_Overridden__c / COLA_Source__c.
                 if (qli.COLA_Source__c != 'Line Override') {
-                    qli.Is_COLA_Overridden__c = (qli.COLA_Uplift_Percent__c != qli.Default_COLA_Uplift_Percent__c);
-                    if (qli.Is_COLA_Overridden__c) {
+                    // Is_COLA_Overridden__c is derived (formula); use a local for the source promotion.
+                    Boolean overridden = (qli.COLA_Uplift_Percent__c != qli.Default_COLA_Uplift_Percent__c);
+                    if (overridden) {
                         qli.COLA_Source__c = 'Line Override';
                     }
                 }
