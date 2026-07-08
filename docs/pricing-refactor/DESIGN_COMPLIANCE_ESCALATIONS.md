@@ -35,7 +35,7 @@ was blind-fixed.
   edit from his tree; if his fallback is currently deployed to FortraUAT, redeploy HEAD's `PartnerPricingServiceV2`
   to restore blank⇒0 (verify org state first).
 
-### A-3. ARR — `Order_Line_ARR__c` N-fold overcount on Power order-line splits
+### A-3. ARR — `Order_Line_ARR__c` N-fold overcount on Power splits ✅ RESOLVED (owner-ruled: fix + consolidate to Apex)
 - **Verified finding (high confidence):** `PowerOrderSplittingService` apportions only `Displaced_ARR__c` +
   `Manual_Discount__c` (÷qty across original+clones); `Order_Line_ARR__c` is copied **whole** to every clone
   (`createFullClone` `:404-421`) and left whole on the original (`:259-266`) → a qty=N Power split yields
@@ -45,12 +45,14 @@ was blind-fixed.
 - **NOT a code-vs-SDD violation:** the OrderLineSplitting SDD explicitly lists ONLY `Manual_Discount__c` +
   `Displaced_ARR__c` as distributed (BR-002, rules 7/9) and is **silent** on `Order_Line_ARR__c`. The code follows
   the SDD's list; the asymmetry is a latent defect the SDD didn't anticipate.
-- **Recommendation (Marc/Nir ruling — recommended YES):** apportion `Order_Line_ARR__c` on splits by parity with
-  `Displaced_ARR__c`, to protect `Asset.ARR__c`/finance from an N-fold overstatement. Requires (a) an SDD amendment
-  adding the field to the distributed list in BOTH the OrderLineSplitting SDD and the ARR SDD (Rule 10), and (b)
-  accepting Apex-stamping this ARR field despite ARR SDD Rule 5 ("ARR declarative-only") — **precedent exists**
-  (`Displaced_ARR__c` is already Apex-stamped here). **Scoped fix if greenlit: ~3 lines in
-  `PowerOrderSplittingService`, mirroring the `Displaced_ARR` pattern.** NOT autonomously safe (declarative-only rule) → escalate.
+- **Consumed downstream (confirmed):** the flow `Fortra_Asset_Copy_ARR_From_OrderItem` copied each OrderItem's
+  `Order_Line_ARR__c` → `Asset.ARR__c`, so the N-fold overcount reached the ARR reporting field on every per-unit Asset.
+- **✅ FIXED (owner-ruled, `e5ab55b`, deployed + validated):** (1) `PowerOrderSplittingService` now apportions
+  `Order_Line_ARR__c` (÷qty) alongside `Displaced_ARR__c` in both split phases. (2) The Asset-ARR copy was moved from
+  the flow into Apex — new `AssetArrFromOrderItemHandler` + `AssetArrFromOrderItemTrigger` (Asset after-insert/update;
+  Asset→AssetAction→AssetActionSource→OrderItem; bulkified + recursion-guarded), tests 2/2 pass. (3) The flow
+  `Fortra_Asset_Copy_ARR_From_OrderItem` is **deprecated** — label prefixed `(Deprecated)` + **deactivated**
+  (`FlowDefinition activeVersionNumber=0`; ActiveVersionId now null). ARR logic is now Apex-only.
 - **(Separate, intentional — no change):** renewal `Opportunity.Amount = Σ MRR×12×COLA` (`RenewalForecastAmount`,
   SC-3500) is a forecast by design, not an `Asset.ARR__c` rollup — annotate the ARR SDD.
 
@@ -95,13 +97,20 @@ was blind-fixed.
   stale hydration downstream — proven via log `07LWC00000Q6ScA2AV`, InputUnitPrice hydrated stale at line 324 before
   the prehook ran at line 8377).
 
-### A-5. Hardware — per-line product-eligibility gate (Tab-2 escalated, KB §8 Rule 12)
+### A-5. Hardware — per-line product-eligibility gate (KB §8 Rule 12) ⏸️ DEFERRED (owner-ruled: no change, logged to revisit)
 - **Finding (Tab 2):** the SDD (§8 Rule 12) implies a product-eligibility gate, but `HardwareProductEligibilityService`
   exposes **no per-line API**, and adding a gate risks (a) changing pricing on already-hardware-linked lines and
   (b) the SC-3447 governor budget (per-unit OrderItem explosion on high-qty Power).
-- **Ask (Marc):** confirm whether a per-line hardware-eligibility gate is required and, if so, its exact predicate;
-  Tab 2 did NOT fix (rationale in STATUS_TAB2.md). Tab 2's other two fixes (source-label Rule 5, open-ended user-band
-  Rule 3) shipped (`173431a`, 71/71 tests, S12 price-neutral).
+- **Current effective gating (verified):** the pricing prehook only processes lines **with hardware linkage**
+  (`pGroup`/`Model`/etc.) and skips others (fail-safe, Rule 6); Power-only eligibility (product family + solution
+  category) is enforced at **config time** — `HardwareProductEligibilityService.filterProducts(hardwareId)` decides
+  which products can be assigned to a hardware group. So config-time eligibility + pricing-time linkage together
+  already satisfy Rule 12's intent transitively.
+- **⏸️ OWNER RULING 2026-07-08: NO CHANGE — LOGGED TO REVISIT.** No explicit per-line eligibility gate is added now
+  (redundant + SC-3447 risk). **REVISIT TRIGGER:** if evidence surfaces of a *non-Power* product carrying hardware
+  linkage (i.e., getting hardware multipliers it shouldn't) — a quick audit is
+  `SELECT Product2.Name, count(Id) FROM QuoteLineItem WHERE pGroup__c != null GROUP BY Product2.Name` cross-checked
+  against `HardwareProductEligibilityService` Power-eligible families. Tab 2's other two fixes shipped (`173431a`).
 
 ### A-6. Regional — Active row with null `Multiplier__c` (Tab-3 escalated, SDD-silent extension of Rule 2)
 - **Finding (Tab 3):** KB Rule 2 covers only country-**not-found** → 1.0 default → skip. An **Active** row with a
