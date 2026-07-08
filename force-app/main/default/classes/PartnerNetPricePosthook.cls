@@ -1778,52 +1778,21 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         }
         Decimal lineTotal = (commercialNet * quantity).setScale(2, RoundingMode.HALF_UP);
 
-        List<Map<String, Object>> attributes = new List<Map<String, Object>>{
-            new Map<String, Object>{ 'attributeName' => 'NetUnitPrice', 'attributeValue' => commercialNet },
-            new Map<String, Object>{ 'attributeName' => 'NetTotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'Subtotal', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalLineAmount', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'PartnerUnitPrice', 'attributeValue' => partnerUnitPrice },
-            new Map<String, Object>{ 'attributeName' => 'ListPrice', 'attributeValue' => derivedListNet },
-            new Map<String, Object>{ 'attributeName' => 'UnitPrice', 'attributeValue' => derivedListNet },
-            new Map<String, Object>{
-                'attributeName' => 'Pre_Partner_Price__c',
-                'attributeValue' => derivedListNet
-            },
-            new Map<String, Object>{
-                'attributeName' => 'Partner_Pricing_Source__c',
-                'attributeValue' => 'System Calculated (Post-Procedure)'
-            }
-        };
-
-        if (maintInputs != null && maintInputs.contributorNetPrice != null && maintInputs.contributorNetPrice > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'Base_Price__c',
-                'attributeValue' => maintInputs.contributorNetPrice
-            });
-        }
-
-        if (partnerPercent != null && partnerPercent > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'PartnerDiscountPercent',
-                'attributeValue' => partnerPercent
-            });
-        }
-        if (manualPercent != null && manualPercent > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'Discount',
-                'attributeValue' => manualPercent
-            });
-        }
-
         System.debug(LoggingLevel.INFO, 'DERIVED MAINT DISCOUNT: list=' + derivedListNet +
             ' partner%=' + partnerPercent + ' manual%=' + manualPercent + ' net=' + commercialNet);
 
-        return new Map<String, Object>{
-            'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
-            'attributes' => attributes
-        };
+        // Attribute-map assembly delegated to the pure DerivedMaintenancePayloadBuilder
+        // (Wave-2 decomposition, build*Update step 6). All arithmetic/guards stay above.
+        return DerivedMaintenancePayloadBuilder.buildSequentialDiscountPayload(
+            updatePath,
+            commercialNet,
+            lineTotal,
+            partnerUnitPrice,
+            derivedListNet,
+            maintInputs != null ? maintInputs.contributorNetPrice : null,
+            partnerPercent,
+            manualPercent
+        );
     }
 
     @TestVisible
