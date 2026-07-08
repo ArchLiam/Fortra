@@ -48,24 +48,39 @@ was blind-fixed.
 - **(Separate, intentional — no change):** renewal `Opportunity.Amount = Σ MRR×12×COLA` (`RenewalForecastAmount`,
   SC-3500) is a forecast by design, not an `Asset.ARR__c` rollup — annotate the ARR SDD.
 
-### A-4. AttrVolume — no-match / null-volume reset-to-list ✅ RESOLVED to a Tab-3 fix (NOT a ruling)
+### A-4. AttrVolume — no-match / null-volume reset-to-list (⚠️ SC-3390 ruled out, but a LOAD-BEARING stale-guard → Marc ruling)
 - **Verified finding (high confidence):** live code resets no-match lines (prehook `:283-291`) AND null-volume
   lines (`:271-279`) to list price via `AttributeVolumeCalculator.buildResetNodeUpdate` (`:244-275`:
   `Base_Price__c=ListPrice`, `Attribute_Price_Mode__c='Unit Price'`; or `Base_Price__c=0` when ListPrice is null).
-  This **directly violates** SDD §6.3/Rule 10 ("write NOTHING, skip, do not zero out prices"). The null-ListPrice
-  branch is a latent **$0** defect.
-- **SC-3390 ruled OUT (proven):** the reset is **NOT** from SC-3390 — it predates it (present in the Jun-2 SC-3308
-  org snapshot); SC-3390's commit only added evidence files; SC-3390's shipped fix was an `IsPriceImpacting`
-  PAD-data flip with **zero Apex change**. The "SC-3390/D-17" code comment = discovery origin, not causation.
-  ⇒ making no-match **SKIP would NOT regress SC-3390** (orthogonal).
-- **Disposition: a real Tab-3-owned fix (refactor-plan D-17), NOT a Marc ruling.** Both the SDD (Rule 10) and the
-  plan (D-17) agree: remove the silent reset-to-list. Tab 3's earlier STOP was about a `*_Warning__c` field-blocked
-  variant — the skip/clear variant is unblocked and needs no new field.
-- **One open technical precondition (for Tab 3):** a bare skip leaves any stale prior-tier `Base_Price__c` unless
-  the V21 procedure re-derives list price on absent `Base_Price__c`. If V21 re-derives ⇒ **bare skip** (write
-  nothing, per Rule 10). If V21 carries the stale value ⇒ replace the reset with an **explicit CLEAR** (write null
-  `Base_Price__c`/`Attribute_Price_Mode__c`). Confirm V21 behavior first. Gate on S11/S2 (`0Q0WC000003GMu5`) + a
-  constructed no-match-with-stale-prior-tier case.
+  This **violates** SDD §6.3/Rule 10 ("write NOTHING, skip, do not zero out prices"). The null-ListPrice branch is a latent **$0** defect.
+- **SC-3390 ruled OUT (proven twice — Tab-1 workflow + Tab-3):** the reset is NOT from SC-3390 — it predates it
+  (SC-3308 org snapshot; the reset arrived in a bulk org-mirror commit); SC-3390's shipped fix was an
+  `IsPriceImpacting` PAD flip with **zero Apex change**. The "SC-3390/D-17" comment = discovery origin, not causation.
+- **Why it's a RULING, not an autonomous fix (Tab-3's V21 investigation):** the reset is a **deliberate, documented
+  stale-guard**, and RCA **re-hydrates persisted `Base_Price__c`** between reprices. So removing it (per Rule 10) or
+  clearing it risks **stale tiered prices on a match→no-match transition** (a line that matched a tier, then stops
+  matching, keeps its old tier `Base_Price__c`). That regression is **structurally unobservable in headless reprice
+  testing** — the exact reason SC-3390's two-click bug couldn't be reproduced headlessly. Shipping a fix gated only
+  by the headless harness would be unsafe.
+- **Ask (Marc):** confirm the desired no-match behavior AND provide/authorize a **non-headless (UI two-click)**
+  validation path. If approved, the fix is Tab-3-owned (remove reset per Rule 10, or explicit-clear), gated on a UI
+  match→no-match repro, NOT the headless S11/S2 gate alone. Refactor-plan D-17 is the tracking item.
+
+### A-5. Hardware — per-line product-eligibility gate (Tab-2 escalated, KB §8 Rule 12)
+- **Finding (Tab 2):** the SDD (§8 Rule 12) implies a product-eligibility gate, but `HardwareProductEligibilityService`
+  exposes **no per-line API**, and adding a gate risks (a) changing pricing on already-hardware-linked lines and
+  (b) the SC-3447 governor budget (per-unit OrderItem explosion on high-qty Power).
+- **Ask (Marc):** confirm whether a per-line hardware-eligibility gate is required and, if so, its exact predicate;
+  Tab 2 did NOT fix (rationale in STATUS_TAB2.md). Tab 2's other two fixes (source-label Rule 5, open-ended user-band
+  Rule 3) shipped (`173431a`, 71/71 tests, S12 price-neutral).
+
+### A-6. Regional — Active row with null `Multiplier__c` (Tab-3 escalated, SDD-silent extension of Rule 2)
+- **Finding (Tab 3):** KB Rule 2 covers only country-**not-found** → 1.0 default → skip. An **Active** row with a
+  **null** `Multiplier__c` is a distinct, SDD-silent edge. Live CMDT read: `Services_Regional_Pricing__mdt` has
+  **125 active rows, 0 with a null multiplier** — so the edge is currently **unobservable** on any gate.
+- **Ask (Marc):** confirm desired behavior for an active null-multiplier row (recommended: treat as skip, like the
+  1.0 default). Per Rule 6.1 this is escalate-not-blind-fix (SDD-silent). Low priority (zero live rows). Tab 3's
+  effective-dating fix (Rule 14) shipped instead (`8d1ec19`, 18/18 tests, S9/S10 0-delta).
 
 ---
 
@@ -106,7 +121,24 @@ was blind-fixed.
 
 ---
 
-## In-flight clean code fixes (Round 3, tabs — NOT escalations, listed for completeness)
-- **Tab 2 (Hardware):** `Hardware_Pricing_Source__c` = `'User Override'` → map to the winning tier value per KB §8 Rule 5 (`Configurator | Hardware Default | System Default`, not hardcoded 'Configurator'); open-ended top user-band (1M+ → 3.0×, §8 Rule 3).
-- **Tab 3 (Regional):** Active+null-`Multiplier__c` guard (skip, don't derive off null); effective-dating predicate (KB Rule 14; mind the CMDT vs `Regional_Pricing_Entry__c` field-name split).
-- **Tab 3 (AttrVolume) — promoted from A-4:** remove the no-match/null-volume reset-to-list (SDD Rule 10 SKIP); SC-3390 proven unrelated. One V21 precondition (bare-skip vs explicit-clear) — see A-4.
+## E. Final-matrix reconciliation (Tab-1) — S12 exogenous base-price drift
+- **Observed (Tab 2's frozen S12 gate, `S12_REBASE_NOTE.md`):** S12 line 3 (GoAnywhere Services, Qty 20) shows
+  `Base_Price__c` / `Pre_Partner_Price__c` / `UnitPrice` **blank→250**; `NetUnitPrice` (250) + `TotalPrice` (5000)
+  **UNCHANGED**. So **no price moved** — three base/pre-partner *audit* stamps populated to match the net.
+- **Attribution:** exogenous to Round-3 design work (Tab 2's hardware classes reference those fields 0×; Tab 3's
+  changes are 0-delta). Written by base/partner classes (`ListPriceStampCalculator`, `PartnerPricingPrehookV2`,
+  `PartnerNetPricePosthook`, `ContributorPricingCalculator`) — the committed refactor base-price stamps and/or Nir's
+  uncommitted `PartnerPricingServiceV2`, deployed to shared FortraUAT Jul-7→Jul-8.
+- **Tab-1 action (final matrix):** characterize this stamp across ALL scenarios (is it price-neutral everywhere, as
+  on S12, or does a previously-blank `Base_Price__c` now moving to net change any downstream partner/COLA calc?). If
+  price-neutral everywhere → re-baseline the affected audit-stamp columns under Tab 1 with a note (benign). Baseline
+  left frozen by Tab 2 so the drift stays visible to the gate.
+
+---
+
+## Round-3 SHIPPED fixes (outcomes, for the record)
+- **Tab 2 (Hardware) `173431a`:** F1 source-label → SDD-canonical winning tier per §8 Rule 5 (was invalid `'User
+  Override'`); F2 top user-band open-ended per §8 Rule 3 (dropped 999999 cap, 1M+ → 3.0×). 71/71 tests; S12 price-neutral.
+- **Tab 3 (Regional) `8d1ec19`:** effective-dating per Rule 14/BR-007 via null-safe in-memory `isEffectiveOn` (CMDT
+  SOQL rejects the null-safe OR window). Provably 0-delta today (125 active rows, 0 dated); 18/18 tests; S9/S10 0-delta.
+- **Escalated (no code):** Hardware product-gate (A-5), Regional null-multiplier (A-6), AttrVolume no-match (A-4).
