@@ -778,73 +778,20 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
         }
         result.put('nodePath', new Map<String, Object>{ 'dataPath' => updatePath });
 
-        List<Map<String, Object>> attributes = new List<Map<String, Object>>();
-
-        // Pre_Partner_Price__c - Original price before partner adjustment
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'Pre_Partner_Price__c',
-            'attributeValue' => currentPrice
-        });
-
-        // Partner_Adjusted_Price__c - Calculated price
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'Partner_Adjusted_Price__c',
-            'attributeValue' => adjustedPrice
-        });
-
-        // Partner_Pricing_Model_Applied__c - Model name
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'Partner_Pricing_Model_Applied__c',
-            'attributeValue' => quoteData.partnerPricingModel
-        });
-
-        // Partner_Pricing_Source__c - How it was set
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'Partner_Pricing_Source__c',
-            'attributeValue' => 'System Calculated'
-        });
-
+        // Convert the margin details (PartnerMarginDetail is a hook-owned inner type) to plain maps
+        // in the shell, then delegate the attribute-list assembly to the pure builder (Wave-2 thinning).
         List<Map<String, Object>> detailMaps = new List<Map<String, Object>>();
         for (PartnerMarginDetail detail : marginDetails) {
             detailMaps.add(detail.toMap());
         }
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'Partner_Margin_Detail__c',
-            'attributeValue' => detailMaps.isEmpty() ? null : JSON.serialize(detailMaps)
-        });
 
-        // Standard Revenue Cloud fields for TLE display
-        // PartnerUnitPrice - Standard field for partner-adjusted price
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'PartnerUnitPrice',
-            'attributeValue' => adjustedPrice
-        });
-
-        // PartnerDiscountPercent - Standard Revenue Cloud field for partner discount percentage
-        // Using standard field instead of custom Partner_Discount_Percent__c to avoid duplication
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'PartnerDiscountPercent',
-            'attributeValue' => totalPercent
-        });
-
-        // Apply partner-adjusted price to selling/net fields.
-        // RLM propagates PartnerUnitPrice -> NetUnitPrice for TermDefined (Services) lines only;
-        // OneTime (Perpetual) lines keep list price unless we set these explicitly.
-        if (totalPercent > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'NetUnitPrice',
-                'attributeValue' => adjustedPrice
-            });
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'UnitPrice',
-                'attributeValue' => adjustedPrice
-            });
-        }
-
-        attributes.add(new Map<String, Object>{
-            'attributeName' => 'Partner_Pricing_Warning__c',
-            'attributeValue' => null
-        });
+        List<Map<String, Object>> attributes = PartnerPricingPayloadBuilder.buildPartnerPricingAttributes(
+            currentPrice,
+            adjustedPrice,
+            quoteData.partnerPricingModel,
+            detailMaps,
+            totalPercent
+        );
 
         result.put('attributes', attributes);
 
