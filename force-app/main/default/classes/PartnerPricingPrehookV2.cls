@@ -688,69 +688,31 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
             solutionCategory = getStringFromTag(lineItem, 'Solution_Category__c');
         }
 
-        Decimal adjustedPrice = currentPrice;
-        Decimal totalPercent = 0;
-        List<PartnerMarginDetail> marginDetails = new List<PartnerMarginDetail>();
-
-        if (quoteData.partnerPricingModel == MODEL_DISCOUNT) {
-            List<Partner_Pricing_Model__c> billingPartnerModels = partnerModels.get(quoteData.billingPartnerId);
-            Partner_Pricing_Model__c selectedModel = PartnerPricingServiceV2.selectBestModelForLine(
-                billingPartnerModels,
-                unit,
-                solutionGroup,
-                solutionCategory
-            );
-
-            Decimal discountPercent = PartnerPricingServiceV2.getMarginForProductType(
-                selectedModel,
-                productType,
-                quoteData.dealType
-            );
-            adjustedPrice = PartnerPricingServiceV2.calculateDiscountPrice(currentPrice, discountPercent);
-            totalPercent = discountPercent;
-
-            if (selectedModel != null && discountPercent > 0) {
-                marginDetails.add(new PartnerMarginDetail(
-                    quoteData.billingPartnerId,
-                    partnerNames.get(quoteData.billingPartnerId),
-                    'Billing Partner',
-                    discountPercent
-                ));
-            }
-        } else if (quoteData.partnerPricingModel == MODEL_GUARANTEED_MARGIN) {
-            List<Decimal> allMargins = new List<Decimal>();
-
-            for (Id partnerId : collectPartnerIds(quoteData)) {
-                Partner_Pricing_Model__c selectedModel = PartnerPricingServiceV2.selectBestModelForLine(
-                    partnerModels.get(partnerId),
-                    unit,
-                    solutionGroup,
-                    solutionCategory
-                );
-
-                Decimal margin = PartnerPricingServiceV2.getMarginForProductType(
-                    selectedModel,
-                    productType,
-                    quoteData.dealType
-                );
-
-                if (margin != null && margin > 0) {
-                    allMargins.add(margin);
-                    marginDetails.add(new PartnerMarginDetail(
-                        partnerId,
-                        partnerNames.get(partnerId),
-                        getPartnerRole(partnerId, quoteData),
-                        margin
-                    ));
-                    totalPercent += margin;
-                }
-            }
-
-            adjustedPrice = PartnerPricingServiceV2.calculateGuaranteedMarginPrice(currentPrice, allMargins);
-        } else {
+        // Partner-pricing dispatch (Discount vs Guaranteed Margin) delegated to the pure
+        // PartnerMarginDispatcher (Wave-2 hook-thinning, round-4 incr 3). Margin math stays in
+        // PartnerPricingServiceV2; participation reuses PartnerParticipationResolver; the shell threads
+        // in the QuoteHeaderData fields as primitives (avoids promoting that inner type).
+        PartnerMarginDispatcher.Result dispatch = PartnerMarginDispatcher.resolve(
+            quoteData.partnerPricingModel,
+            quoteData.billingPartnerId,
+            quoteData.dealType,
+            quoteData.resellerId,
+            quoteData.distributorId,
+            quoteData.referralPartnerId,
+            partnerModels,
+            partnerNames,
+            unit,
+            solutionGroup,
+            solutionCategory,
+            currentPrice,
+            productType
+        );
+        if (dispatch == null) {
             System.debug(LoggingLevel.INFO, 'SKIP: Unknown pricing model: ' + quoteData.partnerPricingModel);
             return null;
         }
+        Decimal adjustedPrice = dispatch.adjustedPrice;
+        Decimal totalPercent = dispatch.totalPercent;
 
         System.debug(LoggingLevel.INFO, 'SUCCESS: Line ' + lineItemId + ' price adjusted from ' + currentPrice + ' to ' + adjustedPrice);
 
@@ -767,12 +729,8 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
         }
         result.put('nodePath', new Map<String, Object>{ 'dataPath' => updatePath });
 
-        // Convert the margin details (PartnerMarginDetail is a hook-owned inner type) to plain maps
-        // in the shell, then delegate the attribute-list assembly to the pure builder (Wave-2 thinning).
-        List<Map<String, Object>> detailMaps = new List<Map<String, Object>>();
-        for (PartnerMarginDetail detail : marginDetails) {
-            detailMaps.add(detail.toMap());
-        }
+        // Margin-detail maps come straight from the dispatcher (Wave-2 thinning, round-4 incr 3).
+        List<Map<String, Object>> detailMaps = dispatch.detailMaps;
 
         List<Map<String, Object>> attributes = PartnerPricingPayloadBuilder.buildPartnerPricingAttributes(
             currentPrice,
