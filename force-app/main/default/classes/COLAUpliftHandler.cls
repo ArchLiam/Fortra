@@ -297,28 +297,26 @@ public with sharing class COLAUpliftHandler {
                 solutionCategory = qa.SourceAsset.Product2.Solution_Category__c;
             }
 
-            // Initialize COLA values
-            Decimal colaPercent = 0;
-            String colaSource = 'CMDT Lookup';
-
-            // TIER 2: Check for Contract-level override first
+            // Resolve the two system inputs (Contract override + CMDT default) exactly as before, then
+            // delegate the tier selection to the one engine (D-13). INSERT has no Line Override, so
+            // resolveTier(null, null, cmdtDefault, contractPct) provably collapses to Contract-else-CMDT.
+            Decimal contractPct = null;
             if (qa.SourceAssetId != null && contractOverridesByAssetId.containsKey(qa.SourceAssetId)) {
                 ContractOverride contractOverride = contractOverridesByAssetId.get(qa.SourceAssetId);
                 if (contractOverride.isValid) {
-                    colaPercent = contractOverride.overridePercent;
-                    colaSource = 'Contract Override';
+                    contractPct = contractOverride.overridePercent;
                 }
             }
-
-            // TIER 3: If no valid Contract override, use CMDT lookup
-            if (colaSource == 'CMDT Lookup') {
-                if (String.isNotBlank(solutionCategory) && colaRulesMap.containsKey(solutionCategory)) {
-                    COLA_Uplift_Rules__mdt rule = colaRulesMap.get(solutionCategory);
-                    if (rule.Is_Active__c) {
-                        colaPercent = rule.Default_Uplift_Percent__c != null ? rule.Default_Uplift_Percent__c : 0;
-                    }
+            Decimal cmdtDefault = 0;
+            if (String.isNotBlank(solutionCategory) && colaRulesMap.containsKey(solutionCategory)) {
+                COLA_Uplift_Rules__mdt rule = colaRulesMap.get(solutionCategory);
+                if (rule.Is_Active__c) {
+                    cmdtDefault = rule.Default_Uplift_Percent__c != null ? rule.Default_Uplift_Percent__c : 0;
                 }
             }
+            COLAUpliftCalculator.TierResult tier = COLAUpliftCalculator.resolveTier(null, null, cmdtDefault, contractPct);
+            Decimal colaPercent = tier.percent;
+            String colaSource = tier.source;
 
             // Calculate new price with COLA
             Decimal newPrice = assetPrice * (1 + (colaPercent / 100));
