@@ -98,9 +98,14 @@ was blind-fixed.
   **Output-only attributes get nullified on reprice** unless a pricing-procedure step explicitly outputs them."
 - **Fields:** `Pre_COLA_Price__c`, `COLA_Source__c`, `COLA_Solution_Category__c`, `COLA_Applied_Date__c`,
   `COLAApplied__c`, `COLAUpliftPercent__c`.
-- **Action:** verify the V21 context definition has these as `inputoutput`. This is the real "COLA_Applied_Date
-  overwritten/nullified on reprice" residual — it is **context config, not Apex** (the handler already writes
-  Applied_Date once at first-application). Single-threaded, procedure-owner only.
+- **✅ RESOLVED — NO ACTION (empirically confirmed 2026-07-08).** Retrieved `SalesTransactionContextExt_v2`: the
+  substantive COLA audit attributes (`Pre_COLA_Price__c`, `COLA_Source__c`, `COLA_Solution_Category__c`,
+  `COLA_Applied_Date__c`, `COLAUpliftPercent__c`) **already have `<contextAttrHydrationDetails>` from QuoteLineItem**
+  → they persist. **Proof:** after 2 reprices today, S3 (`0Q0WC000003IKkv`) line 2 has ALL audit fields populated,
+  with `COLA_Applied_Date__c=2026-07-06` — the ORIGINAL first-applied date, which survived the reprices AND was not
+  overwritten. The only output-only COLA attribute, `COLAApplied__c`, has **no backing QuoteLineItem field** (pure
+  transient context flag, derivable from `COLA_Source != null`) — so its nulling is by-design, not a gap. The KB's
+  generic "nullify on reprice" warning does not manifest here. No UI/context edit needed.
 
 ---
 
