@@ -383,10 +383,10 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
             // non-overridden lines fall through to the existing CMDT-based detection unchanged, and
             // lines never stamped by the trigger (legacy/handler-skipped, null Default) are unaffected.
             Decimal stampedDefault = getDecimalFromTag(lineItem, 'Default_COLA_Uplift_Percent__c');
-            // Shared predicate with the trigger handler (COLAUpliftHandler.isManualLineOverride);
-            // MyCAP arg null so year-1 detection excludes the outyear rate.
+            // Shared predicate now homed in COLAUpliftCalculator (D-13 — one COLA engine); MyCAP arg
+            // null so year-1 detection excludes the outyear rate. Removes the last prehook->handler dep.
             Boolean isEffectivelyOverridden = isPersistedLineOverride(lineOverridePercent, stampedDefault)
-                || COLAUpliftHandler.isManualLineOverride(
+                || COLAUpliftCalculator.isManualLineOverride(
                     lineOverridePercent, cmdtDefault, null, contractOverridePct);
 
             if (isEffectivelyOverridden) {

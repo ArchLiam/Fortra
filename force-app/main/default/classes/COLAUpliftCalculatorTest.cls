@@ -215,4 +215,52 @@ private class COLAUpliftCalculatorTest {
     static void buildCOLAContextUpdate_nullPathNull() {
         System.assertEquals(null, COLAUpliftCalculator.buildCOLAContextUpdate(new Map<String, Object>(), 5, 'x', 100, 0, 'S', 1), 'no dataPath -> null');
     }
+
+    // ---- isManualLineOverride (D-13: relocated from COLAUpliftHandler) -------
+
+    @isTest
+    static void isManualLineOverride_matrix() {
+        System.assertEquals(false, COLAUpliftCalculator.isManualLineOverride(null, 3, null, null), 'null pct -> not manual');
+        System.assertEquals(true, COLAUpliftCalculator.isManualLineOverride(7, 3, null, null), 'differs from CMDT, no mycap/contract -> manual');
+        System.assertEquals(false, COLAUpliftCalculator.isManualLineOverride(3, 3, null, null), 'equals CMDT -> not manual');
+        System.assertEquals(false, COLAUpliftCalculator.isManualLineOverride(4, 3, 4, null), 'equals MyCAP -> not manual');
+        System.assertEquals(false, COLAUpliftCalculator.isManualLineOverride(4, 3, null, 4), 'equals Contract -> not manual');
+        System.assertEquals(true, COLAUpliftCalculator.isManualLineOverride(9, 3, 4, 5), 'differs from all system rates -> manual');
+    }
+
+    // ---- resolveTier (D-13: byte-verbatim from the prehook selection block) --
+
+    @isTest
+    static void resolveTier_tierSelection() {
+        // Tier 1 via persisted stamped-default override (Marc 2026-07-07 fix): stored 5 != Default 3
+        COLAUpliftCalculator.TierResult t1p = COLAUpliftCalculator.resolveTier(5, 3, 3, null);
+        System.assertEquals(5, t1p.percent); System.assertEquals('Line Override', t1p.source);
+
+        // Tier 1 via manual override (no stamped default): 7 differs from CMDT 3
+        COLAUpliftCalculator.TierResult t1m = COLAUpliftCalculator.resolveTier(7, null, 3, null);
+        System.assertEquals(7, t1m.percent); System.assertEquals('Line Override', t1m.source);
+
+        // Tier 2: no override, contract present
+        COLAUpliftCalculator.TierResult t2 = COLAUpliftCalculator.resolveTier(null, null, 3, 4);
+        System.assertEquals(4, t2.percent); System.assertEquals('Contract Override', t2.source);
+
+        // Tier 3: no override, no contract -> CMDT
+        COLAUpliftCalculator.TierResult t3 = COLAUpliftCalculator.resolveTier(null, null, 3, null);
+        System.assertEquals(3, t3.percent); System.assertEquals('CMDT Lookup', t3.source);
+
+        // Handler-INSERT reduction: null line override + null stamped default collapses to Tier2-else-Tier3
+        System.assertEquals('Contract Override', COLAUpliftCalculator.resolveTier(null, null, 3, 4).source);
+        System.assertEquals('CMDT Lookup', COLAUpliftCalculator.resolveTier(null, null, 3, null).source);
+
+        // Contract boundary: pct == contract rate -> Contract Override (NOT Line Override)
+        COLAUpliftCalculator.TierResult tb = COLAUpliftCalculator.resolveTier(4, null, 3, 4);
+        System.assertEquals('Contract Override', tb.source);
+        System.assertEquals(4, tb.percent);
+
+        // MyCAP hardcode-null: a year-1 value equal to a hypothetical outyear MyCAP rate but differing
+        // from CMDT is still a manual override (resolveTier passes mycap=null internally).
+        COLAUpliftCalculator.TierResult tm = COLAUpliftCalculator.resolveTier(3, null, 5, null);
+        System.assertEquals('Line Override', tm.source);
+        System.assertEquals(3, tm.percent);
+    }
 }

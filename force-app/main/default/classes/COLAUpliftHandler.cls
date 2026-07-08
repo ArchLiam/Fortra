@@ -222,10 +222,9 @@ public with sharing class COLAUpliftHandler {
      * @return true when pct represents a genuine manual edit, false when it matches a system source.
      */
     public static Boolean isManualLineOverride(Decimal pct, Decimal cmdtDefaultPct, Decimal mycapDefaultPct, Decimal contractPct) {
-        return pct != null
-            && pct != cmdtDefaultPct
-            && (mycapDefaultPct == null || pct != mycapDefaultPct)
-            && (contractPct == null || pct != contractPct);
+        // Delegates to the shared engine (D-13 — one COLA override predicate for handler + prehook).
+        // Temporary wrapper so the intra-class callers (:100/:184) keep compiling; removed in cleanup.
+        return COLAUpliftCalculator.isManualLineOverride(pct, cmdtDefaultPct, mycapDefaultPct, contractPct);
     }
 
     /**

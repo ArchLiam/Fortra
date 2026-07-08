@@ -27,6 +27,57 @@ public with sharing class COLAUpliftCalculator {
     }
 
     /**
+     * @description The single shared 3-tier override predicate — a manual Line Override is a
+     *              non-null percent that differs from every system rate (CMDT default, MyCAP
+     *              default when present, Contract rate when present). Relocated byte-verbatim from
+     *              COLAUpliftHandler so BOTH the trigger handler and the reprice prehook resolve
+     *              tier membership through one engine (D-13 / INV-7, SDD BR-003).
+     */
+    public static Boolean isManualLineOverride(Decimal pct, Decimal cmdtDefaultPct, Decimal mycapDefaultPct, Decimal contractPct) {
+        return pct != null
+            && pct != cmdtDefaultPct
+            && (mycapDefaultPct == null || pct != mycapDefaultPct)
+            && (contractPct == null || pct != contractPct);
+    }
+
+    /** @description The tier-selection result: the applied percent + its COLA_Source__c tier label. */
+    public class TierResult {
+        public Decimal percent;
+        public String source;
+        public TierResult(Decimal percent, String source) {
+            this.percent = percent;
+            this.source = source;
+        }
+    }
+
+    /**
+     * @description Canonical 3-tier COLA SELECTION (SDD BR-003: Line Override > Contract Override >
+     *              CMDT Lookup), returning ONLY the applied percent + COLA_Source__c — no price, no
+     *              override flag, so it is structurally incapable of moving rounding, base-price
+     *              provenance, or the zero/negative skip on either caller. Lifted byte-verbatim from
+     *              COLAUpliftPrehook's inline selection block. Tier-1 is a Line Override when either
+     *              a persisted stamped-default override OR a manual (differs-from-all-system-rates)
+     *              override is present; the MyCAP arg is hardcoded null so a year-1 value equal to the
+     *              outyear MyCAP rate is still treated as a genuine manual override (Marc DeBrey,
+     *              2026-07-07). The MyCAP source relabel + all price math stay at the callers.
+     */
+    public static TierResult resolveTier(
+        Decimal lineOverridePercent,
+        Decimal stampedDefault,
+        Decimal cmdtDefault,
+        Decimal contractOverridePct
+    ) {
+        Boolean isEffectivelyOverridden = isPersistedLineOverride(lineOverridePercent, stampedDefault)
+            || isManualLineOverride(lineOverridePercent, cmdtDefault, null, contractOverridePct);
+        if (isEffectivelyOverridden) {
+            return new TierResult(lineOverridePercent, 'Line Override');
+        } else if (contractOverridePct != null) {
+            return new TierResult(contractOverridePct, 'Contract Override');
+        }
+        return new TierResult(cmdtDefault, 'CMDT Lookup');
+    }
+
+    /**
      * @description Build explainer text for waterfall display
      * @param colaPercent The COLA percentage
      * @param solutionCategory The product's solution category
