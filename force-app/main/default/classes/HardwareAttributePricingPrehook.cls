@@ -29,9 +29,8 @@
  */
 global class HardwareAttributePricingPrehook implements RevSignaling.SignalingApexProcessor {
 
-    // Default values when no matching attribute found
-    private static final Decimal DEFAULT_MULTIPLIER = 1.0;
-    private static final Decimal DEFAULT_DISCOUNT = 0.0;
+    // Recursion guard (normalized to the other prehooks): prevents re-entrant execution.
+    private static Boolean isProcessing = false;
 
     // System defaults when neither user config nor hardware provides values
     private static final String DEFAULT_PGROUP = 'P20';
@@ -44,48 +43,6 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
     private static final String ATTR_SERVER_TYPE = 'Server_Type';
     private static final String ATTR_USERS = 'Users';
 
-    // pGroup multiplier mappings (P05 through P60)
-    private static final Map<String, Decimal> PGROUP_MULTIPLIERS = new Map<String, Decimal>{
-        'P05' => 0.5,
-        'P10' => 0.75,
-        'P20' => 1.0,
-        'P30' => 1.5,
-        'P40' => 2.0,
-        'P50' => 3.0,
-        'P60' => 4.0
-    };
-
-    // User tier multiplier ranges
-    private static final List<UserTierRange> USER_TIER_RANGES = new List<UserTierRange>{
-        new UserTierRange(1, 10, 1.0),
-        new UserTierRange(11, 50, 1.25),
-        new UserTierRange(51, 100, 1.5),
-        new UserTierRange(101, 250, 2.0),
-        new UserTierRange(251, 500, 2.5),
-        new UserTierRange(501, 999999, 3.0)
-    };
-
-    // System type discount mappings
-    private static final Map<String, Decimal> SYSTEM_TYPE_DISCOUNTS = new Map<String, Decimal>{
-        'Production' => 0.0,
-        'Staging' => 25.0,
-        'Test' => 50.0
-    };
-
-    /**
-     * @description Inner class to represent user tier ranges
-     */
-    private class UserTierRange {
-        public Integer minUsers;
-        public Integer maxUsers;
-        public Decimal multiplier;
-
-        public UserTierRange(Integer min, Integer max, Decimal mult) {
-            this.minUsers = min;
-            this.maxUsers = max;
-            this.multiplier = mult;
-        }
-    }
 
     /**
      * @description Inner class to hold hardware pricing calculation details
@@ -162,6 +119,15 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
         String message = '';
         Integer updatedCount = 0;
 
+        // Skip on re-entry so a context write that re-triggers pricing cannot recurse.
+        if (isProcessing) {
+            RevSignaling.TransactionResponse skip = new RevSignaling.TransactionResponse();
+            skip.status = RevSignaling.TransactionStatus.SUCCESS;
+            skip.message = 'Hardware pricing skipped (re-entrant call)';
+            return skip;
+        }
+        isProcessing = true;
+
         try {
             // Create Context API instance
             Context.IndustriesContext industriesContext = new Context.IndustriesContext();
@@ -174,6 +140,8 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
             System.debug(LoggingLevel.ERROR, 'Error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack: ' + e.getStackTraceString());
             message = 'Hardware pricing completed with warnings: ' + e.getMessage();
+        } finally {
+            isProcessing = false;
         }
 
         System.debug(LoggingLevel.INFO, '=== HardwareAttributePricingPrehook v3.0 END ===');
@@ -648,15 +616,15 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
 
         System.debug(LoggingLevel.INFO, '  Price: ' + currentPrice);
 
-        // Calculate multipliers
-        Decimal pGroupMultiplier = getPGroupMultiplier(pGroup);
-        Decimal userTierMultiplier = getUserTierMultiplier(usersPerPartition);
-        Decimal systemTypeDiscount = getSystemTypeDiscount(systemType);
-
-        // Calculate combined multiplier and adjusted price
-        // Formula: ListPrice × pGroupMult × userTierMult × (1 - systemTypeDiscount/100)
-        Decimal combinedMultiplier = pGroupMultiplier * userTierMultiplier * (1 - systemTypeDiscount / 100);
-        Decimal adjustedPrice = currentPrice * combinedMultiplier;
+        // Wave-2 hook-thinning: hardware price math extracted to HardwarePricingCalculator
+        // (behavior-identical: same tables + formula, now unit-testable in isolation).
+        HardwarePricingCalculator.HardwarePriceResult hardwareCalc =
+            HardwarePricingCalculator.calculate(currentPrice, pGroup, usersPerPartition, systemType);
+        Decimal pGroupMultiplier = hardwareCalc.pGroupMultiplier;
+        Decimal userTierMultiplier = hardwareCalc.userTierMultiplier;
+        Decimal systemTypeDiscount = hardwareCalc.systemTypeDiscount;
+        Decimal combinedMultiplier = hardwareCalc.combinedMultiplier;
+        Decimal adjustedPrice = hardwareCalc.adjustedPrice;
 
         // Round to 2 decimal places
         adjustedPrice = adjustedPrice.setScale(2, System.RoundingMode.HALF_UP);
@@ -786,46 +754,21 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
      * @param pGroup The pGroup value (e.g., 'P30')
      * @return Multiplier value or default 1.0
      */
+    // Wave-2: implementation moved to HardwarePricingCalculator; these thin wrappers preserve the
+    // existing test API (HardwareAttributePricingPrehookTest calls hook.getPGroupMultiplier(...) etc.).
     @TestVisible
     public Decimal getPGroupMultiplier(String pGroup) {
-        if (String.isBlank(pGroup)) {
-            return DEFAULT_MULTIPLIER;
-        }
-        return PGROUP_MULTIPLIERS.containsKey(pGroup) ? PGROUP_MULTIPLIERS.get(pGroup) : DEFAULT_MULTIPLIER;
+        return HardwarePricingCalculator.getPGroupMultiplier(pGroup);
     }
 
-    /**
-     * @description Get user tier multiplier based on user count
-     * @param usersPerPartition Number of users
-     * @return Multiplier value or default 1.0
-     */
     @TestVisible
     public Decimal getUserTierMultiplier(Decimal usersPerPartition) {
-        if (usersPerPartition == null || usersPerPartition <= 0) {
-            return DEFAULT_MULTIPLIER;
-        }
-
-        Integer users = usersPerPartition.intValue();
-        for (UserTierRange range : USER_TIER_RANGES) {
-            if (users >= range.minUsers && users <= range.maxUsers) {
-                return range.multiplier;
-            }
-        }
-
-        return DEFAULT_MULTIPLIER;
+        return HardwarePricingCalculator.getUserTierMultiplier(usersPerPartition);
     }
 
-    /**
-     * @description Get system type discount percentage
-     * @param systemType The system type (Production, Staging, Test)
-     * @return Discount percentage or default 0
-     */
     @TestVisible
     public Decimal getSystemTypeDiscount(String systemType) {
-        if (String.isBlank(systemType)) {
-            return DEFAULT_DISCOUNT;
-        }
-        return SYSTEM_TYPE_DISCOUNTS.containsKey(systemType) ? SYSTEM_TYPE_DISCOUNTS.get(systemType) : DEFAULT_DISCOUNT;
+        return HardwarePricingCalculator.getSystemTypeDiscount(systemType);
     }
 
     /**
