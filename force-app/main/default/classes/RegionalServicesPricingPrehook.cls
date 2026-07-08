@@ -13,6 +13,9 @@
  */
 global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApexProcessor {
 
+    // Recursion guard (normalized to the other prehooks): prevents re-entrant execution.
+    private static Boolean isProcessing = false;
+
     // Default multiplier when no matching regional pricing found
     private static final Decimal DEFAULT_MULTIPLIER = 1.0;
 
@@ -32,6 +35,15 @@ global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApe
 
         String message = '';
         Integer updatedCount = 0;
+
+        // Skip on re-entry so a context write that re-triggers pricing cannot recurse.
+        if (isProcessing) {
+            RevSignaling.TransactionResponse skip = new RevSignaling.TransactionResponse();
+            skip.status = RevSignaling.TransactionStatus.SUCCESS;
+            skip.message = 'Regional pricing skipped (re-entrant call)';
+            return skip;
+        }
+        isProcessing = true;
 
         try {
             // Step 1: Load regional pricing multipliers from Custom Metadata
@@ -68,6 +80,8 @@ global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApe
             System.debug(LoggingLevel.ERROR, 'Error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack: ' + e.getStackTraceString());
             message = 'Error: ' + e.getMessage();
+        } finally {
+            isProcessing = false;
         }
 
         System.debug(LoggingLevel.INFO, '=== RegionalServicesPricingPrehook v13.3 END ===');
@@ -102,17 +116,9 @@ global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApe
         return multipliers;
     }
 
-    /**
-     * @description Get multiplier for a country
-     * @param multipliers Map of country to multiplier
-     * @param country Country name or code
-     * @return Multiplier value or default 1.0
-     */
+    // Wave-2: implementation moved to RegionalPricingCalculator; thin wrapper preserves the existing test API.
     public Decimal getMultiplierForCountry(Map<String, Decimal> multipliers, String country) {
-        if (String.isBlank(country)) {
-            return DEFAULT_MULTIPLIER;
-        }
-        return multipliers.containsKey(country) ? multipliers.get(country) : DEFAULT_MULTIPLIER;
+        return RegionalPricingCalculator.getMultiplierForCountry(multipliers, country);
     }
 
     /**
@@ -361,23 +367,9 @@ global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApe
         }
     }
 
-    /**
-     * @description Calculate adjusted price with rounding to nearest $5
-     * @param listPrice Original list price
-     * @param multiplier Regional multiplier
-     * @return Adjusted price rounded to nearest $5
-     */
+    // Wave-2: implementation moved to RegionalPricingCalculator; thin wrapper preserves the existing test API.
     public Decimal calculateAdjustedPrice(Decimal listPrice, Decimal multiplier) {
-        if (listPrice == null) {
-            return null;
-        }
-        if (multiplier == null) {
-            multiplier = DEFAULT_MULTIPLIER;
-        }
-
-        Decimal rawPrice = listPrice * multiplier;
-        // Round UP to nearest $5
-        return (rawPrice / 5).setScale(0, System.RoundingMode.CEILING) * 5;
+        return RegionalPricingCalculator.calculateAdjustedPrice(listPrice, multiplier);
     }
 
     /**
