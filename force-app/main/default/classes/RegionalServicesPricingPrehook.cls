@@ -100,11 +100,22 @@ global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApe
     public Map<String, Decimal> loadRegionalPricingMultipliers() {
         Map<String, Decimal> multipliers = new Map<String, Decimal>();
 
+        // SDD Rule 14 / BR-007: honor effective dating in ADDITION to Is_Active__c ("Only load ACTIVE
+        // multipliers" + "Support effective dating"). CMDT SOQL rejects OR disjunctions, so the
+        // null-safe start/end window is evaluated in memory via RegionalPricingCalculator.isEffectiveOn
+        // (this also keeps the date rule unit-testable — __mdt rows cannot be inserted in a test).
+        // Rows with null start AND null end have no time bound and always load (prior behavior).
+        Date today = Date.today();
+
         for (Services_Regional_Pricing__mdt record : [
-            SELECT Country__c, Country_Code__c, Multiplier__c
+            SELECT Country__c, Country_Code__c, Multiplier__c,
+                Effective_Start_Date__c, Effective_End_Date__c
             FROM Services_Regional_Pricing__mdt
             WHERE Is_Active__c = true
         ]) {
+            if (!RegionalPricingCalculator.isEffectiveOn(record.Effective_Start_Date__c, record.Effective_End_Date__c, today)) {
+                continue;
+            }
             if (record.Country__c != null) {
                 multipliers.put(record.Country__c, record.Multiplier__c);
             }

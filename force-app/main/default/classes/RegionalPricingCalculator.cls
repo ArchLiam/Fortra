@@ -21,6 +21,33 @@ public with sharing class RegionalPricingCalculator {
     }
 
     /**
+     * @description Whether a regional-pricing multiplier row is in effect as of a given date.
+     *              Implements SDD Rule 14 / BR-007 (effective dating) for the CMDT
+     *              Services_Regional_Pricing__mdt (Effective_Start_Date__c / Effective_End_Date__c).
+     *              Bounds are INCLUSIVE: asOf == start (or == end) counts as effective. A null start
+     *              means "no lower bound" (already started); a null end means "no upper bound" (never
+     *              expires) — so a row with both dates null always loads, preserving prior behavior.
+     *              Evaluated in memory because CMDT SOQL does not support the null-safe OR window and
+     *              __mdt rows cannot be inserted in a unit test.
+     * @param startDate Effective_Start_Date__c (nullable)
+     * @param endDate   Effective_End_Date__c (nullable)
+     * @param asOf      The date to evaluate against (typically Date.today())
+     * @return true when the row is effective on asOf
+     */
+    public static Boolean isEffectiveOn(Date startDate, Date endDate, Date asOf) {
+        if (asOf == null) {
+            return true;
+        }
+        if (startDate != null && asOf < startDate) {
+            return false; // not yet effective
+        }
+        if (endDate != null && asOf > endDate) {
+            return false; // already expired
+        }
+        return true;
+    }
+
+    /**
      * @description Adjusted price rounded UP to the nearest $5. Null list -> null; null multiplier -> 1.0.
      */
     public static Decimal calculateAdjustedPrice(Decimal listPrice, Decimal multiplier) {
