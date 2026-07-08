@@ -1767,15 +1767,10 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             return null;
         }
 
-        Decimal partnerUnitPrice = derivedListNet;
-        if (partnerPercent != null && partnerPercent > 0) {
-            partnerUnitPrice = (derivedListNet * (1 - (partnerPercent / 100))).setScale(2, RoundingMode.HALF_UP);
-        }
-
-        Decimal commercialNet = partnerUnitPrice;
-        if (manualPercent != null && manualPercent > 0) {
-            commercialNet = (partnerUnitPrice * (1 - (manualPercent / 100))).setScale(2, RoundingMode.HALF_UP);
-        }
+        // Sequential partner-then-software discount (build*Update step 3a): identical to the prior
+        // inline (pre-init to base, apply only when percent > 0) — see SequentialDiscountCalculator.
+        Decimal partnerUnitPrice = SequentialDiscountCalculator.applyDiscountPercent(derivedListNet, partnerPercent);
+        Decimal commercialNet = SequentialDiscountCalculator.applyDiscountPercent(partnerUnitPrice, manualPercent);
 
         if (commercialNet >= derivedListNet) {
             return null;
@@ -1986,14 +1981,12 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             return null;
         }
 
+        // build*Update step 3b: net less partner% then software% (SequentialDiscountCalculator).
+        // Keep the coalesced-to-0 locals — they are stamped into the payload below.
         Decimal partnerPercent = inputs.partnerPercent != null ? inputs.partnerPercent : 0;
-        if (partnerPercent > 0) {
-            net = (net * (1 - (partnerPercent / 100))).setScale(2, RoundingMode.HALF_UP);
-        }
+        net = SequentialDiscountCalculator.applyDiscountPercent(net, partnerPercent);
         Decimal softwareDiscount = inputs.softwareDiscount != null ? inputs.softwareDiscount : 0;
-        if (softwareDiscount > 0) {
-            net = (net * (1 - (softwareDiscount / 100))).setScale(2, RoundingMode.HALF_UP);
-        }
+        net = SequentialDiscountCalculator.applyDiscountPercent(net, softwareDiscount);
         if (net <= 0) {
             return null;
         }
@@ -2135,8 +2128,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
 
             Decimal partnerPercent = qli.PartnerDiscountPercent;
             if (derivedList != null && partnerPercent != null && partnerPercent > 0) {
-                Decimal partnerNet = (derivedList * (1 - (partnerPercent / 100)))
-                    .setScale(2, RoundingMode.HALF_UP);
+                // build*Update step 3c: inside the partnerPercent>0 guard, identical to the inline.
+                Decimal partnerNet = SequentialDiscountCalculator.applyDiscountPercent(derivedList, partnerPercent);
                 if (qli.PartnerUnitPrice == null
                     || qli.PartnerUnitPrice.setScale(2, RoundingMode.HALF_UP) != partnerNet) {
                     upd.PartnerUnitPrice = partnerNet;
