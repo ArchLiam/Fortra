@@ -368,4 +368,123 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(null, AttributeVolumeCalculator.getStringFromTag(m, 'nul'));
         System.assertEquals(null, AttributeVolumeCalculator.getStringFromTag(m, 'missing'));
     }
+
+    // ========================================================================
+    // D-17 fallback (round 4): additional edge-case hardening — pure characterization,
+    // zero behavioral risk. Pins branches the round-2 suite did not exercise.
+    // ========================================================================
+
+    @isTest
+    static void lookupTier_lowerBoundNull_defaultsZero() {
+        // Lower_Bound__c null => treated as 0 (tier line: lower = Lower_Bound__c != null ? : 0)
+        Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
+            new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', null, 100, 500, 1.25, 'Calculated') });
+        List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
+        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 0),
+            'volume 0 matches when lower bound null (defaults to 0)');
+    }
+
+    @isTest
+    static void lookupTier_boundaryInclusive() {
+        Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
+            new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', 10, 20, 500, 1.0, 'Unit Price') });
+        List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
+        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 10), 'lower bound inclusive');
+        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 20), 'upper bound inclusive');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 9), 'below lower excluded');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 21), 'above upper excluded');
+    }
+
+    @isTest
+    static void lookupTier_firstAttrNoKey_secondMatches() {
+        // First attribute has no tier key; the loop must continue and match the second attribute.
+        Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
+            new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', 0, 100, 500, 1.25, 'Calculated') });
+        List<Map<String, Object>> attrs = new List<Map<String, Object>>{
+            attrMap('NoKey_Attr', 'X'),
+            attrMap('Feature_Options', 'Gold')
+        };
+        AttributeVolumeCalculator.PricingTierResult r =
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50);
+        System.assertEquals('Feature_Options', r.attributeName, 'iterates past the no-key attr to the matching one');
+    }
+
+    @isTest
+    static void lookupTier_totalPriceMode_carriesMode() {
+        Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
+            new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', 0, 100, 300, null, 'Total Price') });
+        List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
+        AttributeVolumeCalculator.PricingTierResult r =
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50);
+        System.assertEquals('Total Price', r.priceMode);
+        System.assertEquals(300, r.basePrice);
+        System.assertEquals(null, r.multiplier);
+    }
+
+    @isTest
+    static void buildNodeUpdate_totalPriceMode_noMultiplierEvenIfPresent() {
+        // Non-Calculated mode never writes the multiplier attr, even when multiplier is non-null.
+        Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, new Map<String, Object>());
+        AttributeVolumeCalculator.PricingTierResult r =
+            new AttributeVolumeCalculator.PricingTierResult(2.0, 'Total Price', 300, 'Feature_Options', 'Gold');
+        List<Object> attrs = (List<Object>) AttributeVolumeCalculator.buildNodeUpdate(node, r, 50).get('attributes');
+        System.assertEquals(2, attrs.size(), 'Total Price => 2 attrs, no multiplier');
+        System.assertEquals('Total Price', flattenStr(attrs).get('Attribute_Price_Mode__c'));
+        System.assert(!flattenDec(attrs).containsKey('Attribute_Multiplier_Pct__c'));
+    }
+
+    @isTest
+    static void buildResetNodeUpdate_nestedAndStringListPrice() {
+        Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, null);
+        // nested {tagValue} wrapper
+        List<Object> a1 = (List<Object>) AttributeVolumeCalculator.buildResetNodeUpdate(
+            node, new Map<String, Object>{ 'ListPrice' => new Map<String, Object>{ 'tagValue' => 2600 } }).get('attributes');
+        System.assertEquals(2600, flattenDec(a1).get('Base_Price__c'), 'ListPrice from nested tagValue wrapper');
+        // string value
+        List<Object> a2 = (List<Object>) AttributeVolumeCalculator.buildResetNodeUpdate(
+            node, new Map<String, Object>{ 'ListPrice' => '1234.5' }).get('attributes');
+        System.assertEquals(1234.5, flattenDec(a2).get('Base_Price__c'), 'ListPrice parsed from string');
+    }
+
+    @isTest
+    static void getAttributeVolumeValue_decimalAndNegative() {
+        System.assertEquals(50.5, AttributeVolumeCalculator.getAttributeVolumeValue(
+            new List<Map<String, Object>>{ attrMap('Attribute_Volume', '50.5') }), 'decimal volume parses');
+        System.assertEquals(-5, AttributeVolumeCalculator.getAttributeVolumeValue(
+            new List<Map<String, Object>>{ attrMap('Attribute_Volume', '-5') }), 'negative parses (reset handled by caller, not here)');
+    }
+
+    @isTest
+    static void getAttributeValue_volumeAmongManyAttrs() {
+        List<Map<String, Object>> attrs = new List<Map<String, Object>>{
+            attrMap('Feature_Options', 'Gold'),
+            attrMap('Attribute_Volume', '75')
+        };
+        System.assertEquals('75', AttributeVolumeCalculator.getAttributeValue(attrs, 'Attribute_Volume'));
+        System.assertEquals('Gold', AttributeVolumeCalculator.getAttributeValue(attrs, 'Feature_Options'));
+    }
+
+    @isTest
+    static void groupAttributes_multipleAttrsSameParent() {
+        List<Object> attributeData = new List<Object>{
+            new Map<String, Object>{ 'tagValue' => new Map<String, Object>{ 'ParentReference' => 'LINE-A', 'Attribute' => 'F', 'AttributeValue' => 'Gold' } },
+            new Map<String, Object>{ 'tagValue' => new Map<String, Object>{ 'ParentReference' => 'LINE-A', 'Attribute' => 'Attribute_Volume', 'AttributeValue' => '50' } }
+        };
+        Map<String, List<Map<String, Object>>> out = new Map<String, List<Map<String, Object>>>();
+        AttributeVolumeCalculator.groupAttributesByLineItem(attributeData, out);
+        System.assertEquals(1, out.size());
+        System.assertEquals(2, out.get('LINE-A').size(), 'both attrs group under the same parent');
+    }
+
+    @isTest
+    static void getBooleanFromTag_moreCoercions() {
+        Map<String, Object> m = new Map<String, Object>{
+            'upper' => 'TRUE', 'intOne' => 1, 'zero' => '0', 'no' => 'no', 'arbitrary' => 'maybe'
+        };
+        System.assertEquals(true,  AttributeVolumeCalculator.getBooleanFromTag(m, 'upper'), 'case-insensitive TRUE');
+        System.assertEquals(true,  AttributeVolumeCalculator.getBooleanFromTag(m, 'intOne'), 'integer 1 -> true');
+        System.assertEquals(false, AttributeVolumeCalculator.getBooleanFromTag(m, 'zero'));
+        System.assertEquals(false, AttributeVolumeCalculator.getBooleanFromTag(m, 'no'));
+        System.assertEquals(false, AttributeVolumeCalculator.getBooleanFromTag(m, 'arbitrary'), 'unrecognized -> false');
+    }
 }
