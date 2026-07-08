@@ -54,7 +54,7 @@ was blind-fixed.
 - **(Separate, intentional — no change):** renewal `Opportunity.Amount = Σ MRR×12×COLA` (`RenewalForecastAmount`,
   SC-3500) is a forecast by design, not an `Asset.ARR__c` rollup — annotate the ARR SDD.
 
-### A-4. AttrVolume — no-match / null-volume reset-to-list (⚠️ SC-3390 ruled out, but a LOAD-BEARING stale-guard → Marc ruling)
+### A-4. AttrVolume — no-match / null-volume stale price ✅ RESOLVED (D-17) — V21 Net Bridge fix, debug-confirmed
 - **Verified finding (high confidence):** live code resets no-match lines (prehook `:283-291`) AND null-volume
   lines (`:271-279`) to list price via `AttributeVolumeCalculator.buildResetNodeUpdate` (`:244-275`:
   `Base_Price__c=ListPrice`, `Attribute_Price_Mode__c='Unit Price'`; or `Base_Price__c=0` when ListPrice is null).
@@ -79,11 +79,21 @@ was blind-fixed.
   `Total Price` mode (`Base_Price→ItemNetTotalPrice`, which re-derives); the reset hardcodes `Unit Price` mode
   (`Base_Price→InputUnitPrice`, which is already locked). **This is NOT fixable in the Apex prehook alone** (the
   reset write is proven ignored on this path).
-- **Fix (owner-chosen: Option A = procedure).** In V21, the AttrVolume no-match must re-derive the line from List
-  Price (so a stale `Base_Price__c` can't survive) — a canvas edit to the attribute-pricing element. Cheaper Apex
-  first-shot (Option B): stop `buildResetNodeUpdate` hardcoding `mode='Unit Price'` (use the re-deriving path). Exact
-  change pending read of the V21 attribute-pricing element. Validate ONLY via the UI match→no-match two-click (the
-  headless harness is blind to it). Refactor-plan D-17 is the tracking item.
+- **✅ FIXED & DEBUG-CONFIRMED (2026-07-08, V21 canvas). D-17 RESOLVED.** Pinpointed cause: the three attribute
+  mode-block **Net Bridges** used `IF(NetUnitPrice > 0, NetUnitPrice, <fresh>)`, which PRESERVED the stale hydrated
+  `NetUnitPrice` (from the persisted QLI) instead of the freshly-computed attribute price. Match worked only when
+  stale==fresh. **Verified fix (Candidate 2, adversarially rated SAFE_TO_SHIP over 5 scenarios incl. amendment):**
+  in ALL three mode blocks (Unit Price / Calculated / Total Price) — (a) add `ItemPricingSource NotEquals
+  'LastTransaction'` to the mode FILTER (logic `1 AND 2 AND 3`) so amendment/contracted lines skip the block and keep
+  their contracted net (the amend seeder at root-seq 42 owns them); (b) change each Net Bridge formula to take the
+  fresh value: Unit Price → `Base_Price__c`, Total Price → `Base_Price__c`, Calculated → `InputUnitPrice`.
+  `ItemPricingSource` is a filter field (13 filter uses, 0 formula uses in V21) so the gate MUST go in the filter, not
+  the formula (ruled out the nested-IF Candidate 1). **Debug-log proof:** same prehook write (`Base_Price=1357.20`)
+  on vol-50 Total-Price match yielded committed `NetUnitPrice` 2180 (stale) PRE-fix vs 1357.20 (fresh) POST-fix; the
+  vol-99999 no-match (Unit Price) yields 2180 (list). Root-cause + candidates + adversarial verdicts:
+  `tasks/wxvhefsg1.output`. Not fixable in the Apex prehook (its `Base_Price` write is submitted but overridden by the
+  stale hydration downstream — proven via log `07LWC00000Q6ScA2AV`, InputUnitPrice hydrated stale at line 324 before
+  the prehook ran at line 8377).
 
 ### A-5. Hardware — per-line product-eligibility gate (Tab-2 escalated, KB §8 Rule 12)
 - **Finding (Tab 2):** the SDD (§8 Rule 12) implies a product-eligibility gate, but `HardwareProductEligibilityService`
