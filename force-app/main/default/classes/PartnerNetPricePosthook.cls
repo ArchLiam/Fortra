@@ -1,7 +1,7 @@
 /**
  * @description Post-pricing-procedure hook for partner net on quote/order lines.
  *
- *              Why this exists: PartnerPricingPrehook runs before the pricing procedure,
+ *              Why this exists: PartnerPricingPrehookV2 runs before the pricing procedure,
  *              but Rev Mgmt Default Pricing recalculates NetUnitPrice from ListPrice and
  *              wipes pre-hook partner writes. Derived maintenance lines also have
  *              UnitPrice/ListPrice = 0 until DPP formulas run in-procedure.
@@ -1671,40 +1671,32 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Map<String, Object> lineItem,
         NewMaintInputs maintInputs
     ) {
-        NewBusinessMaintenanceNets nets = new NewBusinessMaintenanceNets();
+        // Guard 1 stays in the shell — the calculator receives primitives and cannot null-check
+        // maintInputs (moving this into the calculator would NPE on a reachable null-inputs line).
         if (maintInputs == null) {
-            return nets;
+            return new NewBusinessMaintenanceNets();
         }
 
-        // Pure list-net arithmetic (contributor net x rate) — null when rate/contributor invalid,
-        // equivalent to the prior early-return guard.
-        nets.expectedListNet = NewMaintenanceNetCalculator.expectedListNet(
+        // Guard 2 also in the shell, so the stamped-percent tag reads below keep their original
+        // post-guard timing (they were never reached when expectedListNet was null).
+        Decimal expectedListNet = NewMaintenanceNetCalculator.expectedListNet(
             maintInputs.contributorNetPrice, maintInputs.rate
         );
-        if (nets.expectedListNet == null) {
-            return nets;
+        if (expectedListNet == null) {
+            return new NewBusinessMaintenanceNets();
         }
 
-        if (maintInputs.partnerBandResolved
-            && maintInputs.partnerPercent != null && maintInputs.partnerPercent > 0) {
-            // J-06: the authoritative New-Maintenance band from the partner Discount model overrides
-            // the license band the prehook stamped onto this derived-maintenance line.
-            nets.partnerPercent = maintInputs.partnerPercent;
-        } else {
-            nets.partnerPercent = resolveStampedPartnerPercent(lineItem);
-            if (nets.partnerPercent == null || nets.partnerPercent <= 0) {
-                nets.partnerPercent = maintInputs.partnerPercent;
-            }
-        }
-        nets.softwareDiscount = resolveStampedManualPercent(lineItem);
-        if (nets.softwareDiscount == null || nets.softwareDiscount <= 0) {
-            nets.softwareDiscount = maintInputs.softwareDiscount;
-        }
-
-        nets.expectedCommercialNet = NewMaintenanceNetCalculator.expectedCommercialNet(
-            nets.expectedListNet, nets.partnerPercent, nets.softwareDiscount
+        // Stamped-percent reads stay here (pure ListPriceStampCalculator map gets); the J-06 partner%
+        // precedence + software fallback + commercial-net compute delegate to the pure calculator
+        // (Wave-2 decomposition, build*Update step 5).
+        return NewMaintenanceNetCalculator.computeNewBusinessNets(
+            expectedListNet,
+            maintInputs.partnerBandResolved,
+            maintInputs.partnerPercent,
+            maintInputs.softwareDiscount,
+            resolveStampedPartnerPercent(lineItem),
+            resolveStampedManualPercent(lineItem)
         );
-        return nets;
     }
 
     /**
