@@ -1960,32 +1960,16 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         }
         Decimal lineTotal = (net * quantity).setScale(2, RoundingMode.HALF_UP);
 
-        List<Map<String, Object>> attributes = new List<Map<String, Object>>{
-            new Map<String, Object>{ 'attributeName' => 'NetUnitPrice', 'attributeValue' => net },
-            new Map<String, Object>{ 'attributeName' => 'NetTotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalPrice', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'Subtotal', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'TotalLineAmount', 'attributeValue' => lineTotal },
-            new Map<String, Object>{ 'attributeName' => 'PartnerUnitPrice', 'attributeValue' => net },
-            new Map<String, Object>{
-                'attributeName' => 'Partner_Pricing_Source__c',
-                'attributeValue' => 'System Calculated (Post-Procedure Fallback)'
-            }
-        };
-        if (inputs.partnerPercent != null && inputs.partnerPercent > 0) {
-            attributes.add(new Map<String, Object>{
-                'attributeName' => 'PartnerDiscountPercent',
-                'attributeValue' => inputs.partnerPercent
-            });
-        }
-
         System.debug(LoggingLevel.INFO, 'NEW MAINT FALLBACK: Line ' + lineItemId +
             ' base=' + pricingBase + ' net=' + net + ' contributorNet=' + usesContributorNet);
 
-        return new Map<String, Object>{
-            'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
-            'attributes' => attributes
-        };
+        // Attribute-map assembly delegated to the pure DerivedMaintenancePayloadBuilder (build*Update
+        // step 7). This $0-fallback keeps its OWN inline math above (must NOT re-base onto
+        // computeNewBusinessNets); only the map construction moves. partnerPercent = the RAW inputs
+        // value (not the coalesced-to-0 local), matching the original conditional stamp.
+        return DerivedMaintenancePayloadBuilder.buildFallbackPayload(
+            updatePath, net, lineTotal, inputs.partnerPercent
+        );
     }
 
     public class PostPricingContextRequest {

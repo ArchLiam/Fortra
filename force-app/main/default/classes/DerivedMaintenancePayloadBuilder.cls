@@ -66,4 +66,41 @@ public with sharing class DerivedMaintenancePayloadBuilder {
             'attributes' => attributes
         };
     }
+
+    /**
+     * @description $0-fallback payload for buildNewMaintenanceUpdate: 7 fixed attributes +
+     *              conditional PartnerDiscountPercent, byte-identical order, source string
+     *              'System Calculated (Post-Procedure Fallback)'. `partnerPercent` here is the RAW
+     *              inputs value (nullable) — NOT the coalesced-to-0 local — matching the original.
+     */
+    public static Map<String, Object> buildFallbackPayload(
+        Object updatePath,
+        Decimal net,
+        Decimal lineTotal,
+        Decimal partnerPercent
+    ) {
+        List<Map<String, Object>> attributes = new List<Map<String, Object>>{
+            new Map<String, Object>{ 'attributeName' => 'NetUnitPrice', 'attributeValue' => net },
+            new Map<String, Object>{ 'attributeName' => 'NetTotalPrice', 'attributeValue' => lineTotal },
+            new Map<String, Object>{ 'attributeName' => 'TotalPrice', 'attributeValue' => lineTotal },
+            new Map<String, Object>{ 'attributeName' => 'Subtotal', 'attributeValue' => lineTotal },
+            new Map<String, Object>{ 'attributeName' => 'TotalLineAmount', 'attributeValue' => lineTotal },
+            new Map<String, Object>{ 'attributeName' => 'PartnerUnitPrice', 'attributeValue' => net },
+            new Map<String, Object>{
+                'attributeName' => 'Partner_Pricing_Source__c',
+                'attributeValue' => 'System Calculated (Post-Procedure Fallback)'
+            }
+        };
+        if (partnerPercent != null && partnerPercent > 0) {
+            attributes.add(new Map<String, Object>{
+                'attributeName' => 'PartnerDiscountPercent',
+                'attributeValue' => partnerPercent
+            });
+        }
+
+        return new Map<String, Object>{
+            'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
+            'attributes' => attributes
+        };
+    }
 }

@@ -58,4 +58,32 @@ private class DerivedMaintenancePayloadBuilderTest {
                 'no conditional attribute expected: ' + name);
         }
     }
+
+    @IsTest
+    static void buildFallbackPayload_sevenFixedPlusConditionalPartner() {
+        Object path = new List<Object>{ 'q', 'l' };
+        Map<String, Object> p = DerivedMaintenancePayloadBuilder.buildFallbackPayload(path, 62.48, 124.96, 15);
+        List<Object> a = attrs(p);
+        System.assertEquals(8, a.size(), '7 fixed + PartnerDiscountPercent');
+        System.assertEquals('NetUnitPrice', at(a, 0).get('attributeName'));
+        System.assertEquals(62.48, at(a, 0).get('attributeValue'));
+        System.assertEquals('NetTotalPrice', at(a, 1).get('attributeName'));
+        System.assertEquals(124.96, at(a, 1).get('attributeValue'));
+        System.assertEquals('PartnerUnitPrice', at(a, 5).get('attributeName'));
+        System.assertEquals(62.48, at(a, 5).get('attributeValue'));
+        System.assertEquals('Partner_Pricing_Source__c', at(a, 6).get('attributeName'));
+        System.assertEquals('System Calculated (Post-Procedure Fallback)', at(a, 6).get('attributeValue'));
+        System.assertEquals('PartnerDiscountPercent', at(a, 7).get('attributeName'));
+        System.assertEquals(15, at(a, 7).get('attributeValue'));
+        Map<String, Object> nodePath = (Map<String, Object>) p.get('nodePath');
+        System.assertEquals(path, nodePath.get('dataPath'));
+    }
+
+    @IsTest
+    static void buildFallbackPayload_partnerOmittedWhenNullOrZero() {
+        System.assertEquals(7, attrs(DerivedMaintenancePayloadBuilder.buildFallbackPayload(
+            new List<Object>{ 'x' }, 62.48, 62.48, null)).size(), 'null partner% -> 7 fixed only');
+        System.assertEquals(7, attrs(DerivedMaintenancePayloadBuilder.buildFallbackPayload(
+            new List<Object>{ 'x' }, 62.48, 62.48, 0)).size(), 'zero partner% -> 7 fixed only');
+    }
 }
