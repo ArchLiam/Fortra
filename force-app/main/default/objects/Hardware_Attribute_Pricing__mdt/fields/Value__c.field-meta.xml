@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Value__c</fullName>
+    <description>The numeric table value: the MULTIPLIER for pGroup rows (e.g. 1.5) and UserTier rows (e.g. 3.0), or the DISCOUNT PERCENT for SystemType rows (e.g. 25 = 25% off). Interpreted per Table_Type__c by HardwarePricingCalculator.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Value</label>
+    <precision>18</precision>
+    <required>true</required>
+    <scale>4</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

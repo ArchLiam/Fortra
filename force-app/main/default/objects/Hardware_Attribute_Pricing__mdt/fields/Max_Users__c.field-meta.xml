@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_Users__c</fullName>
+    <description>UserTier rows only: inclusive upper bound of the users-per-partition band. BLANK = open-ended top band (SDD §8 Rule 3: 501+ = 3.0x, no upper cap). Blank for pGroup/SystemType rows.</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Max Users</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

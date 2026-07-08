@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Admin-editable pricing tables for Power/hardware attribute pricing (D-14): pGroup multipliers, user-count-tier multipliers, and system-type discounts. Seeded with the values from Fortra-Products-Hardware-Solution-Design-Doc §8 Rules 2/3/4. Read by HardwarePricingCalculator via getAll() (no SOQL). Table_Type__c discriminates row kind: pGroup | UserTier | SystemType.</description>
+    <label>Hardware Attribute Pricing</label>
+    <pluralLabel>Hardware Attribute Pricing</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

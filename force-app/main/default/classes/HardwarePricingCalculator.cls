@@ -1,8 +1,13 @@
 /**
  * Pure hardware-pricing calculation, extracted from HardwareAttributePricingPrehook (Wave 2 hook-thinning).
- * Plain-input / plain-output; unit-testable without the RCA runtime. Behavior-identical to the prior inline
- * logic (same tables, same formula) — it was only relocated. This is also the future seam for
- * config-driving the multiplier tables (D-14).
+ * Plain-input / plain-output; unit-testable without the RCA runtime.
+ *
+ * D-14 (behavior-preserving config extraction): the three pricing tables — pGroup multipliers,
+ * user-count-tier multipliers, and system-type discounts — are now read from the admin-editable
+ * `Hardware_Attribute_Pricing__mdt` Custom Metadata Type, seeded with the EXACT prior hardcoded values
+ * (Fortra-Products-Hardware-Solution-Design-Doc §8 Rules 2/3/4). Loaded once per transaction via
+ * getAll() (NOT SOQL — no query-governor cost, matters for the SC-3447-sensitive waterfall). Lookup
+ * semantics and lookup-miss defaults are unchanged; seeded config reproduces the old output byte-for-byte.
  *
  * Formula: adjustedPrice = listPrice x pGroupMultiplier x userTierMultiplier x (1 - systemTypeDiscount/100)
  * Note: adjustedPrice is returned RAW (unrounded); the caller rounds, matching the prior inline behavior.
@@ -10,47 +15,35 @@
  */
 public with sharing class HardwarePricingCalculator {
 
+    // Lookup-MISS fallbacks (not table values — the safety default when a key/band is not configured).
     @TestVisible private static final Decimal DEFAULT_MULTIPLIER = 1.0;
     @TestVisible private static final Decimal DEFAULT_DISCOUNT = 0.0;
 
-    // pGroup multiplier mappings (P05 through P60)
-    private static final Map<String, Decimal> PGROUP_MULTIPLIERS = new Map<String, Decimal>{
-        'P05' => 0.5,
-        'P10' => 0.75,
-        'P20' => 1.0,
-        'P30' => 1.5,
-        'P40' => 2.0,
-        'P50' => 3.0,
-        'P60' => 4.0
-    };
+    // Hardware_Attribute_Pricing__mdt.Table_Type__c discriminator values.
+    @TestVisible private static final String TYPE_PGROUP = 'pGroup';
+    @TestVisible private static final String TYPE_USER_TIER = 'UserTier';
+    @TestVisible private static final String TYPE_SYSTEM_TYPE = 'SystemType';
 
-    // User tier multiplier ranges. Top band is OPEN-ENDED (maxUsers == null) per Hardware SDD
-    // §8 Rule 3: "501+ = 3.0" — no upper cap. A finite cap (e.g. 999999) would drop 1,000,000+
-    // users to the 1.0x default, violating the rule.
-    private static final List<UserTierRange> USER_TIER_RANGES = new List<UserTierRange>{
-        new UserTierRange(1, 10, 1.0),
-        new UserTierRange(11, 50, 1.25),
-        new UserTierRange(51, 100, 1.5),
-        new UserTierRange(101, 250, 2.0),
-        new UserTierRange(251, 500, 2.5),
-        new UserTierRange(501, null, 3.0)
-    };
+    // Config tables, lazily loaded once per transaction from the MDT (D-14). Null => not yet loaded.
+    private static Map<String, Decimal> pGroupMultipliers;
+    private static List<UserTierRange> userTierRanges;
+    private static Map<String, Decimal> systemTypeDiscounts;
 
-    // System type discount mappings
-    private static final Map<String, Decimal> SYSTEM_TYPE_DISCOUNTS = new Map<String, Decimal>{
-        'Production' => 0.0,
-        'Staging' => 25.0,
-        'Test' => 50.0
-    };
-
-    private class UserTierRange {
+    private class UserTierRange implements Comparable {
         public Integer minUsers;
-        public Integer maxUsers;
+        public Integer maxUsers;   // null == open-ended top band (SDD §8 Rule 3: 501+ has no upper cap)
         public Decimal multiplier;
         public UserTierRange(Integer minU, Integer maxU, Decimal mult) {
             this.minUsers = minU;
             this.maxUsers = maxU;
             this.multiplier = mult;
+        }
+        // Ascending by minUsers so the contiguous bands evaluate low->high (open-ended top band last),
+        // reproducing the fixed declaration order of the prior hardcoded list.
+        public Integer compareTo(Object o) {
+            Integer a = (this.minUsers == null) ? 0 : this.minUsers;
+            Integer b = (((UserTierRange) o).minUsers == null) ? 0 : ((UserTierRange) o).minUsers;
+            return (a < b) ? -1 : (a > b) ? 1 : 0;
         }
     }
 
@@ -76,37 +69,80 @@ public with sharing class HardwarePricingCalculator {
         return r;
     }
 
-    /** @description Get pGroup multiplier from static map (default 1.0). */
+    /** @description Get pGroup multiplier from the MDT-backed table (default 1.0 on blank/unknown). */
     @TestVisible
     public static Decimal getPGroupMultiplier(String pGroup) {
         if (String.isBlank(pGroup)) {
             return DEFAULT_MULTIPLIER;
         }
-        return PGROUP_MULTIPLIERS.containsKey(pGroup) ? PGROUP_MULTIPLIERS.get(pGroup) : DEFAULT_MULTIPLIER;
+        ensureLoaded();
+        return pGroupMultipliers.containsKey(pGroup) ? pGroupMultipliers.get(pGroup) : DEFAULT_MULTIPLIER;
     }
 
-    /** @description Get user-tier multiplier based on user count (default 1.0). */
+    /** @description Get user-tier multiplier for the user count from the MDT-backed bands (default 1.0). */
     @TestVisible
     public static Decimal getUserTierMultiplier(Decimal usersPerPartition) {
         if (usersPerPartition == null || usersPerPartition <= 0) {
             return DEFAULT_MULTIPLIER;
         }
+        ensureLoaded();
         Integer users = usersPerPartition.intValue();
-        for (UserTierRange range : USER_TIER_RANGES) {
+        for (UserTierRange range : userTierRanges) {
             // maxUsers == null => open-ended top band (SDD §8 Rule 3: 501+ = 3.0x, no upper cap).
-            if (users >= range.minUsers && (range.maxUsers == null || users <= range.maxUsers)) {
+            if (range.minUsers != null && users >= range.minUsers && (range.maxUsers == null || users <= range.maxUsers)) {
                 return range.multiplier;
             }
         }
         return DEFAULT_MULTIPLIER;
     }
 
-    /** @description Get system-type discount percentage (default 0). */
+    /** @description Get system-type discount percentage from the MDT-backed table (default 0 on blank/unknown). */
     @TestVisible
     public static Decimal getSystemTypeDiscount(String systemType) {
         if (String.isBlank(systemType)) {
             return DEFAULT_DISCOUNT;
         }
-        return SYSTEM_TYPE_DISCOUNTS.containsKey(systemType) ? SYSTEM_TYPE_DISCOUNTS.get(systemType) : DEFAULT_DISCOUNT;
+        ensureLoaded();
+        return systemTypeDiscounts.containsKey(systemType) ? systemTypeDiscounts.get(systemType) : DEFAULT_DISCOUNT;
+    }
+
+    /** @description Lazily load the three tables from Hardware_Attribute_Pricing__mdt (once per transaction). */
+    private static void ensureLoaded() {
+        if (pGroupMultipliers != null) {
+            return;
+        }
+        loadFromRecords(Hardware_Attribute_Pricing__mdt.getAll().values());
+    }
+
+    /**
+     * @description Rebuild the in-memory lookup tables from a set of MDT records. Also the test seam:
+     *              unit tests inject a controlled table to prove the lookup reproduces the SDD values
+     *              for every tier without coupling to the org's deployed (admin-editable) records.
+     * @param recs MDT rows (each tagged by Table_Type__c: pGroup | UserTier | SystemType)
+     */
+    @TestVisible
+    private static void loadFromRecords(List<Hardware_Attribute_Pricing__mdt> recs) {
+        Map<String, Decimal> pg = new Map<String, Decimal>();
+        List<UserTierRange> tiers = new List<UserTierRange>();
+        Map<String, Decimal> st = new Map<String, Decimal>();
+        for (Hardware_Attribute_Pricing__mdt r : recs) {
+            if (r.Table_Type__c == TYPE_PGROUP) {
+                if (String.isNotBlank(r.Attribute_Key__c)) {
+                    pg.put(r.Attribute_Key__c, r.Value__c);
+                }
+            } else if (r.Table_Type__c == TYPE_USER_TIER) {
+                Integer minU = (r.Min_Users__c == null) ? null : r.Min_Users__c.intValue();
+                Integer maxU = (r.Max_Users__c == null) ? null : r.Max_Users__c.intValue();
+                tiers.add(new UserTierRange(minU, maxU, r.Value__c));
+            } else if (r.Table_Type__c == TYPE_SYSTEM_TYPE) {
+                if (String.isNotBlank(r.Attribute_Key__c)) {
+                    st.put(r.Attribute_Key__c, r.Value__c);
+                }
+            }
+        }
+        tiers.sort();
+        pGroupMultipliers = pg;
+        userTierRanges = tiers;
+        systemTypeDiscounts = st;
     }
 }
