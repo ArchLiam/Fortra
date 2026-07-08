@@ -37,6 +37,14 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
     private static final String DEFAULT_SYSTEM_TYPE = 'Production';
     private static final Decimal DEFAULT_USERS = 1;
 
+    // Override-tier source labels — the three SDD-canonical values Hardware_Pricing_Source__c may
+    // hold (Hardware SDD §8 Rule 5: "record which won ... Configurator | Hardware Default | System
+    // Default"). The winning tier when the Product Configurator supplies the attribute is
+    // 'Configurator' (NOT the legacy 'User Override', which is not an SDD-valid value).
+    private static final String SOURCE_CONFIGURATOR = 'Configurator';
+    private static final String SOURCE_HARDWARE = 'Hardware Default';
+    private static final String SOURCE_SYSTEM = 'System Default';
+
     // Attribute names as they appear in Product Configurator (SalesTransactionItemAttribute)
     // These match the AttributeDefinition.DeveloperName values
     private static final String ATTR_PGROUP = 'Pgroup';
@@ -554,26 +562,26 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
         String configuredPGroup = configuredAttrs != null ? configuredAttrs.get(ATTR_PGROUP) : null;
         if (String.isNotBlank(configuredPGroup)) {
             pGroup = configuredPGroup;
-            pGroupSource = 'User Override';
+            pGroupSource = SOURCE_CONFIGURATOR;
         } else if (hardware != null && String.isNotBlank(hardware.P_Group_List__c)) {
             pGroup = hardware.P_Group_List__c;
-            pGroupSource = 'Hardware Default';
+            pGroupSource = SOURCE_HARDWARE;
         } else {
             pGroup = DEFAULT_PGROUP;
-            pGroupSource = 'System Default';
+            pGroupSource = SOURCE_SYSTEM;
         }
 
         // Server Type: Check configured, then hardware, then system default
         String configuredServerType = configuredAttrs != null ? configuredAttrs.get(ATTR_SERVER_TYPE) : null;
         if (String.isNotBlank(configuredServerType)) {
             systemType = configuredServerType;
-            systemTypeSource = 'User Override';
+            systemTypeSource = SOURCE_CONFIGURATOR;
         } else if (hardware != null && String.isNotBlank(hardware.Server_Type__c)) {
             systemType = hardware.Server_Type__c;
-            systemTypeSource = 'Hardware Default';
+            systemTypeSource = SOURCE_HARDWARE;
         } else {
             systemType = DEFAULT_SYSTEM_TYPE;
-            systemTypeSource = 'System Default';
+            systemTypeSource = SOURCE_SYSTEM;
         }
 
         // Users Per Partition: Check configured, then hardware, then system default
@@ -581,17 +589,17 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
         if (String.isNotBlank(configuredUsers)) {
             try {
                 usersPerPartition = Decimal.valueOf(configuredUsers);
-                usersSource = 'User Override';
+                usersSource = SOURCE_CONFIGURATOR;
             } catch (Exception e) {
                 usersPerPartition = DEFAULT_USERS;
-                usersSource = 'System Default (parse error)';
+                usersSource = SOURCE_SYSTEM + ' (parse error)';
             }
         } else if (hardware != null && hardware.Users_Per_Partition__c != null) {
             usersPerPartition = hardware.Users_Per_Partition__c;
-            usersSource = 'Hardware Default';
+            usersSource = SOURCE_HARDWARE;
         } else {
             usersPerPartition = DEFAULT_USERS;
-            usersSource = 'System Default';
+            usersSource = SOURCE_SYSTEM;
         }
 
         String model = hardware != null ? hardware.Model_Number__c : null;
@@ -687,12 +695,14 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
             'attributeValue' => true
         });
 
-        // Hardware_Pricing_Source__c - dominant source (User Override > Hardware Default > System Default)
-        String dominantSource = 'System Default';
-        if (pGroupSource == 'User Override' || systemTypeSource == 'User Override' || usersSource == 'User Override') {
-            dominantSource = 'User Override';
-        } else if (pGroupSource == 'Hardware Default' || systemTypeSource == 'Hardware Default' || usersSource == 'Hardware Default') {
-            dominantSource = 'Hardware Default';
+        // Hardware_Pricing_Source__c - dominant tier that won (SDD §8 Rule 5 priority:
+        // Configurator override > Hardware defaults > System defaults). Records exactly one of the
+        // three SDD-canonical values; maps the resolved per-attribute tier, does not hardcode a tier.
+        String dominantSource = SOURCE_SYSTEM;
+        if (pGroupSource == SOURCE_CONFIGURATOR || systemTypeSource == SOURCE_CONFIGURATOR || usersSource == SOURCE_CONFIGURATOR) {
+            dominantSource = SOURCE_CONFIGURATOR;
+        } else if (pGroupSource == SOURCE_HARDWARE || systemTypeSource == SOURCE_HARDWARE || usersSource == SOURCE_HARDWARE) {
+            dominantSource = SOURCE_HARDWARE;
         }
         attributes.add(new Map<String, Object>{
             'attributeName' => 'Hardware_Pricing_Source__c',

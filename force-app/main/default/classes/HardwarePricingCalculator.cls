@@ -24,14 +24,16 @@ public with sharing class HardwarePricingCalculator {
         'P60' => 4.0
     };
 
-    // User tier multiplier ranges
+    // User tier multiplier ranges. Top band is OPEN-ENDED (maxUsers == null) per Hardware SDD
+    // §8 Rule 3: "501+ = 3.0" — no upper cap. A finite cap (e.g. 999999) would drop 1,000,000+
+    // users to the 1.0x default, violating the rule.
     private static final List<UserTierRange> USER_TIER_RANGES = new List<UserTierRange>{
         new UserTierRange(1, 10, 1.0),
         new UserTierRange(11, 50, 1.25),
         new UserTierRange(51, 100, 1.5),
         new UserTierRange(101, 250, 2.0),
         new UserTierRange(251, 500, 2.5),
-        new UserTierRange(501, 999999, 3.0)
+        new UserTierRange(501, null, 3.0)
     };
 
     // System type discount mappings
@@ -91,7 +93,8 @@ public with sharing class HardwarePricingCalculator {
         }
         Integer users = usersPerPartition.intValue();
         for (UserTierRange range : USER_TIER_RANGES) {
-            if (users >= range.minUsers && users <= range.maxUsers) {
+            // maxUsers == null => open-ended top band (SDD §8 Rule 3: 501+ = 3.0x, no upper cap).
+            if (users >= range.minUsers && (range.maxUsers == null || users <= range.maxUsers)) {
                 return range.multiplier;
             }
         }

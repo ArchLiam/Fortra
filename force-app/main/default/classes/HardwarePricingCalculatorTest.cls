@@ -103,9 +103,11 @@ private class HardwarePricingCalculatorTest {
     }
 
     @isTest
-    static void userTierMultiplier_aboveAllRanges_default() {
-        // top range is 501..999999; anything larger falls through to default 1.0
-        System.assertEquals(1.0, HardwarePricingCalculator.getUserTierMultiplier(1000000), 'above all ranges -> default');
+    static void userTierMultiplier_topBandOpenEnded_rule3() {
+        // Hardware SDD §8 Rule 3: top band is "501+ = 3.0" (OPEN-ENDED, no upper cap).
+        // Users at or beyond any finite cap must still resolve to the top-band 3.0x, not the 1.0x default.
+        System.assertEquals(3.0, HardwarePricingCalculator.getUserTierMultiplier(1000000),   '1,000,000 users -> 501+ band 3.0x (open-ended)');
+        System.assertEquals(3.0, HardwarePricingCalculator.getUserTierMultiplier(2000000000), '2,000,000,000 users -> 501+ band 3.0x (open-ended)');
     }
 
     @isTest

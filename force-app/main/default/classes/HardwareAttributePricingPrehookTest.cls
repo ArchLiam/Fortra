@@ -560,10 +560,53 @@ private class HardwareAttributePricingPrehookTest {
         List<Object> attrs = (List<Object>) result.get('attributes');
         // Find Hardware_Pricing_Source__c
         String dominantSource = findAttributeValue(attrs, 'Hardware_Pricing_Source__c');
-        System.assertEquals('User Override', dominantSource, 'Dominant source should be User Override');
+        System.assertEquals('Configurator', dominantSource, 'SDD §8 Rule 5: Configurator override tier won');
         // Find pGroup_Applied__c
         String pGroupApplied = findAttributeValue(attrs, 'pGroup_Applied__c');
         System.assertEquals('P40', pGroupApplied, 'pGroup should be P40 from user override');
+    }
+
+    /**
+     * @description SDD §8 Rule 5: Hardware_Pricing_Source__c must record which override tier won,
+     *              using EXACTLY one of the three canonical values Configurator | Hardware Default |
+     *              System Default — never the legacy 'User Override'. Covers all three tiers so the
+     *              resolved tier is mapped (not hardcoded).
+     */
+    @isTest
+    static void testProcessLineItem_sourceLabel_rule5_allTiers() {
+        HardwareAttributePricingPrehook hook = new HardwareAttributePricingPrehook();
+        List<Object> dataPath = new List<Object>{ 'ctx', 'quote', 'lineR5' };
+
+        // Tier 1 — Configurator override present => 'Configurator'
+        Map<String, Object> cfgTag = new Map<String, Object>{
+            'ProductId' => 'PROD-R5-CFG', 'ListPrice' => 10000, 'Hardware_Id__c' => 'non-blank'
+        };
+        Map<String, Object> cfgResult = hook.processLineItem(
+            cfgTag, dataPath, new Map<Id, Hardware__c>(), new Map<String, String>{ 'Pgroup' => 'P40' });
+        System.assertEquals('Configurator',
+            findAttributeValue((List<Object>) cfgResult.get('attributes'), 'Hardware_Pricing_Source__c'),
+            'Configurator tier must stamp Configurator, not User Override');
+
+        // Tier 2 — no configurator, hardware defaults present => 'Hardware Default'
+        Hardware__c hw = createTestHardware('P30', 'Test', 100);
+        Map<String, Object> hwTag = new Map<String, Object>{
+            'ProductId' => 'PROD-R5-HW', 'ListPrice' => 8000, 'Hardware_Id__c' => hw.Id
+        };
+        Map<String, Object> hwResult = hook.processLineItem(
+            hwTag, dataPath, new Map<Id, Hardware__c>{ hw.Id => hw }, new Map<String, String>());
+        System.assertEquals('Hardware Default',
+            findAttributeValue((List<Object>) hwResult.get('attributes'), 'Hardware_Pricing_Source__c'),
+            'Hardware-defaults tier must stamp Hardware Default');
+
+        // Tier 3 — hardware link present but record absent/empty => 'System Default'
+        Map<String, Object> sysTag = new Map<String, Object>{
+            'ProductId' => 'PROD-R5-SYS', 'ListPrice' => 5000, 'Hardware_Id__c' => 'non-blank'
+        };
+        Map<String, Object> sysResult = hook.processLineItem(
+            sysTag, dataPath, new Map<Id, Hardware__c>(), new Map<String, String>());
+        System.assertEquals('System Default',
+            findAttributeValue((List<Object>) sysResult.get('attributes'), 'Hardware_Pricing_Source__c'),
+            'System-defaults tier must stamp System Default');
     }
 
     /**
@@ -592,7 +635,7 @@ private class HardwareAttributePricingPrehookTest {
 
         System.assertNotEquals(null, result, 'Should return update');
         List<Object> attrs = (List<Object>) result.get('attributes');
-        System.assertEquals('User Override', findAttributeValue(attrs, 'Hardware_Pricing_Source__c'));
+        System.assertEquals('Configurator', findAttributeValue(attrs, 'Hardware_Pricing_Source__c'));
         System.assertEquals('P50', findAttributeValue(attrs, 'pGroup_Applied__c'));
         System.assertEquals('Staging', findAttributeValue(attrs, 'System_Type_Applied__c'));
         System.assertEquals(200, findAttributeDecimal(attrs, 'Users_Per_Partition_Applied__c'));
@@ -655,9 +698,9 @@ private class HardwareAttributePricingPrehookTest {
 
         System.assertNotEquals(null, result, 'Should return update');
         List<Object> attrs = (List<Object>) result.get('attributes');
-        // pGroup = User Override, systemType = Hardware Default, users = System Default
-        // Dominant should be User Override (highest priority present)
-        System.assertEquals('User Override', findAttributeValue(attrs, 'Hardware_Pricing_Source__c'));
+        // pGroup = Configurator, systemType = Hardware Default, users = System Default
+        // Dominant should be Configurator (highest-priority tier present) per SDD §8 Rule 5
+        System.assertEquals('Configurator', findAttributeValue(attrs, 'Hardware_Pricing_Source__c'));
         System.assertEquals('P60', findAttributeValue(attrs, 'pGroup_Applied__c'));
         System.assertEquals('Staging', findAttributeValue(attrs, 'System_Type_Applied__c'));
     }
@@ -972,7 +1015,7 @@ private class HardwareAttributePricingPrehookTest {
         HardwareAttributePricingPrehook.HardwarePricingDetail detail =
             new HardwareAttributePricingPrehook.HardwarePricingDetail();
         detail.pGroup = 'P30';
-        detail.pGroupSource = 'User Override';
+        detail.pGroupSource = 'Configurator';
         detail.model = 'MODEL-X';
         detail.systemType = 'Staging';
         detail.systemTypeSource = 'Hardware Default';
@@ -1000,7 +1043,7 @@ private class HardwareAttributePricingPrehookTest {
         Map<String, Object> attrs = (Map<String, Object>) result.get('attributes');
         Map<String, Object> pGroupAttr = (Map<String, Object>) attrs.get('pGroup');
         System.assertEquals('P30', pGroupAttr.get('value'));
-        System.assertEquals('User Override', pGroupAttr.get('source'));
+        System.assertEquals('Configurator', pGroupAttr.get('source'));
 
         Map<String, Object> multipliers = (Map<String, Object>) result.get('multipliers');
         System.assertEquals(1.5, multipliers.get('pGroupMultiplier'));
@@ -1425,9 +1468,9 @@ private class HardwareAttributePricingPrehookTest {
 
         System.assertEquals(1, updates.size(), 'Only line 1 should produce an update');
         List<Object> attrs = (List<Object>) updates[0].get('attributes');
-        // LINE-1 had a user-override Pgroup of P60 -> dominant source = User Override
-        System.assertEquals('User Override', findAttributeValue(attrs, 'Hardware_Pricing_Source__c'),
-            'Configured attribute lookup by line id should drive User Override');
+        // LINE-1 had a configurator Pgroup of P60 -> dominant source = Configurator (SDD §8 Rule 5)
+        System.assertEquals('Configurator', findAttributeValue(attrs, 'Hardware_Pricing_Source__c'),
+            'Configured attribute lookup by line id should drive Configurator source');
         System.assertEquals('P60', findAttributeValue(attrs, 'pGroup_Applied__c'),
             'pGroup should be the configured P60');
     }
