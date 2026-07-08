@@ -1135,13 +1135,10 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         public Decimal softwareDiscount;
     }
 
-    @TestVisible
-    private class NewBusinessMaintenanceNets {
-        public Decimal expectedListNet;
-        public Decimal expectedCommercialNet;
-        public Decimal partnerPercent;
-        public Decimal softwareDiscount;
-    }
+    // NewBusinessMaintenanceNets promoted to a public top-level class (Wave-2 decomposition,
+    // build*Update step 4) so NewMaintenanceNetCalculator can return it. The unqualified references
+    // below rebind to the top-level type; the inner decl is deleted here in the SAME deploy so no
+    // stale inner shadows it. Zero test/cross-class references, so the relocation is name-transparent.
 
     /**
      * @description Load New-Maintenance lines and maintenance rate from Maintenance_Rate__mdt.
