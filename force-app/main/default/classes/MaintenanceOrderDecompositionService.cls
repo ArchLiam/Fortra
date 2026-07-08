@@ -721,18 +721,22 @@ public with sharing class MaintenanceOrderDecompositionService {
         }
 
         Map<Id, OrderMaintenanceWork> workByOrderId = loadWorkBulk(orderIds);
+        // D-16: accumulate every order's patches into one list so the DML is hoisted out of the
+        // per-order loop (bulk-safe for the invocable). Per-order counts are recorded before the
+        // single update; patches are OrderItem-Id keyed so cross-order flattening cannot collide.
+        List<OrderItem> allPatches = new List<OrderItem>();
         for (Id orderId : orderIds) {
             if (orderId == null) {
                 continue;
             }
             OrderMaintenanceWork work = workByOrderId.get(orderId);
             Map<Id, OrderItem> patches = buildCarryForwardFieldPatchesFromWork(work);
-            if (patches.isEmpty()) {
-                countsByOrderId.put(orderId, 0);
-                continue;
-            }
-            update patches.values();
             countsByOrderId.put(orderId, patches.size());
+            allPatches.addAll(patches.values());
+        }
+
+        if (!allPatches.isEmpty()) {
+            update allPatches;
         }
         return countsByOrderId;
     }

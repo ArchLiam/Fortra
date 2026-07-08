@@ -1586,4 +1586,124 @@ private class MaintenanceOrderDecompositionServiceTest {
         String prefix = sobjectType.getDescribe().getKeyPrefix();
         return (Id) (prefix + '0'.repeat(15 - prefix.length()));
     }
+
+    /**
+     * Builds one New-business Order carrying `numLines` derived New-Maintenance lines that each
+     * produce a carry-forward backfill patch (mirrors backfillCarryForwardFields_updates... recipe).
+     */
+    private static Id buildMaintOrderWithLines(Id acctId, Id pbeId, Id productId, Integer numLines) {
+        Opportunity opp = new Opportunity(
+            AccountId = acctId,
+            Name = 'Backfill Bulk Opp',
+            StageName = 'Pre-Qualified',
+            CloseDate = Date.today().addDays(30)
+        );
+        insert opp;
+
+        Quote q = new Quote(
+            Name = 'Backfill Bulk Quote',
+            OpportunityId = opp.Id,
+            Pricebook2Id = Test.getStandardPricebookId(),
+            Quote_Type__c = 'New'
+        );
+        insert q;
+
+        insert new Quote_Checklist_Item__c(
+            Quote__c = q.Id,
+            Item_Name__c = 'Checklist Item',
+            Sort_Order__c = 1,
+            Is_Checked__c = true
+        );
+
+        Order ord = new Order(
+            AccountId = acctId,
+            Status = 'Draft',
+            EffectiveDate = Date.today(),
+            Pricebook2Id = Test.getStandardPricebookId(),
+            QuoteId = q.Id
+        );
+        insert ord;
+
+        List<QuoteLineItem> qlis = new List<QuoteLineItem>();
+        for (Integer i = 0; i < numLines; i++) {
+            qlis.add(new QuoteLineItem(
+                QuoteId = q.Id,
+                PricebookEntryId = pbeId,
+                Product2Id = productId,
+                Quantity = 1,
+                UnitPrice = 62.48,
+                PartnerUnitPrice = 62.48,
+                Base_Price__c = 355,
+                Fortra_Product_Type__c = 'New Maintenance'
+            ));
+        }
+        insert qlis;
+
+        List<OrderItem> ois = new List<OrderItem>();
+        for (QuoteLineItem qli : qlis) {
+            ois.add(new OrderItem(
+                OrderId = ord.Id,
+                QuoteLineItemId = qli.Id,
+                PricebookEntryId = pbeId,
+                Product2Id = productId,
+                Quantity = 1,
+                UnitPrice = 71,
+                Base_Price__c = 355
+            ));
+        }
+        insert ois;
+        return ord.Id;
+    }
+
+    /**
+     * D-16: backfill DML must be hoisted out of the per-order loop. Distribution-invariance proof —
+     * same total patched lines (2), two order spreads. The bulk method issues ONE update for both,
+     * so the DML budget is identical; the pre-fix per-order DML would cost the 2-order spread one
+     * extra statement. Flow/trigger noise scales with line count (equal here), so it cancels out.
+     */
+    @isTest
+    static void backfillCarryForwardFieldsBulk_dmlDoesNotScaleWithOrderCount() {
+        Account acct = new Account(Name = 'Backfill Bulk Account');
+        insert acct;
+
+        Product2 maintProd = new Product2(
+            Name = 'Backfill Bulk Product',
+            ProductCode = 'BFB-' + String.valueOf(Crypto.getRandomInteger()),
+            IsActive = true,
+            Fortra_Product_Type__c = 'New Maintenance'
+        );
+        insert maintProd;
+
+        Id stdPBId = Test.getStandardPricebookId();
+        PricebookEntry pbe = new PricebookEntry(
+            Pricebook2Id = stdPBId,
+            Product2Id = maintProd.Id,
+            UnitPrice = 355,
+            IsActive = true
+        );
+        insert pbe;
+
+        Id spreadOrder1 = buildMaintOrderWithLines(acct.Id, pbe.Id, maintProd.Id, 1);
+        Id spreadOrder2 = buildMaintOrderWithLines(acct.Id, pbe.Id, maintProd.Id, 1);
+        Id concentratedOrder = buildMaintOrderWithLines(acct.Id, pbe.Id, maintProd.Id, 2);
+
+        Test.startTest();
+        Integer dmlBeforeSpread = Limits.getDmlStatements();
+        Map<Id, Integer> spreadCounts = MaintenanceOrderDecompositionService.backfillCarryForwardFieldsBulk(
+            new Set<Id>{ spreadOrder1, spreadOrder2 });
+        Integer dmlSpread = Limits.getDmlStatements() - dmlBeforeSpread;
+
+        Integer dmlBeforeConc = Limits.getDmlStatements();
+        Map<Id, Integer> concCounts = MaintenanceOrderDecompositionService.backfillCarryForwardFieldsBulk(
+            new Set<Id>{ concentratedOrder });
+        Integer dmlConc = Limits.getDmlStatements() - dmlBeforeConc;
+        Test.stopTest();
+
+        System.assertEquals(1, spreadCounts.get(spreadOrder1), 'spread order 1 patched one line');
+        System.assertEquals(1, spreadCounts.get(spreadOrder2), 'spread order 2 patched one line');
+        System.assertEquals(2, concCounts.get(concentratedOrder), 'concentrated order patched two lines');
+
+        System.assertEquals(dmlConc, dmlSpread,
+            'Backfill DML must not scale with order count (spread=' + dmlSpread + ' concentrated=' + dmlConc + ')');
+    }
 }

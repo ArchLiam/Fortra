@@ -19,17 +19,40 @@ public with sharing class AssetRateOverrideConsolidationService {
         if (orderId == null) {
             return 0;
         }
-        return patchOrderLinesForAssetization(orderId);
+        Map<Id, Integer> counts = patchOrderLinesForAssetizationBulk(new Set<Id>{ orderId });
+        return counts.containsKey(orderId) ? counts.get(orderId) : 0;
     }
 
     @TestVisible
     static Integer patchOrderLinesForAssetization(Id orderId) {
+        return prepareOrderForAssetization(orderId);
+    }
+
+    /**
+     * @description D-16 bulk variant: aligns commercial net on every line of the given orders in a
+     *              single SOQL + single DML, so the invocable stays governor-safe when the async
+     *              record-triggered Fortra_Assetize_Order flow batches multiple activated Orders
+     *              into one transaction. Mirrors the bulkified sibling PopulateAssetLegacyFieldsAction
+     *              in the same flow. Returns per-order patched-line counts.
+     */
+    @TestVisible
+    static Map<Id, Integer> patchOrderLinesForAssetizationBulk(Set<Id> orderIds) {
+        Map<Id, Integer> countsByOrderId = new Map<Id, Integer>();
+        if (orderIds == null || orderIds.isEmpty()) {
+            return countsByOrderId;
+        }
+        for (Id orderId : orderIds) {
+            if (orderId != null) {
+                countsByOrderId.put(orderId, 0);
+            }
+        }
+
         List<OrderItem> patches = new List<OrderItem>();
         for (OrderItem oi : [
-            SELECT Id, Quantity, TotalPrice, NetUnitPrice, UnitPrice,
+            SELECT Id, OrderId, Quantity, TotalPrice, NetUnitPrice, UnitPrice,
                    PartnerDiscountPercent, Discount, Manual_Discount__c, DiscountAmount
             FROM OrderItem
-            WHERE OrderId = :orderId
+            WHERE OrderId IN :orderIds
         ]) {
             Decimal commercialUnit = resolveCommercialUnitForAssetization(oi);
             if (commercialUnit == null) {
@@ -43,13 +66,14 @@ public with sharing class AssetRateOverrideConsolidationService {
                 NetUnitPrice = commercialUnit,
                 UnitPrice = commercialUnit
             ));
+            countsByOrderId.put(oi.OrderId, countsByOrderId.get(oi.OrderId) + 1);
         }
 
         if (patches.isEmpty()) {
-            return 0;
+            return countsByOrderId;
         }
         update patches;
-        return patches.size();
+        return countsByOrderId;
     }
 
     /**
@@ -112,10 +136,12 @@ public with sharing class AssetRateOverrideConsolidationService {
         if (inputs == null) {
             return;
         }
+        Set<Id> orderIds = new Set<Id>();
         for (FlowInput input : inputs) {
             if (input?.orderId != null) {
-                prepareOrderForAssetization(input.orderId);
+                orderIds.add(input.orderId);
             }
         }
+        patchOrderLinesForAssetizationBulk(orderIds);
     }
 }
