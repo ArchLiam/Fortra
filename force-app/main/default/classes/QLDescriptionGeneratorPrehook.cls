@@ -44,11 +44,15 @@
  *              attribute simply omit the count.
  *
  *              Behavior:
- *              - Always overwrites Description on every Quote pricing run for
- *                any line that has at least one configured attribute AND
- *                produces at least one non-empty segment.
- *              - Lines with no SalesTransactionItemAttribute records are
- *                skipped entirely (existing Description preserved).
+ *              - Overwrites Description on every Quote pricing run for any line
+ *                that produces at least one non-empty segment. The Product Name
+ *                is always the leading segment, so every line with a product
+ *                gets at least a product-name description.
+ *              - Lines with no SalesTransactionItemAttribute records still
+ *                receive a product-name-only Description (attribute-less
+ *                products such as flat license fees no longer land blank).
+ *                Only a line with neither a product name nor any attribute
+ *                segment is skipped.
  *              - Description is written via Context.IndustriesContext
  *                .updateContextAttributes targeting the SalesTrxnItemDescription
  *                hydration-mapped attribute. Direct DML is FORBIDDEN inside
@@ -188,11 +192,12 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
      *              when none exist, from the in-code defaults (today's list).
      */
     public class ResolvedConfig {
-        List<String> segmentNames = new List<String>();
-        String unitTypeAttr;
-        String unitTypeTrigger;
-        String unitQtyPrimary;
-        String unitQtyFallback;
+        // Fields are public so the extracted QLDescriptionCalculator can read them (Wave-2 thinning).
+        public List<String> segmentNames = new List<String>();
+        public String unitTypeAttr;
+        public String unitTypeTrigger;
+        public String unitQtyPrimary;
+        public String unitQtyFallback;
     }
 
     /** @description Default config equal to the legacy hard-coded behavior. */
@@ -314,20 +319,20 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
                 return response;
             }
 
-            // Step 2 — read configured attributes for each line.
+            // Step 2 — read configured attributes for each line. Lines with no
+            // attributes are NOT short-circuited: they still receive a
+            // product-name-only description (spec: Product Name is always the
+            // leading segment). Attribute-less products (e.g. flat license fees)
+            // otherwise land blank on the quote, order, and asset.
             Map<Id, Map<String, String>> attrsByLineId = queryConfiguredAttributes(ctx, contextId);
-            if (attrsByLineId.isEmpty()) {
-                response.status = RevSignaling.TransactionStatus.SUCCESS;
-                response.message = 'No SalesTransactionItemAttribute records — nothing to generate';
-                return response;
-            }
 
-            // Step 3 — read each line's Product Name (prepended as the
-            // leading description segment).
-            Map<Id, String> productNameByLineId = queryProductNames(attrsByLineId.keySet());
+            // Step 3 — read the Product Name for EVERY line in scope (not only
+            // lines that have attributes), since the product name is the leading
+            // description segment for every line.
+            Map<Id, String> productNameByLineId = queryProductNames(dataPathByLineId.keySet());
 
-            // Step 4 — build a context update payload per line that has both
-            // configured attributes AND a non-null description.
+            // Step 4 — build a context update payload for every line that
+            // produces a non-null description (product name and/or attributes).
             ResolvedConfig cfg = loadConfig();
             List<Map<String, Object>> contextUpdates =
                 buildContextUpdates(attrsByLineId, dataPathByLineId, productNameByLineId, cfg);
@@ -336,7 +341,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
             Integer updated = submitContextUpdates(ctx, contextId, contextUpdates);
 
             response.status = RevSignaling.TransactionStatus.SUCCESS;
-            response.message = 'Generated descriptions for ' + updated + ' of ' + attrsByLineId.size() + ' configured lines';
+            response.message = 'Generated descriptions for ' + updated + ' of ' + dataPathByLineId.size() + ' lines';
 
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'QLDescriptionGeneratorPrehook error: ' + e.getMessage());
@@ -410,77 +415,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
      */
     @TestVisible
     private Map<Id, Map<String, String>> parseConfiguredAttributes(Map<String, Object> apiResponse) {
-        Map<Id, Map<String, String>> result = new Map<Id, Map<String, String>>();
-        if (apiResponse == null) {
-            return result;
-        }
-
-        Map<String, Object> queryResult;
-        if (apiResponse.containsKey('queryResult')) {
-            Object qrObj = apiResponse.get('queryResult');
-            queryResult = (qrObj instanceof Map<String, Object>) ? (Map<String, Object>) qrObj : null;
-        } else if (apiResponse.containsKey('SalesTransactionItemAttribute')) {
-            queryResult = apiResponse;
-        }
-        if (queryResult == null || !queryResult.containsKey('SalesTransactionItemAttribute')) {
-            return result;
-        }
-
-        Object attrObj = queryResult.get('SalesTransactionItemAttribute');
-        List<Object> attributeData = (attrObj instanceof List<Object>)
-            ? (List<Object>) attrObj
-            : new List<Object>{ attrObj };
-
-        for (Object rawAttr : attributeData) {
-            if (rawAttr == null || !(rawAttr instanceof Map<String, Object>)) {
-                continue;
-            }
-            Map<String, Object> attrNode = (Map<String, Object>) rawAttr;
-            Map<String, Object> tagMap;
-            List<Object> dataPath;
-
-            if (attrNode.containsKey('tagValue')) {
-                Object tv = attrNode.get('tagValue');
-                tagMap = (tv instanceof Map<String, Object>) ? (Map<String, Object>) tv : null;
-                Object dp = attrNode.get('dataPath');
-                dataPath = (dp instanceof List<Object>) ? (List<Object>) dp : null;
-            } else {
-                tagMap = attrNode;
-                dataPath = new List<Object>();
-            }
-            if (tagMap == null) {
-                continue;
-            }
-
-            String parentRef = getStringFromTag(tagMap, 'ParentReference');
-            if (String.isBlank(parentRef) && dataPath != null && dataPath.size() >= 2) {
-                parentRef = String.valueOf(dataPath[dataPath.size() - 2]);
-            }
-            if (String.isBlank(parentRef)) {
-                continue;
-            }
-
-            Id parentId;
-            try {
-                parentId = Id.valueOf(parentRef);
-            } catch (Exception e) {
-                continue;
-            }
-
-            String attrName = getStringFromTag(tagMap, 'Attribute');
-            if (String.isBlank(attrName)) {
-                attrName = getStringFromTag(tagMap, 'AttributeKeyName');
-            }
-            String attrValue = getStringFromTag(tagMap, 'AttributeValue');
-
-            if (String.isNotBlank(attrName) && attrValue != null) {
-                if (!result.containsKey(parentId)) {
-                    result.put(parentId, new Map<String, String>());
-                }
-                result.get(parentId).put(attrName, attrValue);
-            }
-        }
-        return result;
+        return QLDescriptionCalculator.parseConfiguredAttributes(apiResponse);
     }
 
     // ============================================================
@@ -491,9 +426,13 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
      * @description Build the pipe-separated Description for one line.
      *              Output shape: "<Product Name> | <Unit Type segment> |
      *              <attr 2> | ... | <attr 10>", with empty values skipped.
+     *              The Product Name is always the leading segment; attribute
+     *              segments are appended only when the line has attributes, so
+     *              attribute-less products (e.g. flat license fees) render as
+     *              the product name alone.
      * @return Joined string on success.
-     *         null when the line has no configuration attributes —
-     *         preserves the line's existing Description (no overwrite).
+     *         null only when there is neither a product name nor any attribute
+     *         segment to render.
      */
     @TestVisible
     private String buildDescription(String productName, Map<String, String> attrs) {
@@ -502,44 +441,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
 
     @TestVisible
     private String buildDescription(String productName, Map<String, String> attrs, ResolvedConfig cfg) {
-        if (attrs == null || attrs.isEmpty()) {
-            return null;
-        }
-
-        List<String> segments = new List<String>();
-
-        if (String.isNotBlank(productName)) {
-            segments.add(productName);
-        }
-
-        String unitTypeSegment = computeUnitTypeSegment(attrs, cfg);
-        if (String.isNotBlank(unitTypeSegment)) {
-            segments.add(unitTypeSegment);
-        }
-
-        Set<String> seenSegmentValues = new Set<String>();
-        for (String attrName : cfg.segmentNames) {
-            String val = attrs.get(attrName);
-            if (String.isBlank(val) || seenSegmentValues.contains(val)) {
-                continue;
-            }
-            seenSegmentValues.add(val);
-            segments.add(val);
-        }
-
-        if (segments.isEmpty()) {
-            return null;
-        }
-
-        String joined = String.join(segments, SEPARATOR);
-        if (joined.length() > DESCRIPTION_MAX_LENGTH) {
-            Integer cutoff = DESCRIPTION_MAX_LENGTH - TRUNCATION_MARKER.length();
-            if (cutoff < 0) {
-                cutoff = 0;
-            }
-            joined = joined.substring(0, cutoff) + TRUNCATION_MARKER;
-        }
-        return joined;
+        return QLDescriptionCalculator.buildDescription(productName, attrs, cfg);
     }
 
     /**
@@ -556,20 +458,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
 
     @TestVisible
     private String computeUnitTypeSegment(Map<String, String> attrs, ResolvedConfig cfg) {
-        if (attrs == null) {
-            return null;
-        }
-        String unitType = attrs.get(cfg.unitTypeAttr);
-        if (String.isBlank(unitType)) {
-            return null;
-        }
-        String trimmedQty = resolveUnitQuantity(attrs, cfg);
-        Boolean hasQty = trimmedQty != null;
-
-        if (unitType == cfg.unitTypeTrigger) {
-            return hasQty ? 'Users: ' + trimmedQty : 'Per User';
-        }
-        return hasQty ? unitType + ': ' + trimmedQty : unitType;
+        return QLDescriptionCalculator.computeUnitTypeSegment(attrs, cfg);
     }
 
     /**
@@ -584,20 +473,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
 
     @TestVisible
     private String resolveUnitQuantity(Map<String, String> attrs, ResolvedConfig cfg) {
-        if (attrs == null) {
-            return null;
-        }
-        String volume = attrs.get(cfg.unitQtyPrimary);
-        if (String.isNotBlank(volume)) {
-            return volume.trim();
-        }
-        if (String.isNotBlank(cfg.unitQtyFallback)) {
-            String numberOfUnits = attrs.get(cfg.unitQtyFallback);
-            if (String.isNotBlank(numberOfUnits)) {
-                return numberOfUnits.trim();
-            }
-        }
-        return null;
+        return QLDescriptionCalculator.resolveUnitQuantity(attrs, cfg);
     }
 
     // ============================================================
@@ -643,48 +519,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
      */
     @TestVisible
     private Map<Id, List<Object>> parseLineItemDataPaths(Map<String, Object> apiResponse) {
-        Map<Id, List<Object>> result = new Map<Id, List<Object>>();
-        if (apiResponse == null) {
-            return result;
-        }
-
-        Map<String, Object> queryResult;
-        if (apiResponse.containsKey('queryResult')) {
-            Object qrObj = apiResponse.get('queryResult');
-            queryResult = (qrObj instanceof Map<String, Object>) ? (Map<String, Object>) qrObj : null;
-        } else if (apiResponse.containsKey('SalesTransactionItem')) {
-            queryResult = apiResponse;
-        }
-        if (queryResult == null || !queryResult.containsKey('SalesTransactionItem')) {
-            return result;
-        }
-
-        Object itemsObj = queryResult.get('SalesTransactionItem');
-        List<Object> rawItems = (itemsObj instanceof List<Object>)
-            ? (List<Object>) itemsObj
-            : new List<Object>{ itemsObj };
-
-        for (Object rawItem : rawItems) {
-            if (rawItem == null || !(rawItem instanceof Map<String, Object>)) {
-                continue;
-            }
-            Map<String, Object> itemNode = (Map<String, Object>) rawItem;
-            Object dpObj = itemNode.get('dataPath');
-            if (!(dpObj instanceof List<Object>)) {
-                continue;
-            }
-            List<Object> dataPath = (List<Object>) dpObj;
-            if (dataPath.isEmpty()) {
-                continue;
-            }
-            try {
-                Id lineId = Id.valueOf(String.valueOf(dataPath[dataPath.size() - 1]));
-                result.put(lineId, dataPath);
-            } catch (Exception e) {
-                // dataPath last element wasn't a valid Id — skip
-            }
-        }
-        return result;
+        return QLDescriptionCalculator.parseLineItemDataPaths(apiResponse);
     }
 
     // ============================================================
@@ -753,24 +588,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
         Map<Id, String> productNameByLineId,
         ResolvedConfig cfg
     ) {
-        List<Map<String, Object>> contextUpdates = new List<Map<String, Object>>();
-        for (Id lineId : attrsByLineId.keySet()) {
-            List<Object> dataPath = dataPathByLineId.get(lineId);
-            if (dataPath == null) {
-                // Configured attrs without a matching SalesTransactionItem — defensive skip.
-                continue;
-            }
-            String descriptionText = buildDescription(
-                productNameByLineId.get(lineId),
-                attrsByLineId.get(lineId),
-                cfg
-            );
-            if (descriptionText == null) {
-                continue;
-            }
-            contextUpdates.add(buildContextUpdate(dataPath, descriptionText));
-        }
-        return contextUpdates;
+        return QLDescriptionCalculator.buildContextUpdates(attrsByLineId, dataPathByLineId, productNameByLineId, cfg);
     }
 
     /**
@@ -782,19 +600,7 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
      */
     @TestVisible
     private Map<String, Object> buildContextUpdate(List<Object> dataPath, String description) {
-        List<Object> updatePath = dataPath.clone();
-        if (!updatePath.isEmpty()) {
-            updatePath.remove(0);
-        }
-        return new Map<String, Object>{
-            'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
-            'attributes' => new List<Map<String, Object>>{
-                new Map<String, Object>{
-                    'attributeName' => CONTEXT_DESCRIPTION_ATTR,
-                    'attributeValue' => description
-                }
-            }
-        };
+        return QLDescriptionCalculator.buildContextUpdate(dataPath, description);
     }
 
     /**
@@ -834,30 +640,6 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
         }
     }
 
-    // ============================================================
-    // CONTEXT TAG HELPERS — same shape as the COLA / Hardware prehooks
-    // ============================================================
-
-    private String getStringFromTag(Map<String, Object> tagData, String fieldName) {
-        Object val = extractFieldValue(tagData, fieldName);
-        return val != null ? String.valueOf(val) : null;
-    }
-
-    private Object extractFieldValue(Map<String, Object> tagData, String fieldName) {
-        if (tagData == null || !tagData.containsKey(fieldName)) {
-            return null;
-        }
-        Object fieldObj = tagData.get(fieldName);
-        if (fieldObj == null) {
-            return null;
-        }
-        if (fieldObj instanceof Map<String, Object>) {
-            Map<String, Object> wrapper = (Map<String, Object>) fieldObj;
-            if (wrapper.containsKey('tagValue')) {
-                return wrapper.get('tagValue');
-            }
-            return null;
-        }
-        return fieldObj;
-    }
+    // Context tag helpers (getStringFromTag / extractFieldValue) moved to
+    // QLDescriptionCalculator with parseConfiguredAttributes (Wave-2 thinning).
 }
