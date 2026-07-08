@@ -383,26 +383,13 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
             // non-overridden lines fall through to the existing CMDT-based detection unchanged, and
             // lines never stamped by the trigger (legacy/handler-skipped, null Default) are unaffected.
             Decimal stampedDefault = getDecimalFromTag(lineItem, 'Default_COLA_Uplift_Percent__c');
-            // Shared predicate now homed in COLAUpliftCalculator (D-13 — one COLA engine); MyCAP arg
-            // null so year-1 detection excludes the outyear rate. Removes the last prehook->handler dep.
-            Boolean isEffectivelyOverridden = isPersistedLineOverride(lineOverridePercent, stampedDefault)
-                || COLAUpliftCalculator.isManualLineOverride(
-                    lineOverridePercent, cmdtDefault, null, contractOverridePct);
-
-            if (isEffectivelyOverridden) {
-                // Tier 1: Line Override (highest priority)
-                colaPercent = lineOverridePercent;
-                colaSource = 'Line Override';
-            } else if (contractOverridePct != null) {
-                // Tier 2: Contract Override
-                colaPercent = contractOverridePct;
-                colaSource = 'Contract Override';
-            }
-
-            // Tier 3: CMDT Lookup (default)
-            if (colaSource == 'CMDT Lookup') {
-                colaPercent = cmdtDefault;
-            }
+            // 3-tier COLA selection now delegated to the one engine (D-13 — Line > Contract > CMDT,
+            // byte-verbatim). MyCAP relabel + all price math stay at this caller (below). The
+            // isPersistedLineOverride disjunct (Marc 2026-07-07 x1.03/x1.04 fix) lives inside resolveTier.
+            COLAUpliftCalculator.TierResult tier = COLAUpliftCalculator.resolveTier(
+                lineOverridePercent, stampedDefault, cmdtDefault, contractOverridePct);
+            colaPercent = tier.percent;
+            colaSource = tier.source;
 
             // MyCAP: for multi-year annual lines that aren't manually overridden,
             // flag the source as 'MyCAP Default'. Year-1 COLA% stays at the
