@@ -35,6 +35,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     private class QuoteHeaderData {
         public Id billingPartnerId;
         public String partnerPricingModel;
+        public String dealType;
         public Id resellerId;
         public Id distributorId;
         public Id referralPartnerId;
@@ -532,7 +533,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                 return null;
             }
 
-            Decimal discountPercent = PartnerPricingService.getMarginForProductType(billingModel, productType);
+            Decimal discountPercent = PartnerPricingServiceV2.getMarginForProductType(billingModel, productType, quoteData.dealType);
             if (discountPercent == null || discountPercent <= 0) {
                 return null;
             }
@@ -544,7 +545,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
 
             for (Id partnerId : partnerModels.keySet()) {
                 Partner_Pricing_Model__c model = partnerModels.get(partnerId);
-                Decimal margin = PartnerPricingService.getMarginForProductType(model, productType);
+                Decimal margin = PartnerPricingServiceV2.getMarginForProductType(model, productType, quoteData.dealType);
                 if (margin != null && margin > 0) {
                     allMargins.add(margin);
                 }
@@ -676,6 +677,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         QuoteHeaderData data = new QuoteHeaderData();
         data.billingPartnerId = getIdFromTag(transactionData, 'Billing_Partner__c');
         data.partnerPricingModel = getStringFromTag(transactionData, 'Partner_Pricing_Model__c');
+        data.dealType = getStringFromTag(transactionData, 'Deal_Type__c');
         data.resellerId = getIdFromTag(transactionData, 'Reseller__c');
         data.distributorId = getIdFromTag(transactionData, 'Distributor__c');
         data.referralPartnerId = getIdFromTag(transactionData, 'Referral_Partner__c');
@@ -704,7 +706,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         }
 
         for (Order ord : [
-            SELECT Quote.Billing_Partner__c, Quote.Partner_Pricing_Model__c,
+            SELECT Quote.Billing_Partner__c, Quote.Partner_Pricing_Model__c, Quote.Deal_Type__c,
                    Quote.Reseller__c, Quote.Distributor__c, Quote.Referral_Partner__c
             FROM Order
             WHERE Id = :sourceRecordId
@@ -715,6 +717,7 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             }
             data.billingPartnerId = ord.Quote.Billing_Partner__c;
             data.partnerPricingModel = ord.Quote.Partner_Pricing_Model__c;
+            data.dealType = ord.Quote.Deal_Type__c;
             data.resellerId = ord.Quote.Reseller__c;
             data.distributorId = ord.Quote.Distributor__c;
             data.referralPartnerId = ord.Quote.Referral_Partner__c;

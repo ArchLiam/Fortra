@@ -29,7 +29,7 @@ was blind-fixed.
 - **Tab-1 SOQL to confirm the "0 of 7" claim (I have read auth):** `SELECT COLA_Source__c, COLA_Uplift_Percent__c, Default_COLA_Uplift_Percent__c FROM QuoteLineItem WHERE COLA_Source__c='MyCAP Default'` — re-verify none carry the MyCAP rate in year-1.
 - **Hygiene:** the dead `allContextUpdates` year-1 MyCAP payload (`:1074-1084`) is removable dead code (low priority; COLA prehook = handle carefully).
 
-### A-2. Partner V2 — E-04 Non_Orig fallback (⚠️ this lives in Nir's UNCOMMITTED working tree)
+### A-2. Partner V2 — E-04 Non_Orig fallback ↩️ OVERRIDDEN 2026-07-09 (owner took full engine ownership — fallback KEPT)
 - **Verified behavior (high confidence):** the uncommitted `effectivePct` helper (`PartnerPricingServiceV2.cls:164-170`) makes a **blank** `Non_Orig_*_Pct__c` on a Fortra-Originated deal return the **standard/non-originating band** (e.g. `Software_Percent__c`); returns 0 only if BOTH are null — replacing HEAD's blank⇒0. Only the Fortra-Originated branch changes; the else branch (`effectivePct(x, null)`) is byte-equivalent to HEAD.
 - **Provenance:** uncommitted (0 in HEAD, 11 in working tree; `git status ' M'`, blame "Not Committed Yet" 2026-07-08), co-owned `PartnerPricingServiceV2.cls`, **not** the committed refactor (sole file commit `a1fc2b3`). Authorship=Nir per ESCALATIONS A-2 + co-ownership; not independently git-provable for an uncommitted edit.
 - **SDD status:** the Partner SDD is **silent** on the blank-Non_Orig case; Open-Issues RULE 2 only fixes *which branch* reads Non_Orig, not the blank fallback. So this resolves the still-open owner-gated **OQ-1** (null⇒0% vs null⇒catalog).
@@ -41,6 +41,20 @@ was blind-fixed.
   `Non_Orig_*_Pct__c` bands (the V21-verified fix was 312.40 = Non_Orig 12%). Action: Nir should drop the uncommitted
   edit from his tree; if his fallback is currently deployed to FortraUAT, redeploy HEAD's `PartnerPricingServiceV2`
   to restore blank⇒0 (verify org state first).
+- **↩️ OWNER OVERRIDE (2026-07-09): the 2026-07-08 "reject" ruling is SET ASIDE.** Liam has taken full
+  ownership of the pricing engine — the co-ownership constraint is lifted and the former "Nir files" are
+  now owner-owned. Decision: **KEEP the `effectivePct` fallback** (blank `Non_Orig_*_Pct__c` on a
+  Fortra-Originated deal returns the standard band, never a silent 0%/list). The over-discount trade-off
+  above is accepted by the owner; populating `Non_Orig_*` remains the path to exact Fortra-Originated bands.
+  The consolidation (V1→V2 delegation) + fallback are **live** on FortraUAT (previously uncommitted) and are
+  now committed.
+- **✅ D-11 COMPLETED on top of this (2026-07-09):** `PartnerNetPricePosthook` made **deal-aware** — its
+  `QuoteHeaderData` now carries `Deal_Type__c`; `PartnerPricingService.getPricingModels`/`getPricingModel`
+  load the 5 `Non_Orig_*` fields (prevents `SObjectException` on the deal-aware branch); the deferred margin
+  calls use the 3-arg `PartnerPricingServiceV2.getMarginForProductType(model, productType, dealType)`. The
+  posthook's deferred path now matches the prehook's fallback behavior instead of being deal-blind. Gated
+  **0-delta 13/13 golden** (the deferred deal-aware path isn't exercised by any current scenario, so it is
+  behavior-preserving today and correct once `Non_Orig_*` is populated).
 
 ### A-3. ARR — `Order_Line_ARR__c` N-fold overcount on Power splits ✅ RESOLVED (owner-ruled: fix + consolidate to Apex)
 - **Verified finding (high confidence):** `PowerOrderSplittingService` apportions only `Displaced_ARR__c` +

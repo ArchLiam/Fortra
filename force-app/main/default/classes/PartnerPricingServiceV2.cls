@@ -122,36 +122,51 @@ public without sharing class PartnerPricingServiceV2 {
 
         Boolean useNonOriginating = dealType == DEAL_TYPE_FORTRA_ORIGINATED;
 
+        // Non_Orig_* is read ONLY inside the useNonOriginating branch (ternary short-circuits), so callers
+        // whose SOQL did not load those fields (the deal-blind path) never hit an SObjectException.
         switch on productType {
             when 'Software', 'Perpetual' {
                 return useNonOriginating
-                    ? (model.Non_Orig_Software_Pct__c != null ? model.Non_Orig_Software_Pct__c : 0)
-                    : (model.Software_Percent__c != null ? model.Software_Percent__c : 0);
+                    ? effectivePct(model.Non_Orig_Software_Pct__c, model.Software_Percent__c)
+                    : effectivePct(model.Software_Percent__c, null);
             }
             when 'New Maintenance' {
                 return useNonOriginating
-                    ? (model.Non_Orig_New_Maint_Pct__c != null ? model.Non_Orig_New_Maint_Pct__c : 0)
-                    : (model.New_Maintenance_Percent__c != null ? model.New_Maintenance_Percent__c : 0);
+                    ? effectivePct(model.Non_Orig_New_Maint_Pct__c, model.New_Maintenance_Percent__c)
+                    : effectivePct(model.New_Maintenance_Percent__c, null);
             }
             when 'Renewal Maintenance' {
                 return useNonOriginating
-                    ? (model.Non_Orig_Ren_Maint_Pct__c != null ? model.Non_Orig_Ren_Maint_Pct__c : 0)
-                    : (model.Renewal_Maintenance_Percent__c != null ? model.Renewal_Maintenance_Percent__c : 0);
+                    ? effectivePct(model.Non_Orig_Ren_Maint_Pct__c, model.Renewal_Maintenance_Percent__c)
+                    : effectivePct(model.Renewal_Maintenance_Percent__c, null);
             }
             when 'Subscription', 'SaaS Subscription' {
                 return useNonOriginating
-                    ? (model.Non_Orig_Subscription_Pct__c != null ? model.Non_Orig_Subscription_Pct__c : 0)
-                    : (model.Subscription_Percent__c != null ? model.Subscription_Percent__c : 0);
+                    ? effectivePct(model.Non_Orig_Subscription_Pct__c, model.Subscription_Percent__c)
+                    : effectivePct(model.Subscription_Percent__c, null);
             }
             when 'Services', 'Professional Service', 'Renewal Services' {
                 return useNonOriginating
-                    ? (model.Non_Orig_Services_Pct__c != null ? model.Non_Orig_Services_Pct__c : 0)
-                    : (model.Services_Percent__c != null ? model.Services_Percent__c : 0);
+                    ? effectivePct(model.Non_Orig_Services_Pct__c, model.Services_Percent__c)
+                    : effectivePct(model.Services_Percent__c, null);
             }
             when else {
                 return 0;
             }
         }
+    }
+
+    /**
+     * @description First non-null percent, else 0. For a Fortra-Originated deal the Non-Originating percent
+     *              is preferred, falling back to the standard "catalog" percent when it is NULL (E-04 fix,
+     *              Wave 3b "catalog" decision -- never silently 0% due to missing Non_Orig data).
+     */
+    @TestVisible
+    private static Decimal effectivePct(Decimal preferred, Decimal fallback) {
+        if (preferred != null) {
+            return preferred;
+        }
+        return fallback != null ? fallback : 0;
     }
 
     /**

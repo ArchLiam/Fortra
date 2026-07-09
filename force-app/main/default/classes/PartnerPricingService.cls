@@ -21,6 +21,8 @@ public without sharing class PartnerPricingService {
             SELECT Id, Account__c, Model_Type__c, Is_Active__c, Is_Default__c,
                    Software_Percent__c, New_Maintenance_Percent__c, Renewal_Maintenance_Percent__c,
                    Subscription_Percent__c, Services_Percent__c,
+                   Non_Orig_Software_Pct__c, Non_Orig_New_Maint_Pct__c, Non_Orig_Ren_Maint_Pct__c,
+                   Non_Orig_Subscription_Pct__c, Non_Orig_Services_Pct__c,
                    Effective_Start_Date__c, Effective_End_Date__c
             FROM Partner_Pricing_Model__c
             WHERE Account__c = :partnerId
@@ -51,6 +53,8 @@ public without sharing class PartnerPricingService {
             SELECT Id, Account__c, Model_Type__c, Is_Active__c, Is_Default__c,
                    Software_Percent__c, New_Maintenance_Percent__c, Renewal_Maintenance_Percent__c,
                    Subscription_Percent__c, Services_Percent__c,
+                   Non_Orig_Software_Pct__c, Non_Orig_New_Maint_Pct__c, Non_Orig_Ren_Maint_Pct__c,
+                   Non_Orig_Subscription_Pct__c, Non_Orig_Services_Pct__c,
                    Effective_Start_Date__c, Effective_End_Date__c
             FROM Partner_Pricing_Model__c
             WHERE Account__c IN :partnerIds
@@ -251,30 +255,11 @@ public without sharing class PartnerPricingService {
      * @return Decimal percentage (e.g., 15.00 for 15%)
      */
     public static Decimal getMarginForProductType(Partner_Pricing_Model__c model, String productType) {
-        if (model == null || String.isBlank(productType)) {
-            return 0;
-        }
-
-        switch on productType {
-            when 'Software', 'Perpetual' {
-                return model.Software_Percent__c != null ? model.Software_Percent__c : 0;
-            }
-            when 'New Maintenance' {
-                return model.New_Maintenance_Percent__c != null ? model.New_Maintenance_Percent__c : 0;
-            }
-            when 'Renewal Maintenance' {
-                return model.Renewal_Maintenance_Percent__c != null ? model.Renewal_Maintenance_Percent__c : 0;
-            }
-            when 'Subscription', 'SaaS Subscription' {
-                return model.Subscription_Percent__c != null ? model.Subscription_Percent__c : 0;
-            }
-            when 'Services', 'Professional Service', 'Renewal Services' {
-                return model.Services_Percent__c != null ? model.Services_Percent__c : 0;
-            }
-            when else {
-                return 0;
-            }
-        }
+        // Wave-3a consolidation: the single margin implementation lives in PartnerPricingServiceV2.
+        // Passing dealType=null keeps this (deal-blind) 2-arg method behavior-identical — V2 with a
+        // non-'Fortra Originated' dealType reads the same standard percent fields with the same null->0
+        // and shares the same null-model / blank-type guard.
+        return PartnerPricingServiceV2.getMarginForProductType(model, productType, null);
     }
 
     /**
