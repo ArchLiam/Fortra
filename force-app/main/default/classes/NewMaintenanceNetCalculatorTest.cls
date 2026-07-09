@@ -49,4 +49,53 @@ private class NewMaintenanceNetCalculatorTest {
         System.assertEquals(5, c.softwareDiscount, 'stamped null -> carried software 5');
         System.assertEquals(807.50, c.expectedCommercialNet, '1000 less 15% then 5% = 807.50');
     }
+
+    @IsTest
+    static void expectedListNet_negativeInputsAndRounding() {
+        System.assertEquals(null, NewMaintenanceNetCalculator.expectedListNet(100, -0.20), 'negative rate -> null');
+        System.assertEquals(null, NewMaintenanceNetCalculator.expectedListNet(-100, 0.20), 'negative contributor -> null');
+        // 100 x 0.12345 = 12.34500 -> HALF_UP to 2dp = 12.35
+        System.assertEquals(12.35, NewMaintenanceNetCalculator.expectedListNet(100, 0.12345), 'HALF_UP rounds 12.345 up to 12.35');
+    }
+
+    @IsTest
+    static void expectedCommercialNet_softwareOnlyNegativesAndTwoStepRounding() {
+        // partner null -> list passes straight to the software leg: 1000 x 0.95 = 950.00
+        System.assertEquals(950.00, NewMaintenanceNetCalculator.expectedCommercialNet(1000, null, 5),
+            'null partner -> software-only 5% -> 950.00');
+        // negative percents are treated like no discount
+        System.assertEquals(1000, NewMaintenanceNetCalculator.expectedCommercialNet(1000, -10, -5),
+            'negative discounts -> list passes through');
+        // 999.99 x 0.9 = 899.991 -> 899.99 ; 899.99 x 0.95 = 854.9905 -> 854.99 (each leg rounds independently)
+        System.assertEquals(854.99, NewMaintenanceNetCalculator.expectedCommercialNet(999.99, 10, 5),
+            'two-step independent rounding = 854.99');
+    }
+
+    @IsTest
+    static void computeNewBusinessNets_bandResolvedButNoInputsFallsToStamped() {
+        // partnerBandResolved true but inputsPartnerPercent null -> the band branch is skipped -> stamped wins.
+        NewBusinessMaintenanceNets n = NewMaintenanceNetCalculator.computeNewBusinessNets(
+            1000, true, null, 5, 20, null);
+        System.assertEquals(20, n.partnerPercent, 'band resolved but no input -> stamped 20');
+        System.assertEquals(5, n.softwareDiscount, 'stamped software null -> carried 5');
+        System.assertEquals(760.00, n.expectedCommercialNet, '1000 less 20% then 5% = 760.00');
+    }
+
+    @IsTest
+    static void computeNewBusinessNets_bandResolvedSoftwareNullLeavesNullSoftware() {
+        NewBusinessMaintenanceNets n = NewMaintenanceNetCalculator.computeNewBusinessNets(
+            1000, true, 15, null, null, null);
+        System.assertEquals(15, n.partnerPercent, 'resolved band 15');
+        System.assertEquals(null, n.softwareDiscount, 'no stamped or carried software -> null');
+        System.assertEquals(850.00, n.expectedCommercialNet, 'partner-only 15% -> 850.00');
+    }
+
+    @IsTest
+    static void computeNewBusinessNets_allZeroDiscountsPassThrough() {
+        NewBusinessMaintenanceNets n = NewMaintenanceNetCalculator.computeNewBusinessNets(
+            1000, false, 0, 0, 0, 0);
+        System.assertEquals(0, n.partnerPercent, 'all-zero partner -> 0');
+        System.assertEquals(0, n.softwareDiscount, 'all-zero software -> 0');
+        System.assertEquals(1000, n.expectedCommercialNet, 'zero discounts -> list net passthrough');
+    }
 }
