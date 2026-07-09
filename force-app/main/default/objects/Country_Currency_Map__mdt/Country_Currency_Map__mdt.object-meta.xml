@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>Admin-editable country-to-currency defaults for CurrencySelectionService. Extracted from a hardcoded Apex map (D-15, behavior-preserving) so pricing/ops can maintain the mapping without a code change.</description>
-    <label>Country Currency Map</label>
-    <pluralLabel>Country Currency Maps</pluralLabel>
-    <visibility>Public</visibility>
-</CustomObject>
