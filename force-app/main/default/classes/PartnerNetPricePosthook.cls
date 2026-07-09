@@ -217,11 +217,16 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
      * @description TLE "Reprice All" uses the signaling posthook before persist. DML stamps must run
      *              after persist commits, so enqueue a follow-up job (falls back to sync when needed).
      */
+    /** @description Per-transaction guard so the post-persist stamp enqueues at most once per quote,
+     *              even when both applyPartnerNetPrices and the invocable (SC-3544) schedule it. */
+    private static Set<Id> scheduledStampQuoteIds = new Set<Id>();
+
     @TestVisible
     private static void schedulePostPersistPriceStamp(Id quoteId) {
-        if (quoteId == null) {
+        if (quoteId == null || scheduledStampQuoteIds.contains(quoteId)) {
             return;
         }
+        scheduledStampQuoteIds.add(quoteId);
 
         try {
             if (System.isQueueable() || System.isBatch() || System.isFuture()) {
@@ -1935,6 +1940,12 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     public class PostPricingContextRequest {
         @InvocableVariable(required=true label='Context Instance Id')
         public String contextInstanceId;
+
+        // SC-3544: flow-supplied QuoteId so the post-persist Sales Price stamp can be scheduled
+        // reliably even when the partner context query is empty (renewal / COLA quotes). Typed String
+        // to match the flow's Text QuoteId variable; converted to Id before use.
+        @InvocableVariable(label='Quote Id')
+        public String quoteId;
     }
 
     @InvocableMethod(
@@ -1951,6 +1962,14 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             Integer linesUpdated = 0;
             if (request != null && String.isNotBlank(request.contextInstanceId)) {
                 linesUpdated = new PartnerNetPricePosthook().applyPartnerNetPrices(request.contextInstanceId);
+            }
+            // SC-3544: applyPartnerNetPrices only reaches schedulePostPersistPriceStamp when its
+            // partner context query returns lines; it early-returns for renewal / COLA quotes, so the
+            // Sales Price (UnitPrice) stamp never runs for exactly that population. Schedule it here
+            // with the flow-supplied QuoteId so it runs on every reprice regardless of context state.
+            // The scheduler is dedup-guarded, so this never double-enqueues.
+            if (request != null && String.isNotBlank(request.quoteId)) {
+                schedulePostPersistPriceStamp((Id) request.quoteId);
             }
             results.add(linesUpdated);
         }
@@ -1982,6 +2001,18 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             }
         }
 
+        // SC-3544: UnitPrice cannot be edited on segmented lines that carry Quote Line Detail records
+        // (platform: "You can't edit the Sales Price because the Quote Line Item has related Quote Line
+        // Detail records" — cancellation / amendment / multi-year lines). Collect those so the Sales
+        // Price stamp skips them; their Sales Price is managed at the detail level.
+        Set<Id> lineIdsWithDetails = new Set<Id>();
+        for (QuoteLineDetail d : [
+            SELECT QuoteLineItemId FROM QuoteLineDetail
+            WHERE QuoteLineItemId IN (SELECT Id FROM QuoteLineItem WHERE QuoteId = :quoteId)
+        ]) {
+            lineIdsWithDetails.add(d.QuoteLineItemId);
+        }
+
         List<QuoteLineItem> updates = new List<QuoteLineItem>();
         for (QuoteLineItem qli : [
             SELECT Id, Fortra_Product_Type__c, Base_Price__c, Pre_Partner_Price__c,
@@ -1990,14 +2021,21 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             FROM QuoteLineItem
             WHERE QuoteId = :quoteId
         ]) {
-            QuoteLineItem upd = buildAttributeListPriceStampUpdate(qli, rateByType, tierByLine);
+            QuoteLineItem upd = buildAttributeListPriceStampUpdate(qli, rateByType, tierByLine, lineIdsWithDetails);
             if (upd != null) {
                 updates.add(upd);
             }
         }
 
         if (!updates.isEmpty()) {
-            update updates;
+            // Partial DML: a line the platform still rejects must not fail the whole batch and block
+            // the stampable siblings.
+            Database.SaveResult[] srs = Database.update(updates, false);
+            for (Database.SaveResult sr : srs) {
+                if (!sr.isSuccess()) {
+                    System.debug(LoggingLevel.WARN, 'Sales Price stamp skipped ' + sr.getId() + ': ' + sr.getErrors());
+                }
+            }
         }
         return updates.size();
     }
@@ -2006,7 +2044,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     private static QuoteLineItem buildAttributeListPriceStampUpdate(
         QuoteLineItem qli,
         Map<String, Decimal> rateByType,
-        Map<Id, String> tierByLine
+        Map<Id, String> tierByLine,
+        Set<Id> lineIdsWithDetails
     ) {
         if (qli == null) {
             return null;
@@ -2045,7 +2084,41 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             }
         }
 
+        // SC-3544: fill UnitPrice ("Sales Price") when it is blank. The RCA context persist writes
+        // NetUnitPrice but does not own UnitPrice and does not fire QLI before-save flows, so renewal /
+        // derived / COLA lines (Fortra_Product_Type__c null, Base/Pre null) are left blank. This
+        // post-persist standard-DML stamp is the reliable hook. FILL-ONLY by design: SC-3544 is scoped
+        // to blank Sales Price, so an existing UnitPrice (partner / new-business / manual override) is
+        // never overwritten. Whether a partner line's Sales Price should show the pre-partner base vs
+        // the net is a separate business decision (Marc), out of scope here. Lines that carry Quote
+        // Line Detail records are skipped: the platform forbids editing UnitPrice there (it is managed
+        // at the detail level).
+        if (qli.UnitPrice == null && !lineIdsWithDetails.contains(qli.Id)) {
+            Decimal salesPrice = resolveSalesPrice(qli);
+            if (salesPrice != null) {
+                upd.UnitPrice = salesPrice.setScale(2, RoundingMode.HALF_UP);
+                changed = true;
+            }
+        }
+
         return changed ? upd : null;
+    }
+
+    /**
+     * @description SC-3544: Sales Price (UnitPrice) source precedence — the working base when positive,
+     *              else the pre-partner base when positive, else the final net. Matches the intent of the
+     *              removed Fortra_Stamp_Sales_Price flow but runs in the reliable post-persist DML stamp,
+     *              which fires on every reprice (the context persist does not).
+     */
+    @TestVisible
+    private static Decimal resolveSalesPrice(QuoteLineItem qli) {
+        if (qli.Base_Price__c != null && qli.Base_Price__c > 0) {
+            return qli.Base_Price__c;
+        }
+        if (qli.Pre_Partner_Price__c != null && qli.Pre_Partner_Price__c > 0) {
+            return qli.Pre_Partner_Price__c;
+        }
+        return qli.NetUnitPrice;
     }
 
     @TestVisible

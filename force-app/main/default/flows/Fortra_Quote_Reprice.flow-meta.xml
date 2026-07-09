@@ -17,6 +17,12 @@
                 <elementReference>ContextInstanceId</elementReference>
             </value>
         </inputParameters>
+        <inputParameters>
+            <name>quoteId</name>
+            <value>
+                <elementReference>QuoteId</elementReference>
+            </value>
+        </inputParameters>
         <nameSegment>PartnerNetPricePosthook</nameSegment>
     </actionCalls>
     <actionCalls>

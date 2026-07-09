@@ -1771,4 +1771,57 @@ private class PartnerNetPricePosthookTest {
             Prior_Partner_Discount__c = 10
         )));
     }
+
+    // ── SC-3544: Sales Price (UnitPrice) post-persist stamp ────────────────────────────────
+    // NetUnitPrice is not writeable in Apex, so QLIs are built via JSON.deserialize.
+    private static QuoteLineItem qliFromJson(String body) {
+        return (QuoteLineItem) JSON.deserialize(body, QuoteLineItem.class);
+    }
+
+    @IsTest
+    static void resolveSalesPrice_precedenceBaseThenPreThenNet() {
+        System.assert(PartnerNetPricePosthook.resolveSalesPrice(
+            qliFromJson('{"Base_Price__c":1000,"Pre_Partner_Price__c":900,"NetUnitPrice":820}')) == 1000,
+            'Positive Base_Price wins');
+        System.assert(PartnerNetPricePosthook.resolveSalesPrice(
+            qliFromJson('{"Pre_Partner_Price__c":900,"NetUnitPrice":820}')) == 900,
+            'Pre_Partner when Base null');
+        System.assert(PartnerNetPricePosthook.resolveSalesPrice(
+            qliFromJson('{"Base_Price__c":0,"Pre_Partner_Price__c":900,"NetUnitPrice":820}')) == 900,
+            'Zero Base falls through to Pre_Partner');
+        System.assert(PartnerNetPricePosthook.resolveSalesPrice(
+            qliFromJson('{"NetUnitPrice":4573.80}')) == 4573.80,
+            'Net fallback for renewal/derived/COLA lines (Base/Pre null)');
+        System.assertEquals(null, PartnerNetPricePosthook.resolveSalesPrice(new QuoteLineItem()),
+            'Null when no source present');
+    }
+
+    @IsTest
+    static void buildAttributeListPriceStampUpdate_stampsUnitPriceOnRenewalColaLine() {
+        // Renewal/COLA line: Fortra_Product_Type__c null, Base/Pre null, Net set, UnitPrice blank.
+        QuoteLineItem upd = PartnerNetPricePosthook.buildAttributeListPriceStampUpdate(
+            qliFromJson('{"NetUnitPrice":4573.80}'), new Map<String, Decimal>(), new Map<Id, String>(), new Set<Id>());
+        System.assertNotEquals(null, upd, 'Blank-UnitPrice renewal/COLA line must be stamped');
+        System.assert(upd.UnitPrice == 4573.80, 'UnitPrice stamped to NetUnitPrice');
+    }
+
+    @IsTest
+    static void buildAttributeListPriceStampUpdate_skipsUnitPriceOnLineWithDetails() {
+        // Segmented line with Quote Line Detail records: platform forbids editing UnitPrice -> skip.
+        Id lid = QuoteLineItem.SObjectType.getDescribe().getKeyPrefix() + '000000000097';
+        QuoteLineItem upd = PartnerNetPricePosthook.buildAttributeListPriceStampUpdate(
+            qliFromJson('{"Id":"' + lid + '","NetUnitPrice":4573.80}'),
+            new Map<String, Decimal>(), new Map<Id, String>(), new Set<Id>{ lid });
+        System.assertEquals(null, upd, 'UnitPrice must be skipped on a line with Quote Line Detail records');
+    }
+
+    @IsTest
+    static void buildAttributeListPriceStampUpdate_fillOnly_neverOverwritesExistingUnitPrice() {
+        // Partner line: an existing UnitPrice (593.28 net) must NOT be overwritten to the pre-partner
+        // base (824), even though COALESCE(Base,Pre,Net) resolves to 824. SC-3544 is fill-only.
+        QuoteLineItem upd = PartnerNetPricePosthook.buildAttributeListPriceStampUpdate(
+            qliFromJson('{"Pre_Partner_Price__c":824,"NetUnitPrice":593.28,"UnitPrice":593.28}'),
+            new Map<String, Decimal>(), new Map<Id, String>(), new Set<Id>());
+        System.assertEquals(null, upd, 'Fill-only: an existing UnitPrice is never overwritten');
+    }
 }
