@@ -80,6 +80,8 @@ global class RegionalServicesPricingPrehook implements RevSignaling.SignalingApe
             System.debug(LoggingLevel.ERROR, 'Error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack: ' + e.getStackTraceString());
             message = 'Error: ' + e.getMessage();
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPrehook('RegionalServicesPricingPrehook', contextId, e);
         } finally {
             isProcessing = false;
         }

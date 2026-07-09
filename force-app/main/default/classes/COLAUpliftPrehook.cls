@@ -99,6 +99,8 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'COLAUpliftPrehook error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack trace: ' + e.getStackTraceString());
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPrehook('COLAUpliftPrehook', request != null ? request.ctxInstanceId : null, e);
 
             // Return SUCCESS even on error to avoid blocking pricing
             response.status = RevSignaling.TransactionStatus.SUCCESS;

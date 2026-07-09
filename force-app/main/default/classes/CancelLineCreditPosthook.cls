@@ -147,6 +147,8 @@ global class CancelLineCreditPosthook implements RevSignaling.SignalingApexProce
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'CancelLineCreditPosthook error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack: ' + e.getStackTraceString());
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPosthook('CancelLineCreditPosthook', contextId, e);
             // SUCCESS even on error — never break the whole reprice.
             response.status = RevSignaling.TransactionStatus.SUCCESS;
             response.message = 'Cancel-credit posthook completed with warnings: ' + e.getMessage();

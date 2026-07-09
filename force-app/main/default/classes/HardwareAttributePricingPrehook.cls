@@ -148,6 +148,8 @@ global class HardwareAttributePricingPrehook implements RevSignaling.SignalingAp
             System.debug(LoggingLevel.ERROR, 'Error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack: ' + e.getStackTraceString());
             message = 'Hardware pricing completed with warnings: ' + e.getMessage();
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPrehook('HardwareAttributePricingPrehook', contextId, e);
         } finally {
             isProcessing = false;
         }

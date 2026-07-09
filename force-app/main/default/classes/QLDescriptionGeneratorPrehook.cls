@@ -346,6 +346,8 @@ global class QLDescriptionGeneratorPrehook implements RevSignaling.SignalingApex
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'QLDescriptionGeneratorPrehook error: ' + e.getMessage());
             System.debug(LoggingLevel.ERROR, 'Stack: ' + e.getStackTraceString());
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPrehook('QLDescriptionGeneratorPrehook', request != null ? request.ctxInstanceId : null, e);
             response.status = RevSignaling.TransactionStatus.SUCCESS;
             response.message = 'Description generation completed with warnings: ' + e.getMessage();
         } finally {

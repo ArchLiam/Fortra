@@ -61,6 +61,8 @@ global class AttributeVolumePricingPrehook implements RevSignaling.SignalingApex
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'Attribute volume pricing error: ' + e.getMessage() + '\n' + e.getStackTraceString());
             message = 'Attribute volume pricing error: ' + e.getMessage();
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPrehook('AttributeVolumePricingPrehook', contextId, e);
         } finally {
             isUpdating = false;
         }

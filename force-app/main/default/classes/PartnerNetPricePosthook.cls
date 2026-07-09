@@ -76,6 +76,8 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             response.message = 'Partner net price applied to ' + linesUpdated + ' line(s)';
         } catch (Exception e) {
             System.debug(LoggingLevel.ERROR, 'PartnerNetPricePosthook error: ' + e.getMessage());
+            // D-18: surface the swallowed degrade (fire-and-forget; never throws; status unchanged).
+            PricingHookLogger.logPosthook('PartnerNetPricePosthook', request != null ? request.ctxInstanceId : null, e);
             response.status = RevSignaling.TransactionStatus.SUCCESS;
             response.message = 'Partner net price posthook completed with warnings: ' + e.getMessage();
         } finally {

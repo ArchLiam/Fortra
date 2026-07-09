@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>General-purpose durable exception/error log. Written by per-domain platform-event subscribers (first: Pricing_Exception__e for D-18 pricing-hook degrades). Keyed by Record Type per source domain so other domains can adopt without a schema fork. See docs/pricing-refactor/D18_TELEMETRY_DESIGN.md.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Exception Log</label>
+    <nameField>
+        <displayFormat>EL-{0000000000}</displayFormat>
+        <label>Exception Log Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Exception Logs</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
