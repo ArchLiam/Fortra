@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RCA Full-Functionality Test Report — FortraUAT</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  :root{
+    --bg:#f4f6f8; --surface:#fff; --surface2:#eef1f4; --border:#dbe1e7; --ink:#131b23; --ink2:#48565f; --ink3:#748290;
+    --accent:#0c7d88; --accent-soft:#e2f1f2;
+    --pass:#1f9d57; --pass-bg:#e6f5ec; --fail:#d13b32; --fail-bg:#fce9e7; --block:#b3781a; --block-bg:#f8efdc;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;
+    --accent:#37b7c0;--accent-soft:#123138;--pass:#4bc384;--pass-bg:#11291d;--fail:#ef7c72;--fail-bg:#331a18;--block:#dca747;--block-bg:#2f2612;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 90px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  header h1{margin:0;font-size:26px;letter-spacing:-.02em}
+  header .meta{margin-top:8px;color:var(--ink3);font-family:var(--mono);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  header .meta b{color:var(--ink2)}
+  .banner{margin:18px 0 8px;border-radius:12px;padding:16px 20px;font-weight:650;font-size:16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+  .banner.ok{background:var(--pass-bg);color:var(--pass);border:1px solid color-mix(in srgb,var(--pass) 35%,transparent)}
+  .banner.bad{background:var(--fail-bg);color:var(--fail);border:1px solid color-mix(in srgb,var(--fail) 35%,transparent)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+  .card .n{font-family:var(--mono);font-size:30px;font-weight:700;letter-spacing:-.02em}
+  .card .l{font-size:12.5px;color:var(--ink2);margin-top:2px}
+  .card.pass .n{color:var(--pass)} .card.fail .n{color:var(--fail)} .card.block .n{color:var(--block)}
+  .bar{height:12px;border-radius:99px;background:var(--surface2);overflow:hidden;display:flex;margin:6px 0 20px;border:1px solid var(--border)}
+  .bar i{display:block;height:100%}
+  .bar .p{background:var(--pass)} .bar .f{background:var(--fail)} .bar .b{background:var(--block)}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+  .chip{font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:780px;font-size:13.5px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{position:sticky;top:0;background:var(--surface2);font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);z-index:1}
+  tbody tr{cursor:pointer}
+  tbody tr:hover{background:var(--surface2)}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:99px;white-space:nowrap}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .pill.PASS{color:var(--pass);background:var(--pass-bg)} .pill.FAIL{color:var(--fail);background:var(--fail-bg)} .pill.BLOCKED{color:var(--block);background:var(--block-bg)}
+  .detail{background:var(--surface2);font-size:12.5px}
+  .detail dl{margin:0;display:grid;grid-template-columns:130px 1fr;gap:6px 14px}
+  .detail dt{color:var(--ink3);font-family:var(--mono);font-size:11px}
+  .detail dd{margin:0;color:var(--ink)}
+  .detail .exc{color:var(--fail);font-family:var(--mono)}
+  h2{font-size:16px;margin:34px 0 12px}
+  code{font-family:var(--mono);background:var(--surface2);padding:1px 5px;border-radius:5px;font-size:12px}
+  .muted{color:var(--ink3);font-size:12.5px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+// ═══════════════════════════════════════════════════════════════════════════
+//  FILL THIS IN.  One object per scenario you ran (see §9 of the test prompt).
+//  verdict ∈ 'PASS' | 'FAIL' | 'BLOCKED'
+// ═══════════════════════════════════════════════════════════════════════════
+const META = { org: "FortraUAT", when: "YYYY-MM-DD HH:MM", tester: "your-name", procedure: "Rev_Mgmt_Default_Pricing_Procedure V21" };
+
+const RESULTS = [
+  // ── example rows — replace with your real results ───────────────────────────
+  { id:"A",  category:"One-Time",        scenario:"List price / one-time",          record:"0Q0WC000003IIT0", stage:"List Price",   ticket:"",            verdict:"PASS",
+    expected:"NetUnitPrice = catalog ListPrice; PTC null on one-time", actual:"net=1200=list; PTC null", evidence:"reprice ×2 identical", exceptionLog:"none" },
+  { id:"E",  category:"Partner",         scenario:"Partner Discount (18%)",         record:"0Q0WC000003IKeT", stage:"PartnerV2/Posthook", ticket:"DEF-1", verdict:"PASS",
+    expected:"net = pre×(1−18%); stable on re-reprice", actual:"355→291.10; 2nd reprice identical", evidence:"no compounding", exceptionLog:"none" },
+  { id:"L",  category:"Cancel/Amend",    scenario:"Cancel credit line",             record:"0Q0WC000003FapR", stage:"CancelLineCreditPosthook", ticket:"SC-3441", verdict:"FAIL",
+    expected:"negative TotalPrice credit", actual:"TotalPrice = $0", evidence:"CancelNetUnitPrice__c null on line 3", exceptionLog:"CancelLineCreditPosthook / NullPointerException" },
+  { id:"S8", category:"Fortra-Originated", scenario:"Fortra-Orig, Non_Orig NULL",   record:"—",               stage:"PartnerV2",    ticket:"E-04",        verdict:"BLOCKED",
+    expected:"fallback to standard band", actual:"—", evidence:"no real UAT quote: Fortra-Orig on a null-Non_Orig partner", exceptionLog:"—" },
+];
+// ═══════════════════════════════════════════════════════════════════════════
+
+const ORDER = { FAIL:0, BLOCKED:1, PASS:2 };
+const {useState, useMemo} = React;
+
+function App(){
+  const [filter,setFilter] = useState("ALL");
+  const [open,setOpen] = useState(null);
+
+  const counts = useMemo(()=>{
+    const c = {PASS:0,FAIL:0,BLOCKED:0};
+    RESULTS.forEach(r=>{ if(c[r.verdict]!=null) c[r.verdict]++; });
+    return c;
+  },[]);
+  const total = RESULTS.length;
+  const passRate = total ? Math.round(counts.PASS/total*100) : 0;
+  const rows = useMemo(()=>{
+    const f = filter==="ALL" ? RESULTS.slice() : RESULTS.filter(r=>r.verdict===filter);
+    return f.sort((a,b)=> (ORDER[a.verdict]-ORDER[b.verdict]) || String(a.id).localeCompare(String(b.id)));
+  },[filter]);
+
+  const clean = counts.FAIL===0;
+  const pct = k => total ? (counts[k]/total*100) : 0;
+
+  return (
+    <div className="wrap">
+      <header>
+        <h1>RCA Full-Functionality Test Report</h1>
+        <div className="meta">
+          <span>org <b>{META.org}</b></span>
+          <span>procedure <b>{META.procedure}</b></span>
+          <span>run <b>{META.when}</b></span>
+          <span>tester <b>{META.tester}</b></span>
+        </div>
+      </header>
+
+      <div className={"banner "+(clean?"ok":"bad")}>
+        {clean ? "✓ All executed scenarios passed" : `✗ ${counts.FAIL} scenario${counts.FAIL>1?"s":""} FAILED — see defects below`}
+        <span className="mono" style={{marginLeft:"auto",fontWeight:600}}>{passRate}% pass</span>
+      </div>
+
+      <div className="cards">
+        <div className="card"><div className="n">{total}</div><div className="l">Scenarios run</div></div>
+        <div className="card pass"><div className="n">{counts.PASS}</div><div className="l">PASS</div></div>
+        <div className="card fail"><div className="n">{counts.FAIL}</div><div className="l">FAIL</div></div>
+        <div className="card block"><div className="n">{counts.BLOCKED}</div><div className="l">BLOCKED</div></div>
+      </div>
+      <div className="bar" title={`${counts.PASS} pass · ${counts.FAIL} fail · ${counts.BLOCKED} blocked`}>
+        <i className="p" style={{width:pct("PASS")+"%"}}/>
+        <i className="f" style={{width:pct("FAIL")+"%"}}/>
+        <i className="b" style={{width:pct("BLOCKED")+"%"}}/>
+      </div>
+
+      <div className="filters">
+        {["ALL","PASS","FAIL","BLOCKED"].map(k=>(
+          <span key={k} className={"chip "+(filter===k?"on":"")} onClick={()=>setFilter(k)}>
+            {k}{k!=="ALL" ? " · "+counts[k] : " · "+total}
+          </span>
+        ))}
+      </div>
+
+      <div className="tablewrap">
+        <table>
+          <thead><tr>
+            <th>#</th><th>Category</th><th>Scenario</th><th>Record</th><th>Stage</th><th>Verdict</th>
+          </tr></thead>
+          <tbody>
+            {rows.map((r,i)=>(
+              <React.Fragment key={r.id+"-"+i}>
+                <tr onClick={()=>setOpen(open===r.id+"-"+i?null:r.id+"-"+i)}>
+                  <td className="mono">{r.id}</td>
+                  <td>{r.category}</td>
+                  <td>{r.scenario}{r.ticket?<span className="muted"> · {r.ticket}</span>:null}</td>
+                  <td className="mono">{r.record}</td>
+                  <td className="muted">{r.stage}</td>
+                  <td><span className={"pill "+r.verdict}>{r.verdict}</span></td>
+                </tr>
+                {open===r.id+"-"+i && (
+                  <tr className="detail"><td colSpan={6}>
+                    <dl>
+                      <dt>expected</dt><dd>{r.expected}</dd>
+                      <dt>actual</dt><dd>{r.actual}</dd>
+                      <dt>evidence</dt><dd>{r.evidence}</dd>
+                      <dt>exception log</dt><dd className={r.exceptionLog && r.exceptionLog!=="none" && r.exceptionLog!=="—" ? "exc":""}>{r.exceptionLog}</dd>
+                    </dl>
+                  </td></tr>
+                )}
+              </React.Fragment>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {counts.FAIL>0 && <>
+        <h2>🔴 Defects ({counts.FAIL})</h2>
+        <div className="tablewrap"><table><thead><tr>
+          <th>Scenario</th><th>Record</th><th>Expected</th><th>Actual</th><th>Exception log</th>
+        </tr></thead><tbody>
+          {RESULTS.filter(r=>r.verdict==="FAIL").map((r,i)=>(
+            <tr key={i}>
+              <td>{r.scenario}{r.ticket?<div className="muted mono">{r.ticket}</div>:null}</td>
+              <td className="mono">{r.record}</td><td>{r.expected}</td>
+              <td style={{color:"var(--fail)"}}>{r.actual}</td>
+              <td className="mono">{r.exceptionLog}</td>
+            </tr>
+          ))}
+        </tbody></table></div>
+      </>}
+
+      {counts.BLOCKED>0 && <>
+        <h2>⏸ Blocked ({counts.BLOCKED})</h2>
+        <div className="tablewrap"><table><thead><tr><th>Scenario</th><th>Precondition needed</th></tr></thead><tbody>
+          {RESULTS.filter(r=>r.verdict==="BLOCKED").map((r,i)=>(
+            <tr key={i}><td>{r.scenario}</td><td className="muted">{r.evidence}</td></tr>
+          ))}
+        </tbody></table></div>
+      </>}
+
+      <p className="muted" style={{marginTop:34}}>
+        Grounded in the live V21 waterfall + the S1–S14 golden harness. Click any row to expand its evidence.
+      </p>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
