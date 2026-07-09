@@ -1,8 +1,9 @@
 # D-18 — Pricing-Hook Exception Logging (design working doc)
 
-**Status:** ✅ DEPLOYED to FortraUAT 2026-07-08 (39 components, NoTestRun deploy). D-18 tests 4/4 PASS —
-incl. the two end-to-end tests proving PE→subscriber-Flow→`Exception_Log__c` delivery works in-org (the one
-risk static review couldn't retire). NOT yet committed to git. Owner: Liam.
+**Status:** ✅ DONE — deployed FortraUAT 2026-07-08 (39 components); D-18 tests 4/4 PASS (incl. end-to-end
+PE→subscriber-Flow→`Exception_Log__c` delivery — the one risk static review couldn't retire); committed
+`7876aa0` + pushed `origin/uat`; **golden matrix 13/13 GATE PASS (0-delta)** — S1–S14 (ex S8 needs-data),
+D-18 confirmed 0-delta structurally (logger only in catch) AND empirically. Owner: Liam.
 **Purpose:** make the "a pricing hook caught an exception and returned SUCCESS anyway" failure class
 *durably visible* (queryable / reportable / alertable) at the moment it happens — without changing any
 pricing behavior. Closes D-18 (INV-15). Complements D-17 (AttrVolume no-match surface).
