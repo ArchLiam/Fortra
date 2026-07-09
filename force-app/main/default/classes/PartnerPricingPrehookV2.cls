@@ -109,8 +109,10 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
             System.debug(LoggingLevel.INFO, '========================================');
 
             if (String.isBlank(ctxInstanceId)) {
-                response.status = RevSignaling.TransactionStatus.FAILED;
-                response.message = 'Context instance ID is required';
+                // D-PARTNER-6 (PartnerPricing SDD TR-004): fail-safe — never return FAILED (that can
+                // block the pricing procedure). Skip gracefully with SUCCESS, like every other guard.
+                response.status = RevSignaling.TransactionStatus.SUCCESS;
+                response.message = 'Partner pricing skipped - no context instance ID';
                 return response;
             }
 
@@ -739,7 +741,8 @@ global class PartnerPricingPrehookV2 implements RevSignaling.SignalingApexProces
             adjustedPrice,
             quoteData.partnerPricingModel,
             detailMaps,
-            totalPercent
+            totalPercent,
+            dispatch.warning
         );
 
         result.put('attributes', attributes);

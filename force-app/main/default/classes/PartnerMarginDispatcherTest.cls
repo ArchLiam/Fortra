@@ -22,6 +22,8 @@ private class PartnerMarginDispatcherTest {
         System.assertNotEquals(null, r, 'Discount returns a result');
         System.assertEquals(1000, r.adjustedPrice, 'no matching model -> no discount');
         System.assertEquals(0, r.detailMaps.size(), 'no model -> no margin detail');
+        System.assertEquals('Missing partner pricing model for: ACME', r.warning,
+            'D-PARTNER-1: billing partner configured but no model -> warning names it');
     }
 
     @IsTest
@@ -69,6 +71,23 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals('ACME', d.get('partnerName'), 'detail partnerName from names map');
         System.assertEquals('Billing Partner', d.get('partnerRole'), 'discount detail role');
         System.assertEquals(20, (Decimal) d.get('marginPercent'), 'detail marginPercent');
+        System.assertEquals(null, r.warning, 'D-PARTNER-1: matching model -> no warning');
+    }
+
+    // D-PARTNER-1: mixed participation — one partner has a model, one does not; the warning names only
+    // the model-less participating partner (and pricing from the partner WITH a model still applies).
+    @IsTest
+    static void resolve_guaranteedMarginWarnsOnlyMissingModelPartner() {
+        Map<Id, List<Partner_Pricing_Model__c>> models = new Map<Id, List<Partner_Pricing_Model__c>>{
+            BILLING => new List<Partner_Pricing_Model__c>{ new Partner_Pricing_Model__c(Software_Percent__c = 15) }
+        };
+        PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(
+            'Guaranteed Margin', BILLING, 'New', RESELLER, null, null,
+            models, new Map<Id, String>{ BILLING => 'ACME', RESELLER => 'RES' },
+            null, null, null, 1000, 'Software');
+        System.assertEquals('Missing partner pricing model for: RES', r.warning,
+            'only the model-less participating partner (reseller) is named');
+        System.assertEquals(15, r.totalPercent, 'billing 15% still applies');
     }
 
     @IsTest
@@ -82,6 +101,7 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(1000, r.adjustedPrice, 'unmapped productType -> 0% -> price unchanged');
         System.assertEquals(0, r.totalPercent, '0% total');
         System.assertEquals(0, r.detailMaps.size(), 'selectedModel != null but 0% -> no detail');
+        System.assertEquals(null, r.warning, 'D-PARTNER-1: model present (just 0% for this type) is NOT a missing-model warning');
     }
 
     @IsTest

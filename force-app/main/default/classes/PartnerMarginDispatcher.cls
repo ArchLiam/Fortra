@@ -16,6 +16,10 @@ public with sharing class PartnerMarginDispatcher {
         public Decimal adjustedPrice;
         public Decimal totalPercent;
         public List<Map<String, Object>> detailMaps;
+        // D-PARTNER-1 (PartnerPricing SDD §6.3 / BR-007): identifies any participating partner that
+        // is configured on the Quote but lacks a matching pricing model for this line. Null when all
+        // participating partners resolve a model.
+        public String warning;
         public Result(Decimal adjustedPrice, Decimal totalPercent, List<Map<String, Object>> detailMaps) {
             this.adjustedPrice = adjustedPrice;
             this.totalPercent = totalPercent;
@@ -42,6 +46,8 @@ public with sharing class PartnerMarginDispatcher {
         Decimal adjustedPrice = currentPrice;
         Decimal totalPercent = 0;
         List<Map<String, Object>> detailMaps = new List<Map<String, Object>>();
+        // D-PARTNER-1: participating partners configured on the Quote but missing a matching model.
+        List<String> missingModelPartners = new List<String>();
 
         if (partnerPricingModel == MODEL_DISCOUNT) {
             List<Partner_Pricing_Model__c> billingPartnerModels = partnerModels.get(billingPartnerId);
@@ -67,6 +73,10 @@ public with sharing class PartnerMarginDispatcher {
                     'Billing Partner',
                     discountPercent
                 ));
+            } else if (selectedModel == null && billingPartnerId != null) {
+                // Billing partner is configured (Discount model on the Quote) but has no matching
+                // pricing model for this line — SDD-required warning.
+                missingModelPartners.add(partnerLabel(billingPartnerId, partnerNames));
             }
         } else if (partnerPricingModel == MODEL_GUARANTEED_MARGIN) {
             List<Decimal> allMargins = new List<Decimal>();
@@ -96,6 +106,9 @@ public with sharing class PartnerMarginDispatcher {
                         margin
                     ));
                     totalPercent += margin;
+                } else if (selectedModel == null) {
+                    // Participating partner with no matching Guaranteed-Margin model — SDD-required warning.
+                    missingModelPartners.add(partnerLabel(partnerId, partnerNames));
                 }
             }
 
@@ -104,7 +117,17 @@ public with sharing class PartnerMarginDispatcher {
             return null;
         }
 
-        return new Result(adjustedPrice, totalPercent, detailMaps);
+        Result r = new Result(adjustedPrice, totalPercent, detailMaps);
+        if (!missingModelPartners.isEmpty()) {
+            r.warning = 'Missing partner pricing model for: ' + String.join(missingModelPartners, ', ');
+        }
+        return r;
+    }
+
+    /** @description Display label for a partner in the missing-model warning (name, else the Id). */
+    private static String partnerLabel(Id partnerId, Map<Id, String> partnerNames) {
+        String partnerName = (partnerNames != null) ? partnerNames.get(partnerId) : null;
+        return String.isNotBlank(partnerName) ? partnerName : String.valueOf(partnerId);
     }
 
     // Byte-identical to the hook's PartnerMarginDetail.toMap() key order/shape.

@@ -8,11 +8,14 @@
  *              2. Contract Override - Active Contract COLA override (if valid)
  *              3. CMDT Lookup - Default from COLA_Uplift_Rules__mdt by Solution Category
  *
- *              Writes to Context (for Pricing Procedure waterfall visibility):
+ *              Writes to Context (hydration-mapped audit attributes only — see buildItemUpdate):
  *              - COLACalculatedPrice__c - The COLA-adjusted price
- *              - COLAUpliftPercent__c - The percentage applied
- *              - COLAExplainer__c - Human-readable explainer text
- *              - COLAApplied__c - Boolean flag for conditional assignment
+ *              - Pre_COLA_Price__c - The pre-COLA base (original Asset price)
+ *              - COLA_Source__c - Which tier won (Line/Contract/MyCAP/CMDT)
+ *              - COLA_Applied_Date__c, COLA_Solution_Category__c - audit
+ *              NOTE: COLAUpliftPercent__c / COLAExplainer__c / COLAApplied__c are context-only
+ *              (not hydration-mapped) and are deliberately NOT written here — including them
+ *              silently fails the whole updateContextAttributes batch.
  *
  * @author Marc DeBrey
  * @date January 2026
@@ -1045,7 +1048,6 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
             Map<Id, Decimal> qliCOLADefaults = new Map<Id, Decimal>();
             Set<Id> quotesToFlagTrue = new Set<Id>();
             Set<Id> quotesToFlagFalse = new Set<Id>();
-            List<Map<String, Object>> allContextUpdates = new List<Map<String, Object>>();
 
             for (Map<String, Object> itemWrapper : allRenewalWrappers) {
                 Id qliId = wrapperToQliId.get(itemWrapper);
@@ -1097,11 +1099,12 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
                     }
                 }
 
-                // Build the context audit update for this line
-                Map<String, Object> updatePayload = buildCOLAContextUpdate(
-                    itemWrapper, targetUplift, source, unitPrice, defaultPct, solCat, pricingTermCount
-                );
-                if (updatePayload != null) allContextUpdates.add(updatePayload);
+                // D-COLA-6: the per-line COLA audit context write is owned by processLineItems /
+                // buildItemUpdate (Asset-price-anchored). The old buildCOLAContextUpdate accumulation
+                // here fed a list that was never submitted (dead), and it reverse-derives Pre-COLA from
+                // UnitPrice — a §11 r1 base-price-invariant violation if ever re-wired. Removed; MyCAP
+                // here only evaluates the flag. Do NOT re-add a context write from this loop without
+                // sourcing Pre-COLA from the Asset price.
             }
             for (Id qId : quoteIds) {
                 if (!quotesToFlagTrue.contains(qId)) quotesToFlagFalse.add(qId);
