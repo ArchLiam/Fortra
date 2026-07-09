@@ -23,7 +23,7 @@ private class AttributeVolumeCalculatorTest {
         String attrName, String attrValue, Decimal lower, Decimal upper,
         Decimal tierValue, Decimal mult, String mode
     ) {
-        return new Attribute_Tier_Pricing_Storage__c(
+        return new Attribute_Tier_Pricing_Storage__c(CurrencyIsoCode = 'USD', 
             Product__c = PRODUCT_ID,
             Product_Selling_Model__c = PSM_ID,
             Attribute_Name__c = attrName,
@@ -81,13 +81,40 @@ private class AttributeVolumeCalculatorTest {
             attrMap('Attribute_Volume', '50')
         };
         AttributeVolumeCalculator.PricingTierResult r =
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50);
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD');
         System.assertNotEquals(null, r, 'volume 50 is in [0,100]');
         System.assertEquals(500, r.basePrice);
         System.assertEquals(1.25, r.multiplier);
         System.assertEquals('Calculated', r.priceMode);
         System.assertEquals('Feature_Options', r.attributeName);
         System.assertEquals('Gold', r.attributeValue);
+    }
+
+    // SC-3384 — the composite key is currency-scoped: a non-USD line matches ONLY its own-currency
+    // tier row (not the USD row), and falls to no-match when no row exists in its currency.
+    @isTest
+    static void lookupTier_currencyScoped_sc3384() {
+        Attribute_Tier_Pricing_Storage__c usdTier = tier('Feature_Options', 'Gold', 0, 100, 500, 1.0, 'Total Price');
+        Attribute_Tier_Pricing_Storage__c eurTier = new Attribute_Tier_Pricing_Storage__c(CurrencyIsoCode = 'EUR',
+            Product__c = PRODUCT_ID, Product_Selling_Model__c = PSM_ID,
+            Attribute_Name__c = 'Feature_Options', Attribute_Value__c = 'Gold',
+            Lower_Bound__c = 0, Upper_Bound__c = 100, Tier_Value__c = 467.30, Multiplier__c = 1.0, Price_Mode__c = 'Total Price');
+        Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
+            new List<Attribute_Tier_Pricing_Storage__c>{ usdTier, eurTier });
+
+        List<Map<String, Object>> attrs = new List<Map<String, Object>>{
+            attrMap('Feature_Options', 'Gold'), attrMap('Attribute_Volume', '50') };
+
+        AttributeVolumeCalculator.PricingTierResult usd = AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD');
+        System.assertNotEquals(null, usd, 'USD line matches USD tier');
+        System.assertEquals(500, usd.basePrice, 'USD tier value');
+
+        AttributeVolumeCalculator.PricingTierResult eur = AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'EUR');
+        System.assertNotEquals(null, eur, 'EUR line matches its OWN EUR tier');
+        System.assertEquals(467.30, eur.basePrice, 'EUR tier value, NOT the USD 500 (the SC-3384 bug)');
+
+        AttributeVolumeCalculator.PricingTierResult gbp = AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'GBP');
+        System.assertEquals(null, gbp, 'no GBP tier -> no match (data-first: falls to reset-to-list)');
     }
 
     @isTest
@@ -99,7 +126,7 @@ private class AttributeVolumeCalculatorTest {
             });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
         AttributeVolumeCalculator.PricingTierResult r =
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 250);
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 250, 'USD');
         System.assertEquals(400, r.basePrice, 'volume 250 falls in the [101,500] range');
     }
 
@@ -111,10 +138,10 @@ private class AttributeVolumeCalculatorTest {
             });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
         System.assertNotEquals(null,
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 99999),
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 99999, 'USD'),
             'null upper bound is open-ended');
         System.assertEquals(null,
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50),
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD'),
             'below lower bound => no match');
     }
 
@@ -126,7 +153,7 @@ private class AttributeVolumeCalculatorTest {
             });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
         System.assertEquals(null,
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 101),
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 101, 'USD'),
             'volume above the only range => no tier');
     }
 
@@ -139,7 +166,7 @@ private class AttributeVolumeCalculatorTest {
             });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
         System.assertNotEquals(null,
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50),
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD'),
             'space/underscore normalization aligns tier and context keys');
     }
 
@@ -156,7 +183,7 @@ private class AttributeVolumeCalculatorTest {
             new Map<String, Object>{ 'AttributeKeyName' => 'Feature_Options', 'AttributeValue' => 'Gold' }
         };
         AttributeVolumeCalculator.PricingTierResult r =
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50);
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD');
         System.assertNotEquals(null, r, 'AttributeKeyName fallback resolves the tier key');
         System.assertEquals('Feature_Options', r.attributeName);
     }
@@ -166,12 +193,12 @@ private class AttributeVolumeCalculatorTest {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
             new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', 0, 100, 500, 1.25, 'Calculated') });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(null, PRODUCT_ID, PSM_ID, attrs, 50), 'null map');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, '', PSM_ID, attrs, 50), 'blank product');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, '', attrs, 50), 'blank psm');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, null, 50), 'null attrs');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, new List<Map<String, Object>>(), 50), 'empty attrs');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, null), 'null volume');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(null, PRODUCT_ID, PSM_ID, attrs, 50, 'USD'), 'null map');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, '', PSM_ID, attrs, 50, 'USD'), 'blank product');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, '', attrs, 50, 'USD'), 'blank psm');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, null, 50, 'USD'), 'null attrs');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, new List<Map<String, Object>>(), 50, 'USD'), 'empty attrs');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, null, 'USD'), 'null volume');
     }
 
     // ---- buildNodeUpdate ------------------------------------------------------
@@ -380,7 +407,7 @@ private class AttributeVolumeCalculatorTest {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
             new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', null, 100, 500, 1.25, 'Calculated') });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
-        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 0),
+        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 0, 'USD'),
             'volume 0 matches when lower bound null (defaults to 0)');
     }
 
@@ -389,10 +416,10 @@ private class AttributeVolumeCalculatorTest {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
             new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', 10, 20, 500, 1.0, 'Unit Price') });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
-        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 10), 'lower bound inclusive');
-        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 20), 'upper bound inclusive');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 9), 'below lower excluded');
-        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 21), 'above upper excluded');
+        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 10, 'USD'), 'lower bound inclusive');
+        System.assertNotEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 20, 'USD'), 'upper bound inclusive');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 9, 'USD'), 'below lower excluded');
+        System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 21, 'USD'), 'above upper excluded');
     }
 
     @isTest
@@ -405,7 +432,7 @@ private class AttributeVolumeCalculatorTest {
             attrMap('Feature_Options', 'Gold')
         };
         AttributeVolumeCalculator.PricingTierResult r =
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50);
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD');
         System.assertEquals('Feature_Options', r.attributeName, 'iterates past the no-key attr to the matching one');
     }
 
@@ -415,7 +442,7 @@ private class AttributeVolumeCalculatorTest {
             new List<Attribute_Tier_Pricing_Storage__c>{ tier('Feature_Options', 'Gold', 0, 100, 300, null, 'Total Price') });
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{ attrMap('Feature_Options', 'Gold') };
         AttributeVolumeCalculator.PricingTierResult r =
-            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50);
+            AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 50, 'USD');
         System.assertEquals('Total Price', r.priceMode);
         System.assertEquals(300, r.basePrice);
         System.assertEquals(null, r.multiplier);

@@ -49,7 +49,7 @@ private class AttributeVolumePricingPrehookTest {
 
         List<Attribute_Tier_Pricing_Storage__c> tiers = new List<Attribute_Tier_Pricing_Storage__c>{
             // Feature_Options = Platinum, volume 1-100, Unit Price mode
-            new Attribute_Tier_Pricing_Storage__c(
+            new Attribute_Tier_Pricing_Storage__c(CurrencyIsoCode = 'USD', 
                 Product__c = testProduct.Id,
                 Product_Selling_Model__c = psm.Id,
                 Attribute_Name__c = 'Feature_Options',
@@ -61,7 +61,7 @@ private class AttributeVolumePricingPrehookTest {
                 Multiplier__c = null
             ),
             // Feature_Options = Platinum, volume 101-500, Calculated mode
-            new Attribute_Tier_Pricing_Storage__c(
+            new Attribute_Tier_Pricing_Storage__c(CurrencyIsoCode = 'USD', 
                 Product__c = testProduct.Id,
                 Product_Selling_Model__c = psm.Id,
                 Attribute_Name__c = 'Feature_Options',
@@ -73,7 +73,7 @@ private class AttributeVolumePricingPrehookTest {
                 Multiplier__c = 0.95
             ),
             // Feature_Options = Ultimate, volume 1-100, Unit Price mode
-            new Attribute_Tier_Pricing_Storage__c(
+            new Attribute_Tier_Pricing_Storage__c(CurrencyIsoCode = 'USD', 
                 Product__c = testProduct.Id,
                 Product_Selling_Model__c = psm.Id,
                 Attribute_Name__c = 'Feature_Options',
@@ -85,7 +85,7 @@ private class AttributeVolumePricingPrehookTest {
                 Multiplier__c = null
             ),
             // Support_Level = Premium, volume 1-999, Total Price mode
-            new Attribute_Tier_Pricing_Storage__c(
+            new Attribute_Tier_Pricing_Storage__c(CurrencyIsoCode = 'USD', 
                 Product__c = testProduct.Id,
                 Product_Selling_Model__c = psm.Id,
                 Attribute_Name__c = 'Support_Level',
@@ -243,7 +243,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
             AND Attribute_Value__c = 'Platinum'
@@ -265,7 +265,7 @@ private class AttributeVolumePricingPrehookTest {
 
         Test.startTest();
         // lookupTierFromMap internally creates PricingTierResult with 5-param constructor
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, result, 'Should return a PricingTierResult for matching tier');
@@ -283,7 +283,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -298,12 +298,12 @@ private class AttributeVolumePricingPrehookTest {
 
         // Verify Platinum key has 2 tiers (volume 1-100 and 101-500)
         String testPsmId = [SELECT Product_Selling_Model__c FROM Attribute_Tier_Pricing_Storage__c LIMIT 1].Product_Selling_Model__c;
-        String platinumKey = testProduct.Id + '|' + testPsmId + '|Feature_Options|Platinum';
+        String platinumKey = testProduct.Id + '|' + testPsmId + '|Feature_Options|Platinum|USD';
         System.assert(tierMap.containsKey(platinumKey), 'Should contain Platinum key');
         System.assertEquals(2, tierMap.get(platinumKey).size(), 'Platinum should have 2 tier records');
 
         // Verify Ultimate key has 1 tier
-        String ultimateKey = testProduct.Id + '|' + testPsmId + '|Feature_Options|Ultimate';
+        String ultimateKey = testProduct.Id + '|' + testPsmId + '|Feature_Options|Ultimate|USD';
         System.assert(tierMap.containsKey(ultimateKey), 'Should contain Ultimate key');
         System.assertEquals(1, tierMap.get(ultimateKey).size(), 'Ultimate should have 1 tier record');
     }
@@ -333,7 +333,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -353,7 +353,7 @@ private class AttributeVolumePricingPrehookTest {
 
         Test.startTest();
         // Volume 50 should match Platinum 1-100 tier (Unit Price, $1000)
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, result, 'Should find matching tier for Platinum vol=50');
@@ -370,7 +370,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -390,7 +390,7 @@ private class AttributeVolumePricingPrehookTest {
 
         Test.startTest();
         // Volume 250 should match Platinum 101-500 tier (Calculated, $950, 0.95x)
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 250);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 250, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, result, 'Should find matching tier for Platinum vol=250 (Calculated mode)');
@@ -407,7 +407,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -427,7 +427,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         Test.startTest();
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         Test.stopTest();
 
         System.assertEquals(null, result, 'Should return null for non-matching attribute value');
@@ -444,7 +444,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -464,7 +464,7 @@ private class AttributeVolumePricingPrehookTest {
 
         Test.startTest();
         // Volume 1000 is outside both Platinum tiers (1-100, 101-500)
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 1000);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 1000, 'USD');
         Test.stopTest();
 
         System.assertEquals(null, result, 'Should return null when volume is outside all tier ranges');
@@ -481,7 +481,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -506,7 +506,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         Test.startTest();
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, result, 'Should find matching tier via Support_Level=Premium');
@@ -522,23 +522,23 @@ private class AttributeVolumePricingPrehookTest {
 
         Test.startTest();
         // Null tierMap
-        Object nullMap = hook.lookupTierFromMap(null, 'prodId', 'psmId', lineAttributes, 50);
+        Object nullMap = hook.lookupTierFromMap(null, 'prodId', 'psmId', lineAttributes, 50, 'USD');
         // Blank productId
         Object blankProduct = hook.lookupTierFromMap(
-            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), '', 'psmId', lineAttributes, 50);
+            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), '', 'psmId', lineAttributes, 50, 'USD');
         // Blank psmId
         Object blankPsm = hook.lookupTierFromMap(
-            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', '', lineAttributes, 50);
+            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', '', lineAttributes, 50, 'USD');
         // Null attributes
         Object nullAttrs = hook.lookupTierFromMap(
-            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', 'psmId', null, 50);
+            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', 'psmId', null, 50, 'USD');
         // Empty attributes
         Object emptyAttrs = hook.lookupTierFromMap(
             new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', 'psmId',
-            new List<Map<String, Object>>(), 50);
+            new List<Map<String, Object>>(), 50, 'USD');
         // Null volume
         Object nullVol = hook.lookupTierFromMap(
-            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', 'psmId', lineAttributes, null);
+            new Map<String, List<Attribute_Tier_Pricing_Storage__c>>(), 'prodId', 'psmId', lineAttributes, null, 'USD');
         Test.stopTest();
 
         System.assertEquals(null, nullMap, 'Null tierMap should return null');
@@ -562,7 +562,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
             AND Attribute_Value__c = 'Platinum'
@@ -577,7 +577,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         // Get a PricingTierResult via lookupTierFromMap
-        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         System.assertNotEquals(null, tierResultObj, 'Prerequisite: tier result must not be null');
 
         Test.startTest();
@@ -601,7 +601,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
             AND Attribute_Value__c = 'Platinum'
@@ -615,7 +615,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         // Volume 250 -> Calculated mode tier (101-500)
-        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 250);
+        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 250, 'USD');
         System.assertNotEquals(null, tierResultObj, 'Prerequisite: tier result must not be null');
 
         Test.startTest();
@@ -639,7 +639,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
             AND Attribute_Name__c = 'Support_Level'
@@ -652,7 +652,7 @@ private class AttributeVolumePricingPrehookTest {
             new Map<String, Object>{ 'Attribute' => 'Attribute_Volume', 'AttributeValue' => '100' }
         };
 
-        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 100);
+        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 100, 'USD');
         System.assertNotEquals(null, tierResultObj, 'Prerequisite: tier result must not be null');
 
         Test.startTest();
@@ -676,7 +676,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
             AND Attribute_Value__c = 'Platinum'
@@ -691,15 +691,15 @@ private class AttributeVolumePricingPrehookTest {
 
         Test.startTest();
         // Exact lower bound of first tier (vol=1)
-        Object atLower = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 1);
+        Object atLower = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 1, 'USD');
         // Exact upper bound of first tier (vol=100)
-        Object atUpper = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 100);
+        Object atUpper = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 100, 'USD');
         // Exact lower bound of second tier (vol=101)
-        Object atSecondLower = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 101);
+        Object atSecondLower = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 101, 'USD');
         // Exact upper bound of second tier (vol=500)
-        Object atSecondUpper = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 500);
+        Object atSecondUpper = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 500, 'USD');
         // Just beyond upper bound (vol=501)
-        Object beyondUpper = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 501);
+        Object beyondUpper = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 501, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, atLower, 'Vol=1 should match first tier (lower bound)');
@@ -799,7 +799,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :testProduct.Id
         ];
@@ -814,7 +814,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         Test.startTest();
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, result, 'Should match Feature_Options tier, skipping Attribute_Volume');
@@ -845,7 +845,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         // Volume 250 -> Calculated tier (base 950, multiplier 0.95)
-        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 250);
+        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 250, 'USD');
         System.assertNotEquals(null, tierResultObj, 'Prerequisite: Calculated tier result must not be null');
 
         Map<String, Object> itemNode = PricingPrehookTestFixtures.itemNode(
@@ -895,7 +895,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         // Volume 50 -> Unit Price tier (base 1000)
-        Object unitResult = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object unitResult = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         System.assertNotEquals(null, unitResult, 'Prerequisite: Unit Price tier result must not be null');
 
         Map<String, Object> itemNode = PricingPrehookTestFixtures.itemNode(
@@ -934,7 +934,7 @@ private class AttributeVolumePricingPrehookTest {
             new Map<String, Object>{ 'Attribute' => 'Feature_Options', 'AttributeValue' => 'Platinum' },
             new Map<String, Object>{ 'Attribute' => 'Attribute_Volume', 'AttributeValue' => '50' }
         };
-        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object tierResultObj = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
 
         // Item node with an EMPTY dataPath
         Map<String, Object> itemNode = PricingPrehookTestFixtures.itemNode(
@@ -1052,6 +1052,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> matchItem = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'Product' => PricingPrehookTestFixtures.tag(testProduct.Id),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag(testPsmId),
                 'Name' => PricingPrehookTestFixtures.tag('Match Line'),
@@ -1063,6 +1064,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> noVolItem = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'Product' => PricingPrehookTestFixtures.tag(testProduct.Id),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag(testPsmId),
                 'ListPrice' => PricingPrehookTestFixtures.tag(700)
@@ -1073,6 +1075,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> noMatchItem = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'Product' => PricingPrehookTestFixtures.tag(testProduct.Id),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag(testPsmId),
                 'ListPrice' => PricingPrehookTestFixtures.tag(900)
@@ -1197,6 +1200,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> eligibleNoTiers = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'Product' => PricingPrehookTestFixtures.tag('01t000000000000AAA'),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag('0jP000000000000AAA')
             },
@@ -1442,6 +1446,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> blankIdItem = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'Product' => PricingPrehookTestFixtures.tag(testProduct.Id),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag(testPsmId)
             },
@@ -1451,6 +1456,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> noProductItem = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag(testPsmId)
             },
             new List<Object>{ 'ctx', 'quote', 'LINE-NOPROD' }
@@ -1459,6 +1465,7 @@ private class AttributeVolumePricingPrehookTest {
         Map<String, Object> noAttrsItem = PricingPrehookTestFixtures.itemNode(
             new Map<String, Object>{
                 'Has_Attribute_Adjustment__c' => PricingPrehookTestFixtures.tag(true),
+                'STICurrencyIsoCode' => PricingPrehookTestFixtures.tag('USD'),
                 'Product' => PricingPrehookTestFixtures.tag(testProduct.Id),
                 'ProductSellingModel' => PricingPrehookTestFixtures.tag(testPsmId)
             },
@@ -1529,7 +1536,7 @@ private class AttributeVolumePricingPrehookTest {
         };
 
         Test.startTest();
-        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50);
+        Object result = hook.lookupTierFromMap(tierMap, testProduct.Id, testPsmId, lineAttributes, 50, 'USD');
         Test.stopTest();
 
         System.assertNotEquals(null, result,
@@ -1549,7 +1556,7 @@ private class AttributeVolumePricingPrehookTest {
             SELECT Id, Product__c, Product_Selling_Model__c,
                    Attribute_Name__c, Attribute_Value__c,
                    Lower_Bound__c, Upper_Bound__c,
-                   Tier_Value__c, Multiplier__c, Price_Mode__c
+                   Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
             FROM Attribute_Tier_Pricing_Storage__c
             WHERE Product__c = :productId
         ];

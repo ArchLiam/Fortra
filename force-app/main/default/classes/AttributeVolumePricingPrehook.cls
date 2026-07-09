@@ -164,6 +164,7 @@ global class AttributeVolumePricingPrehook implements RevSignaling.SignalingApex
         // ===== PASS 1: Collect Product and PSM IDs from eligible line items =====
         Set<String> productIds = new Set<String>();
         Set<String> psmIds = new Set<String>();
+        Set<String> currencies = new Set<String>();   // SC-3384: line currencies to scope the tier query per currency
         List<Map<String, Object>> eligibleItems = new List<Map<String, Object>>();
 
         for (Object itemObj : lineItemData) {
@@ -184,6 +185,13 @@ global class AttributeVolumePricingPrehook implements RevSignaling.SignalingApex
             if (String.isNotBlank(psmId)) {
                 psmIds.add(psmId);
             }
+            // SC-3384: capture the line currency (STICurrencyIsoCode item tag) so the bulk query only loads
+            // tier rows matching the quote's currency(ies) -- previously all currencies loaded and a EUR/GBP
+            // line matched USD tier rows.
+            String itemCurrency = AttributeVolumeCalculator.getStringFromTag(tagMap, 'STICurrencyIsoCode');
+            if (String.isNotBlank(itemCurrency)) {
+                currencies.add(itemCurrency);
+            }
 
             eligibleItems.add(itemNode);
         }
@@ -203,10 +211,11 @@ global class AttributeVolumePricingPrehook implements RevSignaling.SignalingApex
                 SELECT Id, Product__c, Product_Selling_Model__c,
                     Attribute_Name__c, Attribute_Value__c,
                     Lower_Bound__c, Upper_Bound__c,
-                    Tier_Value__c, Multiplier__c, Price_Mode__c
+                    Tier_Value__c, Multiplier__c, Price_Mode__c, CurrencyIsoCode
                 FROM Attribute_Tier_Pricing_Storage__c
                 WHERE Product__c IN :productIds
                 AND Product_Selling_Model__c IN :psmIds
+                AND CurrencyIsoCode IN :currencies
             ];
         }
 
@@ -280,8 +289,9 @@ global class AttributeVolumePricingPrehook implements RevSignaling.SignalingApex
                 continue;
             }
 
-            // Look up pricing tier from the bulk-loaded map
-            AttributeVolumeCalculator.PricingTierResult tierResult = AttributeVolumeCalculator.lookupTierFromMap(tierMap, productId, psmId, lineAttributes, volume);
+            // Look up pricing tier from the bulk-loaded map (SC-3384: scoped to the line's currency)
+            String lineCurrency = AttributeVolumeCalculator.getStringFromTag(tagMap, 'STICurrencyIsoCode');
+            AttributeVolumeCalculator.PricingTierResult tierResult = AttributeVolumeCalculator.lookupTierFromMap(tierMap, productId, psmId, lineAttributes, volume, lineCurrency);
             if (tierResult == null) {
                 System.debug(LoggingLevel.WARN, 'RESET: No matching tier for Product=' + productId +
                     ', PSM=' + psmId + ', Volume=' + volume + ' — resetting to list price');
@@ -449,9 +459,10 @@ global class AttributeVolumePricingPrehook implements RevSignaling.SignalingApex
         String productId,
         String psmId,
         List<Map<String, Object>> lineAttributes,
-        Decimal volume
+        Decimal volume,
+        String currencyIso
     ) {
-        return AttributeVolumeCalculator.lookupTierFromMap(tierMap, productId, psmId, lineAttributes, volume);
+        return AttributeVolumeCalculator.lookupTierFromMap(tierMap, productId, psmId, lineAttributes, volume, currencyIso);
     }
 
     @TestVisible

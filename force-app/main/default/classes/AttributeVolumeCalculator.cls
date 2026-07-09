@@ -64,7 +64,7 @@ public with sharing class AttributeVolumeCalculator {
 
         for (Attribute_Tier_Pricing_Storage__c tier : tiers) {
             String key = buildCompositeKey(tier.Product__c, tier.Product_Selling_Model__c,
-                tier.Attribute_Name__c, tier.Attribute_Value__c);
+                tier.Attribute_Name__c, tier.Attribute_Value__c, tier.CurrencyIsoCode);
 
             if (!tierMap.containsKey(key)) {
                 tierMap.put(key, new List<Attribute_Tier_Pricing_Storage__c>());
@@ -84,11 +84,13 @@ public with sharing class AttributeVolumeCalculator {
      * @param attrValue Attribute value
      * @return Pipe-delimited composite key
      */
-    private static String buildCompositeKey(String productId, String psmId, String attrName, String attrValue) {
+    private static String buildCompositeKey(String productId, String psmId, String attrName, String attrValue, String currencyIso) {
         // Normalize attribute name: context uses underscores (Feature_Options),
         // tier data uses spaces (Feature Options) - standardize to underscores
         String normalizedName = attrName != null ? attrName.replaceAll(' ', '_') : attrName;
-        return productId + '|' + psmId + '|' + normalizedName + '|' + attrValue;
+        // SC-3384: currency is the 5th key segment so a non-USD line only matches its OWN-currency tier row.
+        // Previously currency-blind -> a EUR/GBP line matched USD tier rows and priced from the USD tier value.
+        return productId + '|' + psmId + '|' + normalizedName + '|' + attrValue + '|' + currencyIso;
     }
 
     /**
@@ -108,7 +110,8 @@ public with sharing class AttributeVolumeCalculator {
         String productId,
         String psmId,
         List<Map<String, Object>> lineAttributes,
-        Decimal volume
+        Decimal volume,
+        String currencyIso
     ) {
         if (tierMap == null || String.isBlank(productId) || String.isBlank(psmId) ||
             lineAttributes == null || lineAttributes.isEmpty() || volume == null) {
@@ -134,7 +137,7 @@ public with sharing class AttributeVolumeCalculator {
                 continue;
             }
 
-            String key = buildCompositeKey(productId, psmId, attrName, attrValue);
+            String key = buildCompositeKey(productId, psmId, attrName, attrValue, currencyIso);
             System.debug(LoggingLevel.DEBUG, 'lookupTier: Checking key=' + key + ' (attr=' + attrName + '=' + attrValue + ')');
 
             if (!tierMap.containsKey(key)) {
