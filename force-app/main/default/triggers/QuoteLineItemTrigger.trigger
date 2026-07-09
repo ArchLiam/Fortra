@@ -25,6 +25,12 @@ trigger QuoteLineItemTrigger on QuoteLineItem (before insert, before update, aft
             );
         }
 
+        // SC-3384: re-point any PricebookEntry whose currency differs from the parent Quote's
+        // (managed RLM auto-add resolves a currency-blind PBE) before native validation fires.
+        if (Trigger.isInsert) {
+            QuoteLineItemCurrencyCorrectionHandler.correctPricebookEntryCurrency(Trigger.new);
+        }
+
         // Handle COLA uplift for renewals
         if (Trigger.isInsert) {
             COLAUpliftHandler.handleBeforeInsert(Trigger.new);
