@@ -60,6 +60,50 @@ private class AmendNetCarryPrehookTest {
     }
 
     @IsTest
+    static void buildAmendSeedUpdate_seedsTotalClusterOnly() {
+        AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
+        // unitNet null, lineTotal given -> only the four total attributes, no unit attributes.
+        Map<String, Object> upd = hook.buildAmendSeedUpdate(
+            wrapperWithPath(new List<Object>{ 'r', '0QLLINE' }), null, 40000);
+        System.assertNotEquals(null, upd, 'total-only seed built');
+        System.assert(((Decimal) attrValue(upd, 'NetTotalPrice')) == 40000, 'NetTotalPrice seeded');
+        System.assert(((Decimal) attrValue(upd, 'TotalPrice')) == 40000, 'TotalPrice seeded');
+        System.assert(((Decimal) attrValue(upd, 'Subtotal')) == 40000, 'Subtotal seeded');
+        System.assert(((Decimal) attrValue(upd, 'TotalLineAmount')) == 40000, 'TotalLineAmount seeded (AmendSeedNetTotal fallback branch)');
+        System.assertEquals(null, attrValue(upd, 'NetUnitPrice'), 'no unit attribute when unitNet null');
+    }
+
+    @IsTest
+    static void buildAmendSeedUpdate_seedsUnitAndTotalTogether() {
+        AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
+        Map<String, Object> upd = hook.buildAmendSeedUpdate(
+            wrapperWithPath(new List<Object>{ 'r', '0QLLINE' }), 10000, 40000);
+        System.assert(((Decimal) attrValue(upd, 'NetUnitPrice')) == 10000, 'unit carried');
+        System.assert(((Decimal) attrValue(upd, 'UnitPrice')) == 10000, 'input unit carried');
+        System.assert(((Decimal) attrValue(upd, 'NetTotalPrice')) == 40000, 'total recomputed (net x qty)');
+        System.assert(((Decimal) attrValue(upd, 'TotalLineAmount')) == 40000, 'total fallback set too');
+    }
+
+    @IsTest
+    static void buildAmendSeedUpdate_totalRoundsHalfUp() {
+        AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
+        Map<String, Object> upd = hook.buildAmendSeedUpdate(
+            wrapperWithPath(new List<Object>{ 'r', 'q' }), null, 40000.009);
+        System.assert(((Decimal) attrValue(upd, 'NetTotalPrice')) == 40000.01, 'total rounds HALF_UP to 2 scale');
+    }
+
+    @IsTest
+    static void buildAmendSeedUpdate_bothNull_returnsNull() {
+        AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
+        System.assertEquals(null,
+            hook.buildAmendSeedUpdate(wrapperWithPath(new List<Object>{ 'r', 'q' }), null, null),
+            'no unit and no total -> null');
+        System.assertEquals(null,
+            hook.buildAmendSeedUpdate(wrapperWithPath(new List<Object>{ 'r', 'q' }), 0, 0),
+            'zero unit and zero total -> null');
+    }
+
+    @IsTest
     static void extractQueryResult_handlesResponseShapes() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
         System.assertEquals(null, hook.extractQueryResult(null), 'null response -> null');
