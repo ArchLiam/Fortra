@@ -1,0 +1,543 @@
+{
+  "summary": "Verify SC-3505 three ACs against live org; steelman that Marc implemented it",
+  "agentCount": 12,
+  "logs": [],
+  "result": {
+    "discovery": [
+      {
+        "area": "CROSS-ORG SCHEMA (Order / Contract / Quote describes + Workday_Contract_Type__c picklist)",
+        "found": false,
+        "orgsChecked": [
+          "FortraUAT",
+          "FortraDP2",
+          "MergeBuild",
+          "fulltemp",
+          "FortraProd"
+        ],
+        "summary": "All 5 orgs reachable and fully described (15/15 describes succeeded, 0 errors). NO org contains any NEW custom field on Order/Contract/Quote purpose-built to carry the original/prior/amended Workday contract reference onto the amendment transaction, and NO org exposes an Alternate/Amendment value on Workday_Contract_Type__c. The only active Workday_Contract_Type__c value anywhere is Master_Contract (in the 4 sandboxes; FortraProd exposes no picklist value at all via describe). Every lineage-related field found predates SC-3505 and none stamps the amendment's own Workday-contract reference with the original Workday contract Id. Conclusion: no SC-3505 schema artifact exists in any org — found=false.",
+        "evidence": [
+          "All 5 target orgs Connected per `sf org list`: liam.jeong.c@fortra.com.uat (FortraUAT), .fortradp2 (FortraDP2), .mergebuild (MergeBuild), .fulltemp (fulltemp), liam.jeong.c@fortra.com (FortraProd). K2 Insurance UAT expired but not in scope.",
+          "Workday_Contract_Type__c picklist = ['Master_Contract'] (active) in FortraUAT, FortraDP2, MergeBuild, fulltemp. NO Alternate/Amendment/Prior value in any of the 4.",
+          "FortraProd Order.Workday_Contract_Type__c describes as type=string with EMPTY picklist array (picklistValues=[]) — a Prod field-availability/describe artifact for this profile, NOT an Amendment value; no Master_Contract or amendment value exposed.",
+          "Order candidate fields (all 5 orgs, all predate ticket): Workday_Contract_ID__c (string, =Order.Id per facts), Workday_Contract_Type__c, plus Workday_Sync_Payload__c/Status/Message/Correlation, WorkdayReferenceID__c, Payment_Term_Workday_Reference_ID__c, Source_Order_Id__c. NONE carries a prior/original Workday contract reference.",
+          "Contract.Original_Contract__c = reference->Contract (SF Contract lineage, not Workday); present in all 5 orgs; pre-existing. Also Amendment_ARR_Impact__c / Amendment_Count__c / Amendment_Reason__c / Parent_Contract_End_Date__c — all pre-existing amendment-analytics fields, none is a Workday contract-id carrier.",
+          "Quote lineage fields (pre-existing): Renewal_Contract__c (reference->Contract; label 'Source Contract' in 4 sandboxes, 'Renewal Contract' in Prod), Original_Order_Id__c (reference), Original_Quote__c (reference), Original_Contract_ARR__c (calculated currency), Amendment_Effective/Request_Date__c, Amendment_Reason__c. None stamps a Workday contract id.",
+          "FortraProd Quote is MISSING Renewal_Contract__c and Original_Quote__c (present in all 4 sandboxes) — sandbox-vs-prod deploy lag, unrelated to SC-3505; not an amendment-contract-id field either.",
+          "Field counts: Order 222/221/220/222/191, Contract 111/111/110/110/109, Quote 238/238/247/247/227 (UAT/DP2/MergeBuild/fulltemp/Prod) — no NEW SC-3505 field distinguishes any org.",
+          "Consistent with provided facts: no CustomField/Flow/git-commit created today referencing 3505/workday-contract/original-contract; Marc DeBrey's recent fields (Asset.Workday_Contract_Line_Reference_ID, Prior_Partner_Discount, Prior_Discretionary_Discount) are unrelated and not on Order/Contract/Quote as an original-Workday-contract carrier."
+        ]
+      },
+      {
+        "area": "PAYLOAD PATH",
+        "found": false,
+        "summary": "Order.Workday_Sync_Payload__c is NOT constructed by any Salesforce artifact - it is built by MuleSoft and written back to SF by the integration. No SF Apex class or flow serializes the Workday Submit_Customer_Contract payload, and no SF code path injects an original/prior/amendment-contract reference (customerContractType/contractReferenceId/originalContract) for amendment orders. The only SF-side lineage that exists is Quote.Original_Order_Id__c/Original_Quote__c stamped by the amendment flow (predates ticket), but nothing carries an original Workday-contract reference onto the Order or into the payload. No SC-3505 implementation artifact exists in the payload path.",
+        "evidence": [
+          "Payload keys (customerContractType, contractReferenceId, contractLineData, Original_Customer_Contract, originalContract) appear ZERO times in any .cls or .flow-meta.xml (grep --include=*.cls --include=*.flow-meta.xml returned nothing); they occur only in Jira/*/evidence/*.json, Data/sc3516/*.json, and Jira/Story/sc3143/workday-api-reference/Submit_Customer_Contract.md - i.e. captured Mule output and API docs, not SF source.",
+          "Only SF reference to Workday_Sync_Payload__c in Apex is force-app/main/default/classes/DunAndBradstreetHelper.cls:410, which EXCLUDES the field from a generic field-copy ('fieldName != Workday_Sync_Payload__c') - it does not build it.",
+          "No Apex writes the field: grep 'Workday_Sync_Payload__c\\s*=' across force-app/main/default/classes/ returned nothing.",
+          "force-app/main/default/flows/Fortra_Order_Set_Workday_and_PO_Fields.flow-meta.xml is status=Obsolete (line 88, apiVersion 66.0); its Set_Pending recordUpdate assigns Workday_Sync_Payload__c to an EMPTY stringValue (lines 57-60) - it CLEARS/resets the field, never constructs a payload.",
+          "force-app/main/default/flows/Order_Before_Insert_Update_Sync_Status.flow-meta.xml (status=Active, line 249) only READS $Record.Workday_Sync_Payload__c as a decision leftValueReference (line 167) to gate sync-status; it does not write the field.",
+          "force-app/main/default/flows/Fortra_Order_Workday_Contract_ID.flow-meta.xml (Active) stamps Workday_Contract_ID__c = $Record.Id (line 33-36) only, gated on WCID empty/null (start filters lines 47-59); no original-contract logic.",
+          "Amendment flow force-app/main/default/flows/Fortra_Create_Amendment_Quote.flow-meta.xml stamps Quote_To_Update.Original_Quote__c=Get_Original_Quote.Id (l.95-98) and Original_Order_Id__c=Get_Original_Order.Id (l.102-105) - Quote-side lineage only, no Workday_Sync_Payload / contractReference / customerContract write.",
+          "Fortra_Quote_to_Order_Conversion, Fortra_Amendment_Sync_To_Renewal_Opp, and Fortra_Renewal_Contract_Succession flows contain NO Workday_Sync_Payload / contractReference / customerContract / originalContract references.",
+          "FortraUAT Tooling API (read-only) ApexClass LastModifiedDate=LAST_N_DAYS:60: 26 Order/Contract/Workday-named classes; none is a Workday-payload/contract builder (PowerOrderSplittingService, OrderValidationTriggerHandler, AssetContractQueryHelper, ContractAssetRenewalInvocable, OrderCommercialNetService, QuoteToOrderFieldMapper, etc.). Spot-grep of QuoteToOrderFieldMapper/OrderCommercialNetService/MaintenanceOrderDecompositionService/ContractAssetRenewalInvocable/AssetContractQueryHelper for Workday/contractReference/customerContract/Original.*Contract/Sync_Payload/Submit_Customer returned nothing.",
+          "Conclusion: payload is built in MuleSoft (SF outbound is platform event Order_Completed_WD__e carrying only Order_Id__c; Mule builds Submit_Customer_Contract and writes result back to Order.Workday_Sync_Payload__c). No SF artifact injects an original-contract reference for amendments -> found=false."
+        ],
+        "orgsChecked": [
+          "FortraUAT (Tooling API read-only ApexClass query)",
+          "repo force-app/main/default (git working tree, branch uat)"
+        ]
+      },
+      {
+        "area": "LIVE PAYLOAD RE-CONFIRM + MULE-DERIVABLE (FortraUAT)",
+        "found": false,
+        "orgsChecked": [
+          "FortraUAT"
+        ],
+        "summary": "Independently re-pulled Workday_Sync_Payload__c for all 6 amendment orders (OriginalActionType=Amend) in FortraUAT via sf data query. NO payload contains any original/prior/alternate contract reference. In the ONLY 2 populated payloads, every contract-identity key (sfContractId, orderId, fortraSfdcExternalId, contractReferenceId) equals the amendment order's OWN Id, customerContractType=Master_Contract, and the free-text name is the literal \"Amendment Quote\" (carries no contract id). The other 4 orders have EMPTY Workday_Sync_Payload__c. found=false: no real original-reference value is present in any stored payload today. Mule COULD derive the original contract WITHOUT a new SF field for 4/6 orders (Quote.Original_Order_Id__c -> sibling original order whose WCID==its own Id = the Workday contract to amend; shared Order.ContractId also links original+amendment siblings), but this is NOT done today and is UNAVAILABLE for the 2 native/manual amendments (Quote_Type__c null, Original_Order_Id__c null, single order under ContractId, no sibling). The \"Amendment Quote\" name is not a usable derivation source.",
+        "evidence": [
+          "Query: SELECT ... FROM Order WHERE Id IN (6 amendment ids); all 6 returned OriginalActionType=Amend, WCID==own Id=True. Correct field names are standard OriginalActionType / OriginalOrderId (no __c).",
+          "00000656 (801WC00000eL6A9YAK): Status=Draft, SyncStatus=Pending, Workday_Sync_Payload__c=EMPTY.",
+          "00095512 (801WC00000koIE3YAM): SyncStatus=Success. Payload contractReferenceId=801WC00000koIE3YAM == own Id (True); sfContractId=orderId=fortraSfdcExternalId all also == own Id. customerContractType=Master_Contract. name='Amendment Quote'. NO original/prior/alternate/parent key; OriginalOrderId not present in payload.",
+          "00095531 (801WC00000ksL59YAE): Status=Activated, SyncStatus=Pending, Workday_Sync_Payload__c=EMPTY. Native/manual: Quote_Type__c null, Quote.Original_Order_Id__c null, only 1 order under ContractId 800WC00000SOGWYYA5 (no sibling original).",
+          "00095635 (801WC00000lqWKGYA2): Status=Draft, SyncStatus=Pending, Workday_Sync_Payload__c=EMPTY.",
+          "00095642 (801WC00000ltUiuYAE): SyncStatus=Success. Payload contractReferenceId=801WC00000ltUiuYAE == own Id (True); sfContractId=orderId=fortraSfdcExternalId all == own Id. customerContractType=Master_Contract. name='Amendment Quote'. NO original/prior/alternate key.",
+          "00095676 (801WC00000mA6TcYAK): Status=Activated, SyncStatus=Pending, Workday_Sync_Payload__c=EMPTY. Native/manual: Quote_Type__c null, Original_Order_Id__c null, only 1 order under ContractId 800WC00000T5UsnYAF (no sibling).",
+          "Full JSON of both populated payloads dumped: keys = sfContractId, orderId, sfAccountId, fortraSfdcExternalId, orderNumber, name='Amendment Quote', opportunityId, totalAmount, currencyIsoCode, contractReferenceId, contractStatus, companyReference, currencyID, shipTo/soldTo/billToCustomerID, customerContractType='Master_Contract', paymentTerms, contractEffectiveDate, salespersonReference, currentContractAmount, MEA fields, contractLineData[]. No key names or values reference an original/prior/amended contract.",
+          "Mule-derivable lineage (in SF, not in payload): Quote.Original_Order_Id__c present for 4/6 amendments -> 00000656->00000655(801WC00000eLglEYAS), 00095512->00095510(801WC00000koHXqYAM), 00095635->00095634(801WC00000lqY7OYAU), 00095642->00095639(801WC00000ltV8VYAU); each original order's WCID==its own Id, so that Id IS the Workday contract to amend.",
+          "Order.ContractId sibling-order traversal: 4 amendments share their ContractId with exactly one original sibling (ActionType None/Renew); 2 (00095531, 00095676) are the only order under their ContractId, so no in-SF original to traverse to.",
+          "All queries read-only (sf data query / sf sobject describe) against FortraUAT; no writes/DML/deploy performed."
+        ]
+      },
+      {
+        "area": "ARTIFACTS/PROVENANCE",
+        "found": false,
+        "summary": "No SC-3505 implementation exists outside SF metadata (and the peer review found none inside it either). Git has zero history for 3505/workday-contract/amendment/original-contract on any branch, and there are no branches beyond main/uat. The only working-tree material referencing 3505 is the SC-3516 PEER REVIEW folder authored by Liam Jeong (verdict: APPROVE INTENT, RETURN FOR DESIGN - not build-ready as written), which is review/design commentary plus read-only payload evidence, not built code. Neither knowledge-base doc contains an 'original workday contract' amendment design; the KB grep hit only on the generic words amend/workday appearing separately, and the phrase search returned zero hits. The only candidate carrier, Quote.Original_Order_Id__c, IS populated on 4/6 amendment quotes but predates the ticket by ~6 months (created 2026-01-09 vs a 6/29-demo ticket) and lives on the Quote, not the amendment Order/transaction - so it cannot honestly be argued as SC-3505 AC#1 'identifier stored on the amendment transaction', and it silently misses the 2/6 native/manual amendments (Quote_Type__c null, Original_Order_Id__c null).",
+        "evidence": [
+          "git log --all --oneline | grep -iE '3505|workday.?contract|amend|original.?contract' -> NO_GIT_LOG_MATCHES; git branch -a -> only main, uat (+origin mirrors), no feature/3505 branch",
+          "grep -rli 3505 (working tree) matches ONLY under 'Jira/PeerReview/sc3516 | Peer Review - SC-3505 ...' (README.md, JIRA_COMMENT_SC3516.md, VALIDATION_RUNBOOK.md, PEER_REVIEW_REPORT.md, evidence/FINDINGS.md) plus Data/sc3516/ read-only payload captures; other hits unrelated (sc3390 doc, sc3137 diagnostics)",
+          "PEER_REVIEW_REPORT.md:5 states SC-3505 Status = 'To Do' (not yet built); section 10 Disposition = 'APPROVE INTENT, RETURN FOR DESIGN (not build-ready as written)' - this is review output, not an implementation",
+          "FORTRA_KNOWLEDGE_BASE.md + FORTRA_SOLUTION_DESIGN_KNOWLEDGE_BASE.md: phrase grep 'SC-3505|original.?workday.?contract|amendment.*workday.*contract' -> zero hits. -li earlier matched only on standalone words amend/workday. SDD KB:89 describes an amendment abstractly as 'a child Contract via AmendedContractId' from the Contracts-Configuration design doc - a design concept, not an SC-3505 build",
+          "git status: NO_METADATA_CHANGES; grep -rli 'Original_Workday_Contract|originalContractReference|Original_Customer_Contract_Reference|Alternate_Contract' -> NONE outside sc3143 Workday API reference and the sc3516 review; no new field/flow/cls staged",
+          "Live FortraUAT (read-only): 6 OriginalActionType=Amend orders (00000656,00095512,00095531,00095635,00095642,00095676) all have Workday_Contract_ID__c == own Order.Id; 2 Success, 4 Pending",
+          "Live FortraUAT: amendment Quotes - Original_Order_Id__c populated on 4/6 (00095512->801WC00000koHXqYAM etc, Quote_Type__c=Amendment); NULL on 2/6 (0Q0WC000003A3PV0A0, 0Q0WC000003GWzt0AG - Quote_Type__c null, native/manual). Field is Quote lookup->Order labeled 'Original Order Id' (NOT on the Order/transaction)",
+          "Tooling API CreatedDate: Original_Order_Id 2026-01-09; Renewal_Contract 2025-10-14; Workday_Contract_ID 2025-09-10; Workday_Contract_Type 2025-09-17 - all predate the 6/29-demo ticket, so none are SC-3505 artifacts",
+          "FortraProd not queried (schema-only rule); conclusions are UAT + repo/git. Data/sc3516 contains only retrieved payload JSONs (evidence), no deployable metadata"
+        ]
+      }
+    ],
+    "verdicts": [
+      {
+        "ac": "AC1: Original Workday contract identifier is stored on the amendment transaction (the amendment Order/record that syncs to Workday).",
+        "verdict": {
+          "ac": "AC1: Original Workday contract identifier is stored on the amendment transaction (the amendment Order/record that syncs to Workday).",
+          "verdict": "FAIL",
+          "confidence": "high",
+          "rationale": "No artifact stores or emits the ORIGINAL Workday contract identifier on the amendment transaction. Live FortraUAT re-query of all 6 OriginalActionType=Amend orders confirms: every identity key in both populated payloads (sfContractId, orderId, fortraSfdcExternalId, contractReferenceId) equals the amendment order's OWN Id, and Workday_Contract_ID__c == own Order.Id for all 6 — so what is stored is the amendment's self-reference, not the prior/original contract to amend. customerContractType is the sole Master_Contract value with no Amendment/Alternate. The Order describe (222 fields) shows no purpose-built original-Workday-contract field; the only lineage-ish standard field OriginalOrderId is not surfaced in the payload. No SF Apex/flow builds the payload or injects an original-contract reference (payload keys and any Original_Workday_Contract/originalContractReference tokens are absent from force-app classes and flows), and git has zero history for the ticket. The pre-existing Quote.Original_Order_Id__c (created 2026-01-09, ~6 months before the ticket) merely COULD let MuleSoft derive the original — it lives on the Quote not the Order/transaction, is never written into any stored payload, and is null for 2/6 native/manual amendments — so it does not satisfy \"stored on the amendment transaction.\" Under the strict definition (an artifact that actually carries/emits the original reference, not one that could), AC1 is not implemented.",
+          "evidence": [
+            "Live FortraUAT re-query (read-only) of 6 amend orders: 00000656/00095531/00095635/00095676 have EMPTY Workday_Sync_Payload__c (Sync=Pending); 00095512 & 00095642 populated (Sync=Success). All 6 Workday_Contract_ID__c == own Order.Id (True).",
+            "Populated payload keys: sfContractId, orderId, sfAccountId, fortraSfdcExternalId, orderNumber, name, opportunityId, ..., contractReferenceId, customerContractType, ..., contractLineData. NO original/prior/parent/amended key present.",
+            "00095512 payload: sfContractId=orderId=fortraSfdcExternalId=contractReferenceId=801WC00000koIE3YAM (== own Id); name='Amendment Quote' (free text, no id); customerContractType='Master_Contract'.",
+            "00095642 payload: sfContractId=orderId=fortraSfdcExternalId=contractReferenceId=801WC00000ltUiuYAE (== own Id); customerContractType='Master_Contract'. No original reference.",
+            "Order describe FortraUAT = 222 fields; workday/original/amend-named fields = OriginalOrderId (std ref->Order, not in payload), Workday_Contract_ID__c (=own Id), Workday_Contract_Type__c, Workday_Sync_* — none carries a prior/original Workday contract id.",
+            "grep force-app/: NO_SF_ARTIFACT_MATCHES for Original_Workday_Contract|originalContractReference|Original_Customer_Contract|amendedContractReference|Prior_Workday_Contract; and NO_PAYLOAD_KEYS_IN_SF_SOURCE for contractReferenceId|customerContractType|originalContract in classes/ and flows/ (payload built in MuleSoft, not SF).",
+            "git log --all grep 3505|workday-contract|amend|original-contract = NO_GIT_MATCHES.",
+            "Provided facts corroborated: Workday_Contract_Type__c picklist = [Master_Contract] only across sandboxes; Quote.Original_Order_Id__c predates ticket (2026-01-09) and is null for 2/6 native/manual amendments (Quote_Type__c null)."
+          ],
+          "whatWouldMakeItPass": "A new field on the amendment Order (e.g. Original_Workday_Contract_ID__c) that is stamped with the ORIGINAL order's Id (the Workday contract to amend, derived from Quote.Original_Order_Id__c or the sibling order sharing Order.ContractId) AND populated for all 6 amendments including the 2 native/manual ones; plus that value emitted into the Workday Submit_Customer_Contract payload (a distinct originalContract/contractReferenceId-to-amend key ≠ the amendment's own Id) so the stored Workday_Sync_Payload__c on the amendment order actually carries the prior contract reference. Evidence: the amend orders' payloads showing an original-contract key whose value == the original order's Id, not the amendment's own Id, and a corresponding stamped Order field."
+        },
+        "steelman": {
+          "ac": "AC1: Original Workday contract identifier is stored on the amendment transaction (the amendment Order/record that syncs to Workday).",
+          "foundPassEvidence": false,
+          "argument": "Steelmanning Marc's \"completed\" claim, the strongest good-faith case runs like this: the amendment Quotes DO carry usable original-contract lineage. For 4 of the 6 amend orders, Quote.Original_Order_Id__c points at the original order, and that original order's Workday_Contract_ID__c equals its own Id -- so the Workday contract to amend IS discoverably present in Salesforce, and MuleSoft could read it to target the right contract. One could argue the \"identifier is stored\" (on the Quote lineage) and only the last-mile Mule mapping is pending. However, this does not survive scrutiny against the AC as written (\"stored on the amendment TRANSACTION\"): (1) On the amendment Order itself, every candidate carrier is either self-referential or empty -- Workday_Contract_ID__c == the order's OWN Id on all 6/6 orders, and the standard OriginalOrderId AND Source_Order_Id__c are NULL on all 6/6, so the Order carries no pointer to the prior contract at all. (2) The two synced payloads (00095512, 00095642) were re-pulled fresh and deep-walked: every identity key -- sfContractId, orderId, fortraSfdcExternalId, contractReferenceId -- equals the amendment's own Id, customerContractType='Master_Contract', and there is NO original/prior/parent/amended/alternate key anywhere in the JSON. (3) The Quote.Original_Order_Id__c lineage lives on the Quote (not the transaction), is never emitted into any stored payload, and is NULL for 2/6 native/manual amendments (00095531, 00095676; Quote_Type__c null). (4) No new field, picklist value, flow, or Apex artifact exists in any org: Workday_Contract_Type__c = ['Master_Contract'] only across all 4 sandboxes (empty via Prod describe), Marc's only fields created in the last 10 days are Quote.Renewal_Quote_Stale__c (boolean) and Contract.Renewal_Opportunity__c (ref->Opportunity) -- both renewal, neither an original-Workday-contract carrier -- and no recently-modified Apex/flow builds the payload or injects an original-contract reference. (5) Git has zero history for the ticket, no metadata is staged in the working tree, and the independent peer review records Status='To Do (not yet built)' / 'APPROVE INTENT, RETURN FOR DESIGN'. The gap is real but unimplemented; the AC is NOT met.",
+          "evidence": [
+            "FortraUAT fresh re-query of all 6 OriginalActionType=Amend orders: Workday_Contract_ID__c == own Order.Id on ALL 6 (self-reference, not the prior contract). OriginalOrderId NULL 6/6 and Source_Order_Id__c NULL 6/6 -- the amendment Order carries no pointer to the original contract.",
+            "Deep-walk of both synced payloads: 00095512 sfContractId=orderId=fortraSfdcExternalId=contractReferenceId=801WC00000koIE3YAM (own Id); 00095642 all four = 801WC00000ltUiuYAE (own Id). customerContractType='Master_Contract'. Top-level keys contain NO original/prior/parent/amended/alternate key. Other 4 orders have EMPTY Workday_Sync_Payload__c.",
+            "Workday_Contract_Type__c picklist = ['Master_Contract'] (active, sole value) in FortraUAT, FortraDP2, MergeBuild, fulltemp; FortraProd describe returns empty picklist -- no Amendment/Alternate value in any org.",
+            "Tooling API CustomField created LAST_N_DAYS:10 on Order/Contract/Quote across all sandboxes: only Marc DeBrey's Quote.Renewal_Quote_Stale (boolean) and Contract.Renewal_Opportunity (ref->Opportunity) -- both renewal-scoped, neither stores an original Workday contract id; MergeBuild/fulltemp none.",
+            "Recently-modified ApexClasses (last 10 days, UAT) are all pricing/renewal/COLA/hardware (CancelLineCreditPosthook, PartnerNetPricePosthook, COLAUplift*, PowerOrderSplittingService, RenewalForecastAmount, etc.); none is a Workday-payload builder or original-contract stamper.",
+            "Quote lineage that COULD be derived (but is not emitted): Original_Order_Id__c populated on 4/6 amend quotes and each target order's Workday_Contract_ID__c == its own Id; NULL on 2/6 (0Q0WC000003A3PV0A0, 0Q0WC000003GWzt0AG, Quote_Type__c null). This lives on the Quote, not the amendment transaction, and never reaches any stored payload.",
+            "Repo/git: grep for Original_Workday_Contract|Amended_Workday_Contract|Prior_Workday_Contract|amendedContractReference|contractToAmend across *.cls/*.flow-meta.xml/*.field-meta.xml returned nothing; payload keys customerContractType/contractReferenceId/originalContract absent from force-app classes/ and flows/; git status shows no staged metadata; git log --all has no 3505/workday-contract/amend/original-contract commit.",
+            "The two force-app flows that matched broad amendment terms (Contract_Amendment_CoTermination, Contract_Amendment_CoTerm_Override_Detection) contain NO workday_contract/workday_sync_payload/contractReferenceId/customerContractType/Original*Workday storage.",
+            "Independent peer review (Jira/PeerReview/sc3516 .../PEER_REVIEW_REPORT.md) records Status='To Do (not yet built)' and Disposition 'APPROVE INTENT, RETURN FOR DESIGN (not build-ready as written)'.",
+            "FortraProd (schema-only): Order has same pre-existing OriginalOrderId, Workday_Contract_ID__c, Workday_Contract_Type__c -- no purpose-built original-Workday-contract carrier, no Amendment picklist value."
+          ],
+          "overturns": false
+        }
+      },
+      {
+        "ac": "AC2: The original-contract reference is available to the Permendor/MuleSoft integration/processing (i.e., present in the outbound payload or a field Mule reads).",
+        "verdict": {
+          "ac": "AC2: The original-contract reference is available to the Permendor/MuleSoft integration/processing (i.e., present in the outbound payload or a field Mule reads).",
+          "verdict": "FAIL",
+          "confidence": "high",
+          "rationale": "No artifact makes the ORIGINAL Workday contract reference available to Mule for amendment orders. Re-confirmed live in FortraUAT: of the 6 OriginalActionType=Amend orders, only 2 (#00095512, #00095642) have a populated Workday_Sync_Payload__c; the other 4 are empty. In BOTH populated payloads every contract-identity key (sfContractId, orderId, fortraSfdcExternalId, contractReferenceId) equals the amendment order's OWN Id, customerContractType='Master_Contract', and the only free-text is name='Amendment Quote' (a static literal, not a contract id). A keyed scan for original/prior/amend/parent/source/predecessor returned ZERO hits in both payloads. The Order describe shows NO field carrying an original/prior Workday contract reference — Workday_Contract_ID__c is the order's own Id (WCID==Id True for all 6) and no Order field distinguishes the contract-to-amend. Grep of force-app classes/flows for the payload keys / original-contract terms returned nothing, so no SF artifact injects such a reference. The only lineage that exists (Quote.Original_Order_Id__c) lives on the Quote, predates the ticket, is null for 2/6 native/manual amendments, and — critically for AC2 — is NOT emitted into the payload nor read by Mule today. Mule COULD theoretically derive the original via Quote.Original_Order_Id__c or the shared Order.ContractId sibling, but that is not done today and is unavailable for 2/6 orders; AC2 requires the reference to actually be available (present/emitted), not merely derivable. Strict reading: no implemented carrier exists.",
+          "evidence": [
+            "FortraUAT connected (sf org list): liam.jeong.c@fortra.com.uat = FortraUAT Connected.",
+            "Live re-query of 6 Amend orders: PayloadLen — 00000656=0(Pending/Draft), 00095512=1591(Success), 00095531=0(Pending/Activated), 00095635=0(Pending/Draft), 00095642=1594(Success), 00095676=0(Pending/Activated). 4/6 have EMPTY Workday_Sync_Payload__c.",
+            "Payload 00095512: sfContractId=orderId=fortraSfdcExternalId=contractReferenceId=801WC00000koIE3YAM = OWN Id; customerContractType='Master_Contract'; name='Amendment Quote'. Key scan for original/prior/amend/parent/source/predecessor = ZERO hits.",
+            "Payload 00095642: sfContractId=orderId=fortraSfdcExternalId=contractReferenceId=801WC00000ltUiuYAE = OWN Id; customerContractType='Master_Contract'; name='Amendment Quote'. Key scan for original/prior/amend/parent/source/predecessor = ZERO hits.",
+            "All 6 orders: Workday_Contract_ID__c == own Order.Id = True; Workday_Contract_Type__c = Master_Contract (no Alternate/Amendment value).",
+            "Order describe (FortraUAT): no field carries an original/prior Workday contract reference; Workday_Contract_ID__c/Workday_ID__c/WorkdayReferenceID__c/Workday_Contract_Type__c/Workday_Sync_Payload__c all present but none identifies the contract-to-amend distinct from the order itself.",
+            "grep of force-app/main/default/classes and /flows for '3505|contractReferenceId|customerContractType|Original_Customer_Contract|originalContract' returned NO matches — no SF artifact builds the payload or injects an original-contract key (payload built in MuleSoft; SF outbound = Order_Completed_WD__e with only Order_Id__c)."
+          ],
+          "whatWouldMakeItPass": "A dedicated original-Workday-contract reference must actually reach Mule: either (a) the outbound Submit_Customer_Contract payload for OriginalActionType=Amend orders includes a distinct key (e.g., originalContractReferenceId / Original_Customer_Contract) whose value is the ORIGINAL order's Workday contract Id (not the amendment's own Id), OR (b) a purpose-built field on the amendment Order/transaction (readable by Mule) is stamped with that original reference. It must be populated for all 6 amendment orders — including the 2 native/manual amendments where Quote.Original_Order_Id__c is null — and customerContractType/Workday_Contract_Type__c must convey the amend relationship rather than the static 'Master_Contract'. Today none of this exists (payload keys all equal own Id, 4/6 payloads empty), so AC2 fails."
+        },
+        "steelman": {
+          "ac": "AC2: The original-contract reference is available to the Permendor/MuleSoft integration/processing (i.e., present in the outbound payload or a field Mule reads).",
+          "foundPassEvidence": false,
+          "argument": "The strongest good-faith case for PASS would be: (a) Mule could read Order-level lineage instead of the payload, since standard fields Order.OriginalOrderId and Order.Source_Order_Id__c (reference->Order) exist on the transaction in UAT/fulltemp/Prod and would carry the original order whose Workday_Contract_ID__c == its own Id; and (b) the Workday Submit_Customer_Contract API genuinely supports the reference (it defines Customer_Contract_Reference 'for update only purposes', Original_Customer_Contract_Reference, Alternate_Customer_Contract_Reference, and a Customer_Contract_Amendment_Reference_ID type), so the mechanism to identify the contract-to-amend is available end-to-end; and (c) 4/6 amendment orders share a ContractId with exactly one original sibling order, giving Mule a derivable in-SF path to the original Workday contract Id. However, every leg of this case fails on verification: Order.OriginalOrderId AND Source_Order_Id__c are NULL on all 6 amendment orders; Contract.Original_Contract__c is null on all 6 contracts; the two populated payloads emit only self-referential keys (contractReferenceId/sfContractId/orderId/fortraSfdcExternalId all == the amendment order's OWN Id) with customerContractType=Master_Contract and a static name='Amendment Quote', and NONE of the Workday original/alternate/amendment reference fields are populated; the sibling path is merely derivable (not emitted) and does not exist for 2/6 orders (#00095531, #00095676 are the only order under their contract); and the SC-3516 peer review explicitly records SC-3505 as Status 'To Do (not yet built)'. So no original-contract reference is actually present in the payload or in any field Mule reads today.",
+          "evidence": [
+            "Live FortraUAT re-query of all 6 OriginalActionType=Amend orders: payloadLen 00000656=0, 00095512=1591, 00095531=0, 00095635=0, 00095642=1594, 00095676=0 (4/6 empty); Workday_Contract_Type__c=Master_Contract on all 6.",
+            "Exhaustive flatten of both populated payloads: sfContractId=orderId=fortraSfdcExternalId=contractReferenceId all equal the amendment order's OWN Id (801WC00000koIE3YAM / 801WC00000ltUiuYAE); customerContractType=Master_Contract; name='Amendment Quote' (static literal). ZERO keys reference an original/prior/alternate/amend/parent/source contract.",
+            "Order.OriginalOrderId AND Order.Source_Order_Id__c are NULL on all 6 amendment orders (sf data query, table output). No Order field carries an original Workday-contract reference; Workday_Contract_ID__c == the order's own Id.",
+            "Contract link query: Contract.Original_Contract__c is null on all 6 contracts; Contract has no Workday_Contract_ID__c column. 4/6 amend orders have a sibling original order under the same ContractId (00095512<->00095510, 00000656<->00000655, 00095635<->00095634, 00095642<->00095639); 2/6 (00095531, 00095676) are the only order under their contract.",
+            "Workday_Contract_Type__c picklist via describe = [Master_Contract] (active) in FortraUAT and fulltemp; FortraProd exposes an empty picklist (type=string). No Alternate/Amendment/Prior value anywhere.",
+            "Submit_Customer_Contract.md (Workday API ref) defines Customer_Contract_Reference ('Reference to an existing Customer Contract for update only purposes'), Original_Customer_Contract_Reference, Alternate_Customer_Contract_Reference, and a Customer_Contract_Amendment_Reference_ID type — the target fields EXIST but the SF/Mule payload populates NONE of them.",
+            "grep of force-app classes/flows for originalContract/contractReferenceId/customerContractType/Original_Customer_Contract found no SF payload-builder; the only matches are two Contract_Amendment_CoTerm flows (no Workday/original-contract writes) and Jira/API-doc/peer-review files.",
+            "No git history on any branch for 3505/workday-contract/amend/original-contract; the only 3505 artifact is the SC-3516 peer-review folder, whose PEER_REVIEW_REPORT.md line 5 states Status 'To Do (not yet built)' and line 161 Disposition 'APPROVE INTENT, RETURN FOR DESIGN (not build-ready as written)'.",
+            "fulltemp has 0 amendment orders; FortraProd not data-queried per schema-only rule (Prod also lacks Master_Contract value and lineage fields — sandbox-ahead-of-prod, not a completed build)."
+          ],
+          "overturns": false
+        }
+      },
+      {
+        "ac": "AC3: Workday can identify which existing contract should be amended (payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original).",
+        "verdict": {
+          "ac": "AC3: Workday can identify which existing contract should be amended (payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original).",
+          "verdict": "FAIL",
+          "confidence": "high",
+          "rationale": "No artifact carries or emits the original Workday contract reference for amendments. I independently re-queried all 6 UAT amendment orders (OriginalActionType=Amend) and dumped the JSON of the only 2 populated Workday_Sync_Payload__c payloads. In BOTH, every contract-identity key (contractReferenceId, sfContractId, orderId, fortraSfdcExternalId) equals the amendment order's OWN Id — there is NO Original_Customer_Contract_Reference, no prior/alternate/parent/amended-contract key of any name. customerContractType is Master_Contract in both, and the Workday_Contract_Type__c picklist in UAT exposes only the single active value Master_Contract (no Alternate/Amendment contract type exists to point at the original). The remaining 4/6 amendment orders have EMPTY payloads (Workday_Sync_Status__c=Pending), so they carry nothing at all. On the repo side, no .cls or .flow-meta.xml emits customerContractType/contractReferenceId or any Original_Customer_Contract_Reference into the payload; the only grep hit (Fortra_Quote_to_Order_Conversion flow, element Set_Amendment_Contract_Defaults) merely links the amendment Order to a Salesforce Contract via internal vars (varCreatedContractId = Quote.Renewal_Contract__c) and does not stamp any Workday contract reference or alternate type. Because the payload gives Workday only the amendment order's own Id and a Master_Contract type, Workday CANNOT identify which existing contract to amend from the transaction. Requirement is unmet.",
+          "evidence": [
+            "Live FortraUAT re-query (read-only sf data query) of the 6 Amend orders: 00095512 (801WC00000koIE3YAM) SyncStatus=Success payload_len=1591; 00095642 (801WC00000ltUiuYAE) SyncStatus=Success payload_len=1594; 00000656, 00095531, 00095635, 00095676 all SyncStatus=Pending payload_len=0 (EMPTY).",
+            "Parsed keys of BOTH populated payloads: contractReferenceId == sfContractId == orderId == fortraSfdcExternalId == the amendment order's OWN Id (801WC00000koIE3YAM / 801WC00000ltUiuYAE). No Original_Customer_Contract_Reference / prior / alternate / parent / amended-contract key present. name='Amendment Quote' (free text, no id). customerContractType='Master_Contract'.",
+            "Order.Workday_Contract_Type__c picklist in FortraUAT describes as exactly one active value: Master_Contract. No Alternate/Amendment/Prior value exists to designate an original contract.",
+            "Repo grep across force-app/ for Original_Customer_Contract_Reference|originalContractReference|Alternate.?Contract|priorContract|Original.?Workday.?Contract => no emitting artifact. grep for payload keys customerContractType|contractReferenceId in *.cls/*.flow-meta.xml => none.",
+            "The sole flow grep hit, force-app/main/default/flows/Fortra_Quote_to_Order_Conversion.flow-meta.xml element Set_Amendment_Contract_Defaults, only assigns internal vars (varContractWasLinked=true, varCreatedContractId=varQuoteRecord.Renewal_Contract__c, varOrderActivationMode) — SF Contract linkage, not a Workday payload/original-contract-reference write.",
+            "Consistent with discovery: outbound is platform event Order_Completed_WD__e carrying only Order_Id__c; the payload is built by MuleSoft and written back, and today it carries only self-referencing ids + Master_Contract type."
+          ],
+          "whatWouldMakeItPass": "The Workday Submit_Customer_Contract payload for amendment orders must include a key that carries the ORIGINAL contract's Workday reference (e.g. Original_Customer_Contract_Reference / amendedContractReferenceId) set to the original order's Id (WCID) — OR customerContractType must be set to an Amendment/Alternate value plus a field pointing at the original contract — such that its value differs from the amendment order's own Id. Concretely: (a) add an Amendment/Alternate value to Workday_Contract_Type__c and/or a dedicated original-Workday-contract field on the amendment Order, (b) populate it from the original order (derivable via Quote.Original_Order_Id__c for 4/6, but the 2 native/manual amendments with null Quote_Type__c/Original_Order_Id__c need a separate source), and (c) have MuleSoft emit that value in the payload. Verification would be the two Success payloads showing an original-contract key whose value != own Id, and all Pending amendments producing non-empty payloads with the same key."
+        },
+        "steelman": {
+          "ac": "AC3: Workday can identify which existing contract should be amended (payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original).",
+          "foundPassEvidence": false,
+          "argument": "The strongest good-faith case for PASS would rest on either (a) an original-contract reference key inside the amendment Workday_Sync_Payload__c, or (b) an Alternate/Amendment value on Workday_Contract_Type__c pointing at the original contract. I searched for both across all 5 orgs (including fulltemp and FortraProd) and the repo, and neither exists. The only near-miss lineage that Workday could theoretically use is Salesforce-internal (Order.OriginalOrderId, Quote.Original_Order_Id__c, Contract.AmendedContractId/Original_Contract__c) — these DO link an amendment to its original in Salesforce, and for 4/6 amendments the original order's Workday_Contract_ID__c equals its own Id (i.e. the Workday contract to amend is derivable in-SF). But this lineage is (i) never emitted into the Workday payload, (ii) not on the amendment transaction as a Workday-contract reference, (iii) SF Contract/Order lineage rather than a Workday contract identifier, (iv) all predates SC-3505 by months, and (v) absent on the 2 native/manual amendments. So even the steelman derivation is not implemented and cannot satisfy 'payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original.' There is no honest reading under which AC3 is met.",
+          "evidence": [
+            "Live FortraUAT re-query (read-only) of all 6 OriginalActionType=Amend orders: #00095512 (801WC00000koIE3YAM, Success, payload_len=1591) and #00095642 (801WC00000ltUiuYAE, Success, payload_len=1594) both have contractReferenceId == own Order Id and customerContractType=Master_Contract; #00000656, #00095531, #00095635, #00095676 all Sync=Pending with payload_len=0 (empty).",
+            "Parsed both populated payloads: NO Original_Customer_Contract_Reference / prior / alternate / parent / amended-contract key of any name; the only order-Id-valued keys equal the amendment's own Id.",
+            "Workday_Contract_Type__c picklist across FortraUAT/FortraDP2/MergeBuild/fulltemp = single active/default value Master_Contract; no Alternate/Amendment/Prior value. FortraProd exposes the field as string with no picklist value. No Alternate contract type exists anywhere to point at the original.",
+            "fulltemp and FortraProd: zero Amend orders with any Workday_Sync_Payload__c (count with payload = 0 in both) — no freshly-built passing data exists in those orgs.",
+            "No dedicated original-Workday-contract field on Order in any of the 5 orgs; the contract/amend/original-named Order fields are ContractId, OriginalOrderId, Workday_Contract_ID__c(=own Id), Workday_Contract_Type__c, etc. — none carries the original contract's Workday reference.",
+            "Repo grep across force-app/ and Data/ for customerContractType|contractReferenceId|Original_Customer_Contract|amendedContract|Alternate_Contract|originalContractReference: no emitting .cls or .flow-meta.xml. Only flow hits (Contract_Amendment_CoTermination, Contract_Amendment_CoTerm_Override_Detection) write the STANDARD SF Contract.AmendedContractId field, not a Workday payload reference.",
+            "FortraUAT Tooling API: only 1 custom field modified on Order/Contract in last 10 days (Contract.Renewal_Opportunity, 2026-06-24, unrelated); 0 flows modified in last 10 days named workday/amend/contract/original/payload. No SC-3505 artifact.",
+            "Consistent with discovery: SF outbound is platform event Order_Completed_WD__e (only Order_Id__c); MuleSoft builds the payload and writes it back; today it carries only self-referencing ids + Master_Contract type."
+          ],
+          "overturns": false
+        }
+      }
+    ],
+    "synth": {
+      "overall": "SC-3505 is NOT implemented in any org under review. Across all four ACs the required artifact — an ORIGINAL Workday contract identifier stored on the amendment transaction and emitted to Workday so it can identify the contract to amend — does not exist. Live read-only re-query of all 6 FortraUAT amendment orders (OriginalActionType=Amend) confirms: only 2 (#00095512 / 801WC00000koIE3YAM, #00095642 / 801WC00000ltUiuYAE) have a populated Order.Workday_Sync_Payload__c; the other 4 are EMPTY (Sync=Pending). In BOTH populated payloads every contract-identity key — contractReferenceId, sfContractId, orderId, fortraSfdcExternalId — equals the amendment order's OWN Id (self-reference), customerContractType='Master_Contract', and name='Amendment Quote' is a static literal. There is ZERO original/prior/alternate/parent/amended-contract key in either payload. Order.Workday_Contract_ID__c == own Order.Id on all 6 (WCID==Id True). Order.OriginalOrderId and Order.Source_Order_Id__c are NULL on all 6; Contract.Original_Contract__c is NULL on all 6 contracts. The Workday_Contract_Type__c picklist exposes only the single active value Master_Contract across all 4 sandboxes (FortraProd describe returns an empty picklist) — no Alternate/Amendment type exists to designate an original. No SF Apex class or flow builds the payload or injects an original-contract reference; grep of force-app/ classes and flows for the payload keys (customerContractType/contractReferenceId) or original-contract terms (Original_Customer_Contract_Reference/originalContractReference/Alternate_Contract) returns no emitting artifact. The outbound is platform event Order_Completed_WD__e carrying only Order_Id__c; MuleSoft builds the Submit_Customer_Contract payload and writes it back. Git has zero history on any branch for 3505/workday-contract/amend/original-contract, no metadata is staged, and the only working-tree material is the SC-3516 peer-review folder itself (PEER_REVIEW_REPORT.md records Status 'To Do (not yet built)' / Disposition 'APPROVE INTENT, RETURN FOR DESIGN'). The steelman for each AC found no pass evidence and did not overturn. Marc's 'completed' claim does not hold: the intent is sound and the gap is real, but nothing has been built. The pre-existing Quote.Original_Order_Id__c (created 2026-01-09, ~6 months before the ticket) is a derivation opportunity only — it lives on the Quote, is never emitted, and is null for the 2 native/manual amendments — so it cannot satisfy 'stored on the amendment transaction.'",
+      "perAC": [
+        {
+          "ac": "AC1: Original Workday contract identifier is stored on the amendment transaction (the amendment Order/record that syncs to Workday).",
+          "verdict": "FAIL",
+          "why": "No field on the amendment Order carries the original contract's Workday reference. Live FortraUAT re-query of all 6 OriginalActionType=Amend orders: Order.Workday_Contract_ID__c == own Order.Id on all 6 (self-reference, not the prior contract); standard Order.OriginalOrderId and Order.Source_Order_Id__c are NULL on all 6; Contract.Original_Contract__c NULL on all 6. Order describe (222 fields, FortraUAT) shows no purpose-built original-Workday-contract field. No new CustomField created for the ticket (Marc's only last-10-day fields are renewal-scoped: Quote.Renewal_Quote_Stale__c boolean, Contract.Renewal_Opportunity__c ref->Opportunity — neither an original-contract carrier). The only lineage that exists, Quote.Original_Order_Id__c (created 2026-01-09, predates ticket), lives on the Quote not the transaction and is NULL for 2/6 native/manual amendments (#00095531, #00095676; Quote_Type__c null). To PASS: a dedicated field on the amendment Order (e.g. Original_Workday_Contract_ID__c) stamped with the ORIGINAL order's Id, populated for all 6 amendments including the 2 native/manual ones. Steelman found no pass evidence; no overturn."
+        },
+        {
+          "ac": "AC2: The original-contract reference is available to the Permendor/MuleSoft integration (present in outbound payload or a field Mule reads).",
+          "verdict": "FAIL",
+          "why": "Nothing makes the original reference available to Mule. Of 6 amend orders only 2 have a populated Order.Workday_Sync_Payload__c (#00095512 len=1591, #00095642 len=1594); 4 are EMPTY (Pending). In both populated payloads every identity key (sfContractId/orderId/fortraSfdcExternalId/contractReferenceId) == the amendment order's OWN Id; a keyed scan for original/prior/amend/parent/source/predecessor returned ZERO hits. No Order field distinguishes the contract-to-amend (Workday_Contract_ID__c == own Id). Grep of force-app classes/flows for payload keys or original-contract terms returns no SF injector — the payload is built in MuleSoft; SF outbound = Order_Completed_WD__e with only Order_Id__c. Mule COULD derive the original via Quote.Original_Order_Id__c (4/6) or the shared Order.ContractId sibling (4/6), but this is NOT done today and is unavailable for 2/6 orders. AC2 requires the reference to actually be available/emitted, not merely derivable. To PASS: emit a distinct original-contract key into the amendment payload (value = original order's Id, != own Id) OR stamp a Mule-readable Order field, populated for all 6. Steelman (checked Order.OriginalOrderId/Source_Order_Id__c NULL 6/6, sibling path not emitted, 2/6 no sibling) found no pass evidence; no overturn."
+        },
+        {
+          "ac": "AC3: Workday can identify which existing contract should be amended (payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original).",
+          "verdict": "FAIL",
+          "why": "The payload gives Workday only the amendment order's own Id and customerContractType='Master_Contract', so Workday cannot identify the contract to amend. Both populated payloads (#00095512=801WC00000koIE3YAM, #00095642=801WC00000ltUiuYAE) have contractReferenceId == own Id and NO Original_Customer_Contract_Reference / prior / alternate / parent / amended key of any name; the other 4 payloads are empty. Workday_Contract_Type__c picklist = single active value Master_Contract across all 4 sandboxes (FortraProd empty picklist) — no Alternate/Amendment type exists to point at the original. The Submit_Customer_Contract API DOES define Original_Customer_Contract_Reference / Alternate_Customer_Contract_Reference / Customer_Contract_Amendment_Reference_ID (per sc3143 API ref), but the payload populates NONE of them. Repo grep finds no emitting artifact; the only flow near-miss (Fortra_Quote_to_Order_Conversion, element Set_Amendment_Contract_Defaults) assigns internal vars (varCreatedContractId = Quote.Renewal_Contract__c) linking an SF Contract, not a Workday reference; Contract_Amendment_CoTermination flows write only standard Contract.AmendedContractId. To PASS: emit Original_Customer_Contract_Reference (or add an Amendment/Alternate Workday_Contract_Type__c value + original-contract field) whose value = the original order's WCID, for all 6 amendments. Steelman found no pass evidence; no overturn."
+        }
+      ],
+      "whereImplementation": "NOT IMPLEMENTED ANYWHERE. Orgs checked (all read-only): FortraUAT, FortraDP2, MergeBuild, fulltemp (schema+picklist+live data); FortraProd (schema describe only per rule). No org contains a new field, picklist value, flow, or Apex class purpose-built for SC-3505. SF side: no Apex/flow constructs the Workday payload or injects an original-contract reference (grep of force-app/main/default/classes and /flows returns no emitting artifact); the payload-building flows Fortra_Order_Set_Workday_and_PO_Fields v1/v2 are BOTH Obsolete; Fortra_Order_Workday_Contract_ID (Active) only stamps Order.Workday_Contract_ID__c=$Record.Id. Mule side: MuleSoft builds the Submit_Customer_Contract payload and writes it back to Order.Workday_Sync_Payload__c; the current live payloads (FortraUAT #00095512, #00095642) carry only self-referential ids + customerContractType='Master_Contract' with no original-contract key — so no original reference exists on the Mule side either. Git: zero history on any branch (main, uat) for 3505/workday-contract/amend/original-contract; no metadata staged in the working tree. The ONLY working-tree material referencing the ticket is the review folder 'Jira/PeerReview/sc3516 | Peer Review - SC-3505.../' (PEER_REVIEW_REPORT.md, README.md, JIRA_COMMENT_SC3516.md, VALIDATION_RUNBOOK.md, evidence/) plus read-only payload captures under Data/sc3516/ — review/design commentary, not deployable code. PEER_REVIEW_REPORT.md records SC-3505 Status 'To Do (not yet built)' and Disposition 'APPROVE INTENT, RETURN FOR DESIGN'.",
+      "stillRequired": [
+        "AC1 — Add a dedicated custom field to the amendment Order (e.g. Order.Original_Workday_Contract_ID__c) and stamp it with the ORIGINAL order's Id (= the Workday contract to amend). Derive from Quote.Original_Order_Id__c (works for 4/6) OR the sibling order sharing Order.ContractId; must also cover the 2 native/manual amendments (#00095531 801WC00000ksL59YAE, #00095676 801WC00000mA6TcYAK) where Quote_Type__c and Original_Order_Id__c are null and there is no sibling under the Contract — these need a separate source (e.g. Contract.Original_Contract__c backfill or manual capture).",
+        "AC2 — Make the original reference readable by MuleSoft: either populate the new Order field above (Mule reads it) and/or have Mule/SF emit it into Order.Workday_Sync_Payload__c. Must be populated for ALL 6 amendment orders — note 4/6 currently have EMPTY payloads (Sync=Pending), so a re-sync is required after the field is populated.",
+        "AC3 — Emit the reference into the Workday Submit_Customer_Contract payload as a distinct original-contract key (Original_Customer_Contract_Reference / Customer_Contract_Amendment_Reference_ID — the API supports these per sc3143 reference) whose value = the original order's WCID (!= the amendment's own Id). AND/OR add an Amendment/Alternate value to the Workday_Contract_Type__c picklist (currently ['Master_Contract'] only in all sandboxes) so customerContractType conveys the amend relationship instead of the static 'Master_Contract'.",
+        "Verification/evidence to require from Marc before accepting 'complete': the two Success payloads must show an original-contract key whose value == the original order's Id (not the amendment's own Id), and all 4 Pending amendment orders must re-sync to produce non-empty payloads carrying that same key. Because the payload is MuleSoft-built, coordinate the Mule mapping change with the SF field change — an SF field alone will not reach Workday."
+      ]
+    },
+    "critic": {
+      "gaps": [
+        {
+          "gap": "MuleSoft integration repo/project is NOT in this workspace and was never inspected. The verdict repeatedly asserts 'MuleSoft builds the Submit_Customer_Contract payload' and that no original-contract key is emitted, but the ONLY evidence for the Mule side is the payload it wrote BACK to Order.Workday_Sync_Payload__c. If Marc's SC-3505 work were done as a Mule DataWeave mapping change (not SF metadata), it would be entirely invisible to every check performed. I confirmed there is no .dwl / mule-artifact / mule-config anywhere under /Users/liamjeong/Documents/Code/Fortra.",
+          "real": true,
+          "howToClose": "Obtain and grep the MuleSoft/Anypoint project repo (separate git repo, not in this SFDX workspace) for the Submit_Customer_Contract transform: search DataWeave for keys Original_Customer_Contract_Reference, Alternate_Customer_Contract_Reference, Customer_Contract_Amendment_Reference_ID, and for any mapping that reads Order.Original_Order_Id__c / ContractId. Also check the Anypoint deployment history for a release dated near the ticket. If the repo is inaccessible, ask Marc directly for the Mule branch/PR. NOTE: the 2 live Success payloads (re-read: #00095512, #00095642) still show every identity key == the amendment order's own Id with NO original key, so even a deployed Mule change has not yet produced a correct payload — but a Mule change that only takes effect on re-sync of the 4 Pending orders could exist and be untested. This is the single largest blind spot."
+        },
+        {
+          "gap": "Field/picklist visibility via describe reflects only the RUNNING USER's FLS and profile. A field or picklist value gated behind a permission set the running user lacks would be invisible to sf sobject describe. This directly affects the AC1/AC3 'no new field' and 'picklist only Master_Contract' claims.",
+          "real": false,
+          "howToClose": "Largely closed already: I re-verified via the Tooling API CustomField object (which is FLS-INDEPENDENT metadata) that in the last 60 days there are ZERO new Order fields, exactly ONE new Contract field (Renewal_Opportunity, Marc, renewal-scoped) and ONE new Quote field (Renewal_Quote_Stale, Marc, renewal-scoped) — neither an original-contract carrier. So no hidden field exists regardless of FLS. Residual: the Workday_Contract_Type__c picklist values were read via describe (FLS-visible) and could in theory hide an inactive/perm-gated 'Amendment' value; to fully close, query Tooling API StandardValueSet/CustomField metadata or GlobalValueSet for that field's full value set including inactive values. Low risk since describe showed restrictedPicklist=false and a single value."
+        },
+        {
+          "gap": "FortraProd data was never queried (schema-only rule), so no Prod amendment order or Prod payload was read. If SC-3505 were somehow live only in Prod, the data-level checks (payload self-reference, NULL lineage) would not have caught it.",
+          "real": false,
+          "howToClose": "Low risk and partly self-closing: Prod schema describe already shows NO new Order/Contract/Quote original-contract field and Workday_Contract_Type__c describes as a bare string with an EMPTY picklist (LESS built-out than sandboxes, not more). A feature cannot be live in Prod but absent from all four sandboxes and from git. If certainty is required, the read-only rule permits describe only — to inspect Prod data one would need explicit authorization to run sf data query against FortraProd (currently prohibited). Recommend NOT closing unless the ticket's definition of done targets Prod."
+        },
+        {
+          "gap": "No PR branch / unmerged remote branch was searched beyond the local clone's two branches. Marc could have work in an unpushed branch, a fork, or a GitHub PR not fetched into this clone.",
+          "real": false,
+          "howToClose": "Substantially closed: git ls-remote --heads origin returns ONLY main and uat (no feature/3505 branch on the remote), git branch -a shows only main/uat, and git stash is empty. To fully close, run gh pr list --state all --search 3505 against the ArchLiam/Fortra repo AND against any Fortra-owned upstream repo (the SF metadata may be delivered through a different origin than this personal fork github.com/ArchLiam/Fortra). Also confirm whether the team delivers SF metadata via this repo at all or via Gearset/a separate DevOps pipeline (Gearset deployments would not appear in this git history)."
+        },
+        {
+          "gap": "The verdict treats Order.Workday_Sync_Payload__c as the authoritative outbound, but only 2 of 6 amend orders have a populated payload; the other 4 are Pending/empty. The claim 'no original reference is emitted' is proven for 2 orders and merely 'not yet emitted' for 4. A design that stamps the original reference only at sync time could produce a correct payload on the next sync of the 4 Pending orders.",
+          "real": true,
+          "howToClose": "Re-sync (or have Marc re-sync) the 4 Pending amendment orders (#00000656, #00095531, #00095635, #00095676) in a controlled test and re-read the resulting payload to confirm whether an original-contract key appears. This requires a WRITE/integration action (re-publish Order_Completed_WD__e), which is outside the read-only scope — so it must be requested from whoever owns the integration. Until then, AC2/AC3 for the 4 Pending orders rest on absence-of-artifact reasoning (no SF/Mule code emits the key) rather than a captured negative payload. The SF-side grep showing no injector makes this low-probability but not impossible."
+        },
+        {
+          "gap": "Record-level / permission-gated DATA: the analysis inspected 6 amendment orders identified by OriginalActionType='Amend'. If Marc's demo used amendment orders identified a different way (e.g., a manual/native amendment with OriginalActionType null, or amendments in a different record type / owned by another user and not visible under the running user's sharing), the population could be undercounted.",
+          "real": false,
+          "howToClose": "Low risk: the running user is a Fortra admin-level identity (liam.jeong.c@fortra.com.uat) and the query returned both native/manual amendments (Quote_Type__c null) as well as flow-generated ones, indicating broad visibility. To fully close, broaden the population: query Order WHERE Type='Amendment' OR AmendedContractId != null OR Workday_Contract_Type__c indicates amendment, and query with a system/integration user context if sharing is a concern. The two native amendments were confirmed to have NULL OriginalOrderId/Source_Order_Id__c and a single order under their Contract (no sibling), so even the hardest cases have no hidden lineage."
+        },
+        {
+          "gap": "The verdict cites the sc3143 Submit_Customer_Contract API reference as proof that Workday SUPPORTS Original_Customer_Contract_Reference / Alternate_Customer_Contract_Reference / Customer_Contract_Amendment_Reference_ID, but does not confirm the CURRENT Workday tenant/version actually exposes those fields or that Permendor's contract is Workday's native API. If the amend relationship is instead expressed by a mechanism the analysis didn't consider (e.g., matching on an external contract number Workday already holds, or a Workday-side lookup keyed on account+effective-date), then 'no original key in payload' would not by itself prove Workday cannot identify the contract.",
+          "real": false,
+          "howToClose": "Confirm with the integration owner / Permendor spec which Workday API version and which contract-identification mechanism is in play, and whether Workday can resolve the contract-to-amend by any key already present in the current payload (e.g., account + contract number). This is a design-confirmation, not a build-check; it does not change the finding that nothing new was built, but it strengthens/qualifies the AC3 'Workday cannot identify' assertion. The peer-review folder (PEER_REVIEW_REPORT.md) already reaches 'RETURN FOR DESIGN', consistent with this open design question."
+        },
+        {
+          "gap": "Server-side flows were checked via git working tree and the recent-modified query returned FlowDefinitionView count=0 for last 10 days, but the earlier Flow tooling query errored and FlowDefinitionView only surfaces active flow versions. A newly created inactive flow VERSION (not yet activated) touching the payload could be missed.",
+          "real": false,
+          "howToClose": "Query Tooling API Flow (SELECT MasterLabel, VersionNumber, Status, LastModifiedDate FROM Flow WHERE LastModifiedDate = LAST_N_DAYS:30) to enumerate ALL flow versions including inactive/draft, and grep any recent one for Workday_Sync_Payload/customerContractType. Low risk because the FLS-independent CustomField check already shows no new Order field for such a flow to write, and no amendment-payload flow exists in the repo working tree."
+        }
+      ],
+      "confidenceInVerdict": "high"
+    }
+  },
+  "workflowProgress": [
+    {
+      "type": "workflow_phase",
+      "index": 1,
+      "title": "Discover"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 2,
+      "title": "Verify"
+    },
+    {
+      "type": "workflow_phase",
+      "index": 3,
+      "title": "Synthesize"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 1,
+      "label": "discover:cross-org-schema",
+      "phaseIndex": 1,
+      "phaseTitle": "Discover",
+      "agentId": "a34d7833b4b2d9eee",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967691965,
+      "queuedAt": 1782967691953,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "CROSS-ORG SCHEMA (Order / Contract / Quote describes + Work…",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967790874,
+      "tokens": 31686,
+      "toolCalls": 6,
+      "durationMs": 98909,
+      "resultPreview": "{\"area\":\"CROSS-ORG SCHEMA (Order / Contract / Quote describes + Workday_Contract_Type__c picklist)\",\"found\":false,\"orgsChecked\":[\"FortraUAT\",\"FortraDP2\",\"MergeBuild\",\"fulltemp\",\"FortraProd\"],\"summary\":\"All 5 orgs reachable and fully described (15/15 describes succeeded, 0 errors). NO org contains any NEW custom field on Order/Contract/Quote purpose-built to carry the original/prior/amended Workday…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 2,
+      "label": "discover:payload-path",
+      "phaseIndex": 1,
+      "phaseTitle": "Discover",
+      "agentId": "a5decb7e2bb0dcfe9",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967691966,
+      "queuedAt": 1782967691953,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "PAYLOAD PATH",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967787018,
+      "tokens": 34943,
+      "toolCalls": 17,
+      "durationMs": 95052,
+      "resultPreview": "{\"area\":\"PAYLOAD PATH\",\"found\":false,\"summary\":\"Order.Workday_Sync_Payload__c is NOT constructed by any Salesforce artifact - it is built by MuleSoft and written back to SF by the integration. No SF Apex class or flow serializes the Workday Submit_Customer_Contract payload, and no SF code path injects an original/prior/amendment-contract reference (customerContractType/contractReferenceId/original…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 3,
+      "label": "discover:live-payload",
+      "phaseIndex": 1,
+      "phaseTitle": "Discover",
+      "agentId": "a3ad5c2f70c826268",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967691966,
+      "queuedAt": 1782967691953,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "LIVE PAYLOAD RE-CONFIRM + MULE-DERIVABLE (FortraUAT)",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967834917,
+      "tokens": 31584,
+      "toolCalls": 10,
+      "durationMs": 142951,
+      "resultPreview": "{\"area\":\"LIVE PAYLOAD RE-CONFIRM + MULE-DERIVABLE (FortraUAT)\",\"found\":false,\"orgsChecked\":[\"FortraUAT\"],\"summary\":\"Independently re-pulled Workday_Sync_Payload__c for all 6 amendment orders (OriginalActionType=Amend) in FortraUAT via sf data query. NO payload contains any original/prior/alternate contract reference. In the ONLY 2 populated payloads, every contract-identity key (sfContractId, orde…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 4,
+      "label": "discover:artifacts",
+      "phaseIndex": 1,
+      "phaseTitle": "Discover",
+      "agentId": "aa67fc74f2a971a12",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967691966,
+      "queuedAt": 1782967691953,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "ARTIFACTS/PROVENANCE",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967869079,
+      "tokens": 51710,
+      "toolCalls": 23,
+      "durationMs": 177113,
+      "resultPreview": "{\"area\":\"ARTIFACTS/PROVENANCE\",\"found\":false,\"summary\":\"No SC-3505 implementation exists outside SF metadata (and the peer review found none inside it either). Git has zero history for 3505/workday-contract/amendment/original-contract on any branch, and there are no branches beyond main/uat. The only working-tree material referencing 3505 is the SC-3516 PEER REVIEW folder authored by Liam Jeong (v…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 5,
+      "label": "verify:AC1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a05c34a44228ae243",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967869090,
+      "queuedAt": 1782967869081,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AC1: Original Workday contract identifier is stored on the …",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967946497,
+      "tokens": 29913,
+      "toolCalls": 7,
+      "durationMs": 77407,
+      "resultPreview": "{\"ac\":\"AC1: Original Workday contract identifier is stored on the amendment transaction (the amendment Order/record that syncs to Workday).\",\"verdict\":\"FAIL\",\"confidence\":\"high\",\"rationale\":\"No artifact stores or emits the ORIGINAL Workday contract identifier on the amendment transaction. Live FortraUAT re-query of all 6 OriginalActionType=Amend orders confirms: every identity key in both populate…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 6,
+      "label": "verify:AC2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a180f83444b11a1fa",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967869090,
+      "queuedAt": 1782967869081,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AC2: The original-contract reference is available to the Pe…",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967938697,
+      "tokens": 29864,
+      "toolCalls": 6,
+      "durationMs": 69606,
+      "resultPreview": "{\"ac\":\"AC2: The original-contract reference is available to the Permendor/MuleSoft integration/processing (i.e., present in the outbound payload or a field Mule reads).\",\"verdict\":\"FAIL\",\"confidence\":\"high\",\"rationale\":\"No artifact makes the ORIGINAL Workday contract reference available to Mule for amendment orders. Re-confirmed live in FortraUAT: of the 6 OriginalActionType=Amend orders, only 2 (…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 7,
+      "label": "verify:AC3",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a4dce2bd0cb63f651",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967869091,
+      "queuedAt": 1782967869081,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AC3: Workday can identify which existing contract should be…",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782967986873,
+      "tokens": 32465,
+      "toolCalls": 11,
+      "durationMs": 117782,
+      "resultPreview": "{\"ac\":\"AC3: Workday can identify which existing contract should be amended (payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original).\",\"verdict\":\"FAIL\",\"confidence\":\"high\",\"rationale\":\"No artifact carries or emits the original Workday contract reference for amendments. I independently re-queried all 6 UAT amendment orders (OriginalActionType=Amen…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 8,
+      "label": "steelman:AC2",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a51d359a3a6b707fc",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967938707,
+      "queuedAt": 1782967938698,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AC2: The original-contract reference is available to the Pe…",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782968146982,
+      "tokens": 45889,
+      "toolCalls": 17,
+      "durationMs": 208275,
+      "resultPreview": "{\"ac\":\"AC2: The original-contract reference is available to the Permendor/MuleSoft integration/processing (i.e., present in the outbound payload or a field Mule reads).\",\"foundPassEvidence\":false,\"argument\":\"The strongest good-faith case for PASS would be: (a) Mule could read Order-level lineage instead of the payload, since standard fields Order.OriginalOrderId and Order.Source_Order_Id__c (refer…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 9,
+      "label": "steelman:AC1",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "af553862083c81a45",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967946498,
+      "queuedAt": 1782967946497,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AC1: Original Workday contract identifier is stored on the …",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782968160332,
+      "tokens": 48079,
+      "toolCalls": 18,
+      "durationMs": 213834,
+      "resultPreview": "{\"ac\":\"AC1: Original Workday contract identifier is stored on the amendment transaction (the amendment Order/record that syncs to Workday).\",\"foundPassEvidence\":false,\"argument\":\"Steelmanning Marc's \\\"completed\\\" claim, the strongest good-faith case runs like this: the amendment Quotes DO carry usable original-contract lineage. For 4 of the 6 amend orders, Quote.Original_Order_Id__c points at the …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 10,
+      "label": "steelman:AC3",
+      "phaseIndex": 2,
+      "phaseTitle": "Verify",
+      "agentId": "a0305a64b59bc007c",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782967986876,
+      "queuedAt": 1782967986875,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "AC3: Workday can identify which existing contract should be…",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782968112009,
+      "tokens": 37689,
+      "toolCalls": 10,
+      "durationMs": 125133,
+      "resultPreview": "{\"ac\":\"AC3: Workday can identify which existing contract should be amended (payload carries Original_Customer_Contract_Reference or an Alternate contract type pointing at the original).\",\"foundPassEvidence\":false,\"argument\":\"The strongest good-faith case for PASS would rest on either (a) an original-contract reference key inside the amendment Workday_Sync_Payload__c, or (b) an Alternate/Amendment …"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 11,
+      "label": "synthesize",
+      "phaseIndex": 3,
+      "phaseTitle": "Synthesize",
+      "agentId": "a0e7283c15a82d81a",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782968160343,
+      "queuedAt": 1782968160333,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "SC-3505 is NOT implemented in any org under review. Across …",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nContext:{\"ticket\":\"SC-3505 Carry Original Workday Contract ID Through Amendment Process. ACs: (1) Original Workday contract identifier stored on the amendment tran…",
+      "lastProgressAt": 1782968219761,
+      "tokens": 36427,
+      "toolCalls": 3,
+      "durationMs": 59417,
+      "resultPreview": "{\"overall\":\"SC-3505 is NOT implemented in any org under review. Across all four ACs the required artifact — an ORIGINAL Workday contract identifier stored on the amendment transaction and emitted to Workday so it can identify the contract to amend — does not exist. Live read-only re-query of all 6 FortraUAT amendment orders (OriginalActionType=Amend) confirms: only 2 (#00095512 / 801WC00000koIE3YA…"
+    },
+    {
+      "type": "workflow_agent",
+      "index": 12,
+      "label": "critic",
+      "phaseIndex": 3,
+      "phaseTitle": "Synthesize",
+      "agentId": "a12cf8c72804665f6",
+      "model": "claude-opus-4-8[1m]",
+      "state": "done",
+      "startedAt": 1782968219769,
+      "queuedAt": 1782968219761,
+      "attempt": 1,
+      "lastToolName": "StructuredOutput",
+      "lastToolSummary": "high",
+      "promptPreview": "READ-ONLY ONLY. Use sf sobject describe / sf data query / git / grep. NEVER run any write, DML, deploy, or --use-tooling-api update. FortraProd: schema describe only, no data writes. If an org is inaccessible, say so — do not fabricate.\nFinal synthesis:{\"overall\":\"SC-3505 is NOT implemented in any org under review. Across all four ACs the required artifact — an ORIGINAL Workday contract identifier…",
+      "lastProgressAt": 1782968392262,
+      "tokens": 39897,
+      "toolCalls": 15,
+      "durationMs": 172493,
+      "resultPreview": "{\"gaps\":[{\"gap\":\"MuleSoft integration repo/project is NOT in this workspace and was never inspected. The verdict repeatedly asserts 'MuleSoft builds the Submit_Customer_Contract payload' and that no original-contract key is emitted, but the ONLY evidence for the Mule side is the payload it wrote BACK to Order.Workday_Sync_Payload__c. If Marc's SC-3505 work were done as a Mule DataWeave mapping cha…"
+    }
+  ],
+  "totalTokens": 450146,
+  "totalToolCalls": 143
+}
