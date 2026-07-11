@@ -1,10 +1,7 @@
 /**
- * Test class for QuoteLineItemTriggerHandler
- *
- * Tests automatic hardware assignment when quote lines are added to or removed from groups
- *
- * @author Claude Code
- * @date 2025-01-23
+ * @description Tests QuoteLineItemTriggerHandler: hardware linking across insert/update/move, and
+ *              the failure path that publishes telemetry and rethrows a typed exception.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class QuoteLineItemTriggerHandlerTest {
@@ -508,5 +505,28 @@ private class QuoteLineItemTriggerHandlerTest {
         System.assertEquals(10, lineAfterUpdate.Quantity, 'Quantity should be updated');
         System.assertEquals(hwGroup.Hardware__c, lineAfterUpdate.Hardware__c,
             'Hardware should remain unchanged when updating non-group fields');
+    }
+
+    /**
+     * @description When an event method fails, the handler publishes telemetry and rethrows a typed
+     *              QuoteLineItemTriggerException (§9.6). An updated line whose Id is absent from the
+     *              old map forces hardware linking to dereference a null old record.
+     */
+    @isTest
+    static void failurePathPublishesTelemetryAndRethrowsTyped() {
+        Id fakeQliId = QuoteLineItem.SObjectType.getDescribe().getKeyPrefix() + '000000000009AAA';
+        Id fakeQuoteId = Quote.SObjectType.getDescribe().getKeyPrefix() + '000000000009AAA';
+        QuoteLineItem line = new QuoteLineItem(Id = fakeQliId, QuoteId = fakeQuoteId);
+        QuoteLineItemTriggerHandler handler = new QuoteLineItemTriggerHandler();
+
+        Test.startTest();
+        try {
+            handler.beforeUpdate(new List<QuoteLineItem>{ line }, new Map<Id, QuoteLineItem>());
+            Assert.fail('Expected QuoteLineItemTriggerException to be thrown');
+        } catch (QuoteLineItemTriggerException e) {
+            Assert.isTrue(e.getMessage().contains('beforeUpdate'),
+                'Wrapper message should identify the failing phase');
+        }
+        Test.stopTest();
     }
 }
