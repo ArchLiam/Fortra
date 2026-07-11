@@ -139,9 +139,18 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     private Integer applyPartnerNetPrices(String ctxInstanceId) {
         Context.IndustriesContext ctx = new Context.IndustriesContext();
         List<Map<String, Object>> lineItems = queryLineItems(ctx, ctxInstanceId);
+        System.debug(LoggingLevel.ERROR, 'SC3384-DBG applyPartnerNetPrices ctxId=' + ctxInstanceId
+            + ' lineItems=' + (lineItems == null ? -1 : lineItems.size()));
         if (lineItems.isEmpty()) {
             return 0;
         }
+
+        // SC-3384: localize lines whose net was stamped by the currency-blind ABA decision table
+        // (0lDa50000007BEuEAM) BEFORE the partner "lower-of" and other net rewrites, so the comparison
+        // and every downstream read operate on the localized, same-currency value. Mutates the in-memory
+        // tags; the per-line update below carries the write via mergeCurrencyCorrectionIntoUpdate.
+        Map<Id, AbaCurrencyCorrectionService.Correction> currencyCorrections =
+            applyCurrencyCorrection(lineItems);
 
         QuoteHeaderData quoteData = queryQuoteHeaderFromContext(ctx, ctxInstanceId);
         Map<Id, Partner_Pricing_Model__c> partnerModels = new Map<Id, Partner_Pricing_Model__c>();
@@ -189,6 +198,9 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             } else {
                 mergeListPriceStampIntoUpdate(itemUpdate, lineItem, productTypeByLineId);
             }
+            // SC-3384: ensure ABA-corrected lines carry the localized net/unit/total (creates the write
+            // for a pure-ABA line; localizes UnitPrice without clobbering a partner/COLA-owned net).
+            itemUpdate = mergeCurrencyCorrectionIntoUpdate(itemUpdate, lineItem, currencyCorrections);
             if (itemUpdate != null) {
                 itemUpdates.add(itemUpdate);
             }
@@ -211,6 +223,298 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         schedulePostPersistPriceStamp(resolvedQuoteId);
 
         return itemUpdates.size();
+    }
+
+    // ===== SC-3384: ABA multi-currency correction ========================================
+    // The currency-blind ABA decision table (0lDa50000007BEuEAM) stamps a raw USD Override onto
+    // non-USD lines. The pricing procedure snapshots that raw per-unit USD net into ABA_Raw_Net__c
+    // (only on an actual ABA match), giving a provenance signal — so a correctly-localized value that
+    // coincides with a USD override (the collision cohort) is never re-scaled. Here we scale the
+    // snapshot by the static governed rate and localize the net/unit/total. Provenance-scoped
+    // (COLA/renewal/new-maintenance lines are priced by other steps and carry no ABA snapshot).
+
+    /** @description Test seam: inject the per-product known-USD-value set so the SOQL gate can be
+     *              exercised without real data. Keyed by Product2Id; values are 2-dp plain strings. */
+    @TestVisible
+    private Map<Id, Set<String>> testKnownUsdValues = null;
+
+    /**
+     * @description Localize ABA-stamped raw-USD nets. Mutates the in-memory context tags to the
+     *              localized, same-currency values so the partner "lower-of" and every downstream read
+     *              are correct; the context write is carried by mergeCurrencyCorrectionIntoUpdate.
+     *              GATED: only values that are genuinely one of the product's USD ABA overrides are
+     *              localized, so a filtered-but-unmatched line (whose ABA_Raw_Net__c is a pass-through
+     *              list value) is never double-localized.
+     * @return map of line Id -> Correction for lines that need a localized write.
+     */
+    @TestVisible
+    private Map<Id, AbaCurrencyCorrectionService.Correction> applyCurrencyCorrection(
+        List<Map<String, Object>> lineItems
+    ) {
+        Map<Id, AbaCurrencyCorrectionService.Correction> corrections =
+            new Map<Id, AbaCurrencyCorrectionService.Correction>();
+        if (lineItems == null || lineItems.isEmpty()) {
+            return corrections;
+        }
+
+        // Pass 1: collect candidates + resolve the raw net, currency, and product.
+        Map<Id, Map<String, Object>> candidateById = new Map<Id, Map<String, Object>>();
+        Map<Id, Decimal> rawNetById = new Map<Id, Decimal>();
+        Map<Id, String> currencyById = new Map<Id, String>();
+        Map<Id, Id> productById = new Map<Id, Id>();
+        Set<Id> needLookup = new Set<Id>();
+        for (Map<String, Object> lineItem : lineItems) {
+            Id lineId = getLineItemRecordId(lineItem);
+            if (lineId == null) {
+                continue;
+            }
+            // Raw-override source. QUOTE path: NetUnitPrice is the ESD-freshly-stamped raw override on
+            // every reprice — always current, so config changes are honored and a persisted ABA_Raw_Net__c
+            // can never go stale. The override-set gate below confirms it is genuine. ORDER path: the ESD
+            // did not re-run (NetUnitPrice may already be localized and could coincide with an override —
+            // the collision cohort), so use the persisted provenance carried from the quote via convert.
+            Decimal rawNet = (lineId.getSObjectType() == QuoteLineItem.SObjectType)
+                ? getDecimalFromTag(lineItem, 'NetUnitPrice')
+                : getDecimalFromTag(lineItem, 'ABA_Raw_Net__c');
+            if (rawNet == null || rawNet <= 0) {
+                continue;
+            }
+            candidateById.put(lineId, lineItem);
+            rawNetById.put(lineId, rawNet);
+            String cur = getStringFromTag(lineItem, 'STICurrencyIsoCode');
+            Id prod = getIdFromTag(lineItem, 'Product');
+            if (String.isNotBlank(cur)) {
+                currencyById.put(lineId, cur);
+            }
+            if (prod != null) {
+                productById.put(lineId, prod);
+            }
+            if (String.isBlank(cur) || prod == null) {
+                needLookup.add(lineId);
+            }
+        }
+        if (candidateById.isEmpty()) {
+            return corrections;
+        }
+
+        // Fill any missing currency/product from the persisted records (currency is locked pre-pricing).
+        loadLineInfo(needLookup, currencyById, productById);
+
+        // Safety gate: localize a net only when it matches one of the product's known USD-denominated
+        // values (USD ABA override, USD PBE list, or USD ATPS tier) — i.e. a raw USD price that leaked
+        // onto a non-USD line. A genuinely-localized EUR net or a corrupted value matches none, so is skipped.
+        Map<Id, Set<String>> knownUsdByProduct = (testKnownUsdValues != null)
+            ? testKnownUsdValues
+            : loadKnownUsdValues(new Set<Id>(productById.values()));
+
+        // Pass 2: evaluate + mutate tags for genuine ABA lines that still carry the raw value.
+        for (Id lineId : candidateById.keySet()) {
+            Map<String, Object> lineItem = candidateById.get(lineId);
+            Decimal rawNet = rawNetById.get(lineId);
+            Id productId = productById.get(lineId);
+            if (productId == null || !isKnownUsdValue(knownUsdByProduct.get(productId), rawNet)) {
+                continue;
+            }
+            Decimal currentNet = getDecimalFromTag(lineItem, 'NetUnitPrice');
+            Decimal quantity = getDecimalFromTag(lineItem, 'Quantity');
+
+            AbaCurrencyCorrectionService.Correction corr =
+                AbaCurrencyCorrectionService.evaluate(rawNet, currencyById.get(lineId), currentNet, quantity);
+            if (!corr.writeNeeded) {
+                continue;
+            }
+            corrections.put(lineId, corr);
+
+            // Mutate the localized net into the in-memory tag so the partner "lower-of" and the
+            // COLA/renewal builders (which all read NetUnitPrice) operate on the same-currency value.
+            // The actual context write for every price field is emitted by mergeCurrencyCorrectionIntoUpdate.
+            lineItem.put('NetUnitPrice', corr.localizedUnit);
+        }
+        return corrections;
+    }
+
+    /** @description True when rawNet matches one of the product's known USD values (2-dp compare). */
+    @TestVisible
+    private Boolean isKnownUsdValue(Set<String> knownUsd, Decimal rawNet) {
+        return knownUsd != null && rawNet != null
+            && knownUsd.contains(rawNet.setScale(2, RoundingMode.HALF_UP).toPlainString());
+    }
+
+    /**
+     * @description Per-product set of the product's USD-denominated configured/list amounts (2-dp plain
+     *              strings) — the ground truth for "is this net a raw USD value that should be localized".
+     *              Union of: USD ABA overrides, USD PricebookEntry list prices, and USD ATPS tier values.
+     *              A non-USD line whose net matches one of these carries a raw USD price (the SC-3384
+     *              defect, on any pricing path) and is localized; a genuinely-localized EUR net or a
+     *              corrupted value matches none and is safely skipped. Three bulk queries.
+     */
+    @TestVisible
+    private Map<Id, Set<String>> loadKnownUsdValues(Set<Id> productIds) {
+        Map<Id, Set<String>> byProduct = new Map<Id, Set<String>>();
+        if (productIds != null) {
+            productIds.remove(null);
+        }
+        if (productIds == null || productIds.isEmpty()) {
+            return byProduct;
+        }
+        // (1) USD ABA overrides (attribute / tier / server-discount pricing).
+        for (AttributeBasedAdjustment a : [
+            SELECT ProductId, AdjustmentValue
+            FROM AttributeBasedAdjustment
+            WHERE ProductId IN :productIds AND CurrencyIsoCode = 'USD' AND AdjustmentType = 'Override'
+        ]) {
+            addUsdValue(byProduct, a.ProductId, a.AdjustmentValue);
+        }
+        // (2) USD PricebookEntry list prices (list / derived-priced lines, e.g. CCM for Servers).
+        for (PricebookEntry pbe : [
+            SELECT Product2Id, UnitPrice
+            FROM PricebookEntry
+            WHERE Product2Id IN :productIds AND CurrencyIsoCode = 'USD' AND IsActive = true AND UnitPrice > 0
+        ]) {
+            addUsdValue(byProduct, pbe.Product2Id, pbe.UnitPrice);
+        }
+        // (3) USD ATPS tier values (attribute-tier pricing).
+        for (Attribute_Tier_Pricing_Storage__c t : [
+            SELECT Product__c, Tier_Value__c
+            FROM Attribute_Tier_Pricing_Storage__c
+            WHERE Product__c IN :productIds AND CurrencyIsoCode = 'USD' AND Tier_Value__c > 0
+        ]) {
+            addUsdValue(byProduct, t.Product__c, t.Tier_Value__c);
+        }
+        return byProduct;
+    }
+
+    private void addUsdValue(Map<Id, Set<String>> byProduct, Id productId, Decimal value) {
+        if (productId == null || value == null || value <= 0) {
+            return;
+        }
+        if (!byProduct.containsKey(productId)) {
+            byProduct.put(productId, new Set<String>());
+        }
+        byProduct.get(productId).add(value.setScale(2, RoundingMode.HALF_UP).toPlainString());
+    }
+
+    /**
+     * @description Resolve CurrencyIsoCode + Product2Id for candidate lines whose context tags were
+     *              absent. Currency is locked before pricing, so the persisted value is authoritative.
+     *              One bulk query per object type; fills the passed maps in place (does not overwrite).
+     */
+    @TestVisible
+    private void loadLineInfo(Set<Id> lineIds, Map<Id, String> currencyById, Map<Id, Id> productById) {
+        if (lineIds == null || lineIds.isEmpty()) {
+            return;
+        }
+        Set<Id> qliIds = new Set<Id>();
+        Set<Id> orderItemIds = new Set<Id>();
+        for (Id lineId : lineIds) {
+            Schema.SObjectType sot = lineId.getSObjectType();
+            if (sot == QuoteLineItem.SObjectType) {
+                qliIds.add(lineId);
+            } else if (sot == OrderItem.SObjectType) {
+                orderItemIds.add(lineId);
+            }
+        }
+        if (!qliIds.isEmpty()) {
+            for (QuoteLineItem qli : [SELECT Id, CurrencyIsoCode, Product2Id FROM QuoteLineItem WHERE Id IN :qliIds]) {
+                if (!currencyById.containsKey(qli.Id)) {
+                    currencyById.put(qli.Id, qli.CurrencyIsoCode);
+                }
+                if (!productById.containsKey(qli.Id) && qli.Product2Id != null) {
+                    productById.put(qli.Id, qli.Product2Id);
+                }
+            }
+        }
+        if (!orderItemIds.isEmpty()) {
+            for (OrderItem oi : [SELECT Id, CurrencyIsoCode, Product2Id FROM OrderItem WHERE Id IN :orderItemIds]) {
+                if (!currencyById.containsKey(oi.Id)) {
+                    currencyById.put(oi.Id, oi.CurrencyIsoCode);
+                }
+                if (!productById.containsKey(oi.Id) && oi.Product2Id != null) {
+                    productById.put(oi.Id, oi.Product2Id);
+                }
+            }
+        }
+    }
+
+    /**
+     * @description Ensure an ABA-corrected line carries its localized net/unit/total in the context
+     *              write. Pure-ABA line (no partner/COLA update): emit the full localized write. Otherwise
+     *              add only the fields the partner/COLA/list-stamp update did NOT already own — so the
+     *              partner "lower-of" net is never clobbered, and the raw-USD Sales Price (UnitPrice) is
+     *              localized. (add-if-absent: a present field was computed from the already-localized base.)
+     */
+    @TestVisible
+    private Map<String, Object> mergeCurrencyCorrectionIntoUpdate(
+        Map<String, Object> itemUpdate,
+        Map<String, Object> lineItem,
+        Map<Id, AbaCurrencyCorrectionService.Correction> corrections
+    ) {
+        if (corrections == null || corrections.isEmpty()) {
+            return itemUpdate;
+        }
+        Id lineId = getLineItemRecordId(lineItem);
+        AbaCurrencyCorrectionService.Correction corr = (lineId != null) ? corrections.get(lineId) : null;
+        if (corr == null || !corr.writeNeeded) {
+            return itemUpdate;
+        }
+
+        if (itemUpdate == null) {
+            Object updatePath = lineItem.get('_updatePath');
+            if (updatePath == null) {
+                return null;
+            }
+            return new Map<String, Object>{
+                'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
+                'attributes' => new List<Map<String, Object>>{
+                    currencyAttr('NetUnitPrice', corr.localizedUnit),
+                    currencyAttr('UnitPrice', corr.localizedUnit),
+                    currencyAttr('NetTotalPrice', corr.localizedTotal),
+                    currencyAttr('TotalPrice', corr.localizedTotal),
+                    currencyAttr('Subtotal', corr.localizedTotal),
+                    currencyAttr('TotalLineAmount', corr.localizedTotal),
+                    // Persist the raw override as provenance so the order side (which cannot bootstrap)
+                    // can localize from it after convert, and for audit.
+                    currencyAttr('ABA_Raw_Net__c', corr.rawNet)
+                }
+            };
+        }
+
+        addAttributeIfAbsent(itemUpdate, 'NetUnitPrice', corr.localizedUnit);
+        addAttributeIfAbsent(itemUpdate, 'UnitPrice', corr.localizedUnit);
+        addAttributeIfAbsent(itemUpdate, 'NetTotalPrice', corr.localizedTotal);
+        addAttributeIfAbsent(itemUpdate, 'TotalPrice', corr.localizedTotal);
+        addAttributeIfAbsent(itemUpdate, 'Subtotal', corr.localizedTotal);
+        addAttributeIfAbsent(itemUpdate, 'TotalLineAmount', corr.localizedTotal);
+        addAttributeIfAbsent(itemUpdate, 'ABA_Raw_Net__c', corr.rawNet);
+        return itemUpdate;
+    }
+
+    private Map<String, Object> currencyAttr(String attributeName, Object attributeValue) {
+        return new Map<String, Object>{
+            'attributeName' => attributeName,
+            'attributeValue' => attributeValue
+        };
+    }
+
+    /**
+     * @description Add an attribute to an existing update only if not already present (present =>
+     *              owned by partner/COLA/list-stamp, already localized via the mutated tags).
+     */
+    private void addAttributeIfAbsent(Map<String, Object> itemUpdate, String attributeName, Object attributeValue) {
+        if (itemUpdate == null || !itemUpdate.containsKey('attributes')) {
+            return;
+        }
+        Object attrsObj = itemUpdate.get('attributes');
+        if (!(attrsObj instanceof List<Map<String, Object>>)) {
+            return;
+        }
+        List<Map<String, Object>> attributes = (List<Map<String, Object>>) attrsObj;
+        for (Map<String, Object> attribute : attributes) {
+            if (attribute != null && attributeName.equals(String.valueOf(attribute.get('attributeName')))) {
+                return;
+            }
+        }
+        attributes.add(currencyAttr(attributeName, attributeValue));
     }
 
     /**
@@ -369,12 +673,20 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             return null;
         }
 
-        if (partnerUnitPrice == null || partnerUnitPrice <= 0) {
+        // Attribute-priced perpetual whose partner net the pre-hook computed off catalog ListPrice
+        // (the native attribute base is only known after the procedure runs): recompute it off the
+        // true pre-partner base so the commercial net reflects the attribute price, not catalog list.
+        Boolean attrRepriceNeeded = isAttributePricedPartnerLine(
+            lineItem, isRenewalQuote, productType, existingPartnerPercent
+        );
+
+        if (partnerUnitPrice == null || partnerUnitPrice <= 0 || attrRepriceNeeded) {
             deferredResult = calculateDeferredPartnerPrice(
                 lineItem,
                 quoteData,
                 partnerModels,
-                productTypeByLineId
+                productTypeByLineId,
+                attrRepriceNeeded
             );
             if (deferredResult != null) {
                 partnerUnitPrice = deferredResult.adjustedPrice;
@@ -431,6 +743,17 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                 'attributeName' => 'PartnerDiscountPercent',
                 'attributeValue' => deferredResult.totalPercent
             });
+
+            // SC-3346 ABP-RESIDUAL: on the attribute-reprice path the pre-hook already stamped
+            // UnitPrice off catalog ListPrice (the attribute base did not yet exist), leaving Sales
+            // Price below the recomputed commercial net (net > unit price — an invalid line state).
+            // Realign UnitPrice with the commercial net so an attribute-priced partner OneTime line
+            // reads UnitPrice == NetUnitPrice, matching every other partner line. Scoped to the
+            // attribute-reprice case only — derived-maintenance lines the pre-hook skipped keep the
+            // procedure's own gross UnitPrice (e.g. base x tier).
+            if (attrRepriceNeeded) {
+                attributes.add(new Map<String, Object>{ 'attributeName' => 'UnitPrice', 'attributeValue' => commercialUnitPrice });
+            }
         }
 
         return new Map<String, Object>{
@@ -454,6 +777,45 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return PartnerPricingGate.shouldSkipProcedureOwnedPartner(
             lineItem, partnerUnitPrice, partnerDiscountPercent, procedureNet
         );
+    }
+
+    /**
+     * @description Whether a non-derived, non-renewal, USD partner line was attribute-priced (native
+     *              attribute-based pricing) so its stamped pre-partner base exceeds catalog list. Such
+     *              a line's partner net was computed by the pre-hook off catalog list (the attribute
+     *              base did not yet exist), so it must be recomputed off the true pre-partner base.
+     * @param lineItem The context line tags.
+     * @param isRenewalQuote Whether the transaction is a renewal.
+     * @param productType The resolved Fortra product type.
+     * @param partnerDiscountPercent The line's existing partner discount percent.
+     * @return True when the line's partner net must be recomputed off the pre-partner base.
+     */
+    @TestVisible
+    private Boolean isAttributePricedPartnerLine(
+        Map<String, Object> lineItem,
+        Boolean isRenewalQuote,
+        String productType,
+        Decimal partnerDiscountPercent
+    ) {
+        if (isRenewalQuote == true
+            || DerivedMaintenanceClassifier.isDerivedMaintenanceProductType(productType)
+            || partnerDiscountPercent == null
+            || partnerDiscountPercent <= 0
+            || getStringFromTag(lineItem, 'STICurrencyIsoCode') != 'USD') {
+            return false;
+        }
+        // SC-3346 ABP gate — key off the genuine attribute-based-pricing signal, Source_List_Price__c
+        // (the ABP base the pricing procedure surfaces), NOT `Pre_Partner_Price__c > ListPrice`. The
+        // latter also caught non-ABP attribute-priced partner lines whose pre-partner base merely
+        // exceeds catalog list (e.g. beSECURE), wrongly re-discounting them off that base — the S5
+        // compounding / S6 GM-rebased regressions. Source_List_Price__c is populated only for genuine
+        // ABP perpetuals (e.g. 20000 vs list 355); it is null on the non-ABP partner lines, so those
+        // are correctly excluded and keep the pre-hook's catalog-list partner net.
+        Decimal sourceListPrice = getDecimalFromTag(lineItem, 'Source_List_Price__c');
+        Decimal listPrice = getDecimalFromTag(lineItem, 'ListPrice');
+        return sourceListPrice != null
+            && sourceListPrice > 0
+            && sourceListPrice > (listPrice != null ? listPrice : 0);
     }
 
     @TestVisible
@@ -489,8 +851,13 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     }
 
     /**
-     * @description Partner pricing for lines the pre-hook skipped because UnitPrice/ListPrice
-     *              were zero when it ran (derived maintenance after procedure sets NetUnitPrice).
+     * @description Partner pricing for lines the pre-hook skipped because UnitPrice/ListPrice were
+     *              zero when it ran (derived maintenance after procedure sets NetUnitPrice).
+     * @param lineItem The context line tags.
+     * @param quoteData The resolved partner header data.
+     * @param partnerModels The partner pricing models by partner Id.
+     * @param productTypeByLineId The resolved product types by line Id.
+     * @return The partner price result, or null when no recompute applies.
      */
     @TestVisible
     private PartnerPriceResult calculateDeferredPartnerPrice(
@@ -499,11 +866,34 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         Map<Id, Partner_Pricing_Model__c> partnerModels,
         Map<Id, String> productTypeByLineId
     ) {
+        return calculateDeferredPartnerPrice(lineItem, quoteData, partnerModels, productTypeByLineId, false);
+    }
+
+    /**
+     * @description Partner pricing off the stable pre-partner base for a line the pre-hook skipped
+     *              (derived maintenance), or priced off catalog list before the attribute base existed
+     *              (attribute-priced perpetual, when attrRepriceNeeded is true).
+     * @param lineItem The context line tags.
+     * @param quoteData The resolved partner header data.
+     * @param partnerModels The partner pricing models by partner Id.
+     * @param productTypeByLineId The resolved product types by line Id.
+     * @param attrRepriceNeeded Whether an attribute-priced line must be recomputed even though the
+     *                          pre-hook already stamped a catalog-based partner net.
+     * @return The partner price result, or null when no recompute applies.
+     */
+    @TestVisible
+    private PartnerPriceResult calculateDeferredPartnerPrice(
+        Map<String, Object> lineItem,
+        QuoteHeaderData quoteData,
+        Map<Id, Partner_Pricing_Model__c> partnerModels,
+        Map<Id, String> productTypeByLineId,
+        Boolean attrRepriceNeeded
+    ) {
         if (quoteData == null || !quoteData.hasPartnerPricing() || partnerModels == null || partnerModels.isEmpty()) {
             return null;
         }
 
-        if (!needsDeferredPartnerPricing(lineItem)) {
+        if (attrRepriceNeeded != true && !needsDeferredPartnerPricing(lineItem)) {
             return null;
         }
 
@@ -521,7 +911,12 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         // Prefer the stable pre-partner base; fall back to NetUnitPrice for the first application
         // (the pre-hook skipped this line, so NetUnitPrice is the intended base at that point).
         Decimal currentPrice = getDecimalFromTag(lineItem, 'Pre_Partner_Price__c');
-        if (currentPrice == null || currentPrice <= 0) {
+        // SC-3346 ABP: the attribute-reprice path must base STRICTLY off the stable pre-partner base —
+        // never the running NetUnitPrice, which already carries the prior pass's partner discount, so
+        // re-discounting it compounds (DEF-1, x0.82 per reprice). Only the deferred derived-maintenance
+        // path (attrRepriceNeeded == false) keeps the NetUnitPrice fallback, where the pre-hook skipped
+        // the line so NetUnitPrice is its intended first-pass base.
+        if ((currentPrice == null || currentPrice <= 0) && attrRepriceNeeded != true) {
             currentPrice = getDecimalFromTag(lineItem, 'NetUnitPrice');
         }
         if (currentPrice == null || currentPrice <= 0) {
@@ -2015,9 +2410,9 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
 
         List<QuoteLineItem> updates = new List<QuoteLineItem>();
         for (QuoteLineItem qli : [
-            SELECT Id, Fortra_Product_Type__c, Base_Price__c, Pre_Partner_Price__c,
+            SELECT Id, CurrencyIsoCode, Fortra_Product_Type__c, Base_Price__c, Pre_Partner_Price__c,
                    ListPrice, UnitPrice, NetUnitPrice, PartnerUnitPrice, Source_List_Price__c,
-                   PartnerDiscountPercent, Discount, Partner_Pricing_Source__c
+                   ABA_Raw_Net__c, PartnerDiscountPercent, Discount, Partner_Pricing_Source__c
             FROM QuoteLineItem
             WHERE QuoteId = :quoteId
         ]) {
@@ -2056,9 +2451,12 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         String productType = qli.Fortra_Product_Type__c;
 
         if (productType == 'Perpetual' || productType == 'Software') {
-            Decimal basePrice = qli.Base_Price__c != null && qli.Base_Price__c > 0
-                ? qli.Base_Price__c
-                : qli.Pre_Partner_Price__c;
+            // SC-3384: Base_Price__c is a USD-denominated Number; on a non-USD line it holds the raw USD
+            // figure, so it must not be stamped onto the currency Source_List_Price. Use it only for USD;
+            // otherwise fall through to the localized Pre_Partner_Price__c.
+            Boolean baseIsUsable = isUsdLine(qli.CurrencyIsoCode)
+                && qli.Base_Price__c != null && qli.Base_Price__c > 0;
+            Decimal basePrice = baseIsUsable ? qli.Base_Price__c : qli.Pre_Partner_Price__c;
             if (basePrice != null && basePrice > 0
                 && (qli.Source_List_Price__c == null || qli.Source_List_Price__c < basePrice)) {
                 upd.Source_List_Price__c = basePrice;
@@ -2101,6 +2499,25 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             }
         }
 
+        // SC-3384: an ABA-priced non-USD line carries the raw USD Override on UnitPrice (Sales Price).
+        // The context persist does not own UnitPrice (see above), so the raw USD value survives there and
+        // the fill-only block above skips it. Localize it here from the provenance snapshot
+        // (ABA_Raw_Net__c x governed rate) via reliable post-persist DML. OVERWRITES (not fill-only),
+        // scoped strictly to ABA-priced non-USD lines; USD and non-ABA lines are untouched.
+        if (qli.ABA_Raw_Net__c != null && qli.ABA_Raw_Net__c > 0
+                && !isUsdLine(qli.CurrencyIsoCode)
+                && !lineIdsWithDetails.contains(qli.Id)) {
+            Decimal localizedSalesPrice = Fortra_CurrencyConversionService.convertPrice(
+                qli.ABA_Raw_Net__c, qli.CurrencyIsoCode);
+            if (localizedSalesPrice != null && localizedSalesPrice > 0) {
+                Decimal scaled = localizedSalesPrice.setScale(2, RoundingMode.HALF_UP);
+                if (qli.UnitPrice == null || qli.UnitPrice.setScale(2, RoundingMode.HALF_UP) != scaled) {
+                    upd.UnitPrice = scaled;
+                    changed = true;
+                }
+            }
+        }
+
         return changed ? upd : null;
     }
 
@@ -2112,13 +2529,25 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
      */
     @TestVisible
     private static Decimal resolveSalesPrice(QuoteLineItem qli) {
-        if (qli.Base_Price__c != null && qli.Base_Price__c > 0) {
+        // SC-3384: Base_Price__c is a USD-denominated Number; never stamp it onto a non-USD Sales Price
+        // (that is the exact raw-USD leak this ticket fixes). On non-USD lines fall through to the
+        // localized values (Pre_Partner_Price__c / NetUnitPrice). ABA lines are additionally handled
+        // upstream: the posthook writes a localized UnitPrice, so this fill-only stamp is skipped there.
+        if (isUsdLine(qli.CurrencyIsoCode) && qli.Base_Price__c != null && qli.Base_Price__c > 0) {
             return qli.Base_Price__c;
         }
         if (qli.Pre_Partner_Price__c != null && qli.Pre_Partner_Price__c > 0) {
             return qli.Pre_Partner_Price__c;
         }
         return qli.NetUnitPrice;
+    }
+
+    /**
+     * @description SC-3384: a line is USD (or currency unknown) — the only case where the
+     *              USD-denominated Base_Price__c may be stamped onto a currency price field.
+     */
+    private static Boolean isUsdLine(String currencyIsoCode) {
+        return String.isBlank(currencyIsoCode) || 'USD'.equalsIgnoreCase(currencyIsoCode);
     }
 
     @TestVisible

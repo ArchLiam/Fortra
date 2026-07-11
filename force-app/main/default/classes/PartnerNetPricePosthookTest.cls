@@ -1327,6 +1327,121 @@ private class PartnerNetPricePosthookTest {
     }
 
     @IsTest
+    static void testIsAttributePricedPartnerLine_flagsOnlyAttributeBaseAboveList() {
+        PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
+        // Genuine ABP perpetual: Source_List_Price__c (the attribute base the pricing procedure
+        // surfaces) exceeds catalog ListPrice — the sole case the recompute should fire on.
+        Map<String, Object> attrPerpetual = new Map<String, Object>{
+            'Source_List_Price__c' => 20000, 'Pre_Partner_Price__c' => 20000,
+            'ListPrice' => 355, 'STICurrencyIsoCode' => 'USD'
+        };
+        Assert.isTrue(
+            posthook.isAttributePricedPartnerLine(attrPerpetual, false, 'Perpetual', 15),
+            'ABP perpetual (Source_List_Price 20000 > list 355) must be flagged'
+        );
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(
+                new Map<String, Object>{ 'Source_List_Price__c' => 355, 'ListPrice' => 355, 'STICurrencyIsoCode' => 'USD' },
+                false, 'Perpetual', 15),
+            'Catalog line (Source_List_Price == list) must not be flagged'
+        );
+        // SC-3346 regression guard: a NON-ABP attribute-priced partner line whose pre-partner base
+        // merely exceeds catalog list, but which carries NO Source_List_Price__c, must NOT be flagged.
+        // Keying off `Pre_Partner_Price__c > ListPrice` wrongly caught these — the S6 GM-rebase and
+        // S5 compounding regressions this fix removes.
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(
+                new Map<String, Object>{ 'Pre_Partner_Price__c' => 3400, 'ListPrice' => 824, 'STICurrencyIsoCode' => 'USD' },
+                false, 'Subscription', 28),
+            'Non-ABP partner line (Pre_Partner > list, no Source_List_Price) must not be flagged (S6 guard)'
+        );
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(
+                new Map<String, Object>{ 'Pre_Partner_Price__c' => 5417.5, 'ListPrice' => 0, 'STICurrencyIsoCode' => 'USD' },
+                false, 'Subscription', 18),
+            'Non-ABP partner line (list 0, no Source_List_Price) must not be flagged (S5 guard)'
+        );
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(
+                new Map<String, Object>{ 'Source_List_Price__c' => 20000, 'ListPrice' => 355, 'STICurrencyIsoCode' => 'EUR' },
+                false, 'Perpetual', 15),
+            'Non-USD line must not be flagged'
+        );
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(attrPerpetual, true, 'Perpetual', 15),
+            'Renewal line must not be flagged'
+        );
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(attrPerpetual, false, 'Perpetual', 0),
+            'Line with no partner discount must not be flagged'
+        );
+        Assert.isFalse(
+            posthook.isAttributePricedPartnerLine(attrPerpetual, false, 'New Maintenance', 15),
+            'Derived maintenance must not be flagged'
+        );
+    }
+
+    @IsTest
+    static void testAttributePricedPerpetualRecomputesOffBase() {
+        PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
+
+        Account billing = new Account(Name = 'Attr Perpetual Billing', Type = 'Partner');
+        insert billing;
+        insert new Partner_Pricing_Model__c(
+            Account__c = billing.Id,
+            Model_Type__c = 'Guaranteed Margin',
+            Is_Active__c = true,
+            Is_Default__c = true,
+            Software_Percent__c = 15
+        );
+
+        PartnerNetPricePosthook.QuoteHeaderData quoteData = new PartnerNetPricePosthook.QuoteHeaderData();
+        quoteData.billingPartnerId = billing.Id;
+        quoteData.partnerPricingModel = 'Guaranteed Margin';
+        Map<Id, Partner_Pricing_Model__c> partnerModels =
+            PartnerPricingService.getPricingModels(new Set<Id>{ billing.Id }, 'Guaranteed Margin');
+
+        // Attribute-priced perpetual: base 20000, catalog list 355; the pre-hook stamped a partner net
+        // off catalog list (301.75), so PartnerUnitPrice > 0 and needsDeferredPartnerPricing is false.
+        Map<String, Object> attrPerpetual = new Map<String, Object>{
+            'Pre_Partner_Price__c' => 20000,
+            'NetUnitPrice' => 20000,
+            'UnitPrice' => 301.75,
+            'ListPrice' => 355,
+            'PartnerUnitPrice' => 301.75,
+            'STICurrencyIsoCode' => 'USD',
+            'Fortra_Product_Type__c' => 'Software'
+        };
+
+        Test.startTest();
+        PartnerNetPricePosthook.PartnerPriceResult withoutFlag =
+            posthook.calculateDeferredPartnerPrice(attrPerpetual, quoteData, partnerModels, null, false);
+        PartnerNetPricePosthook.PartnerPriceResult recomputed =
+            posthook.calculateDeferredPartnerPrice(attrPerpetual, quoteData, partnerModels, null, true);
+        Test.stopTest();
+
+        Assert.isNull(withoutFlag, 'Without attrRepriceNeeded a non-skipped line must not recompute');
+        Assert.isNotNull(recomputed, 'Attribute-priced perpetual must recompute when flagged');
+        Assert.areEqual(20000, recomputed.currentPrice,
+            'Base must be the pre-partner attribute base (20000), not catalog list (355)');
+        Assert.areEqual(17000, recomputed.adjustedPrice,
+            'Partner net must be base x (1 - 15%) = 17000, not the catalog-based 301.75');
+        Assert.areEqual(15, recomputed.totalPercent, 'Total partner percent is 15');
+
+        // SC-3346 anti-compound: on the attribute-reprice path a line with no stable Pre_Partner base
+        // must NOT fall back to the running NetUnitPrice (re-discounting it compounds ~x0.82/reprice) —
+        // it returns null. The deferred derived-maintenance path (flag=false) keeps the fallback.
+        Map<String, Object> noPrePartner = new Map<String, Object>{
+            'NetUnitPrice' => 2987.04, 'ListPrice' => 0, 'PartnerUnitPrice' => 0,
+            'STICurrencyIsoCode' => 'USD', 'Fortra_Product_Type__c' => 'Software'
+        };
+        Assert.isNull(
+            posthook.calculateDeferredPartnerPrice(noPrePartner, quoteData, partnerModels, null, true),
+            'Attribute-reprice path must not fall back to running NetUnitPrice (anti-compound)'
+        );
+    }
+
+    @IsTest
     static void testResolvePreProcedurePrice_prefersRegionalThenUnitThenList() {
         PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
         System.assertEquals(900, PartnerNetResolutionCalculator.resolvePreProcedurePrice(900, 1000, 1100));

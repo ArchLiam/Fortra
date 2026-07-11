@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ABA_Raw_Net__c</fullName>
+    <description>SC-3384: raw per-unit USD net stamped by the Attribute-Based Adjustment (ABA) step in the pricing procedure, captured BEFORE multi-currency localization. Non-null marks a line whose net was set by the currency-blind ABA Override decision table (0lDa50000007BEuEAM). Carries from QuoteLineItem on convert so the order-side reprice (which does not re-run the ESD) stays provenance-based and idempotent. Read by the currency-correction pass in PartnerNetPricePosthook.</description>
+    <inlineHelpText>Raw per-unit USD net from the attribute-based adjustment, before currency localization. System field.</inlineHelpText>
+    <label>ABA Raw Net (USD)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <type>Number</type>
+</CustomField>
