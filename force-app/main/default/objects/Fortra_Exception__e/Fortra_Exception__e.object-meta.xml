@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Generic Fortra exception carrier. Published (Publish Immediately) from a catch block via ExceptionLogger.log so a logged failure survives a rolled-back transaction; a subscriber Flow persists it to Exception_Log__c (RecordType "Pricing Exception"). The non-pricing-domain twin of Pricing_Exception__e.</description>
+    <eventType>HighVolume</eventType>
+    <label>Fortra Exception</label>
+    <pluralLabel>Fortra Exceptions</pluralLabel>
+    <publishBehavior>PublishImmediately</publishBehavior>
+</CustomObject>

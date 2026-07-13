@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Stamp_UnitPrice</name>
+        <label>Stamp UnitPrice (Sales Price)</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.UnitPrice</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Sales_Price_Value</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Safe_To_Stamp</name>
+        <label>Safe To Stamp (fill or flow-owned)</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Manual Override - Skip</defaultConnectorLabel>
+        <rules>
+            <name>Fill_Or_Flow_Owned</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Is_Flow_Owned</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Stamp_UnitPrice</targetReference>
+            </connector>
+            <label>Fill or Flow-Owned</label>
+        </rules>
+    </decisions>
+    <description>SC-3544: before-save stamp of UnitPrice (Sales Price) on QuoteLineItem = COALESCE(Base_Price__c, Pre_Partner_Price__c, NetUnitPrice). In the RCA waterfall UnitPrice is an INPUT (PriceBookEntry list seed feeding NetUnitPrice) and NetUnitPrice is the engine OUTPUT, so Sales Price is a display derivation the pricing procedure does not own. A before-save flow is the only clean quote-side writer given the RLM Quote-DML lock, and it covers non-repricing paths (renewal/derived/amend/manual/clone) that an engine step would miss. The prior temp Stamp_Sales_Price flow (deleted 2026-07-08) sourced only Base_Price__c/Pre_Partner_Price__c, both null on renewal/derived/amend lines, leaving Sales Price blank while NetUnitPrice was correct; the NetUnitPrice fallback fills them. NO-CLOBBER GUARD: re-stamps only when UnitPrice is blank or currently equals the value this flow last stamped (Prior_Stamped_Value), so a rep&apos;s manual Sales-Price override survives reprice (SC-3384 line-override-wins). Converges on the first reprice.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Is_Flow_Owned</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(ISBLANK({!$Record.UnitPrice}), ROUND({!$Record.UnitPrice}, 2) = ROUND({!Prior_Stamped_Value}, 2))</expression>
+    </formulas>
+    <formulas>
+        <name>Prior_Stamped_Value</name>
+        <dataType>Currency</dataType>
+        <expression>IF(NOT(ISBLANK(PRIORVALUE({!$Record.Base_Price__c}))), PRIORVALUE({!$Record.Base_Price__c}), IF(NOT(ISBLANK(PRIORVALUE({!$Record.Pre_Partner_Price__c}))), PRIORVALUE({!$Record.Pre_Partner_Price__c}), PRIORVALUE({!$Record.NetUnitPrice})))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>Sales_Price_Value</name>
+        <dataType>Currency</dataType>
+        <expression>IF(NOT(ISBLANK({!$Record.Base_Price__c})), {!$Record.Base_Price__c}, IF(NOT(ISBLANK({!$Record.Pre_Partner_Price__c})), {!$Record.Pre_Partner_Price__c}, {!$Record.NetUnitPrice}))</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Fortra | Stamp Sales Price {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Stamp Sales Price</label>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Safe_To_Stamp</targetReference>
+        </connector>
+        <filterFormula>AND(OR(NOT(ISBLANK({!$Record.Base_Price__c})),NOT(ISBLANK({!$Record.Pre_Partner_Price__c})),NOT(ISBLANK({!$Record.NetUnitPrice}))),OR(ISBLANK({!$Record.UnitPrice}),ISCHANGED({!$Record.Base_Price__c}),ISCHANGED({!$Record.Pre_Partner_Price__c}),ISCHANGED({!$Record.NetUnitPrice})))</filterFormula>
+        <object>QuoteLineItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

@@ -1,0 +1,95 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+Compiled successfully.
+Executed successfully.
+
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: Flow.Interview.Fortra_Quote_Reprice f = new Flow.Interview.Fortra_Quote_Reprice(new Map<String,Object>{'QuoteId'=>'0Q0WC000003IBjF0AW'});
+Execute Anonymous: f.start();
+Execute Anonymous: System.debug('REPRICE_DONE');
+08:57:44.84 (84020103)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+08:57:44.84 (84068107)|EXECUTION_STARTED
+08:57:44.84 (84093204)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+08:57:53.309 (9309436146)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002WYBt|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+08:57:53.337 (9337872495)|CUMULATIVE_LIMIT_USAGE
+08:57:53.337 (9337872495)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 29 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 1 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:57:53.337 (9337872495)|CUMULATIVE_LIMIT_USAGE_END
+
+08:57:53.309 (9337911986)|CODE_UNIT_FINISHED|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+08:57:53.373 (9373458611)|CODE_UNIT_STARTED|[EXTERNAL]|industries.pricing.rulesengine.runtime.processtype.DefaultPricingProcessTypeHandler
+08:57:53.373 (9702800397)|CODE_UNIT_FINISHED|industries.pricing.rulesengine.runtime.processtype.DefaultPricingProcessTypeHandler
+08:57:53.819 (9819879218)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002VmiL|PartnerNetPricePosthook.applyPostPricingNetPrices(List<PartnerNetPricePosthook.PostPricingContextRequest>)
+08:57:53.862 (9862256337)|CUMULATIVE_LIMIT_USAGE
+08:57:53.862 (9862256337)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 472 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 1 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 1 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:57:53.862 (9862256337)|CUMULATIVE_LIMIT_USAGE_END
+
+08:57:53.819 (9862302179)|CODE_UNIT_FINISHED|PartnerNetPricePosthook.applyPostPricingNetPrices(List<PartnerNetPricePosthook.PostPricingContextRequest>)
+08:57:53.970 (9970523260)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002WYBt|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+08:57:53.979 (9979910674)|CUMULATIVE_LIMIT_USAGE
+08:57:53.979 (9979910674)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 552 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 1 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 1 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:57:53.979 (9979910674)|CUMULATIVE_LIMIT_USAGE_END
+
+08:57:53.970 (9979954952)|CODE_UNIT_FINISHED|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+08:57:54.206 (10206311453)|USER_DEBUG|[3]|DEBUG|REPRICE_DONE
+08:57:54.226 (10226204572)|CUMULATIVE_LIMIT_USAGE
+08:57:54.226 (10226204572)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 762 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 2 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 1 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+08:57:54.226 (10226204572)|CUMULATIVE_LIMIT_USAGE_END
+
+08:57:54.206 (10226265261)|CODE_UNIT_FINISHED|execute_anonymous_apex
+08:57:54.206 (10226282339)|EXECUTION_FINISHED
+

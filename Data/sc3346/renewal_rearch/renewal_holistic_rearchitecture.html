@@ -1,0 +1,549 @@
+<style>
+  :root {
+    --bg: #f5f7f9;
+    --surface: #ffffff;
+    --surface-2: #eceff3;
+    --ink: #171d24;
+    --ink-2: #515c68;
+    --ink-3: #8b95a1;
+    --line: #dce1e7;
+    --line-2: #c8cfd7;
+    --accent: #0c7a84;
+    --accent-2: #0a5d65;
+    --accent-wash: #e2f1f2;
+    --crit: #bb3b2c;
+    --crit-wash: #f7e4e1;
+    --warn: #9c6f12;
+    --warn-wash: #f6ecd7;
+    --good: #1a7a52;
+    --good-wash: #e0f0e8;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
+    --maxw: 1080px;
+    --radius: 7px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1116;
+      --surface: #141a20;
+      --surface-2: #1b232b;
+      --ink: #e7ecf1;
+      --ink-2: #a6b0bb;
+      --ink-3: #6c7681;
+      --line: #28323c;
+      --line-2: #364150;
+      --accent: #2bbac5;
+      --accent-2: #55cdd6;
+      --accent-wash: #102a2d;
+      --crit: #e57560;
+      --crit-wash: #2e1a17;
+      --warn: #d3a24d;
+      --warn-wash: #2a2113;
+      --good: #4ab585;
+      --good-wash: #14271e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1116; --surface: #141a20; --surface-2: #1b232b;
+    --ink: #e7ecf1; --ink-2: #a6b0bb; --ink-3: #6c7681;
+    --line: #28323c; --line-2: #364150;
+    --accent: #2bbac5; --accent-2: #55cdd6; --accent-wash: #102a2d;
+    --crit: #e57560; --crit-wash: #2e1a17;
+    --warn: #d3a24d; --warn-wash: #2a2113;
+    --good: #4ab585; --good-wash: #14271e;
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f7f9; --surface: #ffffff; --surface-2: #eceff3;
+    --ink: #171d24; --ink-2: #515c68; --ink-3: #8b95a1;
+    --line: #dce1e7; --line-2: #c8cfd7;
+    --accent: #0c7a84; --accent-2: #0a5d65; --accent-wash: #e2f1f2;
+    --crit: #bb3b2c; --crit-wash: #f7e4e1;
+    --warn: #9c6f12; --warn-wash: #f6ecd7;
+    --good: #1a7a52; --good-wash: #e0f0e8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.62;
+    -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  .prose { max-width: 68ch; }
+
+  h1, h2, h3 { text-wrap: balance; line-height: 1.18; letter-spacing: -0.01em; }
+  h2 { font-size: 1.72rem; margin: 0 0 6px; }
+  h3 { font-size: 1.14rem; margin: 30px 0 8px; letter-spacing: 0; }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent); }
+  strong { font-weight: 650; color: var(--ink); }
+  code, .m { font-family: var(--mono); font-size: 0.86em; }
+  code {
+    background: var(--surface-2); padding: 1px 5px; border-radius: 4px;
+    border: 1px solid var(--line); color: var(--ink);
+  }
+
+  .eyebrow {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); font-weight: 600;
+  }
+
+  /* ---- hero ---- */
+  header.hero {
+    border-bottom: 1px solid var(--line);
+    background:
+      linear-gradient(180deg, var(--accent-wash) 0%, transparent 62%),
+      var(--bg);
+  }
+  header.hero .wrap { padding-top: 64px; padding-bottom: 40px; }
+  .kicker {
+    font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-2); margin-bottom: 20px;
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+  }
+  .kicker .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  h1 { font-size: clamp(2.1rem, 5vw, 3.05rem); margin: 0 0 18px; font-weight: 700; }
+  h1 .hl { color: var(--accent-2); }
+  .lede { font-size: 1.24rem; line-height: 1.5; color: var(--ink-2); max-width: 40ch; margin: 0; }
+  .lede strong { color: var(--ink); }
+
+  /* ---- thesis strip ---- */
+  .thesis {
+    margin-top: 34px; padding: 22px 24px; border-radius: var(--radius);
+    background: var(--surface); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start;
+  }
+  .thesis .n { font-family: var(--mono); color: var(--accent); font-size: 0.8rem; font-weight: 600; padding-top: 3px; white-space: nowrap; }
+  .thesis p { margin: 0; font-size: 1.05rem; }
+
+  /* ---- stat row ---- */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; margin-top: 22px;
+  }
+  .stat { background: var(--surface); padding: 18px 18px 16px; }
+  .stat .v { font-family: var(--mono); font-size: 1.72rem; font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; line-height: 1.05; }
+  .stat .l { font-size: 0.82rem; color: var(--ink-2); margin-top: 5px; line-height: 1.35; }
+  .stat.crit .v { color: var(--crit); }
+  .stat.warn .v { color: var(--warn); }
+
+  /* ---- sections ---- */
+  section { padding: 52px 0; border-top: 1px solid var(--line); }
+  section:first-of-type { border-top: none; }
+  .sec-head { margin-bottom: 26px; }
+  .sec-head .prose { margin-top: 10px; color: var(--ink-2); }
+
+  /* ---- generic card grid ---- */
+  .grid { display: grid; gap: 16px; }
+  .cols-2 { grid-template-columns: 1fr 1fr; }
+  .cols-3 { grid-template-columns: repeat(3, 1fr); }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 18px 20px;
+  }
+  .card h4 { margin: 0 0 8px; font-size: 1rem; letter-spacing: 0; }
+  .card p { font-size: 0.92rem; color: var(--ink-2); margin: 0; }
+  .card.crit { border-left: 3px solid var(--crit); }
+  .card.warn { border-left: 3px solid var(--warn); }
+  .card.good { border-left: 3px solid var(--good); }
+  .card.acc  { border-left: 3px solid var(--accent); }
+
+  .tag {
+    font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em;
+    text-transform: uppercase; font-weight: 600; padding: 2px 7px; border-radius: 4px;
+    display: inline-block; vertical-align: middle;
+  }
+  .tag.crit { background: var(--crit-wash); color: var(--crit); }
+  .tag.warn { background: var(--warn-wash); color: var(--warn); }
+  .tag.good { background: var(--good-wash); color: var(--good); }
+  .tag.acc  { background: var(--accent-wash); color: var(--accent-2); }
+  .tag.dead { background: var(--surface-2); color: var(--ink-3); text-decoration: line-through; }
+
+  /* ---- pipeline / flow diagram ---- */
+  .flow { display: flex; flex-wrap: wrap; gap: 0; align-items: stretch; margin: 4px 0; }
+  .node {
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 12px 14px; flex: 1 1 0; min-width: 150px;
+  }
+  .node .s { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .node .t { font-weight: 600; font-size: 0.94rem; margin-top: 3px; }
+  .node .d { font-size: 0.82rem; color: var(--ink-2); margin-top: 4px; }
+  .node.acc { border-color: var(--accent); background: var(--accent-wash); }
+  .arrow { align-self: center; color: var(--ink-3); font-family: var(--mono); padding: 0 8px; font-size: 1.1rem; }
+
+  /* stacked committer list */
+  .stack { display: flex; flex-direction: column; gap: 8px; }
+  .layer {
+    display: grid; grid-template-columns: 26px 1fr auto; gap: 12px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 11px 14px;
+  }
+  .layer .idx { font-family: var(--mono); color: var(--ink-3); font-size: 0.8rem; text-align: center; }
+  .layer .body { font-size: 0.9rem; }
+  .layer .body b { font-family: var(--mono); font-weight: 600; font-size: 0.86rem; }
+  .layer .body span { color: var(--ink-2); }
+
+  /* ---- tables ---- */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ink-2); background: var(--surface-2); font-weight: 600; white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td .m { color: var(--ink); }
+  tbody tr:hover { background: var(--surface-2); }
+  .cell-crit { color: var(--crit); font-weight: 600; }
+  .cell-good { color: var(--good); font-weight: 600; }
+
+  /* ---- gap: two column compare ---- */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+  .compare > div { background: var(--surface); padding: 16px 18px; }
+  .compare .ch { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+  .compare .native .ch { color: var(--accent-2); }
+  .compare .fortra .ch { color: var(--crit); }
+  .compare ul { margin: 0; padding-left: 18px; }
+  .compare li { font-size: 0.88rem; margin-bottom: 9px; color: var(--ink-2); }
+  .compare li b { color: var(--ink); }
+
+  /* ---- roadmap phases ---- */
+  .phase {
+    display: grid; grid-template-columns: 78px 1fr; gap: 20px;
+    padding: 22px 0; border-top: 1px solid var(--line); align-items: start;
+  }
+  .phase:first-child { border-top: none; }
+  .phase .badge { }
+  .phase .pn { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; }
+  .phase .pnum { font-family: var(--mono); font-size: 2.1rem; font-weight: 600; line-height: 1; color: var(--accent); letter-spacing: -0.02em; }
+  .phase h3 { margin: 0 0 6px; }
+  .phase .status { margin-left: 10px; }
+  .phase ul { margin: 8px 0 0; padding-left: 18px; }
+  .phase li { font-size: 0.92rem; color: var(--ink-2); margin-bottom: 6px; }
+  .phase li b { color: var(--ink); }
+  .phase.done .pnum { color: var(--good); }
+
+  .callout {
+    background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--good);
+    border-radius: var(--radius); padding: 18px 22px; margin-top: 8px;
+  }
+  .callout.acc { border-left-color: var(--accent); }
+  .callout .h { font-weight: 650; margin-bottom: 6px; }
+  .callout p { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
+
+  ul.clean { list-style: none; padding: 0; margin: 0; }
+  ul.clean li { padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 0.94rem; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: baseline; }
+  ul.clean li:last-child { border-bottom: none; }
+
+  footer { border-top: 1px solid var(--line); padding: 34px 0 60px; color: var(--ink-3); font-size: 0.82rem; }
+  footer .m { color: var(--ink-2); }
+
+  @media (max-width: 820px) {
+    .stats { grid-template-columns: 1fr 1fr; }
+    .cols-2, .cols-3, .compare { grid-template-columns: 1fr; }
+    .thesis { grid-template-columns: 1fr; gap: 8px; }
+    .phase { grid-template-columns: 1fr; gap: 6px; }
+    .flow { flex-direction: column; }
+    .arrow { transform: rotate(90deg); padding: 4px 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .stat, .card, .node { transition: none; }
+  }
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">
+      <span>Fortra · Revenue Lifecycle Management</span><span class="dot"></span>
+      <span>Renewals — Architecture Review</span><span class="dot"></span>
+      <span>FortraUAT · 2026-07-10</span>
+    </div>
+    <h1>The renewal engine is a re-implementation of the platform — <span class="hl">and the platform now does it better.</span></h1>
+    <p class="lede">A holistic read of how renewals actually run in this org — traced on live UAT data and measured against Salesforce's native RLM model — and the re-architecture it points to.</p>
+
+    <div class="thesis">
+      <span class="n">THESIS</span>
+      <p>Fortra hand-rolls, imperfectly, what Salesforce RLM ships natively. One decision — modeling maintenance as a <strong>two-catalog <span class="m">RNM</span>(OneTime) → <span class="m">RRM</span>(TermDefined)</strong> pair — defeats <strong>every</strong> native renewal join at once, which forced a large stack of compensating automation on top. The clean target already exists in the org, unused.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat crit"><div class="v">22,805</div><div class="l">OneTime maintenance assets that can never renew natively (1,041 accounts)</div></div>
+      <div class="stat crit"><div class="v">752</div><div class="l">accounts with only <span class="m">RNM</span> — every first renewal hits the defect</div></div>
+      <div class="stat warn"><div class="v">~5×</div><div class="l">places the same renewal net is computed; stamped up to 4×</div></div>
+      <div class="stat"><div class="v">0</div><div class="l">references to the native uplift fields already sitting in the org</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">01 — The problem in one paragraph</span>
+      <h2>What's actually broken</h2>
+    </div>
+    <div class="prose">
+      <p>A renewal line commits its price only when it renews as a <strong>priced <code>Renew</code> node</strong> — which requires the owned asset to be a <strong>TermDefined subscription</strong>. Subscriptions do this and commit cleanly (<span class="m">$9.11M</span> of healthy renewal net across the working population). Maintenance does not: it is sold as a <strong>OneTime <code>RNM</code></strong> product, so on renewal the platform routes it to <code>Amend</code> (a OneTime asset has no term to renew), the line falls into the <em>derived</em> pricing path — which the procedure deliberately excludes from renewals — and the net is never committed. It lands <strong>null / $0</strong>.</p>
+      <p>Because the platform can't price it, roughly a dozen Apex hooks, two competing renewal engines, and ~197 near-duplicate configuration rules were layered on to force the number back in. That accreted stack — not the missing number — is the real cost.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">02 — Current state</span>
+      <h2>The renewal as it actually runs</h2>
+      <div class="prose">The SDD describes a native-<code>Renew</code>-action design. The live org replaced the front half with custom flows and rebuilt the pricing half entirely. Two renewal engines coexist, both active.</div>
+    </div>
+
+    <h3>The live pipeline (Model B — asset-based)</h3>
+    <div class="flow">
+      <div class="node"><div class="s">Stage A · advisory</div><div class="t">Window Monitor</div><div class="d">Daily 02:00 → <code>Renewal_Status__c='Pending'</code>. Does <em>not</em> gate creation.</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="s">Stage B · create</div><div class="t">Create Renewal Quote</div><div class="d">Overrides native <code>initiateRenewal</code>; emits Quote + QuoteAction per asset.</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="s">Stage C · enrich ×2</div><div class="t">Two enrichment flows</div><div class="d">Both active, overlapping entry criteria → double-processing.</div></div>
+      <div class="arrow">→</div>
+      <div class="node acc"><div class="s">Stage D–E · price</div><div class="t">Trigger + reprice</div><div class="d">6 inline handlers + procedure + posthooks. The tangle lives here.</div></div>
+      <div class="arrow">→</div>
+      <div class="node"><div class="s">Stage F–G · commit</div><div class="t">Order → succession</div><div class="d">New successor Contract; original never marked <code>Renewed</code>.</div></div>
+    </div>
+
+    <h3>The pricing tangle — one renewal net, up to four writers</h3>
+    <p class="prose" style="color:var(--ink-2)">The pricing procedure can't reliably commit a renewal net, so the value is stamped into <code>COLACalculatedPrice__c</code> and forced in by whichever hook runs last. That field is simultaneously the transport <em>and</em> a stale fossil — its meaning depends on what <code>Base_Price__c</code> happened to hold (license base vs maintenance base).</p>
+    <div class="stack">
+      <div class="layer"><div class="idx">1</div><div class="body"><b>RenewalQuoteActionStamp</b> <span>· before-insert · mints a born-net <code>Renew</code> QuoteAction (the proven fix)</span></div><span class="tag good">keystone</span></div>
+      <div class="layer"><div class="idx">2</div><div class="body"><b>COLAUpliftHandler</b> <span>· before-insert · <code>UnitPrice = Asset.Price × (1+COLA%)</code></span></div><span class="tag warn">writer</span></div>
+      <div class="layer"><div class="idx">3</div><div class="body"><b>COLAUpliftPrehook</b> <span>· pre-waterfall · seeds an isolated <code>NetUnitPrice</code> + its own COLA math</span></div><span class="tag warn">writer</span></div>
+      <div class="layer"><div class="idx">4</div><div class="body"><b>V23 procedure</b> <span>· copies <code>COLACalculatedPrice__c → NetUnitPrice</code> — only for LastTransaction/Renew</span></div><span class="tag warn">writer</span></div>
+      <div class="layer"><div class="idx">5</div><div class="body"><b>PartnerNetPricePosthook</b> <span>· post-waterfall · force-commits the fossil (86 KB, ~2,500 lines)</span></div><span class="tag warn">writer</span></div>
+      <div class="layer"><div class="idx">6</div><div class="body"><b>RenewalMaintenancePricingService</b> <span>· reprice flow · stamps the net <em>twice</em> (apply + finalize)</span></div><span class="tag warn">writer</span></div>
+    </div>
+
+    <h3>Accreted debt the re-architecture must collapse</h3>
+    <div class="grid cols-3" style="margin-top:14px">
+      <div class="card crit"><h4>Two renewal engines</h4><p>Legacy ContractLineItem flow <span class="tag warn">Model A</span> and asset-based override <span class="tag acc">Model B</span> both active. The <span class="m">RNM→RRM</span> defect lives in the seam.</p></div>
+      <div class="card crit"><h4>COLA computed ~5×</h4><p>Handler, prehook, service, calculator, and inline in the posthook — same formula, drift risk. <code>COLAUpliftCalculator</code> (the intended single engine) exists but isn't the only one.</p></div>
+      <div class="card warn"><h4>3-way maintenance auto-add</h4><p>~197 active Year-1/Year-2 config rules <b>+</b> a dead Apex fallback <b>+</b> the born-net stamp — three generations of the same idea.</p></div>
+      <div class="card warn"><h4>Procedure V23 · 124,679 lines</h4><p>Renewal logic smeared across dozens of numbered clones — <code>COLAUpliftonRenewal</code> +12, Partner +14, Derived, Amend families.</p></div>
+      <div class="card warn"><h4>Two enrichment flows</h4><p><code>Fortra_RCA_Renewal_Enhancement</code> and <code>…_Quote_Enhancement</code> both active with overlapping criteria → duplicate opportunities.</p></div>
+      <div class="card"><h4>Confirmed dead code <span class="tag dead">delete</span></h4><p><code>RenewalMaintenanceFlip</code>, <code>ContractAssetRenewalInvocable</code>, <code>RenewalQuoteAutoCreator</code>, 61 inactive <code>Renew&nbsp;Sku</code> rules.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">03 — The data reality</span>
+      <h2>Blast radius, measured on live UAT</h2>
+      <div class="prose">One methodology note that reframes everything: <code>NetUnitPrice</code> is a <strong>runtime-only</strong> field — non-null on just <strong>9</strong> rows org-wide. The durable defect signal is a blank <code>UnitPrice</code> on a maintenance renewal line. All sizing below uses that.</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Measure</th><th class="num">Count</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Renewal quotes (<code>Quote_Type__c='Renewal'</code>)</td><td class="num">124,718</td><td>80% of all quotes — but overwhelmingly <strong>migrated legacy</strong>, no action model</td></tr>
+          <tr><td>QuoteActions ever created (all types)</td><td class="num">~305</td><td>The <em>entire</em> RCA-native renewal history in the org (<code>Renew</code> = 102)</td></tr>
+          <tr><td>Contracts reaching <code>Status='Renewed'</code></td><td class="num cell-crit">0 / 29,452</td><td>Succession never sets it — old and live contracts are indistinguishable</td></tr>
+          <tr><td>Maintenance share of renewal line volume</td><td class="num">52.6%</td><td>486,583 lines — re-architecting renewals <em>is</em> re-architecting maintenance</td></tr>
+          <tr><td>OneTime <code>RNM</code> maintenance assets</td><td class="num cell-crit">22,805</td><td>Across 1,041 accounts — none can renew via the native path</td></tr>
+          <tr><td>Accounts holding only <code>RNM</code> (never renewed maint)</td><td class="num cell-crit">752</td><td>Pure first-renewal exposure — the native exact-match has never rescued them</td></tr>
+          <tr><td>Live unpriced <code>RNM</code> renewal lines <em>right now</em></td><td class="num cell-crit">7,202</td><td>1,774 quotes / 687 accounts · all created 2026-05 → 06 (not legacy)</td></tr>
+          <tr><td>First-pass failure rate on live <code>RNM</code>/OneTime lines</td><td class="num cell-crit">~41%</td><td>7,202 of 17,629 land null/$0</td></tr>
+          <tr><td>Healthy subscription renewal net (control)</td><td class="num cell-good">$9.11M</td><td>The <code>Renew</code> + LastTransaction path is proven at scale</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="color:var(--ink-3); font-size:0.82rem; margin-top:12px" class="m">Do not conflate the ~120K RRM $0 rows with the defect — 98.9% are legacy-migration noise (Won, no persisted UnitPrice). Live actionable RRM $0 ≈ 1,250; the genuinely-live gap is the 7,202 RNM lines above.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">04 — Root cause</span>
+      <h2>One modeling choice defeats three native joins</h2>
+      <div class="prose">Native RLM assumes <strong>one lifecycle-managed TermDefined asset</strong> per subscription, renewed <em>as itself</em>. Fortra's two-catalog maintenance split breaks all three native mechanisms simultaneously — which is why no single patch has ever been enough.</div>
+    </div>
+    <div class="grid cols-3">
+      <div class="card crit">
+        <span class="tag crit">join 1</span>
+        <h4 style="margin-top:8px">Asset ↔ line match</h4>
+        <p>Native Asset Discovery matches <code>Asset.Product2Id = line.Product2Id</code> exactly. An <span class="m">RNM</span> asset never matches an <span class="m">RRM</span> line. First renewal finds no source.</p>
+      </div>
+      <div class="card crit">
+        <span class="tag crit">join 2</span>
+        <h4 style="margin-top:8px">Selling-model renewability</h4>
+        <p>Renewability is immutable and derived from the selling model. OneTime → no term → no <code>LifecycleEndDate</code> → not renewable. Can't be conferred later; the fields are read-only.</p>
+      </div>
+      <div class="card crit">
+        <span class="tag crit">join 3</span>
+        <h4 style="margin-top:8px">Derived pricing on renewals</h4>
+        <p>The procedure's <code>DerivedProductsNonRenewal</code> filter strips derived lines from renewals — <em>correctly</em>, per native intent. So a derived maintenance line has no pricing home on renewal at all.</p>
+      </div>
+    </div>
+    <div class="callout acc" style="margin-top:18px">
+      <div class="h">The platform is explicit: there is no "renew as a different product."</div>
+      <p>Salesforce's own taxonomy treats "become a different product" as a <strong>Swap / Upgrade</strong> — an <em>amendment</em>, never a Renew. <code>initiateRenewal</code> has no input to renew an asset as a different <code>Product2</code>. The <span class="m">RNM→RRM</span> pattern is off-platform by construction, which is exactly why it needs custom cross-product stamping to work at all.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">05 — The native reference model</span>
+      <h2>What "aligned to the platform" looks like</h2>
+      <div class="prose">Salesforce RLM ships a complete renewal model — and, since Winter '26, a first-class renewal-<strong>uplift</strong> model that is a near-exact match for Fortra's hand-built COLA. Both already exist in the org.</div>
+    </div>
+
+    <h3>Native renewal pipeline</h3>
+    <div class="flow">
+      <div class="node acc"><div class="s">discover</div><div class="t">Get Renewable Assets Summary</div><div class="d">Pre-computes <code>renewalPriceDetails.netUnitPrice</code> per asset.</div></div>
+      <div class="arrow">→</div>
+      <div class="node acc"><div class="s">initiate</div><div class="t">Initiate Renewal</div><div class="d">Async; engine assigns QuoteActions from the selling model.</div></div>
+      <div class="arrow">→</div>
+      <div class="node acc"><div class="s">price</div><div class="t">Run Salesforce Pricing</div><div class="d"><code>PricingSource=LastTransaction</code> + uplift policy.</div></div>
+      <div class="arrow">→</div>
+      <div class="node acc"><div class="s">write-back</div><div class="t">Create/Update Asset From Order</div><div class="d"><em>Updates</em> the same asset in place — no proliferation.</div></div>
+    </div>
+
+    <div class="callout" style="margin-top:22px">
+      <div class="h">The native uplift model is sitting in the org, wired to nothing.</div>
+      <p>The fields <code>QuoteLineItem.UnitPriceUplift</code> and <code>PriceRevisionPolicyId</code> ship with the RLM package and exist in FortraUAT — with <strong>zero references</strong> across all Apex and Flows. Fortra's <code>COLA_Uplift_Rules__mdt</code> + the COLA class stack is a hand-built clone of <code>PriceRevisionPolicy</code> (PolicyType = Flat).</p>
+    </div>
+
+    <div class="table-wrap" style="margin-top:18px">
+      <table>
+        <thead><tr><th>Fortra custom (COLA)</th><th>Native equivalent (unused)</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td><code>Default_Uplift_Percent__c</code></td><td><code>PriceRevisionPolicy</code> flat % · <code>AssetStatePeriod.UnitPriceUplift</code></td><td>1:1</td></tr>
+          <tr><td><code>Solution_Category__c</code> (partition)</td><td><code>PriceRevisionPolicy.Region</code></td><td>partition key</td></tr>
+          <tr><td><code>Effective_Start/End_Date__c</code></td><td><code>EffectiveFrom / EffectiveTo</code></td><td>1:1</td></tr>
+          <tr><td>~5 Apex classes + procedure steps</td><td>engine-native, config-only</td><td class="cell-good">deletable</td></tr>
+          <tr><td>(flat only — no CPI)</td><td><code>PolicyType=PriceIndex</code> + <code>IndexRate</code></td><td>capability gained</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">06 — The gap</span>
+      <h2>Native intent vs. what's built</h2>
+    </div>
+    <div class="compare">
+      <div class="native">
+        <div class="ch">Native RLM — designed</div>
+        <ul>
+          <li><b>One TermDefined asset</b> per subscription, renewed as itself (<code>Product2Id</code> matches every cycle).</li>
+          <li>QuoteAction <b>engine-assigned</b> from the selling model; <code>SourceAssetId</code> carries provenance.</li>
+          <li>Renewal price = <b><code>PricingSource</code></b> (LastTransaction or ListPrice) — the only two sources.</li>
+          <li>Uplift = <b><code>PriceRevisionPolicy</code></b> + <code>UnitPriceUplift</code>, config-driven.</li>
+          <li>Asset <b>updated in place</b> by <code>createOrUpdateAssetFromOrder</code>.</li>
+          <li>Missing contributor → <b>hard validation error</b>, never a silent null.</li>
+        </ul>
+      </div>
+      <div class="fortra">
+        <div class="ch">Fortra — as built</div>
+        <ul>
+          <li><b>Two catalogs</b> (<code>RNM</code>/<code>RRM</code>), paired only by naming convention; ~114K parallel assets.</li>
+          <li>QuoteAction <b>manually synthesized</b> cross-product by <code>account|Solution_Category__c</code>.</li>
+          <li>Renewal price carried by an out-of-band <b>Apex fossil-reconstruction</b> chain.</li>
+          <li>Uplift = custom <b>COLA</b> stack; native fields unused.</li>
+          <li>Renewal <b>spawns a new asset</b> on a successor contract; both stay active.</li>
+          <li>Missing source → <b>silent <code>NetUnitPrice=null</code></b>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">07 — Re-architecture</span>
+      <h2>Target state, and how we get there</h2>
+      <div class="prose"><strong>North star:</strong> collapse maintenance to a single TermDefined product that renews as itself — priced by <code>PricingSource=LastTransaction</code> and native uplift, with the asset updated in place. That one move fixes the null-net defect, retires the two-catalog split, and unlocks native pricing so the entire COLA stack can be deleted.</div>
+    </div>
+
+    <div class="callout" style="border-left-color:var(--warn); margin-bottom:8px">
+      <div class="h">The hard constraint that shapes the sequencing</div>
+      <p>Existing OneTime <code>RNM</code> assets are <strong>immutable</strong> — they can't be made renewable, and native renewal can't swap them to <code>RRM</code>. So the installed base (752+ accounts) needs a <em>bridge</em> during transition, while go-forward sales adopt the clean model. That bridge already works.</p>
+    </div>
+
+    <div class="phase done">
+      <div class="badge"><div class="pn">Phase 0</div><div class="pnum">✓</div></div>
+      <div>
+        <h3>Bridge the installed base <span class="tag good status">proven live</span></h3>
+        <p style="margin:0 0 4px; color:var(--ink-2); font-size:0.94rem">The born-net <code>RenewalQuoteActionStamp</code> — mints a <code>Renew</code> QuoteAction sourcing the owned <code>RNM</code> asset cross-product, so the line is priced from birth. Committed <span class="m">76.57</span> on the first line that has ever committed in this investigation.</p>
+        <ul>
+          <li><b>Keep it</b> as the transition mechanism for the ~22.8K legacy <code>RNM</code> assets — they'll age out as their maintenance re-provisions under the new model.</li>
+          <li>Finish the rollout: reprice the live backlog (7,202 lines) through the born-<code>Renew</code> path.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="badge"><div class="pn">Phase 1</div><div class="pnum">1</div></div>
+      <div>
+        <h3>Collapse the maintenance catalog</h3>
+        <p style="margin:0 0 4px; color:var(--ink-2); font-size:0.94rem">Model maintenance as <strong>one TermDefined product per line</strong>, sold and renewed as itself. Retire the <code>RNM→RRM</code> swap for new business.</p>
+        <ul>
+          <li>Flip the <b>100 active RRM products missing a TermDefined default</b> (incl. 7 real FIM SKUs) and the 39 inverted <code>RNM</code> defaults.</li>
+          <li>New maintenance sale → born TermDefined → renews on native <code>Product2Id</code> match every cycle, no stamp needed.</li>
+          <li>Add an explicit product-pair / lineage field for the transition window (naming convention + coarse <code>Solution_Category</code> is not a 1:1 key).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="badge"><div class="pn">Phase 2</div><div class="pnum">2</div></div>
+      <div>
+        <h3>Adopt native renewal pricing</h3>
+        <p style="margin:0 0 4px; color:var(--ink-2); font-size:0.94rem">Replace the custom COLA stack with <code>PricingSource=LastTransaction</code> + <code>PriceRevisionPolicy</code> (Flat, keyed by Region↔Solution Category) + <code>UnitPriceUplift</code> — the fields already in the org.</p>
+        <ul>
+          <li><b>Retire</b> <code>COLAUpliftHandler</code>, <code>COLAUpliftPrehook</code>, <code>RenewalMaintenancePricingService</code>, and the duplicated calculators.</li>
+          <li>Migrate the 21 <code>COLA_Uplift_Rules__mdt</code> rows → <code>PriceRevisionPolicy</code> records (capability-preserving; unlocks CPI later).</li>
+          <li>Collapse the 4-writer commit chain to the native pricing pass.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="badge"><div class="pn">Phase 3</div><div class="pnum">3</div></div>
+      <div>
+        <h3>Consolidate the automation</h3>
+        <p style="margin:0 0 4px; color:var(--ink-2); font-size:0.94rem">One renewal engine, one enrichment path, one commit — and delete what's dead.</p>
+        <ul>
+          <li>Pick <b>Model B</b>; retire the legacy ContractLineItem engine and the redundant enrichment flow.</li>
+          <li>Consolidate maintenance auto-add onto <b>one</b> mechanism (retire ~197 duplicate PCRs + the dead Apex fallback).</li>
+          <li>Delete confirmed dead code; dedupe the numbered procedure clones; give the 6-handler trigger an explicit ordered dispatcher.</li>
+          <li>Fix succession to set <code>Status='Renewed'</code> and stop keying downstream logic on the always-blank <code>Order.Type</code>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout acc" style="margin-top:24px">
+      <div class="h">Why this order</div>
+      <p>Phase 0 stops the bleeding today. Phase 1 is the pivot — every later simplification depends on maintenance being TermDefined. Phases 2–3 are then <em>deletions</em>: once maintenance renews natively, the COLA stack, the second engine, the duplicate rules, and the fossil-reconstruction chain all become removable rather than maintainable. The re-architecture is measured in code <em>deleted</em>, not added.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="m">Sources — read-only UAT queries + Salesforce RLM Developer Guide v67.0 (Summer '26). Full per-angle research: <span class="m">Data/sc3346/renewal_rearch/</span> (lifecycle · populations · pricing · catalog · automation · native-model · selling-models · renewal-pricing).</p>
+    <p>Evidence base: 8-angle deep-research pass over FortraUAT live data and developer.salesforce.com. Defect + fix proven live on quote <span class="m">0Q0WC000003JiBh0AK</span> (net committed 76.57). No production changes made in producing this review beyond the already-approved Fix-Path-B trigger wiring.</p>
+  </div>
+</footer>

@@ -1,0 +1,7 @@
+Error (1): 
+SELECT Id, DeveloperName, ApiName, ProcessType, UsageType
+                          ^
+ERROR at Row:1:Column:27
+No such column 'ApiName' on entity 'ExpressionSetDefinition'. If you are attempting to use a custom field, be sure to append the '__c' after the custom field name. Please reference your WSDL or the describe call for the appropriate names.
+
+

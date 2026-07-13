@@ -1,0 +1,157 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003q7V74AI"
+        },
+        "Id": "0QLWC000003q7V74AI",
+        "LineNumber": "04267920",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "ProductCode": "PIA-PIA-NRPS-PIAP",
+          "Fortra_Product_Type__c": "Perpetual"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005ws8MYAQ"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "USD",
+        "ListPrice": 355,
+        "UnitPrice": 355,
+        "NetUnitPrice": null,
+        "NetTotalPrice": null,
+        "Subtotal": 355,
+        "TotalPrice": 355,
+        "TotalLineAmount": null,
+        "Base_Price__c": null,
+        "Source_List_Price__c": null,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": null,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003q7V84AI"
+        },
+        "Id": "0QLWC000003q7V84AI",
+        "LineNumber": "04267921",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK",
+          "Fortra_Product_Type__c": "New Maintenance"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wsbUYAQ"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": true
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "USD",
+        "ListPrice": 0,
+        "UnitPrice": 0,
+        "NetUnitPrice": null,
+        "NetTotalPrice": null,
+        "Subtotal": 0,
+        "TotalPrice": 0,
+        "TotalLineAmount": null,
+        "Base_Price__c": null,
+        "Source_List_Price__c": 355,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": null,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003q7V94AI"
+        },
+        "Id": "0QLWC000003q7V94AI",
+        "LineNumber": "04267922",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK",
+          "Fortra_Product_Type__c": "New Maintenance"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wsbUYAQ"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": true
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "USD",
+        "ListPrice": 0,
+        "UnitPrice": 0,
+        "NetUnitPrice": null,
+        "NetTotalPrice": null,
+        "Subtotal": 0,
+        "TotalPrice": 0,
+        "TotalLineAmount": null,
+        "Base_Price__c": null,
+        "Source_List_Price__c": 355,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": null,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

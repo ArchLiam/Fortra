@@ -1,0 +1,157 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iXGH4A2"
+        },
+        "Id": "0QLWC000003iXGH4A2",
+        "LineNumber": "04266877",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD10zYAD"
+          },
+          "ProductCode": "VM-BSL-RSL-BESECB",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wrqzYAA"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+            },
+            "SellingModelType": "TermDefined"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "USD",
+        "ListPrice": 0,
+        "UnitPrice": 0,
+        "NetUnitPrice": 5101.22,
+        "NetTotalPrice": 5101.22,
+        "Subtotal": 5101.22,
+        "TotalPrice": 5101.22,
+        "TotalLineAmount": 5101.22,
+        "Base_Price__c": 6221,
+        "Source_List_Price__c": null,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": 18,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iXHt4AM"
+        },
+        "Id": "0QLWC000003iXHt4AM",
+        "LineNumber": "04266878",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK",
+          "Fortra_Product_Type__c": "New Maintenance"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wsbUYAQ"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": true
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "USD",
+        "ListPrice": 0,
+        "UnitPrice": 71,
+        "NetUnitPrice": 56.23,
+        "NetTotalPrice": 56.23,
+        "Subtotal": 56.23,
+        "TotalPrice": 56.23,
+        "TotalLineAmount": 56.23,
+        "Base_Price__c": 355,
+        "Source_List_Price__c": 355,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": 15,
+        "Discount": 10,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003iXHu4AM"
+        },
+        "Id": "0QLWC000003iXHu4AM",
+        "LineNumber": "04266879",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "ProductCode": "PIA-PIA-NRPS-PIAP",
+          "Fortra_Product_Type__c": "Perpetual"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005ws8MYAQ"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "USD",
+        "ListPrice": 355,
+        "UnitPrice": 301.75,
+        "NetUnitPrice": 271.58,
+        "NetTotalPrice": 271.58,
+        "Subtotal": 271.58,
+        "TotalPrice": 271.58,
+        "TotalLineAmount": 271.58,
+        "Base_Price__c": 355,
+        "Source_List_Price__c": 355,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": 15,
+        "Discount": 10,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

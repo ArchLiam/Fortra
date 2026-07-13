@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <apiVersion>65.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <apiVersion>67.0</apiVersion>
     <assignments>
         <name>Add_Inquiries_Ids_to_Text_Collection</name>
         <label>Add Inquiries Ids to Text Collection</label>
@@ -590,12 +589,6 @@
             <stringValue>Yes</stringValue>
         </value>
     </choices>
-    <customProperties>
-        <name>ScreenProgressIndicator</name>
-        <value>
-            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
-        </value>
-    </customProperties>
     <decisions>
         <name>Additional_Inquiries_Selected</name>
         <label>Additional Inquiries Selected?</label>
@@ -1251,14 +1244,6 @@
             <name>Error_Inquiry_Owner_is_a_Queue_DisplayText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt; &lt;/strong&gt;⚠️ &lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Conversion unavailable.&lt;/strong&gt;&lt;strong&gt; One or more of the selected Inquiries are owned by a Queue. &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Please change the Owner or reach out to your system administrator for help.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -1275,14 +1260,6 @@
             <name>Error_Inquiry_Owner_is_a_Queue_DisplayText_0</name>
             <fieldText>&lt;p&gt;&lt;strong&gt; &lt;/strong&gt;⚠️ &lt;strong style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Conversion unavailable. &lt;/strong&gt;&lt;strong&gt;This record cannot be converted due to one or more unmet conditions.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please review the following items before trying again, or contact your system administrator for assistance:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Account ID&lt;/strong&gt; may need to be populated&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Owner&lt;/strong&gt; must not be a Queue&lt;/li&gt;&lt;/ul&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
@@ -1299,14 +1276,6 @@
             <name>ErrorMessage_DisplayText</name>
             <fieldText>&lt;p&gt;❌ &lt;strong&gt;An error has occurred. Please contact your system administrator and provide the following information: &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!ErrorDetailsTextTemplate}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1326,14 +1295,6 @@
             <name>Existing_Open_Opportunities_DisplayText</name>
             <fieldText>&lt;p&gt;The following open opportunities were found. You may select one to continue, or proceed without selecting to create a new opportunity.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Existing_Open_Opportunities_DataTable</name>
@@ -1375,10 +1336,7 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Opportunity&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;Get_Open_Opportunities&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
@@ -1388,28 +1346,14 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Opportunity&quot;,&quot;fieldReferences&quot;:[&quot;Name&quot;,&quot;StageName&quot;,&quot;Opportunity_Owner_Name_Formula__c&quot;,&quot;Sale_Type__c&quot;,&quot;Amount&quot;,&quot;CloseDate&quot;],&quot;elementReference&quot;:&quot;Get_Open_Opportunities&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Review_Existing_Opportunities</elementReference>
-        </stageReference>
     </screens>
     <screens>
         <name>Opportunity_Form_Screen</name>
@@ -1426,14 +1370,6 @@
             <name>Opportunity_Form_DisplayText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Please provide the following information for the Opportunity that will be created during conversion:&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Cyber_Opportunity_Fields</name>
@@ -1447,42 +1383,18 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>NewOpportunityRecord.Name</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>NewOpportunityRecord.StageName</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>NewOpportunityRecord.CloseDate</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Deal_Origin_Cyber</name>
@@ -1495,14 +1407,6 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Amount_Cyber</name>
@@ -1515,14 +1419,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Expected_Revenue_Cyber</name>
@@ -1535,14 +1431,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Budget_Allocated_Cyber</name>
@@ -1555,14 +1443,6 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Description_Cyber</name>
@@ -1574,14 +1454,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -1593,14 +1465,6 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1624,42 +1488,18 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>NewOpportunityRecord.Name</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>NewOpportunityRecord.StageName</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <fieldType>ObjectProvided</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>false</isRequired>
                     <objectFieldReference>NewOpportunityRecord.CloseDate</objectFieldReference>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Deal_Origin_Tech</name>
@@ -1672,14 +1512,6 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Amount_Tech</name>
@@ -1692,14 +1524,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Expected_Revenue_Tech</name>
@@ -1712,14 +1536,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Displaced_ARR_Tech</name>
@@ -1732,14 +1548,6 @@
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
                     <scale>2</scale>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Budget_Allocated_Tech</name>
@@ -1752,14 +1560,6 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Opportunity_Type_Tech</name>
@@ -1771,14 +1571,6 @@
                     <fieldType>DropdownBox</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <fields>
                     <name>Description_Tech</name>
@@ -1790,14 +1582,6 @@
                     <fieldType>InputField</fieldType>
                     <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
                     <isRequired>true</isRequired>
-                    <styleProperties>
-                        <verticalAlignment>
-                            <stringValue>top</stringValue>
-                        </verticalAlignment>
-                        <width>
-                            <stringValue>6</stringValue>
-                        </width>
-                    </styleProperties>
                 </fields>
                 <inputParameters>
                     <name>width</name>
@@ -1809,14 +1593,6 @@
             </fields>
             <isRequired>false</isRequired>
             <regionContainerType>SectionWithHeader</regionContainerType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
             <visibilityRule>
                 <conditionLogic>and</conditionLogic>
                 <conditions>
@@ -1830,9 +1606,6 @@
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Fill_Opportunity_Form</elementReference>
-        </stageReference>
     </screens>
     <screens>
         <name>Review_Products_of_Interest_Screen</name>
@@ -1849,14 +1622,6 @@
             <name>Products_of_Interest_DisplayText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;The following products of interest will be included in your opportunity:&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Products_of_Interest_Table</name>
@@ -1892,10 +1657,7 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Product_of_Interest__c&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;Get_Products_of_Interest&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>columns</name>
@@ -1905,10 +1667,7 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Product_of_Interest__c&quot;,&quot;fieldReferences&quot;:[&quot;Marketing_Product_Text__c&quot;,&quot;Sales_Inquiry_Name_Formula__c&quot;,&quot;Notes__c&quot;],&quot;elementReference&quot;:&quot;Get_Products_of_Interest&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>maxRowSelection</name>
@@ -1919,20 +1678,9 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Review_Products_of_Interest</elementReference>
-        </stageReference>
     </screens>
     <screens>
         <name>Select_Inquiries_to_Convert</name>
@@ -1949,14 +1697,6 @@
             <name>Select_inquiries_Screen_DisplayText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;Select any additional inquiry records you&apos;d like to merge into the opportunity.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt; Only inquiries associated with the same contact and unit are available for selection.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Select_inquiries_Screen</name>
@@ -1992,10 +1732,7 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Lead&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;Get_same_Contact_Unit_Inquiries&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>isShowSearchBar</name>
@@ -2011,28 +1748,14 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Lead&quot;,&quot;fieldReferences&quot;:[&quot;Sales_Inquiry_Name__c&quot;,&quot;Owner_Name_Formula__c&quot;,&quot;Status&quot;,&quot;Product_of_Interest__c&quot;],&quot;elementReference&quot;:&quot;Get_same_Contact_Unit_Inquiries&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Select_Inquiries</elementReference>
-        </stageReference>
     </screens>
     <screens>
         <name>Success_ExistingOpp_Screen</name>
@@ -2046,20 +1769,9 @@
             <name>Success_ExistingOpp_DisplayText</name>
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;🎉 &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Success! The inquiry has been converted using the selected existing Opportunity: {!HyperlinkFormulaSelectedExistingOpportunity}.&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Summary</elementReference>
-        </stageReference>
     </screens>
     <screens>
         <name>Success_Screen</name>
@@ -2073,20 +1785,9 @@
             <name>Success_DisplayText</name>
             <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;🎉 &lt;/span&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt;Success! The inquiry has been converted.&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 16px;&quot;&gt; A new Opportunity has been created: {!HyperlinkFormulaNewOpportunity}&lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>false</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Summary</elementReference>
-        </stageReference>
     </screens>
     <screens>
         <name>Summary_Screen</name>
@@ -2103,14 +1804,6 @@
             <name>Summary_Screen_DisplayText</name>
             <fieldText>&lt;p&gt;&lt;strong&gt;A new Opportunity will be created with the following details:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!SummaryTextTemplate}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Products of Interest from all selected inquiries will be reparented to this Opportunity. &lt;/strong&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Summary_InquiriesToConvertUpdated</name>
@@ -2146,10 +1839,7 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Lead&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;InquiriesToConvertUpdated&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>maxRowSelection</name>
@@ -2165,10 +1855,7 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Lead&quot;,&quot;fieldReferences&quot;:[&quot;Sales_Inquiry_Name__c&quot;,&quot;Owner_Name_Formula__c&quot;,&quot;Status&quot;,&quot;Product_of_Interest__c&quot;],&quot;elementReference&quot;:&quot;InquiriesToConvertUpdated&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>shouldDisplayLabel</name>
@@ -2179,14 +1866,6 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Summary_Get_Products_of_Interest</name>
@@ -2222,10 +1901,7 @@
             </inputParameters>
             <inputParameters>
                 <name>keyField</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Product_of_Interest__c&quot;,&quot;fieldReferences&quot;:[&quot;Id&quot;],&quot;elementReference&quot;:&quot;Get_Products_of_Interest&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>maxRowSelection</name>
@@ -2241,10 +1917,7 @@
             </inputParameters>
             <inputParameters>
                 <name>columnReferences</name>
-                <value>
-                    <complexValue>{&quot;dataType&quot;:&quot;SObject&quot;,&quot;objectType&quot;:&quot;Product_of_Interest__c&quot;,&quot;fieldReferences&quot;:[&quot;Marketing_Product_Text__c&quot;,&quot;Sales_Inquiry_Name_Formula__c&quot;,&quot;Notes__c&quot;],&quot;elementReference&quot;:&quot;Get_Products_of_Interest&quot;}</complexValue>
-                    <complexValueType>ComplexObjectFieldDetails</complexValueType>
-                </value>
+                <value/>
             </inputParameters>
             <inputParameters>
                 <name>shouldDisplayLabel</name>
@@ -2255,20 +1928,9 @@
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
-        <stageReference>
-            <elementReference>Summary</elementReference>
-        </stageReference>
     </screens>
     <stages>
         <name>Error</name>

@@ -1,0 +1,41 @@
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: Context.IndustriesContext ctx = new Context.IndustriesContext();
+Execute Anonymous: try {
+Execute Anonymous:     Map<String, Object> b = ctx.buildContext(new Map<String, Object>{
+Execute Anonymous:         'contextDefinitionName' => 'SalesTransactionContextExt_v2', 'sourceRecordId' => '801WC00000aYcxXYAS' });
+Execute Anonymous:     Object cidO = b.get('contextId') != null ? b.get('contextId') : b.get('contextInstanceId');
+Execute Anonymous:     Map<String, Object> res = ctx.queryTags(new Map<String, Object>{ 'contextId' => String.valueOf(cidO), 'tags' => new List<String>{ 'SalesTransactionItem' } });
+Execute Anonymous:     Object qr = res.containsKey('queryResult') ? res.get('queryResult') : res;
+Execute Anonymous:     Object items = (qr instanceof Map<String,Object>) ? ((Map<String,Object>)qr).get('SalesTransactionItem') : null;
+Execute Anonymous:     Integer n = (items instanceof List<Object>) ? ((List<Object>)items).size() : (items != null ? 1 : 0);
+Execute Anonymous:     System.debug('ORDER-BUILD-OK count=' + n);
+Execute Anonymous: } catch (Exception e) { System.debug('ORDER-BUILD-FAIL: ' + e.getMessage()); }
+21:19:08.26 (26696501)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+21:19:08.26 (26715725)|EXECUTION_STARTED
+21:19:08.26 (26722150)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+21:19:08.26 (35837461)|FATAL_ERROR|System.UnexpectedException: Salesforce System Error: 575975457-66942 (-1644057892) (-1644057892)
+
+(System Code)
+AnonymousBlock: line 3, column 1
+AnonymousBlock: line 3, column 1
+21:19:08.35 (35886696)|CUMULATIVE_LIMIT_USAGE
+21:19:08.35 (35886696)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:19:08.35 (35886696)|CUMULATIVE_LIMIT_USAGE_END
+
+21:19:08.26 (35929376)|CODE_UNIT_FINISHED|execute_anonymous_apex
+21:19:08.26 (35937228)|EXECUTION_FINISHED
+

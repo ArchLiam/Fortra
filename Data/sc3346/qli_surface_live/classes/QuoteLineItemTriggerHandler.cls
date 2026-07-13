@@ -1,0 +1,90 @@
+/**
+ * @description Trigger handler for QuoteLineItem to auto-link hardware
+ * @author Claude Code
+ * @date 2025-01-23
+ *
+ * This handler automatically sets Hardware__c on quote lines when they are
+ * added to a hardware group, by reading the group's Hardware__c field.
+ *
+ * Handles:
+ * - New quote lines created with QuoteLineGroupId (e.g., from Browse Catalogs)
+ * - Existing quote lines updated with QuoteLineGroupId (manual assignment)
+ * - Quote lines removed from groups (clears Hardware__c)
+ */
+public with sharing class QuoteLineItemTriggerHandler {
+
+    /**
+     * @description Main handler method for hardware linking logic
+     * @param newLines List of new/updated QuoteLineItem records
+     * @param oldMap Map of old QuoteLineItem records (null on insert)
+     */
+    public static void handleHardwareLinking(
+        List<QuoteLineItem> newLines,
+        Map<Id, QuoteLineItem> oldMap
+    ) {
+        // Step 1: Identify lines where QuoteLineGroupId changed
+        Set<Id> groupIds = new Set<Id>();
+        List<QuoteLineItem> linesToUpdate = new List<QuoteLineItem>();
+
+        for (QuoteLineItem newLine : newLines) {
+            Boolean groupChanged = false;
+
+            // Check if this is an insert with a group
+            if (oldMap == null && newLine.QuoteLineGroupId != null) {
+                groupChanged = true;
+            }
+            // Check if this is an update where group changed
+            else if (oldMap != null) {
+                QuoteLineItem oldLine = oldMap.get(newLine.Id);
+                if (newLine.QuoteLineGroupId != oldLine.QuoteLineGroupId) {
+                    groupChanged = true;
+                }
+            }
+
+            // If group changed, collect for processing
+            if (groupChanged) {
+                linesToUpdate.add(newLine);
+                if (newLine.QuoteLineGroupId != null) {
+                    groupIds.add(newLine.QuoteLineGroupId);
+                }
+            }
+        }
+
+        // Exit early if no groups to process
+        if (groupIds.isEmpty() && linesToUpdate.isEmpty()) {
+            return;
+        }
+
+        // Step 2: Query QuoteLineGroups to get Hardware__c values
+        Map<Id, Id> groupToHardwareMap = new Map<Id, Id>();
+
+        if (!groupIds.isEmpty()) {
+            List<QuoteLineGroup> groups = [
+                SELECT Id, Hardware__c, Hardware_Group_Type__c
+                FROM QuoteLineGroup
+                WHERE Id IN :groupIds
+            ];
+
+            for (QuoteLineGroup grp : groups) {
+                // Only map groups that have hardware assigned
+                if (grp.Hardware__c != null) {
+                    groupToHardwareMap.put(grp.Id, grp.Hardware__c);
+                }
+            }
+        }
+
+        // Step 3: Set Hardware__c on quote lines
+        for (QuoteLineItem line : linesToUpdate) {
+            if (line.QuoteLineGroupId != null) {
+                // Line is in a group - set hardware from group
+                Id hardwareId = groupToHardwareMap.get(line.QuoteLineGroupId);
+                line.Hardware__c = hardwareId;
+            } else {
+                // Line removed from group - clear hardware
+                line.Hardware__c = null;
+            }
+        }
+
+        // Note: Updates happen in place on newLines, no DML needed
+    }
+}

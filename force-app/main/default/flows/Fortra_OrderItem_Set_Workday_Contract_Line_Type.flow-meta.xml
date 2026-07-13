@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>66.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <apiVersion>67.0</apiVersion>
     <decisions>
         <description>Prepaid service line (has a Prepaid order attribute) routes to PREPAID; every other services line routes to USAGE BASED.</description>
         <name>Decision_Is_Prepaid_Service</name>

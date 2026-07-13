@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>When an Order Product&apos;s Workday Contract Line Reference ID is assigned (by the Workday integration, post-sync), stamp it onto the Asset that order product created. Resolves the Asset via the action lineage: AssetActionSource (ReferenceEntityItemId = this OrderItem) -&gt; AssetAction -&gt; Asset. Re-timed replacement for stamping at Q2O, because the Workday ID is assigned after assetization.</description>
+    <environments>Default</environments>
+    <interviewLabel>Fortra | Order Product | Stamp Asset Workday ID {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Order Product | Stamp Asset Workday ID</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Asset_Action</name>
+        <label>Get Asset Action</label>
+        <locationX>176</locationX>
+        <locationY>396</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Asset_Workday_ID</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Asset_Action_Source.AssetActionId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>AssetAction</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Asset_Action_Source</name>
+        <label>Get Asset Action Source</label>
+        <locationX>176</locationX>
+        <locationY>288</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Get_Asset_Action</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>ReferenceEntityItemId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>AssetActionSource</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Asset_Workday_ID</name>
+        <label>Update Asset Workday ID</label>
+        <locationX>176</locationX>
+        <locationY>504</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Get_Asset_Action.AssetId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Workday_Contract_Line_Reference_ID__c</field>
+            <value>
+                <elementReference>$Record.Workday_Contract_Line_Reference_ID__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Asset</object>
+    </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Asset_Action_Source</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Workday_Contract_Line_Reference_ID__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>OrderItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -3,8 +3,8 @@
     <actionCalls>
         <name>Call_Initiate_Renewal</name>
         <label>Call Initiate Renewal</label>
-        <locationX>176</locationX>
-        <locationY>1106</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <actionName>initiateRenewal</actionName>
         <actionType>initiateRenewal</actionType>
         <connector>
@@ -56,13 +56,12 @@
             <name>renewRecordId</name>
         </outputParameters>
     </actionCalls>
-    <apiVersion>62.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <apiVersion>67.0</apiVersion>
     <assignments>
         <name>Set_Output_Error</name>
         <label>Set Output Error</label>
-        <locationX>440</locationX>
-        <locationY>1214</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>isSuccess</assignToReference>
             <operator>Assign</operator>
@@ -88,8 +87,8 @@
     <assignments>
         <name>Set_Output_Success</name>
         <label>Set Output Success</label>
-        <locationX>176</locationX>
-        <locationY>1430</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>isSuccess</assignToReference>
             <operator>Assign</operator>
@@ -108,8 +107,8 @@
     <assignments>
         <name>Set_Renewal_Fields</name>
         <label>Set Renewal Fields</label>
-        <locationX>176</locationX>
-        <locationY>1214</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignmentItems>
             <assignToReference>Quote_To_Update.Id</assignToReference>
             <operator>Assign</operator>
@@ -257,8 +256,8 @@
     <decisions>
         <name>Decision_Reuse_Or_Create_Opp</name>
         <label>Reuse Standing Renewal Opp?</label>
-        <locationX>176</locationX>
-        <locationY>848</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <defaultConnector>
             <targetReference>Create_Opportunity</targetReference>
         </defaultConnector>
@@ -372,8 +371,8 @@
     <recordCreates>
         <name>Create_Opportunity</name>
         <label>Create Opportunity</label>
-        <locationX>176</locationX>
-        <locationY>890</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Fix_Opportunity_Currency</targetReference>
         </connector>
@@ -425,8 +424,8 @@
     <recordLookups>
         <name>Get_Account</name>
         <label>Get Account</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Originating_OrderItem</targetReference>
@@ -446,8 +445,8 @@
     <recordLookups>
         <name>Get_Contract</name>
         <label>Get Contract</label>
-        <locationX>176</locationX>
-        <locationY>566</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Original_Quote</targetReference>
@@ -467,8 +466,8 @@
     <recordLookups>
         <name>Get_First_Asset</name>
         <label>Get First Asset</label>
-        <locationX>176</locationX>
-        <locationY>134</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Account</targetReference>
@@ -488,8 +487,8 @@
     <recordLookups>
         <name>Get_Original_Opportunity</name>
         <label>Get Original Opportunity</label>
-        <locationX>176</locationX>
-        <locationY>782</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Decision_Reuse_Or_Create_Opp</targetReference>
@@ -509,8 +508,8 @@
     <recordLookups>
         <name>Get_Original_Order</name>
         <label>Get Original Order</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Contract</targetReference>
@@ -530,8 +529,8 @@
     <recordLookups>
         <name>Get_Original_Quote</name>
         <label>Get Original Quote</label>
-        <locationX>176</locationX>
-        <locationY>674</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Original_Opportunity</targetReference>
@@ -551,8 +550,8 @@
     <recordLookups>
         <name>Get_Originating_OrderItem</name>
         <label>Get Originating OrderItem</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Original_Order</targetReference>
@@ -574,8 +573,8 @@
     <recordUpdates>
         <name>Fix_Opportunity_Currency</name>
         <label>Fix Opportunity Currency</label>
-        <locationX>176</locationX>
-        <locationY>998</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Call_Initiate_Renewal</targetReference>
         </connector>
@@ -598,8 +597,8 @@
     <recordUpdates>
         <name>Populate_QLI_ServiceDate</name>
         <label>Populate QLI ServiceDate</label>
-        <locationX>176</locationX>
-        <locationY>1430</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Set_Output_Success</targetReference>
         </connector>
@@ -629,8 +628,8 @@
     <recordUpdates>
         <name>Update_Quote</name>
         <label>Update Quote</label>
-        <locationX>176</locationX>
-        <locationY>1322</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Populate_QLI_ServiceDate</targetReference>
         </connector>
@@ -639,8 +638,8 @@
     <recordUpdates>
         <name>Update_Standing_Opp</name>
         <label>Graduate Standing Renewal Opp</label>
-        <locationX>40</locationX>
-        <locationY>956</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <connector>
             <targetReference>Call_Initiate_Renewal</targetReference>
         </connector>
@@ -686,7 +685,7 @@
     </recordUpdates>
     <runInMode>SystemModeWithoutSharing</runInMode>
     <start>
-        <locationX>50</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_First_Asset</targetReference>

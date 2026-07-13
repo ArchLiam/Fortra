@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SC-3384 ABA currency-correction — deployable (in-repo) half.
+  Deploy with:  sf project deploy start -o FortraUAT -x Data/sc3384/deploy/package.xml -l RunSpecifiedTests \
+                  -t AbaCurrencyCorrectionServiceTest -t PartnerNetPriceCurrencyCorrectionTest \
+                  -t PartnerNetPricePosthookTest -t QuoteToOrderFieldMapperTest -t MaintenanceOrderDecompositionServiceTest
+  Validate first (no persist):  add --dry-run
+  Gated org-only follow-ups (NOT in this package): context-def + procedure provenance stamp — see
+  Data/sc3384/GATED_ORG_STEPS_currency_correction.md
+-->
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>QuoteLineItem.ABA_Raw_Net__c</members>
+        <members>OrderItem.ABA_Raw_Net__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>AbaCurrencyCorrectionService</members>
+        <members>AbaCurrencyCorrectionServiceTest</members>
+        <members>PartnerNetPricePosthook</members>
+        <members>PartnerNetPriceCurrencyCorrectionTest</members>
+        <members>QuoteToOrderFieldMapper</members>
+        <members>MaintenanceOrderDecompositionService</members>
+        <name>ApexClass</name>
+    </types>
+    <version>65.0</version>
+</Package>

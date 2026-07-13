@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <description>Prepaid service line (has a Prepaid order attribute) routes to PREPAID; every other services line routes to USAGE BASED.</description>
+        <name>Decision_Is_Prepaid_Service</name>
+        <label>Is Prepaid Service?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_LineType_Usage_Based</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Usage Based</defaultConnectorLabel>
+        <rules>
+            <name>Is_Prepaid_Attribute</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Prepaid_Order_Attribute.AttributeValue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pre-Paid</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Prepaid_Order_Attribute.AttributeValue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Per-Paid</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Get_Prepaid_Order_Attribute.AttributeValue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Prepaid</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_LineType_Prepaid</targetReference>
+            </connector>
+            <label>Yes - Prepaid</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Services products route to the Prepaid/Usage branch. Non-services products (Perpetual, Renewal Maintenance, Subsplit) route to the Subsplit-parent check.</description>
+        <name>Decision_Is_Services_Product</name>
+        <label>Is Services Product?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Decision_Is_Subsplit</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Non-Services</defaultConnectorLabel>
+        <rules>
+            <name>Is_Services_Product</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Product.pse__IsServicesProduct__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Prepaid_Order_Attribute</targetReference>
+            </connector>
+            <label>Yes - Services</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Determines if the Product2 related to the OrderItem is a subsplit product or not. Subsplit Products are defined when Product2.Rev_Category__c = &quot;RC_41202&quot;</description>
+        <name>Decision_Is_Subsplit</name>
+        <label>Is Subsplit?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_LineType_Fixed_Amount</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Not a Subsplit</defaultConnectorLabel>
+        <rules>
+            <name>Has_Subsplit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Product2.Is_Subsplit_Product__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_LineType_Fixed_Amount_Billing_Only</targetReference>
+            </connector>
+            <label>Yes - Subsplit</label>
+        </rules>
+    </decisions>
+    <description>Workday_Contract_Line_Type__c is now stamped conditionally.</description>
+    <environments>Default</environments>
+    <interviewLabel>Fortra | OrderItem | Set Workday Contract Line Type {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | OrderItem | Set Workday Contract Line Type</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <description>Loads the line&apos;s OrderItemAttribute used to read the Prepaid attribute value (distinguishes Prepaid services from Usage-Based services).</description>
+        <name>Get_Prepaid_Order_Attribute</name>
+        <label>Get Prepaid Order Attribute</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Decision_Is_Prepaid_Service</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OrderItemId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>OrderItemAttribute</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <description>Loads the line&apos;s Product2 to read pse__IsServicesProduct__c, which drives Services vs non-Services routing.</description>
+        <name>Get_Product</name>
+        <label>Get Product</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Decision_Is_Services_Product</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Product2Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Product2</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Sets Workday Contract Line Type = FIXED AMOUNT for Perpetual, Renewal Maintenance, and split-child lines (these carry revenue).</description>
+        <name>Update_LineType_Fixed_Amount</name>
+        <label>Set Line Type = FIXED AMOUNT</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Workday_Contract_Line_Type__c</field>
+            <value>
+                <stringValue>FIXED AMOUNT</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Sets Workday Contract Line Type = FIXED AMOUNT BILLING ONLY for subsplit PARENT lines (billing only; revenue is carried by the child lines).</description>
+        <name>Update_LineType_Fixed_Amount_Billing_Only</name>
+        <label>Set Line Type = FIXED AMOUNT BILLING ONLY</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Workday_Contract_Line_Type__c</field>
+            <value>
+                <stringValue>FIXED AMOUNT BILLING ONLY</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Sets Workday Contract Line Type = PREPAID for prepaid service lines.</description>
+        <name>Update_LineType_Prepaid</name>
+        <label>Set Line Type = PREPAID</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Workday_Contract_Line_Type__c</field>
+            <value>
+                <stringValue>PREPAID</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description>Sets Workday Contract Line Type = USAGE BASED for non-prepaid service lines.</description>
+        <name>Update_LineType_Usage_Based</name>
+        <label>Set Line Type = USAGE BASED</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Workday_Contract_Line_Type__c</field>
+            <value>
+                <stringValue>USAGE BASED</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Product</targetReference>
+        </connector>
+        <object>OrderItem</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

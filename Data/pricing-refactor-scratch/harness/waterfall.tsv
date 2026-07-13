@@ -1,0 +1,19 @@
+seq	label	layer	reads	writes	invariant
+1	HardwareAttributePricingPrehook	ProcedurePlan	ListPrice,UnitPrice,Hardware_Id__c,Server_Type__c,Users_Per_Partition__c,P_Group_List__c	UnitPrice(×mult),Pre_Hardware_Price__c,Hardware_Price_Multiplier__c,HardwareCalculatedPrice__c,Hardware__c	INV-HW-FIRST: multiplies the list base; must precede Regional/Partner
+2	RegionalServicesPricingPrehook	ProcedurePlan	UnitPrice,ListPrice,ShipToPlace_Country__c,Services_Regional_Pricing__mdt.Multiplier__c	RegionalNetUnitPrice__c(Order),PrehookRSNetUnitPrice__c(Quote),Pre_Regional_Price__c,Regional_Multiplier__c	INV-REG-BEFORE-PARTNER: stages post-regional base Partner consumes
+3	PartnerPricingPrehookV2	ProcedurePlan	RegionalNetUnitPrice__c,UnitPrice,ListPrice,Partner_Pricing_Model__c,Deal_Type__c,Fortra_Product_Type__c	Pre_Partner_Price__c,Partner_Adjusted_Price__c,PartnerDiscountPercent,PartnerUnitPrice,NetUnitPrice(when %>0)	INV-PARTNER-V2-LIVE: V2 is runtime; V1 + SourceListPricePrehook dead
+4	AttributeVolumePricingPrehook	ProcedurePlan	Has_Attribute_Adjustment__c,Product,PSM,Attribute_Tier_Pricing_Storage__c	Base_Price__c,Attribute_Price_Mode__c,Attribute_Multiplier_Pct__c	INV-ATTRVOL-STAGES-BASE: stamps Base_Price ESD attr family consumes
+6	COLAUpliftPrehook	ProcedurePlan	UnitPrice,Solution_Category__c,COLA_Uplift_Rules__mdt,Contract override,QuoteAction.Type	COLACalculatedPrice__c,Pre_COLA_Price__c,COLA_Source__c (NOT COLA_Uplift_Percent__c-batch-poison)	INV-COLA-PRODUCER: sole producer of COLACalculatedPrice__c
+10a	ESD list price base	ESD	Product2Id,PricebookEntry	ListPrice,UnitPrice	INV-ESD-LIST-BASE: PBE seeds base
+10b	ESD attribute & volume	ESD	ListPrice,Base_Price__c,Attribute_Multiplier_Pct__c	NetUnitPrice,NetTotalPrice	INV-ESD-ATTRVOL-EARLY
+10c	ESD regional bridge	ESD	RegionalNetUnitPrice__c/PrehookRSNetUnitPrice__c	NetUnitPrice	INV-ESD-REG-BEFORE-PARTNER-BRIDGE (seq11<seq13)
+10d	ESD partner staging & discount	ESD	NetUnitPrice,Pre_Partner_Price__c,Base_Price__c,Partner_Discount_Percent__c	Base_Price__c,NetUnitPrice (StampBaseFilter,OneTimeNetSeedFilter)	INV-ESD-STAMPBASE-NULLGUARD: null-guard before discount (else EUR-derived $0)
+10e	ESD derived maintenance	ESD	Product2,Quantity,MaintenanceType__c,Base_Price__c	NetUnitPrice (Derived Pricing Formula, ListContainer9)	INV-ESD-DERIVED-3TIER: tiering via decision table (UNVERIFIED at formula body)
+10f	ESD COLA uplift on renewal	ESD	COLACalculatedPrice__c	NetUnitPrice	INV-ESD-COLA-CONSUMER: consumes, never recomputes COLA
+10g	ESD manual/contracted discounts	ESD	AdjustmentType,ListPrice,NetUnitPrice	NetUnitPrice	INV-ESD-MANUAL-LAST-ADJUST
+10h	ESD subscription/proration	ESD	EffectiveFrom,Quantity,PricingTermCount	NetUnitPrice,NetTotalPrice	INV-ESD-PRORATION-BEFORE-AGG (seq25-31, after partner+COLA+manual)
+10i	ESD aggregation	ESD	NetTotalPrice,section-count	category totals,Total Amount,Aggregate Price	INV-ESD-ZEROINIT-BEFORE-AGG: K-09 zero-init (seq32-34) before aggregates
+10j	ESD end-of-line currency conversion	ESD	NetUnitPrice,UnitPrice,NetTotalPrice,TotalLineAmount,CurrencyIsoCode	all currency-converted	INV-ESD-FX-LAST: terminal ESD family; USD-base until here
+11	PartnerNetPricePosthook	posthook	NetUnitPrice,Pre_Partner_Price__c,COLACalculatedPrice__c,Base_Price__c,Maintenance_Rate__mdt	NetUnitPrice,NetTotalPrice,TotalPrice,TotalLineAmount,Partner_Adjusted_Price__c	INV-POSTHOOK-AFTER-ONETIME-SEED: must be posthook (ESD OneTime reseed clobbers prehook write)
+12	QLDescriptionGeneratorPrehook	posthook*	QL_Description_Attribute__mdt,attributes,final Quantity	QuoteLineItem.Description	INV-DESCGEN-RUNS-LAST-BUT-ONE: seq12 after procedure+posthook despite name
+13	CancelLineCreditPosthook	posthook	CancelNetUnitPrice__c,AssetActionSource.NetUnitPrice,Quantity	NetUnitPrice,NetTotalPrice,TotalPrice,Subtotal,TotalLineAmount (save-mapped)	INV-CANCEL-WRITES-SAVEMAPPED: never internal Item* tags

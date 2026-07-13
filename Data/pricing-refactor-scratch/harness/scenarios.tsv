@@ -1,0 +1,16 @@
+id	quote_id	fit	category	guards	notes_from_debug
+S1	0Q0WC000003IIT0	FIT	New USD baseline	INV-POSTHOOK-AFTER-ONETIME-SEED	6 lines, nullPTC×2 (one-time lines, ok)
+S2	0Q0WC000003GMu5	PARTIAL	term subscription	PricingTermCount	has PTC=1 but partner%=18 contamination — swap for clean term-only
+S3	0Q0WC000003IKkv	FIT*	renewal COLA	INV-COLA-PRODUCER; SC-3350	COLA=Y; *carries known SC-3346 qty0→$0 line → KNOWN_FAILING
+S4	0Q0WC0000028bsk	FIT	derived maintenance	D-14	18 lines, 17 New-Maintenance (nullPTC correct) — strong maint coverage
+S5	0Q0WC000003IKeT	FIT	partner Discount	INV-5	Channel-Originated, Partner_Pricing_Model=Discount, 18%
+S6	0Q0WC0000035dGj	FIT	partner Guaranteed-Margin	INV-5	Reseller+Distributor, GM 28% (824->593.28) verified
+S7	0Q0WC0000039bwH	FIT	Fortra-Orig Non_Orig POPULATED	E-04 populated	Non_Orig 12% (355->312.40) verified; partner=AB Test Partner Acct (only acct w/ Non_Orig set)
+S8	NEEDS-DATA	GAP	Fortra-Orig Non_Orig NULL	E-04 / D-12	NO natural candidate: all 45 FOrig+partner quotes use the 1 populated acct. Covered at UNIT level by PricingCharacterizationTest. End-to-end needs data setup (FOrig quote on a null-Non_Orig partner) = a write, deferred/owner-gated
+S9	0Q0WC000003Fr77	FIT	regional EUR	INV-REG-BEFORE-PARTNER; F-09	EUR, 1 regional line (LJ G07)
+S10	0Q0WC000003ICoz	PARTIAL	non-USD	double-FX (F-09)	GBP but no partner — swap for GBP+partner to cover F-09 combo
+S11	0Q0WC000003GMu5	FIT	attribute-tier	SC-3390	RE-BOUND: Pricing Test 10 Nir has Has_Attribute_Adjustment=true; idempotent. (old 0Q0WC000003FcrF was EUR-currency, not attr-tier)
+S11b	0Q0WC000003FcrF	CURRENCY	EUR multi-currency	SC-3384/INV-24	USD-base×hardcoded 0.9346 FX, EUR ListPrice ignored; converges; larger architectural item
+S12	0Q0WC000002RK6g	VERIFY	hardware/Power	INV-HW-FIRST; SC-3447	23 lines maxQty20 — confirm a Hardware/Power line; else it's a 2nd governor case
+S13	0Q0WC000003FapR	FIT	cancel/amend-remove	INV-CANCEL-WRITES-SAVEMAPPED; SC-3441	negQty −50000 credit line (F-12 AmendRemove) — ideal
+S14	0Q0WC0000028HhT	FIT	governor 15+	SC-3366	73 lines, nullPTC×29 (mixed one-time/perpetual, expected)

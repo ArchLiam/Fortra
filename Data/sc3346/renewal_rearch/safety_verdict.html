@@ -1,0 +1,278 @@
+<style>
+  :root {
+    --bg:#f5f7f9; --surface:#ffffff; --surface-2:#eceff3; --ink:#171d24; --ink-2:#515c68; --ink-3:#8b95a1;
+    --line:#dce1e7; --line-2:#c8cfd7;
+    --stop:#c0362a; --stop-wash:#f8e5e2; --go:#1a7a52; --go-wash:#e0f0e8; --caut:#9c6f12; --caut-wash:#f6ecd7;
+    --acc:#0c7a84; --acc-2:#0a5d65; --acc-wash:#e2f1f2;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono",Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(20,28,45,.04),0 6px 20px rgba(20,28,45,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d1116; --surface:#141a20; --surface-2:#1b232b; --ink:#e7ecf1; --ink-2:#a6b0bb; --ink-3:#6c7681;
+    --line:#28323c; --line-2:#364150;
+    --stop:#e57560; --stop-wash:#2e1a17; --go:#4ab585; --go-wash:#14271e; --caut:#d3a24d; --caut-wash:#2a2113;
+    --acc:#2bbac5; --acc-2:#55cdd6; --acc-wash:#102a2d; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.35);
+  }}
+  :root[data-theme="light"]{--bg:#f5f7f9;--surface:#ffffff;--surface-2:#eceff3;--ink:#171d24;--ink-2:#515c68;--ink-3:#8b95a1;--line:#dce1e7;--line-2:#c8cfd7;--stop:#c0362a;--stop-wash:#f8e5e2;--go:#1a7a52;--go-wash:#e0f0e8;--caut:#9c6f12;--caut-wash:#f6ecd7;--acc:#0c7a84;--acc-2:#0a5d65;--acc-wash:#e2f1f2;--shadow:0 1px 2px rgba(20,28,45,.04),0 6px 20px rgba(20,28,45,.06);}
+  :root[data-theme="dark"]{--bg:#0d1116;--surface:#141a20;--surface-2:#1b232b;--ink:#e7ecf1;--ink-2:#a6b0bb;--ink-3:#6c7681;--line:#28323c;--line-2:#364150;--stop:#e57560;--stop-wash:#2e1a17;--go:#4ab585;--go-wash:#14271e;--caut:#d3a24d;--caut-wash:#2a2113;--acc:#2bbac5;--acc-2:#55cdd6;--acc-wash:#102a2d;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.35);}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px;}
+  h1,h2,h3{text-wrap:balance;line-height:1.16;letter-spacing:-.01em;}
+  code,.m{font-family:var(--mono);font-size:.86em;}
+  code{background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--line);}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600;}
+
+  header.hero{border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--stop-wash) 0%,transparent 60%),var(--bg);}
+  header.hero .wrap{padding:56px 26px 36px;}
+  .kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:18px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .kick .dot{width:5px;height:5px;border-radius:50%;background:var(--stop);}
+  h1{font-size:clamp(1.9rem,4.4vw,2.7rem);margin:0 0 14px;font-weight:700;}
+  h1 .stopword{color:var(--stop);}
+  .lede{font-size:1.16rem;line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0;}
+  .lede strong{color:var(--ink);}
+
+  .verdict{margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  @media(max-width:720px){.verdict{grid-template-columns:1fr;}}
+  .vbox{border-radius:9px;padding:16px 18px;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);}
+  .vbox.stop{border-left:4px solid var(--stop);}
+  .vbox.go{border-left:4px solid var(--go);}
+  .vbox .vh{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:6px;}
+  .vbox.stop .vh{color:var(--stop);}
+  .vbox.go .vh{color:var(--go);}
+  .vbox p{margin:0;font-size:.95rem;color:var(--ink-2);}
+  .vbox p b{color:var(--ink);}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-top:22px;}
+  @media(max-width:720px){.stats{grid-template-columns:1fr 1fr;}}
+  .stat{background:var(--surface);padding:16px 16px 14px;}
+  .stat .v{font-family:var(--mono);font-size:1.6rem;font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+  .stat .l{font-size:.8rem;color:var(--ink-2);margin-top:4px;line-height:1.34;}
+  .stat.stop .v{color:var(--stop);} .stat.go .v{color:var(--go);}
+
+  section{padding:44px 0;border-top:1px solid var(--line);}
+  .sec-head{margin-bottom:20px;}
+  .sec-head h2{font-size:1.5rem;margin:6px 0 0;}
+
+  .phase-row{display:grid;grid-template-columns:96px 1fr auto;gap:16px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:15px 18px;box-shadow:var(--shadow);}
+  .phase-row + .phase-row{margin-top:10px;}
+  .phase-row.stop{border-left:4px solid var(--stop);}
+  .phase-row.go{border-left:4px solid var(--go);}
+  .badge{font-family:var(--mono);font-size:.95rem;font-weight:700;padding:4px 9px;border-radius:6px;text-align:center;letter-spacing:.03em;white-space:nowrap;height:fit-content;}
+  .badge.stop{background:var(--stop-wash);color:var(--stop);}
+  .badge.go{background:var(--go-wash);color:var(--go);}
+  .phase-row h3{font-size:1.02rem;margin:0 0 4px;}
+  .phase-row p{margin:0;font-size:.9rem;color:var(--ink-2);}
+  .gatecount{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);white-space:nowrap;text-align:right;}
+  .gatecount b{display:block;font-size:1.3rem;color:var(--caut);}
+
+  .risk{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start;}
+  .risk:last-child{border-bottom:none;}
+  .sev{font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:5px;height:fit-content;white-space:nowrap;}
+  .sev.crit{background:var(--stop-wash);color:var(--stop);}
+  .sev.high{background:var(--caut-wash);color:var(--caut);}
+  .risk .rt{font-size:.94rem;}
+  .risk .rt b{color:var(--ink);}
+  .risk .rm{font-size:.85rem;color:var(--ink-2);margin-top:5px;}
+  .risk .rm em{color:var(--acc-2);font-style:normal;font-weight:600;}
+
+  ul.corr{list-style:none;margin:0;padding:0;}
+  ul.corr li{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.9rem;}
+  ul.corr li:last-child{border-bottom:none;}
+  ul.corr .x{font-family:var(--mono);font-weight:700;color:var(--stop);font-size:.8rem;padding-top:1px;}
+  ul.corr .claim{color:var(--ink-3);text-decoration:line-through;}
+  ul.corr .real{color:var(--ink);display:block;margin-top:3px;}
+  ul.corr .real b{color:var(--acc-2);}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  @media(max-width:720px){.two{grid-template-columns:1fr;}}
+  .two>div{background:var(--surface);padding:18px 20px;}
+  .two .ch{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+  .two .safe .ch{color:var(--go);} .two .unsafe .ch{color:var(--stop);}
+  .two ul{margin:0;padding-left:18px;} .two li{font-size:.88rem;margin-bottom:9px;color:var(--ink-2);} .two li b{color:var(--ink);}
+
+  ol.seq{margin:0;padding-left:0;list-style:none;counter-reset:s;}
+  ol.seq li{counter-increment:s;display:grid;grid-template-columns:30px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);font-size:.93rem;color:var(--ink-2);}
+  ol.seq li:last-child{border-bottom:none;}
+  ol.seq li::before{content:counter(s);font-family:var(--mono);font-weight:700;color:var(--acc-2);background:var(--acc-wash);border-radius:6px;width:28px;height:28px;display:grid;place-items:center;font-size:.85rem;}
+  ol.seq li b{color:var(--ink);}
+
+  footer{border-top:1px solid var(--line);padding:28px 0 56px;color:var(--ink-3);font-size:.82rem;}
+  footer .m{color:var(--ink-2);}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick"><span>Renewal re-architecture</span><span class="dot"></span><span>Adversarial safety review</span><span class="dot"></span><span>FortraUAT · 2026-07-10</span></div>
+    <h1>Do <span class="stopword">not</span> blitz the re-architecture. 5 of 5 domains verified unsafe.</h1>
+    <p class="lede">Two independent audit passes over live UAT data confirm every live-mutation phase is unsafe as scoped — and refute <strong>eleven</strong> of the plan artifact's own load-bearing claims. The additive work already shipped is safe; everything past it must be staged behind green parity gates, not fanned out.</p>
+
+    <div class="verdict">
+      <div class="vbox go">
+        <div class="vh">✓ Go — now, in parallel</div>
+        <p><b>Phase 0 additive pattern</b> (non-default TermDefined) + all <b>read-only / sandbox</b> prep: parity harness, coverage enumeration, sandbox policy build, invoker tracing, rollback snapshots.</p>
+      </div>
+      <div class="vbox stop">
+        <div class="vh">✕ Stop — until gates are green</div>
+        <p><b>Phase 1</b> default-flip · <b>Phase 2</b> COLA-stack delete + native swap · <b>Phase 3</b> rule/engine retirement · succession <code>Status='Renewed'</code> · mass-reprice of the backlog.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat stop"><div class="v">5 / 5</div><div class="l">domains verified UNSAFE as scoped</div></div>
+      <div class="stat stop"><div class="v">3</div><div class="l">CRITICAL org-wide-pricing risks</div></div>
+      <div class="stat stop"><div class="v">11</div><div class="l">artifact claims refuted by live data</div></div>
+      <div class="stat go"><div class="v">1</div><div class="l">phase safe to continue (Phase 0)</div></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">01 — Per-phase verdict</span><h2>What each phase gets</h2></div>
+
+    <div class="phase-row go">
+      <span class="badge go">GO</span>
+      <div><h3>Phase 0 — additive non-default TermDefined scale-out <span class="m">(done)</span></h3>
+        <p>The only proven-safe pattern. 83 PSMOs all <code>IsDefault=False</code>; the provisioner is decoupled from defaults and skips gracefully. Continue THIS to close coverage gaps.</p></div>
+      <div class="gatecount"><b>3</b>keep-safe rules</div>
+    </div>
+
+    <div class="phase-row stop">
+      <span class="badge stop">STOP</span>
+      <div><h3>Phase 1 — flip default selling models (~100 RRM + 39 RNM)</h3>
+        <p>Un-executable as scoped: 98/99 RRM &amp; 36/39 RNM have <b>no PBE</b> for the target model, so a flip prices new business <b>$0</b>. Flipping New-Maint defaults also silently disables the born-net renewal path. And it's unnecessary — the engine ignores defaults.</p></div>
+      <div class="gatecount"><b>5</b>gates</div>
+    </div>
+
+    <div class="phase-row stop">
+      <span class="badge stop">STOP</span>
+      <div><h3>Phase 2 — delete COLA stack + swap to native pricing</h3>
+        <p>Native plumbing is <b>100% empty</b> (0 policies, <code>PricingSource</code> null on all 430,717 assets, 0 automation, read-only ASP field). The delete target <code>PartnerNetPricePosthook</code> is <b>org-wide partner net</b>, not COLA. A flip silently zeros renewal uplift; the delete zeros partner pricing everywhere.</p></div>
+      <div class="gatecount"><b>7</b>gates</div>
+    </div>
+
+    <div class="phase-row stop">
+      <span class="badge stop">STOP</span>
+      <div><h3>Phase 3 — retire 198 rules + engine + enrichment flow</h3>
+        <p>Mis-scoped: 99/100 "Year-1" rules fire on <b>new business</b>, not renewal. <code>RenewalMaintenanceAutoAddHandler</code> is <b>live-wired</b> at trigger line 12, not dead. Both flows &amp; both engines are non-redundant. TermDefined covers 83 of 102 trigger SKUs — retiring strands cases.</p></div>
+      <div class="gatecount"><b>6</b>gates</div>
+    </div>
+
+    <div class="phase-row stop">
+      <span class="badge stop">STOP</span>
+      <div><h3>Succession — write <code>Contract.Status='Renewed'</code></h3>
+        <p>Revenue-Cloud-managed for CLM contracts — cannot be set manually (the flow's own description says so). Writing it from after-save Order activation risks <b>faulting/rolling back ~27,691 activations</b>. And <code>Order.Type</code> is <b>not</b> blank (99.96% populated, zero consumers) — that premise is false.</p></div>
+      <div class="gatecount"><b>3</b>gates</div>
+    </div>
+
+    <div class="phase-row stop">
+      <span class="badge stop">STOP</span>
+      <div><h3>Cross-cutting — mass-reprice the 7,203-line backlog</h3>
+        <p>Inert <b>and</b> dangerous. OneTime RNM aren't priced nodes on renewal (reprice returns success but leaves <b>$0</b>). And it would hit <b>982 Approved + 30 Won + 208 ordered</b> quotes — invalidating approvals, desyncing quote↔order↔asset↔Workday, blowing SOQL:101/CPU.</p></div>
+      <div class="gatecount"><b>3</b>gates</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">02 — Top risks</span><h2>What breaks if you proceed anyway</h2></div>
+
+    <div class="risk"><span class="sev crit">CRITICAL</span><div>
+      <div class="rt"><b>Deleting the "COLA stack" zeros org-wide pricing.</b> <code>PartnerNetPricePosthook</code> (2,470 LOC) is the partner/commercial-net posthook for ALL One-Time / Perpetual / subscription / new-business lines + the SC-3384 ABA multi-currency fix — with 3 verified non-renewal callers. COLA is a small bolt-on branch.</div>
+      <div class="rm"><em>Mitigation</em> — reclassify it OUT of the delete; remove only the COLA-specific branches, last, after non-renewal pricing is proven unchanged.</div></div></div>
+
+    <div class="risk"><span class="sev crit">CRITICAL</span><div>
+      <div class="rt"><b>Native renewal pricing is not drop-in ready — the plumbing is 100% empty.</b> 0 <code>PriceRevisionPolicy</code> rows · <code>Asset.PricingSource</code> null on all 430,717 · 0 QLI uplift-field refs · <code>ASP.UnitPriceUplift</code> read-only &amp; unpopulated · no attach field on Product2. A procedure flip prices every renewal FLAT at 0% uplift.</div>
+      <div class="rm"><em>Mitigation</em> — author policies, backfill PricingSource, build+test QLI-uplift automation, pass green parity vs current COLA BEFORE flipping or deleting. Keep the custom stack live until parity holds.</div></div></div>
+
+    <div class="risk"><span class="sev crit">CRITICAL</span><div>
+      <div class="rt"><b>Succession write faults the CLM runtime lock.</b> Writing <code>Contract.Status='Renewed'</code> from an after-save Order-activation flow rolls back activation across ~27,691 renewal orders (or silently no-ops). 0/29,474 CLM contracts have ever reached that status.</div>
+      <div class="rm"><em>Mitigation</em> — keep <code>Renewal_Status__c</code> as the signal; never write <code>Contract.Status</code> for CLM without a sandbox no-fault proof.</div></div></div>
+
+    <div class="risk"><span class="sev high">HIGH</span><div>
+      <div class="rt"><b>Phase-1 default flip prices new business $0</b> (target model has no PBE) and disables forward born-net renewal.</div>
+      <div class="rm"><em>Mitigation</em> — additive only: add a non-default TermDefined PBE, leave the OneTime default; regression-test that add-to-quote returns a priced line.</div></div></div>
+
+    <div class="risk"><span class="sev high">HIGH</span><div>
+      <div class="rt"><b>Phase-3 bulk retirement strands new business + renewals + corrupts carryover</b> — the "dead" handler's cleanup path strips stale New-Maint lines that otherwise bill the wrong SKU.</div>
+      <div class="rm"><em>Mitigation</em> — prove per-SKU coverage first; exclude new-business rules; preserve carryover-cleanup; deactivate-first and soak before any delete.</div></div></div>
+
+    <div class="risk"><span class="sev high">HIGH</span><div>
+      <div class="rt"><b>Mass-reprice is inert yet hits approved/ordered quotes</b> — invalidating approvals and desyncing Workday.</div>
+      <div class="rm"><em>Mitigation</em> — re-provision the 757 Draft quotes via born-net Renew; never touch the 982 Approved / 30 Won / 208 ordered.</div></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">03 — Claims that didn't survive contact with the org</span><h2>Where the plan artifact was wrong</h2></div>
+    <ul class="corr">
+      <li><span class="x">✕</span><div><span class="claim">"Native uplift fields exist, wired to nothing = clean drop-in swap"</span><span class="real"><b>Reality:</b> fields exist but the whole native pricing layer is unbuilt — 0 policy rows, PricingSource null everywhere, ASP field read-only. Not drop-in; entirely unbuilt.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"PricingSource=LastTransaction is a QuoteLineItem mechanism"</span><span class="real"><b>Reality:</b> <code>PricingSource</code> is absent on QuoteLineItem (it's on Asset). The stated mechanism doesn't exist.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"PartnerNetPricePosthook is part of the COLA stack, deletable"</span><span class="real"><b>Reality:</b> it's the partner/commercial-net posthook for all lines + SC-3384 ABA, with 3 non-renewal callers. COLA is a bolt-on.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"RenewalMaintenanceAutoAddHandler is a dead Apex fallback"</span><span class="real"><b>Reality:</b> live-wired at <code>QuoteLineItemTrigger:12</code> → carryover cleanup. Deleting it breaks trigger compilation.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"~197 Year-1/Year-2 rules are renewal automation"</span><span class="real"><b>Reality:</b> 198 rules; 99/100 Year-1 fire on <code>QuoteTypeText__c='New'</code> — new business, not renewal.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"Order.Type is blank and downstream relies on it"</span><span class="real"><b>Reality:</b> <code>Order.Type='Renewal'</code> on 99.96%; zero code consumers. Doubly false — drop the step.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"Contract.Status can be set to Renewed by fixing succession"</span><span class="real"><b>Reality:</b> Revenue-Cloud-owned for CLM; 0/29,474 ever reached it despite an updateable picklist (runtime-lock deception).</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"~39 inverted RNM defaults should flip to OneTime"</span><span class="real"><b>Reality:</b> TermDefined is correct — 29/39 are genuine annual/SaaS modules, sold 14,265:194 TermDefined. Flipping mis-models real products.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"The catalog change is a metadata IsDefault flip"</span><span class="real"><b>Reality:</b> impossible for 98/99 RRM &amp; 36/39 RNM — first needs ~134 new PSMOs+PBEs (the same Phase-0 work it claims to skip).</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"One of the two enrichment flows is redundant"</span><span class="real"><b>Reality:</b> both Active with non-overlapping entry filters &amp; field coverage; neither is a superset.</span></div></li>
+      <li><span class="x">✕</span><div><span class="claim">"The 7,202 backlog is remediated by the scale-out / reprice"</span><span class="real"><b>Reality:</b> now 7,203 (grew by 1) — OneTime RNM are inert to reprice; must be re-provisioned, not repriced.</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">04 — Speed without recklessness</span><h2>Parallelize this, serialize that</h2></div>
+    <div class="two">
+      <div class="safe">
+        <div class="ch">✓ Safe to fan out now</div>
+        <ul>
+          <li><b>Parity harness</b> — native-uplift vs current-COLA on a representative sample (per-currency, partner, out-year, TermDefined), no prod delete.</li>
+          <li><b>Per-SKU coverage map</b> — all 102 perpetual trigger SKUs → does each have an active TermDefined default + non-$0 PBE.</li>
+          <li><b>Sandbox native build</b> — <code>PriceRevisionPolicy</code> per currency + QLI/ASP uplift automation, isolated.</li>
+          <li><b>Additive Phase-0 scale-out</b> — non-default TermDefined for remaining coverage gaps.</li>
+          <li><b>Invoker tracing</b> — runtime-confirm the 2 engines + 2 enrichment flows (org-config, not in repo).</li>
+          <li><b>Rollback prep</b> — snapshot <code>IsDefault</code> for ~3,390 maintenance PSMOs; audit the <b>118 IsDefault=True flips</b> made 2026-07-06 (catalog in flux).</li>
+        </ul>
+      </div>
+      <div class="unsafe">
+        <div class="ch">✕ Must not blitz</div>
+        <ul>
+          <li>Phase-1 default flips — prices new business $0.</li>
+          <li>Deleting <code>PartnerNetPricePosthook</code> / the COLA stack — zeros org-wide partner net.</li>
+          <li>Procedure flip to native <code>UnitPriceUplift</code> — silently zeros COLA.</li>
+          <li>Bulk delete of 198 rules + the handler + a flow + an engine.</li>
+          <li>Succession <code>Contract.Status='Renewed'</code> write.</li>
+          <li>Mass-reprice of the 7,203-line backlog.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">05 — Recommended safe sequence</span><h2>How to actually get there</h2></div>
+    <ol class="seq">
+      <li><div><b>Close coverage the proven way.</b> Continue the additive non-default TermDefined scale-out for remaining gaps — this <em>replaces</em> Phase 1's default-flip, which is impossible-as-scoped and unnecessary.</div></li>
+      <li><div><b>Build + parity-prove native pricing in a sandbox</b> while the custom stack stays fully deployed. Author policies, backfill <code>PricingSource</code>, wire QLI uplift, green-parity vs COLA per currency/partner/out-year.</div></li>
+      <li><div><b>Re-author the procedure in a NEW version</b> to use native uplift, parity-green. Only then delete the COLA-specific branches — strictly last, never <code>PartnerNetPricePosthook</code> wholesale.</div></li>
+      <li><div><b>Phase 3 by deactivation, not deletion.</b> Prove per-SKU coverage, exclude new-business + constraint rules, preserve carryover-cleanup, runtime-confirm flows/engines, soak a full cycle, then remove.</div></li>
+      <li><div><b>Drop the false-premise steps.</b> No "blank Order.Type" fix; keep <code>Renewal_Status__c</code> as the succession signal; no <code>Contract.Status</code> write without a sandbox no-fault proof.</div></li>
+      <li><div><b>Remediate the backlog by re-provisioning</b> the 757 Draft quotes (born-net Renew + TermDefined) — never mass-reprice, never touch the 982 Approved / 30 Won / 208 ordered.</div></li>
+    </ol>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="m">Two adversarial workflows over FortraUAT live data (read-only): catalog scale-out audit <span class="m">GO-WITH-NOTES</span> · re-architecture safety review <span class="m">5/5 UNSAFE</span>. Every load-bearing fact independently re-queried.</p>
+    <p>No production changes made in producing this review. Full evidence: workflow transcripts + <span class="m">Data/sc3346/renewal_rearch/</span>.</p>
+  </div>
+</footer>

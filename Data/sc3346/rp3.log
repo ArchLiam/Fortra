@@ -1,0 +1,128 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+Compiled successfully.
+Executed successfully.
+
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: // Nir #5 read-only re-verify — reprice JzHN once, snapshot before/after. Run repeatedly to test idempotency.
+Execute Anonymous: String qId = '0Q0WC000003JzHN0A0';
+Execute Anonymous: List<String> before = new List<String>();
+Execute Anonymous: for (QuoteLineItem q : [SELECT Product2.Name, NetUnitPrice, UnitPrice, Base_Price__c, Pre_Partner_Price__c, PartnerDiscountPercent
+Execute Anonymous:                         FROM QuoteLineItem WHERE QuoteId = :qId ORDER BY Product2.Name]) {
+Execute Anonymous:     before.add('  ' + (q.Product2 != null ? q.Product2.Name : '') + ' | Net=' + q.NetUnitPrice + ' Unit=' + q.UnitPrice
+Execute Anonymous:         + ' Base=' + q.Base_Price__c + ' PrePartner=' + q.Pre_Partner_Price__c + ' Partner%=' + q.PartnerDiscountPercent);
+Execute Anonymous: }
+Execute Anonymous: System.debug('REPRICE| ===== BEFORE =====');
+Execute Anonymous: for (String s : before) System.debug('REPRICE|' + s);
+Execute Anonymous: 
+Execute Anonymous: try {
+Execute Anonymous:     Flow.Interview f = Flow.Interview.createInterview('Fortra_Quote_Reprice', new Map<String, Object>{ 'QuoteId' => qId });
+Execute Anonymous:     f.start();
+Execute Anonymous:     System.debug('REPRICE| reprice invoked OK');
+Execute Anonymous: } catch (Exception e) {
+Execute Anonymous:     System.debug('REPRICE| INVOKE FAILED: ' + e.getTypeName() + ': ' + e.getMessage());
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: List<String> after = new List<String>();
+Execute Anonymous: for (QuoteLineItem q : [SELECT Product2.Name, NetUnitPrice, UnitPrice, Base_Price__c, Pre_Partner_Price__c, PartnerDiscountPercent
+Execute Anonymous:                         FROM QuoteLineItem WHERE QuoteId = :qId ORDER BY Product2.Name]) {
+Execute Anonymous:     after.add('  ' + (q.Product2 != null ? q.Product2.Name : '') + ' | Net=' + q.NetUnitPrice + ' Unit=' + q.UnitPrice
+Execute Anonymous:         + ' Base=' + q.Base_Price__c + ' PrePartner=' + q.Pre_Partner_Price__c + ' Partner%=' + q.PartnerDiscountPercent);
+Execute Anonymous: }
+Execute Anonymous: System.debug('REPRICE| ===== AFTER =====');
+Execute Anonymous: for (String s : after) System.debug('REPRICE|' + s);
+04:12:10.72 (72154249)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+04:12:10.72 (72194056)|EXECUTION_STARTED
+04:12:10.72 (72224726)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+04:12:10.72 (92623679)|USER_DEBUG|[9]|DEBUG|REPRICE&#124; ===== BEFORE =====
+04:12:10.72 (92750124)|USER_DEBUG|[10]|DEBUG|REPRICE&#124;  beSECURE - Cloud-Based &#124; Net=5101.22 Unit=5101.22 Base=6221.00 PrePartner=6221.00 Partner%=18.00
+04:12:10.72 (92766359)|USER_DEBUG|[10]|DEBUG|REPRICE&#124;  Powertech Identity & Access Manager (BoKS) &#124; Net=17000.00 Unit=17000.00 Base=20000.00 PrePartner=20000.00 Partner%=15.00
+04:12:10.72 (92778176)|USER_DEBUG|[10]|DEBUG|REPRICE&#124;  Powertech Identity & Access Manager (BoKS)-NewMaintenance &#124; Net=3520.00 Unit=4000.00 Base=20000.00 PrePartner=20000.00 Partner%=15.00
+04:12:10.331 (331854873)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002WYBt|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+04:12:10.347 (347518095)|CUMULATIVE_LIMIT_USAGE
+04:12:10.347 (347518095)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 3 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 65 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 1 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+04:12:10.347 (347518095)|CUMULATIVE_LIMIT_USAGE_END
+
+04:12:10.331 (347602138)|CODE_UNIT_FINISHED|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+04:12:10.389 (389091238)|CODE_UNIT_STARTED|[EXTERNAL]|industries.pricing.rulesengine.runtime.processtype.DefaultPricingProcessTypeHandler
+04:12:10.389 (636138343)|CODE_UNIT_FINISHED|industries.pricing.rulesengine.runtime.processtype.DefaultPricingProcessTypeHandler
+04:12:10.767 (767909255)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002VmiL|PartnerNetPricePosthook.applyPostPricingNetPrices(List<PartnerNetPricePosthook.PostPricingContextRequest>)
+04:12:10.767 (781352545)|USER_DEBUG|[142]|ERROR|SC3384-DBG applyPartnerNetPrices ctxId=0000000s272q18g00251783768330366b1f698b8fff145629129f5ea15a5c20f lineItems=0
+04:12:10.809 (809435659)|CUMULATIVE_LIMIT_USAGE
+04:12:10.809 (809435659)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 3 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 405 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 1 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 1 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+04:12:10.809 (809435659)|CUMULATIVE_LIMIT_USAGE_END
+
+04:12:10.767 (809518408)|CODE_UNIT_FINISHED|PartnerNetPricePosthook.applyPostPricingNetPrices(List<PartnerNetPricePosthook.PostPricingContextRequest>)
+04:12:10.927 (927787617)|CODE_UNIT_STARTED|[EXTERNAL]|01pWC000002WYBt|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+04:12:10.938 (938467647)|CUMULATIVE_LIMIT_USAGE
+04:12:10.938 (938467647)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 3 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 466 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 1 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 1 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+04:12:10.938 (938467647)|CUMULATIVE_LIMIT_USAGE_END
+
+04:12:10.927 (938545051)|CODE_UNIT_FINISHED|RenewalMaintenancePricingService.applyRenewalMaintenanceNetPrices(List<RenewalMaintenancePricingService.RepriceRequest>)
+04:12:11.176 (1176771140)|USER_DEBUG|[15]|DEBUG|REPRICE&#124; reprice invoked OK
+04:12:11.176 (1189545279)|USER_DEBUG|[26]|DEBUG|REPRICE&#124; ===== AFTER =====
+04:12:11.176 (1189596016)|USER_DEBUG|[27]|DEBUG|REPRICE&#124;  beSECURE - Cloud-Based &#124; Net=5101.22 Unit=5101.22 Base=6221.00 PrePartner=6221.00 Partner%=18.00
+04:12:11.176 (1189605498)|USER_DEBUG|[27]|DEBUG|REPRICE&#124;  Powertech Identity & Access Manager (BoKS) &#124; Net=17000.00 Unit=17000.00 Base=20000.00 PrePartner=20000.00 Partner%=15.00
+04:12:11.176 (1189612200)|USER_DEBUG|[27]|DEBUG|REPRICE&#124;  Powertech Identity & Access Manager (BoKS)-NewMaintenance &#124; Net=3520.00 Unit=4000.00 Base=20000.00 PrePartner=20000.00 Partner%=15.00
+04:12:11.209 (1209529257)|CUMULATIVE_LIMIT_USAGE
+04:12:11.209 (1209529257)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 6 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 639 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 2 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 1 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+04:12:11.209 (1209529257)|CUMULATIVE_LIMIT_USAGE_END
+
+04:12:11.176 (1209618441)|CODE_UNIT_FINISHED|execute_anonymous_apex
+04:12:11.176 (1209639645)|EXECUTION_FINISHED
+

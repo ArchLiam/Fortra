@@ -1,0 +1,268 @@
+<style>
+  :root{
+    --bg:#f4f7f7; --surface:#ffffff; --surface-2:#e9eff0; --ink:#152023; --ink-2:#4c5a5d; --ink-3:#87969a;
+    --line:#d8e0e1; --line-2:#c2cdcf;
+    --acc:#0c7a84; --acc-2:#0a5d65; --acc-wash:#e0f1f2;
+    --go:#1a7a52; --go-wash:#dff0e8; --gate:#9c6f12; --gate-wash:#f6ecd7; --stop:#c0362a; --stop-wash:#f8e5e2;
+    --pri:#7a3ea8; --pri-wash:#f0e6f7;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono",Menlo,Consolas,monospace;
+    --shadow:0 1px 2px rgba(15,32,35,.04),0 6px 20px rgba(15,32,35,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0c1113; --surface:#131a1c; --surface-2:#1a2427; --ink:#e6edee; --ink-2:#a2b0b3; --ink-3:#69787b;
+    --line:#243033; --line-2:#33444a;
+    --acc:#2bbac5; --acc-2:#55cdd6; --acc-wash:#0f2a2d;
+    --go:#4ab585; --go-wash:#122a20; --gate:#d3a24d; --gate-wash:#2a2113; --stop:#e57560; --stop-wash:#2e1a17;
+    --pri:#c08ae0; --pri-wash:#241830;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.35);
+  }}
+  :root[data-theme="light"]{--bg:#f4f7f7;--surface:#ffffff;--surface-2:#e9eff0;--ink:#152023;--ink-2:#4c5a5d;--ink-3:#87969a;--line:#d8e0e1;--line-2:#c2cdcf;--acc:#0c7a84;--acc-2:#0a5d65;--acc-wash:#e0f1f2;--go:#1a7a52;--go-wash:#dff0e8;--gate:#9c6f12;--gate-wash:#f6ecd7;--stop:#c0362a;--stop-wash:#f8e5e2;--pri:#7a3ea8;--pri-wash:#f0e6f7;--shadow:0 1px 2px rgba(15,32,35,.04),0 6px 20px rgba(15,32,35,.06);}
+  :root[data-theme="dark"]{--bg:#0c1113;--surface:#131a1c;--surface-2:#1a2427;--ink:#e6edee;--ink-2:#a2b0b3;--ink-3:#69787b;--line:#243033;--line-2:#33444a;--acc:#2bbac5;--acc-2:#55cdd6;--acc-wash:#0f2a2d;--go:#4ab585;--go-wash:#122a20;--gate:#d3a24d;--gate-wash:#2a2113;--stop:#e57560;--stop-wash:#2e1a17;--pri:#c08ae0;--pri-wash:#241830;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 26px rgba(0,0,0,.35);}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 26px;}
+  h1,h2,h3{text-wrap:balance;line-height:1.16;letter-spacing:-.01em;}
+  code,.m{font-family:var(--mono);font-size:.85em;}
+  code{background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--line);}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:600;}
+
+  header.hero{border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--acc-wash) 0%,transparent 60%),var(--bg);}
+  header.hero .wrap{padding:52px 26px 34px;}
+  .kick{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .kick .dot{width:5px;height:5px;border-radius:50%;background:var(--acc);}
+  h1{font-size:clamp(1.9rem,4.4vw,2.7rem);margin:0 0 14px;font-weight:700;}
+  .lede{font-size:1.14rem;line-height:1.5;color:var(--ink-2);max-width:64ch;margin:0;}
+  .lede strong{color:var(--ink);}
+
+  .principles{margin-top:26px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+  @media(max-width:760px){.principles{grid-template-columns:1fr;}}
+  .pr{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;box-shadow:var(--shadow);}
+  .pr .pt{font-weight:650;font-size:.9rem;margin-bottom:2px;}
+  .pr .pd{font-size:.82rem;color:var(--ink-2);}
+
+  .blockers{margin-top:22px;border:1px solid var(--stop);border-radius:10px;background:var(--stop-wash);padding:16px 20px;}
+  .blockers .bh{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--stop);margin-bottom:10px;}
+  .blockers ul{margin:0;padding-left:20px;}
+  .blockers li{font-size:.9rem;color:var(--ink);margin-bottom:7px;}
+  .blockers li b{color:var(--ink);}
+
+  section{padding:40px 0;border-top:1px solid var(--line);}
+  .sec-head{margin-bottom:8px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .sec-head h2{font-size:1.4rem;margin:0;}
+  .wavetag{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:6px;}
+  .wavetag.now{background:var(--go-wash);color:var(--go);}
+  .wavetag.soon{background:var(--acc-wash);color:var(--acc-2);}
+  .wavetag.gated{background:var(--gate-wash);color:var(--gate);}
+  .wavetag.future{background:var(--surface-2);color:var(--ink-3);}
+  .sec-sub{color:var(--ink-2);font-size:.92rem;margin:2px 0 18px;}
+
+  .track{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);border-left:3px solid var(--acc);}
+  .track + .track{margin-top:12px;}
+  .track.priority{border-left-color:var(--pri);background:linear-gradient(90deg,var(--pri-wash) 0%,var(--surface) 42%);}
+  .track .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+  .track h3{font-size:1.03rem;margin:0 0 2px;}
+  .track .issue{font-size:.84rem;color:var(--ink-3);}
+  .badges{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .b{font-family:var(--mono);font-size:.64rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:5px;white-space:nowrap;}
+  .b.pri{background:var(--pri-wash);color:var(--pri);}
+  .b.now{background:var(--go-wash);color:var(--go);}
+  .b.gated{background:var(--gate-wash);color:var(--gate);}
+  .b.block{background:var(--stop-wash);color:var(--stop);}
+  .b.eff{background:var(--surface-2);color:var(--ink-2);}
+  .track .body{margin-top:10px;font-size:.91rem;color:var(--ink-2);}
+  .track .body b{color:var(--ink);}
+  .track .gate{margin-top:10px;font-size:.84rem;display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:baseline;}
+  .track .gate .gl{font-family:var(--mono);font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gate);white-space:nowrap;padding-top:1px;}
+  .track .gate .gt{color:var(--ink-2);}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:9px;overflow:hidden;}
+  @media(max-width:720px){.two{grid-template-columns:1fr;}}
+  .two>div{background:var(--surface);padding:18px 20px;}
+  .two .ch{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:12px;}
+  .two .now .ch{color:var(--go);} .two .gate .ch{color:var(--gate);}
+  .two ul{margin:0;padding-left:18px;} .two li{font-size:.88rem;margin-bottom:9px;color:var(--ink-2);} .two li b{color:var(--ink);}
+
+  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:9px;}
+  table{border-collapse:collapse;width:100%;font-size:.9rem;}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  thead th{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td b{color:var(--ink);}
+  .sev{font-family:var(--mono);font-size:.64rem;font-weight:700;padding:2px 7px;border-radius:5px;white-space:nowrap;}
+  .sev.crit{background:var(--stop-wash);color:var(--stop);} .sev.high{background:var(--gate-wash);color:var(--gate);} .sev.med{background:var(--surface-2);color:var(--ink-2);}
+
+  footer{border-top:1px solid var(--line);padding:26px 0 54px;color:var(--ink-3);font-size:.82rem;}
+  footer .m{color:var(--ink-2);}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick"><span>SC-3346 renewal</span><span class="dot"></span><span>Safe remediation plan · v2 (red-teamed)</span><span class="dot"></span><span>replaces the rejected re-architecture</span><span class="dot"></span><span>FortraUAT · 2026-07-10</span></div>
+    <h1>Fix every real issue — behind a correctness gate, never a big bang.</h1>
+    <p class="lede">The re-architecture was rejected as unsafe (5/5). This plan keeps every genuine problem but resolves each one <strong>additively, parity-proven on the committed net, and reversible</strong>. Hardened by an adversarial pass that flagged all six first-draft designs for revision — so gates now assert <strong>correctness, not existence</strong>, and two hard blockers must clear before anything irreversible.</p>
+
+    <div class="principles">
+      <div class="pr"><div class="pt">Additive-first</div><div class="pd">Non-default options + PBEs; dry-run before write; custom stack stays live until a replacement is parity-proven; deletes strictly last.</div></div>
+      <div class="pr"><div class="pt">Validate on the committed NET</div><div class="pd">Read net from the pricing response — never <code>UnitPrice</code> (fill-only) or <code>PBE.UnitPrice</code> ($0 for derived). A COUNT that goes green while the defect persists is a false pass.</div></div>
+      <div class="pr"><div class="pt">Correctness, not existence</div><div class="pd">A mirror / derived / never-firing artifact that satisfies a count is UNTESTED, not covered. <code>null==null</code> parity is UNTESTED, not PASS.</div></div>
+      <div class="pr"><div class="pt">Prove reversibility first</div><div class="pd">Never claim a reversible flip the API forbids (<code>PCR.Status</code> is delete-only). Capture prior state from SetupAuditTrail/snapshot, not sibling timestamps.</div></div>
+      <div class="pr"><div class="pt">Pre-commit the pivot</div><div class="pd">A red pilot INVALIDATES the mechanism (backlog → <code>initiateRenewal</code> regeneration) — never a retry. Prove one line before scaling.</div></div>
+      <div class="pr"><div class="pt">No disproven premises</div><div class="pd">Nothing depends on blank <code>Order.Type</code>, "one canonical COLA", or RRM-as-redundant-sidecar — the review disproved all three.</div></div>
+    </div>
+
+    <div class="blockers">
+      <div class="bh">⛔ Two hard blockers — clear before any irreversible action</div>
+      <ul>
+        <li><b>PCR reversibility.</b> <code>ProductConfigurationRule.Status</code> may be un-settable by any API (object is delete-only). If a Status toggle-and-revert path can't be empirically proven in a sandbox, the automation track is <b>delete-grade</b> and must stop until a re-creation path exists.</li>
+        <li><b>Backlog mechanism validity.</b> If the pilot's Apex-insert-on-a-persisted-quote commits <b>$0</b> (the documented out-of-context anti-pattern), the whole backlog track <b>pivots to <code>initiateRenewal</code> regeneration</b> — no retry.</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="wavetag now">Wave 0 · now</span><h2>Foundation — read-only, fully parallel</h2></div>
+    <p class="sec-sub">Zero org mutation. These produce the correctness gates every later wave depends on. Fan out today.</p>
+
+    <div class="track">
+      <div class="top"><div><h3>F1 · Strike false premises + succession signal</h3><div class="issue">Order.Type isn't blank; Contract.Status is RC-locked</div></div>
+        <div class="badges"><span class="b now">parallel now</span><span class="b eff">S</span></div></div>
+      <div class="body">Formally <b>strike the "blank Order.Type" step</b> (grep-proven ~98% populated, zero consumers). Document <code>Renewal_Status__c</code> as the RC-safe signal for its one code consumer — noting it identifies only <b>7 installed-base contracts</b>, not a historical report key.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">Order.Type step removed; Renewal_Status__c sufficiency documented with the installed-base gap called out.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>F2 · Audit the 130 default-flips (2026-07-06)</h3><div class="issue">possible LIVE $0 new-business bug — another dev's flips, still in flux</div></div>
+        <div class="badges"><span class="b now">parallel now</span><span class="b eff">M</span></div></div>
+      <div class="body">Reclassify all <b>130</b> flipped PSMOs by <b>runtime committed price</b> (place-quote-action dry-run per model/currency/book) — <b>not</b> <code>PBE.UnitPrice</code>. Named regression candidates already surfaced: <b>ECBM ($44k), ACSYNM ($2.3k), ONBOAR ($17.6k)</b>. Cross-check the 3 flipped New-Maintenance SKUs against SC-3346 coverage. Snapshot prior state from SetupAuditTrail.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">every flip bucketed by dry-run committed price; real regressions enumerated (zero false positives vs a known proc-priced product).</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>F3 · Freeze the coverage gate + harden the provisioner</h3><div class="issue">1,561 unowned SKUs would hit the same $0 wall; 831 derived siblings</div></div>
+        <div class="badges"><span class="b now">parallel now</span><span class="b eff">M</span></div></div>
+      <div class="body">Freeze the <b>correctness</b> coverage gate (TermDefined PBE per catalogued book|currency <b>with IsDerived=false</b>, or a signed per-SKU renews-non-$0 proof). Write the dry-run mirror Batch with inserts broken out <b>by IsDerived and each of the 10 live currencies</b>. Harden <code>RenewalMaintenanceProvisionService</code>: Annual-pinned PBE resolution (incl. the Monthly-only batch-skip case), same-key dedup guard, explicit EndDate, verified engine-derived non-null PTC.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">dry-run projects ~1,561 PSMO / ~31,180 PBE split by IsDerived+currency, 0 IsDefault=true, 0 uncatalogued book/ccy; provisioner tests pass.</span></div>
+    </div>
+
+    <div class="track priority">
+      <div class="top"><div><h3>★ F4 · Duplicate-COLA attribution (Track A prep) <span style="color:var(--pri);font-family:var(--mono);font-size:.7rem;">PRIORITY</span></h3><div class="issue">net stamped across several stages — which one actually wins?</div></div>
+        <div class="badges"><span class="b pri">priority</span><span class="b now">parallel now</span><span class="b eff">M</span></div></div>
+      <div class="body"><b>Extend the existing harness</b> at <code>Data/pricing-refactor-scratch/harness/</code> (do not rebuild). Attribute, per line, which writer/stage stamped the committed value across the full surface — the 68 null-Base Pre_COLA lines, 23 Base_Price maintenance lines, 122 COLA%-only lines, plus fresh born-net Renew lines. Note: the "one canonical COLA" premise is <b>false</b> — the general Pre_COLA path and the ESD are legitimately separate computations; only the 23-line stamped-maintenance sub-path converges.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">independent per-stage oracle reproduces live outputs; producer-attribution table complete; any null==null diff flagged UNTESTED.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>F5 · Automation census + PCR-revert proof</h3><div class="issue">RRM is the DOMINANT model (464k lines), not a redundant sidecar</div></div>
+        <div class="badges"><span class="b now">parallel now</span><span class="b block">blocking proof</span><span class="b eff">M</span></div></div>
+      <div class="body">Full census of all <b>302 PCRs</b> by (criteria→target) pairs — flag dead <code>'Renwal'</code>/<code>'Renewable'</code> rules, no-QuoteType straddlers, the product-name rule, duplicate targets. Map born-net coupling (<code>RenewalQuoteActionStamp</code> RRM-only, <code>RenewalMaintenanceProvisionService</code>). <b>Empirically prove on a throwaway sandbox rule whether PCR Status can be set Inactive AND reverted</b> (API is delete-only).</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">census + coupling map published; a proven Status toggle-and-revert mechanism documented, OR the track reclassified delete-grade (blocking).</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="wavetag soon">Wave 1 · gated</span><h2>Near-term wins</h2></div>
+    <p class="sec-sub">Each gated on its Wave-0 dry-run/mechanism proof + your UAT authorization. The honest, provable fixes.</p>
+
+    <div class="track">
+      <div class="top"><div><h3>W1 · Defect-coverage live scale-out</h3><div class="issue">complete "renew as itself" for the 1,561 unowned SKUs</div></div>
+        <div class="badges"><span class="b gated">gated · F3</span><span class="b eff">L</span></div></div>
+      <div class="body">Run the Batch in <b>≤50-product waves</b> (~1,050 DML rows/exec). Non-derived siblings mirror exactly; the <b>831 derived siblings get IsDerived=FALSE list-priced</b> TermDefined PBEs (or quarantine with per-SKU proof) — a plain mirror would copy $0 and be UNTESTED. Capture inserted Ids for recreate-based rollback; re-run the gate after each wave.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">correctness gate → 0; functional matrix {derived,non-derived}×{$0,non-$0}×currency commits non-$0; idempotent re-run inserts 0.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>W2 · Flip-130 regression remediation</h3><div class="issue">fix only the proven runtime regressions</div></div>
+        <div class="badges"><span class="b gated">gated · F2</span><span class="b eff">S</span></div></div>
+      <div class="body">Per-product gated fix for <b>only</b> the flips proven to commit $0 at runtime (ECBM/ACSYNM-class): restore the OneTime default OR add a pricing-owner-approved non-$0 TermDefined PBE (recreate-based — IsDerived isn't updateable). Route flipped New-Maintenance residuals into SC-3346.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">no new-business-sellable product has a default that commits $0 at runtime; guardrail returns 0 offenders.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>W3 · Backlog pilot → drain (or pivot)</h3><div class="issue">7,203 unpriced lines; only ~128 are safely automatable</div></div>
+        <div class="badges"><span class="b block">pilot-gated</span><span class="b eff">L</span></div></div>
+      <div class="body"><b>Pilot on ONE Draft/no-Order quote:</b> prove Apex QLI insert/delete works on a managed renewal quote under the DML lock AND commits a real <b>NET = Asset.Price×(1+COLA%)</b> read from the pricing response, after the async job settles, zero sibling drift. Green → drain the <b>~128-line safe subset</b> (≤10 lines/quote). <b>Red → PIVOT</b> to <code>initiateRenewal</code> regeneration. <b>Never touch</b> the 982 Approved / 30 Won / 208 Ordered.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">Draft RNM $0 down by exactly the acted count; Approved/Won/Ordered + org-wide Order counts unchanged; second run acts on 0.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>W4 · Succession back-link</h3><div class="issue">give downstream a navigable successor→predecessor link</div></div>
+        <div class="badges"><span class="b gated">gated · F1</span><span class="b eff">S</span></div></div>
+      <div class="body">If a real navigation need is confirmed: idempotent <b>null-only</b> stamp of <code>successor.Original_Contract__c</code>, triggered on <code>ISCHANGED(ContractId) && !=null</code> (not the activation event, to survive async contract generation). Dry-run + snapshot; Activated-only backfill; abort on multi-source conflict. Do <b>not</b> write <code>Contract.Status</code>.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">sandbox activation asserts both unchanged predecessor→Accepted AND the new back-link; no non-null overwrite; installed-base gap documented out-of-scope.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="wavetag gated">Wave 2 · gated</span><h2>In-place consolidation &amp; supervised migration</h2></div>
+    <p class="sec-sub">Longer, evidence-gated. The "duplicates" carry non-overlapping load — these are scoped convergences and migrations, not bulk deletes.</p>
+
+    <div class="track priority">
+      <div class="top"><div><h3>★ M1 · Duplicate-COLA consolidation (Track A) <span style="color:var(--pri);font-family:var(--mono);font-size:.7rem;">PRIORITY</span></h3><div class="issue">the one genuine duplicate automation — same formula implemented 4×</div></div>
+        <div class="badges"><span class="b pri">priority</span><span class="b gated">gated · F4</span><span class="b eff">L</span></div></div>
+      <div class="body">Converge <b>only</b> the <b>23-line <code>Base_Price__c>0</code> stamped-maintenance sub-path</b> onto one calculator (extract the shared discretionary-dollars helper). <b>Leave</b> the general <code>Pre_COLA_Price__c</code> path and the ESD as their own canonical computations. Remove a stamp only after clear-and-recompute proves value-idempotence on a fresh born-net line. <b>Never</b> delete <code>PartnerNetPricePosthook</code> (org-wide partner net).</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">zero-delta (or signed characterized deltas) across the full population incl. born-net Renew lines; no ESD version altered; incumbents removed only in git-revertable commits after green.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>M2 · Automation supervised migration</h3><div class="issue">RRM→provisioning migration, NOT a dedup — RRM stays live</div></div>
+        <div class="badges"><span class="b block">gated · F5 revert-proof</span><span class="b eff">XL</span></div></div>
+      <div class="body">With the <b>proven</b> Status mechanism, deactivate Year-2 RRM auto-add rules <b>SKU-by-SKU</b> only after positive-coverage proof (exactly one correct non-$0 line via a still-live path for BOTH first-renewal RNM and 2nd+ RRM generations). Exclude dead/never-firing rules; keep the 102 new-business Year-1 auto-adds + carryover-cleanup + the RenewalQuoteActionStamp coupling frozen. Soak a full renewal + new-business cycle per batch.</div>
+      <div class="gate"><span class="gl">Entry</span><span class="gt">F5 proven revert mechanism + F3/W1 per-SKU coverage + W3 backlog keeping pace. <span class="gl" style="margin-left:6px">Exit</span> parity-diff=0 AND positive coverage per served asset; reactivate-from-snapshot demonstrated.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="wavetag future">Wave 3 · future</span><h2>Native pricing &amp; deletes — sandbox-first, last</h2></div>
+    <p class="sec-sub">Real value, only after the org is actually built for it. Nothing here blocks Waves 0–2.</p>
+
+    <div class="track">
+      <div class="top"><div><h3>L1 · Native uplift prototype + parity (Track B)</h3><div class="issue">native plumbing is 100% empty today</div></div>
+        <div class="badges"><span class="b gated">sandbox-first</span><span class="b eff">XL</span></div></div>
+      <div class="body">In a <b>sandbox with the full custom stack live</b>: build <code>PriceRevisionPolicy(Flat)</code> per solution-category/currency, backfill <code>Asset.PricingSource</code>, wire <code>QLI.UnitPriceUplift</code> as an <b>additive shadow</b>, and parity-prove native vs custom <b>line-by-line</b> across the golden set + all seeded currencies. No procedure flip yet.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">native output == custom output across golden set + seeded currencies with custom stack still live; per-SKU coverage proven; no ESD flip.</span></div>
+    </div>
+
+    <div class="track">
+      <div class="top"><div><h3>L2 · Deletes-last consolidation</h3><div class="issue">retire only what's proven dead / superseded</div></div>
+        <div class="badges"><span class="b gated">final approved pass</span><span class="b eff">L</span></div></div>
+      <div class="body">After every soak is clean and per-SKU coverage proven: retire deactivated Year-2 rules, orphan <code>RenewalMaintenanceFlip</code>, dead <code>ensureRenewalMaintenancePresent</code>, and — only after native parity — the <b>COLA branch</b> of <code>PartnerNetPricePosthook</code>. Deactivate→soak→delete, never wholesale, never a PCR delete without a proven re-creation path. Keep V20 ESD as live backup.</div>
+      <div class="gate"><span class="gl">Exit</span><span class="gt">each deleted component proven zero-invoker / zero-coverage-loss; git-revertable.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><h2>Residual risks the plan carries</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Risk</th><th>Sev</th><th>Mitigation baked into the plan</th></tr></thead>
+        <tbody>
+          <tr><td><b>PCR Status un-settable by API</b> → "deactivate-first" rollback may be impossible</td><td><span class="sev crit">CRIT</span></td><td>Block the whole migration on F5's empirical toggle-and-revert proof; if only DELETE exists, reclassify delete-grade and stop until a re-creation path is built</td></tr>
+          <tr><td><b>Backlog cold-quote insert commits $0</b> (out-of-context anti-pattern) → strands 98%+</td><td><span class="sev high">HIGH</span></td><td>Pre-committed pivot to <code>initiateRenewal</code> regeneration on a red pilot; automatable scope honestly limited to ~128 lines</td></tr>
+          <tr><td><b>Premature native flip prices all renewals flat at 0%</b></td><td><span class="sev crit">CRIT</span></td><td>Track B stays in sandbox with custom stack live; line-by-line parity + coverage proof before any ESD version; flip &amp; deletes are the very last gated steps</td></tr>
+          <tr><td><b>Validating on UnitPrice / PBE.UnitPrice</b> → false-green while $0 persists</td><td><span class="sev high">HIGH</span></td><td>Read committed net from the pricing response; treat null==null as UNTESTED; classify flips + guardrail on runtime price only</td></tr>
+          <tr><td><b>Catalog in active flux</b> (118→130, +12 during review by another dev)</td><td><span class="sev med">MED</span></td><td>Re-verify every gate query at preflight; coordinate with the flip owner; snapshot before each ≤50-product wave</td></tr>
+          <tr><td><b>Per-currency parity unprovable from incidental samples</b> (6 AUD / 1 EUR)</td><td><span class="sev med">MED</span></td><td>Owner-authorized seeding of AUD/EUR + the other populated currencies before asserting non-USD green; batch only parity-proven cells</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="m">v2 hardened by an adversarial design workflow (<span class="m">wl29ug57i</span>, 13 agents): 6 workstream designs → 6 red-team passes (all "needs-revision") → sequenced master synthesis. Grounded in the safety-review's verified facts.</p>
+    <p>Sequencing: Wave 0 (read-only) runs now in parallel → Wave 1 gated on Wave-0 proofs + your ack → Waves 2–3 gated further, deletes last. No org mutation has occurred in producing this plan.</p>
+  </div>
+</footer>

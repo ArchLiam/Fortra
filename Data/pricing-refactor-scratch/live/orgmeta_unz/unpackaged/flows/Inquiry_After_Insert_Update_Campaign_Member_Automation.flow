@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Create_Campaign_Member_Decision</name>
+        <label>Create Campaign Member?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Create_Campaign_Member_Outcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Existing_Campaign_Member</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Campaign_Member</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Data_Migration_User_Decision</name>
+        <label>Data Migration User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Yes</defaultConnectorLabel>
+        <rules>
+            <name>No_Data_Migration_User_Outcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Permission.Data_Migration_Exclude_Business_Logic</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Existing_Campaign_Member</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+    </decisions>
+    <description>Adding bypass for Data Migration User
+Flow Label
+Create Campaign Member on Primary Campaign with Inquiry if it doesn&apos;t already exist.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>dataMigrationUser</name>
+        <dataType>Boolean</dataType>
+        <expression>IF(
+    OR(
+        {!$User.Username} = &apos;data.migration@coastalcloud.us.db2&apos;,
+        {!$User.Username} = &apos;data.migration@coastalcloud.us.uat&apos;,
+        {!$User.Username} = &apos;data.migration@coastalcloud.us.fortraprod&apos;
+    ),
+    TRUE,
+    FALSE
+)</expression>
+    </formulas>
+    <interviewLabel>Inquiry | After Insert/Update - Campaign Member Automation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Inquiry | After Insert/Update - Campaign Member Automation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Campaign_Member</name>
+        <label>Create Campaign Member</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>CampaignId</field>
+            <value>
+                <elementReference>$Record.Primary_Campaign__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LeadId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>CampaignMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Existing_Campaign_Member</name>
+        <label>Get Existing Campaign Member</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Create_Campaign_Member_Decision</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>CampaignId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Primary_Campaign__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>LeadId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CampaignMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Data_Migration_User_Decision</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Primary_Campaign__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Lead</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

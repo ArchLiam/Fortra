@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>SC-3384 ABA Raw Net Access</label>
+    <description>SC-3384: read/edit on ABA_Raw_Net__c (QuoteLineItem + OrderItem) for the pricing context hydration and the currency-correction posthook. Assign to reprice + integration users.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>QuoteLineItem.ABA_Raw_Net__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>OrderItem.ABA_Raw_Net__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+</PermissionSet>

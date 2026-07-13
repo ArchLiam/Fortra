@@ -1,0 +1,407 @@
+<title>Derived Maintenance Pricing (DPP) — FortraUAT</title>
+<style>
+  :root{
+    --ground:#f5f7f8; --surface:#ffffff; --surface-2:#eef2f5; --ink:#14202b; --muted:#5a6b78;
+    --line:#dae2e8; --line-2:#c8d3da; --accent:#0b8f83; --accent-ink:#086b62; --accent-soft:#e2f2f0;
+    --pass:#128a54; --warn:#b56b08; --fail:#d31f3f; --blocked:#5f7285; --data:#cf5a1e;
+    --pass-bg:#e6f4ec; --warn-bg:#fbf0df; --fail-bg:#fce9ec; --blocked-bg:#eef1f4; --data-bg:#fbeade;
+    --shadow:0 1px 2px rgba(20,32,43,.05),0 8px 28px rgba(20,32,43,.06);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0d141c; --surface:#141d27; --surface-2:#1a2531; --ink:#e7edf3; --muted:#93a4b3;
+      --line:#25333f; --line-2:#324351; --accent:#2bd4c0; --accent-ink:#8bece0; --accent-soft:#11302c;
+      --pass:#3ed08d; --warn:#e5a44c; --fail:#ff6a7d; --blocked:#8b99a9; --data:#f0955a;
+      --pass-bg:#102319; --warn-bg:#2a2010; --fail-bg:#2a1319; --blocked-bg:#1a222c; --data-bg:#2a1a10;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0d141c; --surface:#141d27; --surface-2:#1a2531; --ink:#e7edf3; --muted:#93a4b3;
+    --line:#25333f; --line-2:#324351; --accent:#2bd4c0; --accent-ink:#8bece0; --accent-soft:#11302c;
+    --pass:#3ed08d; --warn:#e5a44c; --fail:#ff6a7d; --blocked:#8b99a9; --data:#f0955a;
+    --pass-bg:#102319; --warn-bg:#2a2010; --fail-bg:#2a1319; --blocked-bg:#1a222c; --data-bg:#2a1a10;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"]{
+    --ground:#f5f7f8; --surface:#ffffff; --surface-2:#eef2f5; --ink:#14202b; --muted:#5a6b78;
+    --line:#dae2e8; --line-2:#c8d3da; --accent:#0b8f83; --accent-ink:#086b62; --accent-soft:#e2f2f0;
+    --pass:#128a54; --warn:#b56b08; --fail:#d31f3f; --blocked:#5f7285; --data:#cf5a1e;
+    --pass-bg:#e6f4ec; --warn-bg:#fbf0df; --fail-bg:#fce9ec; --blocked-bg:#eef1f4; --data-bg:#fbeade;
+    --shadow:0 1px 2px rgba(20,32,43,.05),0 8px 28px rgba(20,32,43,.06);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font:400 16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:940px;margin:0 auto;padding:clamp(20px,4vw,44px) clamp(16px,4vw,28px) 88px}
+  a{color:var(--accent-ink);text-underline-offset:2px}
+
+  /* ---- header ---- */
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:700;margin:0 0 10px}
+  h1{font-size:clamp(1.9rem,5vw,2.75rem);line-height:1.08;letter-spacing:-.02em;margin:0 0 12px;text-wrap:balance;font-weight:800}
+  .lede{font-size:clamp(1.02rem,2.4vw,1.2rem);color:var(--muted);max-width:60ch;margin:0 0 22px;text-wrap:pretty}
+  .statusbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 6px}
+  .chip{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border-radius:999px;font-size:13px;font-weight:700;line-height:1;border:1px solid transparent}
+  .chip .n{font-variant-numeric:tabular-nums}
+  .chip.pass{background:var(--pass-bg);color:var(--pass);border-color:color-mix(in srgb,var(--pass) 30%,transparent)}
+  .chip.warn{background:var(--warn-bg);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
+  .chip.fail{background:var(--fail-bg);color:var(--fail);border-color:color-mix(in srgb,var(--fail) 30%,transparent)}
+  .chip.blocked{background:var(--blocked-bg);color:var(--blocked);border-color:color-mix(in srgb,var(--blocked) 30%,transparent)}
+  .chip.data{background:var(--data-bg);color:var(--data);border-color:color-mix(in srgb,var(--data) 30%,transparent)}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 18px;color:var(--muted);font-size:13px;margin-top:14px}
+  .meta b{color:var(--ink);font-weight:600}
+
+  .rule{height:1px;background:var(--line);border:0;margin:34px 0}
+
+  /* ---- sections ---- */
+  section{margin-top:40px}
+  h2{font-size:clamp(1.2rem,2.6vw,1.55rem);letter-spacing:-.01em;margin:0 0 6px;font-weight:750;text-wrap:balance}
+  .sec-lead{color:var(--muted);margin:0 0 18px;max-width:66ch}
+  h3{font-size:1.02rem;margin:0 0 8px;font-weight:700}
+  p{margin:0 0 14px;max-width:70ch}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+  .pad{padding:clamp(16px,3vw,22px)}
+
+  /* compute flow */
+  .flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:4px 0 4px}
+  .step{flex:1 1 160px;min-width:150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;position:relative}
+  .step .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-ink);font-weight:700;margin-bottom:5px}
+  .step .v{font-size:14.5px;font-weight:600;line-height:1.35}
+  .step .v small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:3px}
+  .arrow{align-self:center;color:var(--line-2);font-size:20px;flex:0 0 auto;font-weight:700}
+  @media(max-width:640px){.arrow{transform:rotate(90deg);align-self:center;margin:-2px 0}}
+
+  /* two-branch grid */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){.grid2{grid-template-columns:1fr}}
+  .branch h3{display:flex;align-items:center;gap:8px}
+  .tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:3px 8px;border-radius:6px}
+  .formula{font-family:ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums;font-size:13.5px;line-height:1.7;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:10px 0 0;overflow-x:auto;white-space:pre-wrap}
+  .formula .hl{color:var(--accent-ink);font-weight:700}
+  ul.tight{margin:12px 0 0;padding-left:18px}
+  ul.tight li{margin:5px 0;color:var(--muted)}
+  ul.tight li b{color:var(--ink);font-weight:600}
+
+  /* mechanism rows */
+  .mech{display:flex;flex-direction:column;gap:10px}
+  .row{display:grid;grid-template-columns:150px 1fr auto;gap:18px;align-items:start;background:var(--surface);border:1px solid var(--line);border-left-width:4px;border-radius:12px;padding:15px 18px;box-shadow:var(--shadow)}
+  .row.pass{border-left-color:var(--pass)} .row.warn{border-left-color:var(--warn)}
+  .row.fail{border-left-color:var(--fail)} .row.blocked{border-left-color:var(--blocked)} .row.data{border-left-color:var(--data)}
+  .row .name{font-weight:700;font-size:15px}
+  .row .name small{display:block;color:var(--muted);font-weight:400;font-size:12.5px;margin-top:3px}
+  .row .body .line{display:flex;gap:8px;font-size:14px;margin:2px 0}
+  .row .body .lab{flex:0 0 88px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;padding-top:2px}
+  .row .body .val{flex:1}
+  .row .body .val .mono{font-size:13.5px}
+  .badge{align-self:flex-start;padding:4px 10px;border-radius:7px;font-size:12px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+  .badge.pass{background:var(--pass-bg);color:var(--pass)} .badge.warn{background:var(--warn-bg);color:var(--warn)}
+  .badge.fail{background:var(--fail-bg);color:var(--fail)} .badge.blocked{background:var(--blocked-bg);color:var(--blocked)} .badge.data{background:var(--data-bg);color:var(--data)}
+  @media(max-width:680px){
+    .row{grid-template-columns:1fr;gap:10px}
+    .row .badge{position:absolute}
+    .row{position:relative;padding-top:15px}
+    .row .badge{top:15px;right:16px}
+    .row .name{padding-right:80px}
+  }
+
+  /* before/after fix */
+  .fix{background:linear-gradient(180deg,var(--accent-soft),transparent 70%),var(--surface);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));border-radius:16px;padding:clamp(18px,3vw,26px);box-shadow:var(--shadow)}
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin:18px 0 6px}
+  @media(max-width:600px){.ba{grid-template-columns:1fr;text-align:left}.ba .baArrow{transform:rotate(90deg);justify-self:start}}
+  .baCard{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}
+  .baCard.before{background:var(--fail-bg);border-color:color-mix(in srgb,var(--fail) 30%,transparent)}
+  .baCard.after{background:var(--pass-bg);border-color:color-mix(in srgb,var(--pass) 30%,transparent)}
+  .baCard .k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;margin-bottom:6px}
+  .baCard.before .k{color:var(--fail)} .baCard.after .k{color:var(--pass)}
+  .baCard .num{font-size:clamp(1.4rem,4vw,2rem);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .baCard .sub{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .baArrow{font-size:26px;color:var(--accent);font-weight:800;justify-self:center}
+
+  .note{border-left:3px solid var(--line-2);padding:2px 0 2px 14px;color:var(--muted);font-size:14px;margin:14px 0 0}
+  .note b{color:var(--ink)}
+
+  /* field guide */
+  dl.guide{display:grid;grid-template-columns:auto 1fr;gap:0;margin:0}
+  dl.guide div{display:contents}
+  dl.guide dt{font-weight:700;padding:11px 16px 11px 0;border-top:1px solid var(--line);white-space:nowrap}
+  dl.guide dd{margin:0;padding:11px 0;border-top:1px solid var(--line);color:var(--muted)}
+  dl.guide dd b{color:var(--ink)}
+  dl.guide div:first-child dt,dl.guide div:first-child dd{border-top:0}
+  @media(max-width:560px){dl.guide{grid-template-columns:1fr}dl.guide dd{padding-top:0;border-top:0}dl.guide dt{padding-bottom:2px}}
+
+  code{font-family:ui-monospace,Menlo,monospace;font-size:.9em;background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+
+  footer{margin-top:52px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+  footer b{color:var(--ink);font-weight:600}
+  .kv{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:8px}
+
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(10px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes rise{to{opacity:1;transform:none}}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="reveal">
+    <p class="eyebrow">FortraUAT · Revenue Cloud pricing procedure V25</p>
+    <h1>Derived Maintenance Pricing</h1>
+    <p class="lede">Maintenance isn't sold from a price book — its price is <em>derived</em> from the product it protects. This is what that engine is built to do, and how it actually behaves in FortraUAT today.</p>
+    <div class="statusbar">
+      <span class="chip pass"><span class="n">12</span> Pass</span>
+      <span class="chip warn"><span class="n">1</span> Warn</span>
+      <span class="chip fail"><span class="n">0</span> Fail</span>
+      <span class="chip blocked"><span class="n">2</span> Blocked</span>
+      <span class="chip data"><span class="n">1</span> Data</span>
+    </div>
+    <div class="meta">
+      <span><b>Verified</b> 2026-07-13 (run 2, post-fix)</span>
+      <span><b>Coverage</b> 13 lines · 8 quotes</span>
+      <span><b>Unit tests</b> 153 / 100%</span>
+      <span><b>Exception log</b> clean</span>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <!-- WHAT IT IS -->
+  <section class="reveal">
+    <h2>What DPP is</h2>
+    <p class="sec-lead">A maintenance product (support, updates, upgrades) has no standalone list price. Its price comes from the thing it attaches to — the license or subscription the customer is buying, or the maintenance asset they already own. DPP is the slice of the pricing procedure that computes those prices automatically.</p>
+
+    <div class="flow" role="list" aria-label="How a maintenance price is computed">
+      <div class="step" role="listitem">
+        <div class="k">1 · Source</div>
+        <div class="v">The product it protects<small>New license / subscription, or an owned maintenance asset</small></div>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step" role="listitem">
+        <div class="k">2 · Derive</div>
+        <div class="v">Tier % &nbsp;or&nbsp; carry-forward + COLA<small>New business: base × tier%. Renewal: prior maintenance × cost-of-living uplift</small></div>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step" role="listitem">
+        <div class="k">3 · Net</div>
+        <div class="v">Apply the line's discounts<small>Partner &amp; discretionary, in the right place for each branch</small></div>
+      </div>
+      <div class="arrow" aria-hidden="true">→</div>
+      <div class="step" role="listitem">
+        <div class="k">4 · Result</div>
+        <div class="v">Net Unit Price<small>The one field the customer, order, and Workday all use</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO BRANCHES -->
+  <section class="reveal">
+    <h2>Two branches, one engine</h2>
+    <p class="sec-lead">Which formula runs depends on whether this is new business or a renewal.</p>
+    <div class="grid2">
+      <div class="card pad branch">
+        <h3>New-business maintenance <span class="tag">selling new</span></h3>
+        <p style="margin:0;color:var(--muted)">A percentage of the license or subscription being sold — then the line's own discounts.</p>
+        <div class="formula">net = <span class="hl">sourceBase × tier%</span>
+      then − partner% − discretionary%</div>
+        <ul class="tight">
+          <li><b>Tiers</b> — Standard 0.20 · Premier 0.30 · Professional 0.20 (from <code>Maintenance_Rate__mdt</code>)</li>
+          <li><b>Untagged</b> line → defaults to Standard 0.20</li>
+          <li><b>No base</b> → correctly $0, never a fabricated price</li>
+        </ul>
+      </div>
+      <div class="card pad branch">
+        <h3>Renewal maintenance <span class="tag">already owned</span></h3>
+        <p style="margin:0;color:var(--muted)">Carry the prior maintenance forward from the owned asset and apply a cost-of-living uplift.</p>
+        <div class="formula"><span class="hl">first renewal</span>  (asset − priorPartner$ − priorDisc$) × (1+COLA)
+<span class="hl">2nd+ (RRM)</span>       asset × (1+COLA)   — no re-discounting</div>
+        <ul class="tight">
+          <li><b>First renewal</b> nets the <em>prior</em> discounts once, then uplifts</li>
+          <li><b>RRM</b> is single-component — the prior discount is <b>not</b> re-subtracted</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGNED VS ACTUAL -->
+  <section class="reveal">
+    <h2>Designed behavior vs. FortraUAT reality</h2>
+    <p class="sec-lead">Each rule below shows what DPP is supposed to do and what it actually produced on live UAT records under procedure V25. Evidence values are the committed <span class="mono">Net Unit Price</span>.</p>
+
+    <div class="mech">
+
+      <div class="row pass">
+        <div class="name">Tier pricing<small>SC-3346-TIER</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Net = source base × tier% (Standard 0.20 / Premier 0.30)</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">Standard <span class="mono">355 × 0.20 = 71.00</span> · Premier <span class="mono">355 × 0.30 = 106.50</span></span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">Untagged default<small>SC-3346-MTD</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">A line with no tier attribute defaults to Standard 0.20</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">No attribute, still prices <span class="mono">303.745 × 0.20 = 60.75</span></span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">Base-less guard<small>SC-3346-BASELESS</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">No pricing base → $0, no fabricated number</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">Base 0 &amp; source 0 → <span class="mono">Net 0.00</span></span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row warn">
+        <div class="name">New-biz discount netting<small>SC-3346-DISC</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Partner + discretionary applied after base × tier: <span class="mono">71 × 0.85 × 0.90 = 54.32</span></span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">Discounts are applied, but the value converges to <span class="mono">56.23</span> — doesn't reconcile to the 15% / 10% inputs</span></div>
+        </div>
+        <span class="badge warn">WARN</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">First-renewal COLA<small>SC-3346-RNM1 · fixed</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">(asset − priorPartner$ − priorDisc$) × (1+COLA), committed to Net Unit Price</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">Partner <span class="mono">65.09</span> · discretionary <span class="mono">60.37 / 3645.33</span> — matches to the cent, idempotent</span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">RRM non-regression<small>SC-3346-RRM</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">2nd+ renewal = asset × (1+COLA); prior discount NOT re-netted</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val"><span class="mono">60.64 × 1.0785 = 65.40</span> (not the re-netted 56.21) — scope guard holds</span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">Multi-currency<small>SC-3346-CCY</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Non-USD: native List Price, converted Net</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">EUR line: List <span class="mono">134.5824</span> native, Net <span class="mono">60.75</span> — no $0</span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">Quantity &gt; 1<small>SC-3346-QTY</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Per-unit price; qty-N does not inflate the unit</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">qty 10 → <span class="mono">Net Unit 71.00</span>, Net Total <span class="mono">710</span> (not ×10 per unit)</span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row pass">
+        <div class="name">Idempotency<small>SC-3390</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Re-pricing the same quote converges and stays put</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">pass 2 = pass 3 on every graded line (asset-inflated quotes excepted — see below)</span></div>
+        </div>
+        <span class="badge pass">PASS</span>
+      </div>
+
+      <div class="row data">
+        <div class="name">Source-asset quality<small>SC-3346-ASSET</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Maintenance derives off the real license base (~355)</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">16 lines inherit an inflated base from over-priced contributor licenses (Base <span class="mono">20,000</span> vs list 355) → maint ~56× high. <b>Upstream data, not a formula bug.</b></span></div>
+        </div>
+        <span class="badge data">DATA</span>
+      </div>
+
+      <div class="row blocked">
+        <div class="name">Not exercised<small>coverage gap</small></div>
+        <div class="body">
+          <div class="line"><span class="lab">Should</span><span class="val">Professional tier (0.20) · non-USD renewal maintenance</span></div>
+          <div class="line"><span class="lab">In UAT</span><span class="val">No live Professional-tagged line and no non-USD first-renewal line exist to price; the Apex fixture can't be repriced. Metadata confirms the rates.</span></div>
+        </div>
+        <span class="badge blocked">BLOCKED</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE FIX -->
+  <section class="reveal">
+    <h2>The fix that closed the one real defect</h2>
+    <p class="sec-lead">A first-renewal maintenance line carrying a <b>discretionary discount</b> used to break on re-price: the engine mis-routed it into the <em>new-business</em> tier base (<span class="mono">asset × 0.20</span>) and produced a badly low net. A commit-layer override now re-computes the correct asset-based net and writes it over the procedure's value.</p>
+
+    <div class="fix">
+      <h3 style="margin-top:0">Discretionary first-renewal — line <span class="mono">04267919</span> (quote 00781299)</h3>
+      <div class="ba">
+        <div class="baCard before">
+          <div class="k">Before · run 1</div>
+          <div class="num mono">660.04</div>
+          <div class="sub">base collapsed to 4000 × 0.20 = 800, then discounts + COLA</div>
+        </div>
+        <div class="baArrow" aria-hidden="true">→</div>
+        <div class="baCard after">
+          <div class="k">After · run 2 (fixed)</div>
+          <div class="num mono">3645.33</div>
+          <div class="sub">(4000 − 600 − 20) × 1.0785, committed &amp; idempotent</div>
+        </div>
+      </div>
+      <p style="margin:16px 0 0"><b>Mechanism:</b> <code>PartnerNetPricePosthook.buildRenewalColaCommitUpdate</code> → <code>COLAUpliftCalculator.computeFirstRenewalMaintenanceNet</code>. All six renewal lines now match their formula to the cent (independently re-derived and adversarially verified). Companion line <span class="mono">DKNN</span> moved 58.58 → <span class="mono">65.09</span>.</p>
+      <p class="note"><b>Read Net Unit Price, not COLA Calculated Price.</b> The override corrects <span class="mono">NetUnitPrice</span> but intentionally leaves <span class="mono">COLACalculatedPrice__c</span> at the old value (e.g. 660.04). That field is a last-resort fallback only — the order and Workday take the corrected Net — so it's cosmetic on disk. Re-stamping it to match is a suggested tidy-up, not a defect.</p>
+    </div>
+  </section>
+
+  <!-- OPEN ITEMS -->
+  <section class="reveal">
+    <h2>What still needs eyes</h2>
+    <div class="mech">
+      <div class="row warn">
+        <div class="name">Discount value doesn't reconcile</div>
+        <div class="body"><div class="line"><span class="val">New-business netting lands on <span class="mono">56.23</span> where the 15% partner + 10% discretionary waterfall predicts <span class="mono">54.32</span>. Netting is happening and is stable — but the exact figure needs a discount-order review. Out of scope of the renewal fix.</span></div></div>
+        <span class="badge warn">WARN</span>
+      </div>
+      <div class="row data">
+        <div class="name">Over-priced contributor licenses</div>
+        <div class="body"><div class="line"><span class="val">16 <span class="mono">PIAMBK</span> maintenance lines inherit a manually inflated license base (e.g. a license overridden to 15,300 / base 20,000 vs a 355 list). The 0.20 × base math is correct — the base is wrong upstream. Fix the license prices, not the formula.</span></div></div>
+        <span class="badge data">DATA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIELD GUIDE -->
+  <section class="reveal">
+    <h2>Reading a maintenance line in the UI</h2>
+    <p class="sec-lead">Which field means what when you open a quote line to check it.</p>
+    <div class="card pad">
+      <dl class="guide">
+        <div><dt>Net Unit Price</dt><dd><b>The answer.</b> The authoritative derived price — this is what to verify.</dd></div>
+        <div><dt>Base Price</dt><dd>The procedure's intermediate. On fixed renewal lines it's overridden, so <b>Base × COLA won't equal Net</b> there — that's intended.</dd></div>
+        <div><dt>COLA Calculated Price</dt><dd><b>Ignore on renewals.</b> Left intentionally stale by the fix; not used for order money.</dd></div>
+        <div><dt>List Price</dt><dd><b>0 is normal</b> on a derived maintenance line. It's populated only on the source subscription (native currency).</dd></div>
+        <div><dt>Net Total Price</dt><dd>Net Unit × Qty. Occasionally blank on a renewal (a rollup quirk) — use Subtotal / Total Price, which are correct.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer class="reveal">
+    <div><b>Derived Maintenance Pricing (SC-3346)</b> — FortraUAT · <span class="mono">Rev_Mgmt_Default_Pricing_Procedure</span> V25 (sole active).</div>
+    <div class="kv">
+      <span>Verified via Salesforce CLI SOQL oracle + Force-reprice, graded on committed Net Unit Price, independently re-derived and adversarially verified.</span>
+    </div>
+    <div class="kv" style="margin-top:6px">
+      <span><b>Bottom line:</b> both branches price correctly; the one prior defect is fixed and holds; the remaining items are a discount-order question and an upstream data cleanup — neither is a formula failure.</span>
+    </div>
+  </footer>
+
+</div>

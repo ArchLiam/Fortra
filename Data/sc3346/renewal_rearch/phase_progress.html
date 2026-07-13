@@ -1,0 +1,247 @@
+<style>
+  :root {
+    --bg: #f5f7fa; --surface: #ffffff; --surface-2: #f0f3f8;
+    --ink: #171d2a; --muted: #5c6675; --faint: #8a93a3;
+    --border: #e2e7ef; --border-strong: #ccd4e0;
+    --accent: #4258d0; --accent-soft: #eaeeff;
+    --done: #1f9d5b; --done-soft: #e2f6ec;
+    --now: #c67f0a; --now-soft: #fbefd6;
+    --next: #7b8494; --next-soft: #eef1f6;
+    --shadow: 0 1px 2px rgba(20,28,45,.04), 0 6px 20px rgba(20,28,45,.06);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo, monospace;
+    --sans: ui-sans-serif, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1218; --surface: #161b23; --surface-2: #1c222c;
+      --ink: #e9edf4; --muted: #97a2b4; --faint: #6b7688;
+      --border: #262d39; --border-strong: #333c4a;
+      --accent: #6f86f6; --accent-soft: #1d2437;
+      --done: #37c07a; --done-soft: #14271e;
+      --now: #e0a63c; --now-soft: #2a2113;
+      --next: #71798a; --next-soft: #1b212b;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 26px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f7fa; --surface: #ffffff; --surface-2: #f0f3f8;
+    --ink: #171d2a; --muted: #5c6675; --faint: #8a93a3;
+    --border: #e2e7ef; --border-strong: #ccd4e0;
+    --accent: #4258d0; --accent-soft: #eaeeff;
+    --done: #1f9d5b; --done-soft: #e2f6ec;
+    --now: #c67f0a; --now-soft: #fbefd6;
+    --next: #7b8494; --next-soft: #eef1f6;
+    --shadow: 0 1px 2px rgba(20,28,45,.04), 0 6px 20px rgba(20,28,45,.06);
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1218; --surface: #161b23; --surface-2: #1c222c;
+    --ink: #e9edf4; --muted: #97a2b4; --faint: #6b7688;
+    --border: #262d39; --border-strong: #333c4a;
+    --accent: #6f86f6; --accent-soft: #1d2437;
+    --done: #37c07a; --done-soft: #14271e;
+    --now: #e0a63c; --now-soft: #2a2113;
+    --next: #71798a; --next-soft: #1b212b;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 26px rgba(0,0,0,.35);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--sans);
+    line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 40px 24px 64px; }
+
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; }
+  h1 { font-size: clamp(26px, 4vw, 36px); line-height: 1.12; margin: 10px 0 0; letter-spacing: -.02em;
+    text-wrap: balance; font-weight: 700; }
+  .sub { color: var(--muted); margin-top: 8px; font-size: 15px; max-width: 62ch; }
+
+  /* answer banner */
+  .banner { display: flex; align-items: center; gap: 16px; margin-top: 26px; padding: 18px 20px;
+    background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--now);
+    border-radius: 12px; box-shadow: var(--shadow); }
+  .banner .beacon { width: 12px; height: 12px; border-radius: 50%; background: var(--now); flex: none;
+    box-shadow: 0 0 0 4px var(--now-soft); animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 0 4px var(--now-soft); } 50% { box-shadow: 0 0 0 8px transparent; } }
+  @media (prefers-reduced-motion: reduce) { .banner .beacon { animation: none; } }
+  .banner b { font-size: 17px; }
+  .banner .btxt { color: var(--muted); font-size: 14px; }
+  .banner .btxt b { color: var(--ink); font-size: 14px; }
+
+  /* stepper */
+  .stepper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0 8px; }
+  @media (max-width: 920px) { .stepper { grid-template-columns: repeat(2, 1fr); } }
+  .step { position: relative; padding: 16px 16px 16px 18px; border-radius: 12px; background: var(--surface);
+    border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+  .step::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; }
+  .step.done::before { background: var(--done); }
+  .step.now::before { background: var(--now); }
+  .step.next::before { background: var(--next); }
+  .step .pn { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--faint); }
+  .step h3 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -.01em; }
+  .step p { margin: 0; font-size: 13px; color: var(--muted); }
+  .step .bar { height: 5px; border-radius: 3px; background: var(--surface-2); margin-top: 12px; overflow: hidden; }
+  .step .bar span { display: block; height: 100%; border-radius: 3px; }
+  .step.done .bar span { width: 100%; background: var(--done); }
+  .step.now  .bar span { width: 92%;  background: var(--now); }
+  .step.next .bar span { width: 0;    background: var(--next); }
+
+  .pill { display: inline-flex; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10.5px;
+    font-weight: 600; letter-spacing: .05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; }
+  .pill.done { color: var(--done); background: var(--done-soft); }
+  .pill.now  { color: var(--now);  background: var(--now-soft); }
+  .pill.next { color: var(--next); background: var(--next-soft); }
+  .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  /* section */
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    margin: 38px 0 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .sec-head h2 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+  .sec-head .meta { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+
+  .cols { display: grid; grid-template-columns: 1.55fr 1fr; gap: 18px; align-items: start; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } .stepper { grid-template-columns: 1fr; } }
+
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: var(--shadow); padding: 6px 4px; }
+  .card.pad { padding: 18px 20px; }
+
+  ul.checks { list-style: none; margin: 0; padding: 6px; }
+  ul.checks li { display: flex; gap: 11px; padding: 9px 10px; border-radius: 8px; align-items: flex-start; }
+  ul.checks li + li { border-top: 1px solid var(--border); }
+  .mark { flex: none; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center;
+    font-size: 11px; font-weight: 700; margin-top: 1px; }
+  .mark.done { background: var(--done-soft); color: var(--done); }
+  .mark.now  { background: var(--now-soft); color: var(--now); }
+  .mark.next { background: var(--next-soft); color: var(--next); border: 1px dashed var(--border-strong); }
+  .ci .t { font-size: 14px; font-weight: 550; }
+  .ci .d { font-size: 12.5px; color: var(--muted); margin-top: 1px; }
+  .ci .d code { font-family: var(--mono); font-size: 11.5px; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; }
+
+  /* metrics */
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 4px; }
+  .metric { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 13px; }
+  .metric .n { font-family: var(--mono); font-size: 22px; font-weight: 650; letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums; }
+  .metric .n.ok { color: var(--done); }
+  .metric .l { font-size: 11.5px; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+
+  .live { margin-top: 12px; padding: 14px 16px; border-radius: 10px; background: var(--now-soft);
+    border: 1px solid color-mix(in srgb, var(--now) 30%, transparent); }
+  .live .h { display: flex; align-items: center; gap: 8px; font-weight: 650; font-size: 13.5px; color: var(--now); }
+  .live .h .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--now); animation: pulse 2.4s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce) { .live .h .dot { animation: none; } }
+  .live p { margin: 8px 0 0; font-size: 12.5px; color: var(--ink); }
+  .live code { font-family: var(--mono); font-size: 11.5px; }
+
+  .foot { margin-top: 34px; padding-top: 16px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font-family: var(--mono); font-size: 11.5px; color: var(--faint); }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">SC-3346 · Renewal re-architecture</div>
+  <h1>Renew maintenance as itself — progress</h1>
+  <p class="sub">Path B: give owned maintenance a TermDefined selling model so it renews via the native exact-product match — retiring the two-catalog RNM→RRM pairing and the ~197 config rules.</p>
+
+  <div class="banner">
+    <span class="beacon" aria-hidden="true"></span>
+    <div>
+      <b>Yes — still in Phase 1, at its final verification gate.</b>
+      <div class="btxt">Build, catalog scale-out, and inline verification are <b>done</b>. Only the adversarial audit is in flight; when it returns GO, Phase 1 (owned population) closes and Phase 2 (go-forward, UAT-only) opens. Production is deferred / out of scope.</div>
+    </div>
+  </div>
+
+  <div class="stepper">
+    <div class="step done">
+      <div class="pn">Phase 0 · complete</div>
+      <h3>Prove &amp; research</h3>
+      <p>RCA root cause, decisive test, holistic native-model research, backlog triage.</p>
+      <div class="bar"><span></span></div>
+    </div>
+    <div class="step now">
+      <div class="pn">Phase 1 · ~92%</div>
+      <h3>Build Path B + scale owned catalog</h3>
+      <p>Provisioner service, hands-off proof, delete orphans, all 103 owned products made renewable.</p>
+      <div class="bar"><span></span></div>
+    </div>
+    <div class="step next">
+      <div class="pn">Phase 2 · not started · UAT</div>
+      <h3>Go-forward &amp; retire legacy</h3>
+      <p>Batch the ~1,540 unowned SKUs, retire the config rules, full integration test, regression pass — all in UAT.</p>
+      <div class="bar"><span></span></div>
+    </div>
+    <div class="step next" style="opacity:.72;">
+      <div class="pn">Phase 3 · deferred</div>
+      <h3>Production</h3>
+      <p>Ship the full stack to prod when you decide to. Out of scope for now — everything stays in UAT.</p>
+      <div class="bar"><span></span></div>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h2>Phase 1 — workstreams</h2>
+    <span class="meta">11 done · 1 in flight</span>
+  </div>
+
+  <div class="cols">
+    <div class="card">
+      <ul class="checks">
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">Architecture decision — Path B</div><div class="d">Renew maintenance as itself (TermDefined + native exact <code>Product2Id</code> match); no RNM→RRM pairing table.</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t"><code>RenewalMaintenanceProvisionService</code> built</div><div class="d">Data-driven, no hardcoded SKUs, apex-compliance clean. Swaps OneTime carryover → same-product TermDefined Renew line.</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">Chained enqueue + re-entrancy guards</div><div class="d">Runs inside <code>RenewalAssetQuantityQueueable</code> (async 1-queueable limit); <code>bypass</code> guards on both handlers.</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">End-to-end hands-off proof</div><div class="d">Fresh BoKS renewal auto-renewed as itself and committed <code>NetUnitPrice = 76.57</code> (= 71 × 1.0785 COLA).</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">Deleted orphan rename-artifacts</div><div class="d">Removed <code>RenewalMaintenanceProvisioner(+Test)</code> from UAT + repo — created 05:25 today, superseded, unreferenced.</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">Catalog scale-out — all 103 owned products</div><div class="d">83 PSMOs + 1,660 TermDefined PBEs across 10 currencies × 2 books. Idempotent, dry-run-first.</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">Found &amp; fixed BoKS non-USD gap</div><div class="d">Verification caught 18 missing non-USD PBEs (pilot did USD-only); root-fixed the exclusion + filled.</div></div></li>
+        <li><span class="mark done">✓</span><div class="ci"><div class="t">Authoritative invariant check</div><div class="d">INV-1/3/5/6 PASS; INV-2/4 proven pre-existing via provenance scoping (0 of my records violate).</div></div></li>
+        <li><span class="mark now">●</span><div class="ci"><div class="t">Adversarial audit — 5 hypotheses</div><div class="d">Independent probes: renewal resolution, asset-currency coverage, scope leak, OneTime mutation, deletion fallout → GO/NO-GO.</div></div></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="card pad">
+        <div class="metrics">
+          <div class="metric"><div class="n ok">103/103</div><div class="l">owned products now renewable (INV-1)</div></div>
+          <div class="metric"><div class="n">83</div><div class="l">PSMOs added · <b>0</b> default</div></div>
+          <div class="metric"><div class="n">1,660</div><div class="l">PBEs added · <b>0</b> rule violations</div></div>
+          <div class="metric"><div class="n ok">4/4</div><div class="l">core invariants pass; 2 noted pre-existing</div></div>
+        </div>
+        <div class="live">
+          <div class="h"><span class="dot" aria-hidden="true"></span> In flight</div>
+          <p>Adversarial workflow <code>wrn0qq1zz</code> — 5 auditors trying to <em>break</em> the change, then a synthesis verdict.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head">
+    <h2>Phase 2 — remaining (go-forward)</h2>
+    <span class="meta">UAT only · after Phase 1 signs off</span>
+  </div>
+  <div class="card">
+    <ul class="checks">
+      <li><span class="mark next">→</span><div class="ci"><div class="t">Batch the ~1,540 unowned OneTime maintenance SKUs</div><div class="d">No live renewal defect (nobody owns them) — needs Batch Apex (exceeds 10k DML/txn). Go-forward completeness.</div></div></li>
+      <li><span class="mark next">→</span><div class="ci"><div class="t">Retire ~197 Year-1/Year-2 config rules + dead <code>RenewalMaintenanceAutoAddHandler</code></div><div class="d">The provisioner replaces them; safe to decommission once go-forward is proven.</div></div></li>
+      <li><span class="mark next">→</span><div class="ci"><div class="t">Full data-built integration test for the provisioner</div><div class="d">Currently guard-path unit + live integration; a built test rounds out coverage.</div></div></li>
+      <li><span class="mark next">→</span><div class="ci"><div class="t">Regression pass — RCA full-test (S1–S14)</div><div class="d">Re-run the golden scenarios to confirm the 1,660-PBE catalog change didn't disturb other pricing/renewal flows.</div></div></li>
+    </ul>
+  </div>
+
+  <div class="sec-head">
+    <h2>Phase 3 — production</h2>
+    <span class="meta">deferred · not scheduled</span>
+  </div>
+  <div class="card" style="border-style:dashed;">
+    <ul class="checks">
+      <li><span class="mark next">⏸</span><div class="ci"><div class="t">Deploy code to prod — <code>RenewalMaintenanceProvisionService</code> + trigger wiring + guards</div><div class="d">Everything to date lives only in FortraUAT.</div></div></li>
+      <li><span class="mark next">⏸</span><div class="ci"><div class="t">Deploy catalog changes to prod — PSMOs + TermDefined PBEs</div><div class="d">The owned-product renewability data (and eventually the go-forward batch) must be reproduced in prod.</div></div></li>
+      <li><span class="mark next">⏸</span><div class="ci"><div class="t">Retire config rules in prod</div><div class="d">Decommission the ~197 rules + dead handler once Phase 2 is proven and prod is in play.</div></div></li>
+    </ul>
+    <p style="margin:2px 14px 12px;font-size:12.5px;color:var(--muted);">Out of scope right now — shipping is a deliberate future decision, not a pending task.</p>
+  </div>
+
+  <div class="foot">
+    <span>FortraUAT · liam.jeong.c@fortra.com.uat</span>
+    <span>Snapshot 2026-07-10 · awaiting audit verdict</span>
+  </div>
+</div>

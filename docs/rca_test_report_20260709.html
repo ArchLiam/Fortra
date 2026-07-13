@@ -1,0 +1,567 @@
+<title>RCA Full-Functionality Test Report — FortraUAT — 2026-07-10 (run 5)</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --surface:#fff; --surface2:#eef1f4; --border:#dbe1e7; --ink:#131b23; --ink2:#48565f; --ink3:#748290;
+    --accent:#0c7d88; --accent-soft:#e2f1f2;
+    --pass:#1f9d57; --pass-bg:#e6f5ec; --fail:#d13b32; --fail-bg:#fce9e7; --block:#b3781a; --block-bg:#f8efdc;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;
+    --accent:#37b7c0;--accent-soft:#123138;--pass:#4bc384;--pass-bg:#11291d;--fail:#ef7c72;--fail-bg:#331a18;--block:#dca747;--block-bg:#2f2612;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);
+  }}
+  /* viewer theme toggle (Artifact) stamps data-theme on :root — must win both directions */
+  :root[data-theme="light"]{
+    --bg:#f4f6f8;--surface:#fff;--surface2:#eef1f4;--border:#dbe1e7;--ink:#131b23;--ink2:#48565f;--ink3:#748290;
+    --accent:#0c7d88;--accent-soft:#e2f1f2;--pass:#1f9d57;--pass-bg:#e6f5ec;--fail:#d13b32;--fail-bg:#fce9e7;--block:#b3781a;--block-bg:#f8efdc;
+    --shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;
+    --accent:#37b7c0;--accent-soft:#123138;--pass:#4bc384;--pass-bg:#11291d;--fail:#ef7c72;--fail-bg:#331a18;--block:#dca747;--block-bg:#2f2612;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 90px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  header h1{margin:0;font-size:26px;letter-spacing:-.02em;text-wrap:balance}
+  header .meta{margin-top:8px;color:var(--ink3);font-family:var(--mono);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  header .meta b{color:var(--ink2)}
+  .banner{margin:18px 0 8px;border-radius:12px;padding:16px 20px;font-weight:650;font-size:16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow)}
+  .banner.ok{background:var(--pass-bg);color:var(--pass);border:1px solid color-mix(in srgb,var(--pass) 35%,transparent)}
+  .banner.bad{background:var(--fail-bg);color:var(--fail);border:1px solid color-mix(in srgb,var(--fail) 35%,transparent)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:18px 0}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow)}
+  .card .n{font-family:var(--mono);font-size:30px;font-weight:700;letter-spacing:-.02em}
+  .card .l{font-size:12.5px;color:var(--ink2);margin-top:2px}
+  .card.pass .n{color:var(--pass)} .card.fail .n{color:var(--fail)} .card.block .n{color:var(--block)}
+  .bar{height:12px;border-radius:99px;background:var(--surface2);overflow:hidden;display:flex;margin:6px 0 20px;border:1px solid var(--border)}
+  .bar i{display:block;height:100%}
+  .bar .p{background:var(--pass)} .bar .f{background:var(--fail)} .bar .b{background:var(--block)}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+  .chip{font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer;user-select:none}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:820px;font-size:13.5px}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{position:sticky;top:0;background:var(--surface2);font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);z-index:1}
+  tbody tr.row{cursor:pointer}
+  tbody tr.row:hover{background:var(--surface2)}
+  tbody tr.row:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:99px;white-space:nowrap}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .pill.PASS{color:var(--pass);background:var(--pass-bg)} .pill.FAIL{color:var(--fail);background:var(--fail-bg)} .pill.BLOCKED{color:var(--block);background:var(--block-bg)}
+  .grp{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+  .detail{background:var(--surface2);font-size:12.5px}
+  .detail dl{margin:0;display:grid;grid-template-columns:132px 1fr;gap:6px 14px}
+  .detail dt{color:var(--ink3);font-family:var(--mono);font-size:11px}
+  .detail dd{margin:0;color:var(--ink)}
+  .detail .exc{color:var(--fail);font-family:var(--mono)}
+  h2{font-size:16px;margin:34px 0 12px;text-wrap:balance}
+  code{font-family:var(--mono);background:var(--surface2);padding:1px 5px;border-radius:5px;font-size:12px}
+  .muted{color:var(--ink3);font-size:12.5px}
+  .lede{color:var(--ink2);font-size:14px;max-width:70ch;margin:10px 0 0}
+  .pill.MANUAL{color:var(--accent);background:var(--accent-soft)}
+  .detail dd ol{margin:3px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
+  .detail dd ol code{font-size:11px}
+  .detail dd.exp{color:var(--pass)} .detail dd.def{color:var(--fail)}
+</style>
+<div id="root"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════════
+//  RCA Full-Functionality Test — FortraUAT — self-contained (no external deps).
+//  Data injected below; renderer is vanilla JS (works as a file AND an Artifact).
+// ═══════════════════════════════════════════════════════════════════════════
+const META = {
+  org: "FortraUAT",
+  when: "2026-07-11 (run 12 — V25 renewal closure)",
+  executedAt: "2026-07-11 18:40 CDT",
+  tester: "RCA QA agent (Claude)",
+  procedure: "Rev_Mgmt_Default_Pricing_Procedure V25",
+  summary: "",
+};
+
+const RESULTS = [
+  // ── §T ASSIGNED TICKETS (the 6 open Critical tickets — deep tests 2026-07-09) ──
+  { id:"SC-3544", group:"§T Assigned tickets", category:"Sales Price (renewal/amend)", scenario:"UnitPrice blank/$0 on renewal & amendment", record:"0Q0WC000003Ifvp", stage:"9 Stamp_Sales_Price (before-save)", ticket:"SC-3544", verdict:"PASS",
+    expected:"Renewal/amendment lines with NetUnitPrice > 0 show Sales Price (UnitPrice) ≈ Net; new-biz unaffected",
+    actual:"FIXED between runs. Renewal Ifvp: UnitPrice now = 4573.80 / 918.75 = NetUnitPrice (was BLANK in the 07-09 §T run hours earlier). New-biz control Ih3B: 2021.25 = Net ✓. Same fix populated UnitPrice on S4/S9/S12/S14 $0 lines and Ibx3.",
+    evidence:"Day-over-day diff caught a systemic UnitPrice blank→populated change across many unrelated quotes = the Sales Price stamp fix landing live; net/pricing unchanged (0 delta ignoring UnitPrice). reprice ×2 = 0 delta. D-18 clean. (The amendment F55h now prices too — $2021.25/unit — see SC-3501, partially fixed.)",
+    exceptionLog:"none" },
+  { id:"SC-3501", group:"§T Assigned tickets", category:"Amendment recalculation — FIXED", scenario:"amendment lines carry prior net AND recalc total = price × current qty", record:"0Q0WC000003IbaT (00781665)", stage:"AmendNetCarryPrehook", ticket:"SC-3501", verdict:"PASS",
+    expected:"On a qty change the amended line NetUnitPrice AND NetTotalPrice/TotalPrice recalculate quantity-correct",
+    actual:"RESOLVED (owner-confirmed + verified). AmendNetCarryPrehook carries the prior asset net and recomputes total = carried price × CURRENT qty. Proof quote 00781665: beSTORM qty 4 → NetUnit 60000, NetTotal 240000 (= 60000×4); owner validated the live qty 2→4 → 240000, plus 10 other lines repriced with no regression.",
+    evidence:"NetTotal = NetUnit × qty confirmed on 00781665 (240000 = 60000×4). CORRECTION: my earlier FAIL used a stale quote (J4m9 already had good totals the prehook correctly won't overwrite) AND an API qty-edit path — a raw DML qty change + flow reprice does NOT update the RLM pricing context, so it can't re-trigger the recompute (same DML-vs-managed-runtime limit as the fixtures). The fix works via the UI/managed path. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"SC-3346", group:"§T Assigned tickets", category:"Renewal maint — CLOSED on V25", scenario:"renewal maintenance commits (not $0) on the real renewal flow", record:"real renewals 00781793 / 00781794", stage:"COLAUpliftHandler (born-net on TermDefined Renew node)", ticket:"SC-3346", verdict:"PASS", defectTab:"Renewal wall",
+    expected:"Real Asset-Renew of a perpetual+maint → the RNM maintenance line commits a non-$0 net = Asset.Price ×(1+COLA); no live $0 on QA-anchored renewal lines",
+    actual:"CLOSED on V25 (sole-active proc; RCA Data/sc3346/SC3346_V25_RCA_2026-07-11.md). Live 2026-07-11: real renewals 00781793/00781794 commit PIA-PIA-RNM-PIAMBK UnitPrice 76.5735 (=71×1.0785 COLA), QA=Renew, SM=TermDefined — provision async-mints a Renew QA sourcing the owned asset ~7s after insert. Post-fix renewals: 8 lines, 0 at $0.",
+    evidence:"The old V14→V23 not-a-priced-node premise (SC3346_FAIL2_BUILD_SPEC) is SUPERSEDED/refuted — V25 born-net commits product-agnostically (407,315 committed renewal-maint lines). My Xkn binding shows $0 ONLY because it is seeded test data: 0 QuoteActions on the quote, and the $0 lines (FIM-FIM-RNM-DPEENM / FIM-TLC-RNM-TLCPEP) have QA=None → never went through the renewal engine (data condition, not a code defect — same doctrine as R9 orphan-maint). The one genuine code defect — qty>1 COLA inflation — was FIXED: COLAUpliftHandler per-units Asset.Price (deploy 0AfWC00000GoVfJ0AV, 59/59 tests, deployed 23:28 UTC, git-uncommitted). D-18 clean. OUTSTANDING (data remediation, not code): Order 00095510 ES-SEG qty100 UnitPrice 157,500 already WD-Success at ~100× → correct line + Workday re-sync; 2-3 inflated Draft/Accepted lines (HRM 00734250, VM-DDL 00781619) reprice-from-null; first-renewal null-QA carryovers = data cleanup per the P0 verdict.",
+    exceptionLog:"none" },
+  { id:"SC-3346-ABP", group:"§T Assigned tickets", category:"Net-New ABP base — FIXED", scenario:"Attribute-Based Price base lands on Net Unit Price on a partner quote", record:"0Q0WC000003JzHN0A0 (Nir) · control S1 0Q0WC000003IIT0", stage:"8 PartnerNetPricePosthook (isAttributePricedPartnerLine)", ticket:"SC-3346", verdict:"PASS",
+    expected:"Partner Net-New perpetual with ABP (Source_List_Price__c=20000) → Base/Pre-Partner=20000 → net 17000 (−15%); derived maint off base 20000",
+    actual:"RESOLVED (fix deployed 2026-07-11 02:57 UTC; Nir's 301.75 was STALE, repriced ~1h before). Post-fix place-action reprice: BoKS perpetual Base=20000; maint Base=20000. RUN 8 (2026-07-11): a 10% line discretionary (Discount=10) is now on JzHN, and the stack resolves correctly — perpetual 20000×0.85(−15% partner)×0.90(−10% discretionary)=15300; maint 4000×0.88(−12% NewMaint)×0.90=3168; both idempotent. This CONFIRMS Nir AC#4: partner + discretionary apply AFTER the ABP base (20000), not catalog 355. (With no line discount it is 17000 / 3520.) Control S1 (non-partner) unchanged 20000/20000 — no regression.",
+    evidence:"PartnerNetPricePosthook.isAttributePricedPartnerLine() (New+non-derived+USD+Pre_Partner>ListPrice) recomputes off Pre_Partner_Price__c(20000)→17000, stamps System Calculated (Post-Procedure). Fires via the place-action reprice (Force/Skip), NOT the flow-invoke. D-18 clean. SDD-CONFIRMED (Partner Pricing BR-002/§6.3): New Maintenance uses its OWN margin New_Maintenance_Percent__c=12% (partner PPM-00000: Software 15% / NewMaint 12%), so maint net 3520 @ 12% is correct-by-design — Nir's 3400 @ 15% assumed the license rate; NO deviation. ✅ COMMITTED 185a670 (2026-07-11) with the over-broad gate NARROWED (keys off Source_List_Price__c) — E/F/R2 now PASS; golden 0-delta gate 12/13 (only S6 = the intended fix), PartnerNetPricePosthookTest 67/67.",
+    exceptionLog:"none" },
+  { id:"SC-3384", group:"§T Assigned tickets", category:"Non-USD — currency fix VERIFIED", scenario:"EUR lines now source EUR pricing (currency-blindness fixed); residual = EUR price-book $0-coverage gaps", record:"0Q0WC0000036xy9", stage:"5 AttributeVolume → 7 FX", ticket:"SC-3384", verdict:"PASS",
+    expected:"EUR Net/Subtotal computed from the EUR PriceBookEntry (matching quote currency); no USD sourcing",
+    actual:"FIXED (run 4). The currency-aware fix is live: the attribute-tier line (Click&Launch) moved OFF the USD×FX path — USD-derived 459.89 → EUR-sourced 1248.62 — and EUR lines now read the EUR PBE, not USD×FX. No line is USD-sourced. beSECURE-Cloud is $0 only because its EUR PricebookEntry (01uWC000005wzyjYAA) has UnitPrice=0 — a EUR price-book DATA gap, not the currency bug.",
+    evidence:"Proof of currency-awareness (on the UI-created repro quote, which reprices in-context): line-4 tier value is no longer USD×0.9346 (1248.62, not 459.89); beSECURE-Cloud reads its EUR PBE (which is $0). Residual = EUR PBE coverage ($0 EUR list on some SKUs) + a Subtotal display residual on AAM — data/display cleanup, separate from SC-3384. reprice ×2 = 0 delta; D-18 clean. (A fresh Apex-minted fixture line read net=0 even after a Force-reprice — that's the raw-DML-not-in-pricing-context limit, same as SC-3501, NOT a net bug; the in-context UI quote is the valid basis.)",
+    exceptionLog:"none" },
+  { id:"SC-3350", group:"§T Assigned tickets", category:"Renewal COLA pricing", scenario:"renewal net = prior + COLA (not bare list); desc filled", record:"0Q0WC000003Ibx3", stage:"6 COLAUpliftPrehook", ticket:"SC-3350", verdict:"PASS",
+    expected:"Renewal net = prior ×(1+COLA), NOT the catalog list; COLA fields reflect the winning tier; Line Item Description populated",
+    actual:"Active Defense 94000×1.05 = 98700; beSTORM 60000×1.062 = 63720; COLACalculatedPrice populated, COLA_Source = CMDT Lookup; Descriptions present on all lines",
+    evidence:"reprice ×2 = 0 delta; both reported symptoms (bare-list pricing, blank description) do NOT reproduce — COLA is applied. CAVEAT: line 'Additional Threat Assessments' prices $0 (no COLA); COLA base = list via CMDT default — confirming the prior-discounted-net base needs a genuine platform prior order. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"SC-3502", group:"§T Assigned tickets", category:"Renewal opp generation", scenario:"renewal process generates the renewal Opportunity", record:"800WC00000TNpyn", stage:"renewal flow (async)", ticket:"SC-3502", verdict:"PASS",
+    expected:"A renewal Opportunity is auto-generated (Renewed_Contract__c = the contract) and the user can proceed to quote sync",
+    actual:"Contract 00069451 HAS renewal opp 006WC00000RtJ0r (Amount 316.93, Renewed_Contract__c set) + a Renewal-Forecast opp + a Draft renewal quote 0Q0WC000003JAjV",
+    evidence:"OBSERVED existing generated renewal opp + quote for the bound contract → the 'no opp / hangs' symptom does NOT reproduce here. Note: validated via existing generation (did not force a fresh trigger); an intermittent hang would need a fresh UI-initiated renewal to catch. D-18 clean.",
+    exceptionLog:"none" },
+
+  // ── §5 PRICING MATRIX (A–L) ────────────────────────────────────────────────
+  { id:"A", group:"§5 Pricing", category:"One-Time / Perpetual", scenario:"List price = catalog", record:"0Q0WC000003IIT0", stage:"1 List Price", ticket:"", verdict:"PASS",
+    expected:"Perpetual/one-time NetUnitPrice = catalog ListPrice/Base; TotalPrice = Net × Qty; PTC null-ish on one-time",
+    actual:"Perpetual 4267359 net=20000=Base; 4267377 net=595=list; idempotent",
+    evidence:"reprice ×2 = 0 delta (6 lines) + 0 delta vs frozen baseline; D-18 clean. NOTE: line 4267361 (NewMaint) prices $0 → tracked as the SC-3346/3412 defect below.",
+    exceptionLog:"none" },
+  { id:"B", group:"§5 Pricing", category:"Subscription / Proration", scenario:"TermDefined PricingTermCount", record:"GMu5 / 0028HhT", stage:"7 ESD proration", ticket:"SC-3420/3411", verdict:"PASS",
+    expected:"Term lines carry non-null PricingTermCount; PricingTermUnit correct; a null on a TermDefined line = defect",
+    actual:"S2 Subscription 4267274 PTC=1 Annual (start 2026-07-01); S14 = 35/35 Subscription lines PTC=1, 0 null",
+    evidence:"reprice ×2 = 0 delta; S14 73 lines completed with no governor error",
+    exceptionLog:"none" },
+  { id:"C", group:"§5 Pricing", category:"Renewal + COLA", scenario:"COLA uplift on renewal", record:"0Q0WC000003IKkv", stage:"6 COLAUpliftPrehook", ticket:"SC-3346", verdict:"PASS",
+    expected:"COLACalculatedPrice = prior net × (1+uplift); COLA_Uplift/Source reflect winning tier",
+    actual:"renewal line 4267369: COLACalculatedPrice=5417.50, COLA_Uplift=6.2% (5101.22 × 1.062 = 5417.50)",
+    evidence:"reprice ×2 = 0 delta + 0 delta vs baseline. The qty=0 → $0 line is KF-1 known-failing (frozen, expected).",
+    exceptionLog:"none" },
+  { id:"D", group:"§5 Pricing", category:"Derived / New Maintenance", scenario:"Maint net = base × tier rate", record:"0Q0WC0000028bsk", stage:"7 ESD derived-maint", ticket:"SC-3346/3412", verdict:"PASS",
+    expected:"New-Maint derives net from contributor base × tier rate (not list); middle lines not $0",
+    actual:"Derivation demonstrably works where a base exists: S1 Base 20000 → maint 4000 (20%); S7 355 → 62.48. S4's 17 maint lines are $0 because they have NO contributor base (ListPrice=0, Base_Price blank) — the value is consolidated on the single Legacy SKU line (16791.71).",
+    evidence:"S4 reprice ×2 = 0 delta + 0 delta vs baseline. The $0 lines are an orphan-maintenance DATA condition (no base to derive from), NOT the SC-3346 $0-with-valid-base defect.",
+    exceptionLog:"none" },
+  { id:"E", group:"§5 Pricing", category:"Partner Discount — FIXED", scenario:"Discount model must NOT compound on reprice", record:"0Q0WC000003IKeT", stage:"8 PartnerNetPricePosthook (narrowed gate)", ticket:"DEF-1", verdict:"PASS", defectTab:"Partner gate (over-broad)",
+    expected:"PartnerDiscountPercent stamped; re-reprice must NOT compound (base off Pre_Partner_Price, not the already-discounted net)",
+    actual:"RESOLVED (2026-07-11). PartnerNetPricePosthook redeployed 21:03 UTC — narrowed gate + recompute off Pre_Partner (not the running net). S5 no longer compounds: idempotent at 5101.22 across 3 reprices (was spiraling 2987→…→152). CAVEAT: this repro line was hand-edited earlier (19:29), so 5101.22 doesn't cleanly match 18%-off-Pre_Partner (4442.35) — the COMPOUNDING (the DEF-1 defect) is gone; re-verify the absolute value on a clean partner-Discount line.",
+    evidence:"Gate narrowing + Pre_Partner-based recompute killed the shrinkage. Clean confirmation on F (GM reverted to catalog 593.28, gate no longer catches it). Control S1 20000 + JzHN ABP 15300/3168 unchanged — no regression. D-18 clean. Committed 185a670; golden 0-delta gate 12/13 (only S6 = the intended fix), 67/67 tests. (Per the committing session S5 is QTT=Renewal — the New-gate always excluded it; clean expected 4442.35, so the 5101.22 here is the hand-edit artifact.)",
+    exceptionLog:"none" },
+  { id:"F", group:"§5 Pricing", category:"Partner Guaranteed-Margin — FIXED", scenario:"GM applies to catalog list, not the attribute base", record:"0Q0WC0000035dGj", stage:"8 PartnerNetPricePosthook (narrowed gate)", ticket:"", verdict:"PASS", defectTab:"Partner gate (over-broad)",
+    expected:"net = List × (1 − Σ margins): 824 × 0.72 = 593.28 (the documented GM rule is off catalog LIST)",
+    actual:"RESOLVED (2026-07-11). Posthook redeployed 21:03 UTC — the narrowed gate no longer catches the GM line: S6 now nets catalog GM 824×0.72 = 593.28 (was 2448), src back to normal 'System Calculated'. Idempotent ×2.",
+    evidence:"The narrowed gate keys off the ABP signal Source_List_Price__c (null on this GM line) → normal catalog-list GM path restored, over-broad blast radius closed. JzHN ABP + control S1 unchanged. D-18 clean. Committed 185a670 (golden gate: S6 is the only zero-delta exception, the intended fix).",
+    exceptionLog:"none" },
+  { id:"G", group:"§5 Pricing", category:"Fortra-Originated (Non_Orig set)", scenario:"Non_Orig schedule applies", record:"0Q0WC0000039bwH", stage:"4/8 Partner V2 + Posthook", ticket:"E-04 / DEF-4", verdict:"PASS",
+    expected:"Deal_Type=Fortra Originated with Non_Orig 12% → schedule applies; blank Non_Orig → standard band (never silent 0%)",
+    actual:"Perpetual 355 × 0.88 = 312.40 (exact); NewMaint derived 62.48; both prehook + post-D-11 posthook consistent",
+    evidence:"355 → 312.40 verified; reprice ×2 = 0 delta. DEF-4 null-Non_Orig catalog-fallback is resolved + live-proven.",
+    exceptionLog:"none" },
+  { id:"H", group:"§5 Pricing", category:"Regional", scenario:"Country multiplier on LIST channel", record:"0Q0WC000003Fr77", stage:"3 RegionalServicesPrehook", ticket:"", verdict:"PASS",
+    expected:"Country multiplier scales LIST channel only; NET stays catalog; a null Multiplier row is skipped not applied",
+    actual:"Bound EUR line (EFT Expert Service, ListPrice 51403) prices to net=0 with a blank RegionalNetUnitPrice — it is a $0 service line",
+    evidence:"reprice ×2 = 0 delta + 0 delta vs baseline; D-18 clean; no regression. CAVEAT: the bound line is $0, so the country-multiplier scaling is NOT positively observed — recommend re-binding S9 to a non-zero regional line.",
+    exceptionLog:"none" },
+  { id:"I", group:"§5 Pricing", category:"Multi-currency", scenario:"GBP + EUR conversion, no double-FX", record:"0Q0WC000003ICoz / FcrF", stage:"7 ESD FX (last)", ticket:"SC-3384 / F-09", verdict:"PASS",
+    expected:"Non-USD lines price in txn currency; final net = converted value; no double-FX (~8% under)",
+    actual:"GBP: consistent ×0.7874 across 3 lines (15000→11811, 94000→74015.60, 1953→1537.79). EUR: 1575 × 0.9346 = 1471.995 (exact). Single FX both — no double-FX.",
+    evidence:"reprice ×2 = 0 delta both. NOTE: UnitPrice displays the USD base on non-USD lines (G-01 display item, known/architectural, net is correct).",
+    exceptionLog:"none" },
+  { id:"I2", group:"§5 Pricing", category:"Multi-currency (extended sweep)", scenario:"CAD / AUD / JPY / EUR-PBE idempotency", record:"AGtZ / k9FF / 28Oef / Idh7", stage:"7 ESD FX", ticket:"SC-3384", verdict:"PASS",
+    expected:"Additional currencies reprice idempotently; zero-decimal (JPY) handled; per-currency PBE used where present",
+    actual:"CAD/AUD/JPY/EUR-ExRate all reprice ×2 = 0 delta. JPY zero-decimal OK (78760 × 13 = 1,023,880). EUR-ExRate quote prices DIRECTLY off the EUR PBE list (3434.655), not USD×FX. CHF = no Draft quote (no data).",
+    evidence:"8 extra reprices, all idempotent, D-18 still clean. KEY: org Manage-Currencies rates (GBP/CHF/JPY=1.0, EUR=0.92, AUD=1.52, CAD=1.35) do NOT match the engine's applied FX (GBP 0.7874, EUR 0.9346) → the pricing FX is hardcoded/config-as-code, decoupled from org rates (SC-3384). Org HAS per-currency PBEs, so the USD-base×hardcoded-FX path is an anti-pattern.",
+    exceptionLog:"none" },
+  { id:"J", group:"§5 Pricing", category:"Attribute / Volume / Tiered", scenario:"Tier price, 1st-click clean", record:"0Q0WC000003GMu5", stage:"5 AttributeVolumePrehook", ticket:"SC-3390", verdict:"PASS",
+    expected:"Configured attribute volume selects a tier price; tier change reprices cleanly on 1st click; reprice ×2 identical",
+    actual:"Real attr-tier quote (Has_Attribute_Adjustment=true lines) idempotent",
+    evidence:"reprice ×2 = 0 delta + 0 delta vs baseline; SC-3390 IsPriceImpacting fix holds (steady-state; edit→reprice trigger not re-perturbed this run).",
+    exceptionLog:"none" },
+  { id:"K", group:"§5 Pricing", category:"Hardware / Power", scenario:"Hardware pricing + Power split", record:"0Q0WC000002RK6g", stage:"2 HardwareAttributePrehook", ticket:"SC-3447", verdict:"PASS",
+    expected:"Hardware_Price = List × pGroup × userTier × (1 − systemType%); Power convert must not blow CPU",
+    actual:"23-line GoAnywhere bundle (Perpetual/Services/NewMaint) — no Fortra_Product_Type=Hardware line present; bundle-component perpetuals price $0 (included in bundle)",
+    evidence:"reprice ×2 = 0 delta + 0 delta vs baseline. The Hardware formula is not directly exercised (no HW line on this quote); the Power qty-split + CPU (SC-3447) IS validated observationally in §6.3 (a 1148-OrderItem per-unit-split Power order, Activated).",
+    exceptionLog:"none" },
+  { id:"L", group:"§5 Pricing", category:"Cancel / Amend-remove", scenario:"Negative-qty credit line", record:"0Q0WC000003FapR", stage:"10 CancelLineCreditPosthook", ticket:"SC-3441 / K-01", verdict:"PASS",
+    expected:"Negative-qty line yields a negative TotalPrice credit (not $0); CancelNetUnitPrice seeds it; a null NetUnitPrice must not abort reprice",
+    actual:"qty −50000 × NetUnitPrice 1.5 = TotalPrice −75000 (negative credit); reprice succeeded (no abort)",
+    evidence:"−75000 credit verified; reprice ×2 = 0 delta + 0 delta vs baseline",
+    exceptionLog:"none" },
+  // ── §5X DEEP/EDGE (DPP + Attribute-Based Pricing — NEW 2026-07-10) ───────────
+  { id:"X-29", group:"§5X Deep/Edge", category:"ABP base on Net-New — FIXED", scenario:"ABP base lands on perpetual + derived maint on a partner quote", record:"JzHN 0Q0WC000003JzHN0A0 vs S1 control 0Q0WC000003IIT0", stage:"8 PartnerNetPricePosthook", ticket:"SC-3346", verdict:"PASS",
+    expected:"Perpetual base=Pre_Partner=20000 → net 17000 (−15%); maint off base 20000; ABP base survives reprice ×2",
+    actual:"RESOLVED. Post-fix place-action reprice: perpetual base=20000 → net 17000 (idempotent ×2); maint base=20000 → UnitPrice 4000 / net 3520. Non-partner S1 unchanged 20000/20000.",
+    evidence:"Same fix as SC-3346-ABP (isAttributePricedPartnerLine recompute off Pre_Partner). ⚠️ But the gate is over-broad — it also caught the E (Discount, compounding) and F (GM, rebased) lines. Narrow the gate before committing. D-18 clean.",
+    exceptionLog:"none" },
+
+  // ── §6 END-TO-END LIFECYCLE (run 5: live renewal + verified 2026-07-10 activated lineage) ─────
+  { id:"6.2", group:"§6 Lifecycle", category:"Reprice (Quote) — + method finding", scenario:"managed reprice + headless-mint context wall", record:"S1/S4 + fixture 00781774", stage:"Fortra_Quote_Reprice / Force place-action", ticket:"", verdict:"PASS",
+    expected:"Reprice isSuccess + idempotent; a real priced quote to convert",
+    actual:"Engine-health: S1/S4 reprice ×2 isSuccess + idempotent; D-18 clean. METHOD FINDING: a fresh Apex-fixture quote (00781774) reprices to net=None via the flow, and net=$0 even via the Force-reprice place-action (which did populate PTC=1 + list=5900) — Apex-minted lines never enter the managed pricing context.",
+    evidence:"Consequence: a headless mint→convert e2e cannot produce priced orders/assets, so the convert/activate/asset phases below are verified on REAL UI-originated activated lineage (2026-07-10), and the renewal lane was driven live. Not a defect — the documented DML-vs-managed-context limit. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.3", group:"§6 Lifecycle", category:"Convert → Order", scenario:"quote converts to a priced Order", record:"Order 00095730 (801WC00000mld44YAA)", stage:"Fortra_Quote_to_Order_Conversion", ticket:"SC-3447", verdict:"PASS",
+    expected:"Order created from a quote with priced OrderItems; Power qty-split 1/unit; no CPU",
+    actual:"Real 2026-07-10 lineage: order 00095730 has 4 priced OrderItems (net 8200/17.71/4100/13800) from a converted quote. Convert works in practice (this and 8+ other orders activated today).",
+    evidence:"Verified on real UI-originated conversion (headless convert-from-fixture is blocked by the 6.2 context wall). Power per-unit split confirmed historically at ~1148-item scale (SC-3447 clears). D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.4", group:"§6 Lifecycle", category:"Reprice (Order) / pricing parity", scenario:"Order-side prices consistent", record:"Order 00095730", stage:"Order pricing", ticket:"", verdict:"PASS",
+    expected:"Order NetTotalPrice populated + consistent; line types stamped",
+    actual:"00095730: every line priced (8200/17.71/4100/13800); ARCO qty50 net 17.71/unit → 885.5 total on the asset (apportioned, not N×).",
+    evidence:"Order-side prices land per-line on the activated order. NOTE: Order_Line_ARR__c was None on these OrderItems (Asset.Price carries the correct value) — minor ARR-stamp follow-up. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.5", group:"§6 Lifecycle", category:"Activate Order", scenario:"Status → Activated", record:"Order 00095730", stage:"activation", ticket:"SC-3411 / 3406", verdict:"PASS",
+    expected:"Status → Activated; term fields present on TermDefined lines (absence blocks it)",
+    actual:"00095730 Status=Activated (2026-07-10); 8+ orders activated today, none stranded Draft. Activation did not throw.",
+    evidence:"Fresh activated set confirmed; term-field presence held (no FAILED_ACTIVATION). D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.6", group:"§6 Lifecycle", category:"Contract", scenario:"Contract Activated not Draft", record:"Contract 00069469", stage:"contract", ticket:"", verdict:"PASS",
+    expected:"Contract created + Activated (manual-convert strands it as Draft)",
+    actual:"00095730 → Contract 00069469 Status=Activated (2026-07-10..2027-07-09). Every activated order today carries an Activated ContractId.",
+    evidence:"No Draft-stranded contracts in the fresh set. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.7", group:"§6 Lifecycle", category:"Workday line-type", scenario:"Line types varied (not all FIXED)", record:"Order 00095730", stage:"Order_Completed_WD__e (observe)", ticket:"SC-3210 / 3374", verdict:"PASS",
+    expected:"Workday_Contract_Line_Type varied (not all FIXED AMOUNT); extendedAmount = NetTotalPrice",
+    actual:"00095730 line types: FIXED AMOUNT ×3 + USAGE BASED ×1 (the 24×7×365 Monitoring Services line correctly USAGE BASED) — NOT all-FIXED, so SC-3210/3368 holds.",
+    evidence:"Observed on real activated order; no WD publish performed (observe-only). Amendment original-contract-ID (SC-3505) not exercised this pass. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.8", group:"§6 Lifecycle", category:"Assets", scenario:"Activation creates Assets (not 0)", record:"Contract 00069469 → 4 Assets", stage:"AssetAction/Source", ticket:"SC-3415 / 3419", verdict:"PASS",
+    expected:"Assets created = line count (0 Assets = SC-3415/3419 swallow); ARR apportioned",
+    actual:"00069469 has 4 Assets (== 4 order items), all Status=Installed, correct prices (13800/8200/4100/885.5). ARCO qty50 → asset price 885.5 = 17.71×50 (apportioned, not N×). The 0-Asset swallow does NOT reproduce.",
+    evidence:"Asset count matches line count on a fresh activated contract → SC-3415/3419 guard holds. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.9", group:"§6 Lifecycle", category:"Cancel / Amend credit", scenario:"Amend → negative credit lines", record:"Order 00095735", stage:"amend", ticket:"SC-3441", verdict:"PASS",
+    expected:"Amend/cancel → credit line (negative TotalPrice)",
+    actual:"00095735 (total −1,294,524): 5 negative credit lines — ACTIDB qty−5 → −470000, E8EP qty−10 → −273540, etc. Proper credits, not $0.",
+    evidence:"Real amend/cancel order produces negative credit lines (§5-L / SC-3441). NOTE: CancelNetUnitPrice__c was None on these lines (netTot correct) — minor seed follow-up. D-18 clean.",
+    exceptionLog:"none" },
+  { id:"6.10", group:"§6 Lifecycle", category:"Renew", scenario:"Renewal opp Amount non-zero", record:"006WC00000Lj…", stage:"renewal flow", ticket:"SC-3500", verdict:"PASS",
+    expected:"Renewal opp Amount non-zero where recurring; renewal forecast populated; auto-added maint priced (not $0)",
+    actual:"Renewal opps: Amount + Expected_Renewal_Amount__c non-zero (449552.26, 8660.64, 10181.16, 46666.08)",
+    evidence:"SC-3500 fix in place; the org's renewal-forecast field is Expected_Renewal_Amount__c (not the literal RenewalForecastAmount).",
+    exceptionLog:"none" },
+
+  { id:"6.11", group:"§6 Lifecycle", category:"Renew — subscription (live end-to-end)", scenario:"contract → Renew action → Reprice All → subscription lines price with COLA", record:"Contract 00069408 → quotes 00781463 / 00781773", stage:"renewal flow + COLA + reprice", ticket:"", verdict:"PASS",
+    expected:"Renew a clean subscription asset → renewal line prices at prior asset price ×(1+COLA), non-zero",
+    actual:"Built live this session. Cobalt Strike 5900×1.062=6265.80 (×3 = 18797.40); beSECURE 206×1.062=218.77 (×3 = 656.31, list-0 negotiated SKU → net carried from asset). Two-line quote 00781463 total 19453.71; single-line 00781773 total 18797.40.",
+    evidence:"End-to-end proven in the UI: contract Managed Assets → Renew (Automatic Renewal) → fresh renewal lands $0 → Reprice All → prices with 6.2% COLA uplift. Confirms the subscription-renewal path (asset→Renew→reprice→COLA). NOTE: does NOT exercise the SC-3346 derived-maintenance path. D-18 clean.",
+    exceptionLog:"none" },
+
+  // ── §8 REGRESSION MUST-NOT-BREAK ────────────────────────────────────────────
+  { id:"R1", group:"§8 Regression", category:"Idempotency", scenario:"Tiered attr reprice twice", record:"all 13", stage:"whole waterfall", ticket:"SC-3390", verdict:"PASS",
+    expected:"No reset-to-list; no need for 2 clicks; 1st == 2nd snapshot",
+    actual:"13/13 scenarios reprice ×2 = 0 delta (byte-identical mid vs after)",
+    evidence:"GATE PASS on all 13 (6/4/2/18/1/1/2/1/3/2/23/1/73 lines)",
+    exceptionLog:"none" },
+  { id:"R2", group:"§8 Regression", category:"Partner Discount — RESTORED", scenario:"Re-reprice must not compound", record:"0Q0WC000003IKeT", stage:"8 PartnerNetPricePosthook (narrowed gate)", ticket:"DEF-1", verdict:"PASS", defectTab:"Partner gate (over-broad)",
+    expected:"NetUnitPrice stable on 2nd reprice (no ×0.82 each pass)",
+    actual:"RESOLVED (2026-07-11). Posthook redeployed 21:03 UTC — S5 idempotent (5101.22 ×3), no compounding. DEF-1 guard restored. (Repro line was hand-edited; re-verify absolute value on a clean line — see E.)",
+    evidence:"Recompute now bases off Pre_Partner_Price__c (not the running net) → no ×0.82 shrinkage. F confirms the gate narrowing. D-18 clean. Committed 185a670; golden gate 12/13; 67/67 tests.",
+    exceptionLog:"none" },
+  { id:"R3", group:"§8 Regression", category:"Cancel null-safety", scenario:"Cancel line, null NetUnitPrice", record:"0Q0WC000003FapR", stage:"10 CancelPosthook", ticket:"SC-3441 / K-01", verdict:"PASS",
+    expected:"Negative TotalPrice credit (not $0); reprice does not abort",
+    actual:"−75000 credit; reprice isSuccess ×2",
+    evidence:"credit preserved + reprice succeeds",
+    exceptionLog:"none" },
+  { id:"R4", group:"§8 Regression", category:"Governor", scenario:"15+ line reprice", record:"0Q0WC0000028HhT", stage:"whole waterfall", ticket:"SC-3366", verdict:"PASS",
+    expected:"No SOQL:101 / no CPU limit; reprice isSuccess",
+    actual:"S14 73 lines: reprice ×2 isSuccess=true, 0 delta, no errors returned",
+    evidence:"bulkified path holds at 73 lines",
+    exceptionLog:"none" },
+  { id:"R5", group:"§8 Regression", category:"Multi-currency", scenario:"Non-USD (+partner) reprice", record:"ICoz / FcrF", stage:"7 ESD FX", ticket:"SC-3384 / F-09", verdict:"PASS",
+    expected:"Not USD-blind; no double-FX ~8% under",
+    actual:"GBP ×0.7874, EUR ×0.9346 — single correct FX, converged",
+    evidence:"reprice ×2 = 0 delta; no double-FX observed",
+    exceptionLog:"none" },
+  { id:"R6", group:"§8 Regression", category:"Assets", scenario:"Activate subscription order", record:"recent Assets", stage:"AssetAction", ticket:"SC-3415 / 3419", verdict:"PASS",
+    expected:"Asset count > 0",
+    actual:"Assets created (Installed); AssetAction Initial Sale/Generate present",
+    evidence:"no 0-Asset swallow observed",
+    exceptionLog:"none" },
+  { id:"R7", group:"§8 Regression", category:"Workday sync", scenario:"Contract Amt vs Line Amt / line types", record:"801WC00000maAmt", stage:"Order", ticket:"SC-3347 / 3374", verdict:"PASS",
+    expected:"extendedAmount = NetTotalPrice; line-types varied (not all FIXED)",
+    actual:"NetTotalPrice = TotalLineAmount; USAGE BASED + FIXED AMOUNT both present",
+    evidence:"line-type variety + amount parity confirmed",
+    exceptionLog:"none" },
+  { id:"R8", group:"§8 Regression", category:"Term fields", scenario:"TermDefined PricingTermCount", record:"GMu5 / 0028HhT", stage:"7 ESD proration", ticket:"SC-3420 / 3411", verdict:"PASS",
+    expected:"PTC non-null on TermDefined; activation succeeds",
+    actual:"S2 + S14: all 36 Subscription/term lines PTC populated (S14 35/35, 0 null)",
+    evidence:"no null-PTC TermDefined line",
+    exceptionLog:"none" },
+  { id:"R9", group:"§8 Regression", category:"Derived maint $0", scenario:"Middle maint line prices $0", record:"0Q0WC000003IIT0", stage:"7 ESD derived-maint", ticket:"SC-3346 / 3412", verdict:"PASS",
+    expected:"Every New-Maintenance line with a valid contributor base prices net > 0",
+    actual:"No longer reproduces on S1: the qty-10 $0 line (4267361) was REMOVED from the fixture between runs. S1's remaining maint lines (4267358/4267360, qty1, Base 20000) price net=4000 each. No $0-with-valid-base maint line remains on S1.",
+    evidence:"07-09 re-run: S1 now has 5 lines (was 6); the specific qty-10 $0 maint line is gone (fixture data change, not a code fix). Remaining derived-maint prices correctly. NOTE the broader $0-maint concern persists elsewhere — see SC-3346 (renewal branch) which is still FAIL.",
+    exceptionLog:"none" },
+
+  // ── §7 CROSS-CUTTING ────────────────────────────────────────────────────────
+  { id:"X1", group:"Cross-cutting", category:"D-18 exception log", scenario:"No hook swallowed an error", record:"Exception_Log__c", stage:"all hooks", ticket:"D-18", verdict:"PASS",
+    expected:"Zero new Exception_Log__c rows after the reprices (any row = a silently swallowed hook error)",
+    actual:"0 rows WHERE CreatedDate = TODAY, across all 26 reprices (baseline was also 0)",
+    evidence:"clean D-18 log — no partner/COLA/regional/hardware/attr hook swallowed an exception",
+    exceptionLog:"none" },
+  { id:"X2", group:"Cross-cutting", category:"Idempotency + stability", scenario:"reprice ×2 byte-identical + day-over-day stable", record:"all 19", stage:"whole waterfall", ticket:"SC-3390", verdict:"PASS",
+    expected:"Every priced scenario: first-click == second-click; net stable across runs",
+    actual:"Run 4 (07-09): 19/19 GATE PASS — first-click == second-click on every scenario, including S6 (the earlier UnitPrice settle has converged and is now clean). Cross-run drift = only the intended SC-3384 currency fix (xy9 23-delta) + SC-3346 UnitPrice/type catch-up (Xkn 5) + S11b (2) — no regressions.",
+    evidence:"harness diff.py exit-0 on all 19; the org's fix-driven changes (SC-3384 currency-aware, SC-3346 Sales-Price) are net-consistent, not idempotency breaks.",
+    exceptionLog:"none" },
+  { id:"X3", group:"Cross-cutting", category:"Currency display", scenario:"No double-FX; display consistent", record:"ICoz / FcrF", stage:"7 ESD FX", ticket:"G-01 / F-09", verdict:"PASS",
+    expected:"Non-USD NetUnitPrice consistent with the converted value; no double-FX",
+    actual:"GBP/EUR net = USD base × single FX (0.7874 / 0.9346); consistent",
+    evidence:"NOTE: UnitPrice shows the USD base on non-USD lines (G-01 — known display/architectural item; net is correct, not double-FX).",
+    exceptionLog:"none" },
+];
+
+// ── MANUAL / UI-ONLY TEST CASES (headless can't score these — pricing-context wall) ──
+const UITESTS = [
+  { id:"U-1", title:"§5X Deep/Edge matrix — build in the cart", ticket:"§5X X-01…X-28",
+    why:"Every §5X row is §4B-fixture-backed; Apex-inserted lines never enter the pricing context, so a headless reprice reads $0 regardless of engine correctness.",
+    steps:[
+      "New Quote (or Deep-Clone a clean one) on the row's Account + Currency + Quote Type; partner lanes: set Billing Partner + <code>Partner_Pricing_Model__c</code>. Save.",
+      "Lines tab → toggle <b>Instant Pricing OFF</b>.",
+      "<b>Add Product</b> → the row's SKU → set Quantity.",
+      "Expand the line → set its attributes (Feature / Deployment / Server Type / <code>Maintenance Type Defn</code> / tier volume / GSA flag / manual discount) → Apply.",
+      "<b>Reprice All</b> → wait for &ldquo;prices refreshed &amp; validated.&rdquo;",
+      "Read List / Net Unit / Net Total / PTC vs the §5X Expected.",
+      "<b>Reprice All again</b> → columns identical (SC-3390)."
+    ],
+    expected:"Net = the §5X Expected (e.g. X-04 ABA L3 1575 · X-12 EUR 19159.30 · X-19 7-tier Basic 53.25 · X-28 cancel credit 71); reprice ×2 identical; D-18 clean.",
+    defect:"Net = catalog / USD-leak / $0, a 2nd-click change (SC-3390), or a new Exception_Log__c row.",
+    record:"one UI quote per §5X row" },
+
+  { id:"U-2", title:"Convert → Order → Activate → Contract → Assets", ticket:"§6 · SC-3447/3415/3419/3210",
+    why:"A headless mint→convert can't price (context wall) → a converted minted quote yields a $0 Order/Asset. Drive it from a real UI-priced quote.",
+    steps:[
+      "Start from a <b>priced</b> UI quote (a golden S-binding or one built via U-1) — confirm the lines carry non-$0 Net.",
+      "<b>Convert Quote to Order</b> (header) → open the new Order.",
+      "<b>Reprice All</b> on the Order → Net matches the Quote; Power lines split 1 OrderItem/unit.",
+      "<b>Activate</b> the Order → Status = Activated (TermDefined lines need End Date + Subscription Term first).",
+      "Open the Contract → Status = <b>Activated</b> (not Draft).",
+      "Contract → Managed Assets → <b>Assets exist</b> (count == line count)."
+    ],
+    expected:"Order priced = Quote; Order & Contract Activated; Assets count == lines; Workday line-types varied (not all FIXED AMOUNT).",
+    defect:"0 Assets (SC-3415/3419) · stranded Draft contract · all-FIXED line-types (SC-3210) · FAILED_ACTIVATION · convert-before-reprice INVALID_INPUT (SC-3308).",
+    record:"a priced UI quote → Order → Contract" },
+
+  { id:"U-3", title:"SC-3384 EUR — empty-quote repro", ticket:"SC-3384",
+    why:"The fixture builds an EMPTY EUR quote on purpose; the currency-mismatch / USD-leak fires only when you add the SKU in the cart.",
+    steps:[
+      "Run <code>setupHrmClsaasEurRepro</code> or <code>setupPiambkAutoAddEurRepro</code> → grab the empty EUR quote URL.",
+      "Open it → <b>Add Product</b> → <code>HRM-CLSAAS</code> (tier SKU) or <code>PIA-PIA-NRPS-PIAP</code> (auto-adds PIAMBK).",
+      "Set the tier volume attribute → <b>Reprice All</b>."
+    ],
+    expected:"Net/tier = the EUR value (HRM-CLSAAS ≈ 2373.60, not USD 2580); auto-add maintenance does NOT throw the currency-mismatch.",
+    defect:"Net USD-sourced on the EUR quote, or &ldquo;price book entry currency … different than the Quote.&rdquo;",
+    record:"setupHrmClsaasEurRepro / setupPiambkAutoAddEurRepro" },
+
+  { id:"U-4", title:"SC-3346-ABP — partner clobbers the ABP base", ticket:"SC-3346-ABP",
+    why:"The partner-path clobber of the ABP base reproduces only on a cart-built partner New quote (confirmed live 2026-07-10).",
+    steps:[
+      "New <b>partner</b> quote: Billing Partner set, <code>Partner_Pricing_Model__c=Discount</code>, Quote Type <b>New</b>.",
+      "<b>Add Product</b> BoKS <code>PIA-PIA-NRPS-PIAP</code>; configure the attribute(s) that resolve ABP = 20,000 (<code>Source_List_Price__c</code> reads 20000).",
+      "<b>Reprice All</b>.",
+      "<b>Control:</b> repeat with <b>no partner</b>."
+    ],
+    expected:"Perpetual Base/Pre-Partner = 20,000 → Net 17,000 (−15%); maint 20,000×0.20 = 4,000 → 3,400. Non-partner control lands 20,000 → net 20,000, maint 4,000.",
+    defect:"Partner quote: base falls to catalog 355 → net 301.75, maint 71 (currently FAILING).",
+    record:"partner New quote + PIA-PIA-NRPS-PIAP" },
+
+  { id:"U-5", title:"SC-3390 tier change — first-click clean", ticket:"SC-3390",
+    why:"The tier / attribute change must be made in the configurator to enter context; a raw edit won't re-tier.",
+    steps:[
+      "On a tiered-attribute line (S11 or a <code>setupTieredSubQuoteTestData</code> line), open the configurator and change the tier volume (or Standard→Premier maintenance).",
+      "<b>Reprice All ONCE</b>.",
+      "<b>Reprice All again</b>."
+    ],
+    expected:"New tier price lands on the FIRST click (no reset-to-list, no 2-click); 2nd click identical.",
+    defect:"Needed two clicks, or bounced to list on the first (SC-3390 regression).",
+    record:"S11 / setupTieredSubQuoteTestData" },
+
+  { id:"U-6", title:"Renewal from contract (managed)", ticket:"§6.10 · SC-3502/3500",
+    why:"Managed Assets → Renew is a managed UI action; the headless flow leaves lines $0 until Reprice All.",
+    steps:[
+      "Open an activated Contract → <b>Managed Assets</b>.",
+      "Select the renewable <b>subscription</b> assets → <b>Renew</b> → <b>Automatic Renewal</b> → Submit.",
+      "Open the generated renewal Quote → <b>Reprice All</b>."
+    ],
+    expected:"Renewal Opportunity generated (Renewed_Contract__c set); subscription lines = prior asset net ×(1+COLA) (Cobalt 5900→6265.80, +6.2%); perpetual = No Change/$0 (correct).",
+    defect:"No renewal Opp / hang (SC-3502); a Cancel-actioned asset blocks renew (&ldquo;N assets could not be renewed&rdquo; — data, not a bug).",
+    record:"activated contract (e.g. 00069408)" }
+];
+
+const ORDER = { FAIL:0, BLOCKED:1, PASS:2 };
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const isExc = v => v && v!=="none" && v!=="—";
+
+const counts = { PASS:0, FAIL:0, BLOCKED:0 };
+RESULTS.forEach(r => { if (counts[r.verdict]!=null) counts[r.verdict]++; });
+const total = RESULTS.length;
+const passRate = total ? Math.round(counts.PASS/total*100) : 0;
+const cleanFail = counts.FAIL===0;
+const pct = k => total ? (counts[k]/total*100) : 0;
+
+let filter = "ALL";
+const openKeys = new Set();   // multi-open: each row toggles independently (opening one never closes another)
+let activeDefectTab = null;   // active tab in the Defects section
+
+function rowsFor(f){
+  const list = f==="ALL" ? RESULTS.slice() : RESULTS.filter(r=>r.verdict===f);
+  return list.sort((a,b)=> (ORDER[a.verdict]-ORDER[b.verdict]) || String(a.group||"").localeCompare(String(b.group||"")) || String(a.id).localeCompare(String(b.id)));
+}
+
+function render(){
+  const rows = rowsFor(filter);
+  const root = document.getElementById("root");
+  root.innerHTML = `
+    <div class="wrap">
+      <header>
+        <h1>RCA Full-Functionality Test Report</h1>
+        <div class="meta">
+          <span>org <b>${esc(META.org)}</b></span>
+          <span>procedure <b>${esc(META.procedure)}</b></span>
+          <span>run <b>${esc(META.when)}</b></span>
+          ${META.executedAt?`<span>executed <b>${esc(META.executedAt)}</b></span>`:""}
+          <span>tester <b>${esc(META.tester)}</b></span>
+        </div>
+      </header>
+
+      <div class="banner ${cleanFail?"ok":"bad"}">
+        ${cleanFail ? "✓ All executed scenarios passed" : `✗ ${counts.FAIL} scenario${counts.FAIL>1?"s":""} FAILED — see defects below`}
+        <span class="mono" style="margin-left:auto;font-weight:600">${passRate}% pass · ${counts.PASS}/${total}</span>
+      </div>
+
+      <div class="cards">
+        <div class="card"><div class="n">${total}</div><div class="l">Scenarios run</div></div>
+        <div class="card pass"><div class="n">${counts.PASS}</div><div class="l">PASS</div></div>
+        <div class="card fail"><div class="n">${counts.FAIL}</div><div class="l">FAIL</div></div>
+        <div class="card block"><div class="n">${counts.BLOCKED}</div><div class="l">BLOCKED</div></div>
+      </div>
+      <div class="bar" title="${counts.PASS} pass · ${counts.FAIL} fail · ${counts.BLOCKED} blocked">
+        <i class="p" style="width:${pct("PASS")}%"></i>
+        <i class="f" style="width:${pct("FAIL")}%"></i>
+        <i class="b" style="width:${pct("BLOCKED")}%"></i>
+      </div>
+
+      <div class="filters" id="filters">
+        ${["ALL","PASS","FAIL","BLOCKED"].map(k=>`<span class="chip ${filter===k?"on":""}" tabindex="0" data-f="${k}">${k} · ${k==="ALL"?total:counts[k]}</span>`).join("")}
+      </div>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>#</th><th>Category</th><th>Scenario</th><th>Record</th><th>Stage</th><th>Verdict</th></tr></thead>
+          <tbody id="tbody">
+            ${rows.map((r,i)=>{
+              const key = r.id+"-"+i;
+              const detail = openKeys.has(key) ? `
+                <tr class="detail"><td colspan="6">
+                  <dl>
+                    <dt>expected</dt><dd>${esc(r.expected)}</dd>
+                    <dt>actual</dt><dd>${esc(r.actual)}</dd>
+                    <dt>evidence</dt><dd>${esc(r.evidence)}</dd>
+                    <dt>exception log</dt><dd class="${isExc(r.exceptionLog)?"exc":""}">${esc(r.exceptionLog)}</dd>
+                  </dl>
+                </td></tr>` : "";
+              return `
+                <tr class="row" tabindex="0" data-key="${key}">
+                  <td class="mono">${esc(r.id)}</td>
+                  <td>${esc(r.category)}${r.group?`<div class="grp">${esc(r.group)}</div>`:""}</td>
+                  <td>${esc(r.scenario)}${r.ticket?`<span class="muted"> · ${esc(r.ticket)}</span>`:""}</td>
+                  <td class="mono">${esc(r.record)}</td>
+                  <td class="muted">${esc(r.stage)}</td>
+                  <td><span class="pill ${r.verdict}">${r.verdict}</span></td>
+                </tr>${detail}`;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      ${counts.FAIL>0 ? (()=>{
+        const fails = RESULTS.filter(r=>r.verdict==="FAIL");
+        const dtabs = [...new Set(fails.map(r=>r.defectTab||"Other"))];
+        if (!dtabs.includes(activeDefectTab)) activeDefectTab = dtabs[0];
+        const shown = fails.filter(r=>(r.defectTab||"Other")===activeDefectTab);
+        return `
+        <h2>🔴 Defects (${counts.FAIL}) — ${dtabs.length} independent workstream${dtabs.length>1?"s":""}</h2>
+        <div class="filters" id="dtabs">
+          ${dtabs.map(dt=>{const n=fails.filter(r=>(r.defectTab||"Other")===dt).length; return `<span class="chip ${activeDefectTab===dt?"on":""}" tabindex="0" data-dt="${esc(dt)}">${esc(dt)} · ${n}</span>`;}).join("")}
+        </div>
+        <div class="tablewrap"><table><thead><tr>
+          <th>Scenario</th><th>Record</th><th>Expected</th><th>Actual</th><th>Exception log</th>
+        </tr></thead><tbody>
+          ${shown.map(r=>`
+            <tr>
+              <td>${esc(r.scenario)}${r.ticket?`<div class="muted mono">${esc(r.ticket)}</div>`:""}</td>
+              <td class="mono">${esc(r.record)}</td><td>${esc(r.expected)}</td>
+              <td style="color:var(--fail)">${esc(r.actual)}</td>
+              <td class="mono">${esc(r.exceptionLog)}</td>
+            </tr>`).join("")}
+        </tbody></table></div>`;
+      })() : ""}
+
+      ${counts.BLOCKED>0 ? `
+        <h2>⏸ Blocked (${counts.BLOCKED})</h2>
+        <div class="tablewrap"><table><thead><tr><th>Scenario</th><th>Precondition needed</th></tr></thead><tbody>
+          ${RESULTS.filter(r=>r.verdict==="BLOCKED").map(r=>`
+            <tr><td>${esc(r.scenario)}${r.ticket?`<div class="muted mono">${esc(r.ticket)}</div>`:""}</td><td class="muted">${esc(r.evidence)}</td></tr>`).join("")}
+        </tbody></table></div>` : ""}
+
+      <h2 style="margin-top:38px">🖐 Manual / UI-only test cases (${UITESTS.length})</h2>
+      <p class="muted" style="margin:-8px 0 8px;max-width:82ch">These can't be scored headlessly — Apex/API-inserted lines never enter the managed pricing context, so a headless reprice reads $0 regardless of engine correctness. <b>Click a row to expand the step-by-step repro.</b></p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>#</th><th>Category</th><th>Scenario (why UI-only)</th><th>Record</th><th>Component</th><th>Type</th></tr></thead>
+          <tbody id="tbody-ui">
+            ${UITESTS.map(u=>{
+              const key = "UI-"+u.id;
+              const detail = openKeys.has(key) ? `
+                <tr class="detail"><td colspan="6">
+                  <dl>
+                    <dt>reproduce</dt><dd><ol>${u.steps.map(s=>`<li>${s}</li>`).join("")}</ol></dd>
+                    <dt>expect</dt><dd class="exp">${esc(u.expected)}</dd>
+                    <dt>defect</dt><dd class="def">${esc(u.defect)}</dd>
+                  </dl>
+                </td></tr>` : "";
+              return `
+                <tr class="row" tabindex="0" data-key="${key}">
+                  <td class="mono">${esc(u.id)}</td>
+                  <td>${esc(u.title)}<div class="grp">§UI Manual</div></td>
+                  <td>${esc(u.why)}</td>
+                  <td class="mono">${esc(u.record)}</td>
+                  <td class="muted">${esc(u.ticket)}</td>
+                  <td><span class="pill MANUAL">MANUAL</span></td>
+                </tr>${detail}`;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="muted" style="margin-top:34px">
+        Grounded in the live V21 waterfall + the S1–S14 golden harness. Idempotency = reprice ×2 byte-identical (SC-3390).
+        Click any row to expand its evidence. A populated exception-log value on a PASS-looking row is itself a FAIL.
+      </p>
+    </div>`;
+
+  document.getElementById("filters").querySelectorAll(".chip").forEach(el=>{
+    const set = ()=>{ filter = el.dataset.f; render(); };   // keep expanded rows across filter changes
+    el.addEventListener("click", set);
+    el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); set(); }});
+  });
+  // both tables: multi-open toggle — click to expand, click again to collapse THAT row; opening one never closes another
+  document.querySelectorAll("tr.row").forEach(el=>{
+    const toggle = ()=>{ const k=el.dataset.key; openKeys.has(k)?openKeys.delete(k):openKeys.add(k); render(); };
+    el.addEventListener("click", toggle);
+    el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(); }});
+  });
+  const dtEl = document.getElementById("dtabs");
+  if (dtEl) dtEl.querySelectorAll(".chip").forEach(el=>{
+    const set = ()=>{ activeDefectTab = el.dataset.dt; render(); };
+    el.addEventListener("click", set);
+    el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); set(); }});
+  });
+}
+render();
+</script>

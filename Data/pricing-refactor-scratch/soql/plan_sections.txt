@@ -1,0 +1,16 @@
+Querying Data... done
+┌────────────────────┬──────────┬──────────────────┬─────────────────────────────────┬───────┬────────────────┬────────────────────────┬─────────────┐
+│ ID                 │ SEQUENCE │ SECTIONTYPE      │ SUBSECTIONTYPE                  │ PHASE │ RESOLUTIONTYPE │ PROCEDUREPLANVERSIONID │ ISINHERITED │
+├────────────────────┼──────────┼──────────────────┼─────────────────────────────────┼───────┼────────────────┼────────────────────────┼─────────────┤
+│ 1FRWC0000000a0H4AQ │ 1        │ Apex             │ HardwareAttributePricingPrehook │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000a0I4AQ │ 2        │ Apex             │ PrehookRegionalPricing          │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000a0J4AQ │ 3        │ Apex             │ PreHookPartnerPricing           │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000a0K4AQ │ 4        │ Apex             │ AttributeVolumePricingPrehook   │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000a0M4AQ │ 6        │ Apex             │ COLAUpliftPrehook               │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000a0L4AQ │ 10       │ PricingProcedure │ PricingProcedure                │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000aZl4AI │ 11       │ Apex             │ PartnerNetPricePosthook         │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000a0N4AQ │ 12       │ Apex             │ DescriptionLinePrehook          │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+│ 1FRWC0000000c0T4AQ │ 13       │ Apex             │ CancelLineCreditPosthook        │ 0     │ Default        │ 1CvWC0000005vyX0AQ     │ false       │
+└────────────────────┴──────────┴──────────────────┴─────────────────────────────────┴───────┴────────────────┴────────────────────────┴─────────────┘
+
+Total number of records retrieved: 9.

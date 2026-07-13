@@ -1,0 +1,149 @@
+<title>RCA Ticket Dossier — FortraUAT — 2026-07-09</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --surface:#fff; --surface2:#eef1f4; --border:#dbe1e7; --ink:#131b23; --ink2:#48565f; --ink3:#748290;
+    --accent:#0c7d88; --pass:#1f9d57; --pass-bg:#e6f5ec; --fail:#d13b32; --fail-bg:#fce9e7; --block:#b3781a; --block-bg:#f8efdc;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;
+    --accent:#37b7c0;--pass:#4bc384;--pass-bg:#11291d;--fail:#ef7c72;--fail-bg:#331a18;--block:#dca747;--block-bg:#2f2612;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="light"]{
+    --bg:#f4f6f8;--surface:#fff;--surface2:#eef1f4;--border:#dbe1e7;--ink:#131b23;--ink2:#48565f;--ink3:#748290;
+    --accent:#0c7d88;--pass:#1f9d57;--pass-bg:#e6f5ec;--fail:#d13b32;--fail-bg:#fce9e7;--block:#b3781a;--block-bg:#f8efdc;
+    --shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;
+    --accent:#37b7c0;--pass:#4bc384;--pass-bg:#11291d;--fail:#ef7c72;--fail-bg:#331a18;--block:#dca747;--block-bg:#2f2612;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:30px 22px 90px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  h1{margin:0;font-size:25px;letter-spacing:-.02em;text-wrap:balance}
+  .meta{margin-top:8px;color:var(--ink3);font-family:var(--mono);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  .meta b{color:var(--ink2)}
+  .health{margin:16px 0 6px;border-radius:12px;padding:14px 18px;background:var(--pass-bg);color:var(--pass);
+          border:1px solid color-mix(in srgb,var(--pass) 35%,transparent);font-weight:600;font-size:14.5px;box-shadow:var(--shadow)}
+  .counts{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0 4px}
+  .cpill{font-family:var(--mono);font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:99px;border:1px solid var(--border);background:var(--surface)}
+  .cpill.open{color:var(--fail)} .cpill.res{color:var(--pass)}
+  h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);font-family:var(--mono);margin:30px 0 12px}
+  .card{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--border);border-radius:12px;
+        padding:18px 20px;margin:0 0 16px;box-shadow:var(--shadow)}
+  .card.open{border-left-color:var(--fail)} .card.res{border-left-color:var(--pass)}
+  .chead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .tid{font-family:var(--mono);font-weight:700;font-size:13px;padding:3px 9px;border-radius:7px;background:var(--surface2);color:var(--ink);letter-spacing:.02em}
+  .ctitle{font-size:16px;font-weight:650;letter-spacing:-.01em}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:99px;white-space:nowrap;margin-left:auto}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+  .pill.FAIL{color:var(--fail);background:var(--fail-bg)} .pill.PASS{color:var(--pass);background:var(--pass-bg)}
+  dl{margin:12px 0 0;display:grid;grid-template-columns:130px 1fr;gap:9px 16px}
+  dt{color:var(--ink3);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;padding-top:2px}
+  dd{margin:0;color:var(--ink);font-size:13.5px}
+  dd.evidence{color:var(--ink2)}
+  dd.next{color:var(--ink);font-weight:550}
+  code{font-family:var(--mono);background:var(--surface2);padding:1px 5px;border-radius:5px;font-size:12px;font-variant-numeric:tabular-nums}
+  b.num{color:var(--fail)} b.ok{color:var(--pass)}
+  .foot{color:var(--ink3);font-size:12px;margin-top:30px;border-top:1px solid var(--border);padding-top:14px}
+  a{color:var(--accent)}
+  @media(max-width:560px){dl{grid-template-columns:1fr;gap:3px 0} dt{margin-top:8px}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>RCA Ticket Dossier — the 6 assigned Critical tickets</h1>
+    <div class="meta">
+      <span>org <b>FortraUAT</b></span>
+      <span>procedure <b>Rev_Mgmt_Default_Pricing_Procedure V21</b></span>
+      <span>as of <b>2026-07-09</b> (live re-run)</span>
+    </div>
+  </header>
+
+  <div class="health">✅ Engine healthy — NET idempotent 19/19 (reprice ×2 = 0 delta), pricing stable day-over-day, 0 exception-log rows. The items below are functional gaps, not instability.</div>
+  <div class="health" style="background:var(--block-bg);color:var(--block);border-color:color-mix(in srgb,var(--block) 35%,transparent)">⚠️ New watch item (run 3, 07-09) — the SC-3544 Sales-Price fix made <code>UnitPrice</code> non-idempotent on the Guaranteed-Margin quote S6 (593.28→824 on the 2nd reprice). It converged (stable across 3 further reprices) and the net (593.28) is always correct — display-only + self-healing — but Sales Price should settle on the first click for GM lines.</div>
+
+  <div class="counts">
+    <span class="cpill open">🔴 3 OPEN — needs a fix</span>
+    <span class="cpill res">🟢 3 RESOLVED / not reproduced</span>
+    <span class="cpill">report → <a href="https://claude.ai/code/artifact/c91bca96-6412-4e91-8724-37324990add1">Artifact c91bca96</a></span>
+  </div>
+
+  <h2>🔴 Open — needs a fix</h2>
+
+  <div class="card open">
+    <div class="chead"><span class="tid">SC-3501</span><span class="ctitle">Amendment pricing — <b>partially fixed</b> (totals recalc residual)</span><span class="pill FAIL">PARTIAL</span></div>
+    <dl>
+      <dt>Record</dt><dd class="mono">0Q0WC000003J4m9 (amendment, Draft) · F55h now also prices</dd>
+      <dt>Symptom</dt><dd>Original: updating a line <b>Quantity</b> left the price at <b class="num">$0</b> and totals didn't recompute.</dd>
+      <dt>Live evidence</dt><dd class="evidence"><b class="ok">Fixed:</b> J4m9 lines now <b class="ok">price</b> — Net <code>10000 / 94000 / 15000</code> (were all $0). <b class="num">Residual:</b> bumped a line <code>Qty 2→4</code>, repriced ×2 → <code>NetUnitPrice</code> stayed 10000 (right) but <code>NetTotalPrice / TotalPrice</code> stayed <b class="num">20000</b> (should be <b>40000</b>) — total frozen at the pre-change quantity. Qty reverted. D-18 clean.</dd>
+      <dt>Root cause</dt><dd>The "left-behind" logic (Marc) was restored → lines price again; but the <b>quantity → total recalculation</b> on an amendment line still isn't firing.</dd>
+      <dt>Acceptance gap</dt><dd>On a qty change, both <code>NetUnitPrice</code> <b>and</b> <code>NetTotalPrice</code>/<code>TotalPrice</code> must be quantity-correct; quote + Opp totals update.</dd>
+      <dt>Next step</dt><dd class="next">Fix the amendment total recalc (<code>NetTotalPrice = NetUnitPrice × Quantity</code>); re-test qty 2→4 → expect Total 40000.</dd>
+    </dl>
+  </div>
+
+  <div class="card open">
+    <div class="chead"><span class="tid">SC-3346</span><span class="ctitle">Derived maintenance — <b>renewal branch</b> (new-business ✅ validated)</span><span class="pill FAIL">FAIL</span></div>
+    <dl>
+      <dt>Record</dt><dd class="mono">0Q0WC0000035Xkn ("Test Derived Pricing", Renewal)</dd>
+      <dt>Symptom</dt><dd>Renewal maintenance lines price to <b class="num">$0</b>.</dd>
+      <dt>Live evidence</dt><dd class="evidence">New-biz <b class="ok">works</b>: BoKS-NewMaintenance = <b class="ok">$71.00</b> (355×0.20). Renewal <b class="num">broken</b>: Device Profiler &amp; Tripwire maint = <b class="num">$0</b>. Across 8+ renewal quotes, renewal maint Net = blank/$0 <b>even when</b> <code>Prior_Partner_Discount__c</code> / <code>Prior_Discretionary_Discount__c</code> / <code>COLA_Uplift_Percent__c</code> (7.85%) ARE stamped (DOpB 600/246, DLBO 10.65/4.37). <code>Base_Price__c</code> blank on all; <code>MaintenanceType__c</code> (spec's tier field) doesn't exist on QLI. reprice ×2 = 0 delta.</dd>
+      <dt>Root cause</dt><dd>The 3-component renewal formula <code>(PriorBase − PriorPartner − PriorDiscretionary) × (1+COLA)</code> in List Container 9 <b>never emits NetUnitPrice</b> — the <b>base component isn't landing</b> (null in → null out). Discount + COLA inputs are stamped; the base isn't reaching the gated renewal formula.</dd>
+      <dt>Acceptance gap</dt><dd>Renewal maint = worked example <b class="ok">$144.20 (Yr2) / $148.53 (Yr3)</b> (prior Base $200 / Partner $20 / Discr $40 @ 3% COLA); override the native pull; no valid-base line at $0.</dd>
+      <dt>Next step</dt><dd class="next">Trace where <code>PriorBase</code> should reach the renewal formula (Flow stamp → formula element); confirm the tier field. Validate against a genuine platform renewal (needs SC-3502). Ref: FORTRA-Maintenance-Derived-Pricing design.</dd>
+    </dl>
+  </div>
+
+  <div class="card open">
+    <div class="chead"><span class="tid">SC-3384</span><span class="ctitle">Non-USD quote lines priced from USD values</span><span class="pill FAIL">FAIL</span></div>
+    <dl>
+      <dt>Record</dt><dd class="mono">0Q0WC0000036xy9 ("Q-Wren Test Currencies", EUR, 6 lines)</dd>
+      <dt>Symptom</dt><dd>EUR quotes show the EUR symbol but compute Net/Total/Subtotal from <b>USD</b> values.</dd>
+      <dt>Live evidence</dt><dd class="evidence"><code>ListPrice</code> is EUR, but <code>Base_Price__c</code> holds <b>USD</b> (824/500/8165/857.75/492.07); net = USD×0.9346, not the EUR PBE — beSECURE-Cloud <b class="num">8165→7631.009</b>, Click&amp;Launch <b class="num">492→459.89</b>, AAM <b class="num">857→801.66</b>. Attribute Tier Pricing Storage is USD-only; auto-add maintenance fails <i>"price book entry currency code is different than the one assigned to the Quote."</i> <b>New (07-09):</b> after the SC-3544 fix, <code>UnitPrice</code> now also displays the USD Base here — the leak is now visible in the Sales Price column.</dd>
+      <dt>Root cause</dt><dd><b>Currency-blind lookups over USD data</b> — <code>AttributeVolumePricingPrehook</code> omits currency from the tier lookup and the attribute/tier pricing storage is USD-only. The org has per-currency PBEs, but the configured-pricing path ignores them and prices USD × hardcoded FX.</dd>
+      <dt>Acceptance gap</dt><dd>Non-USD lines use currency-matching pricing records; EUR Net/Total/Subtotal from EUR pricing; tier/attribute/server-type/attribute-tier respect currency; auto-add maint same-currency PBE; saves with no currency-mismatch error.</dd>
+      <dt>Next step</dt><dd class="next">Add <code>CurrencyIsoCode</code> to the attribute/tier lookups (currency-aware selection); backfill EUR attribute-tier storage; fix the auto-add-maint PBE currency. (Larger multi-currency cluster — architectural.)</dd>
+    </dl>
+  </div>
+
+  <h2>🟢 Resolved / not reproduced (for the record)</h2>
+
+  <div class="card res">
+    <div class="chead"><span class="tid">SC-3544</span><span class="ctitle">Sales Price blank/$0 on renewal &amp; amendment — fixed live</span><span class="pill PASS">PASS</span></div>
+    <dl>
+      <dt>Record</dt><dd class="mono">0Q0WC000003Ifvp (renewal) · Ih3B (new-biz control)</dd>
+      <dt>Before → after</dt><dd>Renewal <code>Ifvp</code> <code>UnitPrice</code> was <b class="num">BLANK</b> (Net 4573.80/918.75); now <code>UnitPrice</code> = <b class="ok">4573.80 / 918.75 = Net</b> ✓. The fix landed <b>between</b> the §T run and the re-run on 07-09; also populated UnitPrice on S4/S9/S12/S14 $0 lines, Ibx3, xy9 — net/pricing unchanged (0 delta ignoring UnitPrice).</dd>
+      <dt>Caveat</dt><dd class="evidence">Symptom verified in the data; the flow metadata / exact shipped change was <b>not</b> inspected. Watch: it now surfaces the USD Base in the Sales Price column on EUR quotes (feeds SC-3384).</dd>
+    </dl>
+  </div>
+
+  <div class="card res">
+    <div class="chead"><span class="tid">SC-3350</span><span class="ctitle">Renewal (COLA) quotes priced at list</span><span class="pill PASS">PASS</span></div>
+    <dl>
+      <dt>Record</dt><dd class="mono">0Q0WC000003Ibx3 (renewal)</dd>
+      <dt>Evidence</dt><dd class="evidence">COLA <b class="ok">is applied</b> — Active Defense <code>94000×1.05=98700</code>, beSTORM <code>60000×1.062=63720</code>, <code>COLA_Source=CMDT Lookup</code>; Line Item Descriptions present. Both reported symptoms (bare list, blank description) are gone.</dd>
+      <dt>Caveat</dt><dd class="evidence">One line prices $0, and the COLA base = list / CMDT default — a <i>prior-discounted-net</i> base needs a genuine platform renewal from a real prior order (ties to SC-3502).</dd>
+    </dl>
+  </div>
+
+  <div class="card res">
+    <div class="chead"><span class="tid">SC-3502</span><span class="ctitle">Renewal process fails to generate Opportunity</span><span class="pill PASS">PASS</span></div>
+    <dl>
+      <dt>Record</dt><dd class="mono">800WC00000TNpyn (contract 00069451, Activated)</dd>
+      <dt>Evidence</dt><dd class="evidence">The contract <b>has</b> a renewal Opportunity <code>006WC00000RtJ0r</code> (Amount 316.93, <code>Renewed_Contract__c</code> set) + a Draft renewal quote <code>0Q0WC000003JAjV</code>. AssetAction lifecycle spans Initial Sale / Renewals / Upsells / Cancellations. "No opp / hangs" does not reproduce.</dd>
+      <dt>Caveat</dt><dd class="evidence">Validated against <b>existing</b> generation, not a fresh async trigger — an intermittent hang can't be fully ruled out. A clean SC-3502 generation is the <b>precondition</b> for faithful SC-3346-renewal &amp; SC-3350 validation.</dd>
+    </dl>
+  </div>
+
+  <div class="foot">
+    Sources: report Artifact <code>c91bca96</code> · snapshots <code>Data/pricing-refactor-scratch/rca_fulltest_20260708/run0709/</code> · test prompt §T.
+    Live-verified on FortraUAT 2026-07-09 — record statuses drift; re-verify before acting. Dependency: SC-3502 renewal generation → real prior order → precondition for SC-3346-renewal &amp; SC-3350.
+  </div>
+</div>

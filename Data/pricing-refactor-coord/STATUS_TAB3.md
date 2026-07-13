@@ -20,6 +20,28 @@ to list PBEs but never extended to the configured layer (ABA + tier data USD-onl
   `01uWC000005wsbUYAQ`), all 3 QLIs EUR-consistent. Tests 3/3.
 - **B (ABA decision-table currency key), A (per-currency data seed), D (Total-Price Net=0):** Liam's — pending.
 
+### 2026-07-09 SMOKE (real UAT records, adversarially verified — `Data/sc3384/smoke_20260709.md`)
+Ticket's 5 mechanisms collapse to 3 root causes. Verdicts:
+- **L5 auto-add maint = ✅ PASS** (E fix): 0 mis-currencied QLIs across ~131k non-USD lines; PIAMBK has PBEs in all 10 currencies.
+- **L4 attr-tier-storage = ⚠️ PARTIAL** (C code done, DATA-blocked): currency key live+correct, but `Attribute_Tier_Pricing_Storage__c` EUR rows exist for **1 SKU only** (37 EUR/37 USD on HRM-CLSAAS); CAD/GBP/AUD/JPY = **0 tier rows** → those lines now get NO tier (e.g. 1,075 CAD lines on that SKU). Needs A.
+- **L1 tier-based + L2 server-discount + L3 attribute-based = ❌ FAIL** — ALL THREE run through ABA decision table `0lDa50000007BEuEAM` (currency-blind, no CurrencyIsoCode input) over **13,073/13,073 USD-only** AttributeBasedAdjustment rows. **Blast radius = 71,502 non-USD QLIs on 603 ABA products** (EUR 35,641/GBP 26,098/AUD 7,843/CAD 1,920). ~7% EUR overcharge or raw-USD-list leak or Net=0. **B (currency key) + A (data seed) MUST ship together** — key without data → list/0; data without key → non-deterministic USD match.
+- Base list price = ✅ PASS (per-currency PBE ~100%). D (Net=0) observed on L2 GBP line (TotalPrice=0), rides the ABA path.
+- Next live check (only genuine PASS-candidate): UI-reprice a EUR HRM-CLSAAS line → expect EUR tier 2,373.60 not USD 2,580.
+  Clean test quote created: 00781712 (`0Q0WC000003JasT0AS`, EUR Draft, empty) via `scripts/apex/setupHrmClsaasEurRepro.apex`.
+
+### 2026-07-09 Workstream B+A SCOPE (`Data/sc3384/workstream_BA_scope_20260709.md`) — 2 SHOWSTOPPERS, DO NOT BUILD YET
+Root: L1/L2/L3 all resolve through native DecisionTable `Attribute_Based_Adjustment_Decision_Table` (0lDa50000007BEuEAM), currency-blind,
+13,073/13,073 USD `AdjustmentType='Override'` (absolute price). B=add CurrencyIsoCode input; A=seed per-currency rows. **BUT adversarial verify refuted the easy path:**
+1. **B likely NOT a PBE-mirror.** The ABA proc step is `actionType=AttributeDiscount` (BKM) with a FIXED param contract (no CurrencyIsoCode)
+   + its own `AttributeAdjConditionsHash` match key (no currency). Adding a currency `<parameters>` block is probably INERT; and a `isRequired=true`
+   7th DT column with no supplied currency → NO rows match → regresses EVEN USD to list/$0. Zero in-org precedent for AttributeDiscount forwarding currency.
+   → Real fix likely needs Apex/generic-DT (Workstream C pattern), NOT the native column. **HARD GATE: Phase-0 sandbox proof before any A build.**
+2. **A value-factor is AMBIGUOUS + contradicts live data.** Two EUR regimes live: ABA/PBE ratio = **0.9346** (CMDT/list), but existing EUR ATPS
+   tiers (HRM) = **0.92** (runtime CurrencyType.ConversionRate). Uniform-0.9346 rule reproduces AAMP (1471.995) but NOT HRM (gives 2411.27 vs live 2373.60).
+   Which factor is authoritative for net/tier = OPEN Finance/Marc decision; existing EUR ATPS data must be reconciled. **Escalate before seeding.**
+Also: PAT tier-table OUT of scope (L1 goes via ABA not PAT); proc live=**v23** (repo stale v20/v22); 61 $0-USD-PBE products overlap Workstream D (don't seed $0);
+dedup needs GearsetExternalId uniqueness check + handle pre-existing USD dup rows (AAMP has 2× identical 1575). Est 6–10 dev-days IF B is wireable; +3–5 if Apex fallback.
+
 ---
 
 

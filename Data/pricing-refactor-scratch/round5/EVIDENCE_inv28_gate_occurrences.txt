@@ -1,0 +1,32 @@
+# EVIDENCE - RegionalNetReconcileGate occurrences (full 2026-07-08 retrieve, 124678 lines)
+# grep -n 'RegionalNetReconcileGate':
+50959:            <name>RegionalNetReconcileGate</name>
+56901:            <name>RegionalNetReconcileGate</name>
+
+# Version <status> lines (each is one <versions> block); Active = V21:
+21:        <status>Inactive</status>
+4883:        <status>Inactive</status>
+9758:        <status>Inactive</status>
+14859:        <status>Inactive</status>
+20025:        <status>Inactive</status>
+25201:        <status>Inactive</status>
+30523:        <status>Inactive</status>
+35844:        <status>Inactive</status>
+41165:        <status>Inactive</status>
+46687:        <status>Inactive</status>
+52629:        <status>Inactive</status>
+58571:        <status>Inactive</status>
+64188:        <status>Inactive</status>
+69805:        <status>Inactive</status>
+75422:        <status>Inactive</status>
+80974:        <status>Inactive</status>
+86817:        <status>Inactive</status>
+92554:        <status>Inactive</status>
+98465:        <status>Inactive</status>
+104375:        <status>Inactive</status>
+110865:        <status>Active</status>
+117781:        <status>Draft</status>
+
+# Active-V21 block (110855-117770) counts:
+RegionalNetReconcile refs in active: 0
+RegionalNetUnitPrice__c refs in active: 2

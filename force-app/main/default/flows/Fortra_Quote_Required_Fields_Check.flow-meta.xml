@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>62.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <apiVersion>67.0</apiVersion>
     <description>SC-3338: Read-only guidance modal listing the fields required for a valid Quote to Order, with live tick/cross readiness, grouped by where the rep fixes them. Reachable from the Quote via the Review Required Fields quick action. No DML.</description>
     <environments>Default</environments>
     <formulas>
@@ -116,12 +115,30 @@
     </formulas>
     <interviewLabel>Quote Required Fields Check {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Fortra Quote Required Fields Check</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
         <name>Get_Account</name>
         <label>Get Account</label>
-        <locationX>176</locationX>
-        <locationY>242</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_BillToContact</targetReference>
@@ -141,8 +158,8 @@
     <recordLookups>
         <name>Get_BillToContact</name>
         <label>Get BillToContact</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_ShipToContact</targetReference>
@@ -162,8 +179,8 @@
     <recordLookups>
         <name>Get_Quote</name>
         <label>Get Quote</label>
-        <locationX>176</locationX>
-        <locationY>134</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Account</targetReference>
@@ -183,8 +200,8 @@
     <recordLookups>
         <name>Get_ShipToContact</name>
         <label>Get ShipToContact</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_ShipToPlace</targetReference>
@@ -204,8 +221,8 @@
     <recordLookups>
         <name>Get_ShipToPlace</name>
         <label>Get ShipToPlace</label>
-        <locationX>176</locationX>
-        <locationY>566</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Screen_Checklist</targetReference>
@@ -226,8 +243,8 @@
     <screens>
         <name>Screen_Checklist</name>
         <label>Required Fields for Order Submission</label>
-        <locationX>176</locationX>
-        <locationY>674</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -235,20 +252,12 @@
             <name>Checklist_Display</name>
             <fieldText>&lt;p&gt;{!fHeader}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On this Quote (you set these directly)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnA_BillToContact}&lt;/p&gt;&lt;p&gt;{!lnA_ShipToContact}&lt;/p&gt;&lt;p&gt;{!lnA_BillToPlace}&lt;/p&gt;&lt;p&gt;{!lnA_ShipToPlace}&lt;/p&gt;&lt;p&gt;{!lnA_ShipToAcct}&lt;/p&gt;&lt;p&gt;{!lnA_StartDate}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On the Customer Account (open the Account to fix)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnB_Name}&lt;/p&gt;&lt;p&gt;{!lnB_Phone}&lt;/p&gt;&lt;p&gt;{!lnB_Type}&lt;/p&gt;&lt;p&gt;{!lnB_Duns}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On the Bill To Contact (open the Contact to fix)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnBT_First}&lt;/p&gt;&lt;p&gt;{!lnBT_Last}&lt;/p&gt;&lt;p&gt;{!lnBT_Dev}&lt;/p&gt;&lt;p&gt;{!lnBT_Use}&lt;/p&gt;&lt;p&gt;{!lnBT_Prim}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b&gt;On the Ship To Contact / Quote Contact (open the Contact to fix)&lt;/b&gt;&lt;/p&gt;&lt;p&gt;{!lnST_First}&lt;/p&gt;&lt;p&gt;{!lnST_Last}&lt;/p&gt;&lt;p&gt;{!lnST_Dev}&lt;/p&gt;&lt;p&gt;{!lnST_Use}&lt;/p&gt;&lt;p&gt;{!lnST_Prim}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;i&gt;Fields like Tax, Line Numbers, Billing Frequency and the Workday contract IDs are filled in automatically when the Order is created — you don&apos;t need to enter them.&lt;/i&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Quote</targetReference>

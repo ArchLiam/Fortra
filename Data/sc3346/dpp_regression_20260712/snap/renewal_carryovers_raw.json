@@ -1,0 +1,127 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003kbxJ4AQ"
+        },
+        "Id": "0QLWC000003kbxJ4AQ",
+        "QuoteId": "0Q0WC000003FRPZ0A4",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Base_Price__c": 3400,
+        "Prior_Partner_Discount__c": 600,
+        "Prior_Discretionary_Discount__c": 0,
+        "QuoteAction": {
+          "attributes": {
+            "type": "QuoteAction",
+            "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000wzl8hYAA"
+          },
+          "SourceAsset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008dfGPYAY"
+            },
+            "Price": 4000,
+            "Product2": {
+              "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+              },
+              "Fortra_Product_Type__c": "New Maintenance"
+            }
+          }
+        },
+        "COLA_Uplift_Percent__c": 7.85
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003kbZ84AI"
+        },
+        "Id": "0QLWC000003kbZ84AI",
+        "QuoteId": "0Q0WC000003FR6D0AW",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Base_Price__c": 3400,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "QuoteAction": {
+          "attributes": {
+            "type": "QuoteAction",
+            "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000wzl5SYAQ"
+          },
+          "SourceAsset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008dbCnYAI"
+            },
+            "Price": 4000,
+            "Product2": {
+              "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+              },
+              "Fortra_Product_Type__c": "New Maintenance"
+            }
+          }
+        },
+        "COLA_Uplift_Percent__c": 7.85
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ibF44AI"
+        },
+        "Id": "0QLWC000003ibF44AI",
+        "QuoteId": "0Q0WC000003DOpB0AW",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK"
+        },
+        "Base_Price__c": 3060,
+        "Prior_Partner_Discount__c": 600,
+        "Prior_Discretionary_Discount__c": 246,
+        "QuoteAction": {
+          "attributes": {
+            "type": "QuoteAction",
+            "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000wA2DeYAK"
+          },
+          "SourceAsset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008WteHYAS"
+            },
+            "Price": 4000,
+            "Product2": {
+              "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+              },
+              "Fortra_Product_Type__c": "New Maintenance"
+            }
+          }
+        },
+        "COLA_Uplift_Percent__c": 7.85
+      }
+    ],
+    "totalSize": 3,
+    "done": true
+  },
+  "warnings": []
+}

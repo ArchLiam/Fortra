@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <description>Set the Severity when the issue record is created.</description>
+        <name>Severity</name>
+        <dataType>String</dataType>
+        <expression>Case ({!$Record.Disposition__c},
+&quot;Error/Bug (Functional)&quot;, &quot;S1&quot;,
+&quot;Data Related&quot;, &quot;S1&quot;,
+&quot;Permissions/Access&quot;, &quot;S2&quot;,
+&quot;Page Layout&quot;, &quot;S3&quot;, 
+&quot;S4&quot;
+)</expression>
+    </formulas>
+    <interviewLabel>Test Case Issue - After Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Test Case Issue - After Save</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Severity</name>
+        <label>Set Severity</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Severity__c</field>
+            <value>
+                <elementReference>Severity</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Severity</targetReference>
+        </connector>
+        <object>Test_Case_Issues__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+</Flow>

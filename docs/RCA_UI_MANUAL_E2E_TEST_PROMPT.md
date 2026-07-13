@@ -17,24 +17,41 @@
 > Manage-Assets-built lines regardless of whether the engine is correct — so those scenarios can **only** be scored
 > in the UI. Amend/Renew/Cancel **quote creation** and the **Convert Quote to Order** parity are the headline lanes.
 
-> **PRIORITY THIS RUN — assigned-ticket status board (2026-07-11).** Deep-test every ticket in §T-UI against its
-> record + acceptance. **Legend:** ✅ FIXED (guard — must not re-break) · 🟢 not-reproduced (guard) · 🟡 PARTIAL /
-> has-regression · 🔴 OPEN · ⬜ pending. `(org✓/git✗)` = live in FortraUAT but git-uncommitted.
+> **PRIORITY THIS RUN — assigned-ticket status board (updated 2026-07-12 from the fresh CLI re-run).** Deep-test
+> every ticket in §T-UI against its record + acceptance. **Legend:** ✅ FIXED (guard — must not re-break) · 🟢
+> not-reproduced (guard) · 🟡 PARTIAL / has-regression · 🔴 OPEN · ⬜ needs-UI (headless couldn't score).
+> `(org✓/git✗)` = live in FortraUAT but git-uncommitted.
 
-| Ticket | Area | Verdict | UI-observable symptom |
+| Ticket | Area | Verdict | UI-observable symptom / expectation |
 |---|---|---|---|
-| **SC-3346-ABP** | derived · partner ABP base | ✅ FIXED | partner+ABP perpetual nets 20k→17k, maint 4k→3.4k (not catalog 355→71) |
-| **SC-3346-MTD** | attribute-less new-maint | 🔴 OPEN | auto-added maint line shows **$0** (missing Maintenance Type Defn) |
-| **SC-3346-QTYFOLD** | renewal COLA qty>1 | 🟡 `(org✓/git✗)` | qty>1 renewal maint inflates ~qty× |
-| **SC-3350 / SC-3354** | renewal COLA at list / blank desc | 🟢 not-repro · multi-yr 🔴 | renewal net = prior×(1+COLA); Line Description filled |
-| **SC-3384 / SC-3398** | non-USD net priced from USD | 🟡 / 🔴 | EUR net should = USD net × rate; **List Price stays EUR**; no currency-mismatch on save |
-| **SC-3384-CTX** | context hydration | 🔴 OPEN | live **"Something went wrong while hydrating the context"** on reprice |
-| **SC-3501** | amendment qty → reprice | 🟡 `(org✓/git✗)` | fresh amend on a qty>1 asset: per-unit net (not extended total) |
+| **SC-3346-ABP** | derived · partner ABP base | ✅ FIXED | partner+ABP perpetual net 17k (15,300 with the line's +10% disc), maint 3,168 (not catalog 355→71) |
+| **SC-3346-MTD** | attribute-less new-maint | 🟢 now prices (07-12) | untagged maint now resolves **Standard 0.20** (e.g. 60.75 EUR = 325×0.20×FX) — was $0; confirm it holds in the cart |
+| **SC-3346-QTYFOLD** | renewal COLA qty>1 | 🟡 `(org✓/git✗)` · **needs-UI** | qty>1 renewal maint must be **per-unit**, not ~qty× inflated |
+| **SC-3346-DEDUPE** | amend-carryover maint dup | ✅ `(org✓/git✗)` · **needs-UI** | bundle add-assets → **one** derived maint per license (no dup / qty-10 $0) |
+| **SC-3346 renewal** | renewal derived-maint (Path B) | 🟡 **needs-UI** | renew a BoKS contract → derived maint prices (not $0). ⚠️ renewal *net* is under active SC-3350 work |
+| **SC-3384 / SC-3398** | non-USD net priced from USD | 🟡 improved (07-12) | Subtotal/Sales-Price now **convert** (EUR consistent); only the $0-list SKU remains |
+| **SC-3384-CTX** | context hydration | 🔴 OPEN · **needs-UI** | live **"Something went wrong while hydrating the context"** on native reprice |
+| **SC-3501** | amendment qty → reprice | 🟡 `(org✓/git✗)` · **needs-UI** | fresh amend on a qty>1 asset: per-unit net (not extended total) |
 | **SC-3502** | renewal Opp generation | 🟢 not-repro | Renew from contract → a renewal Opportunity appears |
 | **SC-3544** | Sales Price blank on renewal/amend | ✅ FIXED | **Sales Price** column populated (= Net), not blank |
-| **SC-3503** | contract cancellation fails | 🔴 OPEN | **Cancel** errors on **"Stamp Base Filter 1"**, cannot complete |
-| **SC-3505** | Workday amend original-contract ID | 🔴 PARKED | (payload-level; observe on the Order's Workday sync field) |
-| **SC-3513** | Asset.Description re-derive | ✅ FIXED | Asset **Description** re-derives after an Upgrade/Downgrade |
+| **SC-3503** | contract cancellation fails | 🔴 OPEN · **needs-UI** | **Cancel** errors on **"Stamp Base Filter 1"**, cannot complete |
+| **SC-3513** | Asset.Description re-derive | ✅ FIXED · **needs-UI** | Asset **Description** re-derives after an Upgrade/Downgrade |
+| **Hardware / Power (S12)** | hardware price + qty-split | ⬜ **needs-UI** | headless couldn't score (`Won` quote) — build/convert a Power quote, verify qty-split |
+
+> **This prompt is how you score the items the headless CLI run marked BLOCKED (needs-UI).** Each maps to a lane here:
+
+| Headless-BLOCKED item | Run it in |
+|---|---|
+| SC-3501 fresh amend (born-net=0, qty>1) | **§A-2** + §T-UI SC-3501 |
+| SC-3346-QTYFOLD (renewal maint qty>1) | **§T-UI SC-3346-QTYFOLD** (via §A-1) |
+| SC-3346-DEDUPE (amend-carryover dup) | **§T-UI SC-3346-DEDUPE** |
+| SC-3346 renewal (Path B derived maint) | **§T-UI SC-3346 renewal** (via §A-1) |
+| SC-3384-CTX (context hydration) | **§T-UI SC-3384-CTX** (native reprice) |
+| SC-3513 (Asset.Description re-derive) | **§T-UI SC-3513** (via §6.9 amend) |
+| SC-3503 (contract cancellation) | **§A-3** + §T-UI SC-3503 |
+| Hardware / Power (S12, `Won`) | **§T-UI Hardware/Power** + §LIFECYCLE L-HW |
+| §5X deep/edge (fixture-backed) | **§RECIPE** |
+| §6 convert / activate / assets / Workday | **§B** + **§LIFECYCLE** |
 
 ---
 
@@ -143,6 +160,9 @@ reprice ×2 identical. **FAIL:** net = catalog list (no COLA), blank description
 ≈ 273,540` (qty-fold), or Sales Price / Subtotal left inflated.
 
 ### A-3 · CANCEL (the SC-3503 lane)
+> **Run this on a contract you activated in *this* run (§B → §6.5 → §6.6), not a shared named candidate** (e.g. Cypress
+> 00069475). SC-3503 is *expected* to error, but a **partial** completion could strand orphan credit records on a shared
+> contract — use your own throwaway so the blast radius is zero.
 1. Contract → **Manage Assets** → select an asset → **Cancel**. *(Or drive a full-line cancellation on the contract.)*
 2. Observe: does the Cancel action **complete and create the expected credit records**, or does it **error on
    "Stamp Base Filter 1"** and fail? Screenshot the exact error if it fails.
@@ -188,10 +208,10 @@ Drive one real UI-priced quote all the way and grade every phase. Repeat across 
 | 6.2 | **Reprice (Quote)** | **Reprice All** ×2 | green toast; columns **idempotent**; no unexpected $0; D-18 clean |
 | 6.3 | **Convert → Order** | **"Convert Quote to Order"** quick action | Order created; one OrderItem per line (per unit for Power); §B parity |
 | 6.4 | **Reprice (Order)** | Order **Reprice All** ×2 | Order prices **== Quote** (line-for-line, to the cent); idempotent |
-| 6.5 | **Activate Order** | **Activate** | Status → **Activated**; TermDefined lines show **End Date + Subscription Term** first (else it blocks — SC-3411) |
+| 6.5 | **Activate Order** | **Activate** | Status → **Activated**; TermDefined lines show **End Date + Subscription Term** first (else it blocks — SC-3411); activation may fire the Workday event (`Order_Completed_WD__e`) — §6.8 is **observe-only**, so verify no unintended publish |
 | 6.6 | **Contract** | (auto) open the Contract | a Contract exists and is **Activated** (not Draft) |
 | 6.7 | **Assets** | Contract → **Manage Assets** / Assets related list | **Assets exist** (count == line count; per unit for Power) — a subscription order with **0 Assets** = SC-3415/3419 FAIL; Asset **Description** stamped (SC-3513) |
-| 6.8 | **Workday sync** | observe the Order's Workday sync fields | `Workday Contract Line Type` varied (not all 'FIXED AMOUNT' — SC-3210); amendment carries original-contract ref (SC-3505 — currently missing). **Observe-only** unless authorized |
+| 6.8 | **Workday sync** | observe the Order's Workday sync fields | `Workday Contract Line Type` varied (not all 'FIXED AMOUNT' — SC-3210). **Observe-only** unless authorized |
 | 6.9 | **Amend** | §A-2 (Manage Assets → Amend) | credit/amended line correct; per-unit (not qty-fold); totals move |
 | 6.10 | **Renew** | §A-1 (Manage Assets → Renew) | renewal Opp generated (SC-3502); lines price after Reprice All (subscription ×(1+COLA), perpetual No Change) |
 
@@ -215,10 +235,11 @@ prompt's §T. `(org✓/git✗)` = grade the live org behavior.
 0.85); **Sales Price == Net**; stable across reprices. **Control:** repeat with **no partner** → 20,000 / 4,000.
 **FAIL:** perpetual net **301.75** / maint **71** (base fell to catalog 355).
 
-### SC-3346-MTD — attribute-less new-maint $0 — 🔴 OPEN
+### SC-3346-MTD — attribute-less new-maint — 🟢 now prices (07-12; confirm in cart)
 On a New quote, add a license whose auto-added maintenance line lacks **Maintenance Type Defn** (e.g. Device
-Profiler). **PASS (target):** the auto-added maint line carries `Maintenance Type Defn = Standard` → Base × 0.20
-(not $0). **Current:** maint = **$0** (known open attribute-propagation gap — record as OPEN, screenshot the blank tier).
+Profiler). **PASS:** the maint line now resolves **Standard 0.20** → Base × 0.20 (e.g. **60.75 EUR** = 325×0.20×0.9346),
+not $0. **FAIL (regression):** maint = **$0** / blank tier — screenshot the line's attributes. *(The 07-12 CLI run
+showed it pricing 60.75; this UI pass confirms the fix holds when the line is **built in the cart**, not just on a seeded quote.)*
 
 ### SC-3384 / SC-3398 — non-USD priced from USD (conversion) — 🟡 / 🔴
 1. Open EUR quote **`0Q0WC0000036xy9`** (or run `setupHrmClsaasEurRepro` and open the empty EUR quote, then add the SKU).
@@ -229,15 +250,45 @@ Profiler). **PASS (target):** the auto-added maint line carries `Maintenance Typ
    no** *"price book entry currency … different than the Quote"* error (SC-3384-E).
 **PASS:** EUR net = USD×rate, list native EUR, no currency-mismatch, no hydration error. **FAIL:** net stays raw USD,
 list gets FX-converted, currency-mismatch on save, or the hydration error fires.
+*(07-12 CLI note: the Subtotal/Sales-Price USD leak is now fixed — AAMP reads 801.66 across Net/Subtotal/Sales-Price;
+only `beSECURE-Cloud` = $0 remains, and that SKU has $0 list in both currencies + no ABA/tier rows = a data gap.)*
 
-### SC-3350 / SC-3354 — renewal COLA — 🟢 not-repro (year-1) · 🔴 multi-year
-Open renewal quote **`0Q0WC000003Ibx3`** (or generate one via §A-1). **Reprice All** ×2. **PASS:** each renewal line
-**Net = prior net × (1+COLA)** (not catalog list); **Line Description populated**; COLA % / Source shown on the line
-detail. *(Multi-year out-year compounding is a separate open scope item — SC-3354; year-1 is the graded part.)*
+### SC-3384-CTX — context hydration error — 🔴 OPEN (needs-UI)
+Open the EUR quote **`0Q0WC0000036xy9`** (or any quote after a context-def edit) → **native Reprice All** in the TLE.
+**PASS:** the reprice completes with the green *"prices were refreshed…"* toast, no error. **FAIL:** a red
+**"Something went wrong while hydrating the context"** toast/banner fires — screenshot it. *(Root: `SalesTransaction
+ContextExt_v2` was edited but not re-synced/re-activated. ⚠️ This same un-synced-context condition may also be why
+renewal COLA net went null on 07-12 (SC-3350 work) — if you see both, note them together.)*
 
-### SC-3501 — amendment qty (SC-3346-QTYFOLD twin) — 🟡 `(org✓/git✗)`
+### SC-3501 — amendment qty (SC-3346-QTYFOLD twin) — 🟡 `(org✓/git✗)` (needs-UI)
 Run **§A-2** end-to-end. **PASS:** per-unit net (27,354 for EFT 7 Enterprise), not the extended 273,540; totals track
 quantity; reprice ×2 identical. **FAIL:** $0, or ~qty× inflation, or Sales Price/Subtotal inflated.
+
+### SC-3346-QTYFOLD — renewal COLA on a qty>1 maintenance asset — 🟡 `(org✓/git✗)` (needs-UI)
+Via **§A-1**: Contract → **Manage Assets** → **Renew** a **qty>1 owned-maintenance** asset → **Reprice All**.
+**PASS:** the renewal maint per-unit = **(Asset.Price ÷ Quantity) × (1+COLA)** — NOT the extended `Asset.Price`
+(no ~qty× inflation); qty-1 assets unchanged. **FAIL:** per-unit ≈ the extended total (qty-fold). *(Twin of SC-3501;
+order 00095510 (ES-SEG qty100) is a known escaped-to-Workday inflated case to correct.)*
+
+### SC-3346-DEDUPE — amend-carryover maintenance dedupe — ✅ `(org✓/git✗)` (needs-UI)
+On a **New / Net-New** quote, add a bundle whose Add-Assets path carries prior maintenance as `Amend` copies
+(reproduce the IBjF / IIT / J3en pattern) → **Reprice All**. **PASS:** exactly **one** derived maintenance line per
+license survives (the native keeper) — no duplicate / qty-10 $0 maint lines; no-keeper quotes untouched. **FAIL:**
+duplicate maint lines, or a qty-10 $0 maint line.
+
+### SC-3346 renewal — derived maintenance via Path B — 🟡 (needs-UI)
+Via **§A-1**: renew a BoKS contract (e.g. **00069410**) whose managed assets include owned maintenance → **Reprice
+All**. **PASS:** the renewal **derived-maintenance** line prices **> $0** (Path B born-net, e.g. 71 × (1+COLA) ≈ 76.5).
+**FAIL:** derived maint = $0. ⚠️ **Note (2026-07-12):** the renewal **subscription** net is currently affected by the
+in-progress **SC-3350** Price-Revision work (COLA lines may read **null net**) — grade the **derived-maint** line on
+its own, and expect renewal *subscription* net to be unstable until SC-3350's canvas edit + context re-sync land.
+
+### Hardware / Power — pricing + qty-split (unblocks S12) — ⬜ needs-UI
+Headless couldn't score S12 (`0Q0WC000002RK6g` is `Won`). Build/clone a **Power / hardware** quote (§RECIPE, L-HW),
+or use a fresh Draft Power quote → **Reprice All** → assert `Hardware Price = List × pGroup × userTier ×
+(1 − systemType%)`; user override > `Hardware__c` > default. Then **Convert → Order** (§B) → assert **Power lines
+split into 1 OrderItem per unit** with per-unit ARR (SC-3447), no CPU / SOQL:101. **FAIL:** wrong hardware price, or
+Power stays one qty-N OrderItem, or a governor error on convert.
 
 ### SC-3502 — renewal Opp generation — 🟢 not-repro
 From an activated contract (**`800WC00000TNpyn`** / 00069451) run **Manage Assets → Renew**. **PASS:** a **renewal
@@ -260,11 +311,6 @@ After a lifecycle that creates an Asset (§6.7), open the **Asset** record → c
 description. Then perform an **Upgrade / Downgrade** (Manage Assets → Amend to change the product) → confirm the
 Asset **Description re-derives** to the new line. **PASS:** create-path stamped + product-change re-derives (8
 categories); manual edits not auto-reverted. **FAIL:** Description stale after a product change.
-
-### SC-3505 — Workday amend original-contract ID — 🔴 PARKED (payload-level)
-Mostly a payload concern (not on-screen). If accessible, open an **amendment Order** and inspect its **Workday sync
-payload** field. **Target:** the payload carries a **separate original-contract reference** ≠ the amend Order's own
-Id. **Current:** it does not (no code fix). Record as OPEN/PARKED.
 
 ---
 
@@ -321,6 +367,7 @@ screenshot on every row and every FAIL in Defects.
 ---
 *Companion to the CLI prompt [`docs/RCA_FULL_FUNCTIONALITY_TEST_PROMPT.md`](RCA_FULL_FUNCTIONALITY_TEST_PROMPT.md)
 (same engine, tickets, and acceptance; that one is Claude Code + `sf`/SOQL, this one is Claude Chrome Extension
-driving the Salesforce Lightning UI). Status board + §T-UI current as of 2026-07-11 (see the CLI prompt's CHANGELOG);
-`(org✓/git✗)` fixes are live in FortraUAT but git-uncommitted — grade the org. Active procedure = the current
-`Rev_Mgmt_Default_Pricing_Procedure` **V25** (sole-active, confirmed 2026-07-11). Re-verify each record/URL before use.*
+driving the Salesforce Lightning UI). Status board + §T-UI updated 2026-07-12 from the fresh CLI re-run (see the CLI
+prompt's CHANGELOG); `(org✓/git✗)` fixes are live in FortraUAT but git-uncommitted — grade the org. Active procedure =
+`Rev_Mgmt_Default_Pricing_Procedure` **V25**. ⚠️ **A canvas edit (SC-3350 Price-Revision) is in progress** — if a
+preflight shows no Active version, the edit is mid-flight; confirm V25 is Active before testing. Re-verify each record/URL before use.*

@@ -108,8 +108,7 @@
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
-    <apiVersion>66.0</apiVersion>
-    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <apiVersion>67.0</apiVersion>
     <assignments>
         <name>Add_to_Error_Display</name>
         <label>Add to Error Display</label>
@@ -165,12 +164,6 @@
             <targetReference>Error_s_Exist</targetReference>
         </connector>
     </assignments>
-    <customProperties>
-        <name>ScreenProgressIndicator</name>
-        <value>
-            <stringValue>{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
-        </value>
-    </customProperties>
     <decisions>
         <name>Error_s_Exist</name>
         <label>Error(s) Exist?</label>
@@ -422,14 +415,6 @@
             <name>BillShipTo_Validation_Message</name>
             <fieldText>&lt;p&gt;We can&apos;t update the order status, make sure the below fields are populated:&lt;/p&gt;&lt;ol&gt;&lt;ol&gt;&lt;li&gt;&lt;strong&gt;Bill To Account&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Ship To Account&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Bill To Contact&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Ship To Contact&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Bill To Address&lt;/strong&gt;&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Ship To Address&lt;/strong&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/ol&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -446,14 +431,6 @@
             <name>DisplayFaultMessage</name>
             <fieldText>&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -473,14 +450,6 @@
             <name>Prompt</name>
             <fieldText>&lt;p&gt;Select the Order Status. &lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <fields>
             <name>Order_Status_Picker</name>
@@ -493,14 +462,6 @@
             <fieldType>DropdownBox</fieldType>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <nextOrFinishButtonLabel>Select &amp; Save Status</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
@@ -521,14 +482,6 @@
             <name>DisplayValidationErrors</name>
             <fieldText>&lt;p&gt;Please see the errors below that prevent you from submitting. You must resolve them before submitting. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Please click the link to update the record. &lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!Error_Display}&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
-            <styleProperties>
-                <verticalAlignment>
-                    <stringValue>top</stringValue>
-                </verticalAlignment>
-                <width>
-                    <stringValue>12</stringValue>
-                </width>
-            </styleProperties>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>

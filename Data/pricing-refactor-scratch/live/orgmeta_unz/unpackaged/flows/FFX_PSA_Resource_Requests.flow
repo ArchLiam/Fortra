@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Is_New_Record</name>
+        <label>Is New Record</label>
+        <locationX>336</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>NewRR</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Defaults_on_Resource_Request</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Project_Billing_Type</name>
+        <label>Project Billing Type?</label>
+        <locationX>182</locationX>
+        <locationY>575</locationY>
+        <defaultConnectorLabel>Not Fixed Price</defaultConnectorLabel>
+        <rules>
+            <name>Fixed_Price</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.pse__Project__r.pse__Billing_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Fixed Price</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.pse__Project__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Req_Bill_Rate_to_0</targetReference>
+            </connector>
+            <label>Fixed Price</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <name>IsNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>RRName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.pse__Staffer_Resource__r.FFX_Resource_Name__c} + &quot; - &quot; + TEXT({!$Record.pse__Resource_Role__c}) + &quot; - &quot; + TEXT({!$Record.pse__Status__c})</expression>
+    </formulas>
+    <interviewLabel>FFX PSA Resource Requests {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>FFX PSA Resource Requests</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Create_Defaults_on_Resource_Request</name>
+        <label>Create Defaults on Resource Request</label>
+        <locationX>182</locationX>
+        <locationY>455</locationY>
+        <connector>
+            <targetReference>Project_Billing_Type</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>pse__Eligible_for_Schedule_Recalculation__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Req_Bill_Rate_to_0</name>
+        <label>Update Req Bill Rate to 0</label>
+        <locationX>50</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>pse__Requested_Bill_Rate__c</field>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>210</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_New_Record</targetReference>
+        </connector>
+        <object>pse__Resource_Request__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

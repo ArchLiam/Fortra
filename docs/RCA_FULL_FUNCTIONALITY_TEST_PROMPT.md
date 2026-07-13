@@ -24,7 +24,7 @@
 | **SC-3346-DEDUPE** | amend-carryover maint dup | ✅ FIXED `(org✓/git✗)` | `NewMaintenanceDedupeService` leaves one keeper per license |
 | **SC-3346** renewal | renewal derived-maint | 🟢 not-repro | Path B born-net; the V14→V23 "priced-node wall" theory is **CLOSED** on the current proc |
 | **SC-3346-QTYFOLD** | renewal COLA qty>1 | 🟡 `(org✓/git✗)` | COLA used extended `Asset.Price` as per-unit → qty× inflation; ÷qty fix deployed; **1 line escaped to Workday (00095510)** |
-| **SC-3350** | renewal COLA at list / blank desc | 🟢 not-repro | COLA applied + descriptions present (`41b5622`) |
+| **SC-3350** | renewal COLA write-back to Net | 🔴 REGRESSION (V25) | reprice leaves **Net Unit at prior/base** (94000); `COLACalculatedPrice__c` correct (98700 @5%) but **not written to net**; descriptions present (2026-07-11 run) |
 | **SC-3354** | COLA-renewal rework (parent of 3350) | 🟡 yr-1 ✅ · multi-yr 🔴 | year-1 defects resolved; multi-year out-year compounding still **inert** (scope fork open) |
 | **SC-3384** | non-USD priced from USD (investigation) | 🟡 PARTIAL | committed sub-fixes below; the currency-aware-data path is **superseded by SC-3398** |
 | **SC-3384-E** | auto-add maint PBE currency | ✅ FIXED `43fa4d1` | before-insert re-points mis-currencied PBE to same-currency sibling |
@@ -33,7 +33,6 @@
 | **SC-3501** | amendment qty → reprice | 🟡 `(org✓/git✗)` | per-unit carry works; qty-10 10× inflation fixed live (÷ asset qty) but **uncommitted** — HEAD still inflates |
 | **SC-3502** | renewal Opp generation | 🟢 not-repro | Opp auto-generated (`Renewed_Contract__c`); distinct from SC-3500 (Amount ✅) |
 | **SC-3544** | Sales Price blank on renewal/amend | ✅ FIXED `88c626f` | post-persist Apex stamp fills `UnitPrice`=Net (fill-only) |
-| **SC-3505** | Workday amend original-contract ID | 🔴 PARKED | amend payload still carries own `Order.Id` only; **no code fix** (`5f21481` = docs) |
 | **SC-3513** | Asset.Description re-derive | ✅ FIXED `47cb089` | re-derives on create + all 8 product-change events |
 | **SC-3503** | contract cancellation fails | 🔴 OPEN | cancellation errors on a pricing **"Stamp Base Filter 1"** fault → cannot complete (6/29 demo, Marc; Critical); same procedure element as SC-3346-ABP |
 
@@ -42,7 +41,9 @@
 ## CHANGELOG
 *History reset 2026-07-11 — newest first. Add one dated line per material change; keep §T as **current-state**, not archaeology.*
 
-- **2026-07-11** — Full modernization. Status board + changelog established (prior inline "SUPERSEDES…/★ RESOLUTION" narrative cleared). Refreshed to the sole-active procedure **V25** (confirmed 2026-07-11). Fixtures **53→63** (added `setupJ03DerivedRenewalResetTestData` J-03, the 8-script SC-3346 **Path B** family, and the `create*LJsCompany` walkthrough helpers). SC-3346-ABP fixed + committed (`185a670`); SC-3501 & SC-3346-QTYFOLD qty-inflation fixes live-validated but **git-uncommitted**; SC-3384 split into runtime sub-fixes (E ✅ / CTX 🔴) with its currency-data path **superseded by SC-3398** (conversion-based, core step pending); added **SC-3354**, **SC-3398**, **SC-3505**, **SC-3513**, **SC-3503**; added the **Manage-Assets quote-creation** and **Convert-parity** lifecycle lanes (§6); split the prompt into a **CLI** and a **UI Manual E2E** (Chrome Extension) companion.
+- **2026-07-11** — **SC-3505 (Workday amendment original-contract ID) REMOVED from test scope** — the Workday amendment integration is owned by the integration / MuleSoft team, not the RCA pricing scope. Open pricing failures now: **SC-3350, SC-3384/3398, SC-3346-MTD** (3 root-cause groups). Root-cause analysis for those grounded in code/procedure 2026-07-11 (handoff prompts drafted per group).
+- **2026-07-11 (CLI run)** — Executed this prompt headless against FortraUAT (V25). **13 PASS · 4 FAIL · 10 BLOCKED** (27 graded rows; D-18 clean throughout; SC-3505 later descoped). PASS: SC-3346-ABP (Base 20000→Net 15300, maint 4000), SC-3346 new-biz, SC-3502 (renewal Opp 316.931), SC-3544 (UnitPrice 4573.80/918.75), SC-3501 baseline (KLsz 156,819.99), S1/S6 (593.28)/S7 (312.40)/S14 (73-line governor), SC-3390/SC-3366/DEF-1/D-18. **FAIL:** **SC-3350 — COLA computed but not written to `NetUnitPrice`** (net stays base 94000 while `COLACalculatedPrice__c`=98700; identical V24/V25 — not a version regression), SC-3346-MTD ($0), SC-3384/SC-3398 (Subtotal USD leak + $0 line). **BLOCKED (UI-only):** SC-3503/3513/3384-CTX/3384-E/3346-QTYFOLD/3346-DEDUPE/3346-renewal/3354/S2–S13. Report artifact: `a716af66`.
+- **2026-07-11** — Full modernization. Status board + changelog established (prior inline "SUPERSEDES…/★ RESOLUTION" narrative cleared). Refreshed to the sole-active procedure **V25** (confirmed 2026-07-11). Fixtures **53→63** (added `setupJ03DerivedRenewalResetTestData` J-03, the 8-script SC-3346 **Path B** family, and the `create*LJsCompany` walkthrough helpers). SC-3346-ABP fixed + committed (`185a670`); SC-3501 & SC-3346-QTYFOLD qty-inflation fixes live-validated but **git-uncommitted**; SC-3384 split into runtime sub-fixes (E ✅ / CTX 🔴) with its currency-data path **superseded by SC-3398** (conversion-based, core step pending); added **SC-3354**, **SC-3398**, **SC-3513**, **SC-3503** (SC-3505 added then descoped — see above); added the **Manage-Assets quote-creation** and **Convert-parity** lifecycle lanes (§6); split the prompt into a **CLI** and a **UI Manual E2E** (Chrome Extension) companion.
 
 ---
 
@@ -158,7 +159,6 @@ then `python3 Data/pricing-refactor-scratch/harness/diff.py baseline.tsv out.tsv
 | **SC-3502** | Contract `800WC00000TNpyn` (00069451, Activated); also `TNjN7`/`TNBRw` | renewal-opp generation | 🟢 **not-repro** — Opp auto-generated (distinct from SC-3500 Amount ✅) |
 | **SC-3503** | *no bound record (6/29 demo, Marc)* — mint a cancel via §4B `setupCancelOrderTestData` / `setupCancelQuoteTestData`, or drive **Contract → Cancel** on an activated contract | contract cancellation fails | 🔴 **OPEN** — "**Stamp Base Filter 1**" fault blocks cancel |
 | **SC-3544** | Quote `0Q0WC000003Ifvp` (Renewal); new-biz control `0Q0WC000003Ih3B` | Sales Price blank on renewal/amend | ✅ **FIXED** `88c626f` — `UnitPrice` **4573.80 / 918.75 = Net** (fill-only; new-biz 2021.25 unchanged) |
-| **SC-3505** | Amend orders 00095512 / 00095642 (payloads carry own `Order.Id` only); native amends 00095531 / 00095676 | Workday amend original-contract ID | 🔴 **PARKED** — no code fix (`5f21481` = docs) |
 | **SC-3513** | *needs a real Upgrade/Downgrade **AssetAction** on a stamped asset*; backfill dry-run `Data/sc3513/backfill_16.apex` | Asset.Description re-derive | ✅ **FIXED** `47cb089` — 8 product-change categories |
 
 > Verify each Id still exists + is repriceable before use:
@@ -433,21 +433,27 @@ amount move; reprice ×2 identical; baseline `KLsz` still 156,819.99; no D-18 ro
 stays $0, if `NetUnitPrice ≈ Asset.Price` (qty-fold), or if `UnitPrice`/`Subtotal` stay inflated. *(Twin of
 SC-3346-QTYFOLD on the renewal path; New-Maintenance amend lines are excluded — SC-3346. Refines §5-L.)*
 
-### SC-3350 — Renewal (COLA) quotes priced at list, not prior + COLA; line description blank — 🟢 not-reproduced (guard)
+### SC-3350 — Renewal COLA not written to Net Unit — 🔴 REGRESSION (V25, surfaced 2026-07-11 run)
 *Binding:* renewal `0Q0WC000003Ibx3` (or `Ibqb` / `IbnN` / `2ljtN`). **Most faithful:** generate a fresh
 platform renewal from an activated contract (SC-3502 action) so a real *prior* line exists to grow.
-*Symptom (was):* the renewal line priced at the **SKU default list**, not **prior net + COLA %**; the **Line Item
-Description was blank** on renewal lines.
-*Fix:* COLA net-price seed shipped in `COLAUpliftPrehook` v1.2 (`41b5622`) — an isolated `NetUnitPrice` seed batch
-(guarded fill-only genuine $0, ListPrice fallback for null-asset lines). The 07-08 and 07-09 live runs both grade
-it **PASS**: COLA applied, descriptions present.
-*Test:* reprice ×2; snapshot `NetUnitPrice`, `COLACalculatedPrice__c`, `COLA_Uplift_Percent__c`, `COLA_Source__c`,
-and the line Description; compare each renewed line's net to the **prior** net ×(1+COLA).
-**Acceptance:** renewal (non-maint) net = **prior net ×(1+COLA)** (NOT catalog list); COLA fields reflect the
-winning tier (Line > Contract > CMDT > MyCAP); **Description populated**; reprice ×2 stable; no D-18 row.
-**Verdict:** FAIL if net = default list or Description blank. *(Refines §5-C; renewal **maintenance** lines belong
-to SC-3346. Caveat: one line (Additional Threat Assessments) still prices $0 with COLA base = CMDT default —
-confirm the prior-DISCOUNTED-net base on a genuine platform renewal descended from a real prior order.)*
+*Symptom (original):* the renewal line priced at the **SKU default list**, not **prior net + COLA %**; the **Line
+Item Description was blank**. Original blank-description symptom is **resolved** (descriptions present).
+*NEW V25 regression (2026-07-11 CLI run on Ibx3):* `COLAUpliftPrehook` v1.2 (`41b5622`) computes the uplift
+correctly into **`COLACalculatedPrice__c` (98700 @5%, 63720 @6.2%, `COLA_Source__c`=CMDT Lookup)**, but a reprice
+**does NOT write it to `NetUnitPrice`** — after reprice ×2, `NetUnitPrice` stays at the **prior/base** (94000 /
+60000), not `prior ×(1+COLA)`. The COLA→NetUnitPrice write-back is broken under V25. Idempotent, D-18 clean.
+`UnitPrice`/`Subtotal` still show the COLA figure only as a **stale pre-reprice leftover** (the SC-3544 stamp is
+fill-only, so they weren't overwritten when Net dropped). **Confirmed on the native UI "Reprice All" too (07-11 UI
+E2E run) — NOT a flow-path artifact:** it is a genuine **V25 procedure regression** — the `COLACalculatedPrice__c →
+NetUnitPrice` mapping is dropped, or a later element re-stamps Net to the base. **Fix = element-diff V24→V25 of the
+COLA write-back step; verify no later Stamp-Base-Filter element clobbers Net** (same family as SC-3420 dropped-step).
+*Test:* reprice ×2; snapshot `NetUnitPrice` vs `COLACalculatedPrice__c` vs `COLA_Uplift_Percent__c` /
+`COLA_Source__c` + Description; compare each renewed line's **net** to the **prior** net ×(1+COLA).
+**Acceptance:** renewal (non-maint) **`NetUnitPrice` = prior net ×(1+COLA)** = `COLACalculatedPrice__c` (NOT the
+prior/base and NOT catalog list); COLA fields reflect the winning tier (Line > Contract > CMDT > MyCAP);
+**Description populated**; reprice ×2 stable; no D-18 row. **Verdict:** FAIL if `NetUnitPrice` = prior/base while
+`COLACalculatedPrice__c` holds the uplift (the current V25 state), if net = default list, or if Description blank.
+*(Refines §5-C; renewal **maintenance** lines belong to SC-3346.)*
 
 ### SC-3354 — COLA renewal-pricing rework (parent of SC-3350) — 🟡 year-1 ✅ · multi-year 🔴 scope-open
 *Binding:* same renewal quotes as SC-3350; audit (correct) quote `0Q0WC000003671t`; repro line `0QLWC000003bHpl`.
@@ -575,24 +581,6 @@ contract); the user can proceed to quote sync; no hang; no D-18 row. **Verdict:*
 `RenewalForecastAmount` = Σ MRR×12×COLA; $0 is correct for one-time-only contracts. A clean SC-3502 Opp is the
 **precondition** for faithful SC-3346-renewal / SC-3350 "prior-net base" tests. Feeds §6.10.)*
 
-### SC-3505 — Amendment does not carry the original Workday contract ID — 🔴 PARKED (no code fix)
-*Binding:* amend orders 00095512 / 00095642 (payloads carry own `Order.Id` only); native/manual amends 00095531 /
-00095676. *Premise correction:* the "Workday Contract ID" is **not** Workday-returned — it is the SF `Order.Id`
-(stamped by `Fortra_Order_Workday_Contract_ID`, own-key). Native RLM amendments **reuse the source contract in
-place** (they do NOT mint a new contract), and the outbound is only the platform event `Order_Completed_WD__e`
-(`Order_Id__c`) → MuleSoft builds `Submit_Customer_Contract`. **The gap:** an amendment's payload emits **no
-reference to the original contract** — every id = the amend order's own Id.
-*Symptom:* Workday cannot distinguish "amend existing contract X" from "create new contract."
-*Test (read-only):* inspect the two populated payloads (`Order.Workday_Sync_Payload__c`) — every id resolves to the
-own Order.Id, no original-contract reference. *(Live pass-check = re-sync an amendment [publish `Order_Completed_WD__e`]
-then re-read the payload — a WRITE, authorization-gated.)*
-**Acceptance (target — currently FAILS):** an amendment payload carries the **original** contract's Workday ID in a
-**separate** field (e.g. `Original_Customer_Contract_Reference`), value ≠ the amend order's own Id, populated for
-**all** amendments (incl. the manual ones with no Quote lineage); new/renewal orders get **no** spurious original
-ref; the own-key mapping is unchanged. **Verdict:** FAIL — no code fix exists (`5f21481` = peer-review docs under
-`Jira/PeerReview/sc3516`, 0 force-app changes; Marc's "implemented" claims re-verified NOT present in 5 orgs).
-*(SC-3516 is the peer-review of SC-3505, not a separate feature. Feeds §6.8.)*
-
 ### SC-3513 — Asset needs a field indicating what was purchased (Asset.Description re-derive) — ✅ FIXED `47cb089`
 *Binding:* needs a **real** Upgrade/Downgrade **AssetAction** on a stamped asset (AssetAction is not Apex-createable
 → no pure unit test); backfill dry-run `Data/sc3513/backfill_16.apex`. Field = writable **`Asset.Description`** (NOT
@@ -709,9 +697,8 @@ completing with **0 Assets** = the SC-3415/3419 optimistic-lock swallow (**FAIL*
 present; Asset carries `Product2` + currency; derived-maint contributor pairs land as separate assets.
 
 **6.8 Workday sync** — publish/observe `Order_Completed_WD__e` (`Order_Id__c`). *Verify:* each line's
-`Workday_Contract_Line_Type__c` is correct (**NOT** every line 'FIXED AMOUNT' — SC-3210/3368), `extendedAmount` ==
-`NetTotalPrice` and **sign-correct** (SC-3374), and an **amendment** carries the **original contract ID** (SC-3505).
-**Observe-only** unless a step authorizes a publish.
+`Workday_Contract_Line_Type__c` is correct (**NOT** every line 'FIXED AMOUNT' — SC-3210/3368) and `extendedAmount` ==
+`NetTotalPrice` and **sign-correct** (SC-3374). **Observe-only** unless a step authorizes a publish.
 
 **6.9 Amend** — amend the activated order/contract to reduce/remove a line → a **credit** line (negative `TotalPrice`,
 `CancelNetUnitPrice__c` seeded — §5-L); amend **carries prior net** (`AmendNetCarryPrehook` — SC-3501); re-activate.
@@ -763,13 +750,12 @@ and each lane** as a `6.x` row; every FAIL → Defects section with its ticket r
 | SC-3544 | renewal/amend Sales Price | blank/$0 `UnitPrice` while Net > 0 | `UnitPrice` populated ≈ Net on `Ifvp` |
 | SC-3501 | amend qty>1 → native Reprice All | line $0 / totals stale / **~qty× inflation** | NetUnit = Price÷asset-qty (27,354 not 273,540); totals + Opp move |
 | SC-3346-QTYFOLD | renewal COLA on qty>1 | per-unit = extended `Asset.Price` (~qty× inflation) | per-unit = Price÷Quantity; qty-1 unaffected |
-| SC-3350 | renewal COLA reprice | price = default list / desc blank | net = prior ×(1+COLA); Description filled |
+| SC-3350 | renewal COLA reprice write-back | `NetUnitPrice` = prior/base while COLA computed | **🔴 V25 regression (07-11):** net = prior ×(1+COLA) = `COLACalculatedPrice__c`, NOT the prior/base 94000; desc filled |
 | SC-3346 (renewal) | Path B born-net derive | renewal maint $0 | committed net > 0 (e.g. 76.57); grade **COMMITTED NET only** (never UnitPrice / count / PBE) |
 | SC-3398 | non-USD reprice (conversion) | net stays raw USD / **list FX-converted** / USD line moves | net = USD net × rate; list native EUR/CAD; USD 0-delta |
 | SC-3384-E | non-USD auto-add maintenance | currency-mismatch error / wrong-currency PBE | saves clean; same-currency PBE |
 | SC-3502 | renewal from contract | no renewal Opp / hang | Opportunity w/ `Renewed_Contract__c` created |
 | SC-3513 | product-change AssetAction | stale `Asset.Description` on update | re-derived across 8 categories; create-path unchanged |
-| SC-3505 | amendment Workday payload | *(open)* no original-contract ref | *target:* separate `Original_Customer_Contract_Reference` ≠ own `Order.Id` |
 | SC-3503 | contract cancellation | "Stamp Base Filter 1" fault / cannot complete | cancel completes + creates credit records |
 
 ## §UI — UI-ONLY EXECUTION GUIDE (the scenarios the headless path cannot reach)

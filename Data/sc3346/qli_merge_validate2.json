@@ -1,0 +1,16 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+{
+  "name": "FailedValidationError",
+  "message": "Failed to validate the deployment (0AfWC00000GoI290AF). Due To:\nQuoteLineItemExchangeRateServiceTest.skipsNonSyncedOpportunity - System.AssertException: Assertion Failed: Nullable object asserted with non null value: A quote that is not the syncing quote must not update the Opportunity",
+  "exitCode": 1,
+  "context": "DeployMetadataValidate",
+  "data": {
+    "deployId": "0AfWC00000GoI290AF"
+  },
+  "stack": "FailedValidationError: Failed to validate the deployment (0AfWC00000GoI290AF). Due To:\nQuoteLineItemExchangeRateServiceTest.skipsNonSyncedOpportunity - System.AssertException: Assertion Failed: Nullable object asserted with non null value: A quote that is not the syncing quote must not update the Opportunity\n    at SfCommandError.from (file:///Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@salesforce/sf-plugins-core/lib/SfCommandError.js:48:16)\n    at DeployMetadataValidate.catch (file:///Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@salesforce/sf-plugins-core/lib/sfCommand.js:332:47)\n    at DeployMetadataValidate._run (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@oclif/core/lib/command.js:187:29)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async Config.runCommand (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@oclif/core/lib/config/config.js:422:25)\n    at async run (/Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/node_modules/@oclif/core/lib/main.js:97:16)\n    at async file:///Users/liamjeong/.local/share/sf/client/2.140.6-6d49d3d/bin/run.js:15:1",
+  "cause": "undefined",
+  "warnings": [],
+  "code": "FailedValidationError",
+  "status": 1,
+  "commandName": "DeployMetadataValidate"
+}

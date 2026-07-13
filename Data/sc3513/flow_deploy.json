@@ -1,0 +1,76 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+{
+  "status": 0,
+  "result": {
+    "checkOnly": false,
+    "completedDate": "2026-07-11T06:16:12.000Z",
+    "createdBy": "005WC00000MgTN2",
+    "createdByName": "Liam Jeong",
+    "createdDate": "2026-07-11T05:55:00.000Z",
+    "details": {
+      "componentSuccesses": [
+        {
+          "changed": true,
+          "componentType": "Flow",
+          "created": false,
+          "createdDate": "2026-07-11T06:16:11.000Z",
+          "deleted": false,
+          "fileName": "flows/Fortra_AssetAction_Stamp_Line_Description.flow",
+          "fullName": "Fortra_AssetAction_Stamp_Line_Description",
+          "id": "301WC00000mnIJVYA2",
+          "success": true
+        },
+        {
+          "changed": true,
+          "componentType": "",
+          "created": false,
+          "createdDate": "2026-07-11T06:16:11.000Z",
+          "deleted": false,
+          "fileName": "package.xml",
+          "fullName": "package.xml",
+          "success": true
+        }
+      ],
+      "runTestResult": {
+        "numFailures": 0,
+        "numTestsRun": 0,
+        "totalTime": 0,
+        "codeCoverage": [],
+        "codeCoverageWarnings": [],
+        "failures": [],
+        "flowCoverage": [],
+        "flowCoverageWarnings": [],
+        "successes": []
+      },
+      "componentFailures": []
+    },
+    "done": true,
+    "id": "0AfWC00000GoJcX0AV",
+    "ignoreWarnings": false,
+    "lastModifiedDate": "2026-07-11T06:16:12.000Z",
+    "numberComponentErrors": 0,
+    "numberComponentsDeployed": 1,
+    "numberComponentsTotal": 1,
+    "numberFiles": "3",
+    "numberTestErrors": 0,
+    "numberTestsCompleted": 0,
+    "numberTestsTotal": 0,
+    "rollbackOnError": true,
+    "runTestsEnabled": false,
+    "startDate": "2026-07-11T06:15:56.000Z",
+    "status": "Succeeded",
+    "success": true,
+    "zipSize": 2902,
+    "files": [
+      {
+        "fullName": "Fortra_AssetAction_Stamp_Line_Description",
+        "type": "Flow",
+        "state": "Changed",
+        "filePath": "/Users/liamjeong/Documents/Code/Fortra/force-app/main/default/flows/Fortra_AssetAction_Stamp_Line_Description.flow-meta.xml"
+      }
+    ],
+    "zipFileCount": 2,
+    "deployUrl": "https://fortra--uat.sandbox.my.salesforce.com/lightning/setup/DeployStatus/page?address=%2Fchangemgmt%2FmonitorDeploymentsDetails.apexp%3FasyncId%3D0AfWC00000GoJcX0AV%26retURL%3D%252Fchangemgmt%252FmonitorDeployment.apexp"
+  },
+  "warnings": []
+}

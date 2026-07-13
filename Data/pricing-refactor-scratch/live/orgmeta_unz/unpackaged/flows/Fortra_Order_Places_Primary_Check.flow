@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Primary_Set_Bill_To_Place</name>
+        <label>Primary Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PrimaryCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Places_Ship_To_Place</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Primary_Set_Ship_To_Place</name>
+        <label>Primary Set</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>PrimaryCount</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Primary_Check</targetReference>
+        </connector>
+    </assignments>
+    <customErrors>
+        <name>No_Primary_Error</name>
+        <label>No Primary - Error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>There no primary Places. One Place must be primary. Only one Place can we primary.  
+Make sure that this Order&apos;s Bill To Place and Ship To Place have one primary Place between both Place records.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Two_Primary_Error</name>
+        <label>Two Primary - Error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage>There are two primary Places. There can only be one primary Place. 
+Make sure that this Order&apos;s Bill To Place and Ship To Place have one primary Place between both Place records.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>Primary_Check</name>
+        <label>Primary Check</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>One Primary</defaultConnectorLabel>
+        <rules>
+            <name>Two_Primary</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PrimaryCount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>2.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Two_Primary_Error</targetReference>
+            </connector>
+            <label>Two Primary</label>
+        </rules>
+        <rules>
+            <name>No_Primary</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>PrimaryCount</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>No_Primary_Error</targetReference>
+            </connector>
+            <label>No Primary</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Primary_Check_Bill_To_Place</name>
+        <label>Primary Check: Bill To Place</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Get_Places_Ship_To_Place</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Primary</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Check_Bill_To_Place_Outcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Places_Bill_To_Place.Primary__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Primary_Set_Bill_To_Place</targetReference>
+            </connector>
+            <label>Primary</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Primary_Check_Ship_To_Place</name>
+        <label>Primary Check: Ship To Place</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Primary_Check</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Primary</defaultConnectorLabel>
+        <rules>
+            <name>Primary_Check_Ship_To_Place_Outcome</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Ship_To_Place__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Primary_Set_Ship_To_Place</targetReference>
+            </connector>
+            <label>Primary</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Fortra | Order | Places Primary Check {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Order | Places Primary Check</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Places_Bill_To_Place</name>
+        <label>Get Places: Bill To Place</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Primary_Check_Bill_To_Place</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Bill_To_Place__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Places__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Places_Ship_To_Place</name>
+        <label>Get Places: Ship To Place</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Primary_Check_Ship_To_Place</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Ship_To_Place__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Places__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Places_Bill_To_Place</targetReference>
+        </connector>
+        <object>Order</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>PrimaryCount</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+</Flow>

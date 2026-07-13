@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>64.0</apiVersion>
+    <apiVersion>67.0</apiVersion>
     <description>D-18 retention. Runs daily and deletes Exception_Log__c rows older than 90 days (by CreatedDate). Keeps the durable log lean. See docs/pricing-refactor/D18_TELEMETRY_DESIGN.md.</description>
     <environments>Default</environments>
     <formulas>
@@ -10,19 +10,37 @@
     </formulas>
     <interviewLabel>Fortra | Exception Log Purge {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Fortra | Exception Log Purge</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordDeletes>
         <name>Delete_Old_Logs</name>
         <label>Delete Old Logs</label>
-        <locationX>176</locationX>
-        <locationY>323</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <inputReference>Get_Old_Logs</inputReference>
     </recordDeletes>
     <recordLookups>
         <name>Get_Old_Logs</name>
         <label>Get Logs Older Than 90 Days</label>
-        <locationX>176</locationX>
-        <locationY>203</locationY>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Delete_Old_Logs</targetReference>
@@ -40,7 +58,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>50</locationX>
+        <locationX>0</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Get_Old_Logs</targetReference>

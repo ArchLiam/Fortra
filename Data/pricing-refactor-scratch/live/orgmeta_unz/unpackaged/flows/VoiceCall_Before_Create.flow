@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Contact_to_VoiceCall</name>
+        <label>Assign Contact to VoiceCall</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Contact__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Contact_with_matching_Phone.Id</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Contact_Found</name>
+        <label>Contact Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome(NO)</defaultConnectorLabel>
+        <rules>
+            <name>YES</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Contact_with_matching_Phone</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Contact_to_VoiceCall</targetReference>
+            </connector>
+            <label>YES</label>
+        </rules>
+    </decisions>
+    <description>Runs before creation of VoiceCall record. Finds and links Contact with matching caller&apos;s phone.</description>
+    <environments>Default</environments>
+    <interviewLabel>VoiceCall: Before Create {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>VoiceCall: Before Create</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Contact_with_matching_Phone</name>
+        <label>Contact with matching Phone</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Contact_Found</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Phone</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.FromPhoneNumber</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Phone</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.ToPhoneNumber</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <queriedFields>Id</queriedFields>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Contact_with_matching_Phone</targetReference>
+        </connector>
+        <object>VoiceCall</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

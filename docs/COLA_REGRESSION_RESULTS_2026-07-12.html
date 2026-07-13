@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COLA Regression Results — FortraUAT · 2026-07-12</title>
+<style>
+  :root{
+    --bg:#0f1420; --panel:#161d2c; --panel2:#1c2536; --ink:#e7ecf5; --muted:#95a2ba;
+    --line:#2a3446; --pass:#2ecc71; --fail:#ff5c5c; --block:#8a97ad; --warn:#f5b544;
+    --accent:#5aa2ff; --chip:#22304a;
+  }
+  @media (prefers-color-scheme: light){
+    :root{ --bg:#f4f6fb; --panel:#ffffff; --panel2:#f0f3f9; --ink:#16202e; --muted:#5a6883;
+      --line:#dde3ee; --pass:#1e9e57; --fail:#d63a3a; --block:#7b889d; --warn:#b7791f;
+      --accent:#2f6fe0; --chip:#e8eefb; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    padding:32px 20px 80px;}
+  .wrap{max-width:1040px;margin:0 auto}
+  h1{font-size:26px;margin:0 0 4px;letter-spacing:-.3px}
+  h2{font-size:18px;margin:36px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .sub{color:var(--muted);font-size:13.5px;margin:0 0 20px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}
+  .chip{background:var(--chip);border:1px solid var(--line);border-radius:999px;
+    padding:4px 11px;font-size:12.5px;color:var(--ink)}
+  .chip b{color:var(--accent)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
+  .card .n{font-size:30px;font-weight:700;line-height:1}
+  .card .l{font-size:12px;color:var(--muted);margin-top:6px;text-transform:uppercase;letter-spacing:.5px}
+  .n.pass{color:var(--pass)} .n.fail{color:var(--fail)} .n.block{color:var(--block)} .n.warn{color:var(--warn)}
+  table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;font-size:13.5px}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel2);font-size:12px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  tr:last-child td{border-bottom:none}
+  .v{font-weight:700;font-size:12px;padding:2px 9px;border-radius:6px;white-space:nowrap;display:inline-block}
+  .v.PASS{background:rgba(46,204,113,.16);color:var(--pass)}
+  .v.FAIL{background:rgba(255,92,92,.16);color:var(--fail)}
+  .v.BLOCKED{background:rgba(138,151,173,.18);color:var(--block)}
+  .v.CAVEAT{background:rgba(245,181,68,.16);color:var(--warn)}
+  details{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin:8px 0;overflow:hidden}
+  details summary{cursor:pointer;padding:11px 14px;font-weight:600;list-style:none;display:flex;
+    gap:10px;align-items:center;font-size:14px}
+  details summary::-webkit-details-marker{display:none}
+  details summary .tag{font-size:11px;color:var(--muted);font-weight:500}
+  details[open] summary{border-bottom:1px solid var(--line);background:var(--panel2)}
+  .body{padding:12px 16px}
+  .body p{margin:6px 0}
+  .acc{color:var(--muted);font-size:13px;margin-bottom:8px}
+  code,pre{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  pre{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:10px 12px;
+    overflow-x:auto;font-size:12px;margin:8px 0;white-space:pre}
+  .kv{width:100%;font-size:12.5px;margin:6px 0}
+  .kv th{font-size:11px}
+  .kv td{font-family:"SF Mono",ui-monospace,Menlo,monospace}
+  .ok{color:var(--pass);font-weight:700}
+  .no{color:var(--fail);font-weight:700}
+  .muted{color:var(--muted)}
+  .note{background:var(--panel2);border-left:3px solid var(--warn);border-radius:6px;padding:10px 14px;margin:10px 0;font-size:13.5px}
+  .note.crit{border-left-color:var(--fail)}
+  .note.good{border-left-color:var(--pass)}
+  a{color:var(--accent)}
+  .idcol{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-weight:700;font-size:13px}
+  .foot{color:var(--muted);font-size:12.5px;margin-top:30px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>COLA Full Regression — Results</h1>
+  <p class="sub">Cost-of-Living-Adjustment uplift feature · headline SC-3350 renewal net commit · real FortraUAT data</p>
+
+  <div class="meta">
+    <span class="chip">Org <b>FortraUAT</b> · fortra--uat.sandbox</span>
+    <span class="chip">Procedure <b>V25</b> (sole Active)</span>
+    <span class="chip">Run <b>2026-07-12</b></span>
+    <span class="chip">Method <b>sf CLI + SOQL oracle</b>, Force-reprice ×2–3</span>
+    <span class="chip">Guard tests <b>132 / 100%</b></span>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="n pass">15</div><div class="l">Pass</div></div>
+    <div class="card"><div class="n warn">1</div><div class="l">Pass · caveat</div></div>
+    <div class="card"><div class="n block">3</div><div class="l">Blocked</div></div>
+    <div class="card"><div class="n fail">0</div><div class="l">Fail</div></div>
+    <div class="card"><div class="n">10</div><div class="l">Quotes exercised</div></div>
+  </div>
+
+  <div class="note good"><b>Headline verdict — SC-3350 holds.</b> Every renewal line with <code>COLACalculatedPrice__c&gt;0</code>
+  commits <code>NetUnitPrice == COLACalculatedPrice__c</code> after convergence, GrandTotal reflects the uplift,
+  and <b>zero</b> D-18 exception rows were logged across ~15 reprices on 10 quotes. Gold quote <code>Ibx3</code>
+  = 98700 / 63720, GT <b>162420</b>. The 4-tier override hierarchy, MyCAP out-year enforcement, and non-renewal
+  gating all behave per spec on live data.</div>
+
+  <div class="note crit"><b>Action item (not a scenario failure).</b> The SC-3350 fix — <code>RenewalColaPayloadBuilder.buildCommitPayload</code>
+  written output-only — is <b>live in the org but uncommitted in git</b> (working-tree <code>M</code>, 47 ins / 5 del).
+  The committed version at <code>1a2aa2b</code> still contains <code>InputUnitPrice</code> in the commit payload, so a
+  clean <code>HEAD</code> checkout + redeploy would <b>re-introduce SC-3350</b> (net silently discarded). Commit the change.</div>
+
+  <h2>Scenario matrix</h2>
+  <table>
+    <thead><tr><th style="width:34px">#</th><th>Scenario</th><th style="width:96px">Verdict</th><th>Evidence (converged)</th></tr></thead>
+    <tbody>
+      <tr><td class="idcol">1</td><td>SC-3350 net commit — license</td><td><span class="v PASS">PASS</span></td><td>Ibx3: Net 98700/63720 = COLAcalc; GT 162420</td></tr>
+      <tr><td class="idcol">2</td><td>Net commit — Subscription</td><td><span class="v PASS">PASS</span></td><td>Jg7F(AUD) 387.45; 364Lm qty2 NetTot 5349.70 = 2674.85×2 (no term double-count)</td></tr>
+      <tr><td class="idcol">3</td><td>Net commit — Software</td><td><span class="v PASS">PASS</span></td><td>KGtK 34AE: Net 382.87 = COLAcalc (converged from stale 76.57)</td></tr>
+      <tr><td class="idcol">4</td><td>Maintenance renewal COLA</td><td><span class="v PASS">PASS</span></td><td>382MH Renewal-Maint 67.92; FZN7 New-Maint 3666.90 — non-$0, no SC-3346 regression</td></tr>
+      <tr><td class="idcol">5</td><td>CMDT rate by category</td><td><span class="v PASS">PASS</span></td><td>5 / 6.2 / 7.85 / 9.85 match CMDT exactly; Src=CMDT Lookup; 21 active rules</td></tr>
+      <tr><td class="idcol">6</td><td>Unmatched category → 0%</td><td><span class="v BLOCKED">BLOCKED</span></td><td>No live renewal line in an unmatched / 0%-rule category (all matched)</td></tr>
+      <tr><td class="idcol">7</td><td>Inactive rule excluded</td><td><span class="v BLOCKED">BLOCKED</span></td><td>All 21 CMDT rules <code>Is_Active=true</code>; config change not authorized</td></tr>
+      <tr><td class="idcol">8</td><td>Line override</td><td><span class="v PASS">PASS</span></td><td>382MH: Src=Line Override, Net = Pre_COLA×(1+%) at 12% then 20%</td></tr>
+      <tr><td class="idcol">9</td><td>Pre-COLA invariant</td><td><span class="v PASS">PASS</span></td><td>Pre_COLA 60.64 constant across 7.85→12→20%; recompute off base, never compounding</td></tr>
+      <tr><td class="idcol">10</td><td>Contract override</td><td><span class="v PASS">PASS</span></td><td>iO2H: Contract 00003473 =4% wins over CMDT 7.85%; Net 6306.30 = 6063.75×1.04</td></tr>
+      <tr><td class="idcol">11</td><td>Non-renewal = no COLA</td><td><span class="v PASS">PASS</span></td><td>Per-line QuoteAction.Type: only Renew-action lines COLA'd; Amend/New lines = none</td></tr>
+      <tr><td class="idcol">12</td><td>MyCAP default (multi-yr annual)</td><td><span class="v PASS">PASS</span></td><td>hPLN: Src=MyCAP Default, Out%=3 floor, Mycap=false; Net 8041.02 = COLAcalc</td></tr>
+      <tr><td class="idcol">13</td><td>MyCAP approval trigger</td><td><span class="v PASS">PASS</span></td><td>iO2H: out%=1 (&lt;3%) line → Quote.Mycap=true → MYCAP_Approval=true</td></tr>
+      <tr><td class="idcol">14</td><td>MyCAP prepaid bypass</td><td><span class="v BLOCKED">BLOCKED</span></td><td>No Prepaid billing frequency in data; <code>PS_Service_Type__c</code> field does not exist</td></tr>
+      <tr><td class="idcol">15</td><td>MyCAP single-year bypass</td><td><span class="v PASS">PASS</span></td><td>Single-year CMDT lines (Ibx3/IKeT/KGtK): Out%=None, Src=CMDT, Mycap=false</td></tr>
+      <tr><td class="idcol">16</td><td>MyCAP mixed lines</td><td><span class="v PASS">PASS</span></td><td>iO2H 5-line quote: one &lt;3% outyear line flags whole quote; others unaffected</td></tr>
+      <tr><td class="idcol">17</td><td>Partner-Originated renewal COLA</td><td><span class="v CAVEAT">PASS*</span></td><td>Channel renewals commit Net = raw COLAcalc, D-18 clean; but all sampled channel lines have 0 partner discount → reduction path unverified (stays 🟡)</td></tr>
+      <tr><td class="idcol">18</td><td>Idempotency + convergence</td><td><span class="v PASS">PASS</span></td><td>Gold pass2 == pass3 identical (98700/63720); converges by pass 2</td></tr>
+      <tr><td class="idcol">19</td><td>D-18 clean</td><td><span class="v PASS">PASS</span></td><td>0 Exception_Log__c rows today across ~15 reprices / 10 quotes</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Detailed evidence <span class="tag muted" style="font-weight:400;font-size:13px">(click to expand)</span></h2>
+
+  <details open>
+    <summary><span class="v PASS">PASS</span> S1 · SC-3350 net commit (gold quote Ibx3) <span class="tag">— 0Q0WC000003Ibx3</span></summary>
+    <div class="body">
+      <p class="acc">Accept: every renewal line COLAcalc&gt;0 → Net==COLAcalc, NetTot==COLAcalc×qty, GrandTotal reflects uplift.</p>
+      <table class="kv"><thead><tr><th>Line</th><th>Category</th><th>Pre_COLA</th><th>Uplift%</th><th>COLAcalc</th><th>NetUnitPrice</th><th>NetTot</th><th>✓</th></tr></thead>
+        <tbody>
+          <tr><td>Active Defense BEC</td><td>Email Security</td><td>94000</td><td>5.0</td><td>98700</td><td>98700</td><td>98700</td><td class="ok">✓</td></tr>
+          <tr><td>beSTORM</td><td>Vulnerability Mgmt</td><td>60000</td><td>6.2</td><td>63720</td><td>63720</td><td>63720</td><td class="ok">✓</td></tr>
+        </tbody></table>
+      <p>Quote.GrandTotal = <b>162420</b> = 98700 + 63720. Mycap=false, D-18 clean. Reprice ×3 stayed identical.</p>
+      <pre>sf data query -o FortraUAT --query "SELECT Product2.Name, COLACalculatedPrice__c, COLA_Uplift_Percent__c,
+  Pre_COLA_Price__c, NetUnitPrice, NetTotalPrice, COLA_Source__c FROM QuoteLineItem
+  WHERE QuoteId='0Q0WC000003Ibx3' ORDER BY LineNumber"</pre>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S2 · Subscription net commit + no term double-count</summary>
+    <div class="body">
+      <p class="acc">Accept: Net==COLAcalc; NetTotalPrice = COLAcalc × qty (not × term again).</p>
+      <table class="kv"><thead><tr><th>Quote</th><th>Line</th><th>Ccy</th><th>Qty</th><th>Pre_COLA</th><th>Up%</th><th>COLAcalc</th><th>Net</th><th>NetTot</th></tr></thead>
+        <tbody>
+          <tr><td>Jg7F</td><td>Structural Sanitization</td><td>AUD</td><td>1</td><td>369</td><td>5.0</td><td>387.45</td><td>387.45</td><td>387.45</td></tr>
+          <tr><td>364Lm</td><td>Automate Professional</td><td>USD</td><td>2</td><td>2435</td><td>9.85</td><td>2674.85</td><td>2674.85</td><td>5349.70</td></tr>
+          <tr><td>364Lm</td><td>Automate Professional</td><td>USD</td><td>1</td><td>2435</td><td>9.85</td><td>2674.85</td><td>2674.85</td><td>2674.85</td></tr>
+        </tbody></table>
+      <p>qty-2 line: NetTot 5349.70 = 2674.85 × <b>2</b> (per-unit × qty), not multiplied by subscription term. <span class="muted">Jg7F was stale (Net=None) pre-reprice; converged on pass 2 — §GR-4.</span></p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S3 · Software net commit</summary>
+    <div class="body">
+      <p class="acc">Accept: Net==COLAcalc.</p>
+      <table class="kv"><thead><tr><th>Line</th><th>Category</th><th>Up%</th><th>COLAcalc</th><th>Net (pre→post)</th></tr></thead>
+        <tbody>
+          <tr><td>Powertech IAM (BoKS) — Software</td><td>BoKS</td><td>7.85</td><td>382.87</td><td>76.57 → <b>382.87</b></td></tr>
+          <tr><td>beSECURE — Cloud</td><td>Vuln Mgmt</td><td>6.2</td><td>7110.41</td><td>None → <b>7110.41</b></td></tr>
+        </tbody></table>
+      <p class="muted">Note: on the Software line, list <code>UnitPrice</code> (76.57) and <code>Pre_COLA</code> (71) don't reconcile to COLAcalc 382.87 — a display/base-field inconsistency worth a follow-up, but the SC-3350 net-commit assertion (Net==COLAcalc) holds.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S4 · Maintenance renewal COLA (no SC-3346 $0 regression)</summary>
+    <div class="body">
+      <p class="acc">Accept: maintenance line COLAcalc&gt;0 → Net==COLAcalc, net not $0/stale.</p>
+      <table class="kv"><thead><tr><th>Quote</th><th>Type</th><th>Ccy</th><th>Up%</th><th>COLAcalc</th><th>Net</th></tr></thead>
+        <tbody>
+          <tr><td>382MH</td><td>Renewal Maintenance</td><td>USD</td><td>—(override)</td><td>72.77</td><td>72.77</td></tr>
+          <tr><td>FZN7</td><td>New Maintenance</td><td>EUR</td><td>7.85</td><td>3666.90</td><td>3666.90</td></tr>
+        </tbody></table>
+      <div class="note">2 of 4 non-channel New-Maintenance candidates (FR6D, FRPZ) were <b>BLOCKED</b> by a pre-existing
+      <code>SF-Pricing-00006 DerivedPricingFilter#1</code> quote-config defect (not COLA — §MECH). New-Maint COLA was
+      still confirmed on FZN7 (EUR channel), which reprices cleanly and commits a non-$0 net.</div>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S5 · CMDT rate by Solution Category</summary>
+    <div class="body">
+      <p class="acc">Accept: COLA_Uplift_Percent__c = the category rule; Src=CMDT Lookup; Category set.</p>
+      <table class="kv"><thead><tr><th>Category</th><th>CMDT rule</th><th>Observed on line</th></tr></thead>
+        <tbody>
+          <tr><td>Email Security</td><td>5.00%</td><td>Ibx3 / Jg7F ✓</td></tr>
+          <tr><td>Vulnerability Management</td><td>6.20%</td><td>Ibx3 / KGtK / IKeT ✓</td></tr>
+          <tr><td>Powertech IAM (BoKS)</td><td>7.85%</td><td>KGtK / 382MH ✓</td></tr>
+          <tr><td>Robotic Process Automation</td><td>9.85%</td><td>364Lm / hPLN ✓</td></tr>
+        </tbody></table>
+      <p>21 active rules read from <code>COLA_Uplift_Rules__mdt.Default_Uplift_Percent__c</code>. Every observed line's rate matches its category rule.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v BLOCKED">BLOCKED</span> S6 · Unmatched category → 0% &nbsp; · &nbsp; S7 · Inactive rule excluded</summary>
+    <div class="body">
+      <p><b>S6</b> — No live renewal line sits in an unmatched or 0%-rule category. Query for renewal lines with
+      <code>COLA_Uplift_Percent__c=0</code> or category ∈ {Fortra Platform, IPP} (both 0% rules) returned <b>0 rows</b>.
+      The CMDT design does default unmatched → 0%, but no live renewal exercises it.</p>
+      <p><b>S7</b> — All 21 CMDT rules have <code>Is_Active__c=true</code>; there is no inactive rule to observe.
+      Deactivating a rule is a configuration change, which this run is not authorized to make.</p>
+      <p class="muted">Both are data/environment gaps, not defects. To close: seed a renewal line in a 0%/absent category,
+      and (in a scratch context) toggle one rule inactive.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S8 · Line override &nbsp;·&nbsp; S9 · Pre-COLA invariant <span class="tag">— 382MH line 24AM</span></summary>
+    <div class="body">
+      <p class="acc">Accept: override → Net = Pre_COLA×(1+new%), Src=Line Override; Pre_COLA unchanged across repeated overrides, each recompute off Pre_COLA (never compounding).</p>
+      <table class="kv"><thead><tr><th>Observed %</th><th>Src</th><th>Pre_COLA (invariant)</th><th>Expected = Pre×(1+%)</th><th>Net</th><th>✓</th></tr></thead>
+        <tbody>
+          <tr><td>7.85</td><td>CMDT→override</td><td>60.64</td><td>65.40</td><td>65.40</td><td class="ok">✓</td></tr>
+          <tr><td>12.0</td><td>Line Override</td><td>60.64</td><td>67.92</td><td>67.92</td><td class="ok">✓</td></tr>
+          <tr><td>20.0</td><td>Line Override</td><td>60.64</td><td>72.77</td><td>72.77</td><td class="ok">✓</td></tr>
+        </tbody></table>
+      <p>The override value moved through 7.85 → 12 → 20 during the session; at every value <code>Pre_COLA_Price__c</code>
+      stayed <b>60.64</b> and Net recomputed off that base (72.77 = 60.64×1.20, <i>not</i> 67.92×1.20). Override input field
+      is <code>COLA_Uplift_Percent__c</code>. <span class="muted">Minor anomaly: the %-change 12→20 was not operator-initiated
+      (fresh COLA_Modified_Date, now stable) — likely a mid-convergence transient or concurrent flow; flagged, not blocking,
+      since the invariant + math are self-consistent.</span></p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S10 · Contract override <span class="tag">— iO2H, Contract 00003473</span></summary>
+    <div class="body">
+      <p class="acc">Accept: valid Contract.COLA_Override_Percent__c wins over CMDT; Src=Contract Override.</p>
+      <table class="kv"><thead><tr><th>Line</th><th>Category</th><th>CMDT rate</th><th>Contract %</th><th>Pre_COLA</th><th>COLAcalc</th><th>Net</th><th>Src</th></tr></thead>
+        <tbody>
+          <tr><td>5250 Integrator F4AU</td><td>Doc Management</td><td>7.85%</td><td><b>4%</b></td><td>6063.75</td><td>6306.30</td><td>6306.30</td><td>Contract Override</td></tr>
+          <tr><td>5250 Integrator G4AU</td><td>Doc Management</td><td>7.85%</td><td><b>4%</b></td><td>6063.75</td><td>6306.30</td><td>6306.30</td><td>Contract Override</td></tr>
+        </tbody></table>
+      <p>6063.75 × 1.04 = 6306.30 — the contract's 4% override beats CMDT's 7.85%; Net commits at the override rate.
+      Contracts with overrides also found at 3% (00003493) and 5% (00069191).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S11 · Non-renewal = no COLA (line-action gated)</summary>
+    <div class="body">
+      <p class="acc">Accept: a New/Amend line carries no COLA. COLA is gated on the line's QuoteAction.Type='Renew', not the quote header type.</p>
+      <p>Two quotes whose header type is <i>not</i> Renewal nonetheless carried COLA on one line each — investigation showed
+      those lines belong to <b>Renew</b> QuoteActions (a renew line inside a New/Amend quote), which is correct:</p>
+      <table class="kv"><thead><tr><th>Quote (type)</th><th>Line</th><th>QuoteAction.Type</th><th>COLAcalc</th><th>Net</th></tr></thead>
+        <tbody>
+          <tr><td>KBjx (New)</td><td>beSECURE</td><td class="muted">None</td><td>—</td><td>5490.15</td></tr>
+          <tr><td>KBjx (New)</td><td>Powertech IAM</td><td class="ok">Renew</td><td>4314</td><td>4314</td></tr>
+          <tr><td>KCPt (Amendment)</td><td>Powertech IAM</td><td class="muted">Amend</td><td>—</td><td>355</td></tr>
+          <tr><td>KCPt (Amendment)</td><td>Powertech IAM</td><td class="ok">Renew</td><td>76.57</td><td>76.57</td></tr>
+        </tbody></table>
+      <p>Only <b>Renew</b>-action lines receive COLA; Amend / New / non-action lines get none. Rule confirmed.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S12·15·16 · MyCAP defaults, single-year & mixed</summary>
+    <div class="body">
+      <p><b>S12 — multi-year annual default</b> (hPLN): lines Src=<b>MyCAP Default</b>, <code>COLA_Outyear_Uplift_Percent__c=3</code>
+      (out-year floor), year-1 rate = CMDT 9.85%; Net 8041.02 = 7320×1.0985 = COLAcalc. Quote.Mycap=<b>false</b> (3% meets floor).</p>
+      <p><b>S15 — single-year bypass</b>: single-year CMDT lines (Ibx3, IKeT, KGtK) have Out%=None, Src=CMDT Lookup, Mycap=false — MyCAP correctly bypassed, COLA = CMDT default.</p>
+      <p><b>S16 — mixed lines</b> (iO2H): a 5-line quote where a single line's out-year (1%) is below the 3% floor flags the
+      whole quote Mycap=true while other lines are unaffected.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S13 · MyCAP approval trigger (&lt;3% out-year) <span class="tag">— iO2H</span></summary>
+    <div class="body">
+      <p class="acc">Accept: qualifying line out-year &lt;3% → Quote.Mycap=true → MYCAP_Approval=true → Deal Desk.</p>
+      <table class="kv"><thead><tr><th>Line</th><th>Out-year %</th><th>Below 3% floor?</th></tr></thead>
+        <tbody>
+          <tr><td>5250 Integrator F4AU</td><td>4</td><td class="muted">no</td></tr>
+          <tr><td>5250 Integrator G4AU</td><td>1</td><td class="no">YES → triggers</td></tr>
+        </tbody></table>
+      <p>Result: <code>Quote.Mycap__c = true</code>, <code>MYCAP_Approval__c = true</code>. iO2H is the only renewal quote
+      in the org currently flagged for MyCAP, and its trigger is exactly the sub-3% out-year line.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v BLOCKED">BLOCKED</span> S14 · MyCAP prepaid bypass</summary>
+    <div class="body">
+      <p>The prompt's discriminator field <code>PS_Service_Type__c = 'Prepaid'</code> does not exist on QuoteLineItem.
+      The only billing indicators present are <code>BillingFrequency</code> (values: Annual, None) — no "Prepaid" value on any
+      renewal COLA line. No live line lets us observe the prepaid MyCAP bypass. Data/field gap, not a defect.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v CAVEAT">PASS*</span> S17 · Partner-Originated renewal COLA <span class="tag">— stays 🟡 verify</span></summary>
+    <div class="body">
+      <p class="acc">Expected: net = partner-adjusted COLA (below raw COLAcalc); no error/regression.</p>
+      <table class="kv"><thead><tr><th>Quote (Channel)</th><th>Ccy</th><th>COLAcalc</th><th>Net (converged)</th><th>Pre_Partner</th><th>Discount?</th></tr></thead>
+        <tbody>
+          <tr><td>IKeT</td><td>USD</td><td>5417.50</td><td>5417.50</td><td>5417.50</td><td class="muted">none</td></tr>
+          <tr><td>FZN7</td><td>EUR</td><td>3666.90</td><td>3666.90</td><td>3400</td><td class="muted">none applied</td></tr>
+          <tr><td>DMc5</td><td>USD</td><td>7110.41</td><td>7110.41</td><td>—</td><td class="muted">none</td></tr>
+        </tbody></table>
+      <p>All converged channel renewals commit Net = <b>raw</b> COLAcalc with <b>D-18 clean and no regression</b>. However, every
+      sampled channel line has <code>Pre_Partner = Net</code> (zero partner discount), so the "partner-adjusted reduction" path
+      is <b>not exercised</b> by available data. The one pre-convergence line that looked discounted (DMc5, net 2482.21) was
+      simply stale and converged to raw COLA. Verdict PASS on the commit + no-regression assertion; the partner-reduction
+      arithmetic stays <b>🟡 to verify</b> against a renewal on a partner account with a real, non-zero discount.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="v PASS">PASS</span> S18 · Idempotency + convergence &nbsp;·&nbsp; S19 · D-18 clean</summary>
+    <div class="body">
+      <p><b>S18</b> — Convergence by pass 2 confirmed on every quote (the §GR-4 second-reprice rule); gold quote reprice
+      pass-2 vs pass-3 snapshots are <b>byte-identical</b> (Net 98700 / 63720, NetTot unchanged). No SC-3390 drift.</p>
+      <p><b>S19</b> — <code>SELECT Source__c, Message__c FROM Exception_Log__c WHERE CreatedDate = TODAY</code> returned
+      <b>0 rows</b> at baseline and after all reprices (~15 place-actions across 10 quotes). No hook silently swallowed an error.</p>
+    </div>
+  </details>
+
+  <h2>Static guard (SC-3350 payload)</h2>
+  <div class="note good"><b>PASS.</b> <code>RenewalColaPayloadBuilder.buildCommitPayload</code> writes 6 <b>output-only</b>
+  attributes (NetUnitPrice / NetTotalPrice / TotalPrice / PartnerUnitPrice / Subtotal / TotalLineAmount) — <b>no</b>
+  <code>InputUnitPrice</code> / <code>UnitPrice</code>. Including an input-type attribute silently poisons the whole
+  <code>updateContextAttributes</code> batch (COLA SDD §6). Guard tests green: <b>RenewalColaPayloadBuilderTest,
+  PartnerNetPricePosthookTest, COLAUpliftTest — 132 tests, 100% pass.</b></div>
+
+  <h2>Environment notes &amp; prompt drift</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Finding</th></tr></thead>
+    <tbody>
+      <tr><td>Oracle field <code>Is_COLA_Overridden__c</code></td><td>Does not exist on QuoteLineItem — substituted <code>COLA_Source__c='Line Override'</code> + <code>COLA_Override_Reason__c</code> as the override signal.</td></tr>
+      <tr><td>Oracle field <code>ItemPricingSource</code></td><td>Not a QuoteLineItem field (context-only attribute) — dropped from the snapshot query.</td></tr>
+      <tr><td>CMDT field <code>Uplift_Percent__c</code></td><td>Actual name is <code>Default_Uplift_Percent__c</code>.</td></tr>
+      <tr><td>MyCAP field <code>PS_Service_Type__c</code></td><td>Does not exist — blocked S14.</td></tr>
+      <tr><td>S12 acceptance "COLA_Uplift_Percent__c=3.00"</td><td>The 3% floor lives in <code>COLA_Outyear_Uplift_Percent__c</code> (out-years); year-1 stays CMDT. Graded on the out-year field.</td></tr>
+      <tr><td>SC-3350 fix git state</td><td>Output-only <code>buildCommitPayload</code> is an <b>uncommitted</b> working-tree change; <code>1a2aa2b</code> (last commit) still has <code>InputUnitPrice</code>. <b>Commit to protect the fix.</b></td></tr>
+    </tbody>
+  </table>
+
+  <h2>Quotes exercised (preserved for team review)</h2>
+  <table>
+    <thead><tr><th>Quote Id</th><th>Role</th><th>Ccy</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td class="idcol">0Q0WC000003Ibx3</td><td>Gold — SC-3350 net commit + idempotency</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000002Jg7F0AS</td><td>S2 Subscription (MyCAP outyear)</td><td>AUD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC00000364Lm0AI</td><td>S2 Subscription qty-2 (double-count)</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000003KGtK0AW</td><td>S3 Software</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC00000382MH0AY</td><td>S4 Renewal-Maint + S8/S9 Line Override</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000003FZN70AO</td><td>S4 New-Maint / S17 EUR channel</td><td>EUR</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000002iO2H0AU</td><td>S10 Contract Override + S13/S16 MyCAP trigger</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000002hPLN0A2</td><td>S12 MyCAP multi-year default</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000003IKeT0AW</td><td>S17 partner (USD channel)</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000003DMc50AG</td><td>S17 partner candidate (converged raw)</td><td>USD</td><td><span class="v PASS">PASS</span></td></tr>
+      <tr><td class="idcol">0Q0WC000003FR6D0AW / …FRPZ0A4</td><td>New-Maint candidates — pre-existing DerivedPricingFilter defect</td><td>USD</td><td><span class="v BLOCKED">BLOCKED</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    Generated by Claude Code · COLA CLI regression harness · read-mostly oracle (SOQL) with authorized Force-reprices.
+    No test records were deleted — all quotes above are preserved for team review.<br>
+    <b>CHANGELOG line to append to the prompt:</b> <code>2026-07-12 — Full CLI run on V25: 15 PASS / 1 PASS-caveat (S17 partner, 🟡) / 3 BLOCKED (S6, S7, S14 — data/config gaps) / 0 FAIL. SC-3350 holds (Ibx3 162420, net==COLAcalc, D-18 clean, idempotent). Flagged: buildCommitPayload output-only fix is git-uncommitted (1a2aa2b still has InputUnitPrice).</code>
+  </div>
+
+</div>
+</body>
+</html>

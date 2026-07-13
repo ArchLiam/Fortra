@@ -1,0 +1,123 @@
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: // SC-3346 — correct mis-mirrored TermDefined maintenance prices from the earlier owned-product scale-out.
+Execute Anonymous: // That scale-out hardcoded TD UnitPrice=$0 instead of mirroring the OneTime PBE, so static-priced
+Execute Anonymous: // (IsDerived=false) maintenance SKUs have $0 non-USD TD prices while their OneTime source carries real
+Execute Anonymous: // FX prices — a candidate to mis-price non-USD renewals (e.g. the live owned asset RPA-AUT-RNM-AMAONM GBP).
+Execute Anonymous: // This aligns each active annual TermDefined PBE's UnitPrice to its OneTime sibling (same product|book|
+Execute Anonymous: // currency) wherever they diverge and the OneTime price is non-zero. UnitPrice is updateable; IsDerived is
+Execute Anonymous: // NOT touched (the Standard-book USD IsDerived deviation is cosmetic — not the renewal book). Idempotent;
+Execute Anonymous: // DRY_RUN default true. READ the debug before committing.
+Execute Anonymous: 
+Execute Anonymous: Boolean DRY_RUN = false;                              // <-- flip to false to commit
+Execute Anonymous: 
+Execute Anonymous: Id TERM_ANNUAL_PSM = '0jPWC000000060b2AA';            // "Term Based - Annual"
+Execute Anonymous: Id ONETIME_PSM     = '0jPWC00000005yz2AA';            // "One Time"
+Execute Anonymous: 
+Execute Anonymous: // Scope to owned maintenance products (the scale-out set — where the $0-hardcode bug lives; the batch
+Execute Anonymous: // mirrored faithfully). Keeps query rows well under the governor limit.
+Execute Anonymous: Set<Id> ownedProds = new Set<Id>();
+Execute Anonymous: for (AggregateResult ar : [
+Execute Anonymous:         SELECT Product2Id pid FROM Asset
+Execute Anonymous:         WHERE Status = 'Installed' AND Product2.Fortra_Product_Type__c = 'New Maintenance'
+Execute Anonymous:         GROUP BY Product2Id]) {
+Execute Anonymous:     ownedProds.add((Id) ar.get('pid'));
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: // OneTime list price per product|book|currency (the mirror source of truth)
+Execute Anonymous: Map<String, Decimal> oneTimePrice = new Map<String, Decimal>();
+Execute Anonymous: for (PricebookEntry ot : [
+Execute Anonymous:         SELECT Product2Id, Pricebook2Id, CurrencyIsoCode, UnitPrice
+Execute Anonymous:         FROM PricebookEntry
+Execute Anonymous:         WHERE ProductSellingModelId = :ONETIME_PSM AND IsActive = true
+Execute Anonymous:           AND Product2Id IN :ownedProds]) {
+Execute Anonymous:     oneTimePrice.put(ot.Product2Id + '|' + ot.Pricebook2Id + '|' + ot.CurrencyIsoCode, ot.UnitPrice);
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: List<PricebookEntry> toFix = new List<PricebookEntry>();
+Execute Anonymous: List<String> report = new List<String>();
+Execute Anonymous: for (PricebookEntry td : [
+Execute Anonymous:         SELECT Id, Product2.ProductCode, Product2Id, Pricebook2Id, CurrencyIsoCode, UnitPrice
+Execute Anonymous:         FROM PricebookEntry
+Execute Anonymous:         WHERE ProductSellingModelId = :TERM_ANNUAL_PSM AND IsActive = true
+Execute Anonymous:           AND Product2Id IN :ownedProds]) {
+Execute Anonymous:     Decimal src = oneTimePrice.get(td.Product2Id + '|' + td.Pricebook2Id + '|' + td.CurrencyIsoCode);
+Execute Anonymous:     if (src != null && src > 0 && td.UnitPrice != src) {
+Execute Anonymous:         if (report.size() < 25) {
+Execute Anonymous:             report.add(td.Product2.ProductCode + ' ' + td.CurrencyIsoCode + ' : ' + td.UnitPrice + ' -> ' + src);
+Execute Anonymous:         }
+Execute Anonymous:         td.UnitPrice = src;
+Execute Anonymous:         toFix.add(td);
+Execute Anonymous:     }
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: System.debug(LoggingLevel.ERROR, '===== SC-3346 fix mirror prices (' + (DRY_RUN ? 'DRY-RUN' : 'COMMIT') + ') =====');
+Execute Anonymous: System.debug(LoggingLevel.ERROR, 'TermDefined PBE prices to correct: ' + toFix.size());
+Execute Anonymous: System.debug(LoggingLevel.ERROR, 'SAMPLE (first 25):\n  ' + String.join(report, '\n  '));
+Execute Anonymous: 
+Execute Anonymous: if (!DRY_RUN) {
+Execute Anonymous:     if (!toFix.isEmpty()) {
+Execute Anonymous:         update toFix;
+Execute Anonymous:         System.debug(LoggingLevel.ERROR, 'COMMITTED — ' + toFix.size() + ' TermDefined PBE prices aligned to OneTime.');
+Execute Anonymous:     } else {
+Execute Anonymous:         System.debug(LoggingLevel.ERROR, 'nothing to correct (already aligned).');
+Execute Anonymous:     }
+Execute Anonymous: } else {
+Execute Anonymous:     System.debug(LoggingLevel.ERROR, 'DRY-RUN only — no DML. Flip DRY_RUN=false to commit.');
+Execute Anonymous: }
+Execute Anonymous: System.debug(LoggingLevel.ERROR, '=================================================');
+06:49:52.47 (47275223)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+06:49:52.47 (47303576)|EXECUTION_STARTED
+06:49:52.47 (47316228)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+06:49:52.47 (515844728)|USER_DEBUG|[52]|ERROR|===== SC-3346 fix mirror prices (COMMIT) =====
+06:49:52.47 (515928111)|USER_DEBUG|[53]|ERROR|TermDefined PBE prices to correct: 209
+06:49:52.47 (516000140)|USER_DEBUG|[54]|ERROR|SAMPLE (first 25):
+  DM-WCU-RNM-5250NE USD : 0.00 -> 735.00
+  DM-WCU-RNM-5250NE ARS : 0.00 -> 490000.0245
+  DM-WCU-RNM-5250NE ARS : 0.00 -> 490000.0245
+  DM-WCU-RNM-5250NE AUD : 0.00 -> 1130.7975
+  DM-WCU-RNM-5250NE AUD : 0.00 -> 1130.7975
+  DM-WCU-RNM-5250NE CAD : 0.00 -> 1020.8415
+  DM-WCU-RNM-5250NE CAD : 0.00 -> 1020.8415
+  DM-WCU-RNM-5250NE CHF : 0.00 -> 650.475
+  DM-WCU-RNM-5250NE CHF : 0.00 -> 650.475
+  DM-WCU-RNM-5250NE EUR : 0.00 -> 686.931
+  DM-WCU-RNM-5250NE EUR : 0.00 -> 686.931
+  DM-WCU-RNM-5250NE GBP : 0.00 -> 578.739
+  DM-WCU-RNM-5250NE GBP : 0.00 -> 578.739
+  DM-WCU-RNM-5250NE ILS : 0.00 -> 2664.4485
+  DM-WCU-RNM-5250NE ILS : 0.00 -> 2664.4485
+  DM-WCU-RNM-5250NE JPY : 0.00 -> 109701.4695
+  DM-WCU-RNM-5250NE JPY : 0.00 -> 109701.4695
+  DM-WCU-RNM-5250NE NZD : 0.00 -> 1225.0245
+  DM-WCU-RNM-5250NE NZD : 0.00 -> 1225.0245
+  RPA-AUT-RNM-AMAONM USD : 0.00 -> 1000.00
+  RPA-AUT-RNM-AMAONM ARS : 0.00 -> 666666.70
+  RPA-AUT-RNM-AMAONM ARS : 0.00 -> 666666.70
+  RPA-AUT-RNM-AMAONM AUD : 0.00 -> 1538.50
+  RPA-AUT-RNM-AMAONM AUD : 0.00 -> 1538.50
+  RPA-AUT-RNM-AMAONM CAD : 0.00 -> 1388.90
+06:49:52.47 (884113583)|EXCEPTION_THROWN|[58]|System.DmlException: Update failed. First exception on row 0 with id 01uWC000007EGFrYAO; first error: INVALID_INPUT, The list price for a derived product must be 0.: [UnitPrice]
+06:49:52.47 (886502568)|FATAL_ERROR|System.DmlException: Update failed. First exception on row 0 with id 01uWC000007EGFrYAO; first error: INVALID_INPUT, The list price for a derived product must be 0.: [UnitPrice]
+
+AnonymousBlock: line 58, column 1
+06:49:52.886 (886523638)|CUMULATIVE_LIMIT_USAGE
+06:49:52.886 (886523638)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 3864 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 209 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+06:49:52.886 (886523638)|CUMULATIVE_LIMIT_USAGE_END
+
+06:49:52.47 (886573665)|CODE_UNIT_FINISHED|execute_anonymous_apex
+06:49:52.47 (886581778)|EXECUTION_FINISHED
+

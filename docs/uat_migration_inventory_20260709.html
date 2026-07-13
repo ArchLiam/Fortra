@@ -1,0 +1,240 @@
+<title>FortraUAT Migration Inventory (Live) — 2026-07-09</title>
+<style>
+  :root{
+    --bg:#f4f6f8;--surface:#fff;--surface2:#eef1f4;--border:#dbe1e7;--ink:#131b23;--ink2:#48565f;--ink3:#748290;
+    --accent:#0c7d88;--live:#1f9d57;--live-bg:#e6f5ec;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;
+    --accent:#37b7c0;--live:#4bc384;--live-bg:#11291d;--shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="light"]{--bg:#f4f6f8;--surface:#fff;--surface2:#eef1f4;--border:#dbe1e7;--ink:#131b23;--ink2:#48565f;--ink3:#748290;--accent:#0c7d88;--live:#1f9d57;--live-bg:#e6f5ec;--shadow:0 1px 2px rgba(20,30,42,.05),0 2px 10px rgba(20,30,42,.06);}
+  :root[data-theme="dark"]{--bg:#0d131a;--surface:#151d26;--surface2:#1c2731;--border:#2a3641;--ink:#e9eef3;--ink2:#a6b3bf;--ink3:#76838f;--accent:#37b7c0;--live:#4bc384;--live-bg:#11291d;--shadow:0 1px 2px rgba(0,0,0,.3),0 2px 12px rgba(0,0,0,.4);}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 22px 90px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  h1{margin:0;font-size:25px;letter-spacing:-.02em;text-wrap:balance}
+  .meta{margin-top:8px;color:var(--ink3);font-family:var(--mono);font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap}
+  .meta b{color:var(--ink2)}
+  .lede{color:var(--ink2);font-size:14px;max-width:80ch;margin:10px 0 0}
+  .banner{margin:16px 0 6px;border-radius:12px;padding:13px 18px;background:var(--live-bg);color:var(--live);border:1px solid color-mix(in srgb,var(--live) 35%,transparent);font-weight:600;font-size:14px;box-shadow:var(--shadow)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(115px,1fr));gap:12px;margin:16px 0}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .card .n{font-family:var(--mono);font-size:25px;font-weight:700;letter-spacing:-.02em}
+  .card.tot .n{color:var(--live)}
+  .card .l{font-size:11.5px;color:var(--ink2);margin-top:2px}
+  .controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;align-items:center}
+  .chip{font-family:var(--mono);font-size:12px;padding:6px 12px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--ink2);cursor:pointer;user-select:none}
+  .chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  input.search{flex:1;min-width:180px;padding:8px 12px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--ink);font-family:var(--mono);font-size:13px}
+  input.search:focus{outline:2px solid var(--accent);outline-offset:1px}
+  h2{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);font-family:var(--mono);margin:26px 0 8px}
+  h2 .c{color:var(--ink2)}
+  .tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:740px;font-size:13px}
+  th,td{text-align:left;padding:9px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+  thead th{background:var(--surface2);font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3)}
+  td.name{font-family:var(--mono);font-size:12.5px}
+  td.tkt{font-family:var(--mono);font-size:11.5px;color:var(--ink2);white-space:nowrap}
+  td.why{color:var(--ink2);font-size:12.5px;min-width:240px}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.03em;padding:3px 8px;border-radius:99px;white-space:nowrap;color:var(--live);background:var(--live-bg)}
+  .pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+  .empty{color:var(--ink3);padding:18px;text-align:center;font-size:13px}
+  .foot{color:var(--ink3);font-size:12px;margin-top:28px;border-top:1px solid var(--border);padding-top:14px}
+</style>
+<div id="root"></div>
+<script>
+const META={org:"FortraUAT",when:"2026-07-09"};
+// Every row is LIVE + active in FortraUAT (org-verified). Columns: [group, name, ticket, reason]
+const C=[
+ // ── Apex classes — pricing hooks & services ──
+ ["Apex class","PartnerNetPricePosthook","SC-3346/3359/3384/3544 · D-11","Partner + derived-maint net posthook; deal-aware; SC-3544 Sales-Price stamp"],
+ ["Apex class","PartnerPricingPrehookV2","SC-3359 · E-04 · D-11","V2 partner prehook; Non_Orig fallback (V1→V2 flip 07-01)"],
+ ["Apex class","PartnerPricingService","D-11 · E-04","Consolidated V1→V2 partner-margin delegation"],
+ ["Apex class","PartnerPricingServiceV2","D-11 · E-04","Deal-aware getMarginForProductType"],
+ ["Apex class","COLAUpliftPrehook","SC-3384 · D-13","Reprice-time COLA; line-override precedence; resolveTier"],
+ ["Apex class","COLAUpliftHandler","D-13","Save-time COLA trigger handler; formula-driven override"],
+ ["Apex class","AmendNetCarryPrehook","SC-3501","Carries prior asset net (×qty) onto amend lines (V24)"],
+ ["Apex class","CancelLineCreditPosthook","SC-3441","Negative cancel credit; self-resolves asset NET"],
+ ["Apex class","HardwareAttributePricingPrehook","D-14 · Hardware","Hardware price = List×pGroup×userTier×(1−systemType%)"],
+ ["Apex class","RegionalServicesPricingPrehook","SC-3374/3393 · regional","Country multiplier on LIST channel; null-mult guard"],
+ ["Apex class","AttributeVolumePricingPrehook","SC-3390 · SC-3384","Attribute/volume tier price; currency-aware tier lookup"],
+ ["Apex class","QLDescriptionGeneratorPrehook","SC-3349","Line description; Number_of_Units fallback"],
+ ["Apex class","RenewalMaintenancePricingService","SC-3346","Computes 3-component renewal-maint net"],
+ ["Apex class","MaintenanceOrderDecompositionService","SC-3412 · SC-3346","Order-side derived-maint net mirror at Q→O convert"],
+ ["Apex class","RenewalAssetQuantityHandler","SC-3410 · SC-3412","Normalizes auto-added New-Maint qty; No Change→Amend"],
+ ["Apex class","QuoteLineItemCurrencyCorrectionHandler","SC-3384 (WS-E)","Re-points mis-currencied auto-add PBE to quote currency"],
+ ["Apex class","AbaCurrencyCorrectionService","SC-3384 (ABA)","Per-unit USD→currency ABA localization"],
+ ["Apex class","OrderRepriceInvocable","SC-3308","Force-reprice before Activate"],
+ ["Apex class","OrderSubmissionValidator","SC-3366 · SC-3291","Bulk constant-SOQL order-submit validation"],
+ ["Apex class","QuoteToOrderFieldMapper","SC-3339 · bill-ship","Q→O header mapping (Bill_To_Account__c=Quote.AccountId)"],
+ ["Apex class","PowerOrderSplittingService","SC-3447","200-clone cap + partition/hardware gate + ARR apportion"],
+ ["Apex class","HardwareGroupController","SC-3423 · SC-3468","getHardwareById read-after-write; NULLS LAST"],
+ ["Apex class","RenewalForecastAmount","SC-3500","Σ(Asset MRR×12)×(1+COLA) renewal-opp Amount"],
+ ["Apex class","OrderValidationTriggerHandler","manual-convert","Auto-activates linked Draft Contract before Order activation"],
+ ["Apex class","AssetRateOverrideConsolidationService","D-16","Bulkified assetize finalize (governor)"],
+ ["Apex class","AssetArrFromOrderItemHandler","A-3","Copies Order_Line_ARR__c→Asset.ARR__c"],
+ ["Apex class","OrderCommercialNetService","assetize","Order commercial-net helper"],
+ ["Apex class","ExceptionLogger","D-18","Never-throw platform-event publisher"],
+ ["Apex class","PricingHookLogger","D-18","Pricing-hook facade → Pricing_Exception__e"],
+ ["Apex class","AppException / PricingException","D-18","Seed exception classes"],
+ ["Apex class","PricingCharacterizationTest","refactor Wave-0","Golden characterization test"],
+ // ── Apex — Wave-2 refactor calculators ──
+ ["Apex class (calculator)","HardwarePricingCalculator","pricing-refactor","Extracted from HardwareAttributePricingPrehook"],
+ ["Apex class (calculator)","RegionalPricingCalculator","pricing-refactor","Extracted from RegionalServicesPricingPrehook"],
+ ["Apex class (calculator)","AttributeVolumeCalculator","pricing-refactor","Extracted from AttributeVolumePricingPrehook"],
+ ["Apex class (calculator)","CancelLineCreditCalculator","pricing-refactor","Extracted from CancelLineCreditPosthook"],
+ ["Apex class (calculator)","RenewalMaintenanceColaCalculator","pricing-refactor","Renewal-maint COLA net math"],
+ ["Apex class (calculator)","ContributorPricingCalculator","pricing-refactor","Contributor-line pricing helpers"],
+ ["Apex class (calculator)","DerivedMaintenanceClassifier","pricing-refactor","Derived-maint predicates"],
+ ["Apex class (calculator)","NewMaintenanceBandCalculator","pricing-refactor","New-maint partner-band mapping"],
+ ["Apex class (calculator)","NewMaintenanceInputResolver","pricing-refactor · J-06","Per-line resolution / tier rate"],
+ ["Apex class (calculator)","PartnerNetResolutionCalculator","pricing-refactor","resolveCommercialUnitPrice / PreProcedurePrice"],
+ ["Apex class (calculator)","ContextTagReader","pricing-refactor","Shared context-tag reader"],
+ ["Apex class (calculator)","ListPriceStampCalculator","pricing-refactor","List-price / discount resolvers"],
+ ["Apex class (calculator)","ContextUpdateNavigator","pricing-refactor","Context-map nav helpers"],
+ ["Apex class (calculator)","PartnerPricingGate","pricing-refactor","Partner decision predicates"],
+ ["Apex class (calculator)","NewMaintenanceNetCalculator","pricing-refactor · J-06","Derived-maint net formula"],
+ ["Apex class (calculator)","SequentialDiscountCalculator","pricing-refactor","Sequential-discount primitive"],
+ ["Apex class (calculator)","DerivedMaintenancePayloadBuilder","pricing-refactor","Derived-maint payload builder"],
+ ["Apex class (calculator)","RenewalColaPayloadBuilder","pricing-refactor","Renewal COLA payload"],
+ ["Apex class (calculator)","PartnerPricingPayloadBuilder","pricing-refactor","PPV2 payload"],
+ ["Apex class (calculator)","PartnerParticipationResolver","pricing-refactor","PPV2 participation"],
+ ["Apex class (calculator)","PartnerMarginDispatcher","pricing-refactor","PPV2 margin dispatch"],
+ ["Apex class (calculator)","QLDescriptionCalculator","pricing-refactor","Extracted from QLDescriptionGeneratorPrehook"],
+ // ── Apex triggers ──
+ ["Apex trigger","QuoteLineItemTrigger","SC-3441 · SC-3384","Cancel-seed + currency-correction before COLA"],
+ ["Apex trigger","OrderValidationTrigger","manual-convert","before insert/update — contract auto-activate"],
+ ["Apex trigger","AssetArrFromOrderItemTrigger","A-3","Fires ARR copy handler"],
+ // ── OmniStudio · Revenue Cloud ──
+ ["RCA · Revenue Cloud","ExpressionSet · Rev_Mgmt_Default_Pricing_Procedure","SC-3345/3374/3390/3393/3420/3441/3473/3501 · G-01/F-07/I-03/D-17/K-01","Shared Quote+Order pricing procedure, edited in-place V8→V24 (V23/V24 active)"],
+ ["RCA · Revenue Cloud","Decision Table · Price_Book_Entry_Decision_Table_v2","waterfall §1 · SC-3384","Per-currency list-price / Base_Price lookup"],
+ ["RCA · Revenue Cloud","Decision Table · Attribute_Based_Adjustment_Decision_Table","SC-3360 · SC-3384","Attribute-based (ABA) price adjustments"],
+ ["RCA · Revenue Cloud","Decision Table · Attribute_Tier_Pricing_Matrix","SC-3390 · SC-3384","Attribute volume-tier pricing"],
+ ["RCA · Revenue Cloud","Decision Table · Bundle_Based_Adjustment_Decision_Table","bundle pricing","Bundle-based price adjustments"],
+ ["RCA · Revenue Cloud","Decision Table · Derived_Pricing_Entries_Decision_Table","SC-3346 · SC-3372","Derived-maintenance contributor pricing"],
+ ["RCA · Revenue Cloud","Decision Table · Asset_Action_Source_Entries_Decision_Table_V2","SC-3346","Renewal / asset-action pricing source"],
+ ["RCA · Revenue Cloud","Decision Table · Fortra_Regional_Pricing","SC-3374 · regional","Fortra regional multiplier"],
+ ["RCA · Revenue Cloud","Decision Table · Regional_Pricing","regional","Base regional multiplier"],
+ ["RCA · Revenue Cloud","Decision Table · MaintenanceType","SC-3346","Maintenance-tier rate lookup"],
+ ["RCA · Revenue Cloud","Decision Table · Cyber_Partner_Discount_Matrix","SC-3359 · partner","Cyber partner discount schedule"],
+ ["RCA · Revenue Cloud","Decision Table · Tech_Partner_Discount_Matrix","SC-3359 · partner","Tech partner discount schedule"],
+ ["RCA · Revenue Cloud","Decision Table · Contract_Pricing_Entries_Decision_Table","contracted pricing","Contracted-price lookup"],
+ ["RCA · Revenue Cloud","Decision Table · Index_Rate_Decision_Table","SC-3350 · COLA","COLA index rates"],
+ ["RCA · Revenue Cloud","Calculation Matrices (14 rate matrices)","pricing waterfall","Backing rate data for the decision tables (Price Book Entries V2, Derived Pricing Entries, MaintenanceType, Attribute Tier Pricing, Cyber/Tech Partner Discount, Fortra Regional Pricing, Attribute/Bundle/Volume Discount, Contract Pricing, Index Rate)"],
+ ["RCA · Revenue Cloud","Context Definition · SalesTransactionContextExt_v2","SC-3371 · SC-3441 · V16","Pricing context: Order-node mapping of Prior_*, Cancel, Pre_Partner fields"],
+ // ── OmniStudio (Document Generation / DocuSign stack) ──
+ ["OmniStudio","Integration Procedure · IPFortraGenerateQuoteDoc (v4)","SC-3335","Orchestrates quote document generation (extract → transform → render)"],
+ ["OmniStudio","Integration Procedure · SendDocuSignEnvelope (v1)","SC-3335 · e-sign","Sends the generated quote doc as a DocuSign envelope"],
+ ["OmniStudio","OmniScript · Fortra Quote Generate Document (v3)","SC-3335","Quote document-generation OmniScript (UI entry point)"],
+ ["OmniStudio","DataMapper · DMExtractFortraQuote (Extract)","SC-3335","Extracts Quote + line data for the DocGen payload"],
+ ["OmniStudio","DataMapper · DMTransformFortraQuote (Transform)","SC-3335","Transforms Quote data into the document template payload"],
+ ["OmniStudio","DataMapper · DMTransformFortraDocTemplate (Transform)","SC-3335","Maps template metadata for rendering"],
+ ["OmniStudio","DataMapper · DMTurboExtractQuoteDocGenTemplate (Turbo Extract)","SC-3335","Turbo-extract of the DocGen template config"],
+ ["OmniStudio","DataMapper · DMTurboExtractQuoteLineItem (Turbo Extract)","SC-3335","Turbo-extract of quote line items for the doc"],
+ ["OmniStudio","Document Template · Fortra Quote Consolidated EN (v3)","SC-3335","DocGen consolidated quote PDF template (rendered by the stack above)"],
+ // ── Flows ──
+ ["Flow","Fortra_Quote_Reprice","SC-3544 · SC-3346","Passes QuoteId for Sales-Price stamp; wires renewal-maint service"],
+ ["Flow","Fortra_Quote_to_Order_Conversion","SC-3308/3447/3338","Convert wizard: reprice gate + Power-split cap + bill/ship mapper"],
+ ["Flow","Fortra_OrderItem_Set_Dates","SC-3297 · SC-3411","Billing From/To + null EndDate/PTC backstop (V6)"],
+ ["Flow","Fortra_Order_Submission_Check","SC-3291/3366/3411","Order-submit validation screen (V14)"],
+ ["Flow","Fortra_OrderItem_Set_Workday_Contract_Line_Type","SC-3347/3368/3210","Workday contract-line-type stamping"],
+ ["Flow","Fortra_Create_Renewal_Quote","SC-3346","Renewal generation (+ Flip + Reprice subflows)"],
+ ["Flow","Fortra_Quote_Required_Fields_Check","SC-3338","Required-fields review screen + quick action"],
+ ["Flow","Fortra_Pricing_Exception_Logger","D-18","Subscriber flow → Exception_Log__c"],
+ ["Flow","Fortra_Exception_Log_Purge","D-18","90-day retention scheduled flow"],
+ ["Flow","Fortra_Contract_Create_Renewal_Opportunity","SC-3500","+15min renewal-opp Amount path"],
+ ["Flow","Fortra_Assetize_Order","SC-3415 · SC-3419","V14 assetization fault-visibility hardening"],
+ ["Flow","Fortra_AssetAction_Stamp_Line_Description","SC-3513","AssetAction-Create Asset.Description stamp"],
+ ["Flow","Stamp_Source_List_Price","SC-3346 · SC-3372","Stamps Source_List_Price__c from PBEDP contributor"],
+ ["Flow","Stamp_Maintenance_Pricing_Inputs","SC-3346 · SC-3372","Stamps maintenance pricing inputs"],
+ // ── Custom fields ──
+ ["Custom field","QuoteLineItem.CancelNetUnitPrice__c","SC-3441","Cancel-credit seed"],
+ ["Custom field","QuoteLineItem.Source_List_Price__c","SC-3346 · SC-3372","Derived-maint base for tier formula"],
+ ["Custom field","QuoteLineItem.Prior_Partner_Discount__c / Prior_Discretionary_Discount__c","SC-3346","Renewal 3-component carry-forward inputs"],
+ ["Custom field","QuoteLineItem.Final_Year_COLA_Calculated_Price__c / COLA_Outyear_Uplift_Percent__c / COLA_Solution_Category__c","SC-3346","COLA staging"],
+ ["Custom field","QuoteLineItem.Is_COLA_Overridden__c","D-13","Restored to SDD Formula(Checkbox)"],
+ ["Custom field","QuoteLineItem.ABA_Raw_Net__c / OrderItem.ABA_Raw_Net__c","SC-3384 (ABA)","ABA provenance marker"],
+ ["Custom field","OrderItem.Pre_Partner_Price__c / Partner_Pricing_Source__c","V16 · SC-3384","Order-side partner fields (fixed Order reprice)"],
+ ["Custom field","OrderItem.CancelNetUnitPrice__c","SC-3441","Order-side cancel mirror"],
+ ["Custom field","OrderItem COLA/maint set (Base_Price__c, COLACalculatedPrice__c, COLA_Uplift_Percent__c, Source_List_Price__c, Prior_*_Discount__c, Fortra_Product_Type__c, Maintenance_Discount_Percent__c)","SC-3346","Order-side derived-maint / COLA staging"],
+ ["Custom field","Order.Quote_Type__c / QuoteTypeText__c","SC-3346","Order branch-gate fields"],
+ ["Custom field","Order.Maintenance_Date__c / New_Maintenance__c / Renewal_Maintenance_Quote__c","SC-3346","Maintenance order fields"],
+ ["Custom field","Hardware__c.Model_Number__c / iSeries_Model__c","SC-3468","Dual-write model number (+44-row backfill)"],
+ ["Custom field","Lead.Close_Reason__c (dependent→independent)","SC-3171","Reason selectable at Working"],
+ // ── Objects / events / CMDT ──
+ ["Object / event","Pricing_Exception__e (Platform Event)","D-18","Pricing-hook degrade telemetry"],
+ ["Object / event","Exception_Log__c (Custom Object, 9 fields)","D-18","Durable exception store"],
+ ["CMDT","Order_Submit_Validation__mdt (type + ~48 records)","SC-3291","Config-driven order-submit validation"],
+ ["CMDT","Hardware_Attribute_Pricing__mdt (type + ~16 records)","D-14","Hardware pricing tables → admin-editable MDT"],
+ ["CMDT","COLA_Uplift_Rules__mdt (records: BoKS consolidation 22→21)","SC-3346","Consolidated BoKS COLA row"],
+ // ── LWC / FlexiPage ──
+ ["LWC / FlexiPage","hardwareGroupManager (LWC)","SC-3468 · SC-3423","Model-number display; getHardwareById"],
+ ["LWC / FlexiPage","Hardware_Record_Page (FlexiPage)","SC-3468","Model Number → iSeries dependent dropdown"],
+ ["LWC / FlexiPage","Quote_Record_Page (FlexiPage)","SC-3338","Required-field help text + action buttons"],
+ // ── VR / permset / config-data ──
+ ["Validation / access","Lead.Prevent_Close_Reason_When_Not_Closed (VR)","SC-3171","Fixed OR-tautology; reason editable at Working/Closed"],
+ ["Validation / access","FLS updates (14 sets): Pre_Partner_Price__c / Partner_Pricing_Source__c / CancelNetUnitPrice__c","V16 · SC-3441","Mirror QLI FLS to OrderItem"],
+ // ── Permission sets · Public groups (DocGen / DocuSign access model) ──
+ ["Permission set · group","Permission Set · DocuSign_API_Access (custom · 6 assigned)","SC-3335 · DocuSign","DocuSign API integration access"],
+ ["Permission set · group","Permission Set · DocGenUser (11 assigned)","SC-3335 · DocGen","DocGen runtime user access"],
+ ["Permission set · group","Permission Set · DocGenDesigner (12 assigned)","SC-3335 · DocGen","DocGen template designer access"],
+ ["Permission set · group","Permission Set · DocumentBuilderUser (13 assigned)","SC-3335","Document Builder access"],
+ ["Permission set · group","Permission Set Licenses · DocGenDesignerPsl · DocumentBuilderUserPsl · OmniStudioDesigner","SC-3335","License enablement for the DocGen / OmniStudio stack"],
+ ["Permission set · group","Public Group · DocGen_Template_Users (2 members)","SC-3335 · DocGen","Sharing group for DocGen templates — ContentDocumentLink share; load-bearing DocGen access model"],
+ ["Config / data","ProcedurePlanOption → PPV2 (1FYWC0000002W3r4AE)","E-04 · D-11","Re-pointed partner prehook V1→V2"],
+ ["Config / data","ProductAttributeDefinition.IsPriceImpacting (26 tiered PADs)","SC-3390","Fix tiered click-twice"],
+ ["Config / data","MTD PAD backfill (91 FEAT_ONLY products)","A-07 · SC-3346","Add Maintenance-Type PAD for tier lookup"],
+ ["Config / data","Order Bill/Ship header backfill (17,241 orders)","SC-3339","Fill blank Bill/Ship Account/Address/Contact"],
+ ["Config / data","PBEDP contributor config (182WC000000HEPxYAO)","SC-3372","Cleared derived-price hard-error"],
+];
+const REC=C.map(r=>({group:r[0],name:r[1],ticket:r[2],reason:r[3]}));
+const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const total=REC.length;
+const byGroup={}; REC.forEach(r=>byGroup[r.group]=(byGroup[r.group]||0)+1);
+const cardCounts={Apex:REC.filter(r=>r.group.startsWith("Apex")).length,RCA:REC.filter(r=>r.group.startsWith("RCA")).length,OmniStudio:REC.filter(r=>r.group==="OmniStudio").length,Flows:byGroup["Flow"]||0,Fields:byGroup["Custom field"]||0};
+let search="";
+function render(){
+  const q=search.trim().toLowerCase();
+  const rows=REC.filter(r=>!q||(r.name+" "+r.ticket+" "+r.reason+" "+r.group).toLowerCase().includes(q));
+  const groups=[...new Set(rows.map(r=>r.group))].map(g=>[g,rows.filter(r=>r.group===g)]);
+  document.getElementById("root").innerHTML=`
+  <div class="wrap">
+    <header>
+      <h1>FortraUAT Migration Inventory — Live components</h1>
+      <div class="meta"><span>org <b>${esc(META.org)}</b></span><span>verified <b>${esc(META.when)}</b></span><span><b>${total}</b> live components · all tickets</span></div>
+      <p class="lede">Every component migrated to FortraUAT that is <b>live &amp; active</b> today, with its ticket + reason. Live status verified against the org (ApexClass presence · Flow IsActive · Decision Table Status · FieldDefinition · EntityDefinition · ValidationRule.Active). UAT-only. Inactive / staged / reverted / deleted components are excluded.</p>
+    </header>
+    <div class="banner">🟢 All ${total} components below are confirmed live &amp; active in FortraUAT.</div>
+    <div class="cards">
+      <div class="card tot"><div class="n">${total}</div><div class="l">Live components</div></div>
+      <div class="card"><div class="n">${cardCounts.Apex}</div><div class="l">Apex (incl. calculators)</div></div>
+      <div class="card"><div class="n">${cardCounts.RCA}</div><div class="l">RCA · Revenue Cloud</div></div>
+      <div class="card"><div class="n">${cardCounts.OmniStudio}</div><div class="l">OmniStudio (DocGen)</div></div>
+      <div class="card"><div class="n">${cardCounts.Flows}</div><div class="l">Flows</div></div>
+      <div class="card"><div class="n">${cardCounts.Fields}</div><div class="l">Custom fields</div></div>
+    </div>
+    <div class="controls"><input class="search" id="search" placeholder="search name / ticket / reason…" value="${esc(search)}"/></div>
+    ${rows.length?groups.map(([g,rs])=>`
+      <h2>${esc(g)} <span class="c">· ${rs.length}</span></h2>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Component</th><th>Ticket</th><th>Reason</th><th>Status</th></tr></thead>
+        <tbody>${rs.map(r=>`<tr>
+          <td class="name">${esc(r.name)}</td>
+          <td class="tkt">${esc(r.ticket)}</td>
+          <td class="why">${esc(r.reason)}</td>
+          <td><span class="pill">LIVE</span></td>
+        </tr>`).join("")}</tbody>
+      </table></div>`).join(""):`<div class="empty">No components match.</div>`}
+    <div class="foot">Live status verified against FortraUAT ${esc(META.when)} via SOQL + Tooling API. Companion: <code>docs/UAT_MIGRATION_INVENTORY_20260709.md</code>. UAT-only — none deployed to FortraProd.</div>
+  </div>`;
+  const s=document.getElementById("search");
+  s.addEventListener("input",e=>{search=e.target.value;const p=e.target.selectionStart;render();const n=document.getElementById("search");n.focus();n.setSelectionRange(p,p);});
+}
+render();
+</script>

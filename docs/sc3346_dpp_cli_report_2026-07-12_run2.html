@@ -1,0 +1,191 @@
+<meta charset="utf-8"><title>SC-3346 DPP Regression RUN 2 — FortraUAT — 2026-07-12</title>
+<style>
+:root{--bg:#0f1117;--card:#181b23;--line:#262b36;--tx:#e6e9ef;--mut:#98a2b3;--pass:#22c55e;--warn:#eab308;--fail:#ef4444;--blk:#94a3b8;--data:#f97316;--acc:#60a5fa}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 20px 80px}h1{font-size:22px;margin:0 0 4px}.sub{color:var(--mut);font-size:13px}
+.hdr{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:16px 0}.hdr div{margin:4px 0}.hdr .k{color:var(--mut);display:inline-block;min-width:112px;vertical-align:top}
+.tally{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tchip{padding:6px 12px;border-radius:20px;font-weight:700;font-size:13px;color:#0b0d12}
+.tchip.pass{background:var(--pass)}.tchip.warn{background:var(--warn)}.tchip.fail{background:var(--fail);color:#fff}.tchip.blocked{background:var(--blk)}.tchip.data{background:var(--data)}
+.scn{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}
+.scn.pass{border-left-color:var(--pass)}.scn.warn{border-left-color:var(--warn)}.scn.fail{border-left-color:var(--fail)}.scn.blocked{border-left-color:var(--blk)}.scn.data{border-left-color:var(--data)}
+.scnhead{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;user-select:none}.scnhead:hover{background:#1d212b}
+.num{color:var(--mut);font-weight:700;min-width:28px}.stitle{font-weight:600}
+.badge{padding:3px 10px;border-radius:6px;font-weight:700;font-size:12px;color:#0b0d12}
+.badge.pass{background:var(--pass)}.badge.warn{background:var(--warn)}.badge.fail{background:var(--fail);color:#fff}.badge.blocked{background:var(--blk)}.badge.data{background:var(--data)}
+.ev{margin-left:auto;color:var(--mut);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:52%}.ev b{color:var(--tx)}
+.ccy{background:#11141b;border:1px solid var(--line);border-radius:4px;padding:0 5px;margin-left:4px;font-size:11px}.chev{color:var(--mut)}
+.body{display:none;padding:6px 16px 16px;border-top:1px solid var(--line)}.body.open{display:block}
+.row{display:flex;gap:14px;padding:7px 0;border-bottom:1px dashed #232833;align-items:flex-start}.row:last-child{border-bottom:0}
+.lbl{color:var(--mut);min-width:96px;flex:none;font-size:12px;text-transform:uppercase;letter-spacing:.03em;padding-top:2px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:12.5px}code{background:#11141b;padding:1px 5px;border-radius:4px;font-size:12.5px;color:#cbd5e1}
+table.mini{border-collapse:collapse;margin:4px 0;font-size:12.5px}table.mini th{text-align:left;color:var(--mut);font-weight:600;padding:3px 14px 3px 0;border-bottom:1px solid var(--line)}
+table.mini td{padding:3px 14px 3px 0;font-family:ui-monospace,Menlo,monospace}
+pre{background:#0b0d12;border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto;font-size:11.5px;color:#cbd5e1;white-space:pre}
+h2{font-size:15px;margin:26px 0 8px;color:var(--acc)}.callout{background:#0e2a16;border:1px solid #15803d;border-radius:8px;padding:12px 14px;margin:14px 0;font-size:13px}
+.callout.warn{background:#2a2408;border-color:#8a6d0a}.callout.data{background:#2a1a0c;border-color:#9a4a12}
+.foot{color:var(--mut);font-size:12px;margin-top:30px;border-top:1px solid var(--line);padding-top:12px}
+.chg{background:#0b0d12;border:1px solid var(--line);border-left:3px solid var(--acc);border-radius:6px;padding:10px 12px;margin:8px 0;font-size:12px;color:#cbd5e1}
+</style>
+<div class="wrap">
+  <h1>SC-3346 — Derived Maintenance Pricing (DPP) Regression · RUN 2</h1>
+  <div class="sub">FortraUAT · fix-verification re-run · grades SCN8–10 on committed <code>NetUnitPrice</code> (not <code>COLACalculatedPrice__c</code>)</div>
+  <div class="tally"><span class="tchip pass">PASS 12</span><span class="tchip warn">WARN 1</span><span class="tchip fail">FAIL 0</span><span class="tchip blocked">BLOCKED 2</span><span class="tchip data">DATA 1</span></div>
+  <div class="hdr">
+    <div><span class="k">Org</span>FortraUAT · liam.jeong.c@fortra.com.uat</div><div><span class="k">Procedure</span>Rev_Mgmt_Default_Pricing_Procedure — V25 Active (sole; re-verified start &amp; end)</div>
+    <div><span class="k">Run</span>2026-07-12 · RUN 2 (fix-verification; supersedes run 1 report)</div><div><span class="k">Tester</span>Claude Code (CLI) — SOQL oracle + authorized pricing writes</div>
+    <div><span class="k">Static guards</span>153 tests / 100% pass (COLAUpliftCalculatorTest, COLAUpliftTest incl. …FirstRenewalMaintenanceNetsPriorDiscount, PartnerNetPricePosthookTest incl. loadNewMaintenanceLines_defaultsUntaggedLineToStandard). RNM1 commit-layer fix live: PartnerNetPricePosthook.buildRenewalColaCommitUpdate (L1399) → COLAUpliftCalculator.computeFirstRenewalMaintenanceNet (L1477).</div><div><span class="k">D-18 log</span>baseline 0 → final 0 rows</div>
+  </div>
+  <div class="callout">
+    <b>FIX VERIFIED — SCN10 (the run-1 FAIL):</b> the RNM1 commit-layer override
+    (<code>PartnerNetPricePosthook.buildRenewalColaCommitUpdate</code> → <code>computeFirstRenewalMaintenanceNet</code>) now commits the correct
+    3-component first-renewal net for discount-bearing lines. The exact run-1 failing line <code>0Q0WC000003DOpB0AW</code> committed <b>660.04 in run 1</b>;
+    in run 2 it commits <b>3645.33</b> and holds idempotently across reprice ×2 (p0=p1=p2). <b>DKNN 65.09</b> (run 1 was 58.58 → WARN), <b>DLBO 60.37</b>.
+    All 6 renewal lines match their born-formula to the cent (independently re-derived + adversarially verified, unrefuted). Grading on <code>NetUnitPrice</code>
+    is essential — <code>COLACalculatedPrice__c</code> still shows the procedure's stale 660.04/58.58, correctly ignored. <b>Zero FAIL this run.</b>
+  </div>
+  <div class="callout warn"><b>WARN — SCN6 (out of fix scope):</b> new-biz discount netting still reprices to 56.23, which doesn't reconcile to the 15%/10% waterfall (54.32). Unchanged from run 1; the RNM1 fix is Renew-line-only. A separate new-biz discount-order question.</div>
+  <div class="callout warn"><b>Residual (verifier-flagged, dormant):</b> the override corrects <code>NetUnitPrice</code> but leaves <code>COLACalculatedPrice__c</code> persistently wrong on disk (660.04/58.58). The one money consumer, <code>MaintenanceOrderDecompositionService.cls:477</code>, reads <code>COLACalc</code> only as a last-resort fallback (after <code>PartnerUnitPrice→UnitPrice→NetUnitPrice</code>) — not reached while <code>NetUnitPrice&gt;0</code>, so no order/Workday money defect for the graded lines. Latent only for a hypothetical renewal line with <code>COLACalc&gt;0</code> but null <code>UnitPrice/NetUnitPrice</code>. Suggest re-stamping <code>COLACalc</code> to match.</div>
+  <div class="callout data"><b>DATA — SC-3346-ASSET (SCN15):</b> 16 PIAMBK lines still inherit an inflated base from over-priced contributor licenses (upstream data, not a formula bug).</div>
+  <h2>Scenarios (click to expand)</h2>
+  <div class="scn pass" id="scn1"><div class="scnhead" onclick="tog(1)">
+      <span class="num">#1</span><span class="stitle">New-biz maint — Standard tier</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>71.00</b> · act <b>71</b> <span class="ccy">EUR</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body1">
+        <div class="row"><span class="lbl">Acceptance</span><span>NetUnitPrice = round(sourceBase × 0.20). BoKS 355×0.20 = 71.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003JXMj</code> — 04267516 (qty10, MTD=Standard)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">Base 355 × 0.20 = 71.00</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>pass</th><th>Net</th><th>Base</th></tr></thead><tbody><tr><td>before p0</td><td>71</td><td>355</td></tr><tr><td>after ×3 p3</td><td>71</td><td>355</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>71 = 355 × 0.20, idempotent ×3.</span></div></div></div><div class="scn pass" id="scn2"><div class="scnhead" onclick="tog(2)">
+      <span class="num">#2</span><span class="stitle">New-biz maint — Premier tier (0.30)</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>106.50</b> · act <b>106.5</b> <span class="ccy">EUR</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body2">
+        <div class="row"><span class="lbl">Acceptance</span><span>= sourceBase × 0.30 (355 → 106.50).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003JXMj</code> — 04267517 (MTD=Premier — now live on the gold quote)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">Base 355 × 0.30 (Premier, Maintenance_Rate__mdt) = 106.50</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>pass</th><th>Net</th><th>Base</th><th>Qty</th></tr></thead><tbody><tr><td>after p3</td><td>106.5</td><td>355</td><td>0</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>UNBLOCKED vs run 1. Gold line 04267517 is now tagged Premier (verified via explicit-Id QLIA query) and reprices to 106.50 = 355 × 0.30, idempotent. Per-unit net is the graded value (qty=0 is incidental).</span></div></div></div><div class="scn blocked" id="scn3"><div class="scnhead" onclick="tog(3)">
+      <span class="num">#3</span><span class="stitle">New-biz maint — Professional tier (0.20)</span><span class="badge blocked">BLOCKED</span>
+      <span class="ev">exp <b>71.00 (355×0.20)</b> · act <b>no repriceable data</b> </span><span class="chev">▾</span></div>
+      <div class="body" id="body3">
+        <div class="row"><span class="lbl">Acceptance</span><span>= sourceBase × 0.20.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>—</code> — —</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">Maintenance_Rate__mdt.Professional.Rate__c = 0.20 (metadata)</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><p>No live Professional-tagged line on a repriceable quote; the J-02 fixture reprice still returns <code>DerivedPricingFilter#1</code>. Professional rate <b>0.20</b> == Standard, proven live in SCN1/SCN4.</p></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>BLOCKED — rate identical to Standard (proven). Only Professional differs from Premier by having no live tagged line.</span></div></div></div><div class="scn pass" id="scn4"><div class="scnhead" onclick="tog(4)">
+      <span class="num">#4</span><span class="stitle">New-biz UNTAGGED New-Maint</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>60.75</b> · act <b>60.75</b> <span class="ccy">EUR</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body4">
+        <div class="row"><span class="lbl">Acceptance</span><span>SC-3346-MTD: = base × 0.20 (Std default). 04267561 → 60.75.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003JXMj</code> — 04267561 (no MTD QLIA)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">Source_List_Price 303.745 × 0.20 (untagged default) = 60.75</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>pass</th><th>Net</th><th>SrcList</th></tr></thead><tbody><tr><td>after p3</td><td>60.75</td><td>303.745</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>No MTD QLIA yet prices 60.75 via PartnerNetPricePosthook.UNTAGGED_MAINTENANCE_DEFAULT_TIER. Idempotent.</span></div></div></div><div class="scn pass" id="scn5"><div class="scnhead" onclick="tog(5)">
+      <span class="num">#5</span><span class="stitle">New-biz BASE-LESS maint</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>0</b> · act <b>0</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body5">
+        <div class="row"><span class="lbl">Acceptance</span><span>NetUnitPrice = 0 (scope guard).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003FJ2D0AW</code> — 04266972</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">Base&lt;=0 AND SrcList&lt;=0 → $0</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>pass</th><th>Net</th><th>Base</th></tr></thead><tbody><tr><td>after p2</td><td>0</td><td>0</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>No base → $0; no fabricated price.</span></div></div></div><div class="scn warn" id="scn6"><div class="scnhead" onclick="tog(6)">
+      <span class="num">#6</span><span class="stitle">New-biz DISCOUNT netting</span><span class="badge warn">WARN</span>
+      <span class="ev">exp <b>54.32 (waterfall)</b> · act <b>56.23</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body6">
+        <div class="row"><span class="lbl">Acceptance</span><span>final net = (sourceBase × tier) − partner − discretionary (after base×tier).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003DIAL0A4</code> — 04266878 (PartnerPct=15, Disc=10)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">waterfall 355×0.20×0.85×0.90 = 54.32; reprice = 56.23 (does NOT reconcile to 15%/10% on 71)</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>pass</th><th>Net</th><th>Base</th><th>PartnerPct</th><th>Disc</th></tr></thead><tbody><tr><td>p0</td><td>56.23</td><td>355</td><td>15</td><td>10</td></tr><tr><td>p2</td><td>56.23</td><td>355</td><td>15</td><td>10</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>UNCHANGED from run 1 and OUT OF SCOPE of the RNM1 renewal fix (which is Renew-line-only). Netting is applied after base×tier (71 → 56.23) and idempotent, but 56.23 does not reconcile to the 15%/10% waterfall (54.32). A separate new-biz discount-order question; not a regression.</span></div></div></div><div class="scn pass" id="scn7"><div class="scnhead" onclick="tog(7)">
+      <span class="num">#7</span><span class="stitle">New-biz MULTI-CURRENCY</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>EUR native list / converted net</b> · act <b>EUR; List 134.5824; Net 60.75</b> <span class="ccy">EUR</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body7">
+        <div class="row"><span class="lbl">Acceptance</span><span>non-USD maint prices; ListPrice native, NetUnitPrice converted; no $0.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003JXMj (EUR)</code> — 04267561 (FIM)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">CurrencyIsoCode=EUR; ListPrice native 134.5824; Net 60.75</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>line</th><th>Ccy</th><th>List</th><th>Net</th></tr></thead><tbody><tr><td>FIM</td><td>EUR</td><td>134.5824</td><td>60.75</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>Native EUR list, converted non-zero net.</span></div></div></div><div class="scn pass" id="scn8"><div class="scnhead" onclick="tog(8)">
+      <span class="num">#8</span><span class="stitle">First-renewal maint — WITH partner discount</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>65.09 · 3666.90</b> · act <b>65.09 · 3666.9</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body8">
+        <div class="row"><span class="lbl">Acceptance</span><span>committed NetUnitPrice == (assetPx − priorPartner − priorDisc) × (1+COLA).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003DKNN0A4 · 0Q0WC000003FRPZ0A4</code> — 04267884 · 04267917</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">(71−10.65)×1.0785 = 65.09  ·  (4000−600)×1.0785 = 3666.90</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>line</th><th>a</th><th>b</th><th>c</th></tr></thead><tbody><tr><td>DKNN Net p0→p1→p2</td><td>65.09</td><td>65.09</td><td>65.09</td></tr><tr><td>DKNN COLAcalc (stale)</td><td>58.58</td><td></td><td></td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>FIXED vs run 1 (was WARN: DKNN 58.58). The RNM1 commit-layer override now commits NetUnitPrice = 65.09; idempotent (p0=p1=p2). COLACalculatedPrice__c stays the procedure's stale 58.58 — graded on NetUnitPrice per the status board.</span></div></div></div><div class="scn pass" id="scn9"><div class="scnhead" onclick="tog(9)">
+      <span class="num">#9</span><span class="stitle">First-renewal maint — NO discount</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>76.57 · 4314.00</b> · act <b>76.57 · 4314</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body9">
+        <div class="row"><span class="lbl">Acceptance</span><span>Net = assetPrice × (1+COLA).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003DGgL0AW · 0Q0WC000003FR6D0AW</code> — 04267886 · 04267918</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">71 × 1.0785 = 76.57  ·  4000 × 1.0785 = 4314.00</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>line</th><th>Net</th></tr></thead><tbody><tr><td>DGgL</td><td>76.57</td></tr><tr><td>FR6D</td><td>4314</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>No-op path holds; idempotent.</span></div></div></div><div class="scn pass" id="scn10"><div class="scnhead" onclick="tog(10)">
+      <span class="num">#10</span><span class="stitle">First-renewal maint — WITH discretionary (manual Discount)</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>60.37 · 3645.33</b> · act <b>60.37 · 3645.33</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body10">
+        <div class="row"><span class="lbl">Acceptance</span><span>committed NetUnitPrice == (assetPx − priorPartner − priorDisc) × (1+COLA).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003DLBO0A4 · 0Q0WC000003DOpB0AW</code> — 04267888 · 04267919</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">(71−10.65−4.37)×1.0785 = 60.37  ·  (4000−600−20)×1.0785 = 3645.33</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>line</th><th>a</th><th>b</th><th>c</th></tr></thead><tbody><tr><td>DOpB Net p0→p1→p2</td><td>3645.33</td><td>3645.33</td><td>3645.33</td></tr><tr><td>DOpB COLAcalc (stale)</td><td>660.04</td><td></td><td></td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>FIXED vs run 1 (was FAIL: DOpB 660.04). The exact run-1 FAIL line 04267919 now commits NetUnitPrice = 3645.33 and holds idempotently across reprices; DLBO commits 60.37. The commit-layer override supersedes the procedure's Base_Price__c-derived value (COLACalculatedPrice__c still shows the stale 660.04 — correctly IGNORED per the grade-on-NetUnitPrice instruction).</span></div></div></div><div class="scn pass" id="scn11"><div class="scnhead" onclick="tog(11)">
+      <span class="num">#11</span><span class="stitle">RRM (2nd+ renewal) non-regression</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>65.40 (NOT 56.21)</b> · act <b>65.4</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body11">
+        <div class="row"><span class="lbl">Acceptance</span><span>Net = assetPrice × (1+COLA); prior partner NOT re-subtracted.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC00000382MH0AY</code> — PIA-PIA-RRM-PIAM (priorPartner=8.52)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">asset 60.64 × 1.0785 = 65.40; if re-netted the 8.52 → 56.21 = FAIL</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>pass</th><th>Net</th></tr></thead><tbody><tr><td>p1</td><td>65.4</td></tr><tr><td>p2</td><td>65.4</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>RRM excluded from the first-renewal discount-net (scope guard holds); asset × COLA = 65.40, prior partner 8.52 NOT re-subtracted. Idempotent. (Matches the status-board smoke value "RRM 382MH 65.4".)</span></div></div></div><div class="scn blocked" id="scn12"><div class="scnhead" onclick="tog(12)">
+      <span class="num">#12</span><span class="stitle">Renewal MULTI-CURRENCY</span><span class="badge blocked">BLOCKED</span>
+      <span class="ev">exp <b>non-USD first-renewal maint</b> · act <b>0 rows</b> </span><span class="chev">▾</span></div>
+      <div class="body" id="body12">
+        <div class="row"><span class="lbl">Acceptance</span><span>non-USD renewal maint commits; interacts w/ SC-3398.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>—</code> — —</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">—</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><p>Org-wide scan (QuoteAction.Type=Renew AND CurrencyIsoCode!=USD AND RNM) = <b>0 rows</b>. No repriceable data; unchanged from run 1.</p></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>BLOCKED — no non-USD first-renewal maintenance data.</span></div></div></div><div class="scn pass" id="scn13"><div class="scnhead" onclick="tog(13)">
+      <span class="num">#13</span><span class="stitle">qty&gt;1 no inflation</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>71 per-unit (not 710)</b> · act <b>71</b> <span class="ccy">EUR</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body13">
+        <div class="row"><span class="lbl">Acceptance</span><span>qty-N unit net = qty-1 value (not ×N).</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003JXMj</code> — 04267516 (qty=10)</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">qty-10 NetUnitPrice = 71 per-unit; NetTotalPrice = 710</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>line</th><th>Qty</th><th>NetUnit</th><th>NetTotal</th></tr></thead><tbody><tr><td>04267516 qty10</td><td>10</td><td>71</td><td>710</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>Per-unit net 71 (== qty-1), NOT 710.</span></div></div></div><div class="scn pass" id="scn14"><div class="scnhead" onclick="tog(14)">
+      <span class="num">#14</span><span class="stitle">Idempotency + convergence</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>p2==p3</b> · act <b>0 drift</b> <span class="ccy">EUR</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body14">
+        <div class="row"><span class="lbl">Acceptance</span><span>reprice ×3 → pass2 == pass3.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>0Q0WC000003JXMj (×3)</code> — all lines</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">p2 NetUnitPrice == p3 for all lines</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><table class="mini"><thead><tr><th>line</th><th>p2</th><th>p3</th><th>idem</th></tr></thead><tbody><tr><td>04267515</td><td>331.783</td><td>331.783</td><td>OK</td></tr><tr><td>04267516</td><td>71</td><td>71</td><td>OK</td></tr><tr><td>04267517</td><td>106.5</td><td>106.5</td><td>OK</td></tr><tr><td>04267561</td><td>60.75</td><td>60.75</td><td>OK</td></tr><tr><td>04267562</td><td>303.745</td><td>303.745</td><td>OK</td></tr><tr><td>04267563</td><td>303.745</td><td>303.745</td><td>OK</td></tr></tbody></table></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>Gold converges p2==p3 on all lines. Renewal born lines (SCN8-10) also idempotent p0=p1=p2. CAVEAT: SC-3346-ASSET override-license quotes remain non-idempotent (SCN15).</span></div></div></div><div class="scn data" id="scn15"><div class="scnhead" onclick="tog(15)">
+      <span class="num">#15</span><span class="stitle">SC-3346-ASSET data check</span><span class="badge data">DATA</span>
+      <span class="ev">exp <b>flag &amp; list Ids</b> · act <b>11 inflated-base + 5 license-scale-asset = 16 affected (+2 never-priced)</b> <span class="ccy">USD</span></span><span class="chev">▾</span></div>
+      <div class="body" id="body15">
+        <div class="row"><span class="lbl">Acceptance</span><span>flag RNM lines with license-scale base/asset — DATA finding.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>multiple</code> — PIA-PIA-RNM-PIAMBK</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">root: contributor license manually over-priced (DOfV PIAP list 355 → Unit 15300 / Base 20000) → maint base inherits 20000</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><div><b>A · inflated-license base</b> (Base=20000, SrcList≈355) — 11:</div><table class="mini"><thead><tr><th>Quote</th><th>Line</th><th>Net</th><th>Base</th><th>SrcList</th></tr></thead><tbody><tr><td>0Q0WC0000037tXV0AY</td><td>04266760</td><td>4000</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003Btp30AC</td><td>04266797</td><td>3060</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003DLJT0A4</td><td>04266884</td><td>3060</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003DOfV0AW</td><td>04266889</td><td>3168</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003FO570AG</td><td>04266986</td><td>3400</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003GMu50AG</td><td>04267273</td><td>3520</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003GLTN0A4</td><td>04267281</td><td>3520</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003IBjF0AW</td><td>04267325</td><td>4000</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003IIT00AO</td><td>04267358</td><td>4000</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003KBjx0AG</td><td>04267812</td><td>3520</td><td>20000</td><td>355</td></tr><tr><td>0Q0WC000003JzHN0A0</td><td>04267831</td><td>3168</td><td>20000</td><td>355</td></tr></tbody></table><div style="margin-top:6px"><b>D · license-scale renewal asset</b> (SourceAsset.Price=4000) — 5:</div><table class="mini"><thead><tr><th>Quote</th><th>Line</th><th>assetPx</th><th>Net</th></tr></thead><tbody><tr><td>0Q0WC000003KBjx0AG</td><td>04267813</td><td>4000</td><td>4314</td></tr><tr><td>0Q0WC000003KIYX0A4</td><td>04267835</td><td>4000</td><td>—</td></tr><tr><td>0Q0WC000003FRPZ0A4</td><td>04267917</td><td>4000</td><td>3666.9</td></tr><tr><td>0Q0WC000003FR6D0AW</td><td>04267918</td><td>4000</td><td>4314</td></tr><tr><td>0Q0WC000003DOpB0AW</td><td>04267919</td><td>4000</td><td>3645.33</td></tr></tbody></table><p style='margin-top:6px'>+ 2 bad-base/Net=0 (separate). Distinct assets: <code>02iWC000008Oz2XYAS, 02iWC000008WteHYAS, 02iWC000008dbCnYAI, 02iWC000008dfGPYAY, 02iWC000008pQn5YAE</code>.</p></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>DATA, not a formula bug. Formula computes 0.20 × base correctly; base is inflated by over-priced contributor licenses. Reprice can flip stale-clean → inflated (breaks idempotency).</span></div></div></div><div class="scn pass" id="scn16"><div class="scnhead" onclick="tog(16)">
+      <span class="num">#16</span><span class="stitle">D-18 exception log clean</span><span class="badge pass">PASS</span>
+      <span class="ev">exp <b>0</b> · act <b>0</b> </span><span class="chev">▾</span></div>
+      <div class="body" id="body16">
+        <div class="row"><span class="lbl">Acceptance</span><span>zero new Exception_Log__c.</span></div>
+        <div class="row"><span class="lbl">Quote / Line</span><span><code>org-wide</code> — Exception_Log__c WHERE CreatedDate=TODAY</span></div>
+        <div class="row"><span class="lbl">Formula</span><span class="mono">no hook rows after any reprice</span></div>
+        <div class="row"><span class="lbl">Evidence</span><span><p>Baseline 0 → final 0 after all run-2 reprices.</p></span></div>
+        <div class="row"><span class="lbl">Notes</span><span>PASS. The RNM1 fix's mis-price class from run 1 is resolved; note derived mis-prices remain silent (computed values), so a value-plausibility guard is still advisable.</span></div></div></div>
+  <h2>Artifacts — every Id touched (nothing deleted)</h2>
+  <pre>RENEWAL born lines repriced ×2 (grade committed NetUnitPrice):
+  0Q0WC000003DKNN0A4 04267884 →65.09 · 0Q0WC000003DGgL0AW 04267884 →76.57 · 0Q0WC000003DLBO0A4 04266884 →60.37
+  0Q0WC000003FRPZ0A4 04267917 →3666.9 · 0Q0WC000003FR6D0AW 04267918 →4314 · 0Q0WC000003DOpB0AW 04267919 →3645.33 (run-1 FAIL 660.04, now FIXED)
+NEW-BIZ: 0Q0WC000003JXMj gold EUR ×3 (SCN1 04267516=71, SCN2 04267517 Premier=106.5, SCN4 04267561=60.75)
+  0Q0WC000003FJ2D0AW base-less · 0Q0WC00000382MH0AY RRM 65.4 · 0Q0WC000003DIAL0A4 SCN6 netting 56.23
+SC-3346-ASSET assets: 02iWC000008Oz2XYAS · 02iWC000008WteHYAS · 02iWC000008dbCnYAI · 02iWC000008dfGPYAY · 02iWC000008pQn5YAE
+Nothing deleted. Snapshots: Data/sc3346/dpp_regression_20260712_run2/</pre>
+  <h2>CHANGELOG line (append to the prompt)</h2>
+  <div class="chg">2026-07-12 (run 2, fix-verification) — RNM1 commit-layer fix VERIFIED. PASS 12 / WARN 1 / FAIL 0 / BLOCKED 2 / DATA 1. SCN10 FIXED: discretionary first-renewal DOpB 660.04→3645.33 (committed NetUnitPrice, idempotent); DLBO→60.37. SCN8 FIXED: DKNN 58.58→65.09. Grade-on-NetUnitPrice confirmed necessary (COLACalculatedPrice__c stays stale 660.04/58.58). SCN2 now PASS (gold 04267517 live Premier 106.5=355×0.30). SCN6 WARN unchanged (new-biz netting 56.23≠54.32, out of fix scope). SCN3/SCN12 BLOCKED (no live Professional / non-USD renewal). SCN15 DATA=18 override-license lines. 153 unit tests 100%, D-18 clean.</div>
+  <div class="foot">Run 2 supersedes the run-1 report (<code>sc3346_dpp_cli_report_2026-07-12.html</code>, which recorded the pre-fix FAIL). PASS 12 · WARN 1 · FAIL 0 · BLOCKED 2 · DATA 1.</div>
+</div>
+<script>function tog(n){document.getElementById('body'+n).classList.toggle('open');document.getElementById('scn'+n).classList.toggle('open');}[6,10,15].forEach(tog);</script>

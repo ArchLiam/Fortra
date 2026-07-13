@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Set_Unique_Value</name>
+        <label>Set Unique Value</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Unique_Value__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>uniqueValueFormula</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Flow Label</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>uniqueValueFormula</name>
+        <dataType>String</dataType>
+        <expression>IF(
+	NOT(ISBLANK({!$Record.Named_Account__c})),
+	&quot;Named Account&quot; &amp; &quot;|&quot; &amp; {!$Record.Named_Account__c} &amp; &quot;|&quot; &amp; TEXT({!$Record.Unit__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Solution_Group__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Solution_Category__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Country__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.State__c}) &amp; &quot;|&quot; &amp; {!$Record.Zip_Code__c},
+	IF(
+		NOT(ISBLANK(TEXT({!$Record.Industry__c}))),
+		&quot;Industry&quot; &amp; &quot;|&quot; &amp; TEXT({!$Record.Industry__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Unit__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Solution_Group__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Solution_Category__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Country__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.State__c}) &amp; &quot;|&quot; &amp; {!$Record.Zip_Code__c},
+		&quot;Locale&quot;   &amp; &quot;|&quot; &amp; TEXT({!$Record.Unit__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Solution_Group__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Solution_Category__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.Country__c}) &amp; &quot;|&quot; &amp; TEXT({!$Record.State__c}) &amp; &quot;|&quot; &amp; {!$Record.Zip_Code__c}
+	)
+)</expression>
+    </formulas>
+    <interviewLabel>Sales Territories | Before Insert/Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Fortra | Territories | Before Insert/Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Set_Unique_Value</targetReference>
+        </connector>
+        <object>Sales_Territory__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,472 @@
+<title>SC-3346 DPP · Test Prompt Pair</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root{
+    --bg:#F5F8F8; --surface:#FFFFFF; --surface-2:#EEF3F3; --ink:#16242A; --muted:#5C7076;
+    --line:#E0E8E9; --line-strong:#CBD8D9; --accent:#0B8B85; --accent-ink:#075E5A;
+    --ok:#1C8F50; --ok-bg:#E4F3EA; --warn:#B4740F; --warn-bg:#F7EED9; --crit:#C6413F; --crit-bg:#F8E5E4;
+    --idle:#6E8085; --idle-bg:#EAEFEF;
+    --code-bg:#0F2024; --code-ink:#D6E6E6; --code-tok:#6FD0C6;
+    --shadow:0 1px 2px rgba(16,36,42,.05), 0 8px 24px -16px rgba(16,36,42,.25);
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Code",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0C1417; --surface:#111E21; --surface-2:#16262A; --ink:#E7EEEF; --muted:#8CA1A6;
+      --line:#213033; --line-strong:#2C3F43; --accent:#33C7BC; --accent-ink:#8CE4DB;
+      --ok:#40BE7C; --ok-bg:#12291D; --warn:#DBA23C; --warn-bg:#2C2311; --crit:#E87A76; --crit-bg:#2E1817;
+      --idle:#8FA0A5; --idle-bg:#1B2A2E; --code-bg:#0A1619; --code-ink:#CFE2E2; --code-tok:#57C7BB;
+      --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -18px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F8F8; --surface:#FFFFFF; --surface-2:#EEF3F3; --ink:#16242A; --muted:#5C7076;
+    --line:#E0E8E9; --line-strong:#CBD8D9; --accent:#0B8B85; --accent-ink:#075E5A;
+    --ok:#1C8F50; --ok-bg:#E4F3EA; --warn:#B4740F; --warn-bg:#F7EED9; --crit:#C6413F; --crit-bg:#F8E5E4;
+    --idle:#6E8085; --idle-bg:#EAEFEF; --code-bg:#0F2024; --code-ink:#D6E6E6; --code-tok:#6FD0C6;
+    --shadow:0 1px 2px rgba(16,36,42,.05), 0 8px 24px -16px rgba(16,36,42,.25);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0C1417; --surface:#111E21; --surface-2:#16262A; --ink:#E7EEEF; --muted:#8CA1A6;
+    --line:#213033; --line-strong:#2C3F43; --accent:#33C7BC; --accent-ink:#8CE4DB;
+    --ok:#40BE7C; --ok-bg:#12291D; --warn:#DBA23C; --warn-bg:#2C2311; --crit:#E87A76; --crit-bg:#2E1817;
+    --idle:#8FA0A5; --idle-bg:#1B2A2E; --code-bg:#0A1619; --code-ink:#CFE2E2; --code-tok:#57C7BB;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 10px 30px -18px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;
+    -webkit-font-smoothing:antialiased;font-size:15px}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+  a{color:var(--accent-ink);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+  .mono{font-family:var(--mono)}
+  code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);padding:.08em .35em;border-radius:4px;border:1px solid var(--line)}
+
+  /* header */
+  header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line)}
+  .top-in{display:flex;align-items:center;gap:16px;padding:14px 0;flex-wrap:wrap}
+  .brand{display:flex;flex-direction:column;gap:2px;margin-right:auto}
+  .brand h1{margin:0;font-size:18px;font-weight:700;letter-spacing:-.01em}
+  .brand .sub{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .badges{display:flex;gap:7px;flex-wrap:wrap}
+  .badge{font-family:var(--mono);font-size:11px;padding:4px 9px;border-radius:999px;border:1px solid var(--line-strong);
+    background:var(--surface);color:var(--muted);white-space:nowrap}
+  .badge b{color:var(--ink);font-weight:600}
+  .tbtn{font-family:var(--mono);font-size:12px;cursor:pointer;background:var(--surface);color:var(--ink);
+    border:1px solid var(--line-strong);border-radius:8px;padding:6px 10px}
+  .tbtn:hover{border-color:var(--accent)}
+
+  /* intro */
+  .hero{padding:40px 0 12px}
+  .hero .ki{max-width:70ch;color:var(--muted);font-size:15.5px;margin:12px 0 0}
+  .hero .ki b{color:var(--ink)}
+
+  /* tabs */
+  .tabs{position:sticky;top:57px;z-index:15;display:flex;gap:6px;padding:10px 0;background:color-mix(in srgb,var(--bg) 86%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-top:22px}
+  .tab{font-family:var(--mono);font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--line-strong);
+    background:var(--surface);color:var(--muted);border-radius:9px;padding:9px 15px;display:flex;gap:9px;align-items:center}
+  .tab .dot{width:8px;height:8px;border-radius:50%;background:var(--idle)}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent);background:var(--surface-2)}
+  .tab[aria-selected="true"] .dot{background:var(--accent)}
+  .tab small{color:var(--muted);font-weight:400}
+
+  section.lane{padding:26px 0 10px}
+  section.lane[hidden]{display:none}
+
+  .lead{display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;margin-bottom:22px}
+  .lead .txt{max-width:64ch}
+  .lead h2{margin:0 0 6px;font-size:23px;letter-spacing:-.015em;text-wrap:balance}
+  .lead p{margin:0;color:var(--muted)}
+  .copybtn{font-family:var(--mono);font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;
+    background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 16px;box-shadow:var(--shadow)}
+  :root[data-theme="dark"] .copybtn, @media(prefers-color-scheme:dark){}
+  .copybtn:hover{filter:brightness(1.06)}
+  .copybtn.done{background:var(--ok)}
+  .copyrow{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+  .copyrow .hint{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+  .block{margin:28px 0}
+  .block > h3{display:flex;align-items:baseline;gap:10px;font-size:13px;margin:0 0 12px;font-family:var(--mono);
+    letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .block > h3 .num{color:var(--accent-ink)}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+  .scrollx{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;font-size:13.5px}
+  thead th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;padding:11px 14px;border-bottom:1px solid var(--line-strong);white-space:nowrap;background:var(--surface-2)}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  td .id{font-family:var(--mono);font-weight:600;font-size:12.5px;white-space:nowrap}
+  td.num,.tnum{font-variant-numeric:tabular-nums}
+  td .expect{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+  .scn-n{font-family:var(--mono);color:var(--muted);font-weight:600;width:1%;text-align:right;padding-right:4px}
+
+  .chip{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:11px;font-weight:600;
+    padding:3px 9px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+  .c-fixed{color:var(--ok);background:var(--ok-bg);border-color:color-mix(in srgb,var(--ok) 30%,transparent)}
+  .c-guard{color:var(--accent-ink);background:color-mix(in srgb,var(--accent) 12%,transparent);border-color:color-mix(in srgb,var(--accent) 28%,transparent)}
+  .c-verify{color:var(--warn);background:var(--warn-bg);border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
+  .c-data{color:var(--crit);background:var(--crit-bg);border-color:color-mix(in srgb,var(--crit) 30%,transparent)}
+  .gitflag{font-family:var(--mono);font-size:10.5px;color:var(--muted)}
+
+  pre{margin:0;background:var(--code-bg);color:var(--code-ink);font-family:var(--mono);font-size:12.5px;line-height:1.6;
+    padding:14px 16px;overflow-x:auto;border-radius:12px;border:1px solid color-mix(in srgb,var(--code-ink) 12%,transparent)}
+  pre .c{color:#88a0a3}
+  pre b{color:var(--code-tok);font-weight:600}
+  .codecard{position:relative;margin:0 0 12px}
+  .codecard .cap{font-family:var(--mono);font-size:12px;color:var(--muted);margin:0 0 6px;display:flex;justify-content:space-between;align-items:center}
+  .mini-copy{font-family:var(--mono);font-size:11px;cursor:pointer;border:1px solid var(--line-strong);background:var(--surface);
+    color:var(--muted);border-radius:6px;padding:3px 8px}
+  .mini-copy:hover{border-color:var(--accent);color:var(--ink)}
+
+  .callout{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line-strong);border-radius:12px;padding:14px 16px;background:var(--surface)}
+  .callout.warn{border-color:color-mix(in srgb,var(--crit) 40%,transparent);background:var(--crit-bg)}
+  .callout .ic{font-size:16px;line-height:1.4}
+  .callout p{margin:0;font-size:13.5px}
+  .callout b{font-weight:700}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 0;font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  footer{border-top:1px solid var(--line);margin-top:40px;padding:22px 0 46px;color:var(--muted);font-family:var(--mono);font-size:12px}
+  @media (max-width:640px){ .tabs{top:53px} .lead{flex-direction:column} .copyrow{align-items:flex-start} }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+</style>
+
+<header class="top"><div class="wrap top-in">
+  <div class="brand">
+    <h1>SC-3346 · DPP Derived-Maintenance Pricing — Regression Test Pair</h1>
+    <span class="sub">FortraUAT · paste-ready QA prompts</span>
+  </div>
+  <div class="badges">
+    <span class="badge">org <b>FortraUAT</b></span>
+    <span class="badge">proc <b>Rev_Mgmt_Default V25</b></span>
+    <span class="badge">2026-07-12</span>
+  </div>
+  <button class="tbtn" id="themeToggle" aria-label="Toggle theme">◐ Theme</button>
+</div></header>
+
+<main class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Two lanes · same scenarios · same acceptance</div>
+    <p class="ki">A pair of paste-ready prompts that regression-test the <b>derived-maintenance pricing procedure (DPP, SC-3346)</b>
+    on real FortraUAT data — <b>both branches</b>: new-business maintenance (<span class="mono">source&nbsp;base&nbsp;×&nbsp;tier%</span>,
+    the untagged-tier default, base-less $0, discount netting) and renewal maintenance (first-renewal 3-component COLA, RRM non-regression,
+    multi-currency, qty, idempotency). Each lane grades every scenario <b>PASS / FAIL / BLOCKED</b> into a self-contained HTML report and
+    <b>never deletes the test data</b> — so it can be shared with the team.</p>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--ok)"></i> FIXED — guard, must not re-break</span>
+      <span><i class="sw" style="background:var(--accent)"></i> guard</span>
+      <span><i class="sw" style="background:var(--warn)"></i> verify</span>
+      <span><i class="sw" style="background:var(--crit)"></i> OPEN / DATA</span>
+      <span><code>(org✓/git✗)</code> live but git-uncommitted</span>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Test lane">
+    <button class="tab" role="tab" id="tab-cli" aria-controls="lane-cli" aria-selected="true">
+      <span class="dot"></span> CLI · Claude Code <small>· sf + SOQL oracle</small></button>
+    <button class="tab" role="tab" id="tab-ui" aria-controls="lane-ui" aria-selected="false">
+      <span class="dot"></span> UI · Claude-on-Chrome <small>· manual, screenshots</small></button>
+  </div>
+
+  <!-- ===================== CLI LANE ===================== -->
+  <section class="lane" id="lane-cli" role="tabpanel" aria-labelledby="tab-cli">
+    <div class="lead">
+      <div class="txt">
+        <h2>Headless regression — <span class="mono">sf</span> + SOQL as the oracle</h2>
+        <p>Paste into a fresh <b>Claude Code</b> session. Finds live derived-maintenance lines (or mints fixtures via
+        <code>scripts/apex/</code>), runs the authorized Force-reprices / <code>provision</code> conversions, snapshots the
+        oracle before &amp; after, and emits the graded HTML report.</p>
+      </div>
+      <div class="copyrow">
+        <button class="copybtn" data-src="raw-cli">⧉ Copy full CLI prompt</button>
+        <span class="hint">→ docs/SC3346_DPP_REGRESSION_TEST_PROMPT_CLI.md</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§</span> Status board — what each scenario is guarding</h3>
+      <div class="card scrollx"><table>
+        <thead><tr><th>ID</th><th>Area</th><th>Verdict</th><th>Current state</th></tr></thead>
+        <tbody>
+          <tr><td class="id">SC-3346-TIER</td><td>new-biz maint tier pricing</td><td><span class="chip c-guard">guard</span></td>
+            <td>net = source base × tier% — <b>Standard 0.20 / Premier 0.30 / Professional 0.20</b> (<code>Maintenance_Rate__mdt</code>)</td></tr>
+          <tr><td class="id">SC-3346-MTD</td><td>untagged New-Maint (no tier attribute)</td>
+            <td><span class="chip c-fixed">✓ FIXED</span> <span class="gitflag">(org✓/git✗)</span></td>
+            <td>classification models no <code>Maintenance Type Defn</code> → posthook defaults <b>Standard 0.20</b> (only when the line has a base); <code>UNTAGGED_MAINTENANCE_DEFAULT_TIER</code></td></tr>
+          <tr><td class="id">SC-3346-BASELESS</td><td>maint with no pricing base</td><td><span class="chip c-guard">guard</span></td>
+            <td><code>Base_Price__c&le;0 &amp;&amp; Source_List_Price__c&le;0</code> → <b>correctly $0</b> (no fabricated price)</td></tr>
+          <tr><td class="id">SC-3346-DISC</td><td>discount netting</td><td><span class="chip c-guard">guard</span></td>
+            <td>partner + discretionary applied <b>after</b> base × tier</td></tr>
+          <tr><td class="id">SC-3346-RNM1</td><td>first-renewal maint COLA (3-component)</td>
+            <td><span class="chip c-fixed">✓ FIXED</span> <span class="gitflag">(org✓/git✗)</span></td>
+            <td>commit-layer override in <code>PartnerNetPricePosthook.buildRenewalColaCommitUpdate</code>: a Renew line sourcing a New-Maintenance asset commits <b>(perUnit asset − partner$ − disc$) × (1+COLA)</b>, overriding the procedure's <code>Base_Price__c</code>-derived value. <b>Smoke: DOpB 660.04→3645.33, DKNN/DKC5 58.58→65.09, DLBO→60.37; RRM 65.4 unchanged; idempotent.</b> Grade on <code>NetUnitPrice</code> (COLACalc stays stale)</td></tr>
+          <tr><td class="id">SC-3346-RRM</td><td>2nd+ renewal (RRM)</td><td><span class="chip c-guard">guard</span></td>
+            <td>single-component <b>asset × COLA</b> — RRM + subscriptions excluded; the prior discount <b>must not</b> be re-netted</td></tr>
+          <tr><td class="id">SC-3346-CCY</td><td>multi-currency maintenance</td><td><span class="chip c-verify">verify</span></td>
+            <td>interacts with SC-3398; native <code>ListPrice</code>, converted <code>NetUnitPrice</code></td></tr>
+          <tr><td class="id">SC-3346-QTY</td><td>qty&gt;1 no inflation</td><td><span class="chip c-guard">guard</span></td>
+            <td>per-unit via <code>AssetNetUnitPrice.perUnit</code>; qty-100 must not 100×</td></tr>
+          <tr><td class="id">SC-3346-ASSET</td><td>mis-priced maintenance assets</td><td><span class="chip c-data">DATA</span></td>
+            <td>some RNM assets carry the <b>license price</b> (e.g. <code>Asset.Price=355</code>, should be ~71) → wrong renewal net. <b>Upstream data-quality issue, not a formula bug</b> — flag it</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§SCN</span> Scenarios — one graded row each (reprice ×2, 2nd pass graded)</h3>
+      <div class="card scrollx"><table>
+        <thead><tr><th>#</th><th>Scenario</th><th>Acceptance</th></tr></thead>
+        <tbody>
+          <tr><td class="scn-n">1</td><td>new-biz maint — Standard tier</td><td><span class="expect">Net = round(base × 0.20)</span> before discounts (BoKS 355×0.20 = <b class="tnum">71</b>)</td></tr>
+          <tr><td class="scn-n">2</td><td>new-biz maint — Premier tier</td><td><span class="expect">= base × 0.30</span> (BoKS <b class="tnum">106.50</b>)</td></tr>
+          <tr><td class="scn-n">3</td><td>new-biz maint — Professional tier</td><td><span class="expect">= base × 0.20</span></td></tr>
+          <tr><td class="scn-n">4</td><td><b>untagged</b> New-Maint (no MTD attr, base&gt;0)</td><td>SC-3346-MTD: <span class="expect">= base × 0.20</span> — no tier QLIA yet prices non-zero (repro <code>04267561</code> → <b class="tnum">60.75</b>)</td></tr>
+          <tr><td class="scn-n">5</td><td><b>base-less</b> maint</td><td><span class="expect">NetUnitPrice = 0</span> (correct — scope guard)</td></tr>
+          <tr><td class="scn-n">6</td><td>discount netting</td><td><span class="expect">(base × tier) − partner − discretionary</span></td></tr>
+          <tr><td class="scn-n">7</td><td>new-biz multi-currency</td><td>non-USD prices; <code>ListPrice</code> native, <code>NetUnitPrice</code> converted; no $0</td></tr>
+          <tr><td class="scn-n">8</td><td><b>first-renewal</b> maint — partner discount</td><td>post-<code>provision</code>: <span class="expect">(asset − partner − disc) × (1+COLA)</span> = <b class="tnum">65.09</b></td></tr>
+          <tr><td class="scn-n">9</td><td>first-renewal — no discount</td><td><span class="expect">asset × (1+COLA)</span> = <b class="tnum">76.57</b> (fix is a no-op)</td></tr>
+          <tr><td class="scn-n">10</td><td>first-renewal — with discretionary</td><td><span class="expect">(asset − partner − disc) × (1+COLA)</span> = <b class="tnum">60.37</b></td></tr>
+          <tr><td class="scn-n">11</td><td><b>RRM</b> (2nd+ renewal) non-regression</td><td><span class="expect">asset × (1+COLA)</span> — prior discount <b>not</b> re-subtracted</td></tr>
+          <tr><td class="scn-n">12</td><td>renewal multi-currency</td><td>non-USD renewal maint commits; flag if BLOCKED on SC-3398</td></tr>
+          <tr><td class="scn-n">13</td><td>qty&gt;1 no inflation</td><td>born net is <b>per-unit</b>; qty-N unit net = qty-1 value</td></tr>
+          <tr><td class="scn-n">14</td><td>idempotency + convergence</td><td>reprice ×3 → converges by pass 2, pass 2 == pass 3</td></tr>
+          <tr><td class="scn-n">15</td><td>SC-3346-ASSET data check</td><td>flag RNM lines whose <code>SourceAsset.Price</code> is license-scale — <b>DATA finding</b>, list asset Ids</td></tr>
+          <tr><td class="scn-n">16</td><td>D-18 clean</td><td>zero new <code>Exception_Log__c</code> across the run</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§MECH</span> The authorized writes</h3>
+      <div class="codecard">
+        <div class="cap"><span>Force-reprice a Quote (run ×2)</span><button class="mini-copy" data-code>copy</button></div>
+<pre><span class="c"># QID=&lt;quoteId&gt; ; expect "isSuccess": true — run twice to converge</span>
+printf '{"pricingPref":"<b>Force</b>","configurationPref":{"configurationMethod":"Skip"},"graph":{"graphId":"g1","records":[{"referenceId":"ref1","record":{"attributes":{"type":"Quote","method":"PATCH","id":"'"$QID"'"}}}]}}' &gt; /tmp/rp.json
+sf api request rest "/services/data/v64.0/connect/rev/sales-transaction/actions/place" --method POST -o FortraUAT --body "@/tmp/rp.json"</pre>
+      </div>
+      <div class="codecard">
+        <div class="cap"><span>Convert a first-renewal carryover → priced node (then reprice ×2)</span><button class="mini-copy" data-code>copy</button></div>
+<pre>echo "<b>RenewalMaintenanceProvisionService.provision</b>(new Set&lt;Id&gt;{'&lt;QID&gt;'});" | sf apex run -o FortraUAT
+<span class="c"># deletes the OneTime carryover, borns a TermDefined/Renew line; idempotent</span></pre>
+      </div>
+      <div class="codecard">
+        <div class="cap"><span>REST-add Maintenance Type Defn = Standard (untagged lane)</span><button class="mini-copy" data-code>copy</button></div>
+<pre>sf data create record -o FortraUAT --sobject <b>QuoteLineItemAttribute</b> \
+  --values "QuoteLineItemId=&lt;lineId&gt; AttributeName='Maintenance Type Defn' \
+  AttributeDefinitionId=0tjWC000000096bYAA AttributeValue=Standard AttributePicklistValueId=0v6WC0000000A5WYAU"</pre>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§</span> Two things the tester must not miss</h3>
+      <div style="display:grid;gap:12px">
+        <div class="callout warn"><span class="ic">⛔</span><p><b>Do not delete or clean up any test data</b> — quotes, lines, born
+          lines, fixtures, assets. Everything is shared with the team; list every Id in the report's <b>Artifacts</b> section.</p></div>
+        <div class="callout"><span class="ic">⚠️</span><p><b>V25 gets toggled by a concurrent workstream.</b> If a reprice returns
+          <code>ScaleCacheServiceException: Ensure that this procedure has at least one active version</code>, mark the run <b>BLOCKED</b>
+          and retry when V25 is Active — it is infra, not a DPP defect. Same for <code>INVALID_PRICE_REVISION_FORMULA</code> /
+          <code>SF-Pricing-00006 DerivedPricingFilter#1</code> (pre-existing quote/config data).</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== UI LANE ===================== -->
+  <section class="lane" id="lane-ui" role="tabpanel" aria-labelledby="tab-ui" hidden>
+    <div class="lead">
+      <div class="txt">
+        <h2>Manual E2E — driving the Lightning UI, screen as oracle</h2>
+        <p>Paste into a fresh <b>Claude-on-Chrome</b> session. Adds a license to a cart and reads the auto-added maintenance line,
+        picks the tier, <b>Manage Assets → Renew</b> for renewals, <b>Reprice All</b>, and reads the on-screen Net / Sales Price
+        with <b>screenshots</b> as evidence. Some lanes (auto-add tier pick, born-fresh renewal) <b>can only be scored here</b>.</p>
+      </div>
+      <div class="copyrow">
+        <button class="copybtn" data-src="raw-ui">⧉ Copy full UI prompt</button>
+        <span class="hint">→ docs/SC3346_DPP_UI_MANUAL_TEST_PROMPT.md</span>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§</span> Status board — UI-observable</h3>
+      <div class="card scrollx"><table>
+        <thead><tr><th>ID</th><th>Area</th><th>Verdict</th><th>On-screen expectation</th></tr></thead>
+        <tbody>
+          <tr><td class="id">SC-3346-TIER</td><td>new-biz maint tier</td><td><span class="chip c-guard">guard · UI</span></td>
+            <td>set <b>Maintenance Type Defn</b> on the auto-added maint line → Net = base × 0.20 / 0.30 / 0.20</td></tr>
+          <tr><td class="id">SC-3346-MTD</td><td>untagged (no tier picker)</td>
+            <td><span class="chip c-fixed">✓ FIXED</span> <span class="gitflag">(org✓/git✗)</span></td>
+            <td>a maint line with <b>no "Maintenance Type Defn" field</b> still prices <b>non-zero</b> (Standard default), not $0</td></tr>
+          <tr><td class="id">SC-3346-BASELESS</td><td>maint with no base</td><td><span class="chip c-guard">guard</span></td>
+            <td>a maint line with no resolvable base shows <b>$0</b> (correct, not an error)</td></tr>
+          <tr><td class="id">SC-3346-DISC</td><td>discount netting</td><td><span class="chip c-guard">guard</span></td>
+            <td>after a partner/discretionary discount, Net = base×tier − discounts</td></tr>
+          <tr><td class="id">SC-3346-RNM1</td><td>first-renewal maint COLA</td>
+            <td><span class="chip c-fixed">✓ FIXED</span> <span class="gitflag">(org✓/git✗)</span></td>
+            <td>after Reprice All the committed <b>Net Unit Price = (prior base − partner − disc) × (1+COLA)</b> — the posthook overrides the procedure's under-priced value (smoke: discretionary 660→3645; RRM unchanged). Read the committed Net Unit Price (COLACalc stays stale)</td></tr>
+          <tr><td class="id">SC-3346-RRM</td><td>2nd+ renewal (RRM)</td><td><span class="chip c-guard">guard</span></td>
+            <td>a Renewal-Maintenance line's Net = <b>asset × COLA</b> (prior discount not re-subtracted)</td></tr>
+          <tr><td class="id">SC-3346-QTY</td><td>qty&gt;1</td><td><span class="chip c-guard">guard</span></td>
+            <td>a qty-N maintenance line's <b>unit</b> Net is not multiplied by N</td></tr>
+          <tr><td class="id">SC-3346-ASSET</td><td>mis-priced assets</td><td><span class="chip c-data">DATA</span></td>
+            <td>if a renewal maint Net looks license-scale (≈372 not ≈65), the source <b>asset price is bad data</b> — flag, not a math FAIL</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§SCN-UI</span> Scenarios to score in the UI</h3>
+      <div class="card scrollx"><table>
+        <thead><tr><th>#</th><th>Scenario</th><th>Acceptance (on screen)</th></tr></thead>
+        <tbody>
+          <tr><td class="scn-n">1</td><td>new-biz maint — Standard</td><td>maint <span class="expect">Net = base × 0.20</span> (BoKS 355 → <b class="tnum">71</b>); tier attribute = Standard</td></tr>
+          <tr><td class="scn-n">2</td><td>new-biz maint — Premier</td><td>change tier → <span class="expect">Net = base × 0.30</span> (<b class="tnum">106.50</b>)</td></tr>
+          <tr><td class="scn-n">3</td><td>new-biz maint — Professional</td><td><span class="expect">Net = base × 0.20</span></td></tr>
+          <tr><td class="scn-n">4</td><td><b>untagged</b> (no tier picker)</td><td>a maint line with <b>no tier attribute</b> shows a <b>non-zero</b> Net (Std default), not $0</td></tr>
+          <tr><td class="scn-n">5</td><td>base-less maint</td><td>shows <b>$0</b> (correct)</td></tr>
+          <tr><td class="scn-n">6</td><td>discount netting</td><td>apply partner discount → <span class="expect">Net = base×tier − discount</span></td></tr>
+          <tr><td class="scn-n">7</td><td><b>first-renewal</b> — with discount</td><td>renewal Net = <span class="expect">(prior base − partner − disc) × (1+COLA)</span> = <b class="tnum">65.09</b></td></tr>
+          <tr><td class="scn-n">8</td><td>first-renewal — no discount</td><td><span class="expect">Net = asset × (1+COLA)</span> = <b class="tnum">76.57</b></td></tr>
+          <tr><td class="scn-n">9</td><td><b>RRM</b> non-regression</td><td>Renewal-Maintenance Net = <span class="expect">asset × COLA</span>; prior discount not re-subtracted</td></tr>
+          <tr><td class="scn-n">10</td><td>qty&gt;1</td><td>qty-N maint <b>unit</b> Net = qty-1 value (no ×N)</td></tr>
+          <tr><td class="scn-n">11</td><td>convergence + idempotency</td><td>Reprice All 2nd &amp; 3rd → columns identical</td></tr>
+          <tr><td class="scn-n">12</td><td>SC-3346-ASSET data check</td><td>license-scale renewal Net → flag asset price as bad data (screenshot + asset Id)</td></tr>
+          <tr><td class="scn-n">13</td><td>Convert carry-over (optional)</td><td>Convert Quote → Order → Order line maint Net survives</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§0</span> The on-screen oracle</h3>
+      <div class="card" style="padding:16px 18px;font-size:13.5px">
+        <p style="margin:0 0 8px"><b>Transaction Line Editor</b> (Quote → Lines): graded columns are <b>Net Unit Price</b>,
+        <b>Net Total</b>, <b>Sales Price</b>, <b>Subtotal</b>; the maintenance line sits <b>next to its license</b>.</p>
+        <p style="margin:0 0 8px"><b>Maintenance tier attribute</b>: on the auto-added maint line, open its configure panel →
+        <b>Maintenance Type Defn</b> (Standard / Premier / Professional). A classification that models no tier shows
+        <b>no such attribute</b> — that is the SC-3346-MTD case (must still price via the Standard default).</p>
+        <p style="margin:0"><b>QLI fields</b>: <code>Fortra_Product_Type__c</code>, <code>Base_Price__c</code>,
+        <code>Prior_Partner_Discount__c</code>, <code>COLA_Uplift_Percent__c</code>, <code>NetUnitPrice</code>. Reprice
+        <b>twice</b> — the 2nd click is the graded state; a 3rd must be identical.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">§</span> Two things the tester must not miss</h3>
+      <div style="display:grid;gap:12px">
+        <div class="callout warn"><span class="ic">⛔</span><p><b>Do not delete any quote / order / renewal / line you create.</b>
+          It is shared with the team — record every Id and URL in the report's <b>Artifacts</b> section.</p></div>
+        <div class="callout"><span class="ic">⚠️</span><p>Red toast <code>Ensure that this procedure has at least one active version</code>,
+          <code>INVALID_PRICE_REVISION_FORMULA</code>, or "Something went wrong hydrating the context" → screenshot &amp; mark
+          <b>BLOCKED</b> (infra / pre-existing, not DPP); retry procedure-inactive ones later.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Report format — both lanes: one self-contained HTML file, color-coded PASS / FAIL / BLOCKED, one row per scenario,
+    click-to-expand evidence (before/after tables or embedded screenshots), header with org + procedure version + timestamp,
+    an <b>Artifacts</b> list of every Id used/generated, and a CHANGELOG line. &nbsp;·&nbsp; Sources:
+    <code>docs/SC3346_DPP_REGRESSION_TEST_PROMPT_CLI.md</code> · <code>docs/SC3346_DPP_UI_MANUAL_TEST_PROMPT.md</code>
+  </footer>
+</main>
+
+<script type="text/plain" id="raw-cli">PASTE INTO A FRESH CLAUDE CODE SESSION — SC-3346 DPP (Derived Maintenance Pricing) CLI Regression, FortraUAT.
+Full source: docs/SC3346_DPP_REGRESSION_TEST_PROMPT_CLI.md (this repo). Drive a real-data regression of the derived-maintenance pricing procedure (DPP, SC-3346) on FortraUAT using sf + SOQL as the oracle plus the authorized writes below, and produce a color-coded PASS/FAIL/BLOCKED self-contained HTML report. DO NOT DELETE any test data you find or generate — it is shared with the team; list every Id in an Artifacts section.
+
+ORG: FortraUAT (-o FortraUAT on every sf). Active procedure = Rev_Mgmt_Default_Pricing_Procedure V25 (re-verify sole-active). If 0 active rows, every reprice fails "Ensure that this procedure has at least one active version" → mark BLOCKED and retry when V25 is Active (infra, not a defect).
+
+SCOPE — both branches: (1) new-business maintenance = source license base × maintenance tier% (Standard 0.20 / Premier 0.30 / Professional 0.20), then partner/discretionary discounts; untagged lines with a base default to Standard 0.20; base-less lines correctly $0. (2) renewal maintenance = first-renewal carryover converted OneTime→TermDefined Renew by RenewalMaintenanceProvisionService.provision, net = (SourceAsset.Price − Prior_Partner_Discount__c − Prior_Discretionary_Discount__c) × (1+COLA%); RRM (2nd+, Fortra_Product_Type__c='Renewal Maintenance') stays single-component asset × COLA (must not re-net).
+
+GROUND RULES: real data first (SOQL below), mint scripts/apex fixtures only if none fits. Snapshot the §ORACLE per-line SOQL before AND after each reprice. Reprice TWICE — the 2nd pass is graded; assert pass2==pass3 (idempotency). First-renewal only commits after provision. After each reprice check D-18 (Exception_Log__c today) — a new hook row = FAIL. Do not change config/procedure. Delete nothing.
+
+MECH:
+- Force-reprice ×2: POST /services/data/v64.0/connect/rev/sales-transaction/actions/place  body {"pricingPref":"Force","configurationPref":{"configurationMethod":"Skip"},"graph":{"graphId":"g1","records":[{"referenceId":"ref1","record":{"attributes":{"type":"Quote","method":"PATCH","id":"<QID>"}}}]}}  (expect isSuccess:true; run twice). isSuccess:false with INVALID_PRICE_REVISION_FORMULA / SF-Pricing-00006 DerivedPricingFilter#1 / INVALID_API_INPUT(picklist) / no-active-version = pre-existing/infra → BLOCKED, pick another.
+- Convert first-renewal carryover: echo "RenewalMaintenanceProvisionService.provision(new Set<Id>{'<QID>'});" | sf apex run -o FortraUAT (deletes OneTime carryover, borns TermDefined/Renew; idempotent), then reprice ×2.
+- Untagged tier: sf data create record -o FortraUAT --sobject QuoteLineItemAttribute --values "QuoteLineItemId=<lineId> AttributeName='Maintenance Type Defn' AttributeDefinitionId=0tjWC000000096bYAA AttributeValue=Standard AttributePicklistValueId=0v6WC0000000A5WYAU"
+
+ORACLE (before AND after each reprice): sf data query -o FortraUAT --json --query "SELECT Id, LineNumber, Product2.ProductCode, Product2.Fortra_Product_Type__c, Fortra_Product_Type__c, PricebookEntry.ProductSellingModel.SellingModelType, PricebookEntry.IsDerived, Quantity, CurrencyIsoCode, ListPrice, UnitPrice, NetUnitPrice, NetTotalPrice, Subtotal, Base_Price__c, Source_List_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, PartnerDiscountPercent, Discount, COLA_Uplift_Percent__c, COLACalculatedPrice__c, QuoteAction.Type, QuoteAction.SourceAsset.Price, QuoteAction.SourceAsset.Product2.Fortra_Product_Type__c FROM QuoteLineItem WHERE QuoteId='<QID>' ORDER BY LineNumber". Tier QLIA (explicit line ids, no semi-join): SELECT QuoteLineItemId, AttributeName, AttributeValue FROM QuoteLineItemAttribute WHERE QuoteLineItemId IN ('<id1>') AND AttributeName='Maintenance Type Defn'.
+
+ASSERTIONS: new-biz maint NetUnitPrice==round(sourceBase×tier,2) before discounts; untagged base>0 → base×0.20; base-less → 0. First-renewal (post-provision) UnitPrice(==NetUnitPrice after reprice)==round((SourceAsset.Price−Prior_Partner_Discount__c−Prior_Discretionary_Discount__c)×(1+COLA/100),2); no-discount → asset×(1+COLA). RRM NetUnitPrice==round(SourceAsset.Price×(1+COLA),2) — prior discount NOT re-subtracted (if an RRM net drops by ~its partner discount, the scope leaked = FAIL).
+
+REAL DATA:
+- New-biz gold (SC-3346-MTD): quote 0Q0WC000003JXMj — line 04267561 (FIM-FIM-RNM-DPEENM, untagged) nets 60.75 (=303.745×0.20) via posthook default; BoKS 04267516/17 net 71 (=355×0.20).
+- First-renewal carryovers (unconverted OneTime — run provision then reprice ×2): SELECT Id,QuoteId,Product2.ProductCode,Base_Price__c,Prior_Partner_Discount__c,Prior_Discretionary_Discount__c,QuoteAction.SourceAsset.Price,QuoteAction.SourceAsset.Product2.Fortra_Product_Type__c,COLA_Uplift_Percent__c FROM QuoteLineItem WHERE Fortra_Product_Type__c='New Maintenance' AND PricebookEntry.ProductSellingModel.SellingModelType='OneTime' AND Quote.Quote_Type__c='Renewal' AND QuoteActionId!=null AND QuoteAction.SourceAssetId!=null AND Base_Price__c>0 ORDER BY CreatedDate DESC. Known-good: 0Q0WC000003DKNN0A4→65.09, 0Q0WC000003DLBO0A4→60.37, 0Q0WC00000379sr0AA→58.20, 0Q0WC000003DGgL0AW→76.57 (no discount). Known bad asset (SC-3346-ASSET, DATA finding not FAIL): 0Q0WC000003IKcr0AG line 04267364 sources asset priced 355 (license) → 372.76.
+- RRM (non-regression): Fortra_Product_Type__c='Renewal Maintenance' with a Renew QA + prior discount; net must be asset×COLA.
+
+FIXTURES (savepoint-protected; do not delete): sf apex run -o FortraUAT -f scripts/apex/<script>.apex — new-biz tiers setupJ02DerivedTierTestData.compact.apex; discount-on-derived-maint setupH03ManualDiscountDerivedMaintTestData.compact.apex; born-fresh renewal f04_initiateRenewal.apex / sc3346_confirm_rnm_renewal.apex / sc3346_pathB_scaleout_owned_maintenance.apex; multi-currency setupCurrencyEurCatalogTestData.compact.apex / setupG03PartnerNonUsdTestData.compact.apex.
+
+SCENARIOS (grade each, reprice ×2): 1 Standard tier =base×0.20 (BoKS 71); 2 Premier =base×0.30 (106.50); 3 Professional =base×0.20; 4 untagged base>0 =base×0.20 (04267561→60.75); 5 base-less →0; 6 discount netting (base×tier)−partner−disc; 7 new-biz multi-currency; 8 first-renewal w/partner =(asset−partner−disc)×(1+COLA)=65.09; 9 first-renewal no-discount =asset×(1+COLA)=76.57; 10 first-renewal w/discretionary =60.37; 11 RRM non-regression =asset×COLA (no re-net); 12 renewal multi-currency; 13 qty>1 per-unit no inflation; 14 idempotency pass2==pass3; 15 SC-3346-ASSET flag license-scale RNM assets (DATA finding, list ids); 16 D-18 clean.
+
+CHECKS: D-18 = SELECT Source__c,Exception_Type__c,Message__c,CreatedDate FROM Exception_Log__c WHERE CreatedDate=TODAY — any PartnerNetPricePosthook/COLAUplift*/RenewalMaintenance* row after a reprice = FAIL. Static: COLAUpliftCalculatorTest, COLAUpliftTest (..FirstRenewalMaintenanceNetsPriorDiscount), PartnerNetPricePosthookTest (loadNewMaintenanceLines_defaultsUntaggedLineToStandard) must be green; COLAUpliftHandler discount-net must stay gated on SourceAsset.Product2.Fortra_Product_Type__c=='New Maintenance'.
+
+REPORT: single self-contained HTML (inline CSS/JS), color-coded PASS/FAIL/BLOCKED, one row per scenario, click-to-expand before/after tables + the SOQL/commands run, currency-aware expected-vs-actual. Header: org, procedure version (re-verify sole-active: SELECT VersionNumber,Status FROM ExpressionSetDefinitionVersion WHERE ExpressionSetDefinition.DeveloperName='Rev_Mgmt_Default_Pricing_Procedure' AND Status='Active'), run timestamp, tester=Claude Code. ARTIFACTS: list every Quote Id, line Id, born-line Id, fixture Id, asset Id used or generated — nothing deleted. End with a CHANGELOG line. Save docs/sc3346_dpp_cli_report_<date>.html.</script>
+
+<script type="text/plain" id="raw-ui">PASTE INTO A FRESH CLAUDE-ON-CHROME SESSION — SC-3346 DPP (Derived Maintenance Pricing) Manual E2E, FortraUAT UI.
+Full source: docs/SC3346_DPP_UI_MANUAL_TEST_PROMPT.md (this repo). Manually test the derived-maintenance pricing procedure (DPP, SC-3346) by driving the Salesforce Lightning UI, with sf available in the same session as a read-only cross-check. Screen is the source of truth; screenshots are evidence. Produce a color-coded PASS/FAIL/BLOCKED self-contained HTML report. DO NOT DELETE any quote/order/renewal/line you create — it is shared with the team; list every Id and URL in an Artifacts section.
+
+ORG/SESSION: signed into FortraUAT as an RLM-permissioned user (Revenue Cloud Admin / Transaction Line Editor). Record links https://fortra--uat.sandbox.my.salesforce.com/<id>. Active procedure Rev_Mgmt_Default_Pricing_Procedure V25.
+
+SCOPE — both branches. (1) New-business maintenance: add a license to a cart → RCA auto-adds the maintenance line → select Maintenance Type Defn (Standard/Premier/Professional) → Reprice All ×2 → maint Net = source base × tier% (0.20/0.30/0.20); a product whose classification models no tier shows NO tier field yet still prices non-zero (Standard 0.20 default, SC-3346-MTD); base-less → $0. (2) Renewal maintenance: Manage Assets → Renew → renewal maint line Net = (prior base − partner − disc) × (1+COLA); if it shows $0/null it needs conversion (ask CLI companion to run RenewalMaintenanceProvisionService.provision('<QID>')), then Reprice All ×2. RRM (2nd+, Renewal Maintenance) stays asset × COLA (prior discount not re-subtracted).
+
+GROUND RULES: real data only (renew a real activated Contract, or open/build a real quote; ask the CLI companion to mint via f04_initiateRenewal.apex / scripts/apex/setupJ02DerivedTierTestData.compact.apex if none fits). Reprice TWICE — 2nd click graded, 3rd must be identical (SC-3390); a yellow "prices aren't up to date — Refresh" banner → Refresh first. Oracle = the on-screen price columns + the maintenance line's attribute/pricing fields; screenshot before AND after each Reprice All and edit. No config/metadata/procedure changes. Delete nothing.
+
+ON-SCREEN ORACLE: Transaction Line Editor (Quote → Lines) columns Net Unit Price / Net Total / Sales Price / Subtotal; maintenance line sits next to its license. Maintenance tier: auto-added maint line's configure panel → Maintenance Type Defn (Standard/Premier/Professional); a no-tier classification shows no such attribute (SC-3346-MTD). QLI fields: Fortra_Product_Type__c, Base_Price__c, Source_List_Price__c, Prior_Partner_Discount__c, Prior_Discretionary_Discount__c, COLA_Uplift_Percent__c, NetUnitPrice. Quote header: Grand Total, Quote Type.
+
+MECHANICS: New-biz — New/Draft Quote → Add Products → add license (BoKS PIA-PIA-NRPS-PIAP) → maintenance line auto-adds → set Maintenance Type Defn → Reprice All ×2. Renewal — activated Contract → Manage Assets → select → Renew → Renewal Quote → Lines → Reprice All ×2. Discount — apply partner/discretionary on the maint line → Reprice All ×2. Optional Convert Quote → Order to confirm carry-over.
+
+LANE A (new-biz backbone): New Quote → add BoKS license → screenshot auto-added maint line → set Maintenance Type Defn=Standard → Reprice All ×2 → grade #1-#6. LANE B (renewal backbone): activated Contract with a maintenance asset → Manage Assets → Renew → Reprice All ×2 (if maint $0/null, provision then reprice ×2) → grade #7-#11.
+
+SCENARIOS (score in UI, each a row): 1 Standard =base×0.20 (BoKS 355→71); 2 Premier =base×0.30 (106.50); 3 Professional =base×0.20; 4 untagged (no tier picker) → non-zero Net (Std default), not $0; 5 base-less → $0; 6 discount netting =base×tier−discount; 7 first-renewal w/discount =(prior base−partner−disc)×(1+COLA)=65.09 (not asset×COLA 76.57, not $0); 8 first-renewal no-discount =asset×(1+COLA)=76.57; 9 RRM non-regression =asset×COLA (no re-net); 10 qty>1 unit Net = qty-1 value (no ×N); 11 convergence+idempotency (2nd==3rd); 12 SC-3346-ASSET: license-scale renewal Net (≈372 not ≈65) → flag asset price as bad data (screenshot+asset id), DATA finding not math FAIL; 13 Convert carry-over (optional) → Order maint Net survives.
+
+CHECKS: red toast / "Something went wrong hydrating the context" / "no active version" / INVALID_PRICE_REVISION_FORMULA → screenshot + BLOCKED (infra/pre-existing, not DPP). Optional SOQL cross-check (same session): sf data query -o FortraUAT --query "SELECT Fortra_Product_Type__c,Base_Price__c,Prior_Partner_Discount__c,COLA_Uplift_Percent__c,NetUnitPrice,QuoteAction.SourceAsset.Price FROM QuoteLineItem WHERE QuoteId='<QID>'" — must match the screen; a mismatch is itself a finding. D-18: SELECT Source__c,Message__c FROM Exception_Log__c WHERE CreatedDate=TODAY — a new Posthook/COLA/RenewalMaintenance row = FAIL.
+
+REPORT: single self-contained HTML (inline CSS/JS), color-coded PASS/FAIL/BLOCKED, one row per scenario, before/after screenshots embedded (base64 data-URIs) with on-screen values next to expected. Header: org, procedure version, Lane A/B Quote Ids, tester=Claude-on-Chrome, run timestamp. ARTIFACTS: every Quote/Order/renewal/line/asset Id and URL used or created — nothing deleted. End with a CHANGELOG line. Save docs/sc3346_dpp_ui_report_<date>.html.</script>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  // theme
+  document.getElementById('themeToggle').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    var next = cur ? (cur==='dark'?'light':'dark')
+      : (window.matchMedia('(prefers-color-scheme:dark)').matches?'light':'dark');
+    root.setAttribute('data-theme',next);
+  });
+  // tabs
+  var tabs=[['tab-cli','lane-cli'],['tab-ui','lane-ui']];
+  tabs.forEach(function(t){
+    document.getElementById(t[0]).addEventListener('click',function(){
+      tabs.forEach(function(o){
+        var sel=o[0]===t[0];
+        document.getElementById(o[0]).setAttribute('aria-selected',sel?'true':'false');
+        document.getElementById(o[1]).hidden=!sel;
+      });
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  // copy full prompt
+  function flash(btn,txt){var o=btn.textContent;btn.textContent=txt;btn.classList.add('done');
+    setTimeout(function(){btn.textContent=o;btn.classList.remove('done');},1500);}
+  document.querySelectorAll('.copybtn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var raw=document.getElementById(b.getAttribute('data-src')).textContent;
+      navigator.clipboard.writeText(raw).then(function(){flash(b,'✓ Copied — paste into a session');});
+    });
+  });
+  // copy code snippets
+  document.querySelectorAll('.mini-copy').forEach(function(b){
+    b.addEventListener('click',function(){
+      var pre=b.closest('.codecard').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(function(){var o=b.textContent;b.textContent='copied';
+        setTimeout(function(){b.textContent=o;},1200);});
+    });
+  });
+})();
+</script>

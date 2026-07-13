@@ -1,0 +1,129 @@
+seq	label	stepType	actionType	customName	nCriteria	nParams	description
+1	All Lines Null Safe Filter	AdvancedListFilter			1	0	
+1	Amend Filter	AdvancedListFilter			3	0	
+1	Attribute Pricing Filter	AdvancedListFilter			4	0	
+1	Attribute Pricing Filter	AdvancedListFilter			3	0	
+1	Attribute Value Pricing - Calculated Mode	AdvancedListFilter			2	0	
+1	Attribute Value Pricing - Total Price Mode	AdvancedListFilter			2	0	
+1	Attribute Value Pricing - Unit Price Mode	AdvancedListFilter			2	0	
+1	COLA Uplift on Renewal	AdvancedListFilter			5	0	
+1	Contacted Pricing	AdvancedListFilter			3	0	
+1	Derived Maintenance Net Filter	AdvancedListFilter			1	0	
+1	Derived Pricing Filter	AdvancedListFilter			1	0	
+1	Derived Products - Non-Renewal	AdvancedListFilter			1	0	
+1	GSA Pricing	AdvancedListFilter			1	0	
+1	List Operation	AdvancedListFilter			1	0	
+1	List Operation	AdvancedListFilter			4	0	
+1	List Operation	AdvancedListFilter			1	0	
+1	List Operation	AdvancedListFilter			4	0	
+1	List Operation	AdvancedListFilter			2	0	
+1	List Operation	AdvancedListFilter			4	0	
+1	List Operation	AdvancedListFilter			2	0	
+1	List Operation	AdvancedListFilter			1	0	
+1	Manual Quote Level Discount	AdvancedListFilter			6	0	
+1	OneTime Net Seed Filter	AdvancedListFilter			5	0	
+1	Partner Discount	AdvancedListFilter			3	0	
+1	Partner Discount - Derived Maintenance	AdvancedListFilter			4	0	
+1	Pricing Setting	BusinessKnowledgeModel	PricingSettings	LineItemId	0	11	Pricing Setting
+1	Quantity * Price	AdvancedListFilter			3	0	
+1	Regional Services Price	AdvancedListFilter			1	0	
+1	Stamp Base Filter	AdvancedListFilter			6	0	
+1	Total Services	AdvancedListFilter			1	0	
+1	Total Software	AdvancedListFilter			1	0	
+1	Total Subscription	AdvancedListFilter			1	0	
+1	Volume Discounts	AdvancedListFilter			3	0	
+2	Amend Seed Net Unit	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	8	Formula Based Pricing
+2	Assignment	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Assignment	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Assignment	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Attribute-Based Price	BusinessKnowledgeModel	AttributeDiscount	PriceAdjustmentScheduleId	0	23	Attribute-Based Price
+2	Attribute Discount Entries	BusinessKnowledgeModel	AttributeDiscount	PriceAdjustmentScheduleId	0	22	Attribute-Based Price
+2	Attribute Value Pricing - Calculated Mode	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+2	Attribute Value Pricing - Total Price Mode	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Attribute Value Pricing - Unit Price Mode	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Bundle Based Adjustment Entries	BusinessKnowledgeModel	BundleDiscount	PriceAdjustmentScheduleId	0	24	Bundle-Based Price
+2	COLA Uplift on Renewal	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Contacted Pricing	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Derived Pricing Formula	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+2	Derived Pricing - NetUnitPrice Value Reset	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+2	Derived Products - Renewals	BusinessKnowledgeModel	DerivedPricing	Quantity	0	16	Derived Price
+2	Formula Based Pricing	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	8	Formula Based Pricing
+2	GSA Pricing	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+2	Null-Check for Line Adjustment	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+2	Null-Safe Line Adjustment	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+2	OneTime Net Seed	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	8	Formula Based Pricing
+2	Partner Discount	BusinessKnowledgeModel	ManualDiscount	AdjustmentType	0	11	Manual Discount
+2	Partner Discount - Derived Maintenance	BusinessKnowledgeModel	ManualDiscount	AdjustmentType	0	11	Manual Discount
+2	Price Book Entries	BusinessKnowledgeModel	ListPrice	Product2Id	0	19	List Price
+2	Proration	BusinessKnowledgeModel	Proration	EffectiveFrom	0	14	Proration
+2	Quantity * Price	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	8	Formula Based Pricing
+2	Regional Services Price	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Reset Net to Pre-Partner Base	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	8	Formula Based Pricing
+2	Services Aggregate Price	BusinessKnowledgeModel	GroupingAndAggregatePricing	section-count	0	11	Aggregate Price
+2	Software Aggregate Price	BusinessKnowledgeModel	GroupingAndAggregatePricing	section-count	0	14	Aggregate Price
+2	Subscription Aggregate Price	BusinessKnowledgeModel	GroupingAndAggregatePricing	section-count	0	14	Aggregate Price
+2	Subscription Pricing	BusinessKnowledgeModel	SubscriptionPricing	Quantity	0	9	Subscription Pricing
+2	Sync InputUnitPrice from Net	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+2	Volume Discount Entries	BusinessKnowledgeModel	VolumeDiscount	PriceAdjustmentScheduleId	0	21	Volume Discount
+3	Amend Seed Net Total	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	8	Formula Based Pricing
+3	Attribute Value Pricing - Calculated Mode Net Bridge	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+3	Attribute Value Pricing - Total Price Mode Net Bridge	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+3	Attribute Value Pricing - Unit Price Mode Net Bridge	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+3	COLA Uplift Net on Renewal	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+3	Pricing Effective Dates	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+3	Reset Amount Base From List	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+3	Stamp Base_Price and Pre_Partner from Net	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	8	Assignment
+3	Stamp Partner Unit Price - Derived Maintenance	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	5	Assignment
+3	Subscription Pricing	BusinessKnowledgeModel	SubscriptionPricing	Quantity	0	9	Subscription Pricing
+3	Subscription Pricing	BusinessKnowledgeModel	SubscriptionPricing	Quantity	0	9	Subscription Pricing
+4	Attribute Value Pricing - Calculated Mode Base Bridge	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+4	Attribute Value Pricing - Total Price Mode Base Bridge	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+4	Attribute Value Pricing - Unit Price Mode Base Bridge	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+4	List Container	ListGroup			0	0	
+4	Manual Discount - Derived Maintenance	BusinessKnowledgeModel	ManualDiscount	AdjustmentType	0	11	Manual Discount
+4	Manual Quote Level Amount-Based (Line-Level)	BusinessKnowledgeModel	ManualDiscount	AdjustmentType	0	11	Manual Discount
+5	List Container	ListGroup			0	0	
+5	Manual Quote Level Percentage-Based (Line-Level)	BusinessKnowledgeModel	ManualDiscount	AdjustmentType	0	11	Manual Discount
+6	List Container 5	ListGroup			0	0	
+7	List Container 6	ListGroup			0	0	
+8	List Container 7	ListGroup			0	0	
+9	List Container	ListGroup			0	0	
+10	List Container	ListGroup			0	0	
+11	List Container 4	ListGroup			0	0	
+12	List Container 1	ListGroup			0	0	
+13	Sync InputUnitPrice for Discount Base	ListGroup			0	0	
+14	Stamp Contributor Base (Pre-Discount)	ListGroup			0	0	
+15	Derived Products - Native Pull	ListGroup			0	0	
+16	List Container 9	ListGroup			0	0	
+17	Discount Percent	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+18	Seed OneTime Net Before Partner	ListGroup			0	0	
+19	List Container 3	ListGroup			0	0	
+20	List Container	ListGroup			0	0	
+21	Partner Discount - Derived Maintenance	ListGroup			0	0	
+22	List Container 10	ListGroup			0	0	
+23	List Container 2	ListGroup			0	0	
+24	List Container	ListGroup			0	0	
+25	List Container	ListGroup			0	0	
+26	List Container	ListGroup			0	0	
+27	Evergreen anytime proration filter (Line level)	ListGroup			0	0	
+28	List Container	ListGroup			0	0	
+29	List Container	ListGroup			0	0	
+30	List Container	ListGroup			0	0	
+31	List Container	ListGroup			0	0	
+32	Reset Total Services (K-09 zero-init)	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+33	Reset Total Software (K-09 zero-init)	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+34	Reset Total Subscription (K-09 zero-init)	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+35	List Container 8	ListGroup			0	0	
+36	Copy 1 of List Container 8	ListGroup			0	0	
+37	Copy 1 of Copy 1 of List Container 8	ListGroup			0	0	
+38	Currency Conversion - Net Unit Price	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+39	Currency Conversion - Unit Price Display	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+40	Currency Conversion - Net Total / Subtotal	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+41	Currency Conversion - Total Line Amount	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+42	Amend Net Carry	ListGroup			0	0	
+43	Total Amount	BusinessKnowledgeModel	GroupingAndAggregatePricing	section-count	0	20	Aggregate Price
+44	Formula Based Pricing 3	BusinessKnowledgeModel	FormulaBasedPricing	formula-section-0-input	0	7	Formula Based Pricing
+45	Aggregate Price	BusinessKnowledgeModel	GroupingAndAggregatePricing	section-count	0	20	Aggregate Price
+46	Aggregate Price	BusinessKnowledgeModel	GroupingAndAggregatePricing	section-count	0	22	Aggregate Price
+47	List Container 11	ListGroup			0	0	
+48	Assignment	BusinessKnowledgeModel	AssignmentElement	section-0-input1	0	8	Assignment

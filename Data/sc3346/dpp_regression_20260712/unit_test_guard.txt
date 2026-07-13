@@ -1,0 +1,178 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+=== Test Results
+TEST NAME                                                                                                     OUTCOME  MESSAGE  RUNTIME (MS)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────  ───────  ───────  ────────────
+COLAUpliftCalculatorTest.buildCOLAContextUpdate_multiYearCompound                                             Pass              125         
+COLAUpliftCalculatorTest.buildCOLAContextUpdate_nullPathNull                                                  Pass              4           
+COLAUpliftCalculatorTest.buildCOLAContextUpdate_singleYear                                                    Pass              5           
+COLAUpliftCalculatorTest.buildExplainerText_variants                                                          Pass              4           
+COLAUpliftCalculatorTest.buildItemUpdate_blankSolCatOmitted_andNullPathNull                                   Pass              5           
+COLAUpliftCalculatorTest.buildItemUpdate_buildsAuditAttributes                                                Pass              6           
+COLAUpliftCalculatorTest.buildMaintenanceColaItemUpdate_derivedPartnerPercent                                 Pass              6           
+COLAUpliftCalculatorTest.buildMaintenanceColaItemUpdate_explicitPartnerPercent                                Pass              6           
+COLAUpliftCalculatorTest.buildMaintenanceColaItemUpdate_nullPathNull                                          Pass              4           
+COLAUpliftCalculatorTest.buildNetUnitPriceUpdate_guards                                                       Pass              4           
+COLAUpliftCalculatorTest.buildNetUnitPriceUpdate_seedsNetOnUpdatePath                                         Pass              5           
+COLAUpliftCalculatorTest.computeFirstRenewalMaintenanceNet_discountFallback                                   Pass              4           
+COLAUpliftCalculatorTest.computeFirstRenewalMaintenanceNet_nullGuards                                         Pass              3           
+COLAUpliftCalculatorTest.computeFirstRenewalMaintenanceNet_threeComponent                                     Pass              5           
+COLAUpliftCalculatorTest.computeStampedMaintenanceColaNet_discountFallback                                    Pass              5           
+COLAUpliftCalculatorTest.computeStampedMaintenanceColaNet_nonPositiveReturnsNull                              Pass              5           
+COLAUpliftCalculatorTest.computeStampedMaintenanceColaNet_priorComponents                                     Pass              5           
+COLAUpliftCalculatorTest.extractLineItemData_unwrapsTagValue                                                  Pass              5           
+COLAUpliftCalculatorTest.isManualLineOverride_matrix                                                          Pass              4           
+COLAUpliftCalculatorTest.isOrderTransaction_detectsOrderRoot                                                  Pass              5           
+COLAUpliftCalculatorTest.isPersistedLineOverride_matrix                                                       Pass              4           
+COLAUpliftCalculatorTest.resolveTier_tierSelection                                                            Pass              6           
+COLAUpliftTest.isPersistedLineOverride_honorsRepEntryDifferingFromStampedDefault                              Pass              14          
+COLAUpliftTest.testAssetContractRelationshipQuery                                                             Pass              14          
+COLAUpliftTest.testBuildContractOverrideMap_ValidityMatrix                                                    Pass              40          
+COLAUpliftTest.testBulkOperation                                                                              Pass              1877        
+COLAUpliftTest.testCOLAHandler_BasicExecution                                                                 Pass              541         
+COLAUpliftTest.testCOLAHandler_UpdateExecution                                                                Pass              111         
+COLAUpliftTest.testCOLAOverrideDetection                                                                      Pass              115         
+COLAUpliftTest.testCOLAPriceCalculation                                                                       Pass              108         
+COLAUpliftTest.testCOLARulesMetadata                                                                          Pass              113         
+COLAUpliftTest.testCOLASourceValues                                                                           Pass              106         
+COLAUpliftTest.testContractCOLAOverrideFields                                                                 Pass              163         
+COLAUpliftTest.testContractOverride_FuturePersistDate                                                         Pass              93          
+COLAUpliftTest.testContractOverride_NullPersistDate                                                           Pass              95          
+COLAUpliftTest.testContractStatusFilter                                                                       Pass              101         
+COLAUpliftTest.testHandleBeforeInsert_RenewalCMDTLookup                                                       Pass              775         
+COLAUpliftTest.testHandleBeforeInsert_RenewalNoCMDTMatch                                                      Pass              701         
+COLAUpliftTest.testHandleBeforeInsert_RenewalQuantityFold                                                     Pass              719         
+COLAUpliftTest.testHandleBeforeUpdate_NullOldOverride_StaleDefault                                            Pass              1059        
+COLAUpliftTest.testHandleBeforeUpdate_NullOldYear1Override                                                    Pass              584         
+COLAUpliftTest.testHandleBeforeUpdate_OutyearDefaultThenOverride                                              Pass              617         
+COLAUpliftTest.testHandleBeforeUpdate_PopulatesOutyearForMultiYearContractOverride                            Pass              1080        
+COLAUpliftTest.testHandleBeforeUpdate_PreservesContractOverride                                               Pass              632         
+COLAUpliftTest.testHandleBeforeUpdate_PreservesYear1LineOverride                                              Pass              1162        
+COLAUpliftTest.testHandleBeforeUpdate_RecalculatesOnPercentRaise                                              Pass              627         
+COLAUpliftTest.testHandleBeforeUpdate_Year1AtMyCapValueIsLineOverride                                         Pass              571         
+COLAUpliftTest.testIsManualLineOverride_Predicate                                                             Pass              87          
+COLAUpliftTest.testMyCAPRules_GlobalRecord_Accessible                                                         Pass              87          
+COLAUpliftTest.testMyCAP_CompoundedUplift_Calculation                                                         Pass              90          
+COLAUpliftTest.testMyCAP_MultiYearDetection                                                                   Pass              95          
+COLAUpliftTest.testMyCAP_PrepaidQuery_Executable                                                              Pass              97          
+COLAUpliftTest.testMyCAP_ProcessEligibility_SmokeTest                                                         Pass              99          
+COLAUpliftTest.testMyCAP_QuoteFlag_DMLToggle                                                                  Pass              1610        
+COLAUpliftTest.testMyCAP_SeedValues_Match3Percent                                                             Pass              93          
+COLAUpliftTest.testMyCAP_ThresholdComparison_FlagsBelowMinimum                                                Pass              86          
+COLAUpliftTest.testOverrideHierarchy                                                                          Pass              94          
+COLAUpliftTest.testPersistDateEdgeCases                                                                       Pass              86          
+COLAUpliftTest.testPopulateCOLAFields_FirstRenewalMaintenanceNetsPriorDiscount                                Pass              101         
+COLAUpliftTest.testPopulateCOLAFields_Tier2ContractOverride                                                   Pass              990         
+COLAUpliftTest.testPrehook_AppendStampedRenewalMaintenance                                                    Pass              1176        
+COLAUpliftTest.testPrehook_AppendStamped_EdgeContinues                                                        Pass              1185        
+COLAUpliftTest.testPrehook_BuildExplainerText                                                                 Pass              88          
+COLAUpliftTest.testPrehook_BuildLineItemUpdates_CoreLoop                                                      Pass              1006        
+COLAUpliftTest.testPrehook_BuildLineItemUpdates_EmptyDataPathSkipped                                          Pass              1855        
+COLAUpliftTest.testPrehook_BuildLineItemUpdates_TiersAndSkips                                                 Pass              1768        
+COLAUpliftTest.testPrehook_BuildMaintenanceColaItemUpdate                                                     Pass              101         
+COLAUpliftTest.testPrehook_BuildNetUnitPriceUpdate                                                            Pass              104         
+COLAUpliftTest.testPrehook_BuildOverrideMap_ValidityMatrix                                                    Pass              623         
+COLAUpliftTest.testPrehook_ComputeStampedMaintenanceColaNet                                                   Pass              95          
+COLAUpliftTest.testPrehook_GetCOLARulesMap                                                                    Pass              110         
+COLAUpliftTest.testPrehook_HelperEdgeCases                                                                    Pass              98          
+COLAUpliftTest.testPrehook_IsOrderTransaction_OrderVsQuote                                                    Pass              99          
+COLAUpliftTest.testPrehook_MyCAPFlagApplier_Execute                                                           Pass              1727        
+COLAUpliftTest.testPrehook_NetSeed_GuardAndFire                                                               Pass              150         
+COLAUpliftTest.testPrehook_NetSeed_Integration                                                                Pass              1176        
+COLAUpliftTest.testPrehook_ProcessLineItems_InvalidIdAndMyCapFallback                                         Pass              999         
+COLAUpliftTest.testPrehook_ProcessMyCAPEligibility_EmptyAndNonRenewal                                         Pass              96          
+COLAUpliftTest.testPrehook_ProcessMyCAPEligibility_NonOverriddenQualifying                                    Pass              982         
+COLAUpliftTest.testPrehook_ProcessMyCAPEligibility_RealPath                                                   Pass              3513        
+COLAUpliftTest.testPrehook_ShouldSeedRenewalNet                                                               Pass              92          
+COLAUpliftTest.testPrehook_TagHelpers                                                                         Pass              90          
+COLAUpliftTest.testQuoteLineItemTrigger_COLAIntegration                                                       Pass              321         
+PartnerNetPricePosthookTest.adjustNewBusinessDerivedListLineItem_correctsStaleHighListNet                     Pass              51          
+PartnerNetPricePosthookTest.adjustNewBusinessDerivedListLineItem_correctsStaleListNet                         Pass              14          
+PartnerNetPricePosthookTest.adjustNewBusinessDerivedListLineItem_skipsWhenCommercialNetCurrent                Pass              13          
+PartnerNetPricePosthookTest.applyNetPricesToOrder_returnsZeroForNullOrder                                     Pass              8           
+PartnerNetPricePosthookTest.applyPostPricingNetPrices_handlesNullAndEmptyRequests                             Pass              8           
+PartnerNetPricePosthookTest.buildAttributeListPriceStampUpdate_fillOnly_neverOverwritesExistingUnitPrice      Pass              12          
+PartnerNetPricePosthookTest.buildAttributeListPriceStampUpdate_skipsUnitPriceOnLineWithDetails                Pass              11          
+PartnerNetPricePosthookTest.buildAttributeListPriceStampUpdate_stampsUnitPriceOnRenewalColaLine               Pass              11          
+PartnerNetPricePosthookTest.buildDerivedMaintenanceSequentialDiscountUpdate_appliesCarriedDiscounts           Pass              44          
+PartnerNetPricePosthookTest.buildDerivedMaintenanceSequentialDiscountUpdate_buildsPathWithoutContextDataPath  Pass              19          
+PartnerNetPricePosthookTest.buildNewMaintenanceUpdate_nullWhenNotEligible                                     Pass              8           
+PartnerNetPricePosthookTest.buildNewMaintenanceUpdate_pricesAssetCopyLineLeftAtZero                           Pass              4863        
+PartnerNetPricePosthookTest.buildNewMaintenanceUpdate_pricesFromContributorNet                                Pass              2025        
+PartnerNetPricePosthookTest.buildNewMaintenanceUpdate_skipsWhenProcedureAlreadyPriced                         Pass              1828        
+PartnerNetPricePosthookTest.buildRenewalColaCommitUpdate_commitsColaWhenNetUnitPriceZero                      Pass              190         
+PartnerNetPricePosthookTest.buildRenewalColaCommitUpdate_fixesStaleMaintenanceNetOnRenewal                    Pass              163         
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_correctsStaleLastTransactionNet                 Pass              2030        
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_includesDiscountPercent                         Pass              1878        
+PartnerNetPricePosthookTest.buildRenewalMaintenanceColaUpdate_skipsWhenNetAlreadyMatchesCola                  Pass              275         
+PartnerNetPricePosthookTest.collectPartnerIds_includesGuaranteedMarginChannelPartners                         Pass              696         
+PartnerNetPricePosthookTest.computeRenewalMaintenanceColaNet_appliesUpliftToStampedComponents                 Pass              153         
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_fallsBackToLinkedQuote                           Pass              2111        
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_skipsNonOrderTransaction                         Pass              157         
+PartnerNetPricePosthookTest.enrichPartnerDataFromSourceQuote_usesSalesTransactionSourceField                  Pass              1829        
+PartnerNetPricePosthookTest.getLineItemRecordId_readsRecordIdSourceRecordIdAndId                              Pass              1910        
+PartnerNetPricePosthookTest.loadMaintenanceRates_returnsStandardRate                                          Pass              160         
+PartnerNetPricePosthookTest.loadNewMaintenanceLines_appliesUntaggedStandardDefault                            Pass              2480        
+PartnerNetPricePosthookTest.loadNewMaintenanceLines_defaultsUntaggedLineToStandard                            Pass              1808        
+PartnerNetPricePosthookTest.resolveContextId_readsContextOrInstanceId                                         Pass              156         
+PartnerNetPricePosthookTest.resolveSalesPrice_precedenceBaseThenPreThenNet                                    Pass              162         
+PartnerNetPricePosthookTest.stampAttributeListPricesForQuote_fixesMaintenancePartnerUnitPrice                 Pass              2926        
+PartnerNetPricePosthookTest.tagHelpers_extractWrappedAndPlainValues                                           Pass              156         
+PartnerNetPricePosthookTest.testApplyPartnerNetPrices_invalidContextReturnsZero                               Pass              188         
+PartnerNetPricePosthookTest.testAttributePricedPerpetualRecomputesOffBase                                     Pass              700         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_AppliesPartnerPriceToNetFields                            Pass              170         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWhenDiscretionaryNetAndPartnerAlreadyStamped         Pass              171         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWhenNetAlreadyMatches                                Pass              164         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWhenProcedurePreservedDiscretionaryNet               Pass              168         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_SkipsWithoutPartnerPrice                                  Pass              166         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_UsesCommercialNetWhenPartnerNetNotYetStamped              Pass              172         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_skipsDeferredPartnerForColaOwnedRenewalMaintenance        Pass              691         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_skipsDeferredPartnerForDerivedMaintenance                 Pass              819         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_skipsWithoutUpdatePath                                    Pass              168         
+PartnerNetPricePosthookTest.testBuildNetPriceUpdate_usesProductTypeFromBulkMapWhenContextBlank                Pass              2293        
+PartnerNetPricePosthookTest.testCalculateDeferredPartnerPrice_guaranteedMargin                                Pass              749         
+PartnerNetPricePosthookTest.testCalculateDeferredPartnerPrice_newMaintenanceDiscount                          Pass              662         
+PartnerNetPricePosthookTest.testCalculateDeferredPartnerPrice_returnsNullWhenInputsMissing                    Pass              158         
+PartnerNetPricePosthookTest.testCollectPartnerIds_nullBillingPartnerReturnsEmpty                              Pass              155         
+PartnerNetPricePosthookTest.testComputeRenewalMaintenanceColaNet_returnsNullForInvalidInputs                  Pass              158         
+PartnerNetPricePosthookTest.testGetIdFromTag                                                                  Pass              616         
+PartnerNetPricePosthookTest.testIsAttributePricedPartnerLine_flagsOnlyAttributeBaseAboveList                  Pass              164         
+PartnerNetPricePosthookTest.testLoadRenewalMaintenanceLines_filtersRenewalQuoteType                           Pass              2211        
+PartnerNetPricePosthookTest.testNeedsDeferredPartnerPricing_detectsDerivedMaintenanceLine                     Pass              149         
+PartnerNetPricePosthookTest.testNeedsDeferredPartnerPricing_falseWhenPartnerUnitOrNetMissing                  Pass              158         
+PartnerNetPricePosthookTest.testParseLineItemApiResponse_extractsWrappedLineItems                             Pass              154         
+PartnerNetPricePosthookTest.testParseQuoteHeaderApiResponse_readsNestedTagValue                               Pass              629         
+PartnerNetPricePosthookTest.testQueryLineItemsAndQuoteHeader_invalidContextReturnEmptyOrNull                  Pass              200         
+PartnerNetPricePosthookTest.testQuoteHeaderDataHasPartnerPricing                                              Pass              163         
+PartnerNetPricePosthookTest.testResolveCommercialUnitPrice_prefersLowerProcedureNet                           Pass              166         
+PartnerNetPricePosthookTest.testResolveLineTotalFromQuantity_usesColaHelper                                   Pass              186         
+PartnerNetPricePosthookTest.testResolvePreProcedurePrice_prefersRegionalThenUnitThenList                      Pass              163         
+PartnerNetPricePosthookTest.testResolveRenewalDiscretionaryDollars_fromDiscountPercent                        Pass              163         
+PartnerNetPricePosthookTest.testResolveRenewalMaintenanceUpdatePath_fallsBackToQuoteAndLineIds                Pass              154         
+PartnerNetPricePosthookTest.testResolveRenewalPartnerPercent_computedFromPriorPartner                         Pass              168         
+PartnerNetPricePosthookTest.testShouldSkipProcedureOwnedPartner_falseWhenNetNeedsPartnerEnforcement           Pass              176         
+PartnerNetPricePosthookTest.testShouldSkipProcedureOwnedPartner_whenCommercialEqualsPartnerNet                Pass              161         
+PartnerNetPricePosthookTest.testShouldSkipProcedureOwnedPartner_whenProcedureStampedPartnerTier               Pass              159         
+PartnerNetPricePosthookTest.testSubmitContextUpdates_handlesInvalidContext                                    Pass              177         
+
+
+=== Test Setup Time by Test Class for Run 707WC000038kvHO
+TEST SETUP METHOD NAME        SETUP TIME
+────────────────────────────  ──────────
+COLAUpliftTest.setupTestData  1862      
+
+
+=== Test Summary
+NAME                 VALUE                      
+───────────────────  ───────────────────────────
+Outcome              Passed                     
+Tests Ran            152                        
+Pass Rate            100%                       
+Fail Rate            0%                         
+Skip Rate            0%                         
+Test Run Id          707WC000038kvHO            
+Test Setup Time      1862 ms                    
+Test Execution Time  75336 ms                   
+Test Total Time      77198 ms                   
+Org Id               00DWC000006eUFF2A2         
+Username             liam.jeong.c@fortra.com.uat
+

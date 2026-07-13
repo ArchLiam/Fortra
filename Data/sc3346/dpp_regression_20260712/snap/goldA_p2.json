@@ -1,0 +1,364 @@
+{
+  "status": 0,
+  "result": {
+    "records": [
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ooJF4AY"
+        },
+        "Id": "0QLWC000003ooJF4AY",
+        "LineNumber": "04267515",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1btYAD"
+          },
+          "ProductCode": "PIA-PIA-NRPS-PIAP",
+          "Fortra_Product_Type__c": "Perpetual"
+        },
+        "Fortra_Product_Type__c": "Perpetual",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzWsYAI"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "EUR",
+        "ListPrice": 331.783,
+        "UnitPrice": 331.783,
+        "NetUnitPrice": 331.783,
+        "NetTotalPrice": 331.783,
+        "Subtotal": 331.783,
+        "TotalPrice": 331.783,
+        "TotalLineAmount": 331.783,
+        "Base_Price__c": 355,
+        "Source_List_Price__c": 355,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": null,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ooJG4AY"
+        },
+        "Id": "0QLWC000003ooJG4AY",
+        "LineNumber": "04267516",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK",
+          "Fortra_Product_Type__c": "New Maintenance"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzX8YAI"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 10,
+        "CurrencyIsoCode": "EUR",
+        "ListPrice": 0,
+        "UnitPrice": null,
+        "NetUnitPrice": 71,
+        "NetTotalPrice": 710,
+        "Subtotal": 710,
+        "TotalPrice": 710,
+        "TotalLineAmount": 710,
+        "Base_Price__c": 355,
+        "Source_List_Price__c": 331.783,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": 0,
+        "Discount": 0,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": {
+          "attributes": {
+            "type": "QuoteAction",
+            "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000yCyc9YAC"
+          },
+          "Type": "Amend",
+          "SourceAsset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008N0QvYAK"
+            },
+            "Price": 710,
+            "Product2": {
+              "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+              },
+              "Fortra_Product_Type__c": "New Maintenance"
+            }
+          }
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003ooJH4AY"
+        },
+        "Id": "0QLWC000003ooJH4AY",
+        "LineNumber": "04267517",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+          },
+          "ProductCode": "PIA-PIA-RNM-PIAMBK",
+          "Fortra_Product_Type__c": "New Maintenance"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wzX8YAI"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "EUR",
+        "ListPrice": 0,
+        "UnitPrice": 0,
+        "NetUnitPrice": 71,
+        "NetTotalPrice": 71,
+        "Subtotal": 71,
+        "TotalPrice": 71,
+        "TotalLineAmount": 71,
+        "Base_Price__c": 355,
+        "Source_List_Price__c": 331.783,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": 0,
+        "Discount": 0,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": {
+          "attributes": {
+            "type": "QuoteAction",
+            "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000yCycAYAS"
+          },
+          "Type": "Amend",
+          "SourceAsset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008DFvvYAG"
+            },
+            "Price": 71,
+            "Product2": {
+              "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1bsYAD"
+              },
+              "Fortra_Product_Type__c": "New Maintenance"
+            }
+          }
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003p0U54AI"
+        },
+        "Id": "0QLWC000003p0U54AI",
+        "LineNumber": "04267561",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BRYA1"
+          },
+          "ProductCode": "FIM-FIM-RNM-DPEENM",
+          "Fortra_Product_Type__c": "New Maintenance"
+        },
+        "Fortra_Product_Type__c": "New Maintenance",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC0000079zKJYAY"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "EUR",
+        "ListPrice": 134.5824,
+        "UnitPrice": 60.75,
+        "NetUnitPrice": 60.75,
+        "NetTotalPrice": 60.75,
+        "Subtotal": 60.75,
+        "TotalPrice": 60.75,
+        "TotalLineAmount": 60.75,
+        "Base_Price__c": 325,
+        "Source_List_Price__c": 303.745,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": 0,
+        "Discount": 0,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": {
+          "attributes": {
+            "type": "QuoteAction",
+            "url": "/services/data/v67.0/sobjects/QuoteAction/7ocWC00000yFstZYAS"
+          },
+          "Type": "Amend",
+          "SourceAsset": {
+            "attributes": {
+              "type": "Asset",
+              "url": "/services/data/v67.0/sobjects/Asset/02iWC000008DFw0YAG"
+            },
+            "Price": 0,
+            "Product2": {
+              "attributes": {
+                "type": "Product2",
+                "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BRYA1"
+              },
+              "Fortra_Product_Type__c": "New Maintenance"
+            }
+          }
+        }
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003p0U64AI"
+        },
+        "Id": "0QLWC000003p0U64AI",
+        "LineNumber": "04267562",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BUYA1"
+          },
+          "ProductCode": "FIM-FIM-RSS-DPEEXS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000005wwq1YAA"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC000000060b2AA"
+            },
+            "SellingModelType": "TermDefined"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "EUR",
+        "ListPrice": 303.745,
+        "UnitPrice": 303.745,
+        "NetUnitPrice": 303.745,
+        "NetTotalPrice": 303.745,
+        "Subtotal": 303.745,
+        "TotalPrice": 303.745,
+        "TotalLineAmount": 303.745,
+        "Base_Price__c": 325,
+        "Source_List_Price__c": null,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": null,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      },
+      {
+        "attributes": {
+          "type": "QuoteLineItem",
+          "url": "/services/data/v67.0/sobjects/QuoteLineItem/0QLWC000003p0U74AI"
+        },
+        "Id": "0QLWC000003p0U74AI",
+        "LineNumber": "04267563",
+        "Product2": {
+          "attributes": {
+            "type": "Product2",
+            "url": "/services/data/v67.0/sobjects/Product2/01tWC00000DD1BUYA1"
+          },
+          "ProductCode": "FIM-FIM-RSS-DPEEXS",
+          "Fortra_Product_Type__c": "Subscription"
+        },
+        "Fortra_Product_Type__c": "Subscription",
+        "PricebookEntry": {
+          "attributes": {
+            "type": "PricebookEntry",
+            "url": "/services/data/v67.0/sobjects/PricebookEntry/01uWC000006Y6C7YAK"
+          },
+          "ProductSellingModel": {
+            "attributes": {
+              "type": "ProductSellingModel",
+              "url": "/services/data/v67.0/sobjects/ProductSellingModel/0jPWC00000005yz2AA"
+            },
+            "SellingModelType": "OneTime"
+          },
+          "IsDerived": false
+        },
+        "Quantity": 1,
+        "CurrencyIsoCode": "EUR",
+        "ListPrice": 303.745,
+        "UnitPrice": 303.745,
+        "NetUnitPrice": 303.745,
+        "NetTotalPrice": 303.745,
+        "Subtotal": 303.745,
+        "TotalPrice": 303.745,
+        "TotalLineAmount": 303.745,
+        "Base_Price__c": 303.745,
+        "Source_List_Price__c": null,
+        "Prior_Partner_Discount__c": null,
+        "Prior_Discretionary_Discount__c": null,
+        "PartnerDiscountPercent": null,
+        "Discount": null,
+        "COLA_Uplift_Percent__c": null,
+        "COLACalculatedPrice__c": null,
+        "QuoteAction": null
+      }
+    ],
+    "totalSize": 6,
+    "done": true
+  },
+  "warnings": []
+}

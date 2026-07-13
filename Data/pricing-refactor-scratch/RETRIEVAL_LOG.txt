@@ -1,0 +1,15 @@
+Evidence root created. Retrieval session start: 2026-07-06T19:39:16Z
+Default org: FortraUAT (00DWC000006eUFF2A2) user liam.jeong.c@fortra.com.uat
+>>> ExpressionSetDefinition query @ 2026-07-06T19:39:33Z
+>>> version+binding batch @ 2026-07-06T19:40:03Z
+>>> bindings + hook wiring @ 2026-07-06T19:40:53Z
+>>> plan sections + version @ 2026-07-06T19:42:00Z
+>>> ApexClass metadata (Tooling) @ 2026-07-06T19:42:59Z
+>>> retrieve 33 live class bodies @ 2026-07-06T19:43:51Z
+>>> live ESD MDAPI retrieve @ 2026-07-06T19:44:27Z
+>>> FRESHNESS RE-VERIFY @ 2026-07-06T20:03:50Z (first snapshot was ~2026-07-06T19:40Z)
+>>> FRESHNESS RE-VERIFY RESULT @ 2026-07-06T20:03:50Z: PASS (zero delta)
+    active version: V21 (9QBWC0000000oWH4AY) unchanged, LastMod 2026-07-03T00:06:43Z
+    partner binding: PartnerPricingPrehookV2 unchanged, LastMod 2026-07-01T01:53:44Z
+    7 top-risk class bodies: identical LengthWithoutComments + LastModifiedDate vs first snapshot
+    => No co-owned edits during the analysis window; all findings current.

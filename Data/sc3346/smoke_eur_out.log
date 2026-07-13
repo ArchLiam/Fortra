@@ -1,0 +1,1979 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+Compiled successfully.
+Executed successfully.
+
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: // LEAN EUR smoke — before-UPDATE FX re-stamp (where CurrencyIsoCode is populated). Savepoint→rollback.
+Execute Anonymous: Savepoint sp = Database.setSavepoint();
+Execute Anonymous: List<String> log = new List<String>();
+Execute Anonymous: try {
+Execute Anonymous:     Id pb = [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1].Id;
+Execute Anonymous:     PricebookEntry eurPbe = [SELECT Id, Product2Id FROM PricebookEntry
+Execute Anonymous:         WHERE Pricebook2Id = :pb AND CurrencyIsoCode = 'EUR' AND IsActive = true
+Execute Anonymous:         AND Product2Id IN (SELECT Product2Id FROM ProductSellingModelOption
+Execute Anonymous:                            WHERE ProductSellingModel.SellingModelType = 'OneTime') LIMIT 1];
+Execute Anonymous: 
+Execute Anonymous:     Account a = new Account(Name = 'SMOKE EUR'); insert a;
+Execute Anonymous:     Opportunity o = new Opportunity(Name = 'SMOKE EUR Opp', AccountId = a.Id,
+Execute Anonymous:         StageName = 'Prospecting', CloseDate = Date.today().addDays(30), CurrencyIsoCode = 'EUR'); insert o;
+Execute Anonymous:     Quote q = new Quote(Name = 'SMOKE EUR Q', OpportunityId = o.Id, Pricebook2Id = pb,
+Execute Anonymous:         CurrencyIsoCode = 'EUR'); insert q;
+Execute Anonymous: 
+Execute Anonymous:     QuoteLineItem line = new QuoteLineItem(QuoteId = q.Id, Product2Id = eurPbe.Product2Id,
+Execute Anonymous:         PricebookEntryId = eurPbe.Id, Quantity = 1, UnitPrice = 100); insert line;
+Execute Anonymous:     QuoteLineItem afterInsert = [SELECT CurrencyIsoCode, Exchange_Rate_To_USD__c FROM QuoteLineItem WHERE Id = :line.Id];
+Execute Anonymous:     log.add('EUR after-insert: cur=' + afterInsert.CurrencyIsoCode + ' rate=' + afterInsert.Exchange_Rate_To_USD__c);
+Execute Anonymous: 
+Execute Anonymous:     // Now CurrencyIsoCode is EUR — a before-UPDATE re-stamps with the EUR rate.
+Execute Anonymous:     update new QuoteLineItem(Id = line.Id, Quantity = 2);
+Execute Anonymous:     QuoteLineItem afterUpdate = [SELECT CurrencyIsoCode, Exchange_Rate_To_USD__c FROM QuoteLineItem WHERE Id = :line.Id];
+Execute Anonymous: 
+Execute Anonymous:     DatedConversionRateLookup.Request rq = new DatedConversionRateLookup.Request(); rq.currencyIsoCode = 'EUR';
+Execute Anonymous:     Decimal expectedEur = DatedConversionRateLookup.getExchangeRates(
+Execute Anonymous:         new List<DatedConversionRateLookup.Request>{ rq })[0].exchangeRate;
+Execute Anonymous: 
+Execute Anonymous:     log.add('EUR after-update: cur=' + afterUpdate.CurrencyIsoCode + ' rate=' + afterUpdate.Exchange_Rate_To_USD__c
+Execute Anonymous:         + ' lookup=' + expectedEur + ' '
+Execute Anonymous:         + (afterUpdate.Exchange_Rate_To_USD__c == expectedEur && expectedEur != null ? 'PASS' : 'FAIL'));
+Execute Anonymous: } catch (Exception e) {
+Execute Anonymous:     log.add('EXCEPTION ' + e.getTypeName() + ': ' + e.getMessage());
+Execute Anonymous: } finally {
+Execute Anonymous:     Database.rollback(sp);
+Execute Anonymous: }
+Execute Anonymous: for (String s : log) System.debug('SMOKE| ' + s);
+21:52:54.62 (62083307)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+21:52:54.62 (62189500)|EXECUTION_STARTED
+21:52:54.62 (62240597)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+21:52:54.62 (171264461)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Account
+21:52:54.62 (185289004)|CODE_UNIT_FINISHED|Flow:Account
+21:52:54.206 (206399560)|CUMULATIVE_LIMIT_USAGE
+21:52:54.206 (206399560)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 37 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.206 (206399560)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.266 (266568529)|CUMULATIVE_LIMIT_USAGE
+21:52:54.266 (266568529)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 37 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.266 (266568529)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.397 (397127093)|CUMULATIVE_LIMIT_USAGE
+21:52:54.397 (397127093)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 37 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.397 (397127093)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.397 (397127093)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.397 (397127093)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.62 (424911156)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Account:new
+21:52:54.62 (425064314)|CODE_UNIT_FINISHED|Validation:Account:new
+21:52:54.62 (425901713)|CODE_UNIT_STARTED|[EXTERNAL]|DuplicateDetector
+21:52:54.62 (491233100)|CODE_UNIT_FINISHED|DuplicateDetector
+21:52:54.679 (679231155)|CUMULATIVE_LIMIT_USAGE
+21:52:54.679 (679231155)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 162 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.679 (679231155)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.679 (679231155)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.679 (679231155)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.679 (679231155)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.682 (682029642)|CUMULATIVE_LIMIT_USAGE
+21:52:54.682 (682029642)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 162 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.682 (682029642)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.682 (682029642)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.682 (682029642)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.682 (682029642)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.712 (712347082)|CUMULATIVE_LIMIT_USAGE
+21:52:54.712 (712347082)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 162 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.712 (712347082)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.712 (712347082)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.712 (712347082)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.712 (712347082)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.712 (712347082)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.714 (714806122)|CUMULATIVE_LIMIT_USAGE
+21:52:54.714 (714806122)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 2 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 162 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.714 (714806122)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.714 (714806122)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.714 (714806122)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.714 (714806122)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.714 (714806122)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.62 (715687745)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Account
+21:52:54.890 (890686654)|CUMULATIVE_LIMIT_USAGE
+21:52:54.890 (890686654)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.890 (890686654)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.890 (890686654)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.890 (890686654)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.890 (890686654)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.890 (890686654)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.893 (893893419)|CUMULATIVE_LIMIT_USAGE
+21:52:54.893 (893893419)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.893 (893893419)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.893 (893893419)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.893 (893893419)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.893 (893893419)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.893 (893893419)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.895 (895045254)|CUMULATIVE_LIMIT_USAGE
+21:52:54.895 (895045254)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.895 (895045254)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.895 (895045254)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.895 (895045254)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.895 (895045254)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:54.895 (895045254)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.897 (897018420)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Account:001WC00000mn5MH
+21:52:54.897 (897160210)|CODE_UNIT_FINISHED|Validation:Account:001WC00000mn5MH
+21:52:54.897 (897279423)|CODE_UNIT_STARTED|[EXTERNAL]|DuplicateDetector
+21:52:54.897 (912620906)|CODE_UNIT_FINISHED|DuplicateDetector
+21:52:55.14 (1014105559)|CUMULATIVE_LIMIT_USAGE
+21:52:55.14 (1014105559)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.14 (1014105559)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.14 (1014105559)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.14 (1014105559)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.14 (1014105559)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.14 (1014105559)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:55.15 (1015739042)|CUMULATIVE_LIMIT_USAGE
+21:52:55.15 (1015739042)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.15 (1015739042)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.15 (1015739042)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.15 (1015739042)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.15 (1015739042)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.15 (1015739042)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:55.38 (1038227050)|CUMULATIVE_LIMIT_USAGE
+21:52:55.38 (1038227050)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.38 (1038227050)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.38 (1038227050)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.38 (1038227050)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.38 (1038227050)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.38 (1038227050)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:55.40 (1040625440)|CUMULATIVE_LIMIT_USAGE
+21:52:55.40 (1040625440)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 6 out of 100
+  Number of query rows: 1862 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 3 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 2 out of 10000
+  Maximum CPU time: 331 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.40 (1040625440)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.40 (1040625440)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.40 (1040625440)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.40 (1040625440)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.40 (1040625440)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:54.62 (1057925076)|CODE_UNIT_FINISHED|Flow:Account
+21:52:54.62 (1059232587)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Account
+21:52:55.67 (1067079792)|CODE_UNIT_FINISHED|Flow:Account
+21:52:55.67 (1102768176)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Opportunity
+21:52:55.67 (1111024273)|CODE_UNIT_FINISHED|Flow:Opportunity
+21:52:55.67 (1116226910)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000005ZCoD|OpportunityTrigger on Opportunity trigger event BeforeInsert|__sfdc_trigger/OpportunityTrigger
+21:52:55.132 (1132720206)|CUMULATIVE_LIMIT_USAGE
+21:52:55.132 (1132720206)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 7 out of 100
+  Number of query rows: 1863 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 4 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 3 out of 10000
+  Maximum CPU time: 397 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.132 (1132720206)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.132 (1132720206)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.132 (1132720206)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.132 (1132720206)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 2 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.132 (1132720206)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:55.67 (1133365381)|CODE_UNIT_FINISHED|OpportunityTrigger on Opportunity trigger event BeforeInsert|__sfdc_trigger/OpportunityTrigger
+21:52:55.67 (1167633516)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Opportunity:new
+21:52:55.67 (1168168694)|CODE_UNIT_FINISHED|Validation:Opportunity:new
+21:52:55.647 (1647543889)|CUMULATIVE_LIMIT_USAGE
+21:52:55.647 (1647543889)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 7 out of 100
+  Number of query rows: 1863 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 4 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 3 out of 10000
+  Maximum CPU time: 660 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.647 (1647543889)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.647 (1647543889)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.647 (1647543889)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.647 (1647543889)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.647 (1647543889)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:55.67 (1650408946)|CODE_UNIT_STARTED|[EXTERNAL]|Workflow:Opportunity
+21:52:55.67 (1650475130)|CODE_UNIT_FINISHED|Workflow:Opportunity
+21:52:55.67 (1650665766)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Opportunity
+21:52:55.67 (1818155647)|CODE_UNIT_FINISHED|Flow:Opportunity
+21:52:55.67 (1819741178)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Opportunity
+21:52:55.67 (1819790190)|CODE_UNIT_FINISHED|Flow:Opportunity
+21:52:55.67 (1863785132)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:55.67 (1864759645)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:55.67 (1869653122)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000007NC1F|QuoteTrigger on Quote trigger event BeforeInsert|__sfdc_trigger/QuoteTrigger
+21:52:55.875 (1875716287)|CUMULATIVE_LIMIT_USAGE
+21:52:55.875 (1875716287)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 9 out of 100
+  Number of query rows: 1863 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 6 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 5 out of 10000
+  Maximum CPU time: 719 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.875 (1875716287)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.875 (1875716287)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.875 (1875716287)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.875 (1875716287)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:55.875 (1875716287)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:55.67 (1876110244)|CODE_UNIT_FINISHED|QuoteTrigger on Quote trigger event BeforeInsert|__sfdc_trigger/QuoteTrigger
+21:52:55.67 (1910933088)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Quote:new
+21:52:55.67 (1911118486)|CODE_UNIT_FINISHED|Validation:Quote:new
+21:52:55.67 (1977772877)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:55.67 (1977813032)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:55.67 (1992338179)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:55.67 (2002012774)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:55.67 (2033760868)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:QuoteLineItem
+21:52:56.96 (2096921396)|CODE_UNIT_FINISHED|Flow:QuoteLineItem
+21:52:56.96 (2102026441)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC0000043n8L|QuoteLineItemTrigger on QuoteLineItem trigger event BeforeInsert|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.149 (2149799990)|CUMULATIVE_LIMIT_USAGE
+21:52:56.149 (2149799990)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 18 out of 100
+  Number of query rows: 1872 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 7 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 6 out of 10000
+  Maximum CPU time: 810 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.149 (2149799990)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.149 (2149799990)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.149 (2149799990)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.149 (2149799990)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.149 (2149799990)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2150398583)|CODE_UNIT_FINISHED|QuoteLineItemTrigger on QuoteLineItem trigger event BeforeInsert|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.96 (2222495522)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC0000043n8L|QuoteLineItemTrigger on QuoteLineItem trigger event AfterInsert|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.286 (2286604391)|CUMULATIVE_LIMIT_USAGE
+21:52:56.286 (2286604391)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 19 out of 100
+  Number of query rows: 1873 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 7 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 6 out of 10000
+  Maximum CPU time: 810 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.286 (2286604391)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.286 (2286604391)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.286 (2286604391)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.286 (2286604391)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.286 (2286604391)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2286815504)|CODE_UNIT_FINISHED|QuoteLineItemTrigger on QuoteLineItem trigger event AfterInsert|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.96 (2287915039)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:QuoteLineItem
+21:52:56.96 (2382187330)|CODE_UNIT_FINISHED|Flow:QuoteLineItem
+21:52:56.96 (2384951721)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:QuoteLineItem
+21:52:56.96 (2384982558)|CODE_UNIT_FINISHED|Flow:QuoteLineItem
+21:52:56.96 (2425575954)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:56.96 (2426101948)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:56.96 (2426867634)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000007NC1F|QuoteTrigger on Quote trigger event BeforeUpdate|__sfdc_trigger/QuoteTrigger
+21:52:56.428 (2428605657)|CUMULATIVE_LIMIT_USAGE
+21:52:56.428 (2428605657)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 21 out of 100
+  Number of query rows: 1874 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 7 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 6 out of 10000
+  Maximum CPU time: 950 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.428 (2428605657)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.428 (2428605657)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.428 (2428605657)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.428 (2428605657)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.428 (2428605657)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2428868393)|CODE_UNIT_FINISHED|QuoteTrigger on Quote trigger event BeforeUpdate|__sfdc_trigger/QuoteTrigger
+21:52:56.96 (2433657085)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Quote:0Q0WC000003KAO5
+21:52:56.96 (2433775133)|CODE_UNIT_FINISHED|Validation:Quote:0Q0WC000003KAO5
+21:52:56.96 (2445990564)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000005ZrWR|QuoteSyncingTrigger on Quote trigger event AfterUpdate|__sfdc_trigger/QuoteSyncingTrigger
+21:52:56.450 (2450070458)|CUMULATIVE_LIMIT_USAGE
+21:52:56.450 (2450070458)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 21 out of 100
+  Number of query rows: 1874 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 7 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 6 out of 10000
+  Maximum CPU time: 950 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.450 (2450070458)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.450 (2450070458)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.450 (2450070458)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.450 (2450070458)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.450 (2450070458)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2450327072)|CODE_UNIT_FINISHED|QuoteSyncingTrigger on Quote trigger event AfterUpdate|__sfdc_trigger/QuoteSyncingTrigger
+21:52:56.96 (2450491575)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:56.96 (2451180825)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:56.96 (2452454105)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:56.96 (2455816007)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:56.96 (2501988525)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:QuoteLineItem
+21:52:56.96 (2550868954)|CODE_UNIT_FINISHED|Flow:QuoteLineItem
+21:52:56.96 (2553030888)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC0000043n8L|QuoteLineItemTrigger on QuoteLineItem trigger event BeforeUpdate|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.561 (2561390777)|CUMULATIVE_LIMIT_USAGE
+21:52:56.561 (2561390777)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 27 out of 100
+  Number of query rows: 1880 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 8 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 7 out of 10000
+  Maximum CPU time: 1028 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.561 (2561390777)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.561 (2561390777)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.561 (2561390777)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.561 (2561390777)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.561 (2561390777)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2561967402)|CODE_UNIT_FINISHED|QuoteLineItemTrigger on QuoteLineItem trigger event BeforeUpdate|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.96 (2618043357)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC0000043n8L|QuoteLineItemTrigger on QuoteLineItem trigger event AfterUpdate|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.627 (2627426955)|CUMULATIVE_LIMIT_USAGE
+21:52:56.627 (2627426955)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 28 out of 100
+  Number of query rows: 1881 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 8 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 7 out of 10000
+  Maximum CPU time: 1028 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.627 (2627426955)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.627 (2627426955)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.627 (2627426955)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.627 (2627426955)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.627 (2627426955)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2627710052)|CODE_UNIT_FINISHED|QuoteLineItemTrigger on QuoteLineItem trigger event AfterUpdate|__sfdc_trigger/QuoteLineItemTrigger
+21:52:56.96 (2628005844)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:QuoteLineItem
+21:52:56.96 (2628692985)|CODE_UNIT_FINISHED|Flow:QuoteLineItem
+21:52:56.96 (2631006310)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:QuoteLineItem
+21:52:56.96 (2631033579)|CODE_UNIT_FINISHED|Flow:QuoteLineItem
+21:52:56.96 (2661334869)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:56.96 (2662094178)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:56.96 (2662805320)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000007NC1F|QuoteTrigger on Quote trigger event BeforeUpdate|__sfdc_trigger/QuoteTrigger
+21:52:56.664 (2664291706)|CUMULATIVE_LIMIT_USAGE
+21:52:56.664 (2664291706)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 28 out of 100
+  Number of query rows: 1881 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 8 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 7 out of 10000
+  Maximum CPU time: 1028 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.664 (2664291706)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.664 (2664291706)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.664 (2664291706)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.664 (2664291706)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.664 (2664291706)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2664511160)|CODE_UNIT_FINISHED|QuoteTrigger on Quote trigger event BeforeUpdate|__sfdc_trigger/QuoteTrigger
+21:52:56.96 (2669245825)|CODE_UNIT_STARTED|[EXTERNAL]|Validation:Quote:0Q0WC000003KAO5
+21:52:56.96 (2669421999)|CODE_UNIT_FINISHED|Validation:Quote:0Q0WC000003KAO5
+21:52:56.96 (2678859747)|CODE_UNIT_STARTED|[EXTERNAL]|01qWC000005ZrWR|QuoteSyncingTrigger on Quote trigger event AfterUpdate|__sfdc_trigger/QuoteSyncingTrigger
+21:52:56.680 (2680312399)|CUMULATIVE_LIMIT_USAGE
+21:52:56.680 (2680312399)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 28 out of 100
+  Number of query rows: 1881 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 8 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 7 out of 10000
+  Maximum CPU time: 1028 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.680 (2680312399)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.680 (2680312399)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.680 (2680312399)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.680 (2680312399)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.680 (2680312399)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2680520241)|CODE_UNIT_FINISHED|QuoteSyncingTrigger on Quote trigger event AfterUpdate|__sfdc_trigger/QuoteSyncingTrigger
+21:52:56.96 (2680700478)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:56.96 (2681227544)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:56.96 (2681814724)|CODE_UNIT_STARTED|[EXTERNAL]|Flow:Quote
+21:52:56.96 (2685088340)|CODE_UNIT_FINISHED|Flow:Quote
+21:52:56.96 (2727713207)|USER_DEBUG|[38]|DEBUG|SMOKE&#124; EUR after-insert: cur=EUR rate=1.0000000000
+21:52:56.96 (2727818043)|USER_DEBUG|[38]|DEBUG|SMOKE&#124; EUR after-update: cur=EUR rate=0.9200000000 lookup=0.920000 PASS
+21:52:56.727 (2727915320)|CUMULATIVE_LIMIT_USAGE
+21:52:56.727 (2727915320)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 30 out of 100
+  Number of query rows: 1883 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 9 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 7 out of 10000
+  Maximum CPU time: 1028 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 2 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.727 (2727915320)|LIMIT_USAGE_FOR_NS|appirio_core|
+  Number of SOQL queries: 1 out of 100
+  Number of query rows: 1286 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.727 (2727915320)|LIMIT_USAGE_FOR_NS|c2g|
+  Number of SOQL queries: 3 out of 100
+  Number of query rows: 2 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.727 (2727915320)|LIMIT_USAGE_FOR_NS|pse|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.727 (2727915320)|LIMIT_USAGE_FOR_NS|salesintelio|
+  Number of SOQL queries: 4 out of 100
+  Number of query rows: 4 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+21:52:56.727 (2727915320)|CUMULATIVE_LIMIT_USAGE_END
+
+21:52:56.96 (2728058875)|CODE_UNIT_FINISHED|execute_anonymous_apex
+21:52:56.96 (2728073828)|EXECUTION_FINISHED
+

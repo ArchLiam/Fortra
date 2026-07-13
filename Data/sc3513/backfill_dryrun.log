@@ -1,0 +1,109 @@
+ ›   Warning: @salesforce/cli update available from 2.140.6 to 2.141.6.
+Compiled successfully.
+Executed successfully.
+
+67.0 APEX_CODE,DEBUG;APEX_PROFILING,INFO
+Execute Anonymous: // SC-3513 R-4 backfill — stamp Asset.Description on the 16 changed assets blank before the flow existed.
+Execute Anonymous: // Fill-only (never overwrites a non-blank value). Mirrors the flow's resolution: AssetActionSource
+Execute Anonymous: // ReferenceEntityItemId -> OrderItem directly, or via OrderItemDetail.OrderItemId parent; first non-blank wins.
+Execute Anonymous: Set<Id> assetIds = new Set<Id>();
+Execute Anonymous: for (Asset a : [SELECT Id, Description FROM Asset WHERE Id IN (
+Execute Anonymous:         SELECT AssetId FROM AssetAction
+Execute Anonymous:         WHERE CategoryEnum IN ('Upsells','Renewals','Downsells','Upgrades','Downgrades','Swaps','Cross-Sells')
+Execute Anonymous:         AND AssetId != null)]) {
+Execute Anonymous:     if (String.isBlank(a.Description)) {
+Execute Anonymous:         assetIds.add(a.Id);
+Execute Anonymous:     }
+Execute Anonymous: }
+Execute Anonymous: System.debug('BACKFILL| target blank assets: ' + assetIds.size());
+Execute Anonymous: 
+Execute Anonymous: // Collect all source reference ids per asset (via the asset's AssetActions).
+Execute Anonymous: Map<Id, List<Id>> assetToRefIds = new Map<Id, List<Id>>();
+Execute Anonymous: Set<Id> allRefIds = new Set<Id>();
+Execute Anonymous: for (AssetActionSource src : [
+Execute Anonymous:         SELECT ReferenceEntityItemId, AssetAction.AssetId
+Execute Anonymous:         FROM AssetActionSource
+Execute Anonymous:         WHERE AssetAction.AssetId IN :assetIds AND ReferenceEntityItemId != null]) {
+Execute Anonymous:     Id aId = src.AssetAction.AssetId;
+Execute Anonymous:     if (!assetToRefIds.containsKey(aId)) {
+Execute Anonymous:         assetToRefIds.put(aId, new List<Id>());
+Execute Anonymous:     }
+Execute Anonymous:     assetToRefIds.get(aId).add(src.ReferenceEntityItemId);
+Execute Anonymous:     allRefIds.add(src.ReferenceEntityItemId);
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: // Bulk resolve OrderItem descriptions (direct) and via OrderItemDetail parent.
+Execute Anonymous: Map<Id, String> oiDesc = new Map<Id, String>();
+Execute Anonymous: for (OrderItem oi : [SELECT Id, Description FROM OrderItem WHERE Id IN :allRefIds AND Description != null]) {
+Execute Anonymous:     oiDesc.put(oi.Id, oi.Description);
+Execute Anonymous: }
+Execute Anonymous: Map<Id, Id> oidToParent = new Map<Id, Id>();
+Execute Anonymous: Set<Id> parentIds = new Set<Id>();
+Execute Anonymous: for (OrderItemDetail oid : [SELECT Id, OrderItemId FROM OrderItemDetail WHERE Id IN :allRefIds]) {
+Execute Anonymous:     oidToParent.put(oid.Id, oid.OrderItemId);
+Execute Anonymous:     parentIds.add(oid.OrderItemId);
+Execute Anonymous: }
+Execute Anonymous: for (OrderItem oi : [SELECT Id, Description FROM OrderItem WHERE Id IN :parentIds AND Description != null]) {
+Execute Anonymous:     oiDesc.put(oi.Id, oi.Description);
+Execute Anonymous: }
+Execute Anonymous: 
+Execute Anonymous: // Build fill-only updates.
+Execute Anonymous: List<Asset> updates = new List<Asset>();
+Execute Anonymous: for (Id aId : assetToRefIds.keySet()) {
+Execute Anonymous:     String lineDesc = null;
+Execute Anonymous:     for (Id refId : assetToRefIds.get(aId)) {
+Execute Anonymous:         if (oiDesc.containsKey(refId)) { lineDesc = oiDesc.get(refId); break; }
+Execute Anonymous:         Id parent = oidToParent.get(refId);
+Execute Anonymous:         if (parent != null && oiDesc.containsKey(parent)) { lineDesc = oiDesc.get(parent); break; }
+Execute Anonymous:     }
+Execute Anonymous:     if (String.isNotBlank(lineDesc)) {
+Execute Anonymous:         updates.add(new Asset(Id = aId, Description = lineDesc));
+Execute Anonymous:     }
+Execute Anonymous: }
+Execute Anonymous: System.debug('BACKFILL| resolvable updates: ' + updates.size() + ' of ' + assetIds.size());
+Execute Anonymous: // DRY RUN by default — set DO_UPDATE=true to commit.
+Execute Anonymous: Boolean DO_UPDATE = false;
+Execute Anonymous: if (DO_UPDATE && !updates.isEmpty()) {
+Execute Anonymous:     update updates;
+Execute Anonymous:     System.debug('BACKFILL| committed ' + updates.size() + ' asset descriptions');
+Execute Anonymous: } else {
+Execute Anonymous:     System.debug('BACKFILL| DRY RUN (no DML). Set DO_UPDATE=true to commit.');
+Execute Anonymous:     for (Asset a : updates) System.debug('BACKFILL|   ' + a.Id + ' <- ' + a.Description);
+Execute Anonymous: }
+23:19:10.53 (53891864)|USER_INFO|[EXTERNAL]|005WC00000MgTN2|liam.jeong.c@fortra.com.uat|(GMT-07:00) Pacific Daylight Time (America/Los_Angeles)|GMT-07:00
+23:19:10.53 (53915121)|EXECUTION_STARTED
+23:19:10.53 (53934418)|CODE_UNIT_STARTED|[EXTERNAL]|execute_anonymous_apex
+23:19:12.885 (2885836409)|USER_DEBUG|[13]|DEBUG|BACKFILL&#124; target blank assets: 16
+23:19:12.885 (2974019174)|USER_DEBUG|[58]|DEBUG|BACKFILL&#124; resolvable updates: 10 of 16
+23:19:12.885 (2974049019)|USER_DEBUG|[65]|DEBUG|BACKFILL&#124; DRY RUN (no DML). Set DO_UPDATE=true to commit.
+23:19:12.885 (2974158003)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008ARwnYAG <- Abstract &#124; CU &#124; Primary &#124; Production
+23:19:12.885 (2974170272)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008ARwoYAG <- beSECURE - Cloud-Based &#124; Devices &#124; Monthly &#124; Cloud Based
+23:19:12.885 (2974182879)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008DFvvYAG <- Powertech Identity & Access Manager (BoKS)-NewMaintenance &#124; Standard
+23:19:12.885 (2974197432)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008FcLaYAK <- beSECURE - Cloud-Based &#124; Devices: 2001-3000 &#124; One Time &#124; Cloud Based
+23:19:12.885 (2974212839)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008LXfZYAW <- SECURE Email Gateway &#124; Users: 100-199 &#124; Sophos AV
+23:19:12.885 (2974227670)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008MuWnYAK <- Data Redaction For SECURE Exchange Gateway &#124; Users: 200-499
+23:19:12.885 (2974238980)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008MuWoYAK <- Structural Sanitization For SECURE Exchange Gateway &#124; Users: 200-499 &#124; 1 Instance
+23:19:12.885 (2974248759)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008MuWpYAK <- OCR Feature For SECURE Exchange Gateway &#124; Users: 200-499 &#124; 1 Instance
+23:19:12.885 (2974257988)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008MuWqYAK <- SECURE Exchange Gateway &#124; Users: 200-499 &#124; Sophos AV
+23:19:12.885 (2974267111)|USER_DEBUG|[66]|DEBUG|BACKFILL&#124;   02iWC000008deKLYAY <- Cobalt Strike &#124; Named User &#124; Expert
+23:19:12.974 (2974361713)|CUMULATIVE_LIMIT_USAGE
+23:19:12.974 (2974361713)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 5 out of 100
+  Number of query rows: 81 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 0 out of 150
+  Number of Publish Immediate DML: 0 out of 150
+  Number of DML rows: 0 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+23:19:12.974 (2974361713)|CUMULATIVE_LIMIT_USAGE_END
+
+23:19:12.885 (2974428484)|CODE_UNIT_FINISHED|execute_anonymous_apex
+23:19:12.885 (2974441000)|EXECUTION_FINISHED
+
