@@ -1,7 +1,7 @@
 /**
- * Intentional pricing-domain exception (D-18 seed). Extend for finer domain
- * errors (e.g. validation). Not used by the swallow-logging path — caught hook
- * exceptions are system types — but available for deliberate throws that should
- * be catchable and self-classifying.
+ * @description Intentional pricing-domain exception type extending AppException,
+ * available for deliberate, catchable, self-classifying throws in the pricing
+ * domain; can be extended for finer-grained domain errors such as validation.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public virtual class PricingException extends AppException {}

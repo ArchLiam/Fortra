@@ -1,15 +1,6 @@
 /**
- * @description Pure COLA calculation + payload-assembly logic extracted from
- *              COLAUpliftPrehook (Wave-2 hook-thinning). Contains only deterministic
- *              functions with NO SOQL / DML / RCA-context I/O — the 3-tier override
- *              predicate (line override > contract override > CMDT lookup), the uplift
- *              math, and the context-update payload builders. The hook retains all
- *              context marshalling, queryTags/updateContextAttributes, CMDT/SOQL loads,
- *              and the stateful orchestration (buildLineItemUpdates, processMyCAPEligibility)
- *              and delegates the pure pieces here via thin seams. Method bodies are moved
- *              byte-verbatim so the live path and the unit tests can never diverge.
- *
- *              Reuses (does not duplicate) ContextTagReader for tag extraction.
+ * @description Pure COLA calculation and payload-assembly helpers: deterministic override-tier resolution, uplift math, and context-update payload builders with no SOQL, DML, or context I/O.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class COLAUpliftCalculator {
 
@@ -19,6 +10,9 @@ public with sharing class COLAUpliftCalculator {
      *              already classified (mirrors QuoteLineItem.Is_COLA_Overridden__c). A null stamped
      *              default (legacy / handler-skipped line) is NOT treated as an override, so the
      *              caller falls back to the CMDT-based detection unchanged.
+     * @param lineOverridePercent The stored line-level COLA percent to compare.
+     * @param stampedDefault The applied tier's stamped Default_COLA_Uplift_Percent__c.
+     * @return True when both values are non-null and the line percent differs from the stamped default.
      */
     public static Boolean isPersistedLineOverride(Decimal lineOverridePercent, Decimal stampedDefault) {
         return stampedDefault != null
@@ -29,9 +23,13 @@ public with sharing class COLAUpliftCalculator {
     /**
      * @description The single shared 3-tier override predicate — a manual Line Override is a
      *              non-null percent that differs from every system rate (CMDT default, MyCAP
-     *              default when present, Contract rate when present). Relocated byte-verbatim from
-     *              COLAUpliftHandler so BOTH the trigger handler and the reprice prehook resolve
-     *              tier membership through one engine (D-13 / INV-7, SDD BR-003).
+     *              default when present, Contract rate when present). Shared so both the trigger
+     *              handler and the reprice prehook resolve tier membership through one engine.
+     * @param pct The candidate line COLA percent under test.
+     * @param cmdtDefaultPct The CMDT default rate for the tier.
+     * @param mycapDefaultPct The MyCAP default rate, or null when not applicable.
+     * @param contractPct The contract override rate, or null when none.
+     * @return True when the percent is non-null and differs from every supplied system rate.
      */
     public static Boolean isManualLineOverride(Decimal pct, Decimal cmdtDefaultPct, Decimal mycapDefaultPct, Decimal contractPct) {
         return pct != null
@@ -51,15 +49,19 @@ public with sharing class COLAUpliftCalculator {
     }
 
     /**
-     * @description Canonical 3-tier COLA SELECTION (SDD BR-003: Line Override > Contract Override >
+     * @description Canonical 3-tier COLA selection (Line Override > Contract Override >
      *              CMDT Lookup), returning ONLY the applied percent + COLA_Source__c — no price, no
      *              override flag, so it is structurally incapable of moving rounding, base-price
-     *              provenance, or the zero/negative skip on either caller. Lifted byte-verbatim from
-     *              COLAUpliftPrehook's inline selection block. Tier-1 is a Line Override when either
-     *              a persisted stamped-default override OR a manual (differs-from-all-system-rates)
-     *              override is present; the MyCAP arg is hardcoded null so a year-1 value equal to the
-     *              outyear MyCAP rate is still treated as a genuine manual override (Marc DeBrey,
-     *              2026-07-07). The MyCAP source relabel + all price math stay at the callers.
+     *              provenance, or the zero/negative skip on either caller. Tier-1 is a Line Override
+     *              when either a persisted stamped-default override OR a manual (differs-from-all-
+     *              system-rates) override is present; the MyCAP arg is hardcoded null so a year-1
+     *              value equal to the outyear MyCAP rate is still treated as a genuine manual
+     *              override. The MyCAP source relabel and all price math stay at the callers.
+     * @param lineOverridePercent The stored line-level COLA percent.
+     * @param stampedDefault The applied tier's stamped default percent used for persisted-override detection.
+     * @param cmdtDefault The CMDT lookup default percent.
+     * @param contractOverridePct The contract override percent, or null when none.
+     * @return A TierResult holding the applied percent and its COLA_Source__c tier label.
      */
     public static TierResult resolveTier(
         Decimal lineOverridePercent,
@@ -101,6 +103,8 @@ public with sharing class COLAUpliftCalculator {
     /**
      * @description Renewal-maintenance COLA net from stamped prior-year components
      *              (Base − prior partner − prior discretionary) × (1 + COLA%).
+     * @param qli The renewal maintenance QuoteLineItem carrying stamped prior-year components.
+     * @return The COLA-adjusted maintenance net, or null when the pre-COLA net is non-positive.
      */
     public static Decimal computeStampedMaintenanceColaNet(QuoteLineItem qli) {
         Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
@@ -120,6 +124,8 @@ public with sharing class COLAUpliftCalculator {
     /**
      * @description Parsed-payload overload of isOrderTransaction: inspects dataPath[0]
      *              of the first item (Order roots start with 801). Pure.
+     * @param items The parsed context items to inspect.
+     * @return True when the first item's dataPath root is an Order id (starts with 801).
      */
     public static Boolean isOrderTransaction(List<Object> items) {
         if (items == null || items.isEmpty()) return false;
@@ -135,13 +141,16 @@ public with sharing class COLAUpliftCalculator {
     }
 
     /**
-     * @description SC-3350 net-price fix: build an ISOLATED context update that seeds
-     *              NetUnitPrice = the COLA-adjusted price for a renewal line. Kept in
-     *              its own batch (submitted separately by processLineItems) because a
-     *              prehook-level NetUnitPrice write is the only mechanism proven live
-     *              (2026-06-11) to COMMIT the net to the waterfall for a non-derived
-     *              renewal line — a Formula/Assignment write from a procedure ListGroup
-     *              updates only the context var and never flushes.
+     * @description Build an ISOLATED context update that seeds NetUnitPrice = the
+     *              COLA-adjusted price for a renewal line. Kept in its own batch
+     *              (submitted separately by processLineItems) because a prehook-level
+     *              NetUnitPrice write is the only mechanism proven live to COMMIT the net
+     *              to the waterfall for a non-derived renewal line — a Formula/Assignment
+     *              write from a procedure ListGroup updates only the context var and never
+     *              flushes.
+     * @param itemWrapper The raw context item wrapper providing the dataPath.
+     * @param colaPrice The COLA-adjusted net price to seed as NetUnitPrice.
+     * @return An isolated context-update map, or null when the price is non-positive or the dataPath is missing.
      */
     public static Map<String, Object> buildNetUnitPriceUpdate(
         Map<String, Object> itemWrapper,
@@ -178,6 +187,10 @@ public with sharing class COLAUpliftCalculator {
     /**
      * @description Renewal maintenance stamped-COLA context update: writes
      *              COLACalculatedPrice__c (+ PartnerDiscountPercent / Discount echoes).
+     * @param itemWrapper The raw context item wrapper providing the dataPath.
+     * @param qli The renewal maintenance QuoteLineItem supplying partner and discount echoes.
+     * @param colaNet The stamped COLA maintenance net to write to COLACalculatedPrice__c.
+     * @return A context-update map, or null when the dataPath is missing.
      */
     public static Map<String, Object> buildMaintenanceColaItemUpdate(
         Map<String, Object> itemWrapper,
@@ -338,6 +351,14 @@ public with sharing class COLAUpliftCalculator {
     /**
      * @description Shared builder for COLA context attribute updates. All
      *              hydration-mapped attributes only - no QLI-only fields.
+     * @param itemWrapper The raw context item wrapper providing the dataPath.
+     * @param uplift The COLA uplift percent to apply.
+     * @param source The COLA_Source__c tier label.
+     * @param unitPrice The current unit price used to derive the pre-COLA base.
+     * @param defaultPct The stamped default percent used to back out the pre-COLA price.
+     * @param solCat The product's solution category, or blank.
+     * @param pricingTermCount The number of pricing terms to compound COLA across.
+     * @return A context-update map, or null when the dataPath is missing.
      */
     public static Map<String, Object> buildCOLAContextUpdate(Map<String, Object> itemWrapper, Decimal uplift, String source, Decimal unitPrice, Decimal defaultPct, String solCat, Decimal pricingTermCount) {
         List<Object> dataPath;

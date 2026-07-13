@@ -281,4 +281,116 @@ private class PartnerNetPriceCurrencyCorrectionTest {
             h.applyCurrencyCorrection(new List<Map<String, Object>>{ eur });
         System.assertEquals(0, corr.size(), 'bootstrapped non-override must be gated out');
     }
+
+    // ===== SC-3398 display reconciliation (mergeDisplayReconciliationIntoUpdate) ==================
+
+    private static final Decimal EUR_RATE = Fortra_CurrencyConversionService.convertPrice(1, 'EUR');
+
+    /**
+     * @description Builds a context tag map for the display-reconciliation path. Sales Price is a
+     *              write-only output (null at posthook time); the raw leaked value is carried on the
+     *              readable TotalLineAmount tag, so seed that (qty 1 => it is also the per-unit value).
+     * @param recordId The line record id.
+     * @param iso The line currency.
+     * @param leakedTotal The raw TotalLineAmount the engine leaked.
+     * @param net The converted NetUnitPrice.
+     * @param ignoredNetTotal Unused (NetTotalPrice is not readable at posthook time).
+     * @param discountAmt Optional recorded discount, or null.
+     * @return A context tag map.
+     */
+    private static Map<String, Object> displayLine(String recordId, String iso, Object leakedTotal, Object net,
+                                                   Object ignoredNetTotal, Object discountAmt) {
+        Map<String, Object> m = new Map<String, Object>{
+            '_recordId' => recordId,
+            '_updatePath' => new List<Object>{ 'SalesTransactionItem', recordId },
+            'STICurrencyIsoCode' => iso,
+            'Product' => AAMP_PRODUCT,
+            'TotalLineAmount' => leakedTotal,
+            'NetUnitPrice' => net,
+            'Quantity' => 1
+        };
+        if (discountAmt != null) {
+            m.put('DiscountAmount', discountAmt);
+        }
+        return m;
+    }
+
+    @isTest
+    static void displayReconciliationScalesTotalsByQuantity() {
+        // qty>1: per-unit aligns to net, totals scale as net x qty (NetTotalPrice is unreadable here).
+        Decimal net = (857.75 * EUR_RATE).setScale(4, RoundingMode.HALF_UP);
+        PartnerNetPricePosthook h = new PartnerNetPricePosthook();
+        Map<String, Object> eur = new Map<String, Object>{
+            '_recordId' => EUR_LINE,
+            '_updatePath' => new List<Object>{ 'SalesTransactionItem', EUR_LINE },
+            'STICurrencyIsoCode' => 'EUR',
+            'Product' => AAMP_PRODUCT,
+            'TotalLineAmount' => 857.75 * 3,
+            'NetUnitPrice' => net,
+            'Quantity' => 3
+        };
+        Map<String, Object> upd = h.mergeDisplayReconciliationIntoUpdate(
+            null, eur, new Map<Id, AbaCurrencyCorrectionService.Correction>());
+        System.assertNotEquals(null, upd, 'qty>1 leak must reconcile');
+        System.assertEquals(net, attrValue(upd, 'UnitPrice'), 'per-unit Sales Price aligned to net');
+        System.assertEquals(net * 3, attrValue(upd, 'Subtotal'), 'Subtotal = net x qty');
+        System.assertEquals(net * 3, attrValue(upd, 'TotalLineAmount'), 'Total Line Amount = net x qty');
+    }
+
+    @isTest
+    static void displayReconciliationAlignsAbpLeakToNet() {
+        // AAM repro: Sales Price / Subtotal leaked raw USD 857.75 while Net was engine-converted.
+        Decimal net = (857.75 * EUR_RATE).setScale(4, RoundingMode.HALF_UP);
+        PartnerNetPricePosthook h = new PartnerNetPricePosthook();
+        Map<String, Object> eur = displayLine(EUR_LINE, 'EUR', 857.75, net, net, null);
+
+        Test.startTest();
+        Map<String, Object> upd = h.mergeDisplayReconciliationIntoUpdate(
+            null, eur, new Map<Id, AbaCurrencyCorrectionService.Correction>());
+        Test.stopTest();
+
+        System.assertNotEquals(null, upd, 'ABP leak must produce a reconciliation update');
+        System.assertEquals(net, attrValue(upd, 'UnitPrice'), 'Sales Price aligned to converted net');
+        System.assertEquals(net, attrValue(upd, 'Subtotal'), 'Subtotal aligned to converted net');
+        System.assertEquals(net, attrValue(upd, 'TotalLineAmount'), 'Total Line Amount aligned to converted net');
+    }
+
+    @isTest
+    static void displayReconciliationSkipsDiscountedLine() {
+        Decimal net = (857.75 * EUR_RATE).setScale(4, RoundingMode.HALF_UP);
+        PartnerNetPricePosthook h = new PartnerNetPricePosthook();
+        Map<String, Object> eur = displayLine(EUR_LINE, 'EUR', 857.75, net, net, 50); // recorded discount
+        Map<String, Object> upd = h.mergeDisplayReconciliationIntoUpdate(
+            null, eur, new Map<Id, AbaCurrencyCorrectionService.Correction>());
+        System.assertEquals(null, upd, 'a recorded discount must block reconciliation');
+    }
+
+    @isTest
+    static void displayReconciliationSkipsUsdAndConsistentLines() {
+        PartnerNetPricePosthook h = new PartnerNetPricePosthook();
+        Map<Id, AbaCurrencyCorrectionService.Correction> none =
+            new Map<Id, AbaCurrencyCorrectionService.Correction>();
+        // USD line: never reconcile.
+        Map<String, Object> usd = displayLine(USD_LINE, 'USD', 857.75, 801.66, 801.66, null);
+        System.assertEquals(null, h.mergeDisplayReconciliationIntoUpdate(null, usd, none),
+            'USD line must not reconcile');
+        // Already-consistent EUR line (Sales Price == net): no-op.
+        Map<String, Object> consistent = displayLine(LIST_LINE, 'EUR', 770.11, 770.11, 770.11, null);
+        System.assertEquals(null, h.mergeDisplayReconciliationIntoUpdate(null, consistent, none),
+            'a consistent line must be a no-op');
+    }
+
+    @isTest
+    static void displayReconciliationSkipsFlatUsdCorrectedLine() {
+        // A line already handled by the flat-USD correction pass must not be double-processed.
+        Decimal net = (857.75 * EUR_RATE).setScale(4, RoundingMode.HALF_UP);
+        PartnerNetPricePosthook h = new PartnerNetPricePosthook();
+        Map<String, Object> eur = displayLine(EUR_LINE, 'EUR', 857.75, net, net, null);
+        Map<Id, AbaCurrencyCorrectionService.Correction> corrected =
+            new Map<Id, AbaCurrencyCorrectionService.Correction>{
+                Id.valueOf(EUR_LINE) => AbaCurrencyCorrectionService.evaluate(824, 'EUR', 824, 1)
+            };
+        System.assertEquals(null, h.mergeDisplayReconciliationIntoUpdate(null, eur, corrected),
+            'a flat-USD-corrected line must be skipped');
+    }
 }

@@ -1,12 +1,17 @@
 /**
- * D-18 — ExceptionLogger contract + end-to-end delivery.
- * Verifies safePublish never throws on a null event, and that a valid
- * Pricing_Exception__e published in a test is delivered to the subscriber Flow
- * (which persists an Exception_Log__c row) after Test.stopTest().
+ * @description Validates the ExceptionLogger contract and its end-to-end delivery path:
+ * safePublish never throws on a null event, and a valid Pricing_Exception__e published in a
+ * test is delivered to the subscriber Flow (which persists an Exception_Log__c row) after
+ * Test.stopTest().
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @IsTest
 private class ExceptionLoggerTest {
 
+    /**
+     * @description Verifies that calling safePublish with a null event is a no-op: it must not
+     * throw and must create no Exception_Log__c rows.
+     */
     @IsTest
     static void safePublish_nullEvent_isNoOp() {
         Test.startTest();
@@ -17,6 +22,11 @@ private class ExceptionLoggerTest {
             'A null event must publish nothing and create no log row.');
     }
 
+    /**
+     * @description Verifies that a valid Pricing_Exception__e published via safePublish is
+     * delivered to the subscriber Flow after Test.stopTest(), which persists exactly one
+     * Exception_Log__c row carrying the event's Hook_Phase__c and Severity__c values.
+     */
     @IsTest
     static void safePublish_validEvent_persistsViaSubscriber() {
         Test.startTest();

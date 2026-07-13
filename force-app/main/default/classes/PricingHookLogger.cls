@@ -1,14 +1,10 @@
 /**
- * Pricing-hook facade over {@link ExceptionLogger} (D-18).
- *
- * Publishes a `Pricing_Exception__e` for a swallowed pricing-hook exception so the
- * degrade becomes durably visible (a subscriber Flow persists it to
- * `Exception_Log__c`, RecordType "Pricing Exception"). This is additive telemetry:
- * it is fire-and-forget, never throws, and never influences the hook's returned
- * TransactionStatus — the SDD-mandated swallow-to-SUCCESS behaviour is unchanged.
- *
- * Call ONE of these once, inside a hook's top-level catch block (never per line).
- * See docs/pricing-refactor/D18_TELEMETRY_DESIGN.md.
+ * @description Facade over ExceptionLogger that publishes a Pricing_Exception__e
+ * platform event for a swallowed pricing-hook exception, making the degrade durably
+ * visible through a subscriber Flow that persists it to Exception_Log__c. Additive,
+ * fire-and-forget telemetry: it never throws and never influences the hook's returned
+ * TransactionStatus. Call one of these once inside a hook's top-level catch block.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public inherited sharing class PricingHookLogger {
 
@@ -18,16 +14,37 @@ public inherited sharing class PricingHookLogger {
     private static final Integer SOURCE_MAX = 80;
     private static final Integer TXN_MAX   = 40;
 
-    /** Log a swallowed exception from a pricing PREhook. */
+    /**
+     * @description Logs a swallowed exception raised from a pricing PREhook by
+     * publishing a Pricing_Exception__e event tagged with the Prehook phase.
+     * @param hookName Name of the prehook that swallowed the exception.
+     * @param contextId Identifier of the pricing context being processed.
+     * @param e The swallowed exception to record.
+     */
     public static void logPrehook(String hookName, String contextId, Exception e) {
         publish(hookName, 'Prehook', contextId, e);
     }
 
-    /** Log a swallowed exception from a pricing POSThook. */
+    /**
+     * @description Logs a swallowed exception raised from a pricing POSThook by
+     * publishing a Pricing_Exception__e event tagged with the Posthook phase.
+     * @param hookName Name of the posthook that swallowed the exception.
+     * @param contextId Identifier of the pricing context being processed.
+     * @param e The swallowed exception to record.
+     */
     public static void logPosthook(String hookName, String contextId, Exception e) {
         publish(hookName, 'Posthook', contextId, e);
     }
 
+    /**
+     * @description Builds and safely publishes a Pricing_Exception__e event, capturing
+     * the current request id and truncating each field to its column limit before handing
+     * the event to ExceptionLogger.safePublish.
+     * @param hookName Name of the hook that swallowed the exception.
+     * @param phase Hook phase label, either Prehook or Posthook.
+     * @param contextId Identifier of the pricing context being processed.
+     * @param e The swallowed exception whose type, message and stack trace are recorded.
+     */
     private static void publish(String hookName, String phase, String contextId, Exception e) {
         String requestId;
         try {
@@ -48,6 +65,13 @@ public inherited sharing class PricingHookLogger {
         ));
     }
 
+    /**
+     * @description Returns the value clipped to the given maximum length, passing null
+     * through unchanged so field values never exceed their column limits.
+     * @param value The string to clip; may be null.
+     * @param maxLen Maximum number of characters to retain.
+     * @return The original value when null or within the limit, otherwise its leading substring of maxLen characters.
+     */
     private static String truncate(String value, Integer maxLen) {
         if (value == null) {
             return null;

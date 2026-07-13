@@ -4,9 +4,22 @@
  *              reads and no margin math (that stays in PartnerPricingServiceV2) — deterministic over
  *              primitive inputs. The margin-detail maps are pre-built by the hook shell (which owns
  *              the PartnerMarginDetail inner type) and passed in already-serializable.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class PartnerPricingPayloadBuilder {
 
+    /**
+     * @description Assembles the ordered list of context-update attribute maps that stamp partner-pricing
+     *              results (pre/adjusted price, model, source, serialized margin detail, unit price, discount
+     *              percents, optional NetUnitPrice/UnitPrice overrides, and any partner-model warning) onto a line.
+     * @param currentPrice Pre-partner price captured before any partner adjustment.
+     * @param adjustedPrice Post-partner adjusted price, also used for PartnerUnitPrice and the price overrides.
+     * @param partnerPricingModel Name of the partner pricing model that was applied.
+     * @param detailMaps Pre-serialized partner margin-detail maps; serialized to JSON, or null when empty.
+     * @param totalPercent Total partner discount percent; when greater than zero triggers NetUnitPrice/UnitPrice overrides.
+     * @param warning Partner-pricing warning message, or null when all participating partners resolved a model.
+     * @return Ordered list of attributeName/attributeValue maps to apply as context updates.
+     */
     public static List<Map<String, Object>> buildPartnerPricingAttributes(
         Decimal currentPrice,
         Decimal adjustedPrice,

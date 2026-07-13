@@ -1,17 +1,18 @@
 /**
- * Characterization tests for the live partner-margin seams (PartnerPricingServiceV2).
- *
- * These PIN the CURRENT behavior of the pure, public-static pricing methods — including the
- * known E-04 quirk (Fortra-Originated + null Non_Orig -> 0%). A Wave-3 consolidation that
- * changes any pinned value MUST fail here first, forcing an explicit, documented decision
- * rather than a silent regression. No DML, no RCA runtime — models are built in memory.
- *
- * Ref: docs/pricing-refactor/PRICING_REFACTOR_PLAN.md  (INV-5, INV-6/E-04, D-11/D-12, Wave 0 Step 0.7)
+ * @description Characterization tests that pin the current behavior of the pure, public-static
+ *              partner-margin methods on PartnerPricingServiceV2, so any consolidation that
+ *              changes a pinned value fails here first and forces an explicit decision. Models
+ *              are built in memory with no DML and no RCA runtime.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class PricingCharacterizationTest {
 
-    // Standard (Channel-Originated) percents populated; Non-Originating left NULL on purpose (E-04).
+    /**
+     * @description Builds an in-memory pricing model with standard (Channel-Originated) percents
+     *              populated while deliberately leaving the Non-Originating percents null.
+     * @return A Partner_Pricing_Model__c seeded with standard percents and null Non_Orig_* fields.
+     */
     private static Partner_Pricing_Model__c baseModel() {
         return new Partner_Pricing_Model__c(
             Software_Percent__c            = 20,
@@ -22,6 +23,10 @@ private class PricingCharacterizationTest {
         );
     }
 
+    /**
+     * @description Verifies that a Channel-Originated line reads each product type's standard
+     *              percent field (Software, Subscription, New Maintenance).
+     */
     @isTest
     static void marginForProductType_channelOriginated_usesStandardPercents() {
         Partner_Pricing_Model__c m = baseModel();
@@ -33,6 +38,11 @@ private class PricingCharacterizationTest {
             'Channel-originated New Maintenance must read New_Maintenance_Percent__c');
     }
 
+    /**
+     * @description Verifies the E-04 fix: a Fortra-Originated line with a null Non_Orig_* percent
+     *              falls back to the standard (catalog) percent, while a model with both the
+     *              Non_Orig and standard percents null still yields 0.
+     */
     @isTest
     static void marginForProductType_fortraOriginated_nullNonOrig_fallsBackToCatalog_E04Fixed() {
         // E-04 FIX (Wave 3b, "catalog" decision): Fortra-Originated + null Non_Orig_* now falls back to the
@@ -48,6 +58,10 @@ private class PricingCharacterizationTest {
             'null Non_Orig AND null standard -> 0');
     }
 
+    /**
+     * @description Verifies that a Fortra-Originated line reads the populated Non_Orig_* percent
+     *              fields in preference to the standard catalog percents.
+     */
     @isTest
     static void marginForProductType_fortraOriginated_populatedNonOrig_usesNonOrig() {
         Partner_Pricing_Model__c m = baseModel();
@@ -59,6 +73,10 @@ private class PricingCharacterizationTest {
             'Fortra-Originated Subscription reads Non_Orig_Subscription_Pct__c when populated');
     }
 
+    /**
+     * @description Verifies the guardrails that return 0 when the model is null, the product type
+     *              is blank, or the product type is unrecognized (when-else branch).
+     */
     @isTest
     static void marginForProductType_nullModelOrBlankOrUnknownType_returnsZero() {
         System.assertEquals(0, PartnerPricingServiceV2.getMarginForProductType(null, 'Software', 'Channel Originated'),
@@ -69,6 +87,11 @@ private class PricingCharacterizationTest {
             'Unknown product type -> 0 (when-else)');
     }
 
+    /**
+     * @description Verifies the guaranteed-margin calculation applies margins additively and
+     *              honors its guardrails: null list price passes through, an empty margin list
+     *              returns the list price, and total margin caps at 100% so the price floors at 0.
+     */
     @isTest
     static void guaranteedMargin_additive_and_guardrails() {
         System.assertEquals(750.00, PartnerPricingServiceV2.calculateGuaranteedMarginPrice(1000, new List<Decimal>{15, 10}),
@@ -81,6 +104,11 @@ private class PricingCharacterizationTest {
             'Total margin caps at 100% -> price floors at 0');
     }
 
+    /**
+     * @description Verifies the discount-price calculation and its guardrails: a positive discount
+     *              reduces the list price, a zero discount returns the list price, and a null list
+     *              price passes through.
+     */
     @isTest
     static void discountModel_and_guardrails() {
         System.assertEquals(800.00, PartnerPricingServiceV2.calculateDiscountPrice(1000, 20),
@@ -91,6 +119,11 @@ private class PricingCharacterizationTest {
             'Null list price passes through');
     }
 
+    /**
+     * @description Verifies the model-selection hierarchy where Solution Category beats Group beats
+     *              Unit beats the all-blank default, that a non-matching line falls back to the
+     *              default model, and that an empty candidate list returns null.
+     */
     @isTest
     static void selectBestModel_hierarchy_categoryOverGroupOverUnitOverDefault() {
         Partner_Pricing_Model__c cat  = new Partner_Pricing_Model__c(Solution_Category__c = 'SecureFileTransfer', Software_Percent__c = 1);

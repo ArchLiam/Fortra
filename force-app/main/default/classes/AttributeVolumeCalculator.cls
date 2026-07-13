@@ -1,29 +1,12 @@
 /**
- * @description Pure attribute-volume tier-pricing math + context-node shaping, extracted VERBATIM
- *              from AttributeVolumePricingPrehook (Wave-2 hook-thinning, round 2). No SOQL, no DML,
- *              no RCA context API — every method operates only on already-parsed context tag maps
- *              ({tagValue, dataPath}) and already-queried Attribute_Tier_Pricing_Storage__c records,
- *              so it is fully unit-testable. The prehook stays the thin adapter: it does the two
- *              queryTags reads, the bulk tier SOQL, and the context submit, and delegates the pure
- *              math/lookup/node-shaping below.
- *
- *              WHAT LIVES HERE (pure):
- *                - buildTierLookupMap / buildCompositeKey — composite-key tier map
- *                - lookupTierFromMap                      — volume -> tier resolution + range check
- *                - buildNodeUpdate                        — matched-tier context node update
- *                - buildResetNodeUpdate                   — SC-3390 / D-17 reset-to-list payload
- *                                                            (behavior preserved EXACTLY, not fixed)
- *                - buildAttributeExplainerText            — waterfall explainer string
- *                - getAttributeVolumeValue / getAttributeValue — Attribute_Volume + named-attr reads
- *                - getLineItemIdFromDataPath / getParentIdFromDataPath / groupAttributesByLineItem
- *                - tag helpers: getValueFromTag / getStringFromTag / getDecimalFromTag / getBooleanFromTag
- *
- *              Stateless — all methods are static (no per-execution state).
- *
- * @see AttributeVolumePricingPrehook (the adapter/seam owner; holds the queryTags reads, the bulk
- *      Attribute_Tier_Pricing_Storage__c SOQL, the Pass-1/Pass-2 orchestration, and the submit)
- * @author Marc DeBrey (original) / Wave-2 decomposition (extracted verbatim, behavior-preserving)
- * @date July 2026
+ * @description Pure, stateless attribute-volume tier-pricing math and context-node shaping extracted
+ *              from AttributeVolumePricingPrehook. Performs no SOQL, DML, or context API calls; every
+ *              method operates only on already-parsed context tag maps ({tagValue, dataPath}) and
+ *              already-queried Attribute_Tier_Pricing_Storage__c records, so it is fully unit-testable.
+ *              Provides composite-key tier map building and lookup, matched-tier and reset-to-list
+ *              context node updates, waterfall explainer text, Attribute_Volume and named-attribute
+ *              reads, data-path/line-item grouping helpers, and nested tag-value extraction helpers.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class AttributeVolumeCalculator {
 
@@ -77,11 +60,12 @@ public with sharing class AttributeVolumeCalculator {
     }
 
     /**
-     * @description Build a composite key string from the four matching dimensions
+     * @description Build a composite key string from the matching dimensions
      * @param productId Product2 Id
      * @param psmId ProductSellingModel Id
      * @param attrName Attribute name
      * @param attrValue Attribute value
+     * @param currencyIso Currency ISO code (5th key segment for currency-scoped tier matching)
      * @return Pipe-delimited composite key
      */
     private static String buildCompositeKey(String productId, String psmId, String attrName, String attrValue, String currencyIso) {
@@ -103,6 +87,7 @@ public with sharing class AttributeVolumeCalculator {
      * @param psmId ProductSellingModel Id from context
      * @param lineAttributes List of attribute tag maps for this line item
      * @param volume Attribute volume value for tier range matching
+     * @param currencyIso Currency ISO code for currency-scoped tier matching
      * @return PricingTierResult if a match is found, null otherwise
      */
     public static PricingTierResult lookupTierFromMap(
@@ -372,6 +357,7 @@ public with sharing class AttributeVolumeCalculator {
         try {
             return Decimal.valueOf(volumeStr);
         } catch (Exception e) {
+            ExceptionLogger.log('AttributeVolumeCalculator', null, new AttributeVolumeException('getAttributeVolumeValue failed', e));
             System.debug(LoggingLevel.WARN, 'Could not parse Attribute_Volume value: ' + volumeStr);
             return null;
         }
@@ -429,6 +415,9 @@ public with sharing class AttributeVolumeCalculator {
 
     /**
      * @description Extract string value from nested tag structure
+     * @param tagMap The tag map to extract from
+     * @param attributeName The attribute name to extract
+     * @return The value as string, or null
      */
     public static String getStringFromTag(Map<String, Object> tagMap, String attributeName) {
         Object value = getValueFromTag(tagMap, attributeName);
@@ -437,6 +426,9 @@ public with sharing class AttributeVolumeCalculator {
 
     /**
      * @description Extract decimal value from nested tag structure
+     * @param tagMap The tag map to extract from
+     * @param attributeName The attribute name to extract
+     * @return The value as Decimal, or null if absent or not parseable
      */
     private static Decimal getDecimalFromTag(Map<String, Object> tagMap, String attributeName) {
         Object value = getValueFromTag(tagMap, attributeName);
@@ -447,12 +439,16 @@ public with sharing class AttributeVolumeCalculator {
         try {
             return Decimal.valueOf(String.valueOf(value));
         } catch (Exception e) {
+            ExceptionLogger.log('AttributeVolumeCalculator', null, new AttributeVolumeException('getDecimalFromTag failed', e));
             return null;
         }
     }
 
     /**
      * @description Extract boolean value from nested tag structure
+     * @param tagMap The tag map to extract from
+     * @param attributeName The attribute name to extract
+     * @return The value as Boolean, or null if absent
      */
     public static Boolean getBooleanFromTag(Map<String, Object> tagMap, String attributeName) {
         Object value = getValueFromTag(tagMap, attributeName);

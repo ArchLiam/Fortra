@@ -1,24 +1,49 @@
 /**
- * Tests for HardwarePricingCalculator. D-14: the three pricing tables now come from the admin-editable
- * Hardware_Attribute_Pricing__mdt. Most tests INJECT a canonical in-memory table (mirroring the seed +
- * SDD §8 Rules 2/3/4) via loadFromRecords so the lookup math is pinned deterministically and independent
- * of the org's (editable) records — this is the "MDT-driven == old hardcoded, for every tier" proof.
- * deployedSeed_reproducesSdd additionally verifies the SHIPPED org seed reproduces those exact values.
- * Pure — no DML, no RCA runtime.
+ * @description Verifies HardwarePricingCalculator resolves the three pricing tables (pGroup, user-tier,
+ * system-type) from the admin-editable Hardware_Attribute_Pricing__mdt. Most tests inject a canonical
+ * in-memory table mirroring the seed and SDD Rules 2/3/4 so lookup math is pinned deterministically and
+ * independent of the org's editable records, proving MDT-driven pricing equals the old hardcoded values
+ * for every tier; deployedSeed_reproducesSdd additionally confirms the shipped seed reproduces them.
+ * Pure unit tests — no DML, no RCA runtime.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class HardwarePricingCalculatorTest {
 
     // ── Canonical seed table (== deployed Hardware_Attribute_Pricing__mdt == SDD §8 Rules 2/3/4) ──
+    /**
+     * @description Builds an in-memory pGroup-table row for the canonical seed.
+     * @param key pGroup attribute key (e.g. 'P30')
+     * @param val Multiplier value for that pGroup
+     * @return A pGroup Hardware_Attribute_Pricing__mdt row
+     */
     private static Hardware_Attribute_Pricing__mdt pg(String key, Decimal val) {
         return new Hardware_Attribute_Pricing__mdt(Table_Type__c = 'pGroup', Attribute_Key__c = key, Value__c = val);
     }
+    /**
+     * @description Builds an in-memory user-tier-table row for the canonical seed.
+     * @param lo Inclusive minimum users for the band
+     * @param hi Inclusive maximum users for the band (null = open-ended top band)
+     * @param val Multiplier value for that user tier
+     * @return A UserTier Hardware_Attribute_Pricing__mdt row
+     */
     private static Hardware_Attribute_Pricing__mdt ut(Integer lo, Integer hi, Decimal val) {
         return new Hardware_Attribute_Pricing__mdt(Table_Type__c = 'UserTier', Min_Users__c = lo, Max_Users__c = hi, Value__c = val);
     }
+    /**
+     * @description Builds an in-memory system-type-table row for the canonical seed.
+     * @param key System-type attribute key (e.g. 'Staging')
+     * @param val Discount percentage for that system type
+     * @return A SystemType Hardware_Attribute_Pricing__mdt row
+     */
     private static Hardware_Attribute_Pricing__mdt sysType(String key, Decimal val) {
         return new Hardware_Attribute_Pricing__mdt(Table_Type__c = 'SystemType', Attribute_Key__c = key, Value__c = val);
     }
+    /**
+     * @description Assembles the full canonical seed table (7 pGroup, 6 user-tier, 3 system-type rows)
+     * that mirrors the deployed metadata and SDD Rules 2/3/4.
+     * @return The canonical list of Hardware_Attribute_Pricing__mdt seed rows
+     */
     private static List<Hardware_Attribute_Pricing__mdt> seedRecords() {
         return new List<Hardware_Attribute_Pricing__mdt>{
             pg('P05', 0.5), pg('P10', 0.75), pg('P20', 1.0), pg('P30', 1.5), pg('P40', 2.0), pg('P50', 3.0), pg('P60', 4.0),
@@ -26,7 +51,10 @@ private class HardwarePricingCalculatorTest {
             sysType('Production', 0.0), sysType('Staging', 25.0), sysType('Test', 50.0)
         };
     }
-    /** Inject the canonical table so the getters resolve against it (not the org's records). */
+    /**
+     * @description Injects the canonical seed table so the calculator's getters resolve against it
+     * rather than the org's editable records.
+     */
     private static void injectSeed() {
         HardwarePricingCalculator.loadFromRecords(seedRecords());
     }
@@ -35,6 +63,10 @@ private class HardwarePricingCalculatorTest {
     // MDT-driven == old hardcoded, every tier (deterministic, injected canonical table)
     // ========================================================================
 
+    /**
+     * @description Verifies every pGroup multiplier resolves to its seeded value and that blank/unknown
+     * keys fall back to the 1.0x default.
+     */
     @isTest
     static void pGroupMultipliers_allTiers_andDefaults() {
         injectSeed();
@@ -49,6 +81,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(1.0,  HardwarePricingCalculator.getPGroupMultiplier('P99'), 'unknown -> default 1.0');
     }
 
+    /**
+     * @description Verifies user-tier multipliers resolve correctly at each band boundary and that
+     * null/zero user counts fall back to the 1.0x default.
+     */
     @isTest
     static void userTierMultipliers_ranges_andDefaults() {
         injectSeed();
@@ -65,6 +101,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(1.0,  HardwarePricingCalculator.getUserTierMultiplier(0),    '0 -> default 1.0');
     }
 
+    /**
+     * @description Verifies system-type discounts resolve to their seeded values and that blank/unknown
+     * types fall back to the 0% default.
+     */
     @isTest
     static void systemTypeDiscounts_andDefaults() {
         injectSeed();
@@ -75,6 +115,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(0.0,  HardwarePricingCalculator.getSystemTypeDiscount('Unknown'), 'unknown -> default 0');
     }
 
+    /**
+     * @description Verifies calculate combines all three tables and the discount formula into the
+     * expected combined multiplier and adjusted price (worked example P30 x 30 users x Staging).
+     */
     @isTest
     static void calculate_combinesTablesAndFormula() {
         injectSeed();
@@ -89,6 +133,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(1406.25, r.adjustedPrice, '1000 x 1.40625');
     }
 
+    /**
+     * @description Verifies that all-null/blank attributes yield a 1.0x combined multiplier so the
+     * adjusted price equals the list price.
+     */
     @isTest
     static void calculate_allDefaults_isListPrice() {
         injectSeed();
@@ -99,6 +147,9 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(2000, r.adjustedPrice);
     }
 
+    /**
+     * @description Verifies the Test system type applies a 50% discount, halving the adjusted price.
+     */
     @isTest
     static void calculate_testSystemType_50off() {
         injectSeed();
@@ -109,6 +160,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(500,  r.adjustedPrice);
     }
 
+    /**
+     * @description Verifies the highest tiers (P60 x 501+ users x Production) compound to a 12x
+     * combined multiplier.
+     */
     @isTest
     static void calculate_maxMultipliers() {
         injectSeed();
@@ -118,6 +173,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(12000, r.adjustedPrice);
     }
 
+    /**
+     * @description Verifies a sub-1.0 combined multiplier (P05 x low users x Staging) discounts the
+     * price below list.
+     */
     @isTest
     static void calculate_p05_staging() {
         injectSeed();
@@ -127,6 +186,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(375,   r.adjustedPrice);
     }
 
+    /**
+     * @description Verifies edge list prices: zero stays zero, and a negative list passes through the
+     * multiplier unchanged (raw, unrounded).
+     */
     @isTest
     static void calculate_zeroAndNegativeListPrice() {
         injectSeed();
@@ -135,6 +198,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(-1500, HardwarePricingCalculator.calculate(-1000, 'P30', null, null).adjustedPrice, '-1000 x 1.5');
     }
 
+    /**
+     * @description Verifies SDD Rule 3: the open-ended top band (501+, blank max) resolves arbitrarily
+     * large user counts to 3.0x rather than the 1.0x default.
+     */
     @isTest
     static void userTierMultiplier_topBandOpenEnded_rule3() {
         injectSeed();
@@ -145,6 +212,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(3.0, HardwarePricingCalculator.getUserTierMultiplier(2000000000), '2,000,000,000 users -> 501+ band 3.0x (open-ended)');
     }
 
+    /**
+     * @description Verifies fractional user counts truncate toward zero before range matching, so the
+     * band is chosen on the integer part.
+     */
     @isTest
     static void userTierMultiplier_decimalTruncates() {
         injectSeed();
@@ -154,6 +225,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(1.25, HardwarePricingCalculator.getUserTierMultiplier(50.9),  '50.9 -> 50 -> band 11..50');
     }
 
+    /**
+     * @description Verifies pGroup lookup is case-sensitive and that a mismatched-case or empty key
+     * falls back to the 1.0x default.
+     */
     @isTest
     static void getPGroupMultiplier_caseSensitiveAndEmpty() {
         injectSeed();
@@ -161,6 +236,10 @@ private class HardwarePricingCalculatorTest {
         System.assertEquals(1.0, HardwarePricingCalculator.getPGroupMultiplier(''),    'empty -> default');
     }
 
+    /**
+     * @description Verifies system-type lookup is case-sensitive, so mismatched-case keys fall back to
+     * the 0% default.
+     */
     @isTest
     static void getSystemTypeDiscount_caseSensitive() {
         injectSeed();
@@ -173,9 +252,9 @@ private class HardwarePricingCalculatorTest {
     // ========================================================================
 
     /**
-     * SEED CHARACTERIZATION: the DEPLOYED Hardware_Attribute_Pricing__mdt (read via getAll(), no
-     * injection) reproduces the exact SDD values for every tier. This is what makes the S12 reprice
-     * 0-delta. If the seed metadata is ever intentionally changed, update this test deliberately.
+     * @description Characterizes the shipped seed: the deployed Hardware_Attribute_Pricing__mdt (read
+     * via getAll, no injection) ships exactly 16 rows and reproduces the exact SDD values for every
+     * tier, which keeps the S12 reprice at 0-delta; update deliberately if the seed metadata changes.
      */
     @isTest
     static void deployedSeed_reproducesSdd() {
@@ -205,8 +284,9 @@ private class HardwarePricingCalculatorTest {
     }
 
     /**
-     * D-14 payoff: editing the MDT actually drives pricing (proves the table is read, not residually
-     * hardcoded). An admin changing P30's multiplier or Staging's discount flows straight through.
+     * @description Verifies edited MDT values actually drive pricing (proving the table is read, not
+     * residually hardcoded): an admin's changed P30 multiplier and Staging discount flow straight
+     * through to the calculated adjusted price.
      */
     @isTest
     static void mdtIsAdminEditable_valueFlowsThrough() {
@@ -222,8 +302,8 @@ private class HardwarePricingCalculatorTest {
     }
 
     /**
-     * Safety: an empty/unseeded config resolves every lookup to the miss-defaults (1.0x / 0% discount),
-     * i.e. price == list — never an exception.
+     * @description Verifies safety of an empty/unseeded config: every lookup resolves to the
+     * miss-defaults (1.0x multiplier, 0% discount) so price equals list, never throwing an exception.
      */
     @isTest
     static void emptyConfig_fallsToDefaults() {

@@ -4,20 +4,38 @@
  *              directly with in-memory inputs (no SOQL / DML / RCA-context), which the
  *              hook's execute() path could never be unit-tested against. Read-only QLI
  *              fields are seeded via JSON.deserialize.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class COLAUpliftCalculatorTest {
 
     // ---- helpers -------------------------------------------------------------
 
+    /**
+     * @description Deserializes a JSON string into a QuoteLineItem, allowing read-only/formula
+     *              fields to be seeded for in-memory calculator tests.
+     * @param jsonStr JSON representation of the QuoteLineItem fields to seed.
+     * @return A QuoteLineItem populated from the supplied JSON.
+     */
     private static QuoteLineItem qliFromJson(String jsonStr) {
         return (QuoteLineItem) JSON.deserialize(jsonStr, QuoteLineItem.class);
     }
 
+    /**
+     * @description Wraps a data-path list in the map shape the calculator expects for a node wrapper.
+     * @param dataPath Ordered node identifiers forming the RCA data path.
+     * @return A map containing the supplied dataPath under the 'dataPath' key.
+     */
     private static Map<String, Object> wrapperWithPath(List<Object> dataPath) {
         return new Map<String, Object>{ 'dataPath' => dataPath };
     }
 
+    /**
+     * @description Finds the value of a named attribute within an update map's attributes list.
+     * @param upd The update map produced by the calculator (may be null).
+     * @param attributeName The attributeName to search for.
+     * @return The matching attributeValue, or null if the map is null or the attribute is absent.
+     */
     private static Object attrValue(Map<String, Object> upd, String attributeName) {
         if (upd == null) return null;
         List<Object> attrs = (List<Object>) upd.get('attributes');
@@ -28,6 +46,13 @@ private class COLAUpliftCalculatorTest {
         return null;
     }
 
+    /**
+     * @description Asserts an actual numeric value equals the expected Decimal, tolerant of
+     *              Integer/Decimal/Double boxing and scale differences (compared at scale 4).
+     * @param expected The expected Decimal value.
+     * @param actual The actual value to compare (any numeric boxing).
+     * @param msg Assertion message used for both the null and equality checks.
+     */
     // Numeric assert that is robust to Integer/Decimal/Double boxing and scale differences.
     private static void assertDec(Decimal expected, Object actual, String msg) {
         System.assertNotEquals(null, actual, msg + ' (was null)');
@@ -35,6 +60,11 @@ private class COLAUpliftCalculatorTest {
         System.assertEquals(expected.setScale(4), a.setScale(4), msg);
     }
 
+    /**
+     * @description Extracts the update's target dataPath from its nodePath map.
+     * @param upd The update map containing a nodePath entry.
+     * @return The dataPath list held under the update's nodePath.
+     */
     private static List<Object> updatePath(Map<String, Object> upd) {
         Map<String, Object> nodePath = (Map<String, Object>) upd.get('nodePath');
         return (List<Object>) nodePath.get('dataPath');
@@ -42,6 +72,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- isPersistedLineOverride --------------------------------------------
 
+    /**
+     * @description Verifies isPersistedLineOverride treats null inputs and equal values as
+     *              non-overrides and any differing stored/default pair as an override.
+     */
     @isTest
     static void isPersistedLineOverride_matrix() {
         System.assertEquals(false, COLAUpliftCalculator.isPersistedLineOverride(null, 5), 'null override -> false');
@@ -53,6 +87,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- buildExplainerText --------------------------------------------------
 
+    /**
+     * @description Verifies buildExplainerText brackets non-CMDT sources, leaves CMDT Lookup
+     *              unbracketed, and omits null/blank solution categories.
+     */
     @isTest
     static void buildExplainerText_variants() {
         System.assertEquals('COLA Uplift: 5.0% (Software)',
@@ -71,6 +109,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- computeStampedMaintenanceColaNet -----------------------------------
 
+    /**
+     * @description Verifies the stamped maintenance COLA net subtracts prior partner and
+     *              discretionary discounts then applies the COLA uplift percent.
+     */
     @isTest
     static void computeStampedMaintenanceColaNet_priorComponents() {
         QuoteLineItem qli = qliFromJson('{"Base_Price__c":1000,"Prior_Partner_Discount__c":100,"Prior_Discretionary_Discount__c":50,"COLA_Uplift_Percent__c":10}');
@@ -78,6 +120,10 @@ private class COLAUpliftCalculatorTest {
         assertDec(935.00, COLAUpliftCalculator.computeStampedMaintenanceColaNet(qli), 'prior-component net with COLA');
     }
 
+    /**
+     * @description Verifies the maintenance COLA net falls back to the Discount percent when
+     *              no prior discount components are present.
+     */
     @isTest
     static void computeStampedMaintenanceColaNet_discountFallback() {
         QuoteLineItem qli = qliFromJson('{"Base_Price__c":1000,"Discount":10}');
@@ -85,6 +131,9 @@ private class COLAUpliftCalculatorTest {
         assertDec(900.00, COLAUpliftCalculator.computeStampedMaintenanceColaNet(qli), 'discount fallback net');
     }
 
+    /**
+     * @description Verifies a non-positive pre-COLA net yields null rather than a zero/negative price.
+     */
     @isTest
     static void computeStampedMaintenanceColaNet_nonPositiveReturnsNull() {
         QuoteLineItem qli = qliFromJson('{"Base_Price__c":100,"Prior_Partner_Discount__c":100}');
@@ -94,6 +143,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- isOrderTransaction (List overload) ---------------------------------
 
+    /**
+     * @description Verifies isOrderTransaction returns true only when the root data-path id has an
+     *              Order (801) prefix, and false for quote roots, empty, null, and missing dataPath.
+     */
     @isTest
     static void isOrderTransaction_detectsOrderRoot() {
         List<Object> orderItems = new List<Object>{ wrapperWithPath(new List<Object>{ '801000000000001AAA', '0QLxxx' }) };
@@ -107,6 +160,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- buildNetUnitPriceUpdate --------------------------------------------
 
+    /**
+     * @description Verifies buildNetUnitPriceUpdate seeds NetUnitPrice on the update path
+     *              (dataPath minus its first element) for a valid price.
+     */
     @isTest
     static void buildNetUnitPriceUpdate_seedsNetOnUpdatePath() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -116,6 +173,10 @@ private class COLAUpliftCalculatorTest {
         assertDec(935.00, attrValue(upd, 'NetUnitPrice'), 'NetUnitPrice seeded');
     }
 
+    /**
+     * @description Verifies buildNetUnitPriceUpdate returns null for zero, negative, or
+     *              missing-dataPath inputs.
+     */
     @isTest
     static void buildNetUnitPriceUpdate_guards() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -126,6 +187,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- buildItemUpdate -----------------------------------------------------
 
+    /**
+     * @description Verifies buildItemUpdate emits the calculated/pre-COLA prices, source,
+     *              applied date, and solution-category audit attributes on the update path.
+     */
     @isTest
     static void buildItemUpdate_buildsAuditAttributes() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -138,6 +203,10 @@ private class COLAUpliftCalculatorTest {
         System.assertEquals('Software', attrValue(upd, 'COLA_Solution_Category__c'), 'solution category present');
     }
 
+    /**
+     * @description Verifies buildItemUpdate omits a blank solution-category attribute and
+     *              returns null when the wrapper has no dataPath.
+     */
     @isTest
     static void buildItemUpdate_blankSolCatOmitted_andNullPathNull() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -148,6 +217,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- buildMaintenanceColaItemUpdate -------------------------------------
 
+    /**
+     * @description Verifies buildMaintenanceColaItemUpdate echoes an explicit PartnerDiscountPercent
+     *              and Discount alongside the COLA net.
+     */
     @isTest
     static void buildMaintenanceColaItemUpdate_explicitPartnerPercent() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -158,6 +231,10 @@ private class COLAUpliftCalculatorTest {
         assertDec(15, attrValue(upd, 'Discount'), 'discount echoed');
     }
 
+    /**
+     * @description Verifies buildMaintenanceColaItemUpdate derives PartnerDiscountPercent from the
+     *              prior partner discount over base price and omits Discount when unset.
+     */
     @isTest
     static void buildMaintenanceColaItemUpdate_derivedPartnerPercent() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -168,6 +245,9 @@ private class COLAUpliftCalculatorTest {
         System.assertEquals(null, attrValue(upd, 'Discount'), 'no discount attr when Discount unset');
     }
 
+    /**
+     * @description Verifies buildMaintenanceColaItemUpdate returns null when the wrapper has no dataPath.
+     */
     @isTest
     static void buildMaintenanceColaItemUpdate_nullPathNull() {
         QuoteLineItem qli = qliFromJson('{"Base_Price__c":1000}');
@@ -176,6 +256,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- extractLineItemData -------------------------------------------------
 
+    /**
+     * @description Verifies extractLineItemData unwraps a nested tagValue map, returns a plain map
+     *              unchanged, and yields null for non-map or null inputs.
+     */
     @isTest
     static void extractLineItemData_unwrapsTagValue() {
         Map<String, Object> innerMap = new Map<String, Object>{ 'a' => 1 };
@@ -191,6 +275,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- buildCOLAContextUpdate ---------------------------------------------
 
+    /**
+     * @description Verifies buildCOLAContextUpdate derives the pre-COLA price from the default
+     *              percent and applies a single-year uplift equal to the flat rate.
+     */
     @isTest
     static void buildCOLAContextUpdate_singleYear() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -202,6 +290,10 @@ private class COLAUpliftCalculatorTest {
         System.assertEquals('Software', attrValue(upd, 'COLA_Solution_Category__c'), 'solCat');
     }
 
+    /**
+     * @description Verifies buildCOLAContextUpdate compounds the uplift across multiple terms and
+     *              treats a zero default percent as making pre-COLA equal to the unit price.
+     */
     @isTest
     static void buildCOLAContextUpdate_multiYearCompound() {
         Map<String, Object> wrapper = wrapperWithPath(new List<Object>{ 'root', 'qli' });
@@ -211,6 +303,9 @@ private class COLAUpliftCalculatorTest {
         assertDec(110.25, attrValue(upd, 'COLACalculatedPrice__c'), '2-year compound');
     }
 
+    /**
+     * @description Verifies buildCOLAContextUpdate returns null when the wrapper has no dataPath.
+     */
     @isTest
     static void buildCOLAContextUpdate_nullPathNull() {
         System.assertEquals(null, COLAUpliftCalculator.buildCOLAContextUpdate(new Map<String, Object>(), 5, 'x', 100, 0, 'S', 1), 'no dataPath -> null');
@@ -218,6 +313,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- isManualLineOverride (D-13: relocated from COLAUpliftHandler) -------
 
+    /**
+     * @description Verifies isManualLineOverride flags a percent that differs from the CMDT rate as
+     *              manual unless it matches the MyCAP or contract rate, and treats null as non-manual.
+     */
     @isTest
     static void isManualLineOverride_matrix() {
         System.assertEquals(false, COLAUpliftCalculator.isManualLineOverride(null, 3, null, null), 'null pct -> not manual');
@@ -230,6 +329,10 @@ private class COLAUpliftCalculatorTest {
 
     // ---- resolveTier (D-13: byte-verbatim from the prehook selection block) --
 
+    /**
+     * @description Verifies resolveTier selects Line Override, Contract Override, or CMDT Lookup
+     *              across persisted-default, manual-override, contract, and boundary scenarios.
+     */
     @isTest
     static void resolveTier_tierSelection() {
         // Tier 1 via persisted stamped-default override (Marc 2026-07-07 fix): stored 5 != Default 3

@@ -99,7 +99,7 @@ public with sharing class MaintenanceOrderDecompositionService {
         for (OrderItem oi : [
             SELECT Id, OrderId, QuoteLineItemId, PricebookEntryId, Quantity,
                    Hardware__c, Hardware_ID__c, Partition_Record__c, Ship_To_Address__c,
-                   Source_List_Price__c, PartnerDiscountPercent
+                   Source_List_Price__c, ABA_Raw_Net__c, PartnerDiscountPercent
             FROM OrderItem
             WHERE OrderId IN :resolvedOrderIds
         ]) {
@@ -120,7 +120,7 @@ public with sharing class MaintenanceOrderDecompositionService {
             qliById = new Map<Id, QuoteLineItem>([
                 SELECT Id, Base_Price__c, UnitPrice, NetUnitPrice, PartnerUnitPrice,
                        Fortra_Product_Type__c, Product2.Fortra_Product_Type__c, PricebookEntryId,
-                       Source_List_Price__c,
+                       Source_List_Price__c, ABA_Raw_Net__c,
                        Prior_Partner_Discount__c, Prior_Discretionary_Discount__c,
                        COLACalculatedPrice__c, COLA_Uplift_Percent__c,
                        Hardware__c, Hardware_ID__c, Partition_Reference__c,

@@ -1,11 +1,11 @@
 /**
- * @description Partner-pricing dispatch extracted verbatim from PartnerPricingPrehookV2.processLineItem
- *              (Wave-2 hook-thinning, round-4 incr 3). Resolves the adjusted price + total percent +
- *              margin-detail maps for a line under the Discount or Guaranteed-Margin model. The margin
- *              MATH stays in PartnerPricingServiceV2; participation resolution reuses the already-
- *              extracted PartnerParticipationResolver. Builds the detail maps directly (same shape as
- *              the hook's PartnerMarginDetail.toMap()) so this class stays decoupled from that inner
- *              type and from QuoteHeaderData — the hook shell threads in primitives. No SOQL/DML/context.
+ * @description Resolves the adjusted price, total percent, and margin-detail maps for a line under
+ *              the Discount or Guaranteed-Margin partner-pricing model. Delegates the margin math to
+ *              PartnerPricingServiceV2 and participation resolution to PartnerParticipationResolver,
+ *              and builds the detail maps from primitives (matching the hook's
+ *              PartnerMarginDetail.toMap() shape) so it stays decoupled from the hook's inner types.
+ *              Performs no SOQL, DML, or context access.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class PartnerMarginDispatcher {
 
@@ -27,7 +27,27 @@ public with sharing class PartnerMarginDispatcher {
         }
     }
 
-    /** @description Null return = unknown pricing model (shell logs SKIP + returns, as before). */
+    /**
+     * @description Resolves partner-pricing adjustments for a single line under the Discount or
+     *              Guaranteed-Margin model, returning the adjusted price, total percent, and
+     *              margin-detail maps, plus an optional warning for participating partners that lack
+     *              a matching model. Returns null for an unknown pricing model (the shell logs SKIP
+     *              and returns).
+     * @param partnerPricingModel Pricing model configured on the Quote ('Discount' or 'Guaranteed Margin').
+     * @param billingPartnerId Id of the billing partner.
+     * @param dealType Deal type used when selecting the applicable margin.
+     * @param resellerId Id of the participating reseller partner.
+     * @param distributorId Id of the participating distributor partner.
+     * @param referralPartnerId Id of the participating referral partner.
+     * @param partnerModels Partner pricing models keyed by partner Id.
+     * @param partnerNames Partner display names keyed by partner Id.
+     * @param unit Unit of measure for the line, used in model selection.
+     * @param solutionGroup Solution group for the line, used in model selection.
+     * @param solutionCategory Solution category for the line, used in model selection.
+     * @param currentPrice Current line price to be adjusted.
+     * @param productType Product type used to look up the margin/discount percent.
+     * @return Result carrying the adjusted price, total percent, detail maps, and optional missing-model warning; null when the pricing model is unknown.
+     */
     public static Result resolve(
         String partnerPricingModel,
         Id billingPartnerId,
@@ -124,13 +144,27 @@ public with sharing class PartnerMarginDispatcher {
         return r;
     }
 
-    /** @description Display label for a partner in the missing-model warning (name, else the Id). */
+    /**
+     * @description Returns the display label for a partner in the missing-model warning, using the
+     *              partner name when available and falling back to the partner Id.
+     * @param partnerId Id of the partner to label.
+     * @param partnerNames Partner display names keyed by partner Id.
+     * @return The partner name when non-blank, otherwise the string form of the partner Id.
+     */
     private static String partnerLabel(Id partnerId, Map<Id, String> partnerNames) {
         String partnerName = (partnerNames != null) ? partnerNames.get(partnerId) : null;
         return String.isNotBlank(partnerName) ? partnerName : String.valueOf(partnerId);
     }
 
-    // Byte-identical to the hook's PartnerMarginDetail.toMap() key order/shape.
+    /**
+     * @description Builds the margin-detail map for one participating partner, byte-identical to the
+     *              key order and shape of the hook's PartnerMarginDetail.toMap().
+     * @param partnerId Id of the participating partner.
+     * @param partnerName Display name of the partner.
+     * @param partnerRole Resolved role of the partner on the line.
+     * @param marginPercent Margin or discount percent applied for the partner.
+     * @return A map with partnerId, partnerName, partnerRole, and marginPercent keys.
+     */
     private static Map<String, Object> detail(Id partnerId, String partnerName, String partnerRole, Decimal marginPercent) {
         return new Map<String, Object>{
             'partnerId' => partnerId,

@@ -1,12 +1,16 @@
 /**
- * @description Pure navigation helpers for RCA pricing-context line/update maps, extracted verbatim
- *              from PartnerNetPricePosthook (Wave-2 decomposition, increment 13). Index context lines
+ * @description Pure navigation helpers for RCA pricing-context line/update maps. Index context lines
  *              by source record Id, read an update payload's dataPath, and dedup updates by dataPath.
  *              No SOQL, no DML, no RCA context — pure map plumbing, so unit-testable.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class ContextUpdateNavigator {
 
-    /** @description Index context line maps by their source record Id (skips lines without one). */
+    /**
+     * @description Index context line maps by their source record Id (skips lines without one).
+     * @param lineItems Context line maps to index; null yields an empty map.
+     * @return Map of source record Id to its context line map.
+     */
     public static Map<Id, Map<String, Object>> indexContextLinesById(List<Map<String, Object>> lineItems) {
         Map<Id, Map<String, Object>> byId = new Map<Id, Map<String, Object>>();
         if (lineItems == null) {
@@ -21,7 +25,11 @@ public with sharing class ContextUpdateNavigator {
         return byId;
     }
 
-    /** @description The `nodePath.dataPath` of an update payload, or null if absent/malformed. */
+    /**
+     * @description The `nodePath.dataPath` of an update payload, or null if absent/malformed.
+     * @param updatePayload Update payload expected to hold a `nodePath` map.
+     * @return The `dataPath` value, or null when absent or malformed.
+     */
     public static Object extractUpdatePath(Map<String, Object> updatePayload) {
         if (updatePayload == null || !updatePayload.containsKey('nodePath')) {
             return null;
@@ -33,7 +41,12 @@ public with sharing class ContextUpdateNavigator {
         return ((Map<String, Object>) nodePath).get('dataPath');
     }
 
-    /** @description True when `updates` already holds an update for the candidate's dataPath. */
+    /**
+     * @description True when `updates` already holds an update for the candidate's dataPath.
+     * @param updates Existing update payloads to scan.
+     * @param candidate Update payload whose dataPath is compared against the existing ones.
+     * @return True when an update with an equivalent dataPath already exists.
+     */
     public static Boolean containsEquivalentUpdate(
         List<Map<String, Object>> updates,
         Map<String, Object> candidate
@@ -59,8 +72,11 @@ public with sharing class ContextUpdateNavigator {
     /**
      * @description Resolve the context update dataPath for a renewal-maintenance line: the line's
      *              own `_updatePath` when present, else a [quoteId, lineItemId] path; null when
-     *              neither is available. Verbatim from PartnerNetPricePosthook (Wave-2
-     *              decomposition, build*Update step 2). Highest fan-in resolver (5 builders).
+     *              neither is available.
+     * @param lineItem Context line map that may carry an `_updatePath`.
+     * @param lineItemId Source record Id used to build the fallback path.
+     * @param quoteId Quote Id used to build the fallback path.
+     * @return The resolved dataPath, or null when neither source is available.
      */
     public static Object resolveRenewalMaintenanceUpdatePath(
         Map<String, Object> lineItem,

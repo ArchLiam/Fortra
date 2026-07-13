@@ -1,17 +1,28 @@
 /**
- * @description Unit coverage for AmendNetCarryPrehook's pure seams (SC-3501). execute() itself cannot be
+ * @description Unit coverage for AmendNetCarryPrehook's pure seams. execute() itself cannot be
  *              unit-tested — RevSignaling.TransactionRequest has no public constructor and
  *              Context.IndustriesContext.queryTags() needs a live pricing context — so the end-to-end
- *              path is validated by integration (native Quote reprice; proven live on quote J4m9 →
- *              10000/94000/15000). These tests lock the seed-entry shape and response parsing.
+ *              path is validated by integration; these tests lock the seed-entry shape and response parsing.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @IsTest
 private class AmendNetCarryPrehookTest {
 
+    /**
+     * @description Builds a minimal node wrapper carrying the given data path, used to feed seam methods under test.
+     * @param dataPath Ordered node identifiers ([rootId, ..., qliId]) placed under the wrapper's dataPath key.
+     * @return A wrapper map containing the supplied dataPath.
+     */
     private static Map<String, Object> wrapperWithPath(List<Object> dataPath) {
         return new Map<String, Object>{ 'dataPath' => dataPath };
     }
 
+    /**
+     * @description Finds the value of a named attribute within a seed update entry's attributes list.
+     * @param upd The seed update entry to inspect; null yields null.
+     * @param attributeName The attribute name to match.
+     * @return The matched attributeValue, or null when the entry is null or the attribute is absent.
+     */
     private static Object attrValue(Map<String, Object> upd, String attributeName) {
         if (upd == null) {
             return null;
@@ -25,10 +36,18 @@ private class AmendNetCarryPrehookTest {
         return null;
     }
 
+    /**
+     * @description Reads the node path recorded on a seed update entry.
+     * @param upd The seed update entry whose nodePath.dataPath is returned.
+     * @return The update entry's data path list.
+     */
     private static List<Object> updatePath(Map<String, Object> upd) {
         return (List<Object>) ((Map<String, Object>) upd.get('nodePath')).get('dataPath');
     }
 
+    /**
+     * @description Verifies a unit-net seed populates both NetUnitPrice and UnitPrice and that the update path drops the root element.
+     */
     @IsTest
     static void buildAmendSeedUpdate_seedsNetAndUnitPriceAndStripsRoot() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -41,6 +60,9 @@ private class AmendNetCarryPrehookTest {
         System.assertEquals(new List<Object>{ 'mid', '0QLLINE' }, updatePath(upd), 'root element stripped from dataPath');
     }
 
+    /**
+     * @description Verifies a unit-net seed is rounded HALF_UP to two decimal places.
+     */
     @IsTest
     static void buildAmendSeedUpdate_roundsHalfUpToTwoScale() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -49,6 +71,9 @@ private class AmendNetCarryPrehookTest {
         System.assert(((Decimal) attrValue(upd, 'NetUnitPrice')) == 6695.31, 'rounds HALF_UP to 2 scale');
     }
 
+    /**
+     * @description Verifies no seed entry is produced for a null wrapper, missing dataPath, or a null, zero, or negative prior net.
+     */
     @IsTest
     static void buildAmendSeedUpdate_nullOnBadInput() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -59,6 +84,9 @@ private class AmendNetCarryPrehookTest {
         System.assertEquals(null, hook.buildAmendSeedUpdate(new Map<String, Object>{ 'noPath' => true }, 100), 'no dataPath -> null');
     }
 
+    /**
+     * @description Verifies a total-only seed (null unit net) populates the four total attributes and no unit attributes.
+     */
     @IsTest
     static void buildAmendSeedUpdate_seedsTotalClusterOnly() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -73,6 +101,9 @@ private class AmendNetCarryPrehookTest {
         System.assertEquals(null, attrValue(upd, 'NetUnitPrice'), 'no unit attribute when unitNet null');
     }
 
+    /**
+     * @description Verifies supplying both unit net and line total seeds the unit attributes and the recomputed total cluster.
+     */
     @IsTest
     static void buildAmendSeedUpdate_seedsUnitAndTotalTogether() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -84,6 +115,9 @@ private class AmendNetCarryPrehookTest {
         System.assert(((Decimal) attrValue(upd, 'TotalLineAmount')) == 40000, 'total fallback set too');
     }
 
+    /**
+     * @description Verifies a total-only seed is rounded HALF_UP to two decimal places.
+     */
     @IsTest
     static void buildAmendSeedUpdate_totalRoundsHalfUp() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -92,6 +126,9 @@ private class AmendNetCarryPrehookTest {
         System.assert(((Decimal) attrValue(upd, 'NetTotalPrice')) == 40000.01, 'total rounds HALF_UP to 2 scale');
     }
 
+    /**
+     * @description Verifies no seed entry is produced when both unit net and line total are null or both zero.
+     */
     @IsTest
     static void buildAmendSeedUpdate_bothNull_returnsNull() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -103,6 +140,9 @@ private class AmendNetCarryPrehookTest {
             'zero unit and zero total -> null');
     }
 
+    /**
+     * @description Verifies query-result extraction unwraps the nested queryResult shape, returns a flat shape as-is, and yields null for null or unrelated responses.
+     */
     @IsTest
     static void extractQueryResult_handlesResponseShapes() {
         AmendNetCarryPrehook hook = new AmendNetCarryPrehook();
@@ -119,6 +159,9 @@ private class AmendNetCarryPrehookTest {
         System.assertEquals(null, hook.extractQueryResult(new Map<String, Object>{ 'other' => 1 }), 'unrelated -> null');
     }
 
+    /**
+     * @description Verifies that without a live pricing context seedAmendNets seeds nothing, returns zero, and never throws.
+     */
     @IsTest
     static void seedAmendNets_noContext_returnsZeroGracefully() {
         // No live pricing context in a unit test → queryTags fails, caught → empty → 0 seeded, never throws.

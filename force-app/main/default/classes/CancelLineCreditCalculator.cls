@@ -1,30 +1,15 @@
 /**
- * @description Pure cancellation/credit arithmetic + context-node shaping for the SC-3441
- *              cancel-line-credit posthook, extracted VERBATIM from `CancelLineCreditPosthook`
- *              (Wave-2 hook-thinning). No SOQL, no DML, no RCA context API — every method here
- *              operates only on already-fetched context tag maps / SObjects, so it is fully
- *              unit-testable. The hook stays a thin adapter: it does the context fetch, the
- *              read-only asset-net SOQL, and the context submit, and delegates all of the
- *              math/gating/node-shaping below.
- *
- *              WHAT LIVES HERE (pure):
- *                - parseLineNodes        — parse a queryTags(SalesTransactionItem) response
- *                - buildCreditUpdates    — negative-qty gating + credit = net * qty node updates
- *                - buildNodeUpdate / attr — the QLI field-API-name attribute payload shape
- *                - resolveScope          — Quote vs Order from the line record Id type
- *                - collectUnseededCancelLines — the negative-qty, un-staged lines needing asset-net
- *                - applyAssetNetSource   — fold one AssetActionSource row (Generate-wins-and-sticks)
- *                - resolveSeedNet        — currency-aware asset-net pick + lossy ListPrice fallback
- *                - tag/dataPath helpers  — getDecimalFromTag / getStringFromTag / lineIdFromDataPath /
- *                                          getDataPath / extractTagMap / extractFieldValue
- *
- *              STATE: `generateLocked` is per-instance (mirrors the hook's per-execute instance
- *              field) — the hook holds ONE calculator per execute so a Generate lock accumulates
- *              across the fold loop but never leaks between reprices. Do NOT make this static.
- *
- * @see CancelLineCreditPosthook (the adapter/seam owner)
- * @author Liam Jeong (SC-3441)
- * @date July 2026 (Wave-2 decomposition — extracted verbatim, behavior-preserving)
+ * @description Pure cancellation/credit arithmetic and context-node shaping for the
+ *              cancel-line-credit posthook, extracted verbatim from CancelLineCreditPosthook.
+ *              Performs no SOQL, DML, or RCA context API calls: every method operates only on
+ *              already-fetched context tag maps and SObjects, keeping the type fully unit-testable
+ *              while the hook stays a thin adapter over the context fetch, asset-net query, and
+ *              submit. Covers line-node parsing, negative-qty credit gating (credit = net * qty),
+ *              node-update payload shaping, Quote-vs-Order scope resolution, unseeded cancel-line
+ *              collection, asset-net folding (Generate-wins-and-sticks), currency-aware seed-net
+ *              resolution, and the dataPath/tag helpers. The generateLocked field is per-instance
+ *              by design and must not be made static.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class CancelLineCreditCalculator {
 
@@ -68,7 +53,12 @@ public with sharing class CancelLineCreditCalculator {
     // CREDIT BUILD — pure seam, negative-qty lines; staged net OR resolved asset net
     // ============================================================
 
-    /** Overload: no pre-resolved asset nets (already-seeded lines / pure-seam tests). */
+    /**
+     * @description Overload with no pre-resolved asset nets — for already-seeded lines and
+     *              pure-seam tests; delegates to the two-arg build with an empty net map.
+     * @param lineNodes The parsed SalesTransactionItem node list to build credit updates from.
+     * @return The list of context node updates for qualifying cancellation lines.
+     */
     public List<Map<String, Object>> buildCreditUpdates(List<Object> lineNodes) {
         return buildCreditUpdates(lineNodes, new Map<Id, Decimal>());
     }
@@ -80,6 +70,9 @@ public with sharing class CancelLineCreditCalculator {
      *              when that is null/<=0, the self-resolved asset NET in resolvedNetByLine
      *              (keyed by line Id). The credit written is net * qty (negative).
      *              Positive/zero-qty lines and lines with no net are skipped (no write).
+     * @param lineNodes The parsed SalesTransactionItem node list.
+     * @param resolvedNetByLine Self-resolved asset NET per line Id, used when no staged net exists.
+     * @return The list of context node updates for qualifying cancellation lines.
      */
     public List<Map<String, Object>> buildCreditUpdates(List<Object> lineNodes, Map<Id, Decimal> resolvedNetByLine) {
         List<Map<String, Object>> updates = new List<Map<String, Object>>();
@@ -135,6 +128,10 @@ public with sharing class CancelLineCreditCalculator {
      *              (fullDataPath.get(1), get(2)). Writes the per-unit net (positive) and
      *              the credit (negative) using the QLI FIELD API NAMES so the engine save
      *              persists them. Pure seam.
+     * @param dataPath The line's full dataPath (context path first, then rootId and lineId).
+     * @param cancelNet The positive per-unit net to write.
+     * @param credit The negative credit amount (net * qty) to write across the price fields.
+     * @return The node-update map (nodePath plus attributes) for this line.
      */
     public Map<String, Object> buildNodeUpdate(List<Object> dataPath, Decimal cancelNet, Decimal credit) {
         List<Object> updatePath = dataPath.clone();
@@ -154,6 +151,12 @@ public with sharing class CancelLineCreditCalculator {
         };
     }
 
+    /**
+     * @description Build a single context attribute payload entry (attributeName/attributeValue).
+     * @param name The QLI field API name to write.
+     * @param value The decimal value for that attribute.
+     * @return The attribute payload map.
+     */
     @TestVisible
     private Map<String, Object> attr(String name, Decimal value) {
         return new Map<String, Object>{ 'attributeName' => name, 'attributeValue' => value };
@@ -167,6 +170,8 @@ public with sharing class CancelLineCreditCalculator {
      * @description Pure parse of a queryTags(SalesTransactionItem) response into the
      *              raw node list. Handles {queryResult:{SalesTransactionItem:[...]}},
      *              the flatter {SalesTransactionItem:...}, and single-object cases.
+     * @param apiResponse The raw queryTags(SalesTransactionItem) response map.
+     * @return The raw node list, or null when the response has no items.
      */
     public List<Object> parseLineNodes(Map<String, Object> apiResponse) {
         if (apiResponse == null) {
@@ -200,6 +205,8 @@ public with sharing class CancelLineCreditCalculator {
      *              resolution. Positive/zero-qty and already-seeded lines are excluded (they
      *              need no SOQL). Captures the line's currency + ListPrice tags for the
      *              currency-aware pick.
+     * @param lineNodes The parsed SalesTransactionItem node list.
+     * @return The PendingLine carriers for negative-qty lines needing asset-net resolution.
      */
     public List<PendingLine> collectUnseededCancelLines(List<Object> lineNodes) {
         List<PendingLine> pending = new List<PendingLine>();
@@ -246,6 +253,8 @@ public with sharing class CancelLineCreditCalculator {
      *              Id SObjectType — robust, because dataPath[0] is the 64-char context path
      *              (NOT the root entity Id), so a prefix read of element 0 is wrong. Null
      *              when no node yields a Quote/Order line Id.
+     * @param lineNodes The parsed SalesTransactionItem node list.
+     * @return 'Quote', 'Order', or null when no node yields a Quote/Order line Id.
      */
     public String resolveScope(List<Object> lineNodes) {
         if (lineNodes == null) {
@@ -277,6 +286,8 @@ public with sharing class CancelLineCreditCalculator {
      *              A Generate row is sticky (only another Generate replaces it); a
      *              non-Generate row only replaces another non-Generate (newest-wins). Only
      *              positive nets fold, so a zero-net Generate can never lock a pair at 0.
+     * @param netByCurrency The asset-to-currency-to-net map being folded into (mutated in place).
+     * @param s The AssetActionSource row to fold.
      */
     public void applyAssetNetSource(Map<Id, Map<String, Decimal>> netByCurrency, AssetActionSource s) {
         if (s == null || s.AssetAction == null || s.AssetAction.AssetId == null) {
@@ -322,6 +333,11 @@ public with sharing class CancelLineCreditCalculator {
      *              no currency tag and the asset is single-currency; 3) LOSSY ListPrice
      *              fallback (> 0, already line-currency); else null. NEVER seeds a
      *              foreign-currency net.
+     * @param assetId The asset whose net is being resolved.
+     * @param lineCurrency The cancel line's transaction currency (may be blank).
+     * @param listPrice The line's catalog list price, used only as the lossy last-resort fallback.
+     * @param assetNetByCurrency The folded asset-to-currency-to-net map.
+     * @return The per-unit net to credit, or null when none is available.
      */
     public Decimal resolveSeedNet(Id assetId, String lineCurrency, Decimal listPrice,
                                   Map<Id, Map<String, Decimal>> assetNetByCurrency) {
@@ -354,6 +370,12 @@ public with sharing class CancelLineCreditCalculator {
     // DATAPATH / TAG HELPERS — same shape as the prehook
     // ============================================================
 
+    /**
+     * @description Extract the dataPath list from a context node, returning null when it is
+     *              absent or not a list.
+     * @param node The context node map.
+     * @return The dataPath element list, or null.
+     */
     @TestVisible
     private List<Object> getDataPath(Map<String, Object> node) {
         if (node == null) {
@@ -367,6 +389,8 @@ public with sharing class CancelLineCreditCalculator {
      * @description The line record Id is the LAST element of the dataPath (QuoteLineItem
      *              for a Quote, OrderItem for an Order). Null when the last element is not
      *              a valid Id — mirrors the prehook / COLA / QLDescription hooks.
+     * @param dataPath The line's dataPath element list.
+     * @return The line record Id, or null when the last element is not a valid Id.
      */
     public Id lineIdFromDataPath(List<Object> dataPath) {
         if (dataPath == null || dataPath.isEmpty()) {
@@ -375,10 +399,17 @@ public with sharing class CancelLineCreditCalculator {
         try {
             return Id.valueOf(String.valueOf(dataPath.get(dataPath.size() - 1)));
         } catch (Exception e) {
+            ExceptionLogger.log('CancelLineCreditCalculator', null, new CancelCreditException('lineIdFromDataPath failed', e));
             return null;
         }
     }
 
+    /**
+     * @description Extract the tag-value map from a node, unwrapping the nested {tagValue:...}
+     *              layout when present, else treating the node itself as the tag map.
+     * @param node The context node map.
+     * @return The tag-value map, or null.
+     */
     @TestVisible
     private Map<String, Object> extractTagMap(Map<String, Object> node) {
         if (node == null) {
@@ -391,11 +422,24 @@ public with sharing class CancelLineCreditCalculator {
         return node;
     }
 
+    /**
+     * @description Read a tag value as a String, or null when the tag is absent/null.
+     * @param tagMap The line's tag-value map.
+     * @param fieldName The tag/field name to read.
+     * @return The string value, or null.
+     */
     public String getStringFromTag(Map<String, Object> tagMap, String fieldName) {
         Object val = extractFieldValue(tagMap, fieldName);
         return val != null ? String.valueOf(val) : null;
     }
 
+    /**
+     * @description Read a tag value as a Decimal, coercing Integer/Long/Double/String forms and
+     *              returning null when the tag is absent or cannot be parsed.
+     * @param tagMap The line's tag-value map.
+     * @param fieldName The tag/field name to read.
+     * @return The decimal value, or null.
+     */
     public Decimal getDecimalFromTag(Map<String, Object> tagMap, String fieldName) {
         Object val = extractFieldValue(tagMap, fieldName);
         if (val == null) {
@@ -410,6 +454,7 @@ public with sharing class CancelLineCreditCalculator {
         try {
             return Decimal.valueOf(String.valueOf(val));
         } catch (Exception e) {
+            ExceptionLogger.log('CancelLineCreditCalculator', null, new CancelCreditException('getDecimalFromTag failed', e));
             return null;
         }
     }
@@ -417,6 +462,9 @@ public with sharing class CancelLineCreditCalculator {
     /**
      * @description Extract a raw tag value, handling both the nested {tagValue:...}
      *              wrapper and the flat value layout.
+     * @param tagMap The line's tag-value map.
+     * @param fieldName The tag/field name to read.
+     * @return The raw tag value, or null when absent.
      */
     @TestVisible
     private Object extractFieldValue(Map<String, Object> tagMap, String fieldName) {

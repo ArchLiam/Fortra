@@ -1,14 +1,9 @@
 /**
- * DocuSignEnvelopeServiceTest
- *
- * Coverage targets:
- *   - sendEnvelope(): success (201), failure (non-201), oversized PDF, filename w/ and w/o .pdf
- *   - Page count resolution: explicit override, auto-detect, fallback to MIN_FORTRA_PAGES
- *   - detectPdfPageCount(): null blob, oversized blob, normal blob
- *   - call(): valid action (with nested input/output maps, flat args), invalid action, exception path
- *   - sendEnvelopeInvocable(): pass-through to sendEnvelope
- *
- * All callout paths use HttpCalloutMock to avoid real DocuSign calls.
+ * @description Test coverage for DocuSignEnvelopeService: sendEnvelope success and error
+ * paths, page-count resolution (explicit override, auto-detect, MIN_FORTRA_PAGES fallback),
+ * detectPdfPageCount, the Callable dispatch (nested/flat args, invalid action, exception path),
+ * and the invocable Flow wrapper. All callout paths use HttpCalloutMock to avoid real DocuSign calls.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @IsTest
 private class DocuSignEnvelopeServiceTest {
@@ -23,6 +18,11 @@ private class DocuSignEnvelopeServiceTest {
             this.body = body;
         }
 
+        /**
+         * @description Returns a canned HttpResponse built from the configured status code and body.
+         * @param req The intercepted HttpRequest (unused).
+         * @return The mock HttpResponse.
+         */
         public HttpResponse respond(HttpRequest req) {
             HttpResponse res = new HttpResponse();
             res.setStatusCode(statusCode);
@@ -31,8 +31,13 @@ private class DocuSignEnvelopeServiceTest {
         }
     }
 
-    // ── Helper: create a ContentVersion and return its Id ────────────────
-    // Title deliberately omits .pdf to exercise the filename-append branch.
+    /**
+     * @description Inserts a ContentVersion with the given title and body and returns its Id;
+     * callers pass a title with or without .pdf to exercise the filename-append branch.
+     * @param title The document title, also used as PathOnClient.
+     * @param body The file content as a Blob.
+     * @return The Id of the inserted ContentVersion.
+     */
     private static Id createTestContentVersion(String title, Blob body) {
         ContentVersion cv = new ContentVersion(
             Title = title,
@@ -43,16 +48,19 @@ private class DocuSignEnvelopeServiceTest {
         return [SELECT Id FROM ContentVersion WHERE Id = :cv.Id].Id;
     }
 
-    // Convenience: small valid-ish blob (no real PDF structure needed for
-    // most tests — page detection will just return 0, which triggers the
-    // MIN_FORTRA_PAGES fallback).
+    /**
+     * @description Returns a small placeholder Blob with no real PDF structure, so page
+     * detection returns 0 and callers exercise the MIN_FORTRA_PAGES fallback.
+     * @return A small Blob used as fake PDF content.
+     */
     private static Blob smallBlob() {
         return Blob.valueOf('fake-pdf-content');
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // sendEnvelope — 201 success, explicit pageCount, title already has .pdf
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies sendEnvelope returns success on a 201 response, passes an explicit
+     * pageCount through unchanged, and handles a title that already ends in .pdf.
+     */
     @IsTest
     static void testSendEnvelope_Success_ExplicitPageCount() {
         Id cvId = createTestContentVersion('TestQuote.pdf', smallBlob());
@@ -71,10 +79,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals(3, result.get('pageCount'), 'Explicit pageCount should pass through');
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // sendEnvelope — 201 success, auto-detect falls back to MIN_FORTRA_PAGES,
-    // title lacks .pdf so filename branch appends it
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies sendEnvelope with a null pageCount auto-detects, falls back to
+     * MIN_FORTRA_PAGES when no PDF markers are present, and appends .pdf to a title lacking it.
+     */
     @IsTest
     static void testSendEnvelope_Success_AutoDetectFallback() {
         // Title without .pdf extension exercises the append branch
@@ -93,9 +101,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals(2, result.get('pageCount'), 'Should fall back to MIN_FORTRA_PAGES');
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // sendEnvelope — non-201 error response
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies sendEnvelope reports failure and surfaces the status code and error
+     * message when DocuSign returns a non-201 response.
+     */
     @IsTest
     static void testSendEnvelope_ErrorResponse() {
         Id cvId = createTestContentVersion('TestQuote.pdf', smallBlob());
@@ -118,17 +127,17 @@ private class DocuSignEnvelopeServiceTest {
     // exceeds the synchronous Apex heap limit. The ContentSize > 4000000
     // guard is 3 uncovered lines; remaining tests still land well above 90%.
 
-    // ─────────────────────────────────────────────────────────────────────
-    // detectPdfPageCount — null blob
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies detectPdfPageCount returns 0 when given a null blob.
+     */
     @IsTest
     static void testDetectPdfPageCount_Null() {
         System.assertEquals(0, DocuSignEnvelopeService.detectPdfPageCount(null));
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // detectPdfPageCount — oversized blob returns 0
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies detectPdfPageCount returns 0 when the blob exceeds MAX_DETECT_BYTES.
+     */
     @IsTest
     static void testDetectPdfPageCount_Oversized() {
         // 2 MB + 1 byte exceeds MAX_DETECT_BYTES
@@ -136,9 +145,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals(0, DocuSignEnvelopeService.detectPdfPageCount(big));
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // Callable — valid sendEnvelope with nested input/output maps
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the Callable sendEnvelope action succeeds with nested input/output
+     * maps and populates both the return map and the supplied output map.
+     */
     @IsTest
     static void testCallable_SendEnvelope_NestedMaps() {
         Id cvId = createTestContentVersion('Quote.pdf', smallBlob());
@@ -170,10 +180,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals('env-789', output.get('envelopeId'));
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // Callable — valid sendEnvelope with flat args (no nested input key)
-    // Covers the branch where args IS the input map directly
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the Callable sendEnvelope action succeeds when args is the input map
+     * directly, covering the branch with no nested input key.
+     */
     @IsTest
     static void testCallable_SendEnvelope_FlatArgs() {
         Id cvId = createTestContentVersion('Quote.pdf', smallBlob());
@@ -197,9 +207,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals(true, retMap.get('success'));
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // Callable — invalid action → exception path, error returned
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the Callable returns an error result and populates the output map
+     * when an unrecognized action name is supplied.
+     */
     @IsTest
     static void testCallable_InvalidAction() {
         Map<String, Object> input = new Map<String, Object>();
@@ -219,10 +230,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals(false, output.get('success'));
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // Callable — exception path when output key exists but is not a Map
-    // Exercises the else-branch that creates a new output map
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the Callable replaces a non-Map output value with a new Map when an
+     * error occurs, exercising the else-branch that creates the output map.
+     */
     @IsTest
     static void testCallable_OutputNotMap() {
         Map<String, Object> input = new Map<String, Object>();
@@ -241,10 +252,10 @@ private class DocuSignEnvelopeServiceTest {
             'Should replace non-Map output with a real Map');
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // Callable — pageCount as non-numeric string (e.g. "%pageCount%"
-    // OmniStudio merge token that didn't resolve). Should be treated as null.
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the Callable treats a non-numeric pageCount (an unresolved OmniStudio
+     * merge token such as "%pageCount%") as null and still succeeds.
+     */
     @IsTest
     static void testCallable_PageCountUnresolvedMerge() {
         Id cvId = createTestContentVersion('Quote.pdf', smallBlob());
@@ -273,9 +284,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals(true, retMap.get('success'));
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // InvocableMethod — exercises the Flow wrapper
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the invocable Flow wrapper sendEnvelopeInvocable returns a successful
+     * EnvelopeResult carrying the envelope id.
+     */
     @IsTest
     static void testInvocable() {
         Id cvId = createTestContentVersion('FlowQuote.pdf', smallBlob());
@@ -301,9 +313,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertEquals('env-flow', results[0].envelopeId);
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // InvocableMethod — error response propagates to EnvelopeResult
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies the invocable Flow wrapper propagates a callout error into the
+     * EnvelopeResult with success false and a non-null error message.
+     */
     @IsTest
     static void testInvocable_Error() {
         Id cvId = createTestContentVersion('FlowQuote.pdf', smallBlob());
@@ -327,10 +340,10 @@ private class DocuSignEnvelopeServiceTest {
         System.assertNotEquals(null, results[0].errorMessage);
     }
 
-    // ─────────────────────────────────────────────────────────────────────
-    // sendEnvelope — pageCount = 0 passed explicitly should still
-    // trigger auto-detect path (only pageCount > 0 is treated as override)
-    // ─────────────────────────────────────────────────────────────────────
+    /**
+     * @description Verifies an explicit pageCount of 0 is not treated as an override but triggers
+     * auto-detect, which then falls back to MIN_FORTRA_PAGES.
+     */
     @IsTest
     static void testSendEnvelope_ZeroPageCountTriggersAutoDetect() {
         Id cvId = createTestContentVersion('Quote', smallBlob());

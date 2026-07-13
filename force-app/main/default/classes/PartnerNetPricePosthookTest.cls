@@ -611,8 +611,12 @@ private class PartnerNetPricePosthookTest {
         System.assertNotEquals(null, updatePayload, 'Should commit COLA net when procedure net is zero');
         Map<String, Object> attrs = attributesByName(updatePayload);
         System.assertEquals(10089, attrs.get('NetUnitPrice'));
-        System.assertEquals(10089, attrs.get('UnitPrice'));
         System.assertEquals(10089, attrs.get('NetTotalPrice'));
+        // SC-3350: input-oriented UnitPrice/InputUnitPrice are omitted from the commit batch —
+        // including an input-type attribute silently poisons the whole updateContextAttributes
+        // node batch, which was discarding the committed NetUnitPrice.
+        System.assertEquals(null, attrs.get('UnitPrice'), 'UnitPrice must not be in the commit batch');
+        System.assertEquals(null, attrs.get('InputUnitPrice'), 'InputUnitPrice must not be in the commit batch');
     }
 
     @IsTest
@@ -970,6 +974,61 @@ private class PartnerNetPricePosthookTest {
         System.assertEquals('System Calculated (Post-Procedure)', maintenance.Partner_Pricing_Source__c);
     }
 
+    /**
+     * @description Bulk-verifies the interim untagged-tier default: New-Maintenance lines that carry no
+     *              Maintenance Type Defn attribute (their product classification models no tier) now resolve
+     *              the default Standard rate through loadNewMaintenanceLines instead of being skipped to $0.
+     */
+    @IsTest
+    static void loadNewMaintenanceLines_appliesUntaggedStandardDefault() {
+        Account acct = new Account(Name = 'Untagged Maint Account');
+        insert acct;
+        Opportunity opp = new Opportunity(AccountId = acct.Id, Name = 'Untagged Maint Opp',
+            StageName = 'Pre-Qualified', CloseDate = Date.today().addDays(30));
+        insert opp;
+        Id stdPB = Test.getStandardPricebookId();
+        Quote q = new Quote(Name = 'Untagged Maint Quote', OpportunityId = opp.Id,
+            Pricebook2Id = stdPB, Quote_Type__c = 'New');
+        insert q;
+        createQuoteChecklist(q.Id);
+
+        List<Product2> prods = new List<Product2>();
+        for (Integer i = 0; i < 25; i++) {
+            prods.add(new Product2(Name = 'Untagged Maint Product ' + i,
+                ProductCode = 'UNM-' + i + '-' + String.valueOf(Crypto.getRandomInteger()),
+                IsActive = true, Fortra_Product_Type__c = 'New Maintenance'));
+        }
+        insert prods;
+        List<PricebookEntry> pbes = new List<PricebookEntry>();
+        for (Product2 p : prods) {
+            pbes.add(new PricebookEntry(Pricebook2Id = stdPB, Product2Id = p.Id, UnitPrice = 0, IsActive = true));
+        }
+        insert pbes;
+        List<QuoteLineItem> qlis = new List<QuoteLineItem>();
+        for (Integer i = 0; i < prods.size(); i++) {
+            qlis.add(new QuoteLineItem(QuoteId = q.Id, PricebookEntryId = pbes[i].Id,
+                Product2Id = prods[i].Id, Quantity = 1, UnitPrice = 0,
+                Base_Price__c = 355, Source_List_Price__c = 355,
+                Fortra_Product_Type__c = 'New Maintenance'));
+        }
+        insert qlis;
+
+        Set<Id> lineIds = new Map<Id, QuoteLineItem>(qlis).keySet();
+
+        Test.startTest();
+        Map<Id, PartnerNetPricePosthook.NewMaintInputs> loaded =
+            new PartnerNetPricePosthook().loadNewMaintenanceLines(lineIds);
+        Test.stopTest();
+
+        System.assertEquals(qlis.size(), loaded.size(),
+            'Every untagged New-Maintenance line should resolve via the default tier; none skipped');
+        for (Id lineId : lineIds) {
+            System.assert(loaded.containsKey(lineId), 'Untagged line ' + lineId + ' must not be skipped');
+            System.assertEquals(0.20, loaded.get(lineId).rate,
+                'Untagged New-Maintenance line should price at the default Standard rate (0.20)');
+        }
+    }
+
     private static QuoteLineItem insertNewMaintQli() {
         Account acct = new Account(Name = 'NB Maint Build Account');
         insert acct;
@@ -1063,10 +1122,62 @@ private class PartnerNetPricePosthookTest {
         System.assertEquals(0.20, rates.get('Standard'), 'Standard maintenance rate is 0.20');
     }
 
+    /**
+     * @description SC-3346 commit-layer override: resolveFirstRenewalMaintenanceColaNet recomputes the
+     *              committed net for a born first-renewal maintenance line from the asset + carried prior
+     *              discount dollars (netted once), and returns null for RRM / non-Renew so their existing
+     *              COLACalculatedPrice__c commit is untouched. JSON-hydrated lines (no DML).
+     */
     @IsTest
-    static void loadNewMaintenanceLines_skipsLineWithoutResolvableRate() {
+    static void resolveFirstRenewalMaintenanceColaNet_overridesOnlyFirstRenewalMaintenance() {
+        PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
+
+        QuoteLineItem rnm = (QuoteLineItem) JSON.deserialize(JSON.serialize(new Map<String, Object>{
+            'attributes' => new Map<String, Object>{ 'type' => 'QuoteLineItem' },
+            'Prior_Partner_Discount__c' => 10.65, 'Prior_Discretionary_Discount__c' => 0,
+            'Discount' => 0, 'COLA_Uplift_Percent__c' => 7.85,
+            'QuoteAction' => renewMaintQuoteAction(71, 1, 'New Maintenance')
+        }), QuoteLineItem.class);
+        System.assertEquals(65.09, posthook.resolveFirstRenewalMaintenanceColaNet(rnm),
+            'First-renewal maint nets prior partner off the asset gross: (71-10.65)x1.0785');
+
+        QuoteLineItem discretionary = (QuoteLineItem) JSON.deserialize(JSON.serialize(new Map<String, Object>{
+            'attributes' => new Map<String, Object>{ 'type' => 'QuoteLineItem' },
+            'Prior_Partner_Discount__c' => 600, 'Prior_Discretionary_Discount__c' => 20,
+            'Discount' => 10, 'COLA_Uplift_Percent__c' => 7.85,
+            'QuoteAction' => renewMaintQuoteAction(4000, 1, 'New Maintenance')
+        }), QuoteLineItem.class);
+        System.assertEquals(3645.33, posthook.resolveFirstRenewalMaintenanceColaNet(discretionary),
+            'Discretionary first-renewal nets both prior $ discounts once: (4000-600-20)x1.0785 (not 660.04)');
+
+        QuoteLineItem rrm = (QuoteLineItem) JSON.deserialize(JSON.serialize(new Map<String, Object>{
+            'attributes' => new Map<String, Object>{ 'type' => 'QuoteLineItem' },
+            'Prior_Partner_Discount__c' => 8.52, 'COLA_Uplift_Percent__c' => 7.85,
+            'QuoteAction' => renewMaintQuoteAction(60.64, 1, 'Renewal Maintenance')
+        }), QuoteLineItem.class);
+        System.assertEquals(null, posthook.resolveFirstRenewalMaintenanceColaNet(rrm),
+            'RRM excluded -> null (its single-component COLACalc commit is untouched)');
+    }
+
+    private static Map<String, Object> renewMaintQuoteAction(Decimal assetPrice, Decimal assetQty, String assetProductType) {
+        return new Map<String, Object>{
+            'attributes' => new Map<String, Object>{ 'type' => 'QuoteAction' },
+            'Type' => 'Renew',
+            'SourceAsset' => new Map<String, Object>{
+                'attributes' => new Map<String, Object>{ 'type' => 'Asset' },
+                'Price' => assetPrice, 'Quantity' => assetQty,
+                'Product2' => new Map<String, Object>{
+                    'attributes' => new Map<String, Object>{ 'type' => 'Product2' },
+                    'Fortra_Product_Type__c' => assetProductType }
+            }
+        };
+    }
+
+    @IsTest
+    static void loadNewMaintenanceLines_defaultsUntaggedLineToStandard() {
         // A New-Maintenance line with a source price but NO 'Maintenance Type Defn' attribute
-        // cannot resolve a rate -> it is not eligible for the fallback.
+        // (its product classification models no maintenance tier) resolves the interim Standard
+        // default instead of being skipped to $0.
         Account acct = new Account(Name = 'NB Maint Load Account');
         insert acct;
         Opportunity opp = new Opportunity(AccountId = acct.Id, Name = 'NB Maint Load Opp',
@@ -1092,8 +1203,10 @@ private class PartnerNetPricePosthookTest {
         PartnerNetPricePosthook posthook = new PartnerNetPricePosthook();
         Map<Id, PartnerNetPricePosthook.NewMaintInputs> loaded =
             posthook.loadNewMaintenanceLines(new Set<Id>{ qli.Id });
-        System.assertEquals(0, loaded.size(),
-            'No Maintenance Type Defn attribute -> no rate -> line skipped');
+        System.assertEquals(1, loaded.size(),
+            'Untagged New-Maintenance line resolves the default tier and is not skipped');
+        System.assertEquals(0.20, loaded.get(qli.Id).rate,
+            'Untagged line applies the default Standard rate (0.20)');
     }
 
     @IsTest

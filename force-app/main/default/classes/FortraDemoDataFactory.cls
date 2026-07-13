@@ -1,24 +1,11 @@
 /**
- * FortraDemoDataFactory
- *
- * Generates realistic demo data for 4 Fortra quote document templates.
- * Designed for sandbox use only — idempotent via cleanup before insert.
- *
- * Usage (Execute Anonymous):
-    FortraDemoDataFactory.run();
- *
- * Cleanup:
-    FortraDemoDataFactory.cleanup();
- *
- * ⚠️  Verify picklist values before running:
- *   - Fortra_Product_Type__c   : 'Software' | 'Subscription' | 'Renewal Maintenance' | 'Services'
- *   - Quote_Type__c            : 'New' | 'Renewal'
- *   - Net_Terms__c             : 'Net 30' | 'Net 60' | 'Net 90'
- *   - Show_Hide_Discounts__c   : 'Show' | 'Hide'
- *   - Header_Discount_Type__c  : 'Percentage' | 'Amount'
- *   - Hardware_Group_Type__c   : 'iSeries'
- *   - Server_Type__c           : 'iSeries'
- *   - Hardware__c.Status__c    : 'Active'
+ * @description Generates realistic, idempotent demo data (accounts, places, products,
+ * pricebook entries, opportunities, quotes, hardware, line groups, and line items) across
+ * four Fortra quote document template scenarios for sandbox use; cleans up prior demo
+ * records before each run and relies on specific picklist values (Fortra_Product_Type__c,
+ * Quote_Type__c, Net_Terms__c, Show_Hide_Discounts__c, Header_Discount_Type__c,
+ * Server_Type__c, Hardware__c.Status__c) existing in the target org.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class FortraDemoDataFactory {
 
@@ -26,6 +13,11 @@ public with sharing class FortraDemoDataFactory {
     private static final String DEMO_TAG = '[FORTRA-DEMO]';
 
     // ── Entry point ─────────────────────────────────────────────────────
+    /**
+     * @description Entry point that rebuilds the full demo data set: purges any existing
+     * demo records, then inserts accounts, places, products, pricebook entries,
+     * opportunities, quotes, hardware, line groups, and line items, and logs a summary.
+     */
     public static void run() {
         cleanup();
 
@@ -45,6 +37,11 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── Cleanup — removes all records tagged with DEMO_TAG ──────────────
+    /**
+     * @description Deletes every demo record identified by the DEMO_TAG marker, cascading
+     * from child to parent (line items, line groups, quotes, opportunities, hardware,
+     * places, pricebook entries, products, accounts) to satisfy referential dependencies.
+     */
     public static void cleanup() {
         delete [SELECT Id FROM QuoteLineItem
                 WHERE Quote.Name LIKE :('%' + DEMO_TAG + '%')];
@@ -69,11 +66,19 @@ public with sharing class FortraDemoDataFactory {
     // PRIVATE HELPERS
     // ────────────────────────────────────────────────────────────────────
 
+    /**
+     * @description Queries and returns the org's standard pricebook.
+     * @return The standard Pricebook2 record.
+     */
     private static Pricebook2 getStandardPricebook() {
         return [SELECT Id FROM Pricebook2 WHERE IsStandard = true LIMIT 1];
     }
 
     // ── ACCOUNTS ─────────────────────────────────────────────────────────
+    /**
+     * @description Inserts the four demo accounts (one per scenario) tagged with DEMO_TAG.
+     * @return The inserted list of Account records.
+     */
     private static List<Account> insertAccounts() {
         List<Account> records = new List<Account>{
             new Account(
@@ -102,6 +107,12 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── PLACES ───────────────────────────────────────────────────────────
+    /**
+     * @description Inserts demo Places__c address records linked to the given accounts,
+     * including two locations for the renewal (banking) account.
+     * @param accounts The demo accounts the places are associated with.
+     * @return The inserted list of Places__c records.
+     */
     private static List<Places__c> insertPlaces(List<Account> accounts) {
         List<Places__c> records = new List<Places__c>{
             new Places__c(
@@ -155,6 +166,11 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── PRODUCTS ─────────────────────────────────────────────────────────
+    /**
+     * @description Inserts the demo Product2 catalog covering all four scenarios (software,
+     * subscription, renewal maintenance, and services), each tagged with DEMO_TAG.
+     * @return The inserted list of Product2 records in scenario order.
+     */
     private static List<Product2> insertProducts() {
         List<Product2> records = new List<Product2>{
 
@@ -259,6 +275,12 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── PRICEBOOK ENTRIES ────────────────────────────────────────────────
+    /**
+     * @description Inserts standard-pricebook entries with list prices for each demo product.
+     * @param pbId The standard pricebook Id the entries belong to.
+     * @param p The demo products, positionally mapped to their unit prices.
+     * @return The inserted list of PricebookEntry records aligned to the product order.
+     */
     private static List<PricebookEntry> insertPricebookEntries(Id pbId, List<Product2> p) {
         List<PricebookEntry> records = new List<PricebookEntry>{
             // Scenario 1 - Software
@@ -282,6 +304,11 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── OPPORTUNITIES ────────────────────────────────────────────────────
+    /**
+     * @description Inserts one demo opportunity per account at the Proposal/Price Quote stage.
+     * @param accts The demo accounts each opportunity is associated with.
+     * @return The inserted list of Opportunity records.
+     */
     private static List<Opportunity> insertOpportunities(List<Account> accts) {
         List<Opportunity> records = new List<Opportunity>{
             new Opportunity(
@@ -318,6 +345,14 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── QUOTES ───────────────────────────────────────────────────────────
+    /**
+     * @description Inserts one demo quote per opportunity, each configured for its scenario
+     * with the appropriate quote type, terms, discount display, and bill-to/ship-to places.
+     * @param pbId The standard pricebook Id assigned to each quote.
+     * @param opps The demo opportunities each quote is linked to.
+     * @param places The demo places used for bill-to and ship-to references.
+     * @return The inserted list of Quote records.
+     */
     private static List<Quote> insertQuotes(
         Id pbId,
         List<Opportunity> opps,
@@ -401,6 +436,12 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── HARDWARE (Scenario 3 only) ───────────────────────────────────────
+    /**
+     * @description Inserts the two demo iSeries/Power hardware records used by the renewal
+     * maintenance scenario for the given account.
+     * @param acct The account the hardware records belong to.
+     * @return The inserted list of Hardware__c records.
+     */
     private static List<Hardware__c> insertHardware(Account acct) {
         List<Hardware__c> records = new List<Hardware__c>{
             new Hardware__c(
@@ -435,6 +476,13 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── QUOTE LINE GROUPS (Scenario 3 only) ──────────────────────────────
+    /**
+     * @description Inserts hardware-scoped quote line groups on the renewal quote, one per
+     * hardware system, with the renewal term start and end dates.
+     * @param quoteId The renewal quote the line groups belong to.
+     * @param hw The demo hardware records each group is associated with.
+     * @return The inserted list of QuoteLineGroup records.
+     */
     private static List<QuoteLineGroup> insertLineGroups(Id quoteId, List<Hardware__c> hw) {
         Date rnwStart = Date.newInstance(2026, 7, 1);
         Date rnwEnd   = Date.newInstance(2027, 6, 30);
@@ -463,6 +511,14 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── QUOTE LINE ITEMS ─────────────────────────────────────────────────
+    /**
+     * @description Inserts the quote line items for all four scenarios, applying scenario-
+     * specific quantities, discounts, service dates, LPAR details, and hardware/group links.
+     * @param quotes The demo quotes the line items are added to.
+     * @param pbes The pricebook entries supplying each line's product and unit price.
+     * @param groups The renewal quote line groups the maintenance lines are placed under.
+     * @param hardware The hardware records referenced by the renewal maintenance lines.
+     */
     private static void insertLineItems(
         List<Quote> quotes,
         List<PricebookEntry> pbes,
@@ -640,6 +696,11 @@ public with sharing class FortraDemoDataFactory {
     }
 
     // ── SUMMARY ──────────────────────────────────────────────────────────
+    /**
+     * @description Writes a formatted debug-log summary of the created demo quotes,
+     * including their record Ids and per-scenario totals, discounts, and terms.
+     * @param quotes The demo quotes to report on.
+     */
     private static void printSummary(List<Quote> quotes) {
         System.debug('');
         System.debug('╔══════════════════════════════════════════════════════════════╗');

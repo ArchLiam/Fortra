@@ -31,6 +31,9 @@ public with sharing class RenewalAssetQuantityHandler {
      * @description Called from QuoteLineItem after insert. Defers normalization until PST completes.
      */
     public static void enqueueQuantityNormalization(List<QuoteLineItem> newLines) {
+        if (RenewalMaintenanceProvisionService.bypass) {
+            return; // suppress re-entrant enqueue while the provisioner is replacing carryover lines
+        }
         if (newLines == null || newLines.isEmpty()) {
             return;
         }

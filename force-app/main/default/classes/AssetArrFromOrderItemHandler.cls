@@ -9,6 +9,7 @@
  *              Traversal mirrors the flow exactly: Asset -> AssetAction (by AssetId) ->
  *              AssetActionSource (by AssetActionId) -> OrderItem (by ReferenceEntityItemId). Only
  *              writes when the OrderItem ARR is non-null and differs from the current Asset.ARR__c.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class AssetArrFromOrderItemHandler {
 
@@ -16,6 +17,13 @@ public with sharing class AssetArrFromOrderItemHandler {
     @TestVisible
     private static Set<Id> processedAssetIds = new Set<Id>();
 
+    /**
+     * @description Traverses Asset -> AssetAction -> AssetActionSource -> OrderItem for the given
+     *              Assets and copies each source OrderItem's Order_Line_ARR__c onto Asset.ARR__c,
+     *              writing only when the source ARR is non-null and differs from the current value.
+     *              Uses a recursion guard so the resulting Asset update does not re-fire the handler.
+     * @param triggerNew The list of Asset records from the after-insert/after-update trigger context.
+     */
     public static void copyArrFromOrderItem(List<Asset> triggerNew) {
         if (triggerNew == null || triggerNew.isEmpty()) {
             return;

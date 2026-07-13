@@ -1,22 +1,11 @@
 /**
  * @description Before-insert guard that corrects a QuoteLineItem's PricebookEntryId when the
- *              resolved PBE's currency differs from the parent Quote's currency.
- * @author Claude Code
- * @date 2026-07-09
- *
- * SC-3384 (multi-currency configured pricing). The managed RLM auto-add — e.g. the Year-1/Year-2
- * maintenance ProductConfigurationRules that add PIAMBK by Product2 Id (14OWC0000027izF2AQ /
- * 14OWC0000022Eyb2AE) — resolves a PricebookEntry WITHOUT a currency filter, so on a non-USD quote
- * it can pick the USD PBE. The platform then rejects the save with:
- *   "The price book entry currency code is different than the one assigned to the Quote.: Price Book Entry ID"
- *
- * Salesforce order-of-execution runs before-insert triggers (step 4) BEFORE the native
- * currency-consistency system validation (step 5), so re-pointing PricebookEntryId here — to the
- * SAME Product2 + Pricebook2 + ProductSellingModel in the Quote's currency — passes that validation.
- *
- * No-op for any line whose PBE currency already matches the quote (the happy path) => 0-delta.
- * If no matching-currency PBE exists (a genuine data gap), the line is left untouched and the
- * platform's native validation still fires — the guard never masks a missing-PBE data problem.
+ *              resolved PricebookEntry's currency differs from the parent Quote's currency,
+ *              re-pointing it to the equivalent PBE (same Product2, Pricebook2, and
+ *              ProductSellingModel) in the Quote's currency so the native currency-consistency
+ *              validation passes; lines that already match are a no-op and lines with no
+ *              matching-currency PBE are left untouched for the platform's native validation.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class QuoteLineItemCurrencyCorrectionHandler {
 
@@ -122,6 +111,15 @@ public with sharing class QuoteLineItemCurrencyCorrectionHandler {
         }
     }
 
+    /**
+     * @description Builds the pipe-delimited composite key that identifies a PricebookEntry's
+     *              currency siblings by product, book, selling model, and currency.
+     * @param productId Product2 Id component of the key.
+     * @param bookId Pricebook2 Id component of the key.
+     * @param psmId ProductSellingModel Id component of the key.
+     * @param currencyIso ISO currency code component of the key.
+     * @return The pipe-delimited composite key string.
+     */
     private static String buildKey(Id productId, Id bookId, Id psmId, String currencyIso) {
         return String.valueOf(productId) + '|' + String.valueOf(bookId) + '|'
             + String.valueOf(psmId) + '|' + currencyIso;

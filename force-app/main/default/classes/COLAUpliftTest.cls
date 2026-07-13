@@ -853,6 +853,8 @@ private class COLAUpliftTest {
             'A direct year-1 COLA override must survive the update, not be reset to the CMDT default');
         System.assertEquals('Line Override', qli.COLA_Source__c,
             'A year-1 override must promote COLA_Source to Line Override');
+        System.assertEquals(lineOverridePct, qli.UnitPriceUplift,
+            'SC-3350: UnitPriceUplift must track the overridden COLA %, so the rep override flows to the committed net');
     }
 
     /**
@@ -1346,12 +1348,68 @@ private class COLAUpliftTest {
             'With no Contract override, a CMDT-matched renewal line should resolve to CMDT Lookup');
         System.assertEquals(cmdtDefault, qli.COLA_Uplift_Percent__c,
             'Tier-3 should apply the CMDT default percent for the category');
+        System.assertEquals(cmdtDefault, qli.UnitPriceUplift,
+            'SC-3350: UnitPriceUplift input must mirror the COLA % so the Price Revision element commits the net');
         System.assertEquals(cmdtCategory, qli.COLA_Solution_Category__c,
             'Solution Category should be copied from the SourceAsset Product2');
         System.assertEquals(assetPrice, qli.Pre_COLA_Price__c,
             'Pre-COLA price should be the SourceAsset price');
         System.assertEquals(assetPrice * (1 + (cmdtDefault / 100)), qli.UnitPrice,
             'UnitPrice should be the asset price uplifted by the CMDT default');
+    }
+
+    /**
+     * @description SC-3346/SC-3501 quantity-fold regression: when the renewal SourceAsset carries
+     *              Quantity > 1, Asset.Price is the EXTENDED line total, so the born (before-insert)
+     *              UnitPrice must be the PER-UNIT COLA'd price, not the extended total uplifted.
+     *              Mirrors the live ES-SEG escape (Asset.Price 150,000 / qty 100 = 1,500 per unit;
+     *              the pre-fix handler committed 157,500/unit, which reached an activated Workday
+     *              order). Proves Pre_COLA_Price and UnitPrice are per-unit after the fix, and the
+     *              qty-1 path (testHandleBeforeInsert_RenewalCMDTLookup) still divides by 1 unchanged.
+     */
+    @isTest
+    static void testHandleBeforeInsert_RenewalQuantityFold() {
+        COLA_Uplift_Rules__mdt rule = firstActiveCMDTRule();
+        String cmdtCategory = rule.Solution_Category__c;
+        Decimal cmdtDefault = rule.Default_Uplift_Percent__c;
+        Integer assetQty = 100;
+        Decimal perUnitPrice = 1500;
+        Decimal extendedPrice = perUnitPrice * assetQty; // 150,000 — the stored (extended) Asset.Price
+
+        Account acct = [SELECT Id FROM Account WHERE Name = 'Test COLA Account' LIMIT 1];
+        Opportunity opp = new Opportunity(
+            Name = 'COLA Renewal Opp QtyFold', AccountId = acct.Id,
+            StageName = 'Prospecting', CloseDate = Date.today().addDays(30));
+        insert opp;
+        Quote renewalQuote = new Quote(Name = 'COLA Renewal Quote QtyFold', OpportunityId = opp.Id);
+        insert renewalQuote;
+
+        Product2 prod = new Product2(
+            Name = 'COLA Renewal Product QtyFold', ProductCode = 'COLA-RNW-QTY',
+            IsActive = true, Solution_Category__c = cmdtCategory);
+        insert prod;
+
+        Asset srcAsset = new Asset(
+            Name = 'COLA Renewal Asset QtyFold', AccountId = acct.Id, Product2Id = prod.Id,
+            Price = extendedPrice, Quantity = assetQty, Status = 'Installed');
+        insert srcAsset;
+
+        QuoteAction qa = new QuoteAction(
+            QuoteId = renewalQuote.Id, Type = 'Renew', SourceAssetId = srcAsset.Id);
+        insert qa;
+
+        QuoteLineItem qli = new QuoteLineItem(QuoteActionId = qa.Id);
+
+        Test.startTest();
+        COLAUpliftHandler.handleBeforeInsert(new List<QuoteLineItem>{ qli });
+        Test.stopTest();
+
+        System.assertEquals(perUnitPrice, qli.Pre_COLA_Price__c,
+            'Pre-COLA base must be the PER-UNIT price (Asset.Price / Quantity), not the extended total');
+        System.assertEquals(perUnitPrice * (1 + (cmdtDefault / 100)), qli.UnitPrice,
+            'UnitPrice must be the per-unit price uplifted by COLA, not the quantity-inflated extended total');
+        System.assertNotEquals(extendedPrice, qli.Pre_COLA_Price__c,
+            'Pre-COLA base must NOT be the extended Asset.Price (that was the quantity-fold bug)');
     }
 
     /**
@@ -2534,10 +2592,12 @@ private class COLAUpliftTest {
         return (QuoteLineItem) JSON.deserialize(JSON.serialize(m), QuoteLineItem.class);
     }
 
-    /** First active CMDT category that getCOLARulesMap actually resolves today (active + effective). */
+    /** First active CMDT category that getCOLARulesMap resolves today with a POSITIVE rate
+     *  (active + effective + > 0), so the SC-3350 net seed's colaPercent>0 gate can fire. */
     private static String firstResolvedCategory(Map<String, COLA_Uplift_Rules__mdt> rulesMap) {
         for (String k : rulesMap.keySet()) {
-            if (rulesMap.get(k).Default_Uplift_Percent__c != null) return k;
+            Decimal pct = rulesMap.get(k).Default_Uplift_Percent__c;
+            if (pct != null && pct > 0) return k;
         }
         return null;
     }
@@ -2572,10 +2632,13 @@ private class COLAUpliftTest {
 
     /**
      * @description SC-3350 net-price fix: the guard inside buildLineItemUpdates. The seed must
-     *              (a) FIRE for a non-maintenance renewal line whose stored net is 0/null, with
-     *              the seeded NetUnitPrice equal to that line's COLA-adjusted price; and SKIP for
-     *              (b) maintenance lines (owned by the SC-3346 stamped path) and (c) lines whose
-     *              stored net is already > 0 (never clobber a computed/discounted net).
+     *              FIRE for a non-maintenance renewal line whose stored net is (a) 0/null,
+     *              (d) still at the un-COLA'd base (== asset price — the core SC-3350 regression:
+     *              the engine re-derives net to the prior value every reprice so COLA never lands
+     *              on the net), or (e) already at the COLA-adjusted value (idempotent re-seed);
+     *              and SKIP for (b) maintenance lines (owned by the SC-3346 stamped path) and
+     *              (c) lines whose stored net is a genuine distinct rep discount/override.
+     *              Every FIRE seeds NetUnitPrice == the line's COLA-adjusted (committed) price.
      */
     @isTest
     static void testPrehook_NetSeed_GuardAndFire() {
@@ -2583,6 +2646,9 @@ private class COLAUpliftTest {
         Map<String, COLA_Uplift_Rules__mdt> rulesMap = ruleProbe.getCOLARulesMap();
         String cat = firstResolvedCategory(rulesMap);
         System.assertNotEquals(null, cat, 'need at least one active+effective COLA rule for this test');
+        Decimal rate = rulesMap.get(cat).Default_Uplift_Percent__c;
+        Decimal baseNet = 2000;
+        Decimal colaNet = (baseNet * (1 + (rate / 100))).setScale(2, System.RoundingMode.HALF_UP);
         MyCAP_Rules__mdt mycap = MyCAP_Rules__mdt.getInstance('Global');
         Map<Id, COLAUpliftPrehook.ContractOverride> noOverrides =
             new Map<Id, COLAUpliftPrehook.ContractOverride>();
@@ -2595,7 +2661,7 @@ private class COLAUpliftTest {
         // (a) FIRE: non-maintenance, stored net = 0
         COLAUpliftPrehook pA = new COLAUpliftPrehook();
         List<Map<String, Object>> uA = pA.buildLineItemUpdates(
-            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(2000, cat, 0, null) },
+            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(baseNet, cat, 0, null) },
             wrappers, rulesMap, noOverrides, mycap);
         System.assertEquals(1, pA.pendingNetUnitPriceUpdates.size(),
             'zero-net non-maintenance renewal -> one NetUnitPrice seed collected');
@@ -2607,19 +2673,70 @@ private class COLAUpliftTest {
         // (b) SKIP: maintenance line (SC-3346 path owns the net)
         COLAUpliftPrehook pB = new COLAUpliftPrehook();
         pB.buildLineItemUpdates(
-            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(2000, cat, 0, 'Renewal Maintenance') },
+            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(baseNet, cat, 0, 'Renewal Maintenance') },
             wrappers, rulesMap, noOverrides, mycap);
         System.assertEquals(0, pB.pendingNetUnitPriceUpdates.size(),
             'maintenance line must NOT be net-seeded by the SC-3350 path');
 
-        // (c) SKIP: stored net already > 0 (never clobber)
+        // (c) SKIP: stored net is a genuine distinct rep discount/override (neither base nor COLA)
         COLAUpliftPrehook pC = new COLAUpliftPrehook();
         pC.buildLineItemUpdates(
-            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(2000, cat, 999.00, null) },
+            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(baseNet, cat, 999.00, null) },
             wrappers, rulesMap, noOverrides, mycap);
         System.assertEquals(0, pC.pendingNetUnitPriceUpdates.size(),
-            'a line with a non-zero stored net must not be re-seeded');
+            'a genuine discounted/overridden net (distinct from base and COLA) must not be re-seeded');
+
+        // (d) FIRE: stored net still at the un-COLA'd base — THE SC-3350 REGRESSION.
+        //     Net entered as the prior/list value (94000 on the live quote); COLA must land on it.
+        COLAUpliftPrehook pD = new COLAUpliftPrehook();
+        pD.buildLineItemUpdates(
+            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(baseNet, cat, baseNet, null) },
+            wrappers, rulesMap, noOverrides, mycap);
+        System.assertEquals(1, pD.pendingNetUnitPriceUpdates.size(),
+            'a renewal net still at the un-COLA base MUST be re-seeded to the COLA-adjusted price');
+        System.assertEquals(colaNet,
+            attrMapFromUpdate(pD.pendingNetUnitPriceUpdates.get(0)).get('NetUnitPrice'),
+            'net-at-base seed commits the COLA-adjusted price (committed net == COLA)');
+
+        // (e) FIRE: stored net already at the COLA value — idempotent re-seed so the commit
+        //     survives the engine re-deriving net to base on the next reprice.
+        COLAUpliftPrehook pE = new COLAUpliftPrehook();
+        pE.buildLineItemUpdates(
+            new Map<Id, QuoteLineItem>{ fakeQliId => netSeedQli(baseNet, cat, colaNet, null) },
+            wrappers, rulesMap, noOverrides, mycap);
+        System.assertEquals(1, pE.pendingNetUnitPriceUpdates.size(),
+            'an already-COLA net must be re-seeded each reprice (idempotency vs engine re-derivation)');
+        System.assertEquals(colaNet,
+            attrMapFromUpdate(pE.pendingNetUnitPriceUpdates.get(0)).get('NetUnitPrice'),
+            'idempotent re-seed keeps NetUnitPrice at the COLA-adjusted price');
         Test.stopTest();
+    }
+
+    /**
+     * @description SC-3350 net-price fix: direct branch coverage of the shouldSeedRenewalNet
+     *              guard — fires for unset/zero/base/COLA nets, preserves a distinct override,
+     *              and tolerates 2-dp rounding on the base/COLA match.
+     */
+    @isTest
+    static void testPrehook_ShouldSeedRenewalNet() {
+        Decimal base = 100.00;
+        Decimal cola = 105.00;
+        System.assertEquals(true, COLAUpliftPrehook.shouldSeedRenewalNet(null, base, cola),
+            'null stored net -> seed');
+        System.assertEquals(true, COLAUpliftPrehook.shouldSeedRenewalNet(0, base, cola),
+            'zero stored net -> seed');
+        System.assertEquals(true, COLAUpliftPrehook.shouldSeedRenewalNet(-3, base, cola),
+            'negative stored net -> seed');
+        System.assertEquals(true, COLAUpliftPrehook.shouldSeedRenewalNet(base, base, cola),
+            'net at un-COLA base -> seed (SC-3350 core)');
+        System.assertEquals(true, COLAUpliftPrehook.shouldSeedRenewalNet(cola, base, cola),
+            'net already at COLA value -> re-seed (idempotent)');
+        System.assertEquals(true, COLAUpliftPrehook.shouldSeedRenewalNet(100.001, base, cola),
+            'base match tolerates sub-cent rounding');
+        System.assertEquals(false, COLAUpliftPrehook.shouldSeedRenewalNet(90.00, base, cola),
+            'a distinct discounted net (neither base nor COLA) is preserved');
+        System.assertEquals(false, COLAUpliftPrehook.shouldSeedRenewalNet(150.00, base, cola),
+            'a distinct raised net (neither base nor COLA) is preserved');
     }
 
     /**

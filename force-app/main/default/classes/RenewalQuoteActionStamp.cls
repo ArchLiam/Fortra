@@ -1,22 +1,9 @@
 /**
- * @description SC-3346 / SC-3404 — Born-net fix for the renewal-maintenance commit defect (Fix Path B).
- *
- *   A configurator-auto-added Renewal-Maintenance line is created WITHOUT a Type='Renew' QuoteAction.
- *   The native RLM committer (DerivedProductsRenewals) is contributor-keyed, so a line with no
- *   contributor is skipped and its NetUnitPrice freezes (the COLA fossil 60.64 / $0) instead of the
- *   correct COLA net (e.g. 67.38). A line commits the correct net IFF it carries a Type='Renew'
- *   QuoteAction whose SourceAsset is the contributor — AND that QuoteAction must be present BEFORE the
- *   line is first priced, so COLAUpliftHandler.handleBeforeInsert prices it born-net.
- *
- *   ── Path A (after-insert) was REFUTED by the 2026-06-14 UAT acceptance test: stamping the QA after
- *      insert was too late — the line settled un-priced and locked, committing $0. ──
- *
- *   This handler runs in QuoteLineItemTrigger (BEFORE insert), BEFORE COLAUpliftHandler.handleBeforeInsert:
- *   it mints a Type='Renew' QuoteAction pointed at the customer's owned maintenance/perpetual asset and
- *   sets QLI.QuoteActionId on the in-memory record, so the line is born a Renew priced node.
- *
- *   RCA + evidence: Data/sc-maint/rca_deep/SC3346_RNCOLA_DEEP_RCA.md,
- *                   Data/sc-maint/rca_deep/SC3346_FIX_PATH_RECOMMENDATION.md
+ * @description Before-insert handler that mints a Type='Renew' QuoteAction for configurator-auto-added
+ *              renewal-maintenance quote lines that lack one, anchoring it to the customer's owned
+ *              New Maintenance (or Perpetual) asset and stamping QuoteActionId on the in-memory line so
+ *              the line is born a priced Renew node and commits the correct COLA net instead of freezing.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class RenewalQuoteActionStamp {
 
@@ -33,6 +20,7 @@ public with sharing class RenewalQuoteActionStamp {
      * @description BEFORE-insert entry point. Synthesizes a Renew QuoteAction for QA-less
      *              renewal-maintenance lines and sets QLI.QuoteActionId on the in-memory record,
      *              so the line is born a priced "Renew" node (handleBeforeInsert prices it born-net).
+     * @param newLines The QuoteLineItem records being inserted, mutated in place with QuoteActionId.
      */
     public static void synthesizeRenewQuoteActions(List<QuoteLineItem> newLines) {
         if (bypass || isProcessing || newLines == null || newLines.isEmpty()) {
@@ -143,7 +131,15 @@ public with sharing class RenewalQuoteActionStamp {
         }
     }
 
-    /** The source asset for a line's (account, solution category), or null. */
+    /**
+     * @description Resolves the source asset for a line's (account, solution category) pairing, or null.
+     * @param qli The quote line item to resolve the source asset for.
+     * @param byId Product2 records keyed by Product2Id.
+     * @param byPbe Product2 records keyed by PricebookEntryId.
+     * @param quoteById Quote records keyed by QuoteId, supplying account context.
+     * @param sourceByAcctCat Preferred source assets keyed by accountId|solutionCategory.
+     * @return The preferred owned Asset for the line, or null when it cannot be resolved.
+     */
     private static Asset resolveAssetForLine(QuoteLineItem qli, Map<Id, Product2> byId, Map<Id, Product2> byPbe,
                                              Map<Id, Quote> quoteById, Map<String, Asset> sourceByAcctCat) {
         Product2 prod = resolveProduct(qli, byId, byPbe);
@@ -154,6 +150,13 @@ public with sharing class RenewalQuoteActionStamp {
         return sourceByAcctCat.get(q.AccountId + '|' + prod.Solution_Category__c);
     }
 
+    /**
+     * @description Resolves the Product2 for a line, preferring Product2Id and falling back to its PricebookEntry.
+     * @param qli The quote line item to resolve the product for.
+     * @param byId Product2 records keyed by Product2Id.
+     * @param byPbe Product2 records keyed by PricebookEntryId.
+     * @return The resolved Product2, or null when neither lookup matches.
+     */
     private static Product2 resolveProduct(QuoteLineItem qli, Map<Id, Product2> byId, Map<Id, Product2> byPbe) {
         if (qli.Product2Id != null && byId.containsKey(qli.Product2Id)) {
             return byId.get(qli.Product2Id);
@@ -167,6 +170,9 @@ public with sharing class RenewalQuoteActionStamp {
     /**
      * @description Per (accountId|solutionCategory), the preferred owned asset to anchor the renewal:
      *              New Maintenance (RNM) if owned, else Perpetual. Both must have a Price.
+     * @param accountIds The account Ids whose owned assets to consider.
+     * @param categories The solution categories to match on.
+     * @return Preferred source Assets keyed by accountId|solutionCategory.
      */
     private static Map<String, Asset> resolveSourceAssets(Set<Id> accountIds, Set<String> categories) {
         Map<String, Asset> newMaint = new Map<String, Asset>();

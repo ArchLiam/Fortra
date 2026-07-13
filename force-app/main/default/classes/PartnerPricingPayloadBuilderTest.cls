@@ -1,6 +1,17 @@
+/**
+ * @description Unit tests for PartnerPricingPayloadBuilder, verifying the partner-pricing
+ *              attribute payload for discount, zero-percent, and warning scenarios.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class PartnerPricingPayloadBuilderTest {
 
+    /**
+     * @description Finds the attribute map whose 'attributeName' equals the given name.
+     * @param attrs the list of attribute maps to search
+     * @param name the attributeName value to match
+     * @return the matching attribute map, or null when none is found
+     */
     private static Map<String, Object> byName(List<Map<String, Object>> attrs, String name) {
         for (Map<String, Object> a : attrs) {
             if (name == (String) a.get('attributeName')) {
@@ -10,6 +21,10 @@ private class PartnerPricingPayloadBuilderTest {
         return null;
     }
 
+    /**
+     * @description Verifies that a positive discount percent produces the full 11-attribute payload,
+     *              including NetUnitPrice, UnitPrice, the custom audit percent, and a null warning.
+     */
     @IsTest
     static void buildAttributes_withDiscountAddsNetAndUnitPrice() {
         List<Map<String, Object>> detail = new List<Map<String, Object>>{
@@ -34,6 +49,10 @@ private class PartnerPricingPayloadBuilderTest {
         System.assertEquals(null, byName(a, 'Partner_Pricing_Warning__c').get('attributeValue'));
     }
 
+    /**
+     * @description Verifies that a zero discount percent omits NetUnitPrice and UnitPrice, still stamps
+     *              the custom audit percent at 0, and nulls the margin detail when the detail list is empty.
+     */
     @IsTest
     static void buildAttributes_zeroPercentOmitsNetAndUnitAndNullsMarginDetail() {
         List<Map<String, Object>> a = PartnerPricingPayloadBuilder.buildPartnerPricingAttributes(
@@ -46,7 +65,10 @@ private class PartnerPricingPayloadBuilderTest {
             'empty detail -> null');
     }
 
-    // D-PARTNER-1: a non-null warning flows through to Partner_Pricing_Warning__c.
+    /**
+     * @description Verifies that a non-null warning message flows through verbatim to the
+     *              Partner_Pricing_Warning__c attribute value.
+     */
     @IsTest
     static void buildAttributes_warningFlowsThrough() {
         List<Map<String, Object>> a = PartnerPricingPayloadBuilder.buildPartnerPricingAttributes(

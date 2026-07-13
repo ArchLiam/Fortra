@@ -1,26 +1,21 @@
 /**
- * SC-3308 — coverage for OrderRepriceInvocable.
- *
- * Note: commerceorders.PlaceOrderExecutor performs real RCA order pricing; in a unit-test
- * context it typically can't fully run, so the invocable's try/catch is exercised and the
- * method must return a well-formed Result without throwing. The graph-build + result-shape
- * are validated live in Data/sc3308/exp_placeorder_reprice.apex (confirmed flip on 00095321).
- *
- * IMPORTANT (test-isolation): commerceorders.PlaceOrderExecutor.execute() leaves the RLM /
- * commerce pricing engine in a state that makes a subsequent QuoteLineItem INSERT in any
- * sibling method of the SAME Apex test job fail with INVALID_CROSS_REFERENCE_KEY ("you don't
- * have the required access"). Proven by bisection in this org: a QLI insert that passes in
- * isolation fails the moment an executor-calling method shares the job. The seed scenario
- * therefore builds its QuoteLineItem / Order / OrderItem in @TestSetup (a separate transaction
- * that commits BEFORE any executor method runs) and the seeding test asserts the seed-decision
- * logic through the @TestVisible decomposition helpers, not a live executor call.
+ * @description Unit-test coverage for OrderRepriceInvocable, verifying the invocable returns a
+ * well-formed Result per Request without throwing and exercising its readiness, total-resolution,
+ * validation-clearing and result-population helpers. Because commerceorders.PlaceOrderExecutor
+ * leaves the commerce pricing engine in a state that poisons a subsequent QuoteLineItem insert in
+ * a sibling method of the same test job, the seed scenario builds its Quote/Order/OrderItem in
+ * @TestSetup (a separate committed transaction) and asserts seed-decision logic through the
+ * @TestVisible decomposition helpers rather than a live executor call.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest(isParallel=false)
 private class OrderRepriceInvocableTest {
 
     /**
-     * Seed data committed in its own transaction before any executor-calling method runs,
-     * so the QuoteLineItem insert is never poisoned by PlaceOrderExecutor state.
+     * @description Builds the seed Account, Product2, PricebookEntry, Opportunity, Quote,
+     * QuoteLineItem, Order and OrderItem in a dedicated @TestSetup transaction that commits before
+     * any executor-calling method runs, so the QuoteLineItem insert is never poisoned by
+     * PlaceOrderExecutor state.
      */
     @TestSetup
     static void makeData() {
@@ -97,10 +92,18 @@ private class OrderRepriceInvocableTest {
         );
     }
 
+    /**
+     * @description Returns the quote-linked Order created in @TestSetup for use by the tests.
+     * @return the seed Order whose QuoteId is populated
+     */
     private static Order seededOrder() {
         return [SELECT Id FROM Order WHERE QuoteId != null LIMIT 1];
     }
 
+    /**
+     * @description Verifies reprice returns exactly one non-null Result per Request and completes
+     * cleanly without an unhandled exception even when pricing cannot fully run in test context.
+     */
     @isTest
     static void reprice_returnsResultPerRequest_andNeverThrows() {
         Account acc = new Account(Name = 'SC3308 Reprice Test');
@@ -128,11 +131,11 @@ private class OrderRepriceInvocableTest {
     }
 
     /**
-     * Asserts the real seed-decision behavior the invocable relies on: prepareForReprice +
-     * persistFromWork copy the quote commercial net (PartnerUnitPrice / UnitPrice) onto the
-     * linked order line. This is exactly what repriceOne() runs before PlaceOrderExecutor.
-     * Done through the @TestVisible helpers so the QLI-insert side-effect of the executor
-     * (see class header) cannot poison this method's data setup.
+     * @description Verifies the seed-decision behavior the invocable relies on: prepareForReprice
+     * plus persistFromWork copy the quote commercial net (PartnerUnitPrice / UnitPrice) onto the
+     * linked order line exactly as repriceOne() does before PlaceOrderExecutor. Exercised through
+     * the @TestVisible decomposition helpers so the executor's QLI-insert side-effect cannot poison
+     * this method's data setup.
      */
     @isTest
     static void reprice_seedsQuotePricingBeforeExecutor() {
@@ -156,12 +159,21 @@ private class OrderRepriceInvocableTest {
             'commercial net from quote should be carried onto the order line');
     }
 
+    /**
+     * @description Verifies isPricingReady returns false when the order id matches no row, so the
+     * SELECT loop never executes and the method falls through to its trailing false return.
+     */
     @isTest
     static void isPricingReady_falseWhenOrderIdMissing() {
         // No order row matches -> the SELECT loop never enters -> trailing return false.
         System.assertEquals(false, OrderRepriceInvocable.isPricingReady(null, 364.23));
     }
 
+    /**
+     * @description Verifies isPricingReady on a real Draft order (no ValidationResult, not yet
+     * CompletedWithPricing) falls through to the TotalAmount comparison and reports not-ready both
+     * when the quote total is null and when it cannot match the order's TotalAmount.
+     */
     @isTest
     static void isPricingReady_evaluatesRealOrder() {
         // A real, freshly-inserted Draft order has no ValidationResult and is not yet
@@ -181,6 +193,10 @@ private class OrderRepriceInvocableTest {
             'a non-matching quote total must not report pricing ready');
     }
 
+    /**
+     * @description Verifies resolveQuoteTotal and resolveOrderTotal both return null for a
+     * valid-format but non-existent order id, hitting their empty-loop returns.
+     */
     @isTest
     static void resolveTotals_returnNullForUnknownOrder() {
         // Valid-format but non-existent id -> both resolve helpers hit their empty-loop returns.
@@ -195,6 +211,10 @@ private class OrderRepriceInvocableTest {
         System.assertEquals(null, orderTotal, 'unknown order has no order total');
     }
 
+    /**
+     * @description Verifies resolveQuoteTotal returns null for a real order with no linked Quote
+     * (the Quote == null branch) while resolveOrderTotal returns cleanly for that same order.
+     */
     @isTest
     static void resolveQuoteTotal_nullWhenOrderHasNoQuote() {
         // A real order with no Quote -> the Quote == null branch returns null.
@@ -216,6 +236,10 @@ private class OrderRepriceInvocableTest {
             'resolveOrderTotal must return cleanly for a real order');
     }
 
+    /**
+     * @description Verifies clearOrderValidationResult takes its null-id guard branch and returns
+     * without performing any DML or throwing.
+     */
     @isTest
     static void clearOrderValidationResult_noopOnNullId() {
         // Guard branch: null id returns without DML.
@@ -225,6 +249,10 @@ private class OrderRepriceInvocableTest {
         System.assert(true, 'null id must not throw or DML');
     }
 
+    /**
+     * @description Verifies clearOrderValidationResult nulls the ValidationResult field on a real
+     * seeded order.
+     */
     @isTest
     static void clearOrderValidationResult_clearsRealOrder() {
         Order ord = seededOrder();
@@ -236,6 +264,10 @@ private class OrderRepriceInvocableTest {
             'ValidationResult should be cleared on the order');
     }
 
+    /**
+     * @description Verifies populateResultFromOrder runs against a real seeded order and populates
+     * the Result object without throwing, even when the Draft order's status fields are null.
+     */
     @isTest
     static void populateResultFromOrder_copiesStatusFields() {
         Order ord = seededOrder();
@@ -250,6 +282,10 @@ private class OrderRepriceInvocableTest {
         System.assertNotEquals(null, res, 'result populated from order without throwing');
     }
 
+    /**
+     * @description Verifies reprice handles a valid-format but deleted order id defensively,
+     * returning one Result whose success is false rather than throwing.
+     */
     @isTest
     static void reprice_handlesMissingOrderGracefully() {
         // Defensive: a valid-format but non-existent (deleted) order id must not throw.

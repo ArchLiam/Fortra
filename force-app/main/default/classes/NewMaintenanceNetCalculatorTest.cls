@@ -1,6 +1,15 @@
+/**
+ * @description Unit tests for NewMaintenanceNetCalculator, verifying list-net and commercial-net
+ *              computations, partner/software discount precedence, negative-input handling, and rounding.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class NewMaintenanceNetCalculatorTest {
 
+    /**
+     * @description Verifies expectedListNet multiplies contributor by rate, and returns null when
+     *              either the rate or contributor is zero or null.
+     */
     @IsTest
     static void expectedListNet_contributorTimesRate() {
         System.assertEquals(20.00, NewMaintenanceNetCalculator.expectedListNet(100, 0.20), 'contributor 100 x rate 0.20');
@@ -10,6 +19,10 @@ private class NewMaintenanceNetCalculatorTest {
         System.assertEquals(null, NewMaintenanceNetCalculator.expectedListNet(null, 0.20), 'null contributor -> null');
     }
 
+    /**
+     * @description Verifies expectedCommercialNet applies the partner discount then the software
+     *              discount in sequence, and passes list through when discounts are null or zero.
+     */
     @IsTest
     static void expectedCommercialNet_partnerThenSoftware() {
         // partner 10% only
@@ -25,6 +38,11 @@ private class NewMaintenanceNetCalculatorTest {
             'zero discounts -> list net');
     }
 
+    /**
+     * @description Verifies computeNewBusinessNets precedence: a resolved partner band wins over the
+     *              stamped percent, while stamped percents win when the band is not resolved, with
+     *              carried inputs used as the fallback for null values.
+     */
     @IsTest
     static void computeNewBusinessNets_j06Precedence() {
         // Band resolved wins over the stamped percent; software falls back to carried inputs.
@@ -50,6 +68,10 @@ private class NewMaintenanceNetCalculatorTest {
         System.assertEquals(807.50, c.expectedCommercialNet, '1000 less 15% then 5% = 807.50');
     }
 
+    /**
+     * @description Verifies expectedListNet returns null for negative rate or contributor and applies
+     *              HALF_UP rounding to two decimal places.
+     */
     @IsTest
     static void expectedListNet_negativeInputsAndRounding() {
         System.assertEquals(null, NewMaintenanceNetCalculator.expectedListNet(100, -0.20), 'negative rate -> null');
@@ -58,6 +80,10 @@ private class NewMaintenanceNetCalculatorTest {
         System.assertEquals(12.35, NewMaintenanceNetCalculator.expectedListNet(100, 0.12345), 'HALF_UP rounds 12.345 up to 12.35');
     }
 
+    /**
+     * @description Verifies expectedCommercialNet passes list to the software leg when partner is null,
+     *              treats negative percents as no discount, and rounds each discount leg independently.
+     */
     @IsTest
     static void expectedCommercialNet_softwareOnlyNegativesAndTwoStepRounding() {
         // partner null -> list passes straight to the software leg: 1000 x 0.95 = 950.00
@@ -71,6 +97,10 @@ private class NewMaintenanceNetCalculatorTest {
             'two-step independent rounding = 854.99');
     }
 
+    /**
+     * @description Verifies computeNewBusinessNets skips the band branch and falls back to the stamped
+     *              percent when the partner band is resolved but the partner input percent is null.
+     */
     @IsTest
     static void computeNewBusinessNets_bandResolvedButNoInputsFallsToStamped() {
         // partnerBandResolved true but inputsPartnerPercent null -> the band branch is skipped -> stamped wins.
@@ -81,6 +111,10 @@ private class NewMaintenanceNetCalculatorTest {
         System.assertEquals(760.00, n.expectedCommercialNet, '1000 less 20% then 5% = 760.00');
     }
 
+    /**
+     * @description Verifies computeNewBusinessNets leaves the software discount null when no stamped or
+     *              carried software value exists, applying the partner-only discount to the commercial net.
+     */
     @IsTest
     static void computeNewBusinessNets_bandResolvedSoftwareNullLeavesNullSoftware() {
         NewBusinessMaintenanceNets n = NewMaintenanceNetCalculator.computeNewBusinessNets(
@@ -90,6 +124,10 @@ private class NewMaintenanceNetCalculatorTest {
         System.assertEquals(850.00, n.expectedCommercialNet, 'partner-only 15% -> 850.00');
     }
 
+    /**
+     * @description Verifies computeNewBusinessNets passes the list net through unchanged when all
+     *              partner and software discount inputs are zero.
+     */
     @IsTest
     static void computeNewBusinessNets_allZeroDiscountsPassThrough() {
         NewBusinessMaintenanceNets n = NewMaintenanceNetCalculator.computeNewBusinessNets(

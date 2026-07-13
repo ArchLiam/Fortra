@@ -1,9 +1,20 @@
+/**
+ * @description Unit tests for PartnerMarginDispatcher.resolve, covering Discount and
+ *              Guaranteed Margin partner pricing models, missing-model warnings,
+ *              product-type band selection, Fortra-originated non-orig percents, and
+ *              additive multi-partner margin behavior.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class PartnerMarginDispatcherTest {
 
     static final Id BILLING = '001000000000001AAA';
     static final Id RESELLER = '001000000000002AAA';
 
+    /**
+     * @description Verifies an unrecognized pricing model name causes resolve to log a SKIP
+     *              and return null.
+     */
     @IsTest
     static void resolve_unknownModelReturnsNull() {
         System.assertEquals(null, PartnerMarginDispatcher.resolve(
@@ -13,6 +24,11 @@ private class PartnerMarginDispatcherTest {
             'unknown model -> null (shell logs SKIP + returns)');
     }
 
+    /**
+     * @description Verifies a Discount request with a configured billing partner but no matching
+     *              pricing model leaves the price unchanged, produces no margin detail, and emits
+     *              a warning naming the partner (D-PARTNER-1).
+     */
     @IsTest
     static void resolve_discountNoModelLeavesPriceUnchanged() {
         PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(
@@ -26,6 +42,10 @@ private class PartnerMarginDispatcherTest {
             'D-PARTNER-1: billing partner configured but no model -> warning names it');
     }
 
+    /**
+     * @description Verifies a Guaranteed Margin request with no pricing models yields a 0% total
+     *              and no margin details.
+     */
     @IsTest
     static void resolve_guaranteedMarginNoModelsNoMargins() {
         PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(
@@ -40,12 +60,24 @@ private class PartnerMarginDispatcherTest {
     static final Id DISTRIB = '001000000000003AAA';
     static final Id REFERRAL = '001000000000004AAA';
 
-    // Build a Discount/GM model whose solution fields are all blank so selectBestModelForLine
-    // returns it via the final all-blank fallback when the selectors are passed null.
+    /**
+     * @description Wraps a single pricing model under a partner Id. The model's solution fields are
+     *              left blank so selectBestModelForLine returns it via the all-blank fallback when
+     *              the selectors are passed null.
+     * @param partnerId the partner Id to key the model list under
+     * @param model the Partner_Pricing_Model__c to associate with the partner
+     * @return a map of partner Id to a single-element list containing the given model
+     */
     private static Map<Id, List<Partner_Pricing_Model__c>> modelsFor(Id partnerId, Partner_Pricing_Model__c model) {
         return new Map<Id, List<Partner_Pricing_Model__c>>{ partnerId => new List<Partner_Pricing_Model__c>{ model } };
     }
 
+    /**
+     * @description Finds the margin detail map for a given partner Id within a resolve Result.
+     * @param r the PartnerMarginDispatcher.Result whose detailMaps are searched
+     * @param partnerId the partner Id whose detail map is sought
+     * @return the matching detail map, or null if no detail exists for the partner
+     */
     private static Map<String, Object> detailById(PartnerMarginDispatcher.Result r, Id partnerId) {
         Map<String, Object> match = null;
         for (Map<String, Object> d : r.detailMaps) {
@@ -56,6 +88,11 @@ private class PartnerMarginDispatcherTest {
         return match;
     }
 
+    /**
+     * @description Verifies a Discount request with a matching Software model applies the software
+     *              percent to the price, records the total percent, and builds a single billing-
+     *              partner detail map with no warning.
+     */
     @IsTest
     static void resolve_discountMatchingModelAppliesPercentAndBuildsDetail() {
         PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(
@@ -74,8 +111,11 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(null, r.warning, 'D-PARTNER-1: matching model -> no warning');
     }
 
-    // D-PARTNER-1: mixed participation — one partner has a model, one does not; the warning names only
-    // the model-less participating partner (and pricing from the partner WITH a model still applies).
+    /**
+     * @description Verifies mixed participation (D-PARTNER-1): when one partner has a model and one
+     *              does not, the warning names only the model-less participating partner while
+     *              pricing from the partner with a model still applies.
+     */
     @IsTest
     static void resolve_guaranteedMarginWarnsOnlyMissingModelPartner() {
         Map<Id, List<Partner_Pricing_Model__c>> models = new Map<Id, List<Partner_Pricing_Model__c>>{
@@ -90,6 +130,11 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(15, r.totalPercent, 'billing 15% still applies');
     }
 
+    /**
+     * @description Verifies that when a model exists but the product type maps to a 0% band, the
+     *              price is unchanged, no detail is built, and no missing-model warning is emitted
+     *              (D-PARTNER-1).
+     */
     @IsTest
     static void resolve_discountModelPresentButZeroPercentNoDetail() {
         // Model exists but the productType maps to the switch's else -> 0% -> price unchanged, no detail.
@@ -104,6 +149,10 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(null, r.warning, 'D-PARTNER-1: model present (just 0% for this type) is NOT a missing-model warning');
     }
 
+    /**
+     * @description Verifies a Discount request for the New Maintenance product type reads the
+     *              New_Maintenance_Percent__c field and applies that band to the price.
+     */
     @IsTest
     static void resolve_discountNewMaintenanceProductTypeUsesMaintField() {
         PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(
@@ -115,6 +164,10 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(25, r.totalPercent, '25% New Maintenance band');
     }
 
+    /**
+     * @description Verifies a Discount request on a Fortra Originated deal uses the non-originating
+     *              software percent rather than the standard software percent.
+     */
     @IsTest
     static void resolve_discountFortraOriginatedUsesNonOrigPercent() {
         PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(
@@ -126,6 +179,11 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(30, r.totalPercent, 'Non-originating 30% wins for Fortra Originated deal');
     }
 
+    /**
+     * @description Verifies a Guaranteed Margin request sums the software percents across the
+     *              billing and reseller partners additively, applies the combined discount, and
+     *              builds a role-labeled detail per participating partner.
+     */
     @IsTest
     static void resolve_guaranteedMarginAdditiveAcrossPartners() {
         Map<Id, List<Partner_Pricing_Model__c>> models = new Map<Id, List<Partner_Pricing_Model__c>>{
@@ -147,6 +205,11 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(10, (Decimal) resellerDetail.get('marginPercent'), 'reseller margin 10');
     }
 
+    /**
+     * @description Verifies a Guaranteed Margin request excludes a zero-margin partner from the
+     *              total percent and produces no detail for it, leaving only the billing partner's
+     *              margin and detail.
+     */
     @IsTest
     static void resolve_guaranteedMarginExcludesZeroMarginPartner() {
         Map<Id, List<Partner_Pricing_Model__c>> models = new Map<Id, List<Partner_Pricing_Model__c>>{
@@ -163,6 +226,10 @@ private class PartnerMarginDispatcherTest {
         System.assertEquals(BILLING, r.detailMaps[0].get('partnerId'), 'the surviving detail is the billing partner');
     }
 
+    /**
+     * @description Verifies a Guaranteed Margin request on a Fortra Originated deal uses the
+     *              non-originating software percent for the margin calculation.
+     */
     @IsTest
     static void resolve_guaranteedMarginFortraOriginatedUsesNonOrig() {
         PartnerMarginDispatcher.Result r = PartnerMarginDispatcher.resolve(

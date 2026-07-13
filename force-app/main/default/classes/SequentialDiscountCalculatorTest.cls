@@ -1,6 +1,13 @@
+/**
+ * @description Unit tests for SequentialDiscountCalculator, validating percentage-based discount application and HALF_UP rounding behavior.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class SequentialDiscountCalculatorTest {
 
+    /**
+     * @description Verifies that applyDiscountPercent returns the unchanged base amount when the percent is null, zero, or negative.
+     */
     @IsTest
     static void applyDiscountPercent_nullZeroNegativeReturnsBase() {
         System.assertEquals(1000, SequentialDiscountCalculator.applyDiscountPercent(1000, null), 'null percent -> base');
@@ -8,6 +15,9 @@ private class SequentialDiscountCalculatorTest {
         System.assertEquals(1000, SequentialDiscountCalculator.applyDiscountPercent(1000, -5), 'negative percent -> base');
     }
 
+    /**
+     * @description Verifies that applyDiscountPercent applies a positive discount percentage and rounds the result to two decimals using HALF_UP.
+     */
     @IsTest
     static void applyDiscountPercent_positiveRoundsHalfUp() {
         System.assertEquals(900.00, SequentialDiscountCalculator.applyDiscountPercent(1000, 10), '1000 less 10% = 900.00');

@@ -1,11 +1,11 @@
 /**
- * @description Unit tests for CancelLineCreditCalculator (SC-3441 Wave-2 decomposition).
- *              Exercises the pure seams that were extracted verbatim from
- *              CancelLineCreditPosthook — gating, credit math, the QLI field-API node-update
- *              shape, response parsing, decimal/string coercion (flat + nested {tagValue}
- *              wrapper), scope-by-line-Id-type, currency-aware asset-net pick + lossy fallback,
- *              the Generate-wins-and-sticks fold (incl. per-instance state), and the
- *              unseeded-cancel-line collector. No SOQL/DML — all pure.
+ * @description Unit tests for CancelLineCreditCalculator. Exercises the pure seams
+ *              extracted verbatim from CancelLineCreditPosthook — gating, credit math, the
+ *              QLI field-API node-update shape, response parsing, decimal/string coercion
+ *              (flat + nested {tagValue} wrapper), scope-by-line-Id-type, currency-aware
+ *              asset-net pick + lossy fallback, the Generate-wins-and-sticks fold (incl.
+ *              per-instance state), and the unseeded-cancel-line collector. No SOQL/DML — all pure.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class CancelLineCreditCalculatorTest {
@@ -15,7 +15,16 @@ private class CancelLineCreditCalculatorTest {
     private static final Id ASSET_ID = '02iWC000008eKMnYAM';    // a source Asset Id
     private static final Id ROOT_ID  = '0Q0WC000002VENJ0A4';    // a Quote (root) Id
 
-    // Build a FLAT SalesTransactionItem node: {dataPath:[ctx,root,line], <tags>}
+    /**
+     * @description Builds a FLAT SalesTransactionItem node ({dataPath:[ctx,root,line], <tags>})
+     *              for use as calculator input in tests.
+     * @param ctxPath the context-path element that leads the dataPath
+     * @param rootId the root (Quote/Order) Id element of the dataPath
+     * @param lineId the line (QLI/OrderItem) Id element of the dataPath
+     * @param qty value written to the LineItemQuantity tag when non-null
+     * @param cancelNet value written to the CancelNetUnitPrice__c tag when non-null
+     * @return the assembled flat node map
+     */
     private static Map<String, Object> node(String ctxPath, String rootId, String lineId, Object qty, Object cancelNet) {
         Map<String, Object> n = new Map<String, Object>{
             'dataPath' => new List<Object>{ ctxPath, rootId, lineId }
@@ -25,8 +34,14 @@ private class CancelLineCreditCalculatorTest {
         return n;
     }
 
-    // Build a NESTED {tagValue:{field:{tagValue:val}}} node to exercise extractTagMap +
-    // extractFieldValue wrapper branches.
+    /**
+     * @description Builds a NESTED {tagValue:{field:{tagValue:val}}} node to exercise the
+     *              extractTagMap + extractFieldValue wrapper branches of the calculator.
+     * @param lineId the line Id element of the dataPath
+     * @param qty value wrapped into the LineItemQuantity tagValue
+     * @param cancelNet value wrapped into the CancelNetUnitPrice__c tagValue
+     * @return the assembled nested node map
+     */
     private static Map<String, Object> wrappedNode(String lineId, Object qty, Object cancelNet) {
         Map<String, Object> tags = new Map<String, Object>{
             'LineItemQuantity'      => new Map<String, Object>{ 'tagValue' => qty },
@@ -38,7 +53,15 @@ private class CancelLineCreditCalculatorTest {
         };
     }
 
-    // In-memory AssetActionSource (with parent AssetAction) — calculated fields via JSON.
+    /**
+     * @description Deserializes an in-memory AssetActionSource (with parent AssetAction),
+     *              populating calculated fields via JSON since they are not directly settable.
+     * @param assetId the source Asset Id placed on the parent AssetAction
+     * @param type the AssetAction Type (e.g. Generate/Change)
+     * @param cur the CurrencyIsoCode for the source
+     * @param net the NetUnitPrice value
+     * @return the deserialized AssetActionSource
+     */
     private static AssetActionSource aas(Id assetId, String type, String cur, Decimal net) {
         return (AssetActionSource) JSON.deserialize(
             '{"NetUnitPrice":' + net + ',"CurrencyIsoCode":"' + cur + '",' +
@@ -46,6 +69,12 @@ private class CancelLineCreditCalculatorTest {
             AssetActionSource.class);
     }
 
+    /**
+     * @description Flattens a list of {attributeName, attributeValue} attribute maps into a
+     *              name-to-Decimal map for concise field-value assertions.
+     * @param attrs the attribute list from a node-update's attributes collection
+     * @return map of attributeName to its Decimal attributeValue
+     */
     private static Map<String, Decimal> flatten(List<Object> attrs) {
         Map<String, Decimal> out = new Map<String, Decimal>();
         for (Object o : attrs) {
@@ -59,6 +88,11 @@ private class CancelLineCreditCalculatorTest {
     // buildCreditUpdates — gating + credit math + node shape
     // ============================================================
 
+    /**
+     * @description Verifies a negative-quantity line carrying a staged CancelNetUnitPrice__c is
+     *              credited: context-path element stripped, five QLI field-API attributes written
+     *              with positive unit price and negative totals, and no internal Item* tags.
+     */
     @isTest
     static void negativeLineWithStagedNet_isCredited() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -85,6 +119,9 @@ private class CancelLineCreditCalculatorTest {
         System.assert(!w.containsKey('ItemSubtotal'));
     }
 
+    /**
+     * @description Verifies a positive-quantity line is not credited and produces no updates.
+     */
     @isTest
     static void positiveQtyLine_isSkipped() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -92,6 +129,9 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(0, calc.buildCreditUpdates(nodes).size(), 'positive-qty line must not be touched');
     }
 
+    /**
+     * @description Verifies negative-quantity lines with no staged net (null or 0) are skipped.
+     */
     @isTest
     static void negativeQty_butNoStagedNet_isSkipped() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -102,6 +142,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(0, calc.buildCreditUpdates(nodes).size(), 'no staged net (null or 0) => skip');
     }
 
+    /**
+     * @description Verifies both the 1-arg and 2-arg buildCreditUpdates return empty for null
+     *              input without throwing an NPE.
+     */
     @isTest
     static void nullLineNodes_returnsEmpty() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -109,6 +153,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(0, calc.buildCreditUpdates(null, null).size(), 'null nodes + null resolved => empty');
     }
 
+    /**
+     * @description Verifies the credit amount is rounded HALF_UP to two decimal places,
+     *              guarding the rounding seam.
+     */
     @isTest
     static void fractionalCredit_roundsHalfUp() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -118,6 +166,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(-6695.31, w.get('TotalPrice'), 'credit rounds HALF_UP to 2dp');
     }
 
+    /**
+     * @description Verifies a nested {tagValue} wrapper shape is credited, exercising
+     *              extractTagMap + extractFieldValue to read net and quantity.
+     */
     @isTest
     static void wrappedTagShape_isCredited() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -132,6 +184,10 @@ private class CancelLineCreditCalculatorTest {
     // buildCreditUpdates(2-arg) — resolved asset net path
     // ============================================================
 
+    /**
+     * @description Verifies an unseeded negative line (no staged net) is credited from the
+     *              resolved asset-net map, with positive per-unit price and negative totals.
+     */
     @isTest
     static void negativeLine_noStagedNet_usesResolvedAssetNet() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -149,6 +205,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(-6695.30, w.get('TotalLineAmount'));
     }
 
+    /**
+     * @description Verifies a staged context net takes precedence over the resolved asset net
+     *              when both are available.
+     */
     @isTest
     static void stagedNet_winsOverResolved() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -160,6 +220,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(-15000, w.get('TotalPrice'));
     }
 
+    /**
+     * @description Verifies a line with neither a staged net nor a resolved asset net is
+     *              skipped rather than credited with a zero/garbage amount.
+     */
     @isTest
     static void noStagedNet_noResolved_isSkipped() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -172,6 +236,10 @@ private class CancelLineCreditCalculatorTest {
     // buildNodeUpdate — pure shape
     // ============================================================
 
+    /**
+     * @description Verifies buildNodeUpdate strips the leading context-path element and writes
+     *              exactly the five QLI field-API attributes.
+     */
     @isTest
     static void buildNodeUpdate_writesFieldApiNames_andStripsContextPath() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -193,6 +261,11 @@ private class CancelLineCreditCalculatorTest {
     // parseLineNodes — response shapes
     // ============================================================
 
+    /**
+     * @description Verifies parseLineNodes handles all response shapes: nested queryResult list,
+     *              flat list, single object wrapped, and returns null for null/missing-key/
+     *              non-map queryResult inputs.
+     */
     @isTest
     static void parseLineNodes_handlesShapes() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -220,6 +293,11 @@ private class CancelLineCreditCalculatorTest {
     // coercion helpers
     // ============================================================
 
+    /**
+     * @description Verifies getDecimalFromTag coerces integers, decimals, and numeric strings,
+     *              unwraps a nested {tagValue} wrapper, and returns null for unparseable,
+     *              null, or missing keys.
+     */
     @isTest
     static void getDecimalFromTag_coercesTypes() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -236,6 +314,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(42, calc.getDecimalFromTag(m, 'f'), 'nested {tagValue} wrapper unwrapped');
     }
 
+    /**
+     * @description Verifies getStringFromTag returns strings as-is, stringifies numbers, and
+     *              returns null for null or missing keys.
+     */
     @isTest
     static void getStringFromTag_coerces() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -246,6 +328,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(null, calc.getStringFromTag(m, 'missing'));
     }
 
+    /**
+     * @description Verifies lineIdFromDataPath returns the last element when it is a valid Id
+     *              and null for a non-Id last element, empty list, or null input.
+     */
     @isTest
     static void lineIdFromDataPath_lastElement() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -259,6 +345,10 @@ private class CancelLineCreditCalculatorTest {
     // resolveScope — Quote vs Order from line Id type
     // ============================================================
 
+    /**
+     * @description Verifies resolveScope maps a QuoteLineItem Id to 'Quote', an OrderItem Id to
+     *              'Order', and returns null for a non-Id line or null input.
+     */
     @isTest
     static void resolveScope_byLineIdType() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -272,6 +362,12 @@ private class CancelLineCreditCalculatorTest {
     // resolveSeedNet — currency-aware pick + lossy fallback
     // ============================================================
 
+    /**
+     * @description Verifies resolveSeedNet does a currency-aware asset-net pick (exact match,
+     *              single-currency no-tag), falls back to the lossy ListPrice on mismatch/no
+     *              asset, returns null when nothing is resolvable, and avoids an ambiguous pick
+     *              for a no-tag multi-currency asset.
+     */
     @isTest
     static void resolveSeedNet_currencyAwareAndFallback() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -293,6 +389,11 @@ private class CancelLineCreditCalculatorTest {
     // applyAssetNetSource — Generate-wins-and-sticks + per-instance state
     // ============================================================
 
+    /**
+     * @description Verifies the Generate-wins-and-sticks fold: a Generate source overrides an
+     *              earlier non-Generate value and then locks (later rows and zero nets cannot
+     *              replace it), with per-instance state and currency isolation.
+     */
     @isTest
     static void applyAssetNetSource_generateWinsAndSticks() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -311,6 +412,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(5000, m.get(ASSET_ID).get('EUR'));
     }
 
+    /**
+     * @description Verifies applyAssetNetSource drops null sources, non-positive nets, and
+     *              blank-currency rows so no entry is folded into the map.
+     */
     @isTest
     static void applyAssetNetSource_nullAndBlankGuards() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -325,6 +430,11 @@ private class CancelLineCreditCalculatorTest {
     // collectUnseededCancelLines — only negative + unseeded, PendingLine fields
     // ============================================================
 
+    /**
+     * @description Verifies collectUnseededCancelLines returns only negative, unseeded lines as
+     *              PendingLine entries (excluding seeded and positive lines) and returns empty
+     *              for null input.
+     */
     @isTest
     static void collectUnseeded_onlyNegativeUnseeded() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();
@@ -339,6 +449,10 @@ private class CancelLineCreditCalculatorTest {
         System.assertEquals(0, calc.collectUnseededCancelLines(null).size(), 'null nodes => empty');
     }
 
+    /**
+     * @description Verifies a pending line captures the STICurrencyIsoCode (for the currency-
+     *              aware pick) and the ListPrice tag (for the lossy fallback).
+     */
     @isTest
     static void collectUnseeded_capturesCurrencyAndListPrice() {
         CancelLineCreditCalculator calc = new CancelLineCreditCalculator();

@@ -1,6 +1,13 @@
+/**
+ * @description Unit tests for PartnerNetResolutionCalculator, verifying commercial unit price and pre-procedure price resolution logic.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class PartnerNetResolutionCalculatorTest {
 
+    /**
+     * @description Verifies resolveCommercialUnitPrice returns the lower of procedure net or partner price, and falls back to the partner price when the net is null, zero, or higher than the partner price.
+     */
     @IsTest
     static void resolveCommercialUnitPrice_lowerOfProcedureNetOrPartner() {
         System.assertEquals(241.40, PartnerNetResolutionCalculator.resolveCommercialUnitPrice(241.40, 301.75),
@@ -17,6 +24,9 @@ private class PartnerNetResolutionCalculatorTest {
             'Non-positive net -> partner');
     }
 
+    /**
+     * @description Verifies resolvePreProcedurePrice prefers the regional price, then the unit price, then the list price, skipping any non-positive value in that precedence chain.
+     */
     @IsTest
     static void resolvePreProcedurePrice_regionalThenUnitThenList() {
         System.assertEquals(900, PartnerNetResolutionCalculator.resolvePreProcedurePrice(900, 1000, 1100));

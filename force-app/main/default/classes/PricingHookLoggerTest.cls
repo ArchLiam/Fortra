@@ -1,12 +1,18 @@
 /**
- * D-18 — PricingHookLogger end-to-end.
- * A swallowed pricing-hook exception routed through the logger publishes a
- * Pricing_Exception__e that the subscriber Flow persists to Exception_Log__c with
- * the right Source / Hook_Phase / Severity. Also covers the null-exception path.
+ * @description Verifies PricingHookLogger end-to-end: a swallowed pricing-hook
+ * exception routed through the logger publishes a Pricing_Exception__e that the
+ * subscriber Flow persists to Exception_Log__c with the correct Source, Hook_Phase,
+ * and Severity, including the null-exception path.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @IsTest
 private class PricingHookLoggerTest {
 
+    /**
+     * @description Verifies that logging a posthook exception persists an
+     * Exception_Log__c row with Hook_Phase 'Posthook', Severity 'Error', the
+     * carried-through Context_Id, and the exception message text.
+     */
     @IsTest
     static void logPosthook_persistsWithPhaseAndSource() {
         Test.startTest();
@@ -30,6 +36,11 @@ private class PricingHookLoggerTest {
             'Message should carry the exception text.');
     }
 
+    /**
+     * @description Verifies that logging a prehook with a null exception still
+     * persists an Exception_Log__c row with Hook_Phase 'Prehook' and a null
+     * Exception_Type.
+     */
     @IsTest
     static void logPrehook_nullException_stillPublishes() {
         Test.startTest();

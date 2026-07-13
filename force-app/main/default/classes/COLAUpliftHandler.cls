@@ -32,7 +32,7 @@ public with sharing class COLAUpliftHandler {
 
         // Query QuoteActions with Asset and Product data for renewals only
         Map<Id, QuoteAction> quoteActionMap = new Map<Id, QuoteAction>([
-            SELECT Id, Type, SourceAssetId, SourceAsset.Price, SourceAsset.Product2Id,
+            SELECT Id, Type, SourceAssetId, SourceAsset.Price, SourceAsset.Quantity, SourceAsset.Product2Id,
                    SourceAsset.Product2.Solution_Category__c
             FROM QuoteAction
             WHERE Id IN :quoteActionIds
@@ -155,6 +155,19 @@ public with sharing class COLAUpliftHandler {
                 }
             }
 
+            // Keep the writable UnitPriceUplift input in sync with the finalized COLA %
+            // (Line/Contract/CMDT tier resolved above) on every write-back, so the native
+            // Price Revision element commits the uplifted NetUnitPrice — including after a
+            // rep overrides the rate. Mirrors the COLA_Uplift_Percent__c sync philosophy;
+            // engine-owned NetUnitPrice cannot be written from Apex, only this input.
+            // Maintenance is EXCLUDED (SC-3346 owns those nets): keeping UnitPriceUplift null
+            // makes the Price Revision element a no-op on maintenance lines.
+            if (qli.COLA_Uplift_Percent__c != null
+                && !isMaintenanceProductType(qli.Fortra_Product_Type__c)
+                && qli.UnitPriceUplift != qli.COLA_Uplift_Percent__c) {
+                qli.UnitPriceUplift = qli.COLA_Uplift_Percent__c;
+            }
+
             // Check if COLA percentage was changed (by user or by sync above)
             if (qli.COLA_Uplift_Percent__c != null &&
                 qli.COLA_Uplift_Percent__c != oldQli.COLA_Uplift_Percent__c &&
@@ -229,6 +242,16 @@ public with sharing class COLAUpliftHandler {
     }
 
     /**
+     * @description True when the product type is a maintenance type whose renewal net is owned by
+     *              the SC-3346 stamped-maintenance path — such lines must not receive a UnitPriceUplift.
+     * @param fortraProductType The line's Fortra_Product_Type__c.
+     * @return true for Renewal/New Maintenance, false otherwise (incl. null license lines).
+     */
+    private static Boolean isMaintenanceProductType(String fortraProductType) {
+        return fortraProductType == 'Renewal Maintenance' || fortraProductType == 'New Maintenance';
+    }
+
+    /**
      * @description Populates COLA fields on quote line items for renewal transactions.
      *              Uses three-tier override hierarchy: Line Override > Contract Override > CMDT Lookup.
      *              Thin wrapper that resolves the Contract-override map (which performs the
@@ -286,8 +309,14 @@ public with sharing class COLAUpliftHandler {
                 continue;
             }
 
-            // Get the Asset price as base
-            Decimal assetPrice = qa.SourceAsset.Price;
+            // Get the Asset price as base. In this org Asset.Price is the EXTENDED line total
+            // (per-unit x Quantity), so normalize to per-unit before applying COLA — otherwise a
+            // multi-quantity renewal source asset inflates the per-unit UnitPrice by its quantity
+            // (the SC-3346/SC-3501 quantity-fold; e.g. ES-SEG qty 100 committed 157,500 instead of
+            // ~1,575, escaping to an activated Workday order). A qty-1 (or null) asset divides by 1,
+            // a no-op. Uses the shared helper already relied on by COLAUpliftPrehook and
+            // AmendNetCarryPrehook, keeping the birth (before-insert) base consistent with reprice.
+            Decimal assetPrice = AssetNetUnitPrice.perUnit(qa.SourceAsset.Price, qa.SourceAsset.Quantity);
             if (assetPrice == null) {
                 continue;
             }
@@ -327,6 +356,16 @@ public with sharing class COLAUpliftHandler {
             qli.Pre_COLA_Price__c = assetPrice;
             qli.COLA_Uplift_Percent__c = colaPercent;
             qli.Default_COLA_Uplift_Percent__c = colaPercent;
+            // Mirror the COLA % onto the writable UnitPriceUplift input so the native
+            // Price Revision element commits NetUnitPrice = priorNet x (1 + uplift).
+            // NetUnitPrice is engine-owned and cannot be written from Apex; the supported
+            // pattern is to stage this input and let the pricing procedure produce the net.
+            // EXCLUDE maintenance: renewal-maintenance nets are owned by the SC-3346
+            // stamped path — leaving their UnitPriceUplift null makes the Price Revision
+            // element a no-op on them regardless of its gate (defence in depth).
+            if (!isMaintenanceProductType(qli.Fortra_Product_Type__c)) {
+                qli.UnitPriceUplift = colaPercent;
+            }
             qli.COLA_Solution_Category__c = solutionCategory;
             qli.COLA_Applied_Date__c = DateTime.now();
             // Is_COLA_Overridden__c derived (pct == Default at insert -> false).

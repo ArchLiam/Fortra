@@ -1,6 +1,15 @@
+/**
+ * @description Unit tests for DerivedMaintenanceClassifier, verifying detection of
+ *              derived maintenance product types and new-business maintenance lines.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class DerivedMaintenanceClassifierTest {
 
+    /**
+     * @description Verifies that isDerivedMaintenanceProductType returns true for
+     *              New and Renewal Maintenance types and false for other types and null.
+     */
     @IsTest
     static void isDerivedMaintenanceProductType_matchesNewAndRenewalMaintenance() {
         System.assertEquals(true, DerivedMaintenanceClassifier.isDerivedMaintenanceProductType('New Maintenance'));
@@ -9,6 +18,11 @@ private class DerivedMaintenanceClassifierTest {
         System.assertEquals(false, DerivedMaintenanceClassifier.isDerivedMaintenanceProductType(null));
     }
 
+    /**
+     * @description Verifies that isNewBusinessDerivedMaintenance returns true only for
+     *              New Maintenance on non-renewal quotes whose line is not already handled
+     *              by the renewal-COLA path, and false otherwise.
+     */
     @IsTest
     static void isNewBusinessDerivedMaintenance_onlyNewMaintOnNonRenewalNotAlreadyColaHandled() {
         Id lineId = '0QLWC000000000AAAA';

@@ -1,21 +1,11 @@
 /**
- * DocuSignEnvelopeService
- *
- * Sends a Fortra quote PDF to a recipient via DocuSign for electronic signature.
- * Uses the DocuSignAPI Named Credential for authentication.
- *
- * Signature placement: right-bottom of the last page via absolute x/y coordinates.
- * US Letter = 612 x 792 points (72 DPI). DocuSign origin is top-left.
- *
- * Page count resolution:
- *   1. Explicit pageCount param (if > 0) takes precedence
- *   2. Auto-detect from PDF hex scan
- *   3. Fallback to 2 (Fortra quotes are always 2+ pages)
- *
- * Entry points:
- *   - OmniStudio IP Remote Action: implements Callable
- *   - Flow / Screen Flow: @InvocableMethod
- *   - Execute Anonymous / Apex: DocuSignEnvelopeService.sendEnvelope(...)
+ * @description Sends a Fortra quote PDF to a recipient via DocuSign for electronic
+ *              signature using the DocuSignAPI Named Credential; places the signature,
+ *              date, and name tabs at the right-bottom of the last page and resolves
+ *              the page count via explicit override, PDF hex auto-detection, or a
+ *              2-page fallback. Entry points: Callable (OmniStudio IP Remote Action),
+ *              @InvocableMethod (Flow), and the static sendEnvelope method.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public without sharing class DocuSignEnvelopeService implements Callable {
 
@@ -35,6 +25,15 @@ public without sharing class DocuSignEnvelopeService implements Callable {
     // ────────────────────────────────────────────────────────────────────────
     // Callable interface — OmniStudio IP Remote Action
     // ────────────────────────────────────────────────────────────────────────
+    /**
+     * @description Callable entry point for the OmniStudio IP Remote Action; unwraps the
+     *              optional input/output maps, validates the action, coerces the optional
+     *              pageCount, delegates to sendEnvelope, and writes the result back to the
+     *              output map.
+     * @param action The requested action; must be 'sendEnvelope'.
+     * @param args The Callable argument map, optionally wrapping 'input' and 'output' maps.
+     * @return A map of the send result, or an error result map on exception.
+     */
     public Object call(String action, Map<String, Object> args) {
         Map<String, Object> input = args;
         Map<String, Object> output = null;
@@ -78,6 +77,7 @@ public without sharing class DocuSignEnvelopeService implements Callable {
             return result;
 
         } catch (Exception e) {
+            ExceptionLogger.log('DocuSignEnvelopeService', null, new DocuSignEnvelopeException('call failed', e));
             System.debug(LoggingLevel.ERROR, LOG_PREFIX + 'EXCEPTION in call(): '
                 + e.getTypeName() + ': ' + e.getMessage()
                 + ' | line ' + e.getLineNumber()
@@ -97,6 +97,12 @@ public without sharing class DocuSignEnvelopeService implements Callable {
     // ────────────────────────────────────────────────────────────────────────
     // @InvocableMethod — Flow / Screen Flow
     // ────────────────────────────────────────────────────────────────────────
+    /**
+     * @description Flow / Screen Flow invocable entry point; iterates each request, calls
+     *              sendEnvelope, and maps each outcome into an EnvelopeResult.
+     * @param requests The list of envelope requests supplied by Flow.
+     * @return A list of EnvelopeResult wrappers, one per request.
+     */
     @InvocableMethod(label='Send DocuSign Envelope' description='Sends a PDF for DocuSign signature')
     public static List<EnvelopeResult> sendEnvelopeInvocable(List<EnvelopeRequest> requests) {
         List<EnvelopeResult> results = new List<EnvelopeResult>();
@@ -120,6 +126,17 @@ public without sharing class DocuSignEnvelopeService implements Callable {
     // ────────────────────────────────────────────────────────────────────────
     // Core method
     // ────────────────────────────────────────────────────────────────────────
+    /**
+     * @description Core method that reads the generated PDF from a ContentVersion, resolves
+     *              the last-page number, builds the DocuSign envelope JSON, and POSTs it to
+     *              the DocuSign envelopes endpoint, returning the parsed outcome.
+     * @param contentVersionId The Id of the ContentVersion holding the quote PDF.
+     * @param signerEmail The recipient's email address.
+     * @param signerName The recipient's display name.
+     * @param emailSubject The subject line for the DocuSign email.
+     * @param pageCount Optional explicit page count; auto-detected when null or not positive.
+     * @return A map describing the send result, including a success flag and envelope details or error info.
+     */
     public static Map<String, Object> sendEnvelope(
         String contentVersionId,
         String signerEmail,
@@ -207,6 +224,13 @@ public without sharing class DocuSignEnvelopeService implements Callable {
     // NOTE: This works on uncompressed PDF object streams. For heavily-compressed
     // PDFs (where /Type /Page markers live inside compressed streams), this will
     // under-count. The MIN_FORTRA_PAGES fallback in sendEnvelope() covers this.
+    /**
+     * @description Estimates the PDF page count by hex-scanning the blob and counting
+     *              "/Type /Page" object markers minus "/Type /Pages" catalog markers;
+     *              returns 0 for a null blob or one exceeding the detection size cap.
+     * @param pdfBlob The raw PDF blob to inspect.
+     * @return The detected leaf page count, or 0 when detection is not possible.
+     */
     public static Integer detectPdfPageCount(Blob pdfBlob) {
         if (pdfBlob == null) {
             return 0;
@@ -226,6 +250,12 @@ public without sharing class DocuSignEnvelopeService implements Callable {
         return Math.max(0, pageMarkers - pagesMarkers);
     }
 
+    /**
+     * @description Counts non-overlapping occurrences of a substring within a string.
+     * @param haystack The string to search within.
+     * @param needle The substring to count.
+     * @return The number of non-overlapping occurrences found.
+     */
     private static Integer countOccurrences(String haystack, String needle) {
         Integer count = 0;
         Integer idx = haystack.indexOf(needle);
@@ -255,6 +285,18 @@ public without sharing class DocuSignEnvelopeService implements Callable {
     //   └──────────────────────────────────┘
     //   x=360 → right half of page
     //
+    /**
+     * @description Builds the serialized DocuSign envelope JSON, embedding the base64 PDF
+     *              document and a single signer with sign-here, date-signed, and full-name
+     *              tabs positioned at the right-bottom of the given last page.
+     * @param base64Doc The base64-encoded PDF document content.
+     * @param fileName The document file name (with .pdf extension).
+     * @param signerEmail The recipient's email address.
+     * @param signerName The recipient's display name.
+     * @param emailSubject The subject line for the DocuSign email.
+     * @param lastPage The page number on which to place the signature tabs.
+     * @return The serialized envelope JSON string.
+     */
     private static String buildEnvelopeJson(
         String base64Doc,
         String fileName,
@@ -330,6 +372,11 @@ public without sharing class DocuSignEnvelopeService implements Callable {
     // ────────────────────────────────────────────────────────────────────────
     // Helpers
     // ────────────────────────────────────────────────────────────────────────
+    /**
+     * @description Builds a standard failure result map carrying the given error message.
+     * @param message The error message to include.
+     * @return A map with success set to false and the supplied error message.
+     */
     private static Map<String, Object> errorResult(String message) {
         return new Map<String, Object>{
             'success' => false,

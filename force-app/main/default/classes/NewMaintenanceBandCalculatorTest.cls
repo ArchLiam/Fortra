@@ -1,3 +1,8 @@
+/**
+ * @description Unit tests for NewMaintenanceBandCalculator, verifying resolution of the
+ *              new-maintenance discount band from partner pricing models across quotes and orders.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class NewMaintenanceBandCalculatorTest {
 
@@ -6,18 +11,29 @@ private class NewMaintenanceBandCalculatorTest {
     private static final Id QUOTE_1 = '0Q0000000000001AAA';
     private static final Id ORDER_1 = '801000000000001AAA';
 
+    /**
+     * @description Builds a partner-to-pricing-model map with PARTNER_A carrying a 20% new-maintenance band.
+     * @return Map keyed by partner Id holding a Partner_Pricing_Model__c with New_Maintenance_Percent__c = 20.
+     */
     private static Map<Id, Partner_Pricing_Model__c> modelsWithBand() {
         return new Map<Id, Partner_Pricing_Model__c>{
             PARTNER_A => new Partner_Pricing_Model__c(New_Maintenance_Percent__c = 20)
         };
     }
 
+    /**
+     * @description Verifies that a Discount pricing model returns the partner's New_Maintenance_Percent__c as the band.
+     */
     @IsTest
     static void newMaintenanceBand_returnsDiscountModelPercent() {
         System.assertEquals(20, NewMaintenanceBandCalculator.newMaintenanceBand('Discount', PARTNER_A, modelsWithBand()),
             'Discount model New_Maintenance_Percent__c should be the band');
     }
 
+    /**
+     * @description Verifies the band resolves to null for non-Discount models, a null billing partner,
+     *              a null models map, and a billing partner absent from the models map.
+     */
     @IsTest
     static void newMaintenanceBand_nullGuards() {
         Map<Id, Partner_Pricing_Model__c> models = modelsWithBand();
@@ -31,6 +47,10 @@ private class NewMaintenanceBandCalculatorTest {
             'Billing partner not in models -> null');
     }
 
+    /**
+     * @description Verifies only Discount-model quotes contribute their billing partner to the collected Id set,
+     *              and that a null quotes map yields an empty set.
+     */
     @IsTest
     static void billingPartnerIdsFromQuotes_collectsDiscountModelPartners() {
         Map<Id, Quote> quotes = new Map<Id, Quote>{
@@ -42,6 +62,10 @@ private class NewMaintenanceBandCalculatorTest {
         System.assertEquals(new Set<Id>(), NewMaintenanceBandCalculator.billingPartnerIdsFromQuotes(null));
     }
 
+    /**
+     * @description Verifies billing partners are collected from orders via their source Quote for Discount models,
+     *              orders without a quote are skipped, and a null orders map yields an empty set.
+     */
     @IsTest
     static void billingPartnerIdsFromOrders_collectsViaSourceQuote() {
         Order ord = (Order) JSON.deserialize(
@@ -54,6 +78,9 @@ private class NewMaintenanceBandCalculatorTest {
         System.assertEquals(new Set<Id>(), NewMaintenanceBandCalculator.billingPartnerIdsFromOrders(null));
     }
 
+    /**
+     * @description Verifies bandByQuote maps each resolving Discount quote Id to its new-maintenance band.
+     */
     @IsTest
     static void bandByQuote_mapsBandPerQuote() {
         Map<Id, Quote> quotes = new Map<Id, Quote>{
@@ -63,6 +90,9 @@ private class NewMaintenanceBandCalculatorTest {
         System.assertEquals(20, bands.get(QUOTE_1));
     }
 
+    /**
+     * @description Verifies bandByOrder maps each order Id to its new-maintenance band resolved via the source Quote.
+     */
     @IsTest
     static void bandByOrder_mapsBandPerOrderViaQuote() {
         Order ord = (Order) JSON.deserialize(
@@ -73,6 +103,9 @@ private class NewMaintenanceBandCalculatorTest {
         System.assertEquals(20, bands.get(ORDER_1));
     }
 
+    /**
+     * @description Verifies a zero or negative New_Maintenance_Percent__c resolves the band to null so the caller falls back.
+     */
     @IsTest
     static void newMaintenanceBand_zeroOrNegativePercentIsNull() {
         Map<Id, Partner_Pricing_Model__c> zeroBand = new Map<Id, Partner_Pricing_Model__c>{
@@ -87,6 +120,10 @@ private class NewMaintenanceBandCalculatorTest {
             'negative New_Maintenance_Percent__c -> null');
     }
 
+    /**
+     * @description Verifies multiple Discount quotes with billing partners are collected while a Discount quote
+     *              with a null partner is excluded, and an empty quotes map yields an empty set.
+     */
     @IsTest
     static void billingPartnerIdsFromQuotes_excludesNullPartnerCollectsMultiple() {
         Map<Id, Quote> quotes = new Map<Id, Quote>{
@@ -102,6 +139,10 @@ private class NewMaintenanceBandCalculatorTest {
             'empty quotes map -> empty set');
     }
 
+    /**
+     * @description Verifies only the Discount order with a billing partner contributes, excluding non-Discount
+     *              orders and Discount orders whose source quote has a null billing partner.
+     */
     @IsTest
     static void billingPartnerIdsFromOrders_excludesNonDiscountAndNullPartner() {
         Order discountA = (Order) JSON.deserialize(
@@ -121,6 +162,10 @@ private class NewMaintenanceBandCalculatorTest {
             'only the Discount order with a billing partner contributes');
     }
 
+    /**
+     * @description Verifies bandByQuote includes only quotes that resolve a band, omits non-Discount quotes,
+     *              and returns an empty map when given a null quotes map.
+     */
     @IsTest
     static void bandByQuote_skipsNonResolvingQuotes() {
         Map<Id, Quote> quotes = new Map<Id, Quote>{
@@ -135,6 +180,10 @@ private class NewMaintenanceBandCalculatorTest {
             'null quotes -> empty band map');
     }
 
+    /**
+     * @description Verifies bandByOrder resolves only Discount orders with a source quote, skipping orders with a
+     *              null quote or a non-Discount model, and returns an empty map when given a null orders map.
+     */
     @IsTest
     static void bandByOrder_skipsNullQuoteAndNonDiscount() {
         Order discountA = (Order) JSON.deserialize(

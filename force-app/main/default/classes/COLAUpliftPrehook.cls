@@ -247,7 +247,8 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
             if (!qliIds.isEmpty()) {
                 for (QuoteLineItem qli : [
                     SELECT Id, QuoteActionId, QuoteAction.Type, QuoteAction.SourceAssetId,
-                           QuoteAction.SourceAsset.Price, QuoteAction.SourceAsset.Product2Id,
+                           QuoteAction.SourceAsset.Price, QuoteAction.SourceAsset.Quantity,
+                           QuoteAction.SourceAsset.Product2Id,
                            QuoteAction.SourceAsset.Product2.Solution_Category__c,
                            Default_COLA_Uplift_Percent__c,
                            NetUnitPrice, Fortra_Product_Type__c
@@ -337,8 +338,16 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
             QuoteAction qa = renewalQli.QuoteAction;
             if (qa == null) continue;
 
-            // Get Asset price as base
-            Decimal assetPrice = qa.SourceAsset?.Price;
+            // Get Asset price as base. Asset.Price is the EXTENDED line total (per-unit x asset qty) in
+            // this org, NOT the per-unit — so recover the per-unit via AssetNetUnitPrice.perUnit
+            // (Price / SourceAsset.Quantity) before applying the COLA uplift, else a multi-quantity
+            // renewal asset inflates by its quantity (same defect as the amend net-carry, SC-3501).
+            // Quantity is read null-safely (getPopulatedFieldsAsMap) because the @TestVisible seams may
+            // pass a SourceAsset without it queried; a missing/null qty is treated as 1 (no-op).
+            Decimal srcQty = (qa.SourceAsset != null
+                    && qa.SourceAsset.getPopulatedFieldsAsMap().containsKey('Quantity'))
+                ? qa.SourceAsset.Quantity : null;
+            Decimal assetPrice = AssetNetUnitPrice.perUnit(qa.SourceAsset?.Price, srcQty);
             if (assetPrice == null || assetPrice <= 0) {
                 System.debug(LoggingLevel.INFO, 'Skipping QLI ' + qliId + ' - no valid asset price');
                 continue;
@@ -434,11 +443,20 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
 
             // SC-3350 net-price fix: seed NetUnitPrice = COLA-adjusted price into an
             // ISOLATED batch (submitted by processLineItems) so the net actually
-            // COMMITS to the pricing waterfall. Guards:
+            // COMMITS to the pricing waterfall — a prehook-level write is the only
+            // mechanism proven live to flush NetUnitPrice for a non-derived renewal
+            // line (a procedure ListGroup or posthook write updates only the context
+            // var and never persists). Guards:
             //   1. Skip maintenance lines — the SC-3346 stamped-maintenance path
             //      (appendStampedRenewalMaintenanceUpdates) owns those nets.
-            //   2. Only seed when the stored net is genuinely unset/zero, so an
-            //      already-computed or discounted net is never clobbered.
+            //   2. Seed only when the stored net is (a) unset/zero, (b) still at the
+            //      un-COLA'd base (== assetPrice — the engine re-derives net to the
+            //      prior value on every reprice, so the COLA never landed on the net),
+            //      or (c) already at the COLA-adjusted value (re-seed each reprice so
+            //      the commit survives the engine's re-derivation to base = idempotent).
+            //      Any OTHER positive stored net is a genuine rep discount/override and
+            //      is preserved untouched (§8 fill-only, never clobber). A 0% line has
+            //      colaAdjustedPrice == assetPrice, so it seeds the base unchanged.
             // Null-safe via getPopulatedFieldsAsMap so the @TestVisible seam may
             // pass QLIs without NetUnitPrice / Fortra_Product_Type__c queried.
             Map<String, Object> populatedFields = renewalQli.getPopulatedFieldsAsMap();
@@ -448,7 +466,8 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
                 || fortraProductType == 'New Maintenance';
             Decimal storedNet = populatedFields.containsKey('NetUnitPrice')
                 ? (Decimal) renewalQli.get('NetUnitPrice') : null;
-            if (!isMaintenanceLine && (storedNet == null || storedNet <= 0)) {
+            if (!isMaintenanceLine
+                    && shouldSeedRenewalNet(storedNet, assetPrice, colaAdjustedPrice)) {
                 Map<String, Object> netUpdate = buildNetUnitPriceUpdate(itemWrapper, colaAdjustedPrice);
                 if (netUpdate != null) {
                     this.pendingNetUnitPriceUpdates.add(netUpdate);
@@ -473,6 +492,40 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
         Decimal colaPrice
     ) {
         return COLAUpliftCalculator.buildNetUnitPriceUpdate(itemWrapper, colaPrice);
+    }
+
+    /**
+     * @description SC-3350 net-price fix: decide whether the COLA-adjusted net should be
+     *              seeded for a renewal line. Fires when the stored net is unset/zero, still
+     *              at the un-COLA'd base (the engine re-derives net to the prior value every
+     *              reprice), or already at the COLA-adjusted value (idempotent re-seed so the
+     *              commit survives that re-derivation). Any other positive net is a genuine
+     *              rep discount/override and is preserved.
+     * @param storedNet The line's currently persisted NetUnitPrice (per unit), or null.
+     * @param baseNet The un-COLA'd prior net (asset price per unit) the uplift is applied to.
+     * @param colaNet The COLA-adjusted net the seed would commit.
+     * @return True when the seed should fire, false to preserve an existing override.
+     */
+    @TestVisible
+    private static Boolean shouldSeedRenewalNet(Decimal storedNet, Decimal baseNet, Decimal colaNet) {
+        if (storedNet == null || storedNet <= 0) {
+            return true;
+        }
+        return isSameNet(storedNet, baseNet) || isSameNet(storedNet, colaNet);
+    }
+
+    /**
+     * @description Currency-scale equality (2 dp, HALF_UP) for comparing net prices, so a
+     *              multi-quantity per-unit division or rounding never defeats the base/COLA match.
+     * @param a First value (nullable).
+     * @param b Second value (nullable).
+     * @return True when both are non-null and round to the same 2-dp amount.
+     */
+    private static Boolean isSameNet(Decimal a, Decimal b) {
+        if (a == null || b == null) {
+            return false;
+        }
+        return a.setScale(2, System.RoundingMode.HALF_UP) == b.setScale(2, System.RoundingMode.HALF_UP);
     }
 
     /**
@@ -513,7 +566,8 @@ global class COLAUpliftPrehook implements RevSignaling.SignalingApexProcessor {
         if (!qliIds.isEmpty()) {
             for (QuoteLineItem qli : [
                 SELECT Id, QuoteActionId, QuoteAction.Type, QuoteAction.SourceAssetId,
-                       QuoteAction.SourceAsset.Price, QuoteAction.SourceAsset.Product2Id,
+                       QuoteAction.SourceAsset.Price, QuoteAction.SourceAsset.Quantity,
+                       QuoteAction.SourceAsset.Product2Id,
                        QuoteAction.SourceAsset.Product2.Solution_Category__c,
                        Default_COLA_Uplift_Percent__c,
                        NetUnitPrice, Fortra_Product_Type__c

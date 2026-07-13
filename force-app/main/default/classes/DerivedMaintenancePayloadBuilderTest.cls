@@ -1,14 +1,35 @@
+/**
+ * @description Unit tests for DerivedMaintenancePayloadBuilder, verifying the shape and ordering of
+ * the attribute payloads produced for sequential-discount and fallback derived-maintenance pricing.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
+ */
 @IsTest
 private class DerivedMaintenancePayloadBuilderTest {
 
+    /**
+     * @description Extracts the 'attributes' list from a built pricing payload.
+     * @param payload The payload map returned by the builder under test.
+     * @return The list of attribute maps contained in the payload.
+     */
     private static List<Object> attrs(Map<String, Object> payload) {
         return (List<Object>) payload.get('attributes');
     }
 
+    /**
+     * @description Returns the attribute map at the given index of an attributes list.
+     * @param a The list of attribute maps.
+     * @param i The zero-based index to retrieve.
+     * @return The attribute map at the requested position.
+     */
     private static Map<String, Object> at(List<Object> a, Integer i) {
         return (Map<String, Object>) a[i];
     }
 
+    /**
+     * @description Verifies that a sequential-discount payload emits all 10 fixed plus 3 conditional
+     * attributes in the expected order and values when the conditional inputs are present, and that
+     * the node path is carried through as the update path.
+     */
     @IsTest
     static void buildSequentialDiscountPayload_allAttributesInOrderWhenConditionalsFire() {
         Object path = new List<Object>{ 'q', 'l' };
@@ -45,6 +66,11 @@ private class DerivedMaintenancePayloadBuilderTest {
         System.assertEquals(path, nodePath.get('dataPath'), 'nodePath.dataPath = updatePath');
     }
 
+    /**
+     * @description Verifies that a sequential-discount payload contains only the 10 fixed attributes
+     * and omits the Base_Price__c, PartnerDiscountPercent, and Discount attributes when their
+     * conditional inputs are zero or null.
+     */
     @IsTest
     static void buildSequentialDiscountPayload_conditionalsOmittedWhenZeroOrNull() {
         Map<String, Object> p = DerivedMaintenancePayloadBuilder.buildSequentialDiscountPayload(
@@ -59,6 +85,11 @@ private class DerivedMaintenancePayloadBuilderTest {
         }
     }
 
+    /**
+     * @description Verifies that a fallback payload emits the 7 fixed attributes plus a conditional
+     * PartnerDiscountPercent attribute (with the fallback pricing source) in the expected order and
+     * values, and carries the node path through as the update path.
+     */
     @IsTest
     static void buildFallbackPayload_sevenFixedPlusConditionalPartner() {
         Object path = new List<Object>{ 'q', 'l' };
@@ -79,6 +110,10 @@ private class DerivedMaintenancePayloadBuilderTest {
         System.assertEquals(path, nodePath.get('dataPath'));
     }
 
+    /**
+     * @description Verifies that a fallback payload contains only the 7 fixed attributes and omits
+     * the PartnerDiscountPercent attribute when the partner discount input is null or zero.
+     */
     @IsTest
     static void buildFallbackPayload_partnerOmittedWhenNullOrZero() {
         System.assertEquals(7, attrs(DerivedMaintenancePayloadBuilder.buildFallbackPayload(

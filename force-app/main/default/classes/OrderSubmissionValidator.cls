@@ -1,34 +1,11 @@
 /**
- * OrderSubmissionValidator
- *
- * Bulk, metadata-driven "required field is populated" validation for the Order
- * submission path (Update Status -> Order Complete, via the Fortra | Order | Submission
- * Check screen flow).
- *
- * Replaces the per-field FieldPopulatedCheck invocations the flow previously made from
- * inside nested loops (one Apex SOQL per field, per record, per line -> 20 + 5*N queries
- * on an N-line order, which breached the 100-SOQL governor limit on ~16+ line orders --
- * see SC-3366). This action is invoked ONCE with an Order Id and returns every
- * blank-required-field error in CONSTANT SOQL:
- *
- *   1 x Order query + 1 x OrderItem query + 1 query per distinct related object
- *   (e.g. Account, Contact). Validation rules come from custom metadata (no SOQL).
- *   Total is independent of order line count and of the number of rules.
- *
- * Rules live in Order_Submit_Validation__mdt:
- *   Object_API_Name__c             - object the field lives on (Order | OrderItem | Account | Contact | ...)
- *   Field_API_Name__c              - field that must be populated
- *   Relationship_Field_API_Name__c - field ON THE ORDER that resolves the target record:
- *                                      'Id'      -> the Order itself
- *                                      'OrderId' -> per-line OrderItem check (every line)
- *                                      e.g. 'AccountId' / 'BillToContactId' / 'ShipToContactId'
- *                                                -> a related record reached from the Order
- *   Error_Message__c               - message shown when the field is blank
- *
- * "Populated" semantics are preserved from the original FieldPopulatedCheck:
- *   - Boolean false counts as populated (an intentional value)
- *   - text-based types must be non-blank
- *   - all other types must be non-null
+ * @description Bulk, metadata-driven validation that every required field on an Order, its lines,
+ * and its related records is populated for the Order submission path. Evaluates all active
+ * Order_Submit_Validation__mdt rules in constant SOQL (one Order query, one OrderItem query, and
+ * one query per distinct related object) regardless of order line count, preserving the original
+ * FieldPopulatedCheck "populated" semantics: Boolean false counts as populated, text types must be
+ * non-blank, and all other types must be non-null.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class OrderSubmissionValidator {
 
@@ -61,6 +38,13 @@ public with sharing class OrderSubmissionValidator {
     // Invocable entry point
     // -----------------------------------------------------------------
 
+    /**
+     * @description Validates all active Order_Submit_Validation__mdt required-field rules for each
+     * requested Order, its OrderItem lines, and its related records in constant SOQL, returning the
+     * blank-field errors.
+     * @param requests Invocable requests, each carrying the Id of an Order to validate.
+     * @return One ValidationResult per request, in the same order, holding the blank-field errors.
+     */
     @InvocableMethod(
         label='Validate Order Submission'
         description='Validates all active Order_Submit_Validation__mdt required fields for an Order, its lines, and its related records in constant SOQL. Returns the blank-field errors.'
@@ -180,6 +164,7 @@ public with sharing class OrderSubmissionValidator {
                     try {
                         evaluateRule(res, baseUrl, r, ord, lines, relatedRecords);
                     } catch (Exception e) {
+                        ExceptionLogger.log('OrderSubmissionValidator', oid, new OrderSubmissionException('validate failed', e));
                         System.debug(LoggingLevel.ERROR, 'OrderSubmissionValidator rule error ['
                             + r.Object_API_Name__c + '.' + r.Field_API_Name__c + ']: ' + e.getMessage());
                     }
@@ -199,6 +184,16 @@ public with sharing class OrderSubmissionValidator {
     // Rule evaluation
     // -----------------------------------------------------------------
 
+    /**
+     * @description Evaluates a single validation rule against the resolved Order, its lines, or the
+     * related record it points to, adding a formatted error when the required field is blank.
+     * @param res The result accumulator to append any error message to.
+     * @param baseUrl The org base URL used to build a record link in the error message.
+     * @param r The validation rule (object, field, relationship field, and error message).
+     * @param ord The Order record being validated.
+     * @param lines The OrderItem lines of the Order, evaluated when the rule targets OrderItem.
+     * @param relatedRecords Related records keyed by object API name then record Id.
+     */
     private static void evaluateRule(
             ValidationResult res, String baseUrl, Order_Submit_Validation__mdt r,
             SObject ord, List<SObject> lines, Map<String, Map<Id, SObject>> relatedRecords) {
@@ -225,6 +220,15 @@ public with sharing class OrderSubmissionValidator {
         }
     }
 
+    /**
+     * @description Builds a formatted, bulleted error message with an optional record link and adds
+     * it to the result's error list.
+     * @param res The result accumulator to append the message to.
+     * @param baseUrl The org base URL used to build the record link.
+     * @param objName The API name of the object the error record belongs to.
+     * @param recordId The Id of the offending record, or null to omit the link.
+     * @param message The error message text, defaulted when blank.
+     */
     private static void addError(ValidationResult res, String baseUrl,
                                  String objName, Id recordId, String message) {
         String text = String.isBlank(message) ? 'Required field is missing.' : message;
@@ -241,6 +245,14 @@ public with sharing class OrderSubmissionValidator {
     // "Is populated?" evaluation (preserves FieldPopulatedCheck semantics)
     // -----------------------------------------------------------------
 
+    /**
+     * @description Determines whether the given field on a record holds a populated value, treating
+     * a missing record as not populated.
+     * @param record The record to inspect, or null when no record resolved.
+     * @param objName The API name of the object, used to resolve the field type.
+     * @param fieldName The API name of the field to check.
+     * @return True when the record exists and the field value counts as populated.
+     */
     @TestVisible
     private static Boolean isFieldPopulated(SObject record, String objName, String fieldName) {
         if (record == null) {
@@ -250,6 +262,14 @@ public with sharing class OrderSubmissionValidator {
         return isValuePopulated(rawValue, getFieldType(objName, fieldName));
     }
 
+    /**
+     * @description Applies the FieldPopulatedCheck "is populated" semantics to a raw value given its
+     * display type: Boolean false counts as populated, text types must be non-blank, and all other
+     * types must be non-null.
+     * @param rawValue The field value to evaluate.
+     * @param dt The Schema display type of the field.
+     * @return True when the value counts as populated for its type.
+     */
     @TestVisible
     private static Boolean isValuePopulated(Object rawValue, Schema.DisplayType dt) {
         if (rawValue == null) {
@@ -264,6 +284,12 @@ public with sharing class OrderSubmissionValidator {
         return true; // Date, Number, Currency, Reference, etc. -> populated when non-null
     }
 
+    /**
+     * @description Reports whether the given display type is one of the text-based types whose
+     * populated check requires a non-blank string.
+     * @param dt The Schema display type to classify.
+     * @return True when the type is text-based.
+     */
     private static Boolean isTextType(Schema.DisplayType dt) {
         return dt == Schema.DisplayType.STRING
             || dt == Schema.DisplayType.EMAIL
@@ -285,6 +311,11 @@ public with sharing class OrderSubmissionValidator {
     private static Map<String, Schema.DisplayType> fieldTypeCache =
         new Map<String, Schema.DisplayType>();
 
+    /**
+     * @description Returns the describe result for the named object, caching it per transaction.
+     * @param objName The API name of the object to describe.
+     * @return The DescribeSObjectResult, or null when the object does not exist.
+     */
     private static Schema.DescribeSObjectResult describeObject(String objName) {
         String key = objName.toLowerCase();
         if (!objectDescribes.containsKey(key)) {
@@ -294,6 +325,12 @@ public with sharing class OrderSubmissionValidator {
         return objectDescribes.get(key);
     }
 
+    /**
+     * @description Checks whether the named field exists on the named object.
+     * @param objName The API name of the object.
+     * @param fieldName The API name of the field.
+     * @return True when both are non-blank and the field exists on the object.
+     */
     private static Boolean fieldExists(String objName, String fieldName) {
         if (String.isBlank(objName) || String.isBlank(fieldName)) {
             return false;
@@ -302,6 +339,13 @@ public with sharing class OrderSubmissionValidator {
         return d != null && d.fields.getMap().containsKey(fieldName.toLowerCase());
     }
 
+    /**
+     * @description Returns the display type of the named field, caching it per transaction and
+     * defaulting to STRING when the object or field cannot be resolved.
+     * @param objName The API name of the object.
+     * @param fieldName The API name of the field.
+     * @return The Schema display type of the field.
+     */
     private static Schema.DisplayType getFieldType(String objName, String fieldName) {
         String key = objName.toLowerCase() + '.' + fieldName.toLowerCase();
         if (!fieldTypeCache.containsKey(key)) {

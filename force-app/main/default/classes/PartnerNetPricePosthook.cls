@@ -29,6 +29,14 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
     private static final String MODEL_DISCOUNT = 'Discount';
     private static final String CONTEXT_DEFINITION_NAME = 'SalesTransactionContextExt_v2';
 
+    // Interim default tier for New-Maintenance lines whose product classification does not model a
+    // maintenance tier (no Maintenance Type Defn attribute exists to stamp or select), so the line
+    // prices at this tier's rate instead of surfacing $0 with no in-app path to correction. The rate
+    // itself stays admin-editable in Maintenance_Rate__mdt; only the default-tier selection is set here.
+    // Set to blank to retire the fallback once the catalog models a tier on these products.
+    @TestVisible
+    private static final String UNTAGGED_MAINTENANCE_DEFAULT_TIER = 'Standard';
+
     private static Boolean isProcessing = false;
 
     @TestVisible
@@ -201,6 +209,10 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
             // SC-3384: ensure ABA-corrected lines carry the localized net/unit/total (creates the write
             // for a pure-ABA line; localizes UnitPrice without clobbering a partner/COLA-owned net).
             itemUpdate = mergeCurrencyCorrectionIntoUpdate(itemUpdate, lineItem, currencyCorrections);
+            // SC-3398: attribute-priced (ABP) non-USD lines carry no flat catalog value for the
+            // known-USD gate above, so the engine converts their Net but leaks the raw USD onto Sales
+            // Price / Subtotal / Total Line Amount. Reconcile those display fields to the converted net.
+            itemUpdate = mergeDisplayReconciliationIntoUpdate(itemUpdate, lineItem, currencyCorrections);
             if (itemUpdate != null) {
                 itemUpdates.add(itemUpdate);
             }
@@ -324,6 +336,10 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                 continue;
             }
             corrections.put(lineId, corr);
+            System.debug(LoggingLevel.ERROR, 'SC3384-NETTRACE line=' + lineId + ' cur=' + currencyById.get(lineId)
+                + ' rawNet(read)=' + rawNet + ' currentNet=' + currentNet
+                + ' localizedUnit(WRITTEN as NetUnitPrice)=' + corr.localizedUnit
+                + ' localizedTotal=' + corr.localizedTotal);
 
             // Mutate the localized net into the in-memory tag so the partner "lower-of" and the
             // COLA/renewal builders (which all read NetUnitPrice) operate on the same-currency value.
@@ -487,6 +503,94 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         addAttributeIfAbsent(itemUpdate, 'TotalLineAmount', corr.localizedTotal);
         addAttributeIfAbsent(itemUpdate, 'ABA_Raw_Net__c', corr.rawNet);
         return itemUpdate;
+    }
+
+    /**
+     * @description SC-3398 display reconciliation. An attribute-priced (ABP) non-USD line carries no
+     *              flat catalog value for the known-USD gate, so the pricing engine converts its Net
+     *              (Net Unit / Net Total / Total) but leaves Sales Price / Subtotal / Total Line Amount
+     *              at the raw USD figure. When the display divergence is exactly the currency
+     *              conversion and the line has no recorded discount, align the display fields to the
+     *              engine's already-converted net. Skips lines the flat-USD correction already handled.
+     * @param itemUpdate The update built by the partner/COLA/list/ABA paths (may be null).
+     * @param lineItem The context line tags.
+     * @param currencyCorrections The flat-USD corrections already applied (skip those lines).
+     * @return The item update carrying the reconciled display fields, or the input unchanged.
+     */
+    @TestVisible
+    private Map<String, Object> mergeDisplayReconciliationIntoUpdate(
+        Map<String, Object> itemUpdate,
+        Map<String, Object> lineItem,
+        Map<Id, AbaCurrencyCorrectionService.Correction> currencyCorrections
+    ) {
+        Id lineId = getLineItemRecordId(lineItem);
+        // Already fully localized by the flat-USD-value correction path — do not double-process.
+        if (lineId != null && currencyCorrections != null && currencyCorrections.containsKey(lineId)) {
+            return itemUpdate;
+        }
+
+        // Sales Price / Subtotal / Net Total are write-only outputs (null at posthook time), but
+        // TotalLineAmount carries the raw per-line display value the engine leaked and IS readable —
+        // so derive the raw per-unit display value from it and compare against the (converted) net.
+        Decimal qty = getDecimalFromTag(lineItem, 'Quantity');
+        Decimal effectiveQty = (qty != null && qty > 0) ? qty : 1;
+        Decimal leakedTotal = getDecimalFromTag(lineItem, 'TotalLineAmount');
+        Decimal leakedUnit = (leakedTotal != null) ? leakedTotal / effectiveQty : null;
+
+        CurrencyDisplayReconciliationService.Reconciliation rec =
+            CurrencyDisplayReconciliationService.evaluate(
+                getStringFromTag(lineItem, 'STICurrencyIsoCode'),
+                leakedUnit,
+                getDecimalFromTag(lineItem, 'NetUnitPrice'),
+                null,
+                hasRecordedDiscount(lineItem));
+        if (rec == null || !rec.writeNeeded) {
+            return itemUpdate;
+        }
+
+        // Net Total is unreadable here, so derive the aligned total from the aligned unit x quantity.
+        Decimal alignedUnit = rec.alignedUnit;
+        Decimal alignedTotal = alignedUnit * effectiveQty;
+
+        if (itemUpdate == null) {
+            Object updatePath = lineItem.get('_updatePath');
+            if (updatePath == null) {
+                return null;
+            }
+            // Net Unit / Net Total / Total are already correct (engine-converted); only the display
+            // fields leaked the raw USD figure, so reconcile just those three.
+            return new Map<String, Object>{
+                'nodePath' => new Map<String, Object>{ 'dataPath' => updatePath },
+                'attributes' => new List<Map<String, Object>>{
+                    currencyAttr('UnitPrice', alignedUnit),
+                    currencyAttr('Subtotal', alignedTotal),
+                    currencyAttr('TotalLineAmount', alignedTotal)
+                }
+            };
+        }
+
+        // A partner/COLA/list-stamp update already owns (and localized) these fields — add only the absent ones.
+        addAttributeIfAbsent(itemUpdate, 'UnitPrice', alignedUnit);
+        addAttributeIfAbsent(itemUpdate, 'Subtotal', alignedTotal);
+        addAttributeIfAbsent(itemUpdate, 'TotalLineAmount', alignedTotal);
+        return itemUpdate;
+    }
+
+    /**
+     * @description Whether a line carries a real, recorded discount that legitimately separates gross
+     *              (Sales Price) from net — in which case the display reconciliation must not fire.
+     * @param lineItem The context line tags.
+     * @return True when any discount signal (amount, value, or partner percent) is non-zero.
+     */
+    @TestVisible
+    private Boolean hasRecordedDiscount(Map<String, Object> lineItem) {
+        return isNonZero(getDecimalFromTag(lineItem, 'DiscountAmount'))
+            || isNonZero(getDecimalFromTag(lineItem, 'Discount_Value__c'))
+            || isNonZero(getDecimalFromTag(lineItem, 'PartnerDiscountPercent'));
+    }
+
+    private Boolean isNonZero(Decimal value) {
+        return value != null && value != 0;
     }
 
     private Map<String, Object> currencyAttr(String attributeName, Object attributeValue) {
@@ -1271,7 +1375,9 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         for (QuoteLineItem qli : [
             SELECT Id, QuoteId, Fortra_Product_Type__c, Base_Price__c, Prior_Partner_Discount__c,
                    Prior_Discretionary_Discount__c, PartnerDiscountPercent, Discount,
-                   COLA_Uplift_Percent__c, COLACalculatedPrice__c, Quantity, Quote.QuoteTypeText__c
+                   COLA_Uplift_Percent__c, COLACalculatedPrice__c, Quantity, Quote.QuoteTypeText__c,
+                   QuoteAction.Type, QuoteAction.SourceAsset.Price, QuoteAction.SourceAsset.Quantity,
+                   QuoteAction.SourceAsset.Product2.Fortra_Product_Type__c
             FROM QuoteLineItem
             WHERE Id IN :lineItemIds
             AND Quote.QuoteTypeText__c = 'Renewal'
@@ -1309,6 +1415,16 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         }
 
         Decimal colaNet = qli.COLACalculatedPrice__c.setScale(2, RoundingMode.HALF_UP);
+        // SC-3346 first-renewal maintenance: the procedure computes COLACalculatedPrice__c off the
+        // (mis-stamped) Base_Price__c and re-applies the % partner/discretionary discounts, under-pricing
+        // discounted first renewals (e.g. a discretionary line commits ~5.5x low). For a born first-renewal
+        // maintenance node — a Renew line whose source is an owned New-Maintenance asset — recompute the net
+        // from the asset gross and the carried prior-year discount DOLLARS, netted exactly once, so the
+        // committed NetUnitPrice matches the client three-component model. Overrides the procedure's value.
+        Decimal firstRenewalNet = resolveFirstRenewalMaintenanceColaNet(qli);
+        if (firstRenewalNet != null) {
+            colaNet = firstRenewalNet.setScale(2, RoundingMode.HALF_UP);
+        }
         Decimal procedureNet = getDecimalFromTag(lineItem, 'NetUnitPrice');
         if (procedureNet != null && procedureNet > 0
             && procedureNet.setScale(2, RoundingMode.HALF_UP) == colaNet) {
@@ -1336,6 +1452,31 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
         return RenewalColaPayloadBuilder.buildCommitPayload(
             updatePath, colaNet, lineTotal, partnerPercent, softwareDiscount
         );
+    }
+
+    /**
+     * @description SC-3346 committed-net override for a born first-renewal maintenance line. Returns the
+     *              asset-based three-component COLA net — (perUnit source-asset price − prior partner$ −
+     *              prior discretionary$) × (1 + COLA%) — when the line renews an owned New-Maintenance asset
+     *              (QuoteAction Renew + SourceAsset product = New Maintenance); null for every other line
+     *              (RRM, subscriptions, license) so their existing COLACalculatedPrice__c commit is untouched.
+     * @param qli The renewal COLA line (with QuoteAction.SourceAsset + prior-year discount fields loaded).
+     * @return The corrected COLA net, or null when this is not a first-renewal maintenance line or no rate resolves.
+     */
+    @TestVisible
+    private Decimal resolveFirstRenewalMaintenanceColaNet(QuoteLineItem qli) {
+        if (qli.QuoteAction == null
+            || qli.QuoteAction.Type != 'Renew'
+            || qli.QuoteAction.SourceAsset == null
+            || qli.QuoteAction.SourceAsset.Product2 == null
+            || qli.QuoteAction.SourceAsset.Product2.Fortra_Product_Type__c != 'New Maintenance') {
+            return null;
+        }
+        Decimal assetPrice = AssetNetUnitPrice.perUnit(
+            qli.QuoteAction.SourceAsset.Price, qli.QuoteAction.SourceAsset.Quantity);
+        return RenewalMaintenanceNetCalculator.computeFirstRenewalNet(
+            assetPrice, qli.Prior_Partner_Discount__c, qli.Prior_Discretionary_Discount__c,
+            qli.Discount, qli.COLA_Uplift_Percent__c);
     }
 
     @TestVisible
@@ -1552,9 +1693,16 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                     }
                 }
                 for (QuoteLineItem qli : qlis.values()) {
-                    Decimal rate = NewMaintenanceInputResolver.resolveTierRate(tierByLine.get(qli.Id), rateByType);
+                    String tier = tierByLine.get(qli.Id);
+                    Decimal rate = NewMaintenanceInputResolver.resolveEffectiveTierRate(
+                        tier, rateByType, UNTAGGED_MAINTENANCE_DEFAULT_TIER);
                     if (rate == null) {
                         continue;
+                    }
+                    if (String.isBlank(tier)) {
+                        System.debug(LoggingLevel.INFO, 'NEW MAINT UNTAGGED DEFAULT: Line ' + qli.Id
+                            + ' has no Maintenance Type Defn attribute; applied default tier '
+                            + UNTAGGED_MAINTENANCE_DEFAULT_TIER + ' rate=' + rate);
                     }
                     ContributorCarryForwardSnapshot contributor = contributorByMaintLineId.get(qli.Id);
                     Decimal contributorBase = contributor != null ? contributor.pricingBase : null;
@@ -1605,9 +1753,16 @@ global class PartnerNetPricePosthook implements RevSignaling.SignalingApexProces
                     }
                 }
                 for (OrderItem oi : ois.values()) {
-                    Decimal rate = NewMaintenanceInputResolver.resolveTierRate(tierByLine.get(oi.Id), rateByType);
+                    String tier = tierByLine.get(oi.Id);
+                    Decimal rate = NewMaintenanceInputResolver.resolveEffectiveTierRate(
+                        tier, rateByType, UNTAGGED_MAINTENANCE_DEFAULT_TIER);
                     if (rate == null) {
                         continue;
+                    }
+                    if (String.isBlank(tier)) {
+                        System.debug(LoggingLevel.INFO, 'NEW MAINT UNTAGGED DEFAULT: OrderItem ' + oi.Id
+                            + ' has no Maintenance Type Defn attribute; applied default tier '
+                            + UNTAGGED_MAINTENANCE_DEFAULT_TIER + ' rate=' + rate);
                     }
                     Decimal contributorBase = contributorNetByMaintLineId.get(oi.Id);
                     Boolean contributorNetFromPerpetual =

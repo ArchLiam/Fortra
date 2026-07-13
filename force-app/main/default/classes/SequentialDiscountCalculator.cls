@@ -1,15 +1,21 @@
 /**
- * @description Pure sequential-discount primitive extracted from PartnerNetPricePosthook (Wave-2
- *              decomposition, build*Update tier — step 1). Centralizes the scale-2 / HALF_UP
- *              percent-off arithmetic that is copy-pasted inline across the derived-maintenance and
- *              attribute-stamp builders. No SOQL/DML/context/state — deterministic Decimal -> Decimal.
- *
- *              CONTRACT: returns `base` unchanged when percent is null or <= 0; otherwise
- *              base x (1 - percent/100), rounded to 2 decimals HALF_UP. This is the exact inline
- *              expression at the call sites; do NOT reuse it where a different scale/mode is expected.
+ * @description Pure, stateless sequential-discount primitive that centralizes the scale-2 / HALF_UP
+ *              percent-off arithmetic shared by the derived-maintenance and attribute-stamp builders.
+ *              No SOQL/DML/context/state — a deterministic Decimal-to-Decimal calculation. Returns the
+ *              base unchanged when percent is null or non-positive; otherwise base x (1 - percent/100),
+ *              rounded to 2 decimals HALF_UP.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class SequentialDiscountCalculator {
 
+    /**
+     * @description Applies a single percent-off discount to a base amount, returning the base
+     *              unchanged when percent is null or <= 0; otherwise base x (1 - percent/100)
+     *              rounded to 2 decimals using HALF_UP.
+     * @param base The starting amount to discount.
+     * @param percent The percentage to subtract (e.g. 20 for 20% off); null or non-positive is a no-op.
+     * @return The discounted amount at scale 2, or the original base when no discount applies.
+     */
     public static Decimal applyDiscountPercent(Decimal base, Decimal percent) {
         if (percent == null || percent <= 0) {
             return base;

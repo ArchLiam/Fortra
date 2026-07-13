@@ -137,6 +137,13 @@ public with sharing class QuoteToOrderFieldMapper {
                     changed = true;
                 }
 
+                // SC-3384: carry the ABA raw-USD net snapshot so the order-side reprice (which does not
+                // re-run the ESD) stays provenance-based and idempotent (no re-scale of a localized net).
+                if (sourceQLI.ABA_Raw_Net__c != null && oi.ABA_Raw_Net__c != sourceQLI.ABA_Raw_Net__c) {
+                    patch.ABA_Raw_Net__c = sourceQLI.ABA_Raw_Net__c;
+                    changed = true;
+                }
+
                 if (changed) {
                     patchById.put(oi.Id, patch);
                 }

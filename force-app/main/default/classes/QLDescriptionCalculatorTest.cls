@@ -1,15 +1,20 @@
 /**
  * @description Unit tests for QLDescriptionCalculator — the pure description-assembly logic
- *              extracted from QLDescriptionGeneratorPrehook (Wave-2 hook-thinning). Exercises the
- *              string builders, payload builders, and queryTags-response parsers directly with
- *              in-memory inputs (no SOQL / DML / RCA runtime). ResolvedConfig is built in-memory
- *              (public fields).
+ *              extracted from QLDescriptionGeneratorPrehook. Exercises the string builders,
+ *              payload builders, and queryTags-response parsers directly with in-memory inputs
+ *              (no SOQL / DML / RCA runtime); ResolvedConfig is built in-memory via public fields.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class QLDescriptionCalculatorTest {
 
     // ---- helpers -------------------------------------------------------------
 
+    /**
+     * @description Builds a fully-populated ResolvedConfig fixture (segment names, unit-type
+     *              attribute/trigger, and primary/fallback unit-quantity attributes) shared by the tests.
+     * @return an in-memory ResolvedConfig with representative segment and unit settings
+     */
     private static QLDescriptionGeneratorPrehook.ResolvedConfig cfg() {
         QLDescriptionGeneratorPrehook.ResolvedConfig c = new QLDescriptionGeneratorPrehook.ResolvedConfig();
         c.segmentNames = new List<String>{ 'PS_Service_Type', 'Feature_Options' };
@@ -22,6 +27,10 @@ private class QLDescriptionCalculatorTest {
 
     // ---- buildDescription ----------------------------------------------------
 
+    /**
+     * @description Verifies buildDescription concatenates the product name, the computed unit-type
+     *              segment, and the ordered attribute segments into a single pipe-delimited string.
+     */
     @isTest
     static void buildDescription_productPlusAttributes() {
         Map<String, String> attrs = new Map<String, String>{
@@ -34,24 +43,40 @@ private class QLDescriptionCalculatorTest {
             'product + unit-type segment + ordered attribute segments');
     }
 
+    /**
+     * @description Verifies buildDescription returns just the product name when the attribute map is
+     *              null or empty (no segments to append).
+     */
     @isTest
     static void buildDescription_productNameOnly() {
         System.assertEquals('FlatFee', QLDescriptionCalculator.buildDescription('FlatFee', null, cfg()), 'null attrs -> product name only');
         System.assertEquals('FlatFee', QLDescriptionCalculator.buildDescription('FlatFee', new Map<String, String>(), cfg()), 'empty attrs -> product name only');
     }
 
+    /**
+     * @description Verifies buildDescription returns null when there is nothing to render — no product
+     *              name and no attributes (both null/blank and blank-name/empty-attrs cases).
+     */
     @isTest
     static void buildDescription_nullWhenNothingToRender() {
         System.assertEquals(null, QLDescriptionCalculator.buildDescription(null, null, cfg()), 'no name + no attrs -> null');
         System.assertEquals(null, QLDescriptionCalculator.buildDescription('', new Map<String, String>(), cfg()), 'blank name + empty attrs -> null');
     }
 
+    /**
+     * @description Verifies buildDescription renders a repeated segment value only once, deduplicating
+     *              identical values across segments.
+     */
     @isTest
     static void buildDescription_dedupsRepeatedSegmentValues() {
         Map<String, String> attrs = new Map<String, String>{ 'PS_Service_Type' => 'X', 'Feature_Options' => 'X' };
         System.assertEquals('P | X', QLDescriptionCalculator.buildDescription('P', attrs, cfg()), 'duplicate segment value rendered once');
     }
 
+    /**
+     * @description Verifies buildDescription caps the result at 4000 characters and appends the
+     *              " | [truncated]" marker when the assembled description exceeds the limit.
+     */
     @isTest
     static void buildDescription_truncatesOver4000() {
         Map<String, String> attrs = new Map<String, String>{ 'PS_Service_Type' => 'A'.repeat(5000) };
@@ -62,6 +87,11 @@ private class QLDescriptionCalculatorTest {
 
     // ---- computeUnitTypeSegment ---------------------------------------------
 
+    /**
+     * @description Verifies computeUnitTypeSegment across its variants: the "Per User" trigger renders
+     *              "Users: n" (or bare "Per User" with no quantity), other types render "type: n" (or bare
+     *              type), and null/missing Unit_Type yields null.
+     */
     @isTest
     static void computeUnitTypeSegment_variants() {
         System.assertEquals('Users: 50', QLDescriptionCalculator.computeUnitTypeSegment(new Map<String, String>{ 'Unit_Type' => 'Per User', 'Attribute_Volume' => '50' }, cfg()), 'Per User + qty -> Users: n');
@@ -74,6 +104,10 @@ private class QLDescriptionCalculatorTest {
 
     // ---- resolveUnitQuantity -------------------------------------------------
 
+    /**
+     * @description Verifies resolveUnitQuantity returns the trimmed primary attribute when present, falls
+     *              back to the trimmed fallback attribute otherwise, and returns null when neither exists.
+     */
     @isTest
     static void resolveUnitQuantity_primaryFallbackAndTrim() {
         System.assertEquals('100', QLDescriptionCalculator.resolveUnitQuantity(new Map<String, String>{ 'Attribute_Volume' => '  100  ' }, cfg()), 'primary trimmed');
@@ -84,6 +118,10 @@ private class QLDescriptionCalculatorTest {
 
     // ---- buildContextUpdate --------------------------------------------------
 
+    /**
+     * @description Verifies buildContextUpdate drops the root element from the data path and emits a single
+     *              SalesTrxnItemDescription attribute carrying the supplied description value.
+     */
     @isTest
     static void buildContextUpdate_dropsRootAndSetsDescriptionAttr() {
         List<Object> dp = new List<Object>{ 'root', 'lineNode' };
@@ -98,6 +136,10 @@ private class QLDescriptionCalculatorTest {
 
     // ---- buildContextUpdates -------------------------------------------------
 
+    /**
+     * @description Verifies buildContextUpdates produces an update for every line that has a description,
+     *              including attribute-less lines that still resolve to a product-name-only description.
+     */
     @isTest
     static void buildContextUpdates_includesProductNameOnlyLines() {
         Id lineA = '001000000000001';
@@ -115,6 +157,10 @@ private class QLDescriptionCalculatorTest {
         System.assertEquals(2, updates.size(), 'both lines produce a description (attribute-less line still gets product name)');
     }
 
+    /**
+     * @description Verifies buildContextUpdates skips lines that resolve to a null description (no product
+     *              name and no attributes), emitting no update for them.
+     */
     @isTest
     static void buildContextUpdates_skipsLinesWithNoDescription() {
         Id lineA = '001000000000003';
@@ -127,6 +173,10 @@ private class QLDescriptionCalculatorTest {
 
     // ---- parseConfiguredAttributes ------------------------------------------
 
+    /**
+     * @description Verifies parseConfiguredAttributes reads attributes from the nested tagValue shape,
+     *              keying each attribute/value under its ParentReference line Id.
+     */
     @isTest
     static void parseConfiguredAttributes_nestedTagValueShape() {
         Map<String, Object> resp = new Map<String, Object>{
@@ -146,6 +196,10 @@ private class QLDescriptionCalculatorTest {
         System.assertEquals('Production', parsed.get(pid).get('PS_Service_Type'), 'attribute parsed under parent line');
     }
 
+    /**
+     * @description Verifies parseConfiguredAttributes resolves the parent line from dataPath[size-2] when
+     *              ParentReference is absent and falls back to AttributeKeyName when Attribute is blank.
+     */
     @isTest
     static void parseConfiguredAttributes_attributeKeyNameFallback_andDataPathParent() {
         // No ParentReference -> parent resolved from dataPath[size-2]; Attribute blank -> AttributeKeyName used.
@@ -165,6 +219,10 @@ private class QLDescriptionCalculatorTest {
         System.assertEquals('Adv', parsed.get(pid).get('Feature_Options'), 'dataPath-parent + AttributeKeyName fallback');
     }
 
+    /**
+     * @description Verifies parseConfiguredAttributes returns an empty map for a null response and for a
+     *              response missing the SalesTransactionItemAttribute key.
+     */
     @isTest
     static void parseConfiguredAttributes_nullAndEmpty() {
         System.assert(QLDescriptionCalculator.parseConfiguredAttributes(null).isEmpty(), 'null -> empty');
@@ -173,6 +231,10 @@ private class QLDescriptionCalculatorTest {
 
     // ---- parseLineItemDataPaths ---------------------------------------------
 
+    /**
+     * @description Verifies parseLineItemDataPaths keys each line by the Id in the last data-path element
+     *              and retains the full data path as the value.
+     */
     @isTest
     static void parseLineItemDataPaths_extractsLineIdFromLastElement() {
         Map<String, Object> resp = new Map<String, Object>{
@@ -186,6 +248,10 @@ private class QLDescriptionCalculatorTest {
         System.assertEquals(new List<Object>{ 'root', '001000000000001AAA' }, parsed.get(lid), 'full dataPath retained');
     }
 
+    /**
+     * @description Verifies parseLineItemDataPaths skips entries whose last data-path element is not an Id
+     *              and returns an empty map for a null response.
+     */
     @isTest
     static void parseLineItemDataPaths_skipsNonIdLastElement_andNull() {
         Map<String, Object> resp = new Map<String, Object>{

@@ -1,14 +1,16 @@
 /**
- * @description Pure list-price / stamped-discount resolvers extracted verbatim from
- *              PartnerNetPricePosthook (Wave-2 decomposition, increment 12). No SOQL, no DML, no
- *              RCA context — resolve the ListPrice value to stamp and the carried partner/manual
- *              discount percents from either a context line map or a QuoteLineItem. Unit-testable.
+ * @description Pure list-price / stamped-discount resolvers with no SOQL, DML, or RCA context.
+ *              Resolves the ListPrice value to stamp and the carried partner/manual discount
+ *              percents from either a context line map or a QuoteLineItem. Unit-testable.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class ListPriceStampCalculator {
 
     /**
      * @description Stamped partner discount % carried on a context line
      *              (PartnerDiscountPercent tag, else Partner_Discount_Percent__c).
+     * @param lineItem Context line map whose tags carry the partner discount percent.
+     * @return The stamped partner discount percent, or null when none is carried.
      */
     public static Decimal resolveStampedPartnerPercent(Map<String, Object> lineItem) {
         Decimal partnerPercent = ContextTagReader.getDecimalFromTag(lineItem, 'PartnerDiscountPercent');
@@ -21,6 +23,8 @@ public with sharing class ListPriceStampCalculator {
     /**
      * @description Stamped manual discount % carried on a context line
      *              (ItemDiscountPercentage tag, else Discount).
+     * @param lineItem Context line map whose tags carry the manual discount percent.
+     * @return The stamped manual discount percent, or null when none is carried.
      */
     public static Decimal resolveStampedManualPercent(Map<String, Object> lineItem) {
         Decimal manualPercent = ContextTagReader.getDecimalFromTag(lineItem, 'ItemDiscountPercentage');
@@ -34,6 +38,9 @@ public with sharing class ListPriceStampCalculator {
      * @description ListPrice to stamp for attribute-tier / derived lines. Derived maintenance uses
      *              the net (or unit) as list when above the current ListPrice; otherwise the base
      *              (or pre-partner) price when it exceeds the current ListPrice. Null = no restamp.
+     * @param lineItem Context line map supplying product type, net/unit, base and current ListPrice.
+     * @param productTypeByLineId Fallback map of product type keyed by line record Id.
+     * @return The ListPrice to stamp, or null when no restamp applies.
      */
     public static Decimal resolveAttributeTierListPrice(
         Map<String, Object> lineItem,
@@ -79,6 +86,10 @@ public with sharing class ListPriceStampCalculator {
     /**
      * @description Derived-maintenance ListPrice from a QuoteLineItem: unit price when it already
      *              tops net; else base x tier-rate; else net grossed-up by carried partner/manual %.
+     * @param qli QuoteLineItem supplying unit/net/base prices and carried discount percents.
+     * @param rateByType Tier-rate multipliers keyed by tier name.
+     * @param tierByLine Tier name keyed by QuoteLineItem Id, used to look up the rate.
+     * @return The derived-maintenance ListPrice, or null when none can be resolved.
      */
     public static Decimal resolveDerivedMaintenanceListPrice(
         QuoteLineItem qli,

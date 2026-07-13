@@ -1,17 +1,12 @@
 /**
- * Pure hardware-pricing calculation, extracted from HardwareAttributePricingPrehook (Wave 2 hook-thinning).
- * Plain-input / plain-output; unit-testable without the RCA runtime.
- *
- * D-14 (behavior-preserving config extraction): the three pricing tables — pGroup multipliers,
- * user-count-tier multipliers, and system-type discounts — are now read from the admin-editable
- * `Hardware_Attribute_Pricing__mdt` Custom Metadata Type, seeded with the EXACT prior hardcoded values
- * (Fortra-Products-Hardware-Solution-Design-Doc §8 Rules 2/3/4). Loaded once per transaction via
- * getAll() (NOT SOQL — no query-governor cost, matters for the SC-3447-sensitive waterfall). Lookup
- * semantics and lookup-miss defaults are unchanged; seeded config reproduces the old output byte-for-byte.
- *
- * Formula: adjustedPrice = listPrice x pGroupMultiplier x userTierMultiplier x (1 - systemTypeDiscount/100)
- * Note: adjustedPrice is returned RAW (unrounded); the caller rounds, matching the prior inline behavior.
- * Ref: docs/pricing-refactor/PRICING_REFACTOR_PLAN.md  (Section 5.1 thin-hook = adapter over testable service; D-14)
+ * @description Computes hardware-adjusted pricing as a plain-input/plain-output, unit-testable
+ *              service (extracted from HardwareAttributePricingPrehook): adjustedPrice = listPrice
+ *              x pGroupMultiplier x userTierMultiplier x (1 - systemTypeDiscount/100), returned RAW
+ *              (unrounded) for the caller to round. The three pricing tables (pGroup multipliers,
+ *              user-count-tier multipliers, and system-type discounts) are read once per transaction
+ *              from the admin-editable Hardware_Attribute_Pricing__mdt Custom Metadata Type, whose
+ *              seeded values reproduce the prior hardcoded output byte-for-byte.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class HardwarePricingCalculator {
 
@@ -38,8 +33,13 @@ public with sharing class HardwarePricingCalculator {
             this.maxUsers = maxU;
             this.multiplier = mult;
         }
-        // Ascending by minUsers so the contiguous bands evaluate low->high (open-ended top band last),
-        // reproducing the fixed declaration order of the prior hardcoded list.
+        /**
+         * @description Orders bands ascending by minUsers so contiguous bands evaluate low->high
+         *              (open-ended top band last), reproducing the fixed declaration order of the
+         *              prior hardcoded list.
+         * @param o the other UserTierRange being compared
+         * @return -1, 0, or 1 per the Comparable contract
+         */
         public Integer compareTo(Object o) {
             Integer a = (this.minUsers == null) ? 0 : this.minUsers;
             Integer b = (((UserTierRange) o).minUsers == null) ? 0 : ((UserTierRange) o).minUsers;
@@ -57,7 +57,14 @@ public with sharing class HardwarePricingCalculator {
     }
 
     /**
-     * @description Compute the hardware-adjusted price from list price + the three attributes.
+     * @description Computes the hardware-adjusted price from list price plus the three pricing
+     *              attributes, returning each intermediate multiplier/discount and the RAW
+     *              (unrounded) adjusted price.
+     * @param listPrice the catalog list price to adjust
+     * @param pGroup the hardware processor-group key driving the pGroup multiplier
+     * @param usersPerPartition the user count per partition driving the user-tier multiplier
+     * @param systemType the system-type key driving the discount percentage
+     * @return a HardwarePriceResult holding each multiplier/discount and the raw adjusted price
      */
     public static HardwarePriceResult calculate(Decimal listPrice, String pGroup, Decimal usersPerPartition, String systemType) {
         HardwarePriceResult r = new HardwarePriceResult();
@@ -69,7 +76,11 @@ public with sharing class HardwarePricingCalculator {
         return r;
     }
 
-    /** @description Get pGroup multiplier from the MDT-backed table (default 1.0 on blank/unknown). */
+    /**
+     * @description Returns the pGroup multiplier from the MDT-backed table.
+     * @param pGroup the processor-group key to look up
+     * @return the configured multiplier, or 1.0 when pGroup is blank or unknown
+     */
     @TestVisible
     public static Decimal getPGroupMultiplier(String pGroup) {
         if (String.isBlank(pGroup)) {
@@ -79,7 +90,11 @@ public with sharing class HardwarePricingCalculator {
         return pGroupMultipliers.containsKey(pGroup) ? pGroupMultipliers.get(pGroup) : DEFAULT_MULTIPLIER;
     }
 
-    /** @description Get user-tier multiplier for the user count from the MDT-backed bands (default 1.0). */
+    /**
+     * @description Returns the user-tier multiplier for the given user count from the MDT-backed bands.
+     * @param usersPerPartition the user count per partition to band
+     * @return the configured multiplier for the matching band, or 1.0 when null/non-positive or unmatched
+     */
     @TestVisible
     public static Decimal getUserTierMultiplier(Decimal usersPerPartition) {
         if (usersPerPartition == null || usersPerPartition <= 0) {
@@ -96,7 +111,11 @@ public with sharing class HardwarePricingCalculator {
         return DEFAULT_MULTIPLIER;
     }
 
-    /** @description Get system-type discount percentage from the MDT-backed table (default 0 on blank/unknown). */
+    /**
+     * @description Returns the system-type discount percentage from the MDT-backed table.
+     * @param systemType the system-type key to look up
+     * @return the configured discount percentage, or 0 when systemType is blank or unknown
+     */
     @TestVisible
     public static Decimal getSystemTypeDiscount(String systemType) {
         if (String.isBlank(systemType)) {

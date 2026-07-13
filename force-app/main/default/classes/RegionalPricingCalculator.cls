@@ -1,17 +1,16 @@
 /**
- * Pure regional-services pricing calculation, extracted from RegionalServicesPricingPrehook (Wave 2 hook-thinning).
- * Plain-input / plain-output; unit-testable without the RCA runtime. Behavior-identical to the prior inline logic
- * (same lookup + rounding, just relocated).
- *
- * Formula: adjustedPrice = CEILING((listPrice x multiplier) / 5) x 5   (round UP to nearest $5)
- * Ref: docs/pricing-refactor/PRICING_REFACTOR_PLAN.md (Section 5.1 thin hook = adapter over testable service)
+ * @description Provides pure, unit-testable regional-services pricing calculations (country multiplier lookup, effective-date evaluation, and adjusted-price rounding) with plain-input/plain-output signatures and no dependency on the RCA runtime. The adjusted price is CEILING((listPrice x multiplier) / 5) x 5, i.e. rounded up to the nearest $5.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class RegionalPricingCalculator {
 
     @TestVisible private static final Decimal DEFAULT_MULTIPLIER = 1.0;
 
     /**
-     * @description Country -> multiplier lookup (by name or code); default 1.0 when blank or unmatched.
+     * @description Resolves a country to its pricing multiplier by name or code, returning DEFAULT_MULTIPLIER (1.0) when the country is blank, unmatched, or maps to a null multiplier.
+     * @param multipliers Country name/code -> multiplier lookup map
+     * @param country The country name or code to resolve
+     * @return The matched multiplier, or DEFAULT_MULTIPLIER (1.0) when blank, unmatched, or null
      */
     public static Decimal getMultiplierForCountry(Map<String, Decimal> multipliers, String country) {
         if (String.isBlank(country)) {
@@ -53,7 +52,10 @@ public with sharing class RegionalPricingCalculator {
     }
 
     /**
-     * @description Adjusted price rounded UP to the nearest $5. Null list -> null; null multiplier -> 1.0.
+     * @description Computes the adjusted price by multiplying the list price by the multiplier and rounding UP to the nearest $5; returns null for a null list price and treats a null multiplier as 1.0.
+     * @param listPrice The base list price (nullable)
+     * @param multiplier The regional multiplier (nullable; defaults to 1.0)
+     * @return The adjusted price rounded up to the nearest $5, or null when listPrice is null
      */
     public static Decimal calculateAdjustedPrice(Decimal listPrice, Decimal multiplier) {
         if (listPrice == null) {

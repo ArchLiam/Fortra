@@ -1,12 +1,20 @@
 /**
- * @description Pure contributor-line pricing helpers, extracted verbatim from PartnerNetPricePosthook
- *              (Wave-2 decomposition, increment 2). Derive the contributing perpetual line's commercial
- *              base and carried partner/software discount percentages for derived-maintenance pricing.
- *              Deterministic: read QuoteLineItem / OrderItem fields only — no SOQL, no RCA context —
- *              so they are unit-testable without the pricing runtime.
+ * @description Pure contributor-line pricing helpers that derive the contributing perpetual line's
+ *              commercial base and carried partner/software discount percentages for derived-maintenance
+ *              pricing. Deterministic: read QuoteLineItem / OrderItem fields only — no SOQL, no RCA
+ *              context — so they are unit-testable without the pricing runtime.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class ContributorPricingCalculator {
 
+    /**
+     * @description Resolves the contributing line's effective partner-discount percentage, preferring the
+     *              live PartnerDiscountPercent / custom percent field and falling back to reconstructing the
+     *              percentage from the prior partner discount amount against the supplied pricing base.
+     * @param contributorLine The contributing perpetual QuoteLineItem to read discount fields from.
+     * @param pricingBase The commercial base used to convert a prior partner-discount amount into a percentage.
+     * @return The partner-discount percentage, or null when none can be resolved.
+     */
     public static Decimal resolveContributorPartnerPercent(QuoteLineItem contributorLine, Decimal pricingBase) {
         if (contributorLine.PartnerDiscountPercent != null && contributorLine.PartnerDiscountPercent > 0) {
             return contributorLine.PartnerDiscountPercent;
@@ -21,6 +29,16 @@ public with sharing class ContributorPricingCalculator {
         return null;
     }
 
+    /**
+     * @description Resolves the contributing line's effective software (discretionary) discount percentage,
+     *              preferring the live Discount field and otherwise reconstructing it from the prior
+     *              discretionary discount amount against the partner-net base derived from pricingBase and
+     *              partnerPercent.
+     * @param contributorLine The contributing perpetual QuoteLineItem to read discount fields from.
+     * @param pricingBase The commercial base before partner and discretionary discounts are applied.
+     * @param partnerPercent The partner-discount percentage applied ahead of the discretionary discount.
+     * @return The software (discretionary) discount percentage, or null when none can be resolved.
+     */
     public static Decimal resolveContributorSoftwarePercent(
         QuoteLineItem contributorLine,
         Decimal pricingBase,
@@ -42,6 +60,13 @@ public with sharing class ContributorPricingCalculator {
         return null;
     }
 
+    /**
+     * @description Resolves the commercial pricing base for a contributing QuoteLineItem, selecting the first
+     *              positive value in precedence order: pre-partner price, base price, net unit price when it
+     *              exceeds list price, list price, then unit price.
+     * @param contributorLine The contributing perpetual QuoteLineItem to derive the base from.
+     * @return The resolved pricing base, or null when the line is null or no positive candidate exists.
+     */
     public static Decimal resolveContributorPricingBase(QuoteLineItem contributorLine) {
         if (contributorLine == null) {
             return null;
@@ -66,6 +91,12 @@ public with sharing class ContributorPricingCalculator {
         return null;
     }
 
+    /**
+     * @description Resolves the commercial pricing base for a contributing OrderItem, selecting the first
+     *              positive value in precedence order: net unit price, base price, list price, then unit price.
+     * @param contributorLine The contributing perpetual OrderItem to derive the base from.
+     * @return The resolved pricing base, or null when the line is null or no positive candidate exists.
+     */
     public static Decimal resolveContributorPricingBase(OrderItem contributorLine) {
         if (contributorLine == null) {
             return null;

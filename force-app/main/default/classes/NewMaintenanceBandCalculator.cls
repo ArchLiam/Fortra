@@ -1,9 +1,8 @@
 /**
- * @description Pure New-Maintenance partner-band mapping, extracted from PartnerNetPricePosthook
- *              (Wave-2 decomposition, increment 4 — SOQL-vs-pure split). The posthook resolvers keep
- *              the SOQL loads (Quote/Order + PartnerPricingService.getPricingModels); this calculator
- *              holds the pure logic (which billing partners are in play, and the band per line).
- *              No SOQL, no RCA context — unit-testable on loaded SObjects + models.
+ * @description Pure New-Maintenance partner-band mapping: determines which billing partners are in
+ *              play and resolves the discount band per line, operating on loaded SObjects and partner
+ *              pricing models with no SOQL and no RCA context (unit-testable).
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 public with sharing class NewMaintenanceBandCalculator {
 
@@ -11,6 +10,10 @@ public with sharing class NewMaintenanceBandCalculator {
      * @description The New-Maintenance discount band from a billing partner's Discount pricing model.
      *              Returns null unless the model is Discount and a positive New_Maintenance_Percent__c
      *              resolves, so callers fall back to existing behavior.
+     * @param pricingModel The partner pricing model name; must be 'Discount' to yield a band.
+     * @param billingPartnerId The billing partner whose pricing model supplies the band.
+     * @param models Billing-partner Id to Partner_Pricing_Model__c lookup.
+     * @return The positive New-Maintenance band, or null when not a Discount model or no positive band resolves.
      */
     public static Decimal newMaintenanceBand(
         String pricingModel,
@@ -28,7 +31,11 @@ public with sharing class NewMaintenanceBandCalculator {
         return (band != null && band > 0) ? band : null;
     }
 
-    /** @description Discount-model billing-partner Ids from loaded Quotes. */
+    /**
+     * @description Discount-model billing-partner Ids from loaded Quotes.
+     * @param quotes Quote Id to Quote lookup to scan for Discount-model billing partners.
+     * @return The set of billing-partner Ids referenced by Discount-model quotes.
+     */
     public static Set<Id> billingPartnerIdsFromQuotes(Map<Id, Quote> quotes) {
         Set<Id> billingPartnerIds = new Set<Id>();
         if (quotes == null) {
@@ -42,7 +49,11 @@ public with sharing class NewMaintenanceBandCalculator {
         return billingPartnerIds;
     }
 
-    /** @description Discount-model billing-partner Ids from loaded Orders (via each source Quote). */
+    /**
+     * @description Discount-model billing-partner Ids from loaded Orders (via each source Quote).
+     * @param orders Order Id to Order lookup (with source Quote) to scan for Discount-model billing partners.
+     * @return The set of billing-partner Ids referenced by Discount-model source quotes.
+     */
     public static Set<Id> billingPartnerIdsFromOrders(Map<Id, Order> orders) {
         Set<Id> billingPartnerIds = new Set<Id>();
         if (orders == null) {
@@ -58,7 +69,12 @@ public with sharing class NewMaintenanceBandCalculator {
         return billingPartnerIds;
     }
 
-    /** @description New-Maintenance band keyed by Quote Id. */
+    /**
+     * @description New-Maintenance band keyed by Quote Id.
+     * @param quotes Quote Id to Quote lookup to resolve bands for.
+     * @param models Billing-partner Id to Partner_Pricing_Model__c lookup.
+     * @return Map of Quote Id to its resolved New-Maintenance band, excluding quotes with no band.
+     */
     public static Map<Id, Decimal> bandByQuote(
         Map<Id, Quote> quotes,
         Map<Id, Partner_Pricing_Model__c> models
@@ -76,7 +92,12 @@ public with sharing class NewMaintenanceBandCalculator {
         return bands;
     }
 
-    /** @description New-Maintenance band keyed by Order Id (resolved from each Order's source Quote). */
+    /**
+     * @description New-Maintenance band keyed by Order Id (resolved from each Order's source Quote).
+     * @param orders Order Id to Order lookup (with source Quote) to resolve bands for.
+     * @param models Billing-partner Id to Partner_Pricing_Model__c lookup.
+     * @return Map of Order Id to its resolved New-Maintenance band, excluding orders with no band.
+     */
     public static Map<Id, Decimal> bandByOrder(
         Map<Id, Order> orders,
         Map<Id, Partner_Pricing_Model__c> models

@@ -4,10 +4,17 @@
  *              AttributeDefinition / Prepaid picklist lookup) plus the
  *              itemSubscriptionTerm multi-year clause. Kept separate because the main
  *              COLAUpliftTest has a @testSetup, which forbids SeeAllData methods.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest(SeeAllData=true)
 private class COLAUpliftPrehookCovTest {
 
+    /**
+     * @description Verifies that COLAUpliftPrehook.processMyCAPEligibility evaluates a
+     *              multi-year renewal (driven by ItemSubscriptionTerm) with a
+     *              below-minimum COLA percent, exercising the MyCAP sub-term and Prepaid
+     *              picklist lookup seams that require SeeAllData=true org config.
+     */
     @isTest
     static void testMyCAP_SubTerm_And_PrepaidLookup() {
         MyCAP_Rules__mdt rule = MyCAP_Rules__mdt.getInstance('Global');

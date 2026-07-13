@@ -1,12 +1,13 @@
 /**
- * @description Unit tests for AttributeVolumeCalculator (SC-3390 / Wave-2 decomposition, round 2).
+ * @description Unit tests for AttributeVolumeCalculator.
  *              Exercises the pure seams extracted verbatim from AttributeVolumePricingPrehook —
  *              composite-key tier map + volume->tier resolution (range checks, first-match, key
  *              normalization, Attribute_Volume skip, AttributeKeyName fallback), matched-tier node
- *              shaping across the three price modes, the SC-3390 / D-17 reset-to-list payload,
+ *              shaping across the three price modes, the reset-to-list payload,
  *              explainer text, attribute/volume reads, dataPath id extraction, attribute grouping,
  *              and the tag helpers (flat + nested {tagValue} wrapper). No SOQL/DML — all pure; tier
  *              records are built in memory (15-char reference Ids, no checksum).
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class AttributeVolumeCalculatorTest {
@@ -19,6 +20,18 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- builders -------------------------------------------------------------
 
+    /**
+     * @description Builds an in-memory Attribute_Tier_Pricing_Storage__c record (USD, fixed reference
+     *              Product/PSM ids) for wiring up tier-lookup fixtures.
+     * @param attrName Attribute name stored on the tier row.
+     * @param attrValue Attribute value stored on the tier row.
+     * @param lower Lower volume bound for the tier.
+     * @param upper Upper volume bound for the tier.
+     * @param tierValue Tier value (base price) for the tier.
+     * @param mult Multiplier applied under Calculated mode.
+     * @param mode Price mode (Calculated / Unit Price / Total Price).
+     * @return The constructed tier storage record.
+     */
     private static Attribute_Tier_Pricing_Storage__c tier(
         String attrName, String attrValue, Decimal lower, Decimal upper,
         Decimal tierValue, Decimal mult, String mode
@@ -36,14 +49,31 @@ private class AttributeVolumeCalculatorTest {
         );
     }
 
+    /**
+     * @description Builds a single attribute map entry keyed by 'Attribute' / 'AttributeValue'.
+     * @param name Attribute name.
+     * @param value Attribute value.
+     * @return A map representing one attribute node.
+     */
     private static Map<String, Object> attrMap(String name, String value) {
         return new Map<String, Object>{ 'Attribute' => name, 'AttributeValue' => value };
     }
 
+    /**
+     * @description Builds an item node map carrying a 'dataPath' list and a 'tagValue' map.
+     * @param dataPath The context/data path elements.
+     * @param tagMap The tag-value map for the node.
+     * @return A map representing an item node.
+     */
     private static Map<String, Object> itemNode(List<Object> dataPath, Map<String, Object> tagMap) {
         return new Map<String, Object>{ 'dataPath' => dataPath, 'tagValue' => tagMap };
     }
 
+    /**
+     * @description Flattens a list of attribute maps into a name->Decimal map, keeping only numeric values.
+     * @param attrs List of attribute maps produced by buildNodeUpdate/buildResetNodeUpdate.
+     * @return Map of attributeName to its Decimal attributeValue.
+     */
     private static Map<String, Decimal> flattenDec(List<Object> attrs) {
         Map<String, Decimal> out = new Map<String, Decimal>();
         for (Object o : attrs) {
@@ -56,6 +86,11 @@ private class AttributeVolumeCalculatorTest {
         return out;
     }
 
+    /**
+     * @description Flattens a list of attribute maps into a name->String map (every value coerced to String).
+     * @param attrs List of attribute maps produced by buildNodeUpdate/buildResetNodeUpdate.
+     * @return Map of attributeName to its String attributeValue.
+     */
     private static Map<String, String> flattenStr(List<Object> attrs) {
         Map<String, String> out = new Map<String, String>();
         for (Object o : attrs) {
@@ -67,6 +102,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- buildTierLookupMap + lookupTierFromMap -------------------------------
 
+    /**
+     * @description Verifies that two same-key volume ranges fold into one tier-map entry and that a
+     *              volume inside the first range resolves the Calculated tier with base/multiplier/mode.
+     */
     @isTest
     static void lookupTier_matchWithinRange_calculated() {
         List<Attribute_Tier_Pricing_Storage__c> tiers = new List<Attribute_Tier_Pricing_Storage__c>{
@@ -92,6 +131,10 @@ private class AttributeVolumeCalculatorTest {
 
     // SC-3384 — the composite key is currency-scoped: a non-USD line matches ONLY its own-currency
     // tier row (not the USD row), and falls to no-match when no row exists in its currency.
+    /**
+     * @description Verifies the currency-scoped composite key: a line matches only its own-currency tier
+     *              (USD->USD, EUR->EUR, never the USD value) and yields no match when its currency is absent.
+     */
     @isTest
     static void lookupTier_currencyScoped_sc3384() {
         Attribute_Tier_Pricing_Storage__c usdTier = tier('Feature_Options', 'Gold', 0, 100, 500, 1.0, 'Total Price');
@@ -117,6 +160,9 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(null, gbp, 'no GBP tier -> no match (data-first: falls to reset-to-list)');
     }
 
+    /**
+     * @description Verifies a volume that falls outside the first range resolves the second range's tier value.
+     */
     @isTest
     static void lookupTier_secondRange_matches() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -130,6 +176,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(400, r.basePrice, 'volume 250 falls in the [101,500] range');
     }
 
+    /**
+     * @description Verifies a null upper bound is open-ended (matches any volume at/above the lower bound)
+     *              while a volume below the lower bound still yields no match.
+     */
     @isTest
     static void lookupTier_openUpperBound_matchesAnyAboveLower() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -145,6 +195,9 @@ private class AttributeVolumeCalculatorTest {
             'below lower bound => no match');
     }
 
+    /**
+     * @description Verifies a volume above the only defined range resolves to no tier (null).
+     */
     @isTest
     static void lookupTier_outOfRange_null() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -157,6 +210,10 @@ private class AttributeVolumeCalculatorTest {
             'volume above the only range => no tier');
     }
 
+    /**
+     * @description Verifies key normalization: a tier stored with a space in its attribute name still
+     *              matches a context attribute that uses the underscore form.
+     */
     @isTest
     static void lookupTier_keyNormalization_spaceToUnderscore() {
         // tier stored with a SPACE in the attribute name; context uses an UNDERSCORE -> must match
@@ -170,6 +227,10 @@ private class AttributeVolumeCalculatorTest {
             'space/underscore normalization aligns tier and context keys');
     }
 
+    /**
+     * @description Verifies the lookup skips the Attribute_Volume entry and blank-valued attributes, and
+     *              resolves the tier via the AttributeKeyName fallback name.
+     */
     @isTest
     static void lookupTier_skipsAttributeVolumeAndBlanks_usesKeyName() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -188,6 +249,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals('Feature_Options', r.attributeName);
     }
 
+    /**
+     * @description Verifies each guard clause returns null: null map, blank product, blank psm, null attrs,
+     *              empty attrs, and null volume.
+     */
     @isTest
     static void lookupTier_guardClauses_returnNull() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -203,6 +268,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- buildNodeUpdate ------------------------------------------------------
 
+    /**
+     * @description Verifies a Calculated tier with a multiplier writes three attributes (base price, mode,
+     *              multiplier) and strips the leading context element from the node's data path.
+     */
     @isTest
     static void buildNodeUpdate_calculated_writesThreeAttrsAndStripsPath() {
         Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, new Map<String, Object>());
@@ -225,6 +294,9 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(1.25, dec.get('Attribute_Multiplier_Pct__c'));
     }
 
+    /**
+     * @description Verifies a Unit Price tier writes only two attributes and omits the multiplier attribute.
+     */
     @isTest
     static void buildNodeUpdate_unitPrice_noMultiplier() {
         Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, new Map<String, Object>());
@@ -235,6 +307,9 @@ private class AttributeVolumeCalculatorTest {
         System.assert(!flattenDec(attrs).containsKey('Attribute_Multiplier_Pct__c'));
     }
 
+    /**
+     * @description Verifies a Calculated tier with a null multiplier omits the multiplier attribute (two attrs).
+     */
     @isTest
     static void buildNodeUpdate_calculatedNullMultiplier_noMultiplierAttr() {
         Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, new Map<String, Object>());
@@ -244,6 +319,9 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(2, attrs.size(), 'Calculated but null multiplier => no multiplier attr written');
     }
 
+    /**
+     * @description Verifies buildNodeUpdate returns null when the node's data path is empty.
+     */
     @isTest
     static void buildNodeUpdate_nullDataPath_returnsNull() {
         Map<String, Object> node = itemNode(new List<Object>(), new Map<String, Object>());
@@ -254,6 +332,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- buildResetNodeUpdate (SC-3390 / D-17) --------------------------------
 
+    /**
+     * @description Verifies the reset writes the tag's ListPrice onto Base_Price__c as a
+     *              Unit Price mode payload and strips the context element from the data path.
+     */
     @isTest
     static void buildResetNodeUpdate_writesListPriceAsUnitPrice() {
         Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, null);
@@ -269,6 +351,9 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals('Unit Price', flattenStr(attrs).get('Attribute_Price_Mode__c'), 'reset mode is Unit Price');
     }
 
+    /**
+     * @description Verifies a missing ListPrice in the reset tag map defaults Base_Price__c to 0.
+     */
     @isTest
     static void buildResetNodeUpdate_nullListPrice_zero() {
         Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, null);
@@ -276,6 +361,9 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(0, flattenDec(attrs).get('Base_Price__c'), 'missing ListPrice => 0');
     }
 
+    /**
+     * @description Verifies buildResetNodeUpdate returns null when the node's data path is empty.
+     */
     @isTest
     static void buildResetNodeUpdate_nullDataPath_null() {
         Map<String, Object> node = itemNode(new List<Object>(), null);
@@ -284,6 +372,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- buildAttributeExplainerText ------------------------------------------
 
+    /**
+     * @description Verifies the explainer text renders the correct phrasing for each of the three price
+     *              modes: Calculated (base x multiplier), Unit Price, and Total Price.
+     */
     @isTest
     static void explainer_allThreeModes() {
         AttributeVolumeCalculator.PricingTierResult calc =
@@ -300,6 +392,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- getAttributeVolumeValue / getAttributeValue --------------------------
 
+    /**
+     * @description Verifies volume extraction parses a numeric string and returns null for blank,
+     *              unparseable, or absent Attribute_Volume values.
+     */
     @isTest
     static void getAttributeVolumeValue_parseBlankAndUnparseable() {
         System.assertEquals(50, AttributeVolumeCalculator.getAttributeVolumeValue(
@@ -312,6 +408,10 @@ private class AttributeVolumeCalculatorTest {
             new List<Map<String, Object>>{ attrMap('Other', '50') }), 'not present => null');
     }
 
+    /**
+     * @description Verifies attribute-value lookup resolves by 'Attribute' name, falls back to
+     *              'AttributeKeyName', and returns null for a missing name or null attribute list.
+     */
     @isTest
     static void getAttributeValue_nameAndKeyNameFallback() {
         System.assertEquals('Gold', AttributeVolumeCalculator.getAttributeValue(
@@ -326,6 +426,9 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- dataPath id extraction -----------------------------------------------
 
+    /**
+     * @description Verifies the line-item id is read from the last data-path element, and an empty path yields null.
+     */
     @isTest
     static void getLineItemIdFromDataPath_lastElement() {
         System.assertEquals('line', AttributeVolumeCalculator.getLineItemIdFromDataPath(
@@ -334,6 +437,10 @@ private class AttributeVolumeCalculatorTest {
             itemNode(new List<Object>(), null)), 'empty => null');
     }
 
+    /**
+     * @description Verifies the parent id is read from the second-to-last data-path element, and a path
+     *              of size less than two yields null.
+     */
     @isTest
     static void getParentIdFromDataPath_secondToLast() {
         System.assertEquals('parent', AttributeVolumeCalculator.getParentIdFromDataPath(
@@ -344,6 +451,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- groupAttributesByLineItem --------------------------------------------
 
+    /**
+     * @description Verifies attributes group by the ParentReference tag, fall back to the data-path
+     *              second-to-last element when absent, and drop entries with no resolvable parent.
+     */
     @isTest
     static void groupAttributes_parentReferenceAndDataPathFallback() {
         List<Object> attributeData = new List<Object>{
@@ -364,6 +475,10 @@ private class AttributeVolumeCalculatorTest {
 
     // ---- tag helpers ----------------------------------------------------------
 
+    /**
+     * @description Verifies boolean coercion from a tag across variants: real Boolean, 'true'/'1'/'YES'
+     *              strings, 'false', null (returns null), missing key (null), and a nested {tagValue} wrapper.
+     */
     @isTest
     static void getBooleanFromTag_variants() {
         Map<String, Object> m = new Map<String, Object>{
@@ -381,6 +496,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(true, AttributeVolumeCalculator.getBooleanFromTag(m, 'wrapped'), 'nested {tagValue} wrapper unwrapped');
     }
 
+    /**
+     * @description Verifies string extraction from a tag: flat string, numeric coerced to string, a nested
+     *              {tagValue} wrapper, and null for null-valued or missing keys.
+     */
     @isTest
     static void getStringFromTag_flatAndWrapped() {
         Map<String, Object> m = new Map<String, Object>{
@@ -401,6 +520,9 @@ private class AttributeVolumeCalculatorTest {
     // zero behavioral risk. Pins branches the round-2 suite did not exercise.
     // ========================================================================
 
+    /**
+     * @description Verifies a null Lower_Bound__c is treated as 0 so that volume 0 matches the tier.
+     */
     @isTest
     static void lookupTier_lowerBoundNull_defaultsZero() {
         // Lower_Bound__c null => treated as 0 (tier line: lower = Lower_Bound__c != null ? : 0)
@@ -411,6 +533,10 @@ private class AttributeVolumeCalculatorTest {
             'volume 0 matches when lower bound null (defaults to 0)');
     }
 
+    /**
+     * @description Verifies both range bounds are inclusive (volume equal to lower or upper matches) while
+     *              volumes just below the lower or just above the upper are excluded.
+     */
     @isTest
     static void lookupTier_boundaryInclusive() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -422,6 +548,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(null, AttributeVolumeCalculator.lookupTierFromMap(tierMap, PRODUCT_ID, PSM_ID, attrs, 21, 'USD'), 'above upper excluded');
     }
 
+    /**
+     * @description Verifies the lookup iterates past a first attribute with no tier key and matches the
+     *              second attribute that does have one.
+     */
     @isTest
     static void lookupTier_firstAttrNoKey_secondMatches() {
         // First attribute has no tier key; the loop must continue and match the second attribute.
@@ -436,6 +566,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals('Feature_Options', r.attributeName, 'iterates past the no-key attr to the matching one');
     }
 
+    /**
+     * @description Verifies a Total Price tier carries its mode and base price through the result with a
+     *              null multiplier.
+     */
     @isTest
     static void lookupTier_totalPriceMode_carriesMode() {
         Map<String, List<Attribute_Tier_Pricing_Storage__c>> tierMap = AttributeVolumeCalculator.buildTierLookupMap(
@@ -448,6 +582,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(null, r.multiplier);
     }
 
+    /**
+     * @description Verifies a non-Calculated (Total Price) mode never writes the multiplier attribute even
+     *              when the result carries a non-null multiplier.
+     */
     @isTest
     static void buildNodeUpdate_totalPriceMode_noMultiplierEvenIfPresent() {
         // Non-Calculated mode never writes the multiplier attr, even when multiplier is non-null.
@@ -460,6 +598,10 @@ private class AttributeVolumeCalculatorTest {
         System.assert(!flattenDec(attrs).containsKey('Attribute_Multiplier_Pct__c'));
     }
 
+    /**
+     * @description Verifies the reset resolves ListPrice from a nested {tagValue} wrapper and parses a
+     *              string ListPrice onto Base_Price__c.
+     */
     @isTest
     static void buildResetNodeUpdate_nestedAndStringListPrice() {
         Map<String, Object> node = itemNode(new List<Object>{ 'ctx', 'root', 'line' }, null);
@@ -473,6 +615,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(1234.5, flattenDec(a2).get('Base_Price__c'), 'ListPrice parsed from string');
     }
 
+    /**
+     * @description Verifies volume extraction parses decimal and negative string values (reset semantics
+     *              for negatives are handled by the caller, not this method).
+     */
     @isTest
     static void getAttributeVolumeValue_decimalAndNegative() {
         System.assertEquals(50.5, AttributeVolumeCalculator.getAttributeVolumeValue(
@@ -481,6 +627,10 @@ private class AttributeVolumeCalculatorTest {
             new List<Map<String, Object>>{ attrMap('Attribute_Volume', '-5') }), 'negative parses (reset handled by caller, not here)');
     }
 
+    /**
+     * @description Verifies attribute-value lookup returns the right value for each name when Attribute_Volume
+     *              coexists with other attributes in the list.
+     */
     @isTest
     static void getAttributeValue_volumeAmongManyAttrs() {
         List<Map<String, Object>> attrs = new List<Map<String, Object>>{
@@ -491,6 +641,9 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals('Gold', AttributeVolumeCalculator.getAttributeValue(attrs, 'Feature_Options'));
     }
 
+    /**
+     * @description Verifies multiple attributes sharing one ParentReference group together under that single parent.
+     */
     @isTest
     static void groupAttributes_multipleAttrsSameParent() {
         List<Object> attributeData = new List<Object>{
@@ -503,6 +656,10 @@ private class AttributeVolumeCalculatorTest {
         System.assertEquals(2, out.get('LINE-A').size(), 'both attrs group under the same parent');
     }
 
+    /**
+     * @description Verifies additional boolean coercions: case-insensitive 'TRUE', integer 1 -> true, '0'/'no'
+     *              -> false, and an unrecognized token -> false.
+     */
     @isTest
     static void getBooleanFromTag_moreCoercions() {
         Map<String, Object> m = new Map<String, Object>{

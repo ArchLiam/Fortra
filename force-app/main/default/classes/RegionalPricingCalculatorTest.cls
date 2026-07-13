@@ -1,11 +1,17 @@
 /**
- * Characterization tests for RegionalPricingCalculator (Wave 2 hook-thinning).
- * Pins the country lookup + the round-up-to-nearest-$5 formula extracted from RegionalServicesPricingPrehook.
- * Pure — no DML, no RCA runtime.
+ * @description Characterization tests for RegionalPricingCalculator: pins the country
+ *              multiplier lookup and the round-up-to-nearest-$5 adjusted-price formula
+ *              extracted from RegionalServicesPricingPrehook. Pure unit tests with no DML
+ *              or RCA runtime.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class RegionalPricingCalculatorTest {
 
+    /**
+     * @description Verifies getMultiplierForCountry returns the mapped multiplier for matched
+     *              countries and falls back to the default (1.0) for unmatched, blank, and null keys.
+     */
     @isTest
     static void getMultiplierForCountry_lookupAndDefaults() {
         Map<String, Decimal> m = new Map<String, Decimal>{ 'Germany' => 0.85, 'JP' => 0.75 };
@@ -16,9 +22,11 @@ private class RegionalPricingCalculatorTest {
         System.assertEquals(1.0,  RegionalPricingCalculator.getMultiplierForCountry(m, null),      'null -> 1.0');
     }
 
-    // A-6 — Active multiplier row with a null Multiplier__c resolves to DEFAULT_MULTIPLIER (1.0),
-    // so the prehook's default short-circuit skips the line (leaves it untouched) instead of
-    // adjusting off a null. Non-null and not-found behavior is unchanged.
+    /**
+     * @description Verifies that an active multiplier row with a null Multiplier__c resolves to
+     *              DEFAULT_MULTIPLIER (1.0), so the prehook's default short-circuit skips the line
+     *              instead of adjusting off a null, while populated and not-found rows behave as before.
+     */
     @isTest
     static void getMultiplierForCountry_nullMultiplier_resolvesToDefault_A6() {
         Map<String, Decimal> m = new Map<String, Decimal>{
@@ -33,7 +41,11 @@ private class RegionalPricingCalculatorTest {
             'not-found country still resolves to DEFAULT_MULTIPLIER');
     }
 
-    // SDD Rule 14 / BR-007 — effective dating: only rows in effect on the eval date load.
+    /**
+     * @description Verifies effective-dating: isEffectiveOn includes only rows in effect on the
+     *              evaluation date, treating null bounds as open-ended (inclusive window) and a
+     *              null evaluation date as effective so no row is dropped when the date is unknown.
+     */
     @isTest
     static void isEffectiveOn_rule14_effectiveDating() {
         Date today = Date.newInstance(2026, 7, 8);
@@ -56,6 +68,10 @@ private class RegionalPricingCalculatorTest {
         System.assertEquals(true, RegionalPricingCalculator.isEffectiveOn(Date.newInstance(2026,8,1), null, null), 'null asOf -> effective (defensive)');
     }
 
+    /**
+     * @description Verifies calculateAdjustedPrice applies the multiplier and rounds up to the
+     *              nearest $5, returning null for a null list price and treating a null multiplier as 1.0.
+     */
     @isTest
     static void calculateAdjustedPrice_roundsUpToNearest5() {
         System.assertEquals(650.00,  RegionalPricingCalculator.calculateAdjustedPrice(1000.00, 0.65), '650 -> 650');

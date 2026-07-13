@@ -1,12 +1,8 @@
 /**
- * @description Tests for QuoteLineItemCurrencyCorrectionHandler (SC-3384).
- * @author Claude Code
- * @date 2026-07-09
- *
- * Proves the before-insert guard re-points a mis-currencied PricebookEntry to the Quote-currency
- * sibling. Each "corrects" test inserts a QuoteLineItem whose PBE is USD onto a EUR Quote — an
- * insert that WOULD throw the native "price book entry currency code is different" error without the
- * guard — so a successful insert with the EUR PBE is itself the proof the fix ran.
+ * @description Verifies QuoteLineItemCurrencyCorrectionHandler's before-insert guard re-points a
+ * mis-currencied PricebookEntry to the Quote-currency sibling; a successful insert of a USD PBE onto
+ * a EUR Quote (which would otherwise throw the native currency-mismatch error) proves the fix ran.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class QuoteLineItemCurrencyCorrectionTest {
@@ -14,6 +10,10 @@ private class QuoteLineItemCurrencyCorrectionTest {
     private static final String PROD_DUAL = 'PROD-DUAL';   // has both USD + EUR PBEs
     private static final String PROD_USD_ONLY = 'PROD-USDONLY'; // USD PBE only (data-gap case)
 
+    /**
+     * @description Builds the EUR test fixture: a EUR account, opportunity, and quote plus two
+     * products whose PricebookEntries model the dual-currency (USD + EUR) and USD-only data-gap cases.
+     */
     @TestSetup
     static void setup() {
         Account acct = new Account(Name = 'SC3384 Currency Acct', CurrencyIsoCode = 'EUR');
@@ -62,10 +62,20 @@ private class QuoteLineItemCurrencyCorrectionTest {
         insert pbes;
     }
 
+    /**
+     * @description Queries and returns the EUR Quote created by the test setup.
+     * @return The EUR Quote fixture record.
+     */
     private static Quote eurQuote() {
         return [SELECT Id, CurrencyIsoCode FROM Quote WHERE Name = 'SC3384 EUR Quote' LIMIT 1];
     }
 
+    /**
+     * @description Looks up the PricebookEntry for a product code in a given currency.
+     * @param productCode The ProductCode of the product whose PricebookEntry is sought.
+     * @param currencyIso The ISO currency code of the desired PricebookEntry.
+     * @return The matching PricebookEntry record.
+     */
     private static PricebookEntry pbeFor(String productCode, String currencyIso) {
         return [
             SELECT Id, Product2Id, CurrencyIsoCode
@@ -75,6 +85,10 @@ private class QuoteLineItemCurrencyCorrectionTest {
         ];
     }
 
+    /**
+     * @description Verifies that inserting a QuoteLineItem with a USD PBE onto a EUR Quote re-points
+     * the line to the EUR sibling PBE and inherits the EUR currency instead of throwing.
+     */
     @isTest
     static void correctsUsdPbeToEurOnInsert() {
         Quote q = eurQuote();
@@ -99,6 +113,10 @@ private class QuoteLineItemCurrencyCorrectionTest {
         System.assertEquals('EUR', saved.CurrencyIsoCode, 'Line should be EUR (inherited from the quote)');
     }
 
+    /**
+     * @description Verifies the guard is a no-op when the PBE currency already matches the Quote,
+     * leaving the originally selected EUR PricebookEntry untouched.
+     */
     @isTest
     static void leavesMatchingCurrencyPbeUntouched() {
         Quote q = eurQuote();
@@ -121,6 +139,10 @@ private class QuoteLineItemCurrencyCorrectionTest {
         System.assertEquals(eurPbe.Id, saved.PricebookEntryId, 'Matching-currency PBE must be left untouched');
     }
 
+    /**
+     * @description Verifies that when no EUR sibling PBE exists, the guard leaves the line as-is and
+     * the native price-book-entry currency validation still fires, so the data gap is not masked.
+     */
     @isTest
     static void dataGapNoEurPbeSurfacesNativeError() {
         Quote q = eurQuote();

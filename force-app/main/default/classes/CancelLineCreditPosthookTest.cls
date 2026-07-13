@@ -1,13 +1,23 @@
 /**
- * @description Unit tests for CancelLineCreditPosthook (SC-3441). Exercises the pure
+ * @description Unit tests for CancelLineCreditPosthook. Exercises the pure
  *              @TestVisible seams (gating, credit math, node-update shape using the QLI
  *              field-API attribute names, response parsing, decimal coercion) and the
  *              process() early-exit / swallow paths.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class CancelLineCreditPosthookTest {
 
-    // Build a flat SalesTransactionItem node: {dataPath:[ctx,root,line], <tags>}
+    /**
+     * @description Builds a flat SalesTransactionItem node of shape {dataPath:[ctx,root,line], <tags>}
+     *              for use as pure-seam test input.
+     * @param ctxPath the context-path (first) dataPath element
+     * @param rootId the root (order/quote) Id dataPath element
+     * @param lineId the line Id (last) dataPath element
+     * @param qty the LineItemQuantity tag value, omitted when null
+     * @param cancelNet the CancelNetUnitPrice__c tag value, omitted when null
+     * @return the assembled node map
+     */
     private static Map<String, Object> node(String ctxPath, String rootId, String lineId, Object qty, Object cancelNet) {
         Map<String, Object> n = new Map<String, Object>{
             'dataPath' => new List<Object>{ ctxPath, rootId, lineId }
@@ -17,6 +27,11 @@ private class CancelLineCreditPosthookTest {
         return n;
     }
 
+    /**
+     * @description Verifies a negative-quantity line with a staged CancelNetUnitPrice__c is credited:
+     *              the context-path element is stripped from the path and the five QLI field-API
+     *              attributes are written with a positive unit price and negative totals.
+     */
     @isTest
     static void negativeLineWithStagedNet_isCredited() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -48,6 +63,9 @@ private class CancelLineCreditPosthookTest {
         System.assert(!w.containsKey('ItemSubtotal'));
     }
 
+    /**
+     * @description Verifies a positive-quantity line is never credited (produces no updates).
+     */
     @isTest
     static void positiveQtyLine_isSkipped() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -57,6 +75,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(0, h.buildCreditUpdates(nodes).size(), 'positive-qty line must not be touched');
     }
 
+    /**
+     * @description Verifies a negative-quantity line with no staged net (null or 0) is skipped.
+     */
     @isTest
     static void negativeQty_butNoStagedNet_isSkipped() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -67,6 +88,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(0, h.buildCreditUpdates(nodes).size(), 'no staged net (null or 0) => skip');
     }
 
+    /**
+     * @description Verifies buildNodeUpdate emits the five QLI field-API attribute names.
+     */
     @isTest
     static void buildNodeUpdate_writesFieldApiNames() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -80,6 +104,10 @@ private class CancelLineCreditPosthookTest {
         }
     }
 
+    /**
+     * @description Verifies parseLineNodes handles nested, flat, and single-object response shapes
+     *              and returns null for null or empty input.
+     */
     @isTest
     static void parseLineNodes_handlesShapes() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -101,6 +129,10 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(null, h.parseLineNodes(new Map<String, Object>()));
     }
 
+    /**
+     * @description Verifies getDecimalFromTag coerces integer, decimal, and numeric-string tags and
+     *              returns null for unparseable, null, or missing tags.
+     */
     @isTest
     static void getDecimalFromTag_coercesTypes() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -115,6 +147,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(null, h.getDecimalFromTag(m, 'missing'));
     }
 
+    /**
+     * @description Verifies execute returns SUCCESS for a null request so the reprice never breaks.
+     */
     @isTest
     static void execute_nullRequest_succeedsQuietly() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -125,6 +160,9 @@ private class CancelLineCreditPosthookTest {
             'never break the reprice; null request => SUCCESS');
     }
 
+    /**
+     * @description Verifies process returns SUCCESS for null and blank context ids.
+     */
     @isTest
     static void process_blankContext_succeedsQuietly() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -132,6 +170,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(RevSignaling.TransactionStatus.SUCCESS, h.process('').status);
     }
 
+    /**
+     * @description Verifies process swallows errors from an invalid context id and still returns SUCCESS.
+     */
     @isTest
     static void process_fakeContext_swallowsAndSucceeds() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -141,6 +182,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(RevSignaling.TransactionStatus.SUCCESS, resp.status);
     }
 
+    /**
+     * @description Verifies submitContextUpdates returns zero when the updates list is empty or null.
+     */
     @isTest
     static void submit_emptyUpdates_returnsZero() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -148,6 +192,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(0, h.submitContextUpdates(null, 'x', null));
     }
 
+    /**
+     * @description Verifies submitContextUpdates does not let an exception from a fake context escape unhandled.
+     */
     @isTest
     static void submit_withFakeContext_doesNotEscapeUnhandled() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -168,6 +215,10 @@ private class CancelLineCreditPosthookTest {
     private static final Id LINE_ID  = '0QLWC000003laPh4AI';   // Nir's cancel line shape
     private static final Id ASSET_ID  = '02iWC000008eKMnYAM';   // its source asset
 
+    /**
+     * @description Verifies an unseeded negative line is credited from the resolved asset net when
+     *              no staged net is present.
+     */
     @isTest
     static void negativeLine_noStagedNet_usesResolvedAssetNet() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -187,6 +238,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(-6695.30, w.get('TotalLineAmount'));
     }
 
+    /**
+     * @description Verifies a staged context net wins over a resolved asset net.
+     */
     @isTest
     static void stagedNet_winsOverResolved() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -200,6 +254,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(-15000, w.get('TotalPrice'));
     }
 
+    /**
+     * @description Verifies a line with neither staged nor resolved net is skipped (no zero/garbage credit).
+     */
     @isTest
     static void noStagedNet_noResolved_isSkipped() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -210,6 +267,9 @@ private class CancelLineCreditPosthookTest {
             'no staged and nothing resolved => skip (no zero/garbage credit)');
     }
 
+    /**
+     * @description Verifies collectUnseededCancelLines returns only the negative, unseeded lines.
+     */
     @isTest
     static void collectUnseeded_onlyNegativeUnseeded() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -223,6 +283,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(LINE_ID, pend[0].lineId);
     }
 
+    /**
+     * @description Verifies resolveScope derives Quote/Order/null from the line Id (last dataPath element).
+     */
     @isTest
     static void resolveScope_byLineIdType() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -233,6 +296,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(null, h.resolveScope(null));
     }
 
+    /**
+     * @description Verifies lineIdFromDataPath returns the last element when it is a valid Id, else null.
+     */
     @isTest
     static void lineIdFromDataPath_lastElement() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -243,6 +309,10 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(null, h.lineIdFromDataPath(null));
     }
 
+    /**
+     * @description Verifies resolveSeedNet matches by currency, falls back to a single-currency asset
+     *              or lossy ListPrice, and returns null when nothing is resolvable.
+     */
     @isTest
     static void resolveSeedNet_currencyAwareAndFallback() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -257,6 +327,10 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(null, h.resolveSeedNet(null, 'USD', 0, byCur), 'nothing resolvable -> null');
     }
 
+    /**
+     * @description Verifies applyAssetNetSource lets a Generate source win and stay locked, ignores
+     *              zero nets, and keeps currencies isolated.
+     */
     @isTest
     static void applyAssetNetSource_generateWinsAndSticks() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -275,6 +349,10 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(5000, m.get(ASSET_ID).get('EUR'));
     }
 
+    /**
+     * @description Verifies getStringFromTag coerces string and numeric tags and returns null for
+     *              null or missing tags.
+     */
     @isTest
     static void getStringFromTag_coerces() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -285,6 +363,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(null, h.getStringFromTag(m, 'missing'));
     }
 
+    /**
+     * @description Verifies resolveSourceAssetIds runs its SOQL and returns no rows for fake ids or empty/null input.
+     */
     @isTest
     static void resolveSourceAssetIds_runsSoql_noRowsForFakeIds() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -294,6 +375,9 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(0, h.resolveSourceAssetIds(null, null).size());
     }
 
+    /**
+     * @description Verifies resolveAssetNetByCurrency runs its SOQL and returns no rows for fake ids or empty/null input.
+     */
     @isTest
     static void resolveAssetNetByCurrency_runsSoql_noRowsForFakeIds() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -302,6 +386,10 @@ private class CancelLineCreditPosthookTest {
         System.assertEquals(0, h.resolveAssetNetByCurrency(null).size());
     }
 
+    /**
+     * @description Verifies resolveAssetNetsForUnseededLines returns empty when no source asset exists
+     *              and never queries for an all-seeded set.
+     */
     @isTest
     static void resolveAssetNets_endToEnd_noMatchingData_returnsEmpty() {
         CancelLineCreditPosthook h = new CancelLineCreditPosthook();
@@ -318,7 +406,14 @@ private class CancelLineCreditPosthookTest {
         }).size());
     }
 
-    // Build an in-memory AssetActionSource (with its AssetAction parent) for pure-seam tests.
+    /**
+     * @description Builds an in-memory AssetActionSource (with its AssetAction parent) for pure-seam tests.
+     * @param assetId the parent AssetAction's AssetId
+     * @param type the parent AssetAction's Type (e.g. Generate/Change)
+     * @param cur the source's CurrencyIsoCode
+     * @param net the source's NetUnitPrice
+     * @return the deserialized AssetActionSource
+     */
     private static AssetActionSource aas(Id assetId, String type, String cur, Decimal net) {
         return (AssetActionSource) JSON.deserialize(
             '{"NetUnitPrice":' + net + ',"CurrencyIsoCode":"' + cur + '",' +
@@ -326,6 +421,12 @@ private class CancelLineCreditPosthookTest {
             AssetActionSource.class);
     }
 
+    /**
+     * @description Flattens an attribute list of {attributeName, attributeValue} maps into a
+     *              name-to-decimal map for assertions.
+     * @param attrs the list of attribute maps
+     * @return a map of attribute name to decimal value
+     */
     private static Map<String, Decimal> flatten(List<Object> attrs) {
         Map<String, Decimal> out = new Map<String, Decimal>();
         for (Object o : attrs) {

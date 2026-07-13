@@ -301,17 +301,10 @@ public with sharing class RenewalMaintenancePricingService {
         if (qli == null || qli.Base_Price__c == null || qli.Base_Price__c <= 0) {
             return null;
         }
-
-        Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
-        Decimal priorDisc = resolveDiscretionaryDollars(qli);
-        Decimal colaPercent = qli.COLA_Uplift_Percent__c != null ? qli.COLA_Uplift_Percent__c : 0;
-        Decimal preColaNet = qli.Base_Price__c - priorPartner - priorDisc;
-
-        if (preColaNet <= 0) {
-            return null;
-        }
-
-        return (preColaNet * (1 + (colaPercent / 100))).setScale(2, RoundingMode.HALF_UP);
+        // Single-sourced onto the canonical stamped-maintenance calculator to eliminate formula drift.
+        // The null/base guard above is retained (canonical is guard-free by design); the arithmetic is
+        // byte-identical, so this delegation preserves behavior (see COLAUpliftCalculatorParityTest).
+        return COLAUpliftCalculator.computeStampedMaintenanceColaNet(qli);
     }
 
     /**
@@ -373,17 +366,6 @@ public with sharing class RenewalMaintenancePricingService {
         return netUnitPrice.setScale(2, RoundingMode.HALF_UP) != colaNet;
     }
 
-    private static Decimal resolveDiscretionaryDollars(QuoteLineItem qli) {
-        if (qli.Prior_Discretionary_Discount__c != null && qli.Prior_Discretionary_Discount__c > 0) {
-            return qli.Prior_Discretionary_Discount__c;
-        }
-        if (qli.Discount == null || qli.Discount <= 0) {
-            return 0;
-        }
-
-        Decimal priorPartner = qli.Prior_Partner_Discount__c != null ? qli.Prior_Partner_Discount__c : 0;
-        return ((qli.Base_Price__c - priorPartner) * (qli.Discount / 100)).setScale(2, RoundingMode.HALF_UP);
-    }
 
     private static Map<Id, Map<String, Object>> mapLineItemsById(List<Map<String, Object>> lineItems) {
         Map<Id, Map<String, Object>> lineItemById = new Map<Id, Map<String, Object>>();

@@ -1,14 +1,16 @@
 /**
- * OrderSubmissionValidatorTest
- *
- * Coverage for OrderSubmissionValidator (SC-3366). The headline assertion is
- * bulk-safety: a multi-line order must validate in CONSTANT SOQL (the whole point
- * of replacing the per-field FieldPopulatedCheck nested loop that produced 20 + 5*N
- * queries and breached the governor limit).
+ * @description Test coverage for OrderSubmissionValidator, asserting bulk-safety so a
+ * multi-line order validates in constant SOQL rather than the per-field nested loop that
+ * produced 20 + 5*N queries and breached the governor limit.
+ * @author Liam Jeong <liam.jeong@coastalcloud.us>
  */
 @isTest
 private class OrderSubmissionValidatorTest {
 
+    /**
+     * @description Seeds an Account, two Contacts, a Product2 with a standard PricebookEntry,
+     * a Draft Order, and three OrderItems used as the shared fixture for the test methods.
+     */
     @testSetup
     static void setup() {
         Account acc = new Account(Name = 'SC3366 Test Account');
@@ -54,16 +56,30 @@ private class OrderSubmissionValidatorTest {
         insert items;
     }
 
+    /**
+     * @description Returns the Id of the seeded test Order for the fixture Account.
+     * @return The Id of the test Order.
+     */
     private static Id getOrderId() {
         return [SELECT Id FROM Order WHERE AccountId IN (SELECT Id FROM Account WHERE Name = 'SC3366 Test Account') LIMIT 1].Id;
     }
 
+    /**
+     * @description Builds a ValidationRequest wrapping the given order Id.
+     * @param orderId The Order Id to place on the request.
+     * @return A ValidationRequest targeting the supplied order.
+     */
     private static OrderSubmissionValidator.ValidationRequest reqFor(Id orderId) {
         OrderSubmissionValidator.ValidationRequest r = new OrderSubmissionValidator.ValidationRequest();
         r.orderId = orderId;
         return r;
     }
 
+    /**
+     * @description Verifies validate returns one internally consistent result per request,
+     * with errorCount and hasErrors matching errorMessages, and that the bare test order
+     * reports blank-required-field errors.
+     */
     @isTest
     static void testValidate_returnsConsistentResult() {
         Id orderId = getOrderId();
@@ -82,6 +98,11 @@ private class OrderSubmissionValidatorTest {
         System.assert(res.hasErrors, 'Expected at least one blank-required-field error on the bare test order');
     }
 
+    /**
+     * @description Verifies validation issues a constant, small number of SOQL queries
+     * regardless of order line count by validating a 43-line order and asserting the query
+     * count stays within a generous ceiling.
+     */
     @isTest
     static void testValidate_bulkSafeConstantSoql() {
         Id orderId = getOrderId();
@@ -108,6 +129,11 @@ private class OrderSubmissionValidatorTest {
             'Validation SOQL must be constant regardless of line count; used=' + used + ' on a 43-line order');
     }
 
+    /**
+     * @description Verifies error output is formatted like the original flow formula: the
+     * display string joins messages with line breaks, and messages include bullet markers
+     * and a record hyperlink.
+     */
     @isTest
     static void testValidate_producesFormattedErrors() {
         Id orderId = getOrderId();
@@ -129,6 +155,10 @@ private class OrderSubmissionValidatorTest {
         System.assert(hasLink, 'Messages include a record hyperlink');
     }
 
+    /**
+     * @description Verifies validate returns an empty list for null and empty input, and that
+     * a request with a null order id yields a single result reporting no errors.
+     */
     @isTest
     static void testValidate_nullAndEmptyInput() {
         System.assertEquals(0, OrderSubmissionValidator.validate(null).size(), 'null -> empty');
@@ -144,6 +174,11 @@ private class OrderSubmissionValidatorTest {
         System.assertEquals(false, res[0].hasErrors, 'null order id -> no errors');
     }
 
+    /**
+     * @description Verifies isValuePopulated's per-type semantics: Boolean false and true are
+     * populated, null is never populated, blank text is not populated while non-blank text is,
+     * and non-null non-text non-boolean values are populated.
+     */
     @isTest
     static void testIsValuePopulated_typeSemantics() {
         // Boolean false is intentionally "populated"
@@ -166,6 +201,10 @@ private class OrderSubmissionValidatorTest {
             OrderSubmissionValidator.isValuePopulated(5, Schema.DisplayType.INTEGER), 'non-null number populated');
     }
 
+    /**
+     * @description Verifies isFieldPopulated at the record level: a set field reads as populated,
+     * an unset field as not populated, and a null record as not populated.
+     */
     @isTest
     static void testIsFieldPopulated_recordLevel() {
         Account a = new Account(Name = 'Has Name');

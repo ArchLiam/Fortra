@@ -20,6 +20,9 @@ public with sharing class RenewalMaintenanceAutoAddHandler {
      *              RRM must be added by the Year 2 Product Configuration Rule in TLE, not here.
      */
     public static void enqueueIfNeeded(List<QuoteLineItem> lines) {
+        if (RenewalMaintenanceProvisionService.bypass) {
+            return; // suppress re-entrant enqueue while the provisioner is replacing carryover lines
+        }
         if (shouldSkipCarryoverCleanupForTriggerContext()) {
             return;
         }
