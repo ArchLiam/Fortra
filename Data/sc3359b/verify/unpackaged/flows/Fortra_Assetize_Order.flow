@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <description>Calls an action that creates or updates an asset related to the order that triggered the flow.</description>
-        <name>CreateOrUpdateRelatedAsset</name>
-        <label>Create or Update Related Asset</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <actionName>createOrUpdateAssetFromOrder</actionName>
-        <actionType>createOrUpdateAssetFromOrder</actionType>
-        <connector>
-            <targetReference>PopulateAssetLegacyFields</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Assign_Error_Message</targetReference>
-        </faultConnector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>orderId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>createOrUpdateAssetFromOrder</nameSegment>
-        <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
         <description>Idempotency guard: true when this Order already produced assetization output (an AssetActionSource on one of its OrderItems). Prevents re-running createOrUpdateAssetFromOrder when an Order reaches Order Complete after already assetizing at Activated.</description>
         <name>Check_Order_Already_Assetized</name>
         <label>Check Order Already Assetized</label>
@@ -47,6 +22,31 @@
             </value>
         </inputParameters>
         <nameSegment>OrderAssetizationGuard</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Calls an action that creates or updates an asset related to the order that triggered the flow.</description>
+        <name>CreateOrUpdateRelatedAsset</name>
+        <label>Create or Update Related Asset</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>createOrUpdateAssetFromOrder</actionName>
+        <actionType>createOrUpdateAssetFromOrder</actionType>
+        <connector>
+            <targetReference>PopulateAssetLegacyFields</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Assign_Error_Message</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>orderId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>createOrUpdateAssetFromOrder</nameSegment>
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>

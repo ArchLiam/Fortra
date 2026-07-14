@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <description>Calls an action that creates or updates an asset related to the order that triggered the flow.</description>
-        <name>CreateOrUpdateRelatedAsset</name>
-        <label>Create or Update Related Asset</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <actionName>createOrUpdateAssetFromOrder</actionName>
-        <actionType>createOrUpdateAssetFromOrder</actionType>
-        <connector>
-            <targetReference>PopulateAssetLegacyFields</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Assign_Error_Message</targetReference>
-        </faultConnector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>orderId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>createOrUpdateAssetFromOrder</nameSegment>
-        <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
         <description>Idempotency guard: true when this Order already produced assetization output (an AssetActionSource on one of its OrderItems). Prevents re-running createOrUpdateAssetFromOrder when an Order reaches Order Complete after already assetizing at Activated.</description>
         <name>Check_Order_Already_Assetized</name>
         <label>Check Order Already Assetized</label>
@@ -47,6 +22,31 @@
             </value>
         </inputParameters>
         <nameSegment>OrderAssetizationGuard</nameSegment>
+        <offset>0</offset>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <actionCalls>
+        <description>Calls an action that creates or updates an asset related to the order that triggered the flow.</description>
+        <name>CreateOrUpdateRelatedAsset</name>
+        <label>Create or Update Related Asset</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>createOrUpdateAssetFromOrder</actionName>
+        <actionType>createOrUpdateAssetFromOrder</actionType>
+        <connector>
+            <targetReference>PopulateAssetLegacyFields</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Assign_Error_Message</targetReference>
+        </faultConnector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>orderId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>createOrUpdateAssetFromOrder</nameSegment>
         <offset>0</offset>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
@@ -180,7 +180,7 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>2026-07-14: trigger on Activated OR Order Complete (was Activated only) + idempotency guard, so amendments that skip Activated (Draft-&gt;Provisioned-&gt;Order Complete) still assetize exactly once; excludes Provisioned/Superseded</description>
+    <description>2026-07-14: trigger on Activated OR Order Complete + idempotency guard so skip-Activated amendments assetize exactly once; publish Pricing_Exception__e on assetization fault for durable Exception_Log__c logging</description>
     <environments>Default</environments>
     <formulas>
         <description>SC-3415: prefixed fault message written to the Order&apos;s existing integration-error field.</description>
@@ -204,6 +204,51 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Compliance sec.3.4: publishes a durable Pricing_Exception__e for the stamped assetization failure. The platform-event subscriber persists it to Exception_Log__c in its own transaction, so the log survives independently of this async run.</description>
+        <name>Publish_Assetization_Exception</name>
+        <label>Publish Assetization Exception</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Context_Id__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Exception_Type__c</field>
+            <value>
+                <stringValue>Assetization</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Message__c</field>
+            <value>
+                <elementReference>faultText</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Occurred_At__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Severity__c</field>
+            <value>
+                <stringValue>Error</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Source__c</field>
+            <value>
+                <stringValue>Fortra_Assetize_Order</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Pricing_Exception__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
     <recordLookups>
         <description>Gets the application usage assignment element with a record ID of the order ID of the triggering record and an app usage type that&apos;s RevenueLifecycleManagement. Stores the ID field of the result in the AppUsageAssignment record variable.</description>
         <name>GetApplicationUsageAssignment</name>
@@ -261,6 +306,9 @@
         <label>Stamp Assetization Failed</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
+        <connector>
+            <targetReference>Publish_Assetization_Exception</targetReference>
+        </connector>
         <filterLogic>and</filterLogic>
         <filters>
             <field>Id</field>

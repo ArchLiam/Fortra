@@ -26,31 +26,6 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <actionCalls>
-        <description>Idempotency guard: true when this Order already produced assetization output (an AssetActionSource on one of its OrderItems). Prevents re-running createOrUpdateAssetFromOrder when an Order reaches Order Complete after already assetizing at Activated.</description>
-        <name>Check_Order_Already_Assetized</name>
-        <label>Check Order Already Assetized</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <actionName>OrderAssetizationGuard</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Is_Order_Already_Assetized</targetReference>
-        </connector>
-        <faultConnector>
-            <targetReference>Assign_Error_Message</targetReference>
-        </faultConnector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>orderId</name>
-            <value>
-                <elementReference>$Record.Id</elementReference>
-            </value>
-        </inputParameters>
-        <nameSegment>OrderAssetizationGuard</nameSegment>
-        <offset>0</offset>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <actionCalls>
         <description>Step 12: aligns OrderItem unit prices before assetization. Lines with partner/manual discount use commercial net (TotalPrice); lines without keep list/net alignment. DPP V16 suppresses stacked adjustment writeback at quote time.</description>
         <name>Finalize_Order_Commercial_Net</name>
         <label>Finalize Order Commercial Net</label>
@@ -129,31 +104,8 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Check_Order_Already_Assetized</targetReference>
+                <targetReference>Finalize_Order_Commercial_Net</targetReference>
             </connector>
-            <label>Yes</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <description>Runs createOrUpdateAssetFromOrder exactly once across the Activated and Order Complete entry conditions: skips assetization when the Order already has assetization output.</description>
-        <name>Is_Order_Already_Assetized</name>
-        <label>Is Order Already Assetized?</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>Finalize_Order_Commercial_Net</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>No</defaultConnectorLabel>
-        <rules>
-            <name>Is_Order_Already_Assetized_True</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Check_Order_Already_Assetized.alreadyAssetized</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
             <label>Yes</label>
         </rules>
     </decisions>
@@ -180,7 +132,6 @@
             <label>Yes</label>
         </rules>
     </decisions>
-    <description>2026-07-14: trigger on Activated OR Order Complete (was Activated only) + idempotency guard, so amendments that skip Activated (Draft-&gt;Provisioned-&gt;Order Complete) still assetize exactly once; excludes Provisioned/Superseded</description>
     <environments>Default</environments>
     <formulas>
         <description>SC-3415: prefixed fault message written to the Order&apos;s existing integration-error field.</description>
@@ -281,19 +232,12 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-        <filterLogic>1 OR 2</filterLogic>
+        <filterLogic>and</filterLogic>
         <filters>
             <field>Status</field>
             <operator>EqualTo</operator>
             <value>
                 <stringValue>Activated</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <field>Status</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>Order Complete</stringValue>
             </value>
         </filters>
         <object>Order</object>
