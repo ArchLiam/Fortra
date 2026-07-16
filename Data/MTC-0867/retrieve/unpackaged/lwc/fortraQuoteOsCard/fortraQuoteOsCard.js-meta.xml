@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Fortra Quote OmniScript Card</masterLabel>
+    <description>Multi-variant card used inside the Fortra Quote DocumentGeneration OmniScript. Renders Step 1 intro, Step 2 review, or post-send confirmation based on the `variant` property.</description>
+    <targets>
+        <target>lightning__AppPage</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+</LightningComponentBundle>

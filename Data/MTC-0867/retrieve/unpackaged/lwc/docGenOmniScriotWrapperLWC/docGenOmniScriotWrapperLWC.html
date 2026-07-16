@@ -1,0 +1,12 @@
+<!--
+  @description       : Wrapper LWC wrapping Fortra Quote Generate Document(DocumentGeneration_Quote)
+  @author            : LJ: liam.jeong.c@fortra.com
+  @created on        : 2026-04-08
+  @last modified on  : 2026-04-11
+  @last modified by  : LJ: liam.jeong.c@fortra.com
+-->
+<template>
+    <omnistudio-omnistudio-standard-runtime-wrapper if:true={recordId} type="DocumentGeneration" subtype="Quote"
+        language="English" record-id={recordId} prefill={prefillData}>
+    </omnistudio-omnistudio-standard-runtime-wrapper>
+</template>
